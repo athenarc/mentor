@@ -37,12 +37,13 @@ Return your final answer as a JSON string with:
 """
 
 
-def create_miner_agent(model) -> CodeAgent:
+def create_miner_agent(model, logger=None) -> CodeAgent:
     """
     Create the Miner (Evidence Extraction) agent.
 
     Args:
         model: A smolagents model instance.
+        logger: Optional AgentLogger for dual-write logging.
 
     Returns:
         Configured CodeAgent for evidence extraction.
@@ -58,6 +59,7 @@ def create_miner_agent(model) -> CodeAgent:
         ),
         instructions=MINER_INSTRUCTIONS,
         max_steps=5,
-        verbosity_level=1,
+        verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
+        logger=logger,
     )

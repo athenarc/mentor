@@ -59,7 +59,7 @@ Return your final answer as a structured report with sections:
 """
 
 
-def create_orchestrator_agent(model, step_callbacks=None) -> CodeAgent:
+def create_orchestrator_agent(model, step_callbacks=None, logger=None) -> CodeAgent:
     """
     Create the Orchestrator (Manager) agent with all sub-agents.
 
@@ -69,17 +69,21 @@ def create_orchestrator_agent(model, step_callbacks=None) -> CodeAgent:
 
     Args:
         model: A smolagents model instance (e.g. OpenAIServerModel).
-        step_callbacks: Optional list of callback functions invoked after
-            each agent step (used for run logging).
+        step_callbacks: Optional callbacks invoked after each agent step.
+            Can be a list (registered for ActionStep only) or a dict
+            mapping step types to callbacks (e.g.
+            ``{ActionStep: fn, PlanningStep: fn}``).
+        logger: Optional ``AgentLogger`` instance shared across all
+            agents for dual-write logging (terminal + file).
 
     Returns:
         Configured CodeAgent that manages the full workflow.
     """
-    # Create all sub-agents
-    librarian = create_librarian_agent(model)
-    gatekeeper = create_gatekeeper_agent(model)
-    miner = create_miner_agent(model)
-    critic = create_critic_agent(model)
+    # Create all sub-agents (share the same logger so all output is captured)
+    librarian = create_librarian_agent(model, logger=logger)
+    gatekeeper = create_gatekeeper_agent(model, logger=logger)
+    miner = create_miner_agent(model, logger=logger)
+    critic = create_critic_agent(model, logger=logger)
 
     return CodeAgent(
         tools=[],
@@ -88,7 +92,8 @@ def create_orchestrator_agent(model, step_callbacks=None) -> CodeAgent:
         instructions=ORCHESTRATOR_INSTRUCTIONS,
         max_steps=10,
         planning_interval=3,  # Re-plan every 3 steps for complex workflows
-        verbosity_level=1,
+        verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         step_callbacks=step_callbacks or [],
+        logger=logger,
     )

@@ -24,7 +24,7 @@ from pathlib import Path
 
 from bastirr.config import OUTPUT_DIR, OPENAI_API_KEY, MODEL_BACKEND, create_model
 from bastirr.data import load_review, list_reviews
-from bastirr.logging_utils import setup_run_logging, make_step_callback
+from bastirr.logging_utils import setup_run_logging, make_step_callbacks
 
 logging.basicConfig(
     level=logging.INFO,
@@ -105,8 +105,8 @@ def run_demo(
     # -----------------------------------------------------------------------
     # 2. Set up run logging
     # -----------------------------------------------------------------------
-    run_dir, wf_log, dec_log = setup_run_logging(review.title)
-    step_callback = make_step_callback(wf_log, dec_log)
+    run_dir, agent_logger, dec_log = setup_run_logging(review.title)
+    step_cbs = make_step_callbacks(dec_log)
     logger.info(f"Run directory: {run_dir}")
     dec_log.info(f"Review URL: {review_url}")
     dec_log.info(f"Dataset split: {split}")
@@ -126,7 +126,9 @@ def run_demo(
     logger.info(f"Model backend: {_backend} | model_id: {model.model_id}")
 
     logger.info("Creating orchestrator with sub-agents...")
-    orchestrator = create_orchestrator_agent(model, step_callbacks=[step_callback])
+    orchestrator = create_orchestrator_agent(
+        model, step_callbacks=step_cbs, logger=agent_logger,
+    )
 
     # -----------------------------------------------------------------------
     # 4. Run the pipeline
@@ -142,14 +144,12 @@ def run_demo(
         f"Return a complete systematic review report."
     )
 
-    wf_log.info("Starting orchestrated pipeline...")
+    logger.info("Starting orchestrated pipeline...")
     dec_log.info("PIPELINE START")
-    wf_log.info("-" * 70)
 
     result = orchestrator.run(task)
 
-    wf_log.info("-" * 70)
-    wf_log.info("Pipeline complete!")
+    logger.info("Pipeline complete!")
     dec_log.info("PIPELINE COMPLETE")
 
     # -----------------------------------------------------------------------
@@ -175,6 +175,9 @@ def run_demo(
 
     dec_log.info("GROUND TRUTH:\n" + "\n".join(gt_lines))
     logger.info(f"\nFull logs at: {run_dir}")
+
+    # Close the file-backed agent logger
+    agent_logger.close()
 
     return report
 

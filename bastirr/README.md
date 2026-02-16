@@ -34,6 +34,9 @@ Scaffolding implementation of the Bastirr architecture using [smolagents](https:
 # 1. Install dependencies
 pip install -r bastirr/requirements.txt
 
+# For LiteLLM support (Anthropic, Ollama, local models):
+pip install 'smolagents[litellm]'
+
 # 2. Set up API key
 #    Copy the template and add your OpenAI API key
 cp .env.example .env
@@ -45,7 +48,7 @@ cd systematic_review_dataset && ./download_dataset.sh && cd ..
 # 4. List available reviews
 PYTHONPATH=. python3 -m bastirr.run_demo --list-reviews --split HIV_test
 
-# 5. Run the demo (uses default HIV Cotrimoxazole review)
+# 5. Run the demo (uses default HIV Cotrimoxazole review with OpenAI)
 PYTHONPATH=. python3 -m bastirr.run_demo
 ```
 
@@ -98,7 +101,6 @@ This is a **scaffolding implementation** — the agents run end-to-end but with 
 - [ ] Add full-text PDF retrieval and OCR (reuse `ocr_pdf_to_markdown.py`)
 - [ ] Implement Expert-in-the-Loop checkpoints (smolagents `UserInputTool`)
 - [ ] Add consistency checks and conflict resolution between agents
-- [ ] Connect to the evaluation framework from `vaccine_indicators_demo`
 - [ ] Persist pipeline state (MCP state server pattern)
 
 ## Demo Review
@@ -108,12 +110,87 @@ The default demo uses a small HIV review:
 - 10 studies total (1 included, 9 excluded at screening)
 - From the HIV test set of the Cochrane dataset
 
-## Configuration
+## Model Configuration
+
+Bastirr supports **multiple model backends** via smolagents:
+
+### OpenAI (default)
+
+Use OpenAI models like GPT-4o, GPT-4-turbo, GPT-5, etc.
+
+```bash
+# Via .env
+BASTIRR_MODEL_BACKEND=openai
+BASTIRR_MODEL=gpt-4o
+OPENAI_API_KEY=sk-...
+
+# Or via CLI
+PYTHONPATH=. python3 -m bastirr.run_demo --model gpt-4o
+```
+
+### Anthropic (via LiteLLM)
+
+```bash
+# Via .env
+BASTIRR_MODEL_BACKEND=litellm
+BASTIRR_MODEL=anthropic/claude-3-5-sonnet-latest
+BASTIRR_API_KEY=sk-ant-...
+
+# Or via CLI
+PYTHONPATH=. python3 -m bastirr.run_demo --backend litellm --model anthropic/claude-3-5-sonnet-latest
+```
+
+### Local Models (Ollama)
+
+```bash
+# Start Ollama server: ollama serve
+# Pull model: ollama pull llama3.2
+
+# Via .env
+BASTIRR_MODEL_BACKEND=litellm
+BASTIRR_MODEL=ollama_chat/llama3.2
+BASTIRR_API_BASE=http://localhost:11434
+
+# Or via CLI
+PYTHONPATH=. python3 -m bastirr.run_demo \
+  --backend litellm \
+  --model ollama_chat/llama3.2 \
+  --api-base http://localhost:11434
+```
+
+### Other Providers
+
+LiteLLM supports 100+ providers. See [LiteLLM docs](https://docs.litellm.ai/) for provider-specific model IDs:
+
+- **Azure OpenAI**: `azure/<DEPLOYMENT_NAME>`
+- **AWS Bedrock**: `bedrock/anthropic.claude-3-sonnet-20240229-v1:0`
+- **Google Vertex**: `vertex_ai/gemini-pro`
+- **vLLM**: Set `BASTIRR_API_BASE` to your vLLM server URL
+
+## CLI Arguments
+
+```bash
+PYTHONPATH=. python3 -m bastirr.run_demo [OPTIONS]
+
+Options:
+  --review-url URL     Cochrane review URL to process
+  --split SPLIT        Dataset split: dev, val, random_test, heart_test, HIV_test
+  --model MODEL_ID     Model identifier (e.g. gpt-4o, anthropic/claude-3-5-sonnet-latest)
+  --backend BACKEND    Model backend: openai (default) or litellm
+  --api-base URL       API base URL for local servers (e.g. http://localhost:11434)
+  --list-reviews       List available reviews and exit
+```
+
+## Configuration Reference
 
 All configuration in `bastirr/config.py`. Key settings:
 
-| Setting | Source | Default |
-|---------|--------|---------|
-| `OPENAI_API_KEY` | `.env` | (required) |
-| `BASTIRR_MODEL` | `.env` | `gpt-4o` |
-| `DATASET_DIR` | auto | `systematic_review_dataset/20240827_Systematic_Review_Data/` |
+| Setting | Source | Default | Description |
+|---------|--------|---------|-------------|
+| `OPENAI_API_KEY` | `.env` | (required for OpenAI) | OpenAI API key |
+| `BASTIRR_MODEL_BACKEND` | `.env` | `openai` | Model backend: `openai` or `litellm` |
+| `BASTIRR_MODEL` | `.env` | `gpt-4o` | Model identifier (provider-prefixed for LiteLLM) |
+| `BASTIRR_API_BASE` | `.env` | — | API base URL for local servers |
+| `BASTIRR_API_KEY` | `.env` | — | Generic API key for non-OpenAI providers |
+| `BASTIRR_EXECUTOR_TIMEOUT` | `.env` | `300` | Max seconds per code-execution step |
+| `DATASET_DIR` | auto | `systematic_review_dataset/...` | Cochrane dataset directory |
