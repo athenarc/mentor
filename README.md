@@ -1,6 +1,6 @@
 # Bastirr — Multi-Agent Systematic Review Assistant
 
-Scaffolding implementation of the Bastirr architecture using [smolagents](https://huggingface.co/docs/smolagents/).
+Scaffolding implementation of the Bastirr architecture using [smolagents](https://huggingface.co/docs/smolagents/). The core agent code lives in the `bastirr/` package.
 
 ## Architecture
 
@@ -31,11 +31,14 @@ Scaffolding implementation of the Bastirr architecture using [smolagents](https:
 ## Quick Start
 
 ```bash
-# 1. Install dependencies
-pip install -r bastirr/requirements.txt
+# 1. Install dependencies (installs Bastirr agent requirements)
+pip install -r requirements.txt
 
 # For LiteLLM support (Anthropic, Ollama, local models):
 pip install 'smolagents[litellm]'
+
+# Optional: Install dataset analysis dependencies (for EDA notebooks)
+# pip install -r systematic_review_dataset/requirements.txt
 
 # 2. Set up API key
 #    Copy the template and add your OpenAI API key
@@ -79,12 +82,14 @@ bastirr/
 └── output/                  # Run outputs (report + logs, gitignored)
 ```
 
-## Relationship to Other Modules
+## Repository Structure
 
-| Module | Relationship |
-|--------|-------------|
-| `systematic_review_dataset/` | Provides the Cochrane dataset (8,608 reviews, 544K studies) used as the input source for Bastirr's demo. |
-| `architecture_docs/` | Design specs that define the 5-agent architecture, MCP integration, and Expert-in-the-Loop approach that Bastirr implements. |
+| Directory | Description |
+|-----------|-------------|
+| `bastirr/` | Core agent package — agents, tools, config, data loader, CLI runner. |
+| `systematic_review_dataset/` | Cochrane dataset (8,608 reviews, 544K studies) used as the input source for the demo. |
+| `architecture_docs/` | Design specs defining the 5-agent architecture, MCP integration, and Expert-in-the-Loop approach. |
+| `vaccine_indicators_demo/` | Separate LLM pipeline for medical evidence extraction (PDF → OCR → extraction → synthesis). |
 
 ## Current Status: Scaffolding
 
@@ -183,7 +188,7 @@ Options:
 
 ## Configuration Reference
 
-All configuration in `bastirr/config.py`. Key settings:
+All configuration lives in [`bastirr/config.py`](bastirr/config.py). Key settings:
 
 | Setting | Source | Default | Description |
 |---------|--------|---------|-------------|

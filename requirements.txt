@@ -1,0 +1,8 @@
+# SR-agents project dependencies
+
+# Core: Bastirr multi-agent system
+-r bastirr/requirements.txt
+
+# Optional: Dataset analysis dependencies (for running EDA notebooks)
+# Uncomment the line below if you want to run systematic_review_dataset/eda_systematic_review.ipynb
+# -r systematic_review_dataset/requirements.txt
