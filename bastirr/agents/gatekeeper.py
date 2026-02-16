@@ -1,0 +1,63 @@
+"""
+Gatekeeper agent — Screening & Eligibility.
+
+Applies inclusion/exclusion criteria to candidate studies based on
+title and abstract. Returns structured screening decisions with rationale.
+"""
+
+from smolagents import CodeAgent
+
+from bastirr.config import EXECUTOR_TIMEOUT_SECONDS
+from bastirr.tools.screening_tools import screen_study, batch_screen_studies
+
+
+GATEKEEPER_INSTRUCTIONS = """\
+You are the Gatekeeper agent for a systematic review system.
+Your role is to screen candidate studies against inclusion/exclusion criteria.
+
+For each study you must decide:
+- INCLUDE: the study meets the selection criteria and should proceed to
+  evidence extraction.
+- EXCLUDE: the study does not meet the criteria. Provide a brief rationale.
+
+Guidelines:
+- Be CONSERVATIVE: when in doubt, INCLUDE the study (it can be excluded
+  later during full-text review).
+- Focus on the selection criteria provided in the review protocol.
+- Consider population, intervention, comparison, outcome, and study design.
+- Flag uncertain cases explicitly.
+
+Use batch_screen_studies to get all studies formatted for screening.
+
+Return your final answer as a JSON string with:
+- "n_total": total number of studies screened
+- "n_included": number included
+- "n_excluded": number excluded
+- "decisions": list of objects with "study_index", "title", "decision"
+  (INCLUDE/EXCLUDE), "rationale", "confidence" (high/medium/low)
+"""
+
+
+def create_gatekeeper_agent(model) -> CodeAgent:
+    """
+    Create the Gatekeeper (Screening) agent.
+
+    Args:
+        model: A smolagents model instance.
+
+    Returns:
+        Configured CodeAgent for title/abstract screening.
+    """
+    return CodeAgent(
+        tools=[screen_study, batch_screen_studies],
+        model=model,
+        name="gatekeeper",
+        description=(
+            "Screening agent. Give it the review data as JSON and it returns "
+            "screening decisions (INCLUDE/EXCLUDE) for each candidate study."
+        ),
+        instructions=GATEKEEPER_INSTRUCTIONS,
+        max_steps=5,
+        verbosity_level=1,
+        executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
+    )

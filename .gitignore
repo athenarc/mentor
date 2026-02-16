@@ -1,0 +1,30 @@
+.DS_Store
+.github
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+ENV/
+env/
+.venv/
+
+# Environment variables
+.env
+.env.local
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDEs
+.vscode/
+.idea/
+
+# project-specific
+architecture_docs/
+vaccine_indicators_demo/
+resources/
+systematic_review_dataset/2024*/
+# bastirr/output/*
+# !bastirr/output/.gitkeep
