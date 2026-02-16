@@ -88,8 +88,8 @@ bastirr/
 |-----------|-------------|
 | `bastirr/` | Core agent package — agents, tools, config, data loader, CLI runner. |
 | `systematic_review_dataset/` | Cochrane dataset (8,608 reviews, 544K studies) used as the input source for the demo. |
-| `architecture_docs/` | Design specs defining the 5-agent architecture, MCP integration, and Expert-in-the-Loop approach. |
-| `vaccine_indicators_demo/` | Separate LLM pipeline for medical evidence extraction (PDF → OCR → extraction → synthesis). |
+| `resources/architecture_docs/` | Design specs defining the 5-agent architecture, MCP integration, and Expert-in-the-Loop approach. |
+| `resources/vaccine_indicators_demo/` | Separate LLM pipeline for medical evidence extraction (PDF → OCR → extraction → synthesis). |
 
 ## Current Status: Scaffolding
 
