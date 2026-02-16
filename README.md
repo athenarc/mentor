@@ -1,6 +1,6 @@
 # Bastirr — Multi-Agent Systematic Review Assistant
 
-Scaffolding implementation of the Bastirr architecture using [smolagents](https://huggingface.co/docs/smolagents/). The core agent code lives in the `bastirr/` package.
+Bastirr is a scaffolding implementation of a multi-agent architecture designed to automate systematic reviews. Built using the  [smolagents](https://huggingface.co/docs/smolagents/) framework, it orchestrates specialized agents to process research from the Cochrane dataset. The core agent code lives in the `bastirr/` package.
 
 ## Architecture
 
