@@ -53,6 +53,7 @@ def create_librarian_agent(model, logger=None) -> CodeAgent:
         instructions=LIBRARIAN_INSTRUCTIONS,
         max_steps=5,
         verbosity_level=2,
-        executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},        additional_authorized_imports=["json", "re"],
+        executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
+        additional_authorized_imports=["json", "re", "typing", "yaml", "glob", "pandas", "numpy"],
         logger=logger,
     )

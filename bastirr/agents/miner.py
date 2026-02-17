@@ -60,6 +60,7 @@ def create_miner_agent(model, logger=None) -> CodeAgent:
         instructions=MINER_INSTRUCTIONS,
         max_steps=5,
         verbosity_level=2,
-        executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},        additional_authorized_imports=["json", "re"],
+        executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
+        additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy"],
         logger=logger,
     )

@@ -64,6 +64,6 @@ def create_critic_agent(model, logger=None) -> CodeAgent:
         max_steps=5,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
-        additional_authorized_imports=["json", "re"],
+        additional_authorized_imports=["json", "re", "yaml", "pandas", "numpy"],
         logger=logger,
     )
