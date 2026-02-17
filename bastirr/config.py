@@ -120,6 +120,13 @@ def create_model(
         litellm_kwargs.update(kwargs)
         return LiteLLMModel(**litellm_kwargs)
 
+    if _backend == "hf-hub":
+        from smolagents import TransformersModel
+
+        hfh_kwargs = {"model_id": _model_id}
+        hfh_kwargs.update(kwargs)
+        return TransformersModel(**hfh_kwargs)
+
     # Default: OpenAI
     from smolagents import OpenAIServerModel
 
