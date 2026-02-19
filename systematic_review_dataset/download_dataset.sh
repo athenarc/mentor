@@ -256,7 +256,9 @@ main() {
         
         for nested_zip in "${NESTED_ZIPS[@]}"; do
             if [ -f "$nested_zip" ]; then
-                extract_zip "$nested_zip" "."
+                extract_dir="${nested_zip%.zip}"
+                mkdir -p "$extract_dir"
+                extract_zip "$nested_zip" "$extract_dir"
                 
                 # Delete nested ZIP if auto-delete is enabled
                 if [ "$AUTO_DELETE" = true ]; then
@@ -274,7 +276,9 @@ main() {
             
             for nested_zip in "${NESTED_ZIPS[@]}"; do
                 if [ -f "$nested_zip" ]; then
-                    extract_zip "$nested_zip" "$SCRIPT_DIR"
+                    extract_dir="$SCRIPT_DIR/${nested_zip%.zip}"
+                    mkdir -p "$extract_dir"
+                    extract_zip "$nested_zip" "$extract_dir"
                     
                     # Delete nested ZIP if auto-delete is enabled
                     if [ "$AUTO_DELETE" = true ]; then
