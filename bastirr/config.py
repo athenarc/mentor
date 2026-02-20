@@ -24,7 +24,7 @@ OUTPUT_DIR = BASTIRR_DIR / "output"
 # smolagents defaults to 30s which is too short for LLM tool calls that
 # process many studies.  ``None`` disables the timeout entirely; prefer a
 # generous finite value so genuine infinite loops still get caught.
-EXECUTOR_TIMEOUT_SECONDS = int(os.getenv("BASTIRR_EXECUTOR_TIMEOUT", "300"))
+EXECUTOR_TIMEOUT_SECONDS = int(os.getenv("BASTIRR_EXECUTOR_TIMEOUT", "500"))
 
 # ---------------------------------------------------------------------------
 # API keys  (sourced from .env)

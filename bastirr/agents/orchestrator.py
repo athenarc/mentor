@@ -13,6 +13,11 @@ from bastirr.agents.librarian import create_librarian_agent
 from bastirr.agents.gatekeeper import create_gatekeeper_agent
 from bastirr.agents.miner import create_miner_agent
 from bastirr.agents.critic import create_critic_agent
+from bastirr.tools.report_tools import (
+    format_report,
+    save_evidence_json,
+    extract_included_studies,
+)
 
 
 ORCHESTRATOR_INSTRUCTIONS = """\
@@ -25,37 +30,94 @@ You have four managed agents:
 3. **miner** — extracts structured evidence from included studies
 4. **critic** — assesses quality and synthesizes evidence
 
-WORKFLOW (execute these steps in order):
+You also have three utility tools:
+- **extract_included_studies** — parses the gatekeeper's response,
+  filters to INCLUDE decisions, and returns the included studies as a
+  JSON string ready for the miner.  ALWAYS use this instead of writing
+  your own parsing code.
+- **format_report** — takes the raw outputs from each agent and produces
+  a clean, consistent Markdown report. ALWAYS use this as the last step.
+- **save_evidence_json** — saves structured evidence as a separate JSON
+  file alongside the report.
 
-Step 1 - SEARCH: Call the librarian agent.
-  Give it the review data JSON. Ask it to retrieve all candidate studies.
-  It will return a JSON with candidate studies.
+═══════════════════════════════════════════════════════════════════════
+PLANNING GUIDANCE
+═══════════════════════════════════════════════════════════════════════
+During your planning/facts step, do NOT list or individually assess
+each candidate study.  In large reviews there may be hundreds of
+studies—enumerating them wastes tokens and biases later screening.
+Instead, note only the review-level metadata (title, objective,
+selection criteria, total candidate count) and proceed to Step 1.
 
-Step 2 - SCREENING: Call the gatekeeper agent.
-  Give it the review data JSON. Ask it to screen each study and return
-  INCLUDE/EXCLUDE decisions.
-  Parse its response to identify which studies were included.
+═══════════════════════════════════════════════════════════════════════
+CRITICAL RULES — read carefully before writing any code
+═══════════════════════════════════════════════════════════════════════
 
-Step 3 - EXTRACTION: Call the miner agent.
-  Give it the list of included studies (as JSON with title, abstract,
-  study_index) and the review objective. Ask it to extract PICO evidence.
+1. ONE AGENT CALL PER CODE BLOCK.
+   Sub-agent calls are slow. Putting two in one block will exceed the
+   execution timeout. Write exactly ONE code block per workflow step.
 
-Step 4 - SYNTHESIS: Call the critic agent.
-  Give it the extracted evidence JSON and the review objective.
-  Ask it to assess quality and produce a narrative synthesis.
+2. ALWAYS USE YOUR TOOLS — NEVER WRITE YOUR OWN PARSERS.
+   Your tools (extract_included_studies, format_report, save_evidence_json)
+   handle all response parsing.  Do NOT write json.loads(), regex, or
+   any other parsing code on agent responses.  If a tool exists for
+   something, use it.  If you are unsure how to parse a response,
+   pass it to the appropriate tool — that is what they are for.
 
-IMPORTANT:
-- Pass data between agents as JSON strings.
-- Each agent returns a string — parse it to extract the JSON results.
-- After all steps complete, compile a final report.
+3. VARIABLES PERSIST across code blocks.
+   After each block finishes, every variable you defined is still
+   available in the next block.  Reference them directly.  NEVER
+   reconstruct or re-paste agent responses as string literals.
 
-Return your final answer as a structured report with sections:
-1. Review Summary (title, objective)
-2. Search Results (number of candidates found)
-3. Screening Results (included/excluded counts, decisions)
-4. Evidence Extraction Summary (key PICO elements per study)
-5. Synthesis & Conclusions (the narrative synthesis)
-6. Quality Assessment (evidence strength, limitations)
+4. NEVER use locals(), globals(), exec(), or eval().
+
+5. Keep code blocks SHORT — just the agent call, a tool call, and
+   a print statement for progress.  No elaborate logic.
+
+═══════════════════════════════════════════════════════════════════════
+
+WORKFLOW — each step is ONE code block:
+
+Code block 1 — SEARCH:
+  review_data = json.loads(review_data_json)
+  librarian_response = librarian(task=...)
+  Print how many candidates were found.
+
+Code block 2 — SCREENING:
+  gatekeeper_response = gatekeeper(task=...)
+  included_studies_json = extract_included_studies(
+      screening_response=gatekeeper_response,
+      review_data_json=review_data_json)
+  Print how many studies were included.
+
+  IMPORTANT — when drafting the gatekeeper task:
+  • Provide the selection criteria verbatim.  Do NOT add phrases like
+    "Be strict" or "only include" — the gatekeeper already has its own
+    conservative guidelines and your override can cause false exclusions.
+  • Do NOT pre-judge individual studies (e.g. "Study 1 should obviously
+    be included").  The gatekeeper must make its own decisions.
+
+Code block 3 — EXTRACTION:
+  miner_response = miner(task=...)
+  (pass included_studies_json from the previous block to the miner)
+
+Code block 4 — SYNTHESIS:
+  critic_response = critic(task=...)
+
+Code block 5 — FORMAT & SAVE:
+  report_str = format_report(
+      review_title=..., review_objective=...,
+      num_candidates=...,
+      screening_response=gatekeeper_response,
+      evidence_response=miner_response,
+      synthesis_response=critic_response)
+  save_evidence_json(
+      evidence_response=miner_response,
+      screening_response=gatekeeper_response,
+      synthesis_response=critic_response,
+      output_dir=output_dir)
+  final_answer(report_str)
+
 """
 
 
@@ -86,7 +148,7 @@ def create_orchestrator_agent(model, step_callbacks=None, logger=None) -> CodeAg
     critic = create_critic_agent(model, logger=logger)
 
     return CodeAgent(
-        tools=[],
+        tools=[format_report, save_evidence_json, extract_included_studies],
         model=model,
         managed_agents=[librarian, gatekeeper, miner, critic],
         instructions=ORCHESTRATOR_INSTRUCTIONS,
@@ -95,5 +157,6 @@ def create_orchestrator_agent(model, step_callbacks=None, logger=None) -> CodeAg
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         step_callbacks=step_callbacks or [],
+        additional_authorized_imports=["json", "re", "os"],
         logger=logger,
     )

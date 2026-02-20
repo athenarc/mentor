@@ -82,9 +82,9 @@ class FileAgentLogger(AgentLogger):
         self._log_file = log_file
         self._file_console = Console(
             file=self._log_file,
-            highlight=False,
+            highlight=True,
             force_terminal=False,
-            no_color=True,
+            no_color=False,
             width=120,
         )
 

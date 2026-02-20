@@ -140,8 +140,11 @@ def run_demo(
         f"1. Use the librarian to retrieve candidate studies\n"
         f"2. Use the gatekeeper to screen studies for inclusion/exclusion\n"
         f"3. Use the miner to extract evidence from included studies\n"
-        f"4. Use the critic to synthesize the evidence\n\n"
-        f"Return a complete systematic review report."
+        f"4. Use the critic to synthesize the evidence\n"
+        f"5. Use format_report() to format a clean Markdown report\n"
+        f"6. Use save_evidence_json() to save structured data "
+        f"(output_dir: \"{run_dir}\")\n\n"
+        f"Return the formatted report as your final answer."
     )
 
     logger.info("Starting orchestrated pipeline...")

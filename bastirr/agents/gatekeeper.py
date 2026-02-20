@@ -26,6 +26,14 @@ Guidelines:
 - Focus on the selection criteria provided in the review protocol.
 - Consider population, intervention, comparison, outcome, and study design.
 - Flag uncertain cases explicitly.
+- DO NOT write keyword-matching Python functions (e.g. checking
+  `"adult" in text`) to decide inclusion/exclusion.  Keywords can
+  appear in background sentences without describing the study
+  population.  Instead, read each abstract carefully and reason about
+  whether the study actually meets the criteria.
+- SANITY CHECK: if your screening yields 0 included studies,
+  re-examine your decisions — a zero-include result is extremely rare
+  and almost always indicates an error in your reasoning.
 
 Use batch_screen_studies to get all studies formatted for screening.
 
