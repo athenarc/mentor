@@ -18,19 +18,27 @@ from bastirr.tools.report_tools import (
     save_evidence_json,
     extract_included_studies,
 )
+from bastirr.tools.search_tools import get_candidates_json
 
 
 ORCHESTRATOR_INSTRUCTIONS = """\
 You are the Orchestrator agent for the Bastirr Systematic Review system.
 You coordinate a multi-agent pipeline to conduct a systematic review.
 
+You receive ONLY the review protocol (title, objective, background,
+selection criteria) — you do NOT have access to the candidate studies.
+The librarian is responsible for finding them.
+
 You have four managed agents:
-1. **librarian** — retrieves candidate studies from the database
+1. **librarian** — searches for and retrieves candidate studies
 2. **gatekeeper** — screens studies for inclusion/exclusion
 3. **miner** — extracts structured evidence from included studies
 4. **critic** — assesses quality and synthesizes evidence
 
-You also have three utility tools:
+You also have four utility tools:
+- **get_candidates_json** — call AFTER the librarian finishes.  Returns
+  all candidates the librarian found as a clean JSON string that you
+  pass to the gatekeeper and to extract_included_studies.
 - **extract_included_studies** — parses the gatekeeper's response,
   filters to INCLUDE decisions, and returns the included studies as a
   JSON string ready for the miner.  ALWAYS use this instead of writing
@@ -43,11 +51,10 @@ You also have three utility tools:
 ═══════════════════════════════════════════════════════════════════════
 PLANNING GUIDANCE
 ═══════════════════════════════════════════════════════════════════════
-During your planning/facts step, do NOT list or individually assess
-each candidate study.  In large reviews there may be hundreds of
-studies—enumerating them wastes tokens and biases later screening.
-Instead, note only the review-level metadata (title, objective,
-selection criteria, total candidate count) and proceed to Step 1.
+You do NOT have access to individual studies — only the review protocol.
+During your planning/facts step, note only the protocol-level metadata
+(title, objective, selection criteria) and proceed to Step 1.  Do NOT
+attempt to guess or enumerate candidate studies.
 
 ═══════════════════════════════════════════════════════════════════════
 CRITICAL RULES — read carefully before writing any code
@@ -58,11 +65,11 @@ CRITICAL RULES — read carefully before writing any code
    execution timeout. Write exactly ONE code block per workflow step.
 
 2. ALWAYS USE YOUR TOOLS — NEVER WRITE YOUR OWN PARSERS.
-   Your tools (extract_included_studies, format_report, save_evidence_json)
-   handle all response parsing.  Do NOT write json.loads(), regex, or
-   any other parsing code on agent responses.  If a tool exists for
-   something, use it.  If you are unsure how to parse a response,
-   pass it to the appropriate tool — that is what they are for.
+   Your tools (get_candidates_json, extract_included_studies,
+   format_report, save_evidence_json) handle all data retrieval and
+   response parsing.  Do NOT write json.loads(), regex, or any other
+   parsing code on agent responses.  If a tool exists for something,
+   use it.
 
 3. VARIABLES PERSIST across code blocks.
    After each block finishes, every variable you defined is still
@@ -79,15 +86,19 @@ CRITICAL RULES — read carefully before writing any code
 WORKFLOW — each step is ONE code block:
 
 Code block 1 — SEARCH:
-  review_data = json.loads(review_data_json)
+  Parse the review protocol from the task to get title, objective, and
+  selection criteria.
   librarian_response = librarian(task=...)
+  candidates_json = get_candidates_json()
   Print how many candidates were found.
 
 Code block 2 — SCREENING:
-  gatekeeper_response = gatekeeper(task=...)
+  gatekeeper_response = gatekeeper(task=...,
+      additional_args={"candidates_json": candidates_json,
+                       "selection_criteria": selection_criteria})
   included_studies_json = extract_included_studies(
       screening_response=gatekeeper_response,
-      review_data_json=review_data_json)
+      candidates_json=candidates_json)
   Print how many studies were included.
 
   IMPORTANT — when drafting the gatekeeper task:
@@ -148,7 +159,8 @@ def create_orchestrator_agent(model, step_callbacks=None, logger=None) -> CodeAg
     critic = create_critic_agent(model, logger=logger)
 
     return CodeAgent(
-        tools=[format_report, save_evidence_json, extract_included_studies],
+        tools=[format_report, save_evidence_json, extract_included_studies,
+               get_candidates_json],
         model=model,
         managed_agents=[librarian, gatekeeper, miner, critic],
         instructions=ORCHESTRATOR_INSTRUCTIONS,

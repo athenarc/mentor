@@ -25,6 +25,7 @@ from pathlib import Path
 from bastirr.config import OUTPUT_DIR, OPENAI_API_KEY, MODEL_BACKEND, create_model
 from bastirr.data import load_review, list_reviews
 from bastirr.logging_utils import setup_run_logging, make_step_callbacks
+from bastirr.tools.search_tools import load_review_data
 
 logging.basicConfig(
     level=logging.INFO,
@@ -42,7 +43,7 @@ DEFAULT_SPLIT = "HIV_test"
 
 
 def review_to_json(review) -> str:
-    """Convert a SystematicReview dataclass to a JSON string for agent consumption."""
+    """Convert a SystematicReview dataclass to a full JSON string (for the study store)."""
     data = {
         "title": review.title,
         "objective": review.objective,
@@ -56,6 +57,21 @@ def review_to_json(review) -> str:
             }
             for i, s in enumerate(review.studies)
         ],
+    }
+    return json.dumps(data, ensure_ascii=False)
+
+
+def protocol_to_json(review) -> str:
+    """Extract only the review protocol (no studies) as a JSON string.
+
+    This is what the orchestrator receives — it never sees the raw
+    study list.  Studies are only accessible via the librarian's tools.
+    """
+    data = {
+        "title": review.title,
+        "objective": review.objective,
+        "background": review.background,
+        "selection_criteria": review.selection_criteria,
     }
     return json.dumps(data, ensure_ascii=False)
 
@@ -101,6 +117,11 @@ def run_demo(
 
     logger.info(review.summary())
     review_json = review_to_json(review)
+    protocol_json = protocol_to_json(review)
+
+    # Load the full review data (incl. studies) into the librarian's
+    # search store.  The orchestrator will only see the protocol.
+    load_review_data(review_json)
 
     # -----------------------------------------------------------------------
     # 2. Set up run logging
@@ -135,14 +156,15 @@ def run_demo(
     # -----------------------------------------------------------------------
     task = (
         f"Conduct a systematic review for the following research question.\n\n"
-        f"Review data (JSON):\n{review_json}\n\n"
+        f"Review protocol (JSON):\n{protocol_json}\n\n"
         f"Execute the full pipeline:\n"
         f"1. Use the librarian to retrieve candidate studies\n"
-        f"2. Use the gatekeeper to screen studies for inclusion/exclusion\n"
-        f"3. Use the miner to extract evidence from included studies\n"
-        f"4. Use the critic to synthesize the evidence\n"
-        f"5. Use format_report() to format a clean Markdown report\n"
-        f"6. Use save_evidence_json() to save structured data "
+        f"2. Use get_candidates_json() to obtain a clean JSON of the candidates\n"
+        f"3. Use the gatekeeper to screen studies for inclusion/exclusion\n"
+        f"4. Use the miner to extract evidence from included studies\n"
+        f"5. Use the critic to synthesize the evidence\n"
+        f"6. Use format_report() to format a clean Markdown report\n"
+        f"7. Use save_evidence_json() to save structured data "
         f"(output_dir: \"{run_dir}\")\n\n"
         f"Return the formatted report as your final answer."
     )

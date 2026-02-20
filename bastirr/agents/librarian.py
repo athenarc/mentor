@@ -20,9 +20,9 @@ Your role is to:
 3. Retrieve candidate studies from the available database.
 4. Return ALL candidate studies as a structured list.
 
-You work with pre-loaded Cochrane review data. Use get_review_protocol
-to understand what the review is about, then use search_studies to
-retrieve all candidate studies.
+Use get_review_protocol() (no arguments) to understand what the review
+is about, then use search_studies(query) with a relevant search query
+to retrieve all candidate studies from the database.
 
 Return your final answer as a JSON string with:
 - "search_strategy": a brief description of how you'd search
@@ -47,8 +47,9 @@ def create_librarian_agent(model, logger=None) -> CodeAgent:
         model=model,
         name="librarian",
         description=(
-            "Search and retrieval agent. Give it the review data as JSON "
-            "and it returns all candidate studies for screening."
+            "Search and retrieval agent. Ask it to find candidate studies "
+            "for the review and it searches the database, returning all "
+            "candidates for screening."
         ),
         instructions=LIBRARIAN_INSTRUCTIONS,
         max_steps=5,

@@ -45,21 +45,22 @@ def screen_study(
 
 
 @tool
-def batch_screen_studies(review_data_json: str) -> str:
+def batch_screen_studies(candidates_json: str) -> str:
     """
-    Prepare all studies from a review for batch screening.
+    Prepare all candidate studies for batch screening.
     Returns a formatted list of all studies with the selection criteria,
     ready for the Gatekeeper agent to make decisions on each.
 
     Args:
-        review_data_json: JSON string containing the review data with studies.
+        candidates_json: JSON string with candidate studies.  Must contain
+            keys 'studies' (list), 'title', and 'selection_criteria'.
 
     Returns:
         A formatted string with all studies and criteria, requesting
         a structured screening decision for each.
     """
     import json
-    review = json.loads(review_data_json)
+    review = json.loads(candidates_json)
     criteria = review.get("selection_criteria", "N/A")
     studies = review.get("studies", [])
 

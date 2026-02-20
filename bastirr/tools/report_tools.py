@@ -793,7 +793,7 @@ def _extract_evidence_prose(miner_response: str) -> str:
 @tool
 def extract_included_studies(
     screening_response: str,
-    review_data_json: str,
+    candidates_json: str,
 ) -> str:
     """
     Parse the gatekeeper's screening response and return the INCLUDED
@@ -801,14 +801,14 @@ def extract_included_studies(
 
     This tool robustly extracts screening decisions from the gatekeeper's
     response (handling boilerplate wrappers, JSON and prose formats),
-    filters to INCLUDE decisions, matches them back to the original
+    filters to INCLUDE decisions, matches them back to the candidate
     studies, and returns a JSON list of study objects with title, abstract,
     and study_index.
 
     Args:
         screening_response: The full string response from the gatekeeper agent.
-        review_data_json: The original review data JSON string containing all
-            candidate studies under the 'studies' key.
+        candidates_json: JSON string containing the candidate studies
+            (as returned by get_candidates_json) with a 'studies' key.
 
     Returns:
         A JSON string: a list of included study objects (each with
@@ -822,9 +822,9 @@ def extract_included_studies(
         if d.get("decision", "").upper() == "INCLUDE"
     }
 
-    # Parse the original studies
+    # Parse the candidate studies
     try:
-        review_data = json.loads(review_data_json)
+        review_data = json.loads(candidates_json)
     except (json.JSONDecodeError, TypeError):
         review_data = {}
 

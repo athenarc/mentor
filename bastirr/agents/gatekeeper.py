@@ -35,7 +35,8 @@ Guidelines:
   re-examine your decisions — a zero-include result is extremely rare
   and almost always indicates an error in your reasoning.
 
-Use batch_screen_studies to get all studies formatted for screening.
+Use batch_screen_studies(candidates_json) to get all studies formatted
+for screening.  The candidates_json is provided by your manager.
 
 Return your final answer as a JSON string with:
 - "n_total": total number of studies screened
@@ -62,8 +63,8 @@ def create_gatekeeper_agent(model, logger=None) -> CodeAgent:
         model=model,
         name="gatekeeper",
         description=(
-            "Screening agent. Give it the review data as JSON and it returns "
-            "screening decisions (INCLUDE/EXCLUDE) for each candidate study."
+            "Screening agent. Give it the candidate studies JSON and it "
+            "returns screening decisions (INCLUDE/EXCLUDE) for each study."
         ),
         instructions=GATEKEEPER_INSTRUCTIONS,
         max_steps=5,
