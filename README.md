@@ -5,28 +5,32 @@ Bastirr is a scaffolding implementation of a multi-agent architecture designed t
 ## Architecture
 
 ```
-                    ┌─────────────────┐
-                    │   Orchestrator  │
-                    │   (Manager)     │
-                    └───────┬─────────┘
-              ┌─────────────┼─────────────┐
-              │             │             │
-     ┌────────▼──┐  ┌───────▼───┐   ┌─────▼──────┐
-     │ Librarian │  │ Gatekeeper│   │   Miner    │
-     │ (Search)  │  │ (Screen)  │   │ (Extract)  │
-     └───────────┘  └───────────┘   └─────┬──────┘
-                                          │
-                                   ┌──────▼──────┐
-                                   │   Critic    │
-                                   │ (Synthesize)│
-                                   └─────────────┘
+                      ┌──────────────────────┐
+                      │     Orchestrator     │
+                      │      (Manager)       │
+                      └──────────┬───────────┘
+           ┌─────────────┬───────┴───────┬─────────────┐
+           │             │               │             │
+    ┌──────▼──────┐ ┌────▼─────┐  ┌──────▼──────┐ ┌────▼──────┐
+    │  Librarian  │ │Gatekeeper│  │    Miner    │ │   Critic  │
+    │  (Search)   │ │ (Screen) │  │  (Extract)  │ │(Synthesize│
+    └──────┬──────┘ └────┬─────┘  └──────┬──────┘ └────┬──────┘
+           │             │               │             │
+      search_studies  batch_screen   batch_extract  synthesize
+      get_protocol    screen_study   extract_from   assess_quality
 ```
 
-**Flow:** Orchestrator delegates to agents in sequence:
-1. **Librarian** — retrieves candidate studies from the Cochrane dataset
-2. **Gatekeeper** — screens each study (INCLUDE/EXCLUDE) against selection criteria
-3. **Miner** — extracts PICO evidence from included studies' abstracts
-4. **Critic** — assesses quality and synthesizes a citation-backed narrative
+All four sub-agents are **managed agents** of the Orchestrator. The Orchestrator also has its own utility tools: `format_report`, `save_evidence_json`, `extract_included_studies`, and `get_candidates_json`.
+
+**Data flow:** The Orchestrator delegates to agents in sequence:
+1. **Librarian** — retrieves candidate studies from a module-level data store (simulating a database query)
+2. **Orchestrator** calls `get_candidates_json()` to obtain the structured candidate data
+3. **Gatekeeper** — screens each study (INCLUDE/EXCLUDE) against selection criteria
+4. **Miner** — extracts PICO evidence from included studies' abstracts
+5. **Critic** — assesses quality and synthesizes a citation-backed narrative
+6. **Orchestrator** calls `format_report()` and `save_evidence_json()` to produce outputs
+
+> **Key design decision:** The Orchestrator's task text contains *only* the review protocol (title, objective, background, selection criteria) — never the candidate studies. Studies are loaded into a module-level store before the pipeline starts and accessed by the Librarian's tools. This prevents the Orchestrator from pre-screening studies during its planning phase and future-proofs the architecture for real database search.
 
 ## Quick Start
 
@@ -75,10 +79,11 @@ bastirr/
 │   └── orchestrator.py      # Manager agent (wires all sub-agents)
 ├── tools/
 │   ├── __init__.py          # Tools package
-│   ├── search_tools.py      # Librarian's @tool functions
+│   ├── search_tools.py      # Librarian's @tool functions + module-level data store
 │   ├── screening_tools.py   # Gatekeeper's @tool functions
 │   ├── extraction_tools.py  # Miner's @tool functions
-│   └── synthesis_tools.py   # Critic's @tool functions
+│   ├── synthesis_tools.py   # Critic's @tool functions
+│   └── report_tools.py     # Orchestrator's @tool functions (report, evidence JSON, parsing)
 └── output/                  # Run outputs (report + logs, gitignored)
 ```
 
@@ -91,14 +96,16 @@ bastirr/
 | `resources/architecture_docs/` | Design specs defining the 5-agent architecture, MCP integration, and Expert-in-the-Loop approach. |
 | `resources/vaccine_indicators_demo/` | Separate LLM pipeline for medical evidence extraction (PDF → OCR → extraction → synthesis). |
 
-## Current Status: Scaffolding
+## Current Status: Scaffolding (End-to-End Functional)
 
-This is a **scaffolding implementation** — the agents run end-to-end but with simplifications:
+This is a **scaffolding implementation** — the agents run end-to-end and produce correct results, but with simplifications:
 
-- **Librarian**: Returns pre-loaded studies from the dataset (no real PubMed/OpenAIRE search)
+- **Librarian**: Returns pre-loaded studies from a module-level data store (no real PubMed/OpenAIRE search yet, but the architecture is ready for it)
 - **Gatekeeper**: Screens based on title/abstract only (no full-text retrieval)
 - **Miner**: Extracts from abstracts only (no PDF OCR pipeline)
 - **Critic**: Synthesizes from abstract-level evidence
+
+The pipeline has been validated on the Cotrimoxazole/HIV review (10 candidates, 1 included), achieving 10/10 screening accuracy against the Cochrane ground truth. Outputs include a structured Markdown report (`report.md`) and a machine-readable evidence file (`evidence.json`).
 
 ### Next Steps
 
@@ -107,6 +114,8 @@ This is a **scaffolding implementation** — the agents run end-to-end but with 
 - [ ] Implement Expert-in-the-Loop checkpoints (smolagents `UserInputTool`)
 - [ ] Add consistency checks and conflict resolution between agents
 - [ ] Persist pipeline state (MCP state server pattern)
+- [ ] Test on reviews with more included studies
+- [ ] Add automated test suite
 
 ## Demo Review
 
@@ -197,5 +206,5 @@ All configuration lives in [`bastirr/config.py`](bastirr/config.py). Key setting
 | `BASTIRR_MODEL` | `.env` | `gpt-4o` | Model identifier (provider-prefixed for LiteLLM) |
 | `BASTIRR_API_BASE` | `.env` | — | API base URL for local servers |
 | `BASTIRR_API_KEY` | `.env` | — | Generic API key for non-OpenAI providers |
-| `BASTIRR_EXECUTOR_TIMEOUT` | `.env` | `300` | Max seconds per code-execution step |
+| `BASTIRR_EXECUTOR_TIMEOUT` | `.env` | `500` | Max seconds per code-execution step |
 | `DATASET_DIR` | auto | `systematic_review_dataset/...` | Cochrane dataset directory |
