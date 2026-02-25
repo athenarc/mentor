@@ -109,11 +109,12 @@ The pipeline has been validated on the Cotrimoxazole/HIV review (10 candidates, 
 
 ### Next Steps
 
-- [ ] Add real search via PubMed API (MCP server)
+- [ ] Find Full-text paper for existing SR dataset
 - [ ] Add full-text PDF retrieval and OCR (reuse `ocr_pdf_to_markdown.py`)
+- [ ] Add real search via PubMed API (MCP server)
+- [ ] Evaluate and enrich the Agent Instructions based on PRISMA and GRADE Guidelines (Gatekeeper, Miner, Critic)
 - [ ] Implement Expert-in-the-Loop checkpoints (smolagents `UserInputTool`)
 - [ ] Add consistency checks and conflict resolution between agents
-- [ ] Persist pipeline state (MCP state server pattern)
 - [ ] Test on reviews with more included studies
 - [ ] Add automated test suite
 
