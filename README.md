@@ -84,7 +84,7 @@ bastirr/
 │   ├── extraction_tools.py  # Miner's @tool functions
 │   ├── synthesis_tools.py   # Critic's @tool functions
 │   └── report_tools.py     # Orchestrator's @tool functions (report, evidence JSON, parsing)
-└── output/                  # Run outputs (report + logs, gitignored)
+└── output/                  # Run outputs (report + logs)
 ```
 
 ## Repository Structure
