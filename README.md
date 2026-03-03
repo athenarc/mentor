@@ -191,7 +191,7 @@ Options:
   --review-url URL     Cochrane review URL to process
   --split SPLIT        Dataset split: dev, val, random_test, heart_test, HIV_test
   --model MODEL_ID     Model identifier (e.g. gpt-4o, anthropic/claude-3-5-sonnet-latest)
-  --backend BACKEND    Model backend: openai (default) or litellm
+  --backend BACKEND    Model backend: openai (default) or litellm or hf-hub (local inference)
   --api-base URL       API base URL for local servers (e.g. http://localhost:11434)
   --list-reviews       List available reviews and exit
 ```
