@@ -410,7 +410,7 @@ def _extract_decisions_list(data) -> list[dict] | None:
 
 def _parse_decisions(gatekeeper_response: str) -> list[dict]:
     """Best-effort extraction of screening decisions from the gatekeeper's
-    free-form response string.  Handles both JSON and prose formats."""
+    free-form response string.  Handles both JSON and text formats."""
     # First strip boilerplate and try JSON from section 2
     data = _extract_json_from_boilerplate(gatekeeper_response)
     result = _extract_decisions_list(data)
@@ -507,7 +507,7 @@ def _extract_narrative_synthesis(critic_response: str) -> str:
     except (json.JSONDecodeError, TypeError):
         pass
 
-    # Fallback: return section 1 (short prose) — never return raw JSON
+    # Fallback: return section 1 (short text) — never return raw JSON
     sections = _get_boilerplate_sections(critic_response)
     if 1 in sections:
         return sections[1]
@@ -519,7 +519,7 @@ def _extract_narrative_synthesis(critic_response: str) -> str:
 
 def _format_quality_data(data: dict) -> str:
     """Given a parsed JSON dict from the critic, format quality assessment
-    fields as human-readable Markdown prose."""
+    fields as human-readable Markdown text."""
     qa = _alias_get(data, "quality_assessment", default="")
     strength = _alias_get(data, "evidence_strength", default="")
     limitations = _alias_get(data, "limitations", default=[])
@@ -575,7 +575,7 @@ def _extract_quality_assessment(critic_response: str) -> str:
     except (json.JSONDecodeError, TypeError):
         pass
 
-    # Fallback: return section 1 (short prose) — never return raw JSON
+    # Fallback: return section 1 (short text) — never return raw JSON
     sections = _get_boilerplate_sections(critic_response)
     if 1 in sections:
         return sections[1]
@@ -583,10 +583,10 @@ def _extract_quality_assessment(critic_response: str) -> str:
     return critic_response.strip()
 
 
-# ---- Evidence prose ------------------------------------------------------
+# ---- Evidence text ------------------------------------------------------
 
-def _format_studies_as_prose(studies: list[dict]) -> str:
-    """Convert a list of study dicts into human-readable prose."""
+def _format_studies_as_text(studies: list[dict]) -> str:
+    """Convert a list of study dicts into human-readable text."""
     parts: list[str] = []
     for study in studies:
         if not isinstance(study, dict):
@@ -740,31 +740,31 @@ def _format_studies_as_prose(studies: list[dict]) -> str:
     return "\n".join(parts)
 
 
-def _extract_evidence_prose(miner_response: str) -> str:
-    """Convert miner evidence JSON into human-readable prose for the report."""
+def _extract_evidence_text(miner_response: str) -> str:
+    """Convert miner evidence JSON into human-readable text for the report."""
     # Try extracting JSON from boilerplate section 2
     data = _extract_json_from_boilerplate(miner_response)
 
     if isinstance(data, dict):
         studies = _find_studies_list(data)
         if studies:
-            prose_parts = [_format_studies_as_prose(studies)]
+            text_parts = [_format_studies_as_text(studies)]
             # Include primary findings if present
             pf = _alias_get(data, "primary_findings", default=[]) or []
             if pf and isinstance(pf, list):
-                prose_parts.append("\n**Primary findings:**")
+                text_parts.append("\n**Primary findings:**")
                 for finding in pf:
-                    prose_parts.append(f"- {finding}")
+                    text_parts.append(f"- {finding}")
             # Include extraction notes if present
             en = _alias_get(data, "extraction_notes", default=[]) or []
             if en and isinstance(en, list):
-                prose_parts.append("\n**Extraction notes:**")
+                text_parts.append("\n**Extraction notes:**")
                 for note in en:
-                    prose_parts.append(f"- {note}")
-            return "\n".join(prose_parts)
+                    text_parts.append(f"- {note}")
+            return "\n".join(text_parts)
 
     if isinstance(data, list) and data:
-        return _format_studies_as_prose(data)
+        return _format_studies_as_text(data)
 
     # Try plain JSON parse
     try:
@@ -772,13 +772,13 @@ def _extract_evidence_prose(miner_response: str) -> str:
         if isinstance(data, dict):
             studies = _find_studies_list(data)
             if studies:
-                return _format_studies_as_prose(studies)
+                return _format_studies_as_text(studies)
         elif isinstance(data, list):
-            return _format_studies_as_prose(data)
+            return _format_studies_as_text(data)
     except (json.JSONDecodeError, TypeError):
         pass
 
-    # Fallback: return ONLY section 1 (short prose) — never include raw JSON
+    # Fallback: return ONLY section 1 (short text) — never include raw JSON
     sections = _get_boilerplate_sections(miner_response)
     if 1 in sections:
         return sections[1]
@@ -800,7 +800,7 @@ def extract_included_studies(
     studies ready for the miner, as a JSON string.
 
     This tool robustly extracts screening decisions from the gatekeeper's
-    response (handling boilerplate wrappers, JSON and prose formats),
+    response (handling boilerplate wrappers, JSON and text formats),
     filters to INCLUDE decisions, matches them back to the candidate
     studies, and returns a JSON list of study objects with title, abstract,
     and study_index.
@@ -904,8 +904,8 @@ def format_report(
         decisions_text_parts.append(line)
     decisions_text = "\n".join(decisions_text_parts)
 
-    # --- Build evidence summary (prose, not JSON) ---
-    evidence_prose = _extract_evidence_prose(evidence_response)
+    # --- Build evidence summary (text, not JSON) ---
+    evidence_text = _extract_evidence_text(evidence_response)
 
     # --- Build synthesis/conclusions ---
     synthesis_text = _extract_narrative_synthesis(synthesis_response)
@@ -930,7 +930,7 @@ def format_report(
 {decisions_text}
 
 ## 4. Evidence Extraction Summary
-{evidence_prose}
+{evidence_text}
 
 ## 5. Synthesis & Conclusions
 {synthesis_text}
