@@ -47,12 +47,13 @@ Return your final answer as a JSON string with:
 """
 
 
-def create_gatekeeper_agent(model, logger=None) -> CodeAgent:
+def create_gatekeeper_agent(model, step_callbacks=None, logger=None) -> CodeAgent:
     """
     Create the Gatekeeper (Screening) agent.
 
     Args:
         model: A smolagents model instance.
+        step_callbacks: Optional callbacks invoked after each agent step.
         logger: Optional AgentLogger for dual-write logging.
 
     Returns:
@@ -71,5 +72,6 @@ def create_gatekeeper_agent(model, logger=None) -> CodeAgent:
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy"],
+        step_callbacks=step_callbacks or [],
         logger=logger,
     )

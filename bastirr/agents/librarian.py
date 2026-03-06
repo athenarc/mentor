@@ -31,12 +31,13 @@ Return your final answer as a JSON string with:
 """
 
 
-def create_librarian_agent(model, logger=None) -> CodeAgent:
+def create_librarian_agent(model, step_callbacks=None, logger=None) -> CodeAgent:
     """
     Create the Librarian (Search & Retrieval) agent.
 
     Args:
         model: A smolagents model instance (e.g. OpenAIServerModel).
+        step_callbacks: Optional callbacks invoked after each agent step.
         logger: Optional AgentLogger for dual-write logging.
 
     Returns:
@@ -56,5 +57,6 @@ def create_librarian_agent(model, logger=None) -> CodeAgent:
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         additional_authorized_imports=["json", "re", "typing", "yaml", "glob", "pandas", "numpy"],
+        step_callbacks=step_callbacks or [],
         logger=logger,
     )

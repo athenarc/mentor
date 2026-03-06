@@ -77,12 +77,13 @@ Rules:
 """
 
 
-def create_critic_agent(model, logger=None) -> CodeAgent:
+def create_critic_agent(model, step_callbacks=None, logger=None) -> CodeAgent:
     """
     Create the Critic (Synthesis & Quality) agent.
 
     Args:
         model: A smolagents model instance.
+        step_callbacks: Optional callbacks invoked after each agent step.
         logger: Optional AgentLogger for dual-write logging.
 
     Returns:
@@ -102,5 +103,6 @@ def create_critic_agent(model, logger=None) -> CodeAgent:
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         additional_authorized_imports=["json", "re", "yaml", "pandas", "numpy"],
+        step_callbacks=step_callbacks or [],
         logger=logger,
     )
