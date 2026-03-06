@@ -65,7 +65,7 @@ PYTHONPATH=. python3 -m bastirr.run_demo
 bastirr/
 ├── __init__.py              # Package docstring
 ├── config.py                # Configuration, paths, API keys
-├── logging_utils.py         # Run logging (workflow + decisions)
+├── logging_utils.py         # Run logging (workflow + decision summary)
 ├── run_demo.py              # CLI entry point & end-to-end runner
 ├── requirements.txt         # Python dependencies
 ├── data/

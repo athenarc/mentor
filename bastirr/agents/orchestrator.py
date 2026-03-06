@@ -153,10 +153,10 @@ def create_orchestrator_agent(model, step_callbacks=None, logger=None) -> CodeAg
         Configured CodeAgent that manages the full workflow.
     """
     # Create all sub-agents (share the same logger so all output is captured)
-    librarian = create_librarian_agent(model, logger=logger)
-    gatekeeper = create_gatekeeper_agent(model, logger=logger)
-    miner = create_miner_agent(model, logger=logger)
-    critic = create_critic_agent(model, logger=logger)
+    librarian = create_librarian_agent(model, step_callbacks=step_callbacks, logger=logger)
+    gatekeeper = create_gatekeeper_agent(model, step_callbacks=step_callbacks, logger=logger)
+    miner = create_miner_agent(model, step_callbacks=step_callbacks, logger=logger)
+    critic = create_critic_agent(model, step_callbacks=step_callbacks, logger=logger)
 
     return CodeAgent(
         tools=[format_report, save_evidence_json, extract_included_studies,

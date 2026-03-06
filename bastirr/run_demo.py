@@ -90,6 +90,7 @@ def run_demo(
     model_id: str | None = None,
     backend: str | None = None,
     api_base: str | None = None,
+    include_subagent_steps: bool = True,
 ):
     """
     Run the full Bastirr systematic review demo.
@@ -100,6 +101,7 @@ def run_demo(
         model_id: Model identifier override (e.g. "gpt-4o", "ollama_chat/llama3.2").
         backend: Model backend override ("openai" or "litellm").
         api_base: API base URL override (for local servers).
+        include_subagent_steps: Show sub-agent details in activity.md.
     """
     # -----------------------------------------------------------------------
     # 1. Load review data
@@ -126,12 +128,15 @@ def run_demo(
     # -----------------------------------------------------------------------
     # 2. Set up run logging
     # -----------------------------------------------------------------------
-    run_dir, agent_logger, dec_log = setup_run_logging(review.title)
-    step_cbs = make_step_callbacks(dec_log)
+    run_dir, agent_logger, activity_logger = setup_run_logging(
+        review.title,
+        include_subagent_steps=include_subagent_steps,
+    )
+    step_cbs = make_step_callbacks(activity_logger)
     logger.info(f"Run directory: {run_dir}")
-    dec_log.info(f"Review URL: {review_url}")
-    dec_log.info(f"Dataset split: {split}")
-    dec_log.info(f"Studies: {len(review.studies)}")
+    activity_logger.log_metadata("Review URL", review_url)
+    activity_logger.log_metadata("Dataset split", split)
+    activity_logger.log_metadata("Studies", str(len(review.studies)))
 
     # -----------------------------------------------------------------------
     # 3. Initialize model and orchestrator
@@ -170,39 +175,36 @@ def run_demo(
     )
 
     logger.info("Starting orchestrated pipeline...")
-    dec_log.info("PIPELINE START")
+    activity_logger.mark_pipeline_start()
 
-    result = orchestrator.run(task)
+    try:
+        result = orchestrator.run(task)
 
-    logger.info("Pipeline complete!")
-    dec_log.info("PIPELINE COMPLETE")
+        logger.info("Pipeline complete!")
 
-    # -----------------------------------------------------------------------
-    # 5. Save and display results
-    # -----------------------------------------------------------------------
-    report = str(result)
-    report_path = save_report(report, run_dir)
-    logger.info(f"Report saved to: {report_path}")
-    dec_log.info(f"Report saved to: {report_path}")
+        # -------------------------------------------------------------------
+        # 5. Save and display results
+        # -------------------------------------------------------------------
+        report = str(result)
+        report_path = save_report(report, run_dir)
+        logger.info(f"Report saved to: {report_path}")
 
-    # Print ground truth comparison
-    logger.info("\n" + "=" * 70)
-    logger.info("GROUND TRUTH COMPARISON")
-    logger.info("=" * 70)
+        # Print ground truth comparison
+        logger.info("\n" + "=" * 70)
+        logger.info("GROUND TRUTH COMPARISON")
+        logger.info("=" * 70)
 
-    gt_lines = []
-    for i, s in enumerate(review.studies):
-        label_map = {1.0: "INCLUDED", 0.5: "EXCL_FULLTEXT", 0.0: "EXCL_SCREENING"}
-        label = label_map.get(s.label, str(s.label))
-        line = f"  Study {i+1}: [{label}] {s.title[:80]}"
-        logger.info(line)
-        gt_lines.append(line)
+        for i, s in enumerate(review.studies):
+            label_map = {1.0: "INCLUDED", 0.5: "EXCL_FULLTEXT", 0.0: "EXCL_SCREENING"}
+            label = label_map.get(s.label, str(s.label))
+            logger.info(f"  Study {i+1}: [{label}] {s.title[:80]}")
 
-    dec_log.info("GROUND TRUTH:\n" + "\n".join(gt_lines))
-    logger.info(f"\nFull logs at: {run_dir}")
-
-    # Close the file-backed agent logger
-    agent_logger.close()
+        logger.info(f"\nFull logs at: {run_dir}")
+    finally:
+        # Always write the activity log, even if the pipeline crashed
+        activity_path = activity_logger.finalize(model)
+        logger.info(f"Activity log saved to: {activity_path}")
+        agent_logger.close()
 
     return report
 
@@ -241,6 +243,13 @@ def main():
         action="store_true",
         help="List available reviews and exit",
     )
+    parser.add_argument(
+        "--hide-subagent-steps",
+        dest="include_subagent_steps",
+        action="store_false",
+        default=True,
+        help="Hide sub-agent step details in activity.md",
+    )
     args = parser.parse_args()
 
     if args.list_reviews:
@@ -258,6 +267,7 @@ def main():
         model_id=args.model,
         backend=args.backend,
         api_base=args.api_base,
+        include_subagent_steps=args.include_subagent_steps,
     )
 
 
