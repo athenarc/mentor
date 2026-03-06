@@ -8,24 +8,27 @@ Captures two log streams for each pipeline run:
       agent-tree visualisation, planning step, code action, observation,
       and final answer is written here *without* truncation.
 
-  [b] **decisions.log** — structured decisions at each step: orchestrator
-      plan, agent outputs, screening decisions, extraction results,
-      synthesis, token usage.
+  [b] **activity.md** — human-readable Markdown audit trail.  Each agent
+      step is LLM-summarised into plain-language text so that
+      non-technical readers (e.g. biomedical researchers) can understand
+      what the agents did without seeing code or raw data.  Includes a
+      resource-usage table and a phased timeline that groups sub-agent
+      work under the orchestrator step that triggered it.
 
 Both files are created in ``output/<timestamp>_<review>/`` alongside the
 final ``report.md``.
 
 Implementation
 ~~~~~~~~~~~~~~
-Instead of relying solely on ``step_callbacks`` (which only fires *after*
-each step and can miss planning output, agent-tree visualisations, system
-prompts, etc.), we subclass ``AgentLogger`` to **dual-write** every Rich
-console call to both the terminal and a plain-text log file.  This gives
+``FileAgentLogger`` subclasses ``AgentLogger`` to **dual-write** every
+Rich console call to both the terminal and a plain-text log file, giving
 workflow.log the same content the user sees on screen.
 
-``step_callbacks`` are still used for the structured **decisions.log**.
-We register callbacks for *both* ``ActionStep`` and ``PlanningStep`` so
-that planning output is also captured.
+``step_callbacks`` for ``ActionStep`` and ``PlanningStep`` feed an
+``ActivityLogger`` instance which collects structured step data from
+every agent (orchestrator + sub-agents).  At pipeline end,
+``ActivityLogger.finalize()`` LLM-summarises each step and writes the
+Markdown audit trail.
 """
 
 from __future__ import annotations
@@ -524,7 +527,11 @@ class ActivityLogger:
                 )
                 lines.append(f"| {name.title()} | {s['n']} | {d} | {t} |")
             tot_n = sum(s["n"] for s in stats.values())
-            tot_d = sum(s["dur"] for s in stats.values())
+
+            if self.pipeline_start and self.pipeline_end:
+                tot_d = (self.pipeline_end - self.pipeline_start).total_seconds()
+            else:
+                tot_d = stats.get("orchestrator", {}).get("dur", 0.0)
             lines.append(
                 f"| **Total** | **{tot_n}** | **{_format_duration(tot_d)}** "
                 f"| **{total_in:,} / {total_out:,}** |"
