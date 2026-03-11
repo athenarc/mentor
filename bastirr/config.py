@@ -47,6 +47,22 @@ API_BASE = os.getenv("BASTIRR_API_BASE", "")  # e.g. http://localhost:11434
 API_KEY = os.getenv("BASTIRR_API_KEY", "")
 
 # ---------------------------------------------------------------------------
+# Search MCP: BIP endpoint (optional)
+# ---------------------------------------------------------------------------
+# These settings configure the external paper search MCP endpoint for BIP.
+# Other search MCP endpoints will be added alongside this in future.
+#
+# Env vars:
+#   SEARCH_BIP_MCP_URL    - BIP MCP server URL (Streamable HTTP endpoint)
+#   SEARCH_BIP_AUTH_TOKEN - Bearer token for BIP MCP server
+#
+# For backward compatibility we still accept the older BASTIRR_* names.
+BIP_MCP_URL = os.getenv("SEARCH_BIP_MCP_URL", os.getenv("BASTIRR_BIP_MCP_URL", ""))
+
+# Bearer token for the BIP MCP server (required for auth).
+BIP_MCP_AUTH_TOKEN = os.getenv(" SEARCH_BIP_AUTH_TOKEN", os.getenv("BASTIRR_BIP_AUTH_TOKEN", ""))
+
+# ---------------------------------------------------------------------------
 # Dataset files
 # ---------------------------------------------------------------------------
 DATASET_FILES = {

@@ -4,6 +4,10 @@ openai>=1.0.0
 pandas>=1.5.0
 python-dotenv>=1.0.0
 
+# MCP client (optional: for remote paper search via BIP MCP server)
+mcp[cli]>=1.0.0
+httpx-sse>=0.4.0
+
 # Optional: install for LiteLLM backend (local models, Anthropic, Bedrock, etc.)
 # pip install 'smolagents[litellm]'
 # Or install directly:

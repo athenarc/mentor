@@ -5,6 +5,9 @@ In the full Bastirr system, the Librarian would query PubMed, OpenAIRE, etc.
 For this scaffolding, it retrieves candidate studies from a pre-loaded
 study database — simulating a search by returning title + abstract records.
 
+Optional: when ``SEARCH_BIP_MCP_URL`` is set, the Librarian gets
+``search_papers_in_bip`` from ``bastirr.mcp_clients``.
+
 Call ``load_review_data(json_str)`` once (from the runner) before any
 agent tools are invoked.  The tools read from the module-level store.
 """
