@@ -2,7 +2,7 @@
 BIP MCP client for remote paper search.
 
 Connects to the BIP MCP server (https://bip-mcp.imsi.athenarc.gr/mcp)
-via Streamable HTTP and calls the search_papers tool. Used by the Librarian
+via Streamable HTTP and calls the paper_search tool. Used by the Librarian
 as an additional search backend alongside the pre-loaded dataset.
 """
 
@@ -11,12 +11,22 @@ import json
 import logging
 from typing import Any
 
+from datetime import timedelta
+
 import httpx
 
 logger = logging.getLogger("bastirr.mcp_clients.search.bip_mcp_client")
 
 # Tool name on the BIP MCP server
-SEARCH_PAPERS_TOOL = "search_papers"
+SEARCH_PAPERS_TOOL = "paper_search"
+
+# ---------------------------------------------------------------------------
+# Timeout configuration for BIP MCP client
+# ---------------------------------------------------------------------------
+# General HTTP timeout (seconds) for connect/write operations
+DEFAULT_TIMEOUT_SECONDS = 30.0
+# Read timeout (seconds) for streaming responses
+DEFAULT_READ_TIMEOUT_SECONDS = 300.0
 
 
 def call_search_papers(
@@ -28,12 +38,10 @@ def call_search_papers(
     end_year: int | None = None,
     page: int = 1,
     page_size: int = 20,
-    timeout: float = 30.0,
-    read_timeout: float = 60.0,
     auth_token: str | None = None,
 ) -> str:
     """
-    Call the BIP MCP server's search_papers tool via Streamable HTTP.
+    Call the BIP MCP server's paper_search tool via Streamable HTTP.
 
     Args:
         url: BIP MCP server endpoint (e.g. https://bip-mcp.imsi.athenarc.gr/mcp).
@@ -43,8 +51,6 @@ def call_search_papers(
         end_year: Optional filter: papers before this year.
         page: Page number (1-based).
         page_size: Results per page.
-        timeout: HTTP timeout in seconds.
-        read_timeout: Read timeout in seconds for streamed responses.
         auth_token: Optional Bearer token (required by BIP MCP server).
 
     Returns:
@@ -76,7 +82,10 @@ def call_search_papers(
             )
             headers = {"Authorization": value}
 
-        timeout_obj = httpx.Timeout(timeout, read=read_timeout)
+        timeout_obj = httpx.Timeout(
+            DEFAULT_TIMEOUT_SECONDS,
+            read=DEFAULT_READ_TIMEOUT_SECONDS,
+        )
         async with create_mcp_http_client(headers=headers, timeout=timeout_obj) as client:
             async with streamable_http_client(url, http_client=client) as (
                 read_stream,
@@ -88,13 +97,14 @@ def call_search_papers(
                     result = await session.call_tool(
                         SEARCH_PAPERS_TOOL,
                         arguments=arguments,
-                        read_timeout_seconds=read_timeout,
+                        read_timeout_seconds=timedelta(
+                            seconds=DEFAULT_READ_TIMEOUT_SECONDS
+                        ),
                     )
 
-        if result.is_error:
-            err = getattr(result, "content", None) or str(result)
-            return json.dumps({"error": True, "message": str(err)})
-
+        # Build response text from the CallToolResult; if the server
+        # returned an MCP error, the client will typically raise before
+        # this point. We keep this simple and let exceptions propagate.
         parts: list[str] = []
         if hasattr(result, "content") and result.content:
             for block in result.content:
@@ -105,19 +115,23 @@ def call_search_papers(
                 json.dumps(result.structured_content, ensure_ascii=False, indent=2)
             )
         if not parts:
-            return json.dumps({"message": "No content returned from search_papers"})
-        return "\n\n".join(parts)
+            msg = json.dumps({"message": "No content returned from paper_search"})
+            logger.info("BIP MCP paper_search query=%r returned no content.", keywords)
+            return msg
+
+        text = "\n\n".join(parts)
+        return text
 
     try:
         return asyncio.run(_run())
     except Exception as e:  # noqa: BLE001
-        logger.exception("BIP MCP search_papers failed")
+        logger.exception("BIP MCP paper_search failed")
         return json.dumps({"error": True, "message": str(e)})
 
 
 def create_bip_mcp_tool(bip_mcp_url: str, auth_token: str = ""):
     """
-    Create a smolagents tool that calls the BIP MCP server's search_papers.
+    Create a smolagents tool that calls the BIP MCP server's paper_search tool.
 
     Args:
         bip_mcp_url: BIP MCP server Streamable HTTP URL.

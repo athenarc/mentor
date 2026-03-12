@@ -184,7 +184,7 @@ LiteLLM supports 100+ providers. See [LiteLLM docs](https://docs.litellm.ai/) fo
 
 ## BIP MCP paper search
 
-The Librarian can optionally call the **BIP MCP server** for additional paper search alongside the pre-loaded Cochrane dataset. The server is at `https://bip-mcp.imsi.athenarc.gr/mcp` and exposes a `search_papers` tool. Other MCP search endpoints can be added in the future.
+The Librarian can optionally call the **BIP MCP server** for additional paper search alongside the pre-loaded Cochrane dataset. The server is at `https://bip-mcp.imsi.athenarc.gr/mcp` and exposes a `paper_search` tool. Other MCP search endpoints can be added in the future.
 
 **Setup:**
 
