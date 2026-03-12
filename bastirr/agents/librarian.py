@@ -11,11 +11,7 @@ search_papers_in_bip() to query the BIP MCP server for additional papers.
 
 from smolagents import CodeAgent
 
-from bastirr.config import (
-    BIP_MCP_AUTH_TOKEN,
-    BIP_MCP_URL,
-    EXECUTOR_TIMEOUT_SECONDS,
-)
+from bastirr.config import BIP_MCP_AUTH_TOKEN, BIP_MCP_URL, EXECUTOR_TIMEOUT_SECONDS, SEARCH_BACKEND
 from bastirr.mcp_clients import create_bip_mcp_tool
 from bastirr.tools.search_tools import get_review_protocol, search_studies
 
@@ -29,13 +25,17 @@ Your role is to:
 4. Return ALL candidate studies as a structured list.
 
 Use get_review_protocol() (no arguments) to understand what the review
-is about, then use search_studies(query) with a relevant search query
-to retrieve all candidate studies from the database.
+is about, then:
+- If you have search_studies(query), use it with a relevant search query
+  to retrieve candidate studies from the pre-loaded Cochrane dataset.
+- If you have search_papers_in_bip(query, ...), use it to search
+  the external BIP MCP server for additional papers using the same search
+  strategy / keywords.
 
-If you have the search_papers_in_bip tool, you may also use it to search
-the BIP MCP server for additional papers. Use the same search strategy
-/ keywords. The primary candidate list for screening comes from
-search_studies(); search_papers_in_bip is supplementary.
+Depending on configuration, you may have only the local dataset search,
+only the MCP-based search, or both of them enabled. Do NOT assume that
+one source is primary; simply use all available search tools to
+retrieve as complete a candidate set as possible.
 
 Return your final answer as a JSON string with:
 - "search_strategy": a brief description of how you'd search
@@ -56,11 +56,16 @@ def create_librarian_agent(model, step_callbacks=None, logger=None) -> CodeAgent
     Returns:
         Configured CodeAgent for search and retrieval.
     """
-    tools = [search_studies, get_review_protocol]
-    if BIP_MCP_URL:
-        tools.append(
-            create_bip_mcp_tool(BIP_MCP_URL, BIP_MCP_AUTH_TOKEN)
-        )
+    tools = [get_review_protocol]
+
+    # Local dataset search
+    if SEARCH_BACKEND in ("local", "both"):
+        tools.append(search_studies)
+
+    # External MCP search (currently only BIP)
+    if SEARCH_BACKEND in ("mcp-search", "both") and BIP_MCP_URL:
+        tools.append(create_bip_mcp_tool(BIP_MCP_URL, BIP_MCP_AUTH_TOKEN))
+
     return CodeAgent(
         tools=tools,
         model=model,

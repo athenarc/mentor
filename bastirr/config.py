@@ -47,6 +47,15 @@ API_BASE = os.getenv("BASTIRR_API_BASE", "")  # e.g. http://localhost:11434
 API_KEY = os.getenv("BASTIRR_API_KEY", "")
 
 # ---------------------------------------------------------------------------
+# Search backend selection for the Librarian
+# ---------------------------------------------------------------------------
+# Controls which search tools the Librarian exposes:
+#   local      - only the pre-loaded Cochrane dataset (search_studies)
+#   mcp-search - only the external MCP search endpoint(s) (currently BIP)
+#   both       - expose both local and MCP search tools
+SEARCH_BACKEND = os.getenv("SEARCH_BACKEND", "local").lower()
+
+# ---------------------------------------------------------------------------
 # Search MCP: BIP endpoint (optional)
 # ---------------------------------------------------------------------------
 # These settings configure the external paper search MCP endpoint for BIP.
