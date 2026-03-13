@@ -41,6 +41,10 @@ only the MCP-based search, or both of them enabled. Do NOT assume that
 one source is primary; simply use all available search tools to
 retrieve as complete a candidate set as possible.
 
+Both ``search_studies`` and ``search_papers_in_bip`` return Python
+objects (dicts), NOT JSON strings. Do NOT call json.loads() on their
+results. Instead, access the fields directly.
+
 When using MCP search tools, you MUST:
 - construct a small set of well-motivated queries per review (avoid
   dozens of tiny variations with minimal differences)
