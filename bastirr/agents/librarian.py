@@ -12,8 +12,12 @@ search_papers_in_bip() to query the BIP MCP server for additional papers.
 from smolagents import CodeAgent
 
 from bastirr.config import BIP_MCP_AUTH_TOKEN, BIP_MCP_URL, EXECUTOR_TIMEOUT_SECONDS, SEARCH_BACKEND
-from bastirr.mcp_clients import create_bip_mcp_tool
-from bastirr.tools.search_tools import get_review_protocol, search_studies
+from bastirr.tools.search import (
+    create_bip_mcp_tool,
+    get_review_protocol,
+    search_studies,
+    set_librarian_candidates,
+)
 
 
 LIBRARIAN_INSTRUCTIONS = """\
@@ -71,10 +75,22 @@ deduplication strategy:
   whitespace, collapsing multiple spaces, and removing punctuation.
 Keep only one record per deduplication key.
 
-Return your final answer as a JSON string with:
-- "search_strategy": a brief description of how you'd search
-- "n_candidates": number of studies found
-- "candidates": list of objects with "study_index", "title", "abstract"
+After deduplication is complete:
+
+1. Build a single list ``candidates`` of study dicts, each with
+   "study_index", "title", "abstract".
+
+2. Build your final answer:
+   final_json = {
+     "search_strategy": <brief description>,
+     "n_candidates": len(candidates),
+     "candidates": candidates,
+   }
+
+3. Publish the same list to the pipeline (call once):
+   set_librarian_candidates(candidates)
+
+4. Return ``final_json`` as your final answer.
 """
 
 
@@ -90,7 +106,8 @@ def create_librarian_agent(model, step_callbacks=None, logger=None) -> CodeAgent
     Returns:
         Configured CodeAgent for search and retrieval.
     """
-    tools = [get_review_protocol]
+    # Always expose protocol access + candidate publication helper.
+    tools = [get_review_protocol, set_librarian_candidates]
 
     # Local dataset search
     if SEARCH_BACKEND in ("local", "both"):

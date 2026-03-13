@@ -25,7 +25,7 @@ from pathlib import Path
 from bastirr.config import OUTPUT_DIR, OPENAI_API_KEY, MODEL_BACKEND, create_model
 from bastirr.data import load_review, list_reviews
 from bastirr.logging_utils import setup_run_logging, make_step_callbacks
-from bastirr.tools.search_tools import load_review_data
+from bastirr.tools.search import load_review_data
 
 logging.basicConfig(
     level=logging.INFO,
