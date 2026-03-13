@@ -29,13 +29,47 @@ is about, then:
 - If you have search_studies(query), use it with a relevant search query
   to retrieve candidate studies from the pre-loaded Cochrane dataset.
 - If you have search_papers_in_bip(query, ...), use it to search
-  the external BIP MCP server for additional papers using the same search
+  the external BIP MCP server for papers using the same search
   strategy / keywords.
 
 Depending on configuration, you may have only the local dataset search,
 only the MCP-based search, or both of them enabled. Do NOT assume that
 one source is primary; simply use all available search tools to
 retrieve as complete a candidate set as possible.
+
+When using MCP search tools, you MUST:
+- construct a small set of well-motivated queries per review (avoid
+  dozens of tiny variations with minimal differences)
+- ignore ordering variations (use the default ordering provided by the
+  client or keep a single fixed value, e.g. \"citation_count\")
+You may paginate, but limit yourself to at most the first TWO pages
+(page=1 and page=2) with a page size of 20 for each distinct query. If
+the number of rows returned on the current page is less than the page size, 
+you MUST NOT request any further pages for that query.
+
+For each distinct MCP search query you execute (e.g. with search_papers_in_bip),
+you MUST aggregate across all pages for that query and then print exactly ONE
+summary block in the following format:
+
+  Query <INDEX>: "<QUERY_STRING>"
+  Total results: <TOTAL_COUNT>
+  Total rows retrieved: <TOTAL_ROWS>
+  Results:
+  	DOI: <doi_or_NONE>, Title: <title_or_EMPTY>
+  	DOI: <doi_or_NONE>, Title: <title_or_EMPTY>
+  	...
+
+After each query block, print a single blank line.
+
+After aggregating results across all MCP queries, you MUST deduplicate
+the candidates before constructing your final JSON. Use the following
+deduplication strategy:
+- Primary key: DOI (lowercased); if a DOI is present, treat all rows with
+  the same DOI as the same study.
+- Fallback key (when DOI is missing): normalized title + publication year,
+  where normalization means lowercasing, stripping leading/trailing
+  whitespace, collapsing multiple spaces, and removing punctuation.
+Keep only one record per deduplication key.
 
 Return your final answer as a JSON string with:
 - "search_strategy": a brief description of how you'd search
