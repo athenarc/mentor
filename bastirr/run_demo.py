@@ -19,6 +19,8 @@ import argparse
 import json
 import logging
 import sys
+import hashlib
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -26,6 +28,174 @@ from bastirr.config import OUTPUT_DIR, OPENAI_API_KEY, MODEL_BACKEND, create_mod
 from bastirr.data import load_review, list_reviews
 from bastirr.logging_utils import setup_run_logging, make_step_callbacks
 from bastirr.tools.search import load_review_data
+
+
+def _paper_key_from_study(study: dict) -> str:
+    """Create a stable key for cross-run paper overlap."""
+    doi = study.get("doi")
+    if isinstance(doi, str) and doi.strip():
+        return f"doi::{doi.strip().lower()}"
+    # Fallback fingerprint when DOI is missing.
+    title = (study.get("title") or "").strip()
+    abstract = (study.get("abstract") or "").strip()
+    payload = f"{title}\n{abstract}".encode("utf-8", errors="ignore")
+    return f"no_doi::{hashlib.sha256(payload).hexdigest()}"
+
+
+def run_librarian_repeats(
+    *,
+    review_url: str,
+    split: str,
+    model_id: str | None = None,
+    backend: str | None = None,
+    api_base: str | None = None,
+    include_subagent_steps: bool = True,
+    repeats: int = 20,
+) -> None:
+    """Run the Librarian-only step multiple times, from scratch each run."""
+    logger.info("Running Librarian-only repeats: %d", repeats)
+
+    review = load_review(review_url, split)
+    if review is None:
+        logger.error(f"Could not load review. Available reviews in '{split}':")
+        for r in list_reviews(split)[:10]:
+            logger.info(f"  {r['title']} ({r['n_studies']} studies) — {r['review_url']}")
+        sys.exit(1)
+
+    review_json = review_to_json(review)
+    protocol_json = protocol_to_json(review)
+
+    _backend = (backend or MODEL_BACKEND).lower()
+    if _backend == "openai" and not OPENAI_API_KEY:
+        logger.error("OPENAI_API_KEY not set. Add it to .env file.")
+        sys.exit(1)
+
+    from bastirr.agents.librarian import create_librarian_agent
+    from bastirr.tools.search import get_candidates_json
+
+    model = create_model(model_id=model_id, backend=backend, api_base=api_base)
+    logger.info(f"Model backend: {_backend} | model_id: {model.model_id}")
+
+    previous_keys: set[str] = set()
+    cumulative_keys: set[str] = set()
+    per_run_counts: list[int] = []
+    per_run_doi_sets: list[set[str]] = []
+    per_run_overlap_prev: list[int] = []
+    per_run_overlap_cumulative: list[int] = []
+    per_run_jaccard_prev: list[float] = []
+    per_run_query_counts: list[int] = []
+
+    for run_idx in range(repeats):
+        # Reset search tool state for this iteration.
+        load_review_data(review_json)
+
+        # Create a fresh log dir per iteration to avoid overwriting.
+        run_title = f"librarian_repeat_{run_idx + 1}_{review.title}"
+        run_dir, agent_logger, activity_logger = setup_run_logging(
+            run_title,
+            include_subagent_steps=include_subagent_steps,
+        )
+        step_cbs = make_step_callbacks(activity_logger)
+        logger.info(f"[Librarian repeat {run_idx + 1}/{repeats}] Run directory: {run_dir}")
+
+        activity_logger.log_metadata("Repeat index", str(run_idx + 1))
+        activity_logger.log_metadata("Review URL", review_url)
+        activity_logger.log_metadata("Dataset split", split)
+
+        librarian = create_librarian_agent(model, step_callbacks=step_cbs, logger=agent_logger)
+
+        librarian_task = (
+            f"Conduct a systematic review for the following research question.\n\n"
+            f"Review protocol (JSON):\n{protocol_json}\n\n"
+            f"Execute ONLY the librarian search step.\n"
+            f"Return the final candidate JSON and publish candidates via set_librarian_candidates()."
+        )
+
+        keys: set[str] = set()
+        studies: list[dict] = []
+        try:
+            # Run librarian only (no gatekeeper/miner/critic).
+            librarian.run(librarian_task)
+
+            # Count the query blocks printed by the Librarian into workflow.log.
+            # Expected format (per instructions): `Query <INDEX>: "<QUERY_STRING>"`
+            wf_text = ""
+            try:
+                wf_text = (run_dir / "workflow.log").read_text(
+                    encoding="utf-8", errors="ignore"
+                )
+            except Exception:  # noqa: BLE001
+                wf_text = ""
+
+            query_count = len(
+                re.findall(
+                    r"^\\s*Query\\s+\\d+\\s*:",
+                    wf_text,
+                    flags=re.MULTILINE,
+                )
+            )
+            per_run_query_counts.append(query_count)
+
+            candidates_payload = get_candidates_json()
+            candidates_obj = json.loads(candidates_payload)
+            studies = candidates_obj.get("studies", []) or []
+            per_run_counts.append(len(studies))
+
+            keys = {_paper_key_from_study(s) for s in studies if isinstance(s, dict)}
+            per_run_doi_sets.append(keys)
+
+            # Compute overlap with previous and cumulative sets.
+            overlap_prev = len(keys & previous_keys) if previous_keys else 0
+            overlap_cumulative = len(keys & cumulative_keys) if cumulative_keys else 0
+            jaccard_prev = (
+                (len(keys & previous_keys) / len(keys | previous_keys))
+                if previous_keys and (keys | previous_keys)
+                else 0.0
+            )
+
+            per_run_overlap_prev.append(overlap_prev)
+            per_run_overlap_cumulative.append(overlap_cumulative)
+            per_run_jaccard_prev.append(jaccard_prev)
+
+            logger.info(
+                "[Repeat %d] n_candidates=%d, overlap_prev=%d, overlap_cumulative=%d, jaccard_prev=%.3f",
+                run_idx + 1,
+                len(studies),
+                overlap_prev,
+                overlap_cumulative,
+                jaccard_prev,
+            )
+            logger.info("[Repeat %d] query_blocks_printed=%d", run_idx + 1, query_count)
+
+            previous_keys = keys
+            cumulative_keys |= keys
+        except Exception:  # noqa: BLE001
+            logger.exception("[Repeat %d] Librarian run failed", run_idx + 1)
+        finally:
+            try:
+                activity_path = activity_logger.finalize(model)
+                logger.info(
+                    "[Repeat %d] Activity log saved to: %s",
+                    run_idx + 1,
+                    activity_path,
+                )
+            finally:
+                agent_logger.close()
+
+    # Write a compact runner summary.
+    summary_path = OUTPUT_DIR / f"librarian_repeats_summary_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    summary = {
+        "review_url": review_url,
+        "split": split,
+        "repeats": repeats,
+        "per_run_candidate_counts": per_run_counts,
+        "per_run_overlap_prev": per_run_overlap_prev,
+        "per_run_overlap_cumulative": per_run_overlap_cumulative,
+        "per_run_jaccard_prev": per_run_jaccard_prev,
+        "per_run_query_counts": per_run_query_counts,
+    }
+    summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+    logger.info("Wrote librarian repeats summary: %s", summary_path)
 
 logging.basicConfig(
     level=logging.INFO,
@@ -250,6 +420,17 @@ def main():
         default=True,
         help="Hide sub-agent step details in activity.md",
     )
+    parser.add_argument(
+        "--librarian-only",
+        action="store_true",
+        help="Run only the Librarian agent (no Gatekeeper/ Miner/ Critic).",
+    )
+    parser.add_argument(
+        "--librarian-repeats",
+        type=int,
+        default=20,
+        help="When --librarian-only is set, run the Librarian this many times.",
+    )
     args = parser.parse_args()
 
     if args.list_reviews:
@@ -261,14 +442,25 @@ def main():
             print(f"    {r['review_url']}")
         return
 
-    run_demo(
-        review_url=args.review_url,
-        split=args.split,
-        model_id=args.model,
-        backend=args.backend,
-        api_base=args.api_base,
-        include_subagent_steps=args.include_subagent_steps,
-    )
+    if args.librarian_only:
+        run_librarian_repeats(
+            review_url=args.review_url,
+            split=args.split,
+            model_id=args.model,
+            backend=args.backend,
+            api_base=args.api_base,
+            include_subagent_steps=args.include_subagent_steps,
+            repeats=args.librarian_repeats,
+        )
+    else:
+        run_demo(
+            review_url=args.review_url,
+            split=args.split,
+            model_id=args.model,
+            backend=args.backend,
+            api_base=args.api_base,
+            include_subagent_steps=args.include_subagent_steps,
+        )
 
 
 if __name__ == "__main__":

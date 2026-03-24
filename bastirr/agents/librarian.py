@@ -55,7 +55,8 @@ You may paginate, but limit yourself to at most the first TWO pages
 the number of rows returned on the current page is less than the page size, 
 you MUST NOT request any further pages for that query.
 
-For each distinct MCP search query you execute (e.g. with search_papers_in_bip),
+For each distinct search query you execute (whether using the local
+``search_studies`` tool or the MCP-based ``search_papers_in_bip`` tool),
 you MUST aggregate across all pages for that query and then print exactly ONE
 summary block in the following format:
 
@@ -63,8 +64,8 @@ summary block in the following format:
   Total results: <TOTAL_COUNT>
   Total rows retrieved: <TOTAL_ROWS>
   Results:
-  	DOI: <doi_or_NONE>, Title: <title_or_EMPTY>
-  	DOI: <doi_or_NONE>, Title: <title_or_EMPTY>
+    DOI: <doi_or_NONE>, Title: <title_or_EMPTY>
+    DOI: <doi_or_NONE>, Title: <title_or_EMPTY>
   	...
 
 After each query block, print a single blank line.
@@ -82,7 +83,11 @@ Keep only one record per deduplication key.
 After deduplication is complete:
 
 1. Build a single list ``candidates`` of study dicts, each with
-   "study_index", "title", "abstract".
+   "study_index", "title", "abstract". If the underlying search rows
+   include extra fields, you MUST include them too when present, at
+   minimum:
+   - "doi" (may be absent or null)
+   - "year" (may be absent or null)
 
 2. Build your final answer:
    final_json = {
