@@ -1,0 +1,128 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "INCLUDE",
+      "reason": "Randomised placebo‑controlled trial; intervention is daily co‑trimoxazole; comparator is placebo; population is children aged 1‑14 years with HIV infection."
+    },
+    {
+      "study_index": 2,
+      "decision": "EXCLUDE",
+      "reason": "Population is adults (eligible adults), not children (<15 years) nor infants <18 months with HIV‑infected mothers."
+    },
+    {
+      "study_index": 3,
+      "decision": "EXCLUDE",
+      "reason": "Population is adult patients with Kaposi's sarcoma (AIDS), not children."
+    },
+    {
+      "study_index": 4,
+      "decision": "EXCLUDE",
+      "reason": "Not a randomised or quasi‑randomised trial; it is a case series of four men."
+    },
+    {
+      "study_index": 5,
+      "decision": "EXCLUDE",
+      "reason": "Observational necropsy study, not a randomised trial; no intervention of cotrimoxazole vs placebo/no treatment."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Prospective cohort study, not a randomised trial; no intervention of cotrimoxazole."
+    },
+    {
+      "study_index": 7,
+      "decision": "EXCLUDE",
+      "reason": "Prospective cohort study, not a randomised trial; no intervention of cotrimoxazole."
+    },
+    {
+      "study_index": 8,
+      "decision": "EXCLUDE",
+      "reason": "Population is adults (median age 32 years, range 18‑64) with HIV and TB, not children."
+    },
+    {
+      "study_index": 9,
+      "decision": "EXCLUDE",
+      "reason": "Not a randomised trial; appears to be a review/commentary; no intervention of cotrimoxazole."
+    },
+    {
+      "study_index": 10,
+      "decision": "EXCLUDE",
+      "reason": "Observational study of HIV‑infected children with pneumonia; not a randomised trial of cotrimoxazole vs placebo/no treatment."
+    }
+  ],
+  "evidence": [
+    {
+      "study_index": 1,
+      "citation": "Chintu et al. 2004",
+      "population": "Children aged 1-14 years with clinical features of HIV infection in Zambia.",
+      "setting": "Zambia, resource‑poor setting with high bacterial resistance to cotrimoxazole.",
+      "intervention": "Daily cotrimoxazole (trimethoprim-sulfamethoxazole) prophylaxis.",
+      "comparison": "Placebo.",
+      "outcomes": [
+        {
+          "outcome_name": "All‑cause mortality",
+          "effect_measure": "HR",
+          "effect_size": 0.57,
+          "ci_95_lower": 0.43,
+          "ci_95_upper": 0.77,
+          "p_value": 0.0002
+        },
+        {
+          "outcome_name": "Mortality beyond 12 months",
+          "effect_measure": "HR",
+          "effect_size": 0.48,
+          "ci_95_lower": 0.27,
+          "ci_95_upper": 0.84,
+          "p_value": null
+        }
+      ],
+      "study_design": "RCT",
+      "follow_up": "Median 19 months.",
+      "adverse_events": "Grade 3 or 4 adverse events: 16 (6%) in cotrimoxazole group vs 18 (7%) in placebo group. Rash: 1 placebo. Neutropenia (<0.5×10^9/L): 16 (6%) vs 7 (3%), p=0.06. Pneumocystis carinii identified in 1 placebo patient out of 73 nasopharyngeal aspirates from children with pneumonia.",
+      "key_findings": [
+        "Cotrimoxazole prophylaxis significantly reduced mortality: HR 0.57 (95% CI 0.43‑0.77, p=0.0002).",
+        "Benefit consistent across all ages and baseline CD4 counts (tests for heterogeneity non‑significant).",
+        "No significant difference in grade 3‑4 adverse events between groups (6% vs 7%).",
+        "Neutropenia occurred more often with cotrimoxazole (6% vs 3%, p=0.06).",
+        "Pneumocystis carinii pneumonia was rare (only one case in placebo group)."
+      ],
+      "notes": "Trial stopped early due to efficacy. Included children with clinical features of HIV infection; 7 children excluded post‑randomization due to HIV‑negative status."
+    }
+  ],
+  "quality_assessment": [
+    {
+      "study_index": 1,
+      "citation": "Chintu et al. 2004",
+      "quality_rating": "high",
+      "strengths": [
+        "Randomized controlled trial (gold standard for efficacy)",
+        "Double-blind design minimizes performance and detection bias",
+        "Median follow-up of 19 months provides medium-term data",
+        "Outcome assessment includes all-cause mortality with hazard ratios and confidence intervals"
+      ],
+      "limitations": [
+        "Trial stopped early for efficacy, which may overestimate treatment effect",
+        "Post-randomization exclusions (7 children) may introduce bias",
+        "Setting is a single resource-poor country with high bacterial resistance, limiting generalizability",
+        "Adverse event reporting limited; neutropenia more common with cotrimoxazole but not statistically significant"
+      ],
+      "risk_of_bias": "low",
+      "risk_of_bias_concerns": [
+        "Early stopping for efficacy may introduce bias towards larger effect size",
+        "Unclear allocation concealment and randomization procedure from extracted data",
+        "Blinding maintained, but neutropenia could unblind clinicians"
+      ],
+      "applicability": "direct"
+    }
+  ],
+  "synthesis": "This systematic review aimed to assess the effects of routinely administered cotrimoxazole on death and illness episodes in children with HIV infection and in infants of HIV‑infected mothers. Only one randomized controlled trial (RCT) met inclusion criteria [1].\n\nStudy characteristics: The included RCT (CHAP trial) was a double‑blind, placebo‑controlled trial conducted in Zambia, a resource‑poor setting with high bacterial resistance to cotrimoxazole [1]. Participants were children aged 1–14 years with clinical features of HIV infection (N=541). The intervention was daily cotrimoxazole prophylaxis, compared with placebo, over a median follow‑up of 19 months.\n\nQuality assessment: The trial was rated as high quality with low risk of bias overall, owing to its RCT design, double‑blinding, and adequate follow‑up. However, the trial was stopped early for efficacy, which may overestimate the treatment effect, and post‑randomization exclusions of seven HIV‑negative children introduce a minor potential bias.\n\nOutcome synthesis:\n• All‑cause mortality: Cotrimoxazole prophylaxis significantly reduced mortality, with a hazard ratio (HR) of 0.57 (95% CI 0.43–0.77, p=0.0002) [1]. This corresponds to a 43% relative reduction in the risk of death.\n• Mortality beyond 12 months: The benefit persisted, with an HR of 0.48 (95% CI 0.27–0.84) [1], indicating an even greater effect after the first year.\n• Illness episodes: The extracted evidence did not report specific illness episode rates (e.g., pneumonia, diarrhea). However, the trial noted that Pneumocystis carinii pneumonia was rare (one case in the placebo group) and that neutropenia (<0.5×10^9/L) occurred more frequently in the cotrimoxazole group (6% vs. 3%, p=0.06).\n• Adverse events: Grade 3 or 4 adverse events were similar between groups (6% vs. 7%). Rash was reported in one placebo recipient.\n\nThe benefit was consistent across age subgroups and baseline CD4 counts, with no significant heterogeneity.\n\nEvidence gaps and limitations: No studies were identified that evaluated cotrimoxazole in infants of HIV‑infected mothers (a key population in the review objective). The single included trial was conducted in a specific high‑resistance setting, which may limit applicability to other regions. Furthermore, the trial did not report on non‑fatal illness episodes in detail, precluding a complete assessment of morbidity.\n\nConclusions: In children with HIV infection aged 1–14 years, daily cotrimoxazole prophylaxis reduces mortality by approximately half, with a acceptable safety profile. The evidence is directly applicable to children in resource‑poor settings, but not to infants of HIV‑infected mothers. Given the early stopping of the trial, the magnitude of benefit may be overestimated.",
+  "evidence_strength": "moderate",
+  "limitations": [
+    "Only one RCT included, which limits the precision and generalizability of findings",
+    "No evidence for infants of HIV‑infected mothers, a key subgroup in the review objective",
+    "The trial was conducted in a single high‑resistance setting, reducing external validity",
+    "Early stopping for efficacy may have inflated the effect size",
+    "Incomplete reporting of non‑fatal illness episodes limits assessment of morbidity outcomes"
+  ]
+}

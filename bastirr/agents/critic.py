@@ -99,7 +99,7 @@ def create_critic_agent(model, step_callbacks=None, logger=None) -> CodeAgent:
             "a quality assessment and narrative synthesis with citations."
         ),
         instructions=CRITIC_INSTRUCTIONS,
-        max_steps=5,
+        max_steps=10,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         additional_authorized_imports=["json", "re", "yaml", "pandas", "numpy"],
