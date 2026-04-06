@@ -106,7 +106,7 @@ def create_miner_agent(model, step_callbacks=None, logger=None) -> CodeAgent:
             "objective, and it extracts structured PICO evidence from each."
         ),
         instructions=MINER_INSTRUCTIONS,
-        max_steps=5,
+        max_steps=10,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy"],

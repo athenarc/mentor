@@ -53,7 +53,7 @@ def create_librarian_agent(model, step_callbacks=None, logger=None) -> CodeAgent
             "candidates for screening."
         ),
         instructions=LIBRARIAN_INSTRUCTIONS,
-        max_steps=5,
+        max_steps=10,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         additional_authorized_imports=["json", "re", "typing", "yaml", "glob", "pandas", "numpy"],

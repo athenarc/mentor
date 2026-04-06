@@ -164,7 +164,7 @@ def create_orchestrator_agent(model, step_callbacks=None, logger=None) -> CodeAg
         model=model,
         managed_agents=[librarian, gatekeeper, miner, critic],
         instructions=ORCHESTRATOR_INSTRUCTIONS,
-        max_steps=10,
+        max_steps=30,
         planning_interval=3,  # Re-plan every 3 steps for complex workflows
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
