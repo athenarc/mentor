@@ -5,15 +5,23 @@ Translates the review protocol into a search strategy and retrieves
 candidate studies from the dataset. In the full system this would
 query PubMed, OpenAIRE, etc. Here it searches the pre-loaded Cochrane data.
 
-When ``SEARCH_BIP_MCP_URL`` is set, the Librarian also has
-search_papers_in_bip() to query the BIP MCP server for additional papers.
+Depending on ``SEARCH_SOURCES``, the Librarian can also call:
+- search_papers_in_bip() for the BIP MCP server
+- search_papers_in_pubmed() for the PubMed MCP server
 """
 
 from smolagents import CodeAgent
 
-from bastirr.config import BIP_MCP_AUTH_TOKEN, BIP_MCP_URL, EXECUTOR_TIMEOUT_SECONDS, SEARCH_BACKEND
+from bastirr.config import (
+    BIP_MCP_AUTH_TOKEN,
+    BIP_MCP_URL,
+    EXECUTOR_TIMEOUT_SECONDS,
+    PUBMED_MCP_URL,
+    SEARCH_SOURCES,
+)
 from bastirr.tools.search import (
     create_bip_mcp_tool,
+    create_pubmed_mcp_tool,
     get_review_protocol,
     search_studies,
     set_librarian_candidates,
@@ -35,13 +43,17 @@ is about, then:
 - If you have search_papers_in_bip(query, ...), use it to search
   the external BIP MCP server for papers using the same search
   strategy / keywords.
+- If you have search_papers_in_pubmed(query, ...), use it to search
+  the external PubMed MCP server for papers using the same search
+  strategy / keywords.
 
 Depending on configuration, you may have only the local dataset search,
 only the MCP-based search, or both of them enabled. Do NOT assume that
 one source is primary; simply use all available search tools to
 retrieve as complete a candidate set as possible.
 
-Both ``search_studies`` and ``search_papers_in_bip`` return Python
+All search tools (``search_studies``, ``search_papers_in_bip``,
+``search_papers_in_pubmed``) return Python
 objects (dicts), NOT JSON strings. Do NOT call json.loads() on their
 results. Instead, access the fields directly.
 
@@ -49,17 +61,19 @@ When using MCP search tools, you MUST:
 - construct a small set of well-motivated queries per review (avoid
   dozens of tiny variations with minimal differences)
 - ignore ordering variations (use the default ordering provided by the
-  client or keep a single fixed value, e.g. \"citation_count\")
+  client or keep a single fixed value, e.g. \"citation_count\" for BIP, and \"relevance\" for PubMed)
 You may paginate, but limit yourself to at most the first TWO pages
 (page=1 and page=2) with a page size of 20 for each distinct query. If
 the number of rows returned on the current page is less than the page size, 
 you MUST NOT request any further pages for that query.
 
-For each distinct MCP search query you execute (e.g. with search_papers_in_bip),
-you MUST aggregate across all pages for that query and then print exactly ONE
-summary block in the following format:
+For each distinct MCP search (SOURCE + QUERY) you execute, you MUST treat
+the same query text on different sources as separate searches (for example,
+the same query run on BIP and PubMed requires two separate summary blocks).
+Aggregate across all pages for each SOURCE + QUERY pair and then print exactly
+ONE summary block in the following format:
 
-  Query <INDEX>: "<QUERY_STRING>"
+  Query <INDEX> [<SOURCE>]: "<QUERY_STRING>"
   Total results: <TOTAL_COUNT>
   Total rows retrieved: <TOTAL_ROWS>
   Results:
@@ -114,12 +128,16 @@ def create_librarian_agent(model, step_callbacks=None, logger=None) -> CodeAgent
     tools = [get_review_protocol, set_librarian_candidates]
 
     # Local dataset search
-    if SEARCH_BACKEND in ("local", "both"):
+    if "local" in SEARCH_SOURCES:
         tools.append(search_studies)
 
-    # External MCP search (currently only BIP)
-    if SEARCH_BACKEND in ("mcp-search", "both") and BIP_MCP_URL:
+    # External MCP search: BIP
+    if "bip" in SEARCH_SOURCES and BIP_MCP_URL:
         tools.append(create_bip_mcp_tool(BIP_MCP_URL, BIP_MCP_AUTH_TOKEN))
+
+    # External MCP search: PubMed
+    if "pubmed" in SEARCH_SOURCES and PUBMED_MCP_URL:
+        tools.append(create_pubmed_mcp_tool(PUBMED_MCP_URL))
 
     return CodeAgent(
         tools=tools,

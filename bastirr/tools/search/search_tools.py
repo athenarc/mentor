@@ -13,7 +13,7 @@ import json
 
 from smolagents import tool
 
-from bastirr.models.search import SearchMeta, SearchResult, StudyRow
+from bastirr.models.search import map_local_studies_to_result
 
 
 # ---------------------------------------------------------------------------
@@ -127,23 +127,7 @@ def search_studies(query: str) -> dict:
         )
 
     studies = full_data.get("studies", []) or []
-    rows: list[StudyRow] = []
-    for i, study in enumerate(studies):
-        title = study.get("title", "No title") if isinstance(study, dict) else "No title"
-        abstract = (
-            study.get("abstract", "No abstract") if isinstance(study, dict) else "No abstract"
-        )
-        rows.append(StudyRow(study_index=i + 1, title=title, abstract=abstract))
-
-    meta = SearchMeta(
-        source="local",
-        query=query,
-        total_count=len(rows),
-        page=1,
-        page_size=len(rows),
-    )
-    result = SearchResult(meta=meta, rows=rows)
-    return result.to_dict()
+    return map_local_studies_to_result(query=query, studies=studies).to_dict()
 
 
 @tool

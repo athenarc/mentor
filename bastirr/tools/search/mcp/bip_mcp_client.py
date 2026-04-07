@@ -8,7 +8,6 @@ local ``search_studies`` tool.
 """
 
 import asyncio
-import json
 import logging
 from typing import Any
 
@@ -16,7 +15,7 @@ from datetime import timedelta
 
 import httpx
 
-from bastirr.models.search import SearchResult
+from bastirr.models.search import BipSearchResponse, map_bip_response_to_result
 
 logger = logging.getLogger("bastirr.tools.search.mcp.bip_mcp_client")
 
@@ -64,40 +63,29 @@ def _build_headers(auth_token: str | None) -> dict[str, str] | None:
     return {"Authorization": value}
 
 
-def _normalize_structured_content(content: Any) -> dict:
+def _normalize_structured_content(content: Any, keywords: str) -> dict:
     """Normalize structured_content into the common SearchResult dict schema."""
     try:
-        normalized = SearchResult.from_dict(content)
+        response = BipSearchResponse.from_payload(content)
+        normalized = map_bip_response_to_result(response)
     except Exception as e:  # noqa: BLE001
         logger.exception("Failed to normalize structured_content from BIP MCP: %s", e)
         # Fall back to the raw content as-is (it should already be JSON-serializable).
         return content
-    return normalized.to_dict()
+    result = normalized.to_dict()
+    meta = result.get("meta")
+    if isinstance(meta, dict):
+        meta["source"] = meta.get("source") or "bip_mcp"
+        meta["query"] = meta.get("query") or keywords
+    return result
 
 
-def _normalize_text_content(text: str, keywords: str) -> dict:
-    """Normalize textual content into a dict, using SearchResult when possible.
-
-    This first tries to parse the raw text directly into a SearchResult via
-    ``SearchResult.from_json_str``. If that fails because the text is not
-    valid JSON or has an unexpected structure, it falls back to a minimal
-    wrapper dict so callers always receive a JSON-serializable object.
-    """
-    try:
-        normalized = SearchResult.from_json_str(text)
-    except Exception as e:  # noqa: BLE001
-        logger.exception("Failed to normalize textual response from BIP MCP: %s", e)
-        # Non-JSON or unexpected text; wrap into a minimal dict envelope.
-        return {
-            "meta": {
-                "source": "bip_mcp",
-                "keywords": keywords,
-                "message": "Non-JSON or unexpected textual response from paper_search",
-            },
-            "rows_text": [text],
-        }
-
-    return normalized.to_dict()
+def _extract_first_text_content(result: Any) -> str:
+    if hasattr(result, "content") and result.content:
+        first = result.content[0]
+        if hasattr(first, "text") and first.text:
+            return str(first.text).strip()
+    return ""
 
 
 async def _call_search_papers_async(
@@ -143,30 +131,17 @@ async def _call_search_papers_async(
                     arguments=arguments,
                     read_timeout_seconds=timedelta(seconds=DEFAULT_READ_TIMEOUT_SECONDS),
                 )
+    text = _extract_first_text_content(result)
+    if not text:
+        raise ValueError("paper_search returned no content[0].text")
 
-    # Prefer structured_content and normalize it; otherwise, fall back to text.
-    if hasattr(result, "structured_content") and result.structured_content is not None:
-        return _normalize_structured_content(result.structured_content)
-
-    parts: list[str] = []
-    if hasattr(result, "content") and result.content:
-        for block in result.content:
-            if hasattr(block, "text") and block.text:
-                parts.append(block.text)
-
-    if not parts:
-        logger.info("BIP MCP paper_search query=%r returned no content.", keywords)
-        return {
-            "meta": {
-                "source": "bip_mcp",
-                "keywords": keywords,
-                "message": "No content returned from paper_search",
-            },
-            "rows": [],
-        }
-
-    text = "\n\n".join(parts)
-    return _normalize_text_content(text, keywords)
+    response = BipSearchResponse.from_text(text)
+    out = map_bip_response_to_result(response).to_dict()
+    meta = out.get("meta")
+    if isinstance(meta, dict):
+        meta["source"] = meta.get("source") or "bip_mcp"
+        meta["query"] = meta.get("query") or keywords
+    return out
 
 
 def call_search_papers(

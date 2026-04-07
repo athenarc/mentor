@@ -182,19 +182,31 @@ LiteLLM supports 100+ providers. See [LiteLLM docs](https://docs.litellm.ai/) fo
 - **Google Vertex**: `vertex_ai/gemini-pro`
 - **vLLM**: Set `BASTIRR_API_BASE` to your vLLM server URL
 
-## BIP MCP paper search
+## MCP paper search (BIP + PubMed)
 
-The Librarian can optionally call the **BIP MCP server** for additional paper search alongside the pre-loaded Cochrane dataset. The server is at `https://bip-mcp.imsi.athenarc.gr/mcp` and exposes a `paper_search` tool. Other MCP search endpoints can be added in the future.
+The Librarian can optionally call external MCP servers for additional paper
+search alongside the pre-loaded Cochrane dataset:
+- BIP MCP: `https://bip-mcp.imsi.athenarc.gr/mcp`
+- PubMed MCP: `https://pubmed-mcp.imsi.athenarc.gr/mcp`
 
 **Setup:**
 
-1. In `.env`, set your BIP auth token (required by the server):
+1. Configure endpoints in `.env`:
+   ```bash
+   SEARCH_SOURCES=local,bip,pubmed
+   SEARCH_BIP_MCP_URL=https://bip-mcp.imsi.athenarc.gr/mcp
+   SEARCH_PUBMED_MCP_URL=https://pubmed-mcp.imsi.athenarc.gr/mcp
+   ```
+2. Set your BIP auth token (required by BIP server):
    ```bash
    SEARCH_BIP_AUTH_TOKEN=your_bip_token_here
    ```
-2. The default `SEARCH_BIP_MCP_URL` is already the BIP URL. To disable BIP MCP search, set it to empty: `SEARCH_BIP_MCP_URL=`.
+When enabled, the Librarian gets MCP search tools (for BIP and/or PubMed):
+- `search_papers_in_bip(query, page=1, page_size=20, ordering="popularity", ...)`
+- `search_papers_in_pubmed(query, offset=0, limit=20, sort="relevance")`
 
-When enabled, the Librarian gets a third tool, `search_papers_in_bip(query, page=1, page_size=20, ordering="popularity", ...)`, and can use it to retrieve external papers. The main candidate list for screening still comes from `search_studies()` (dataset); BIP MCP results are supplementary.
+The candidate list used by the pipeline is what the Librarian publishes via
+`set_librarian_candidates(...)`.
 
 ## CLI Arguments
 
@@ -222,6 +234,8 @@ All configuration lives in [`bastirr/config.py`](bastirr/config.py). Key setting
 | `BASTIRR_API_BASE` | `.env` | — | API base URL for local servers |
 | `BASTIRR_API_KEY` | `.env` | — | Generic API key for non-OpenAI providers |
 | `BASTIRR_EXECUTOR_TIMEOUT` | `.env` | `500` | Max seconds per code-execution step |
-| `SEARCH_BIP_MCP_URL` | `.env` | `https://bip-mcp.imsi.athenarc.gr/mcp` | BIP MCP search MCP endpoint (empty = disabled) |
+| `SEARCH_SOURCES` | `.env` | `local` | Comma-separated search sources: `local`, `bip`, `pubmed` |
+| `SEARCH_BIP_MCP_URL` | `.env` | `https://bip-mcp.imsi.athenarc.gr/mcp` | BIP MCP endpoint (used when `bip` in `SEARCH_SOURCES`) |
 | `SEARCH_BIP_AUTH_TOKEN` | `.env` | — | Bearer token for BIP MCP search endpoint (required for auth) |
+| `SEARCH_PUBMED_MCP_URL` | `.env` | `https://pubmed-mcp.imsi.athenarc.gr/mcp` | PubMed MCP endpoint (used when `pubmed` in `SEARCH_SOURCES`) |
 | `DATASET_DIR` | auto | `systematic_review_dataset/...` | Cochrane dataset directory |
