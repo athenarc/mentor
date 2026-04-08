@@ -1,0 +1,54 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "INCLUDE",
+      "reason": "Double-blind study of aminophylline (theophylline analogue) vs placebo in patients with acute ischaemic stroke; randomized design is strongly implied by 'double-blind'; treatment occurred in the acute phase (3 days of infusion) consistent with within one week."
+    },
+    {
+      "study_index": 2,
+      "decision": "INCLUDE",
+      "reason": "Double-blind randomized trial of intravenous aminophylline vs placebo in acute cerebral infarction; intervention delivered acutely (immediate post-injection effects) consistent with within-one-week criterion."
+    },
+    {
+      "study_index": 3,
+      "decision": "EXCLUDE",
+      "reason": "Open-label, single-arm dose-escalation (no randomization or control). Fails the randomized controlled trial criterion."
+    },
+    {
+      "study_index": 4,
+      "decision": "EXCLUDE",
+      "reason": "Population not specified as confirmed/presumed acute ischaemic stroke; design not a randomized controlled trial versus placebo/control."
+    },
+    {
+      "study_index": 5,
+      "decision": "EXCLUDE",
+      "reason": "Randomized cross-over physiological study in patients recovering from stroke; timing is subacute/recovery rather than within one week of onset."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Randomized cross-over physiological study focused on CBF in patients recovering from stroke; not within one week of onset."
+    },
+    {
+      "study_index": 7,
+      "decision": "EXCLUDE",
+      "reason": "Physiological CBF study; population not specified as acute ischaemic stroke; not a randomized trial vs placebo/control."
+    },
+    {
+      "study_index": 8,
+      "decision": "EXCLUDE",
+      "reason": "Animal study (cats). Criterion requires trials in people with acute ischaemic stroke."
+    },
+    {
+      "study_index": 9,
+      "decision": "EXCLUDE",
+      "reason": "Animal study (dogs). Criterion requires human randomized trials in acute ischaemic stroke."
+    },
+    {
+      "study_index": 10,
+      "decision": "EXCLUDE",
+      "reason": "Mechanistic/observational discussion; not a randomized controlled trial in acute ischaemic stroke within one week."
+    }
+  ]
+}

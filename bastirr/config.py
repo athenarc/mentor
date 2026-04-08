@@ -30,6 +30,8 @@ EXECUTOR_TIMEOUT_SECONDS = int(os.getenv("BASTIRR_EXECUTOR_TIMEOUT", "500"))
 # API keys  (sourced from .env)
 # ---------------------------------------------------------------------------
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
+DEEPSEEK_API_HOST = os.getenv("DEEPSEEK_API_HOST", "https://api.deepseek.com")
 
 # ---------------------------------------------------------------------------
 # Model configuration
@@ -45,6 +47,18 @@ API_BASE = os.getenv("BASTIRR_API_BASE", "")  # e.g. http://localhost:11434
 
 # Optional: generic API key (used by LiteLLM when OPENAI_API_KEY is not appropriate)
 API_KEY = os.getenv("BASTIRR_API_KEY", "")
+
+# Screening benchmark preset defaults
+GPT5_MODEL_ID = os.getenv("BASTIRR_GPT5_MODEL", "gpt-5")
+DEEPSEEK_MODEL_ID = os.getenv(
+    "BASTIRR_DEEPSEEK_MODEL",
+    os.getenv("DEEPSEEK_MODEL", "deepseek-reasoner"),
+)
+QWEN_OLLAMA_MODEL_ID = os.getenv(
+    "BASTIRR_QWEN_OLLAMA_MODEL",
+    "qwen3.5:27b-bf16",
+)
+OLLAMA_API_BASE = os.getenv("BASTIRR_OLLAMA_API_BASE", "http://localhost:11434/v1")
 
 # ---------------------------------------------------------------------------
 # Dataset files

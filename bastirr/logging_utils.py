@@ -69,13 +69,14 @@ _MAX_OUTPUT_CHARS = 2000
 # Helpers
 # ---------------------------------------------------------------------------
 
-def _make_run_dir(review_title: str) -> Path:
+def _make_run_dir(review_title: str, output_root: Path | None = None) -> Path:
     """Create a timestamped output directory for this run."""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     safe_title = "".join(
         c if c.isalnum() or c in " -_" else "" for c in review_title
     )[:60].strip()
-    run_dir = OUTPUT_DIR / f"{timestamp}_{safe_title}"
+    root = output_root or OUTPUT_DIR
+    run_dir = root / f"{timestamp}_{safe_title}"
     run_dir.mkdir(parents=True, exist_ok=True)
     return run_dir
 
@@ -645,6 +646,8 @@ class ActivityLogger:
 def setup_run_logging(
     review_title: str,
     include_subagent_steps: bool = True,
+    output_root: Path | None = None,
+    run_name: str | None = None,
 ) -> tuple[Path, FileAgentLogger, ActivityLogger]:
     """Set up file-based logging for a pipeline run.
 
@@ -657,11 +660,13 @@ def setup_run_logging(
         include_subagent_steps: If *True* (default), sub-agent steps are
             shown in the activity timeline.  If *False*, only orchestrator-
             level phases appear.
+        output_root: Optional directory under which the run directory is created.
+        run_name: Optional name for the run directory. Defaults to review_title.
 
     Returns:
         ``(run_dir, agent_logger, activity_logger)``
     """
-    run_dir = _make_run_dir(review_title)
+    run_dir = _make_run_dir(run_name or review_title, output_root=output_root)
 
     # --- Workflow: FileAgentLogger (mirrors terminal → file) ---
     wf_file = open(run_dir / "workflow.log", "w", encoding="utf-8")

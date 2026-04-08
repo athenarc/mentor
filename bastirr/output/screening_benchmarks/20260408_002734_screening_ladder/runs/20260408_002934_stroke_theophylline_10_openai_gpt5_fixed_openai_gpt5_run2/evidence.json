@@ -1,0 +1,54 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "INCLUDE",
+      "reason": "Double-blind, placebo-controlled trial of aminophylline in patients with acute ischemic stroke. Although exact onset-to-treatment time is not explicitly stated, the context indicates acute in-hospital treatment likely within one week."
+    },
+    {
+      "study_index": 2,
+      "decision": "INCLUDE",
+      "reason": "Double-blind trial comparing intravenous aminophylline to placebo in acute cerebral infarction, implying randomization with treatment administered in the acute phase (likely within one week)."
+    },
+    {
+      "study_index": 3,
+      "decision": "EXCLUDE",
+      "reason": "Open-label, single-arm dose-escalation (not randomized, no placebo/control)."
+    },
+    {
+      "study_index": 4,
+      "decision": "EXCLUDE",
+      "reason": "Population not specified as acute ischemic stroke; design not clearly randomized; physiologic metabolism outcomes rather than clinical stroke trial within one week."
+    },
+    {
+      "study_index": 5,
+      "decision": "EXCLUDE",
+      "reason": "Randomized cross-over physiologic study in patients recovering from stroke; intervention timing is not within the first week of onset and focuses on CBF, not an acute treatment trial versus control."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Randomized cross-over physiologic study in recovering stroke patients; not within one week of stroke onset; not a therapeutic RCT for acute stroke outcomes."
+    },
+    {
+      "study_index": 7,
+      "decision": "EXCLUDE",
+      "reason": "Physiologic infusion study; not randomized; population not defined as confirmed/presumed acute ischemic stroke within one week."
+    },
+    {
+      "study_index": 8,
+      "decision": "EXCLUDE",
+      "reason": "Animal study in cats; not a randomized clinical trial in humans with acute ischemic stroke."
+    },
+    {
+      "study_index": 9,
+      "decision": "EXCLUDE",
+      "reason": "Animal study in anesthetized dogs; not a randomized clinical trial in acute ischemic stroke."
+    },
+    {
+      "study_index": 10,
+      "decision": "EXCLUDE",
+      "reason": "Not a randomized controlled clinical trial; appears mechanistic/clinical observations without acute ischemic stroke RCT design."
+    }
+  ]
+}

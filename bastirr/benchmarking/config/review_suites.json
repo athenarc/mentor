@@ -1,0 +1,55 @@
+{
+  "canonical_suites": [
+    {
+      "name": "screening_ladder",
+      "description": "Escalating screening benchmark ladder from 10 to 200 candidate studies.",
+      "reviews": [
+        {
+          "key": "stroke_theophylline_10",
+          "split": "val",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD000211.pub2/full",
+          "title": "Theophylline, aminophylline, caffeine and analogues for acute ischaemic stroke",
+          "expected_n_studies": 10,
+          "expected_n_screen_pass": 6,
+          "expected_n_screen_exclude": 4
+        },
+        {
+          "key": "alopecia_areata_25",
+          "split": "random_test",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004413.pub2/full",
+          "title": "Interventions for alopecia areata",
+          "expected_n_studies": 25,
+          "expected_n_screen_pass": 17,
+          "expected_n_screen_exclude": 8
+        },
+        {
+          "key": "iud_insertion_pain_50",
+          "split": "random_test",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007373.pub3/full",
+          "title": "Interventions for pain with intrauterine device insertion",
+          "expected_n_studies": 50,
+          "expected_n_screen_pass": 30,
+          "expected_n_screen_exclude": 20
+        },
+        {
+          "key": "pelvic_floor_training_100",
+          "split": "random_test",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005654.pub4/full",
+          "title": "Pelvic floor muscle training versus no treatment, or inactive control treatments, for urinary incontinence in women",
+          "expected_n_studies": 100,
+          "expected_n_screen_pass": 48,
+          "expected_n_screen_exclude": 52
+        },
+        {
+          "key": "heart_failure_mhealth_200",
+          "split": "heart_test",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011845.pub2/full",
+          "title": "mHealth education interventions in heart failure",
+          "expected_n_studies": 200,
+          "expected_n_screen_pass": 137,
+          "expected_n_screen_exclude": 63
+        }
+      ]
+    }
+  ]
+}

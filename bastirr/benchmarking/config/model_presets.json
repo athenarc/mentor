@@ -1,0 +1,41 @@
+{
+  "canonical_presets": [
+    {
+      "key": "openai_gpt5",
+      "description": "OpenAI API",
+      "display_name_default": "gpt-5",
+      "display_name_env_var": "BASTIRR_GPT5_MODEL",
+      "backend": "openai",
+      "model_id_default": "gpt-5",
+      "model_id_env_var": "BASTIRR_GPT5_MODEL",
+      "api_key_env_var": "OPENAI_API_KEY",
+      "requires_api_key": true
+    },
+    {
+      "key": "deepseek_v3_2_thinking",
+      "description": "DeepSeek V3.2 Thinking",
+      "display_name_default": "deepseek-reasoner",
+      "display_name_env_var": "BASTIRR_DEEPSEEK_MODEL",
+      "backend": "openai",
+      "model_id_default": "deepseek-reasoner",
+      "model_id_env_var": "BASTIRR_DEEPSEEK_MODEL",
+      "api_base_default": "https://api.deepseek.com",
+      "api_base_env_var": "DEEPSEEK_API_HOST",
+      "api_key_env_var": "DEEPSEEK_API_KEY",
+      "requires_api_key": true
+    },
+    {
+      "key": "ollama_qwen3_5_27b_bf16",
+      "description": "Ollama via OpenAI-compatible API",
+      "display_name_default": "qwen3.5:27b-bf16",
+      "display_name_env_var": "BASTIRR_QWEN_OLLAMA_MODEL",
+      "backend": "openai",
+      "model_id_default": "qwen3.5:27b-bf16",
+      "model_id_env_var": "BASTIRR_QWEN_OLLAMA_MODEL",
+      "api_base_default": "http://localhost:11434/v1",
+      "api_base_env_var": "BASTIRR_OLLAMA_API_BASE",
+      "api_key_env_var": "OPENAI_API_KEY",
+      "default_api_key": "ollama"
+    }
+  ]
+}
