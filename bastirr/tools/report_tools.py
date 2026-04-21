@@ -9,6 +9,7 @@ Also provides ``save_evidence_json`` to persist structured evidence data
 as a separate JSON file alongside the report.
 """
 
+import ast
 import json
 import re
 from smolagents import tool
@@ -256,7 +257,10 @@ def _extract_json_from_text(text: str):
     try:
         return json.loads(text)
     except (json.JSONDecodeError, TypeError, ValueError):
-        pass
+        try:
+            return ast.literal_eval(text)
+        except (SyntaxError, ValueError):
+            pass
 
     # Find outermost braces / brackets using a simple depth counter
     for open_ch, close_ch in [('{', '}'), ('[', ']')]:
@@ -288,7 +292,10 @@ def _extract_json_from_text(text: str):
                     try:
                         return json.loads(candidate)
                     except (json.JSONDecodeError, TypeError, ValueError):
-                        break  # try the other bracket type
+                        try:
+                            return ast.literal_eval(candidate)
+                        except (SyntaxError, ValueError):
+                            break  # try the other bracket type
     return None
 
 
@@ -337,7 +344,10 @@ def _extract_all_json_from_text(text: str) -> list:
             try:
                 results.append(json.loads(candidate))
             except (json.JSONDecodeError, TypeError, ValueError):
-                pass
+                try:
+                    results.append(ast.literal_eval(candidate))
+                except (SyntaxError, ValueError):
+                    pass
             search_start = found_end + 1
 
     return results
@@ -403,8 +413,18 @@ def _extract_decisions_list(data) -> list[dict] | None:
         decisions = _alias_get(data, "decisions_list")
         if isinstance(decisions, list):
             return [_normalize_decision(d) for d in decisions]
+        for value in data.values():
+            nested = _extract_decisions_list(value)
+            if nested is not None:
+                return nested
     if isinstance(data, list):
-        return [_normalize_decision(d) for d in data]
+        if all(isinstance(item, dict) for item in data):
+            if any(_alias_get(item, "study_index", default=None) is not None for item in data):
+                return [_normalize_decision(d) for d in data]
+        for item in data:
+            nested = _extract_decisions_list(item)
+            if nested is not None:
+                return nested
     return None
 
 
@@ -424,7 +444,13 @@ def _parse_decisions(gatekeeper_response: str) -> list[dict]:
         if result is not None:
             return result
     except (json.JSONDecodeError, TypeError):
-        pass
+        try:
+            data = ast.literal_eval(gatekeeper_response)
+            result = _extract_decisions_list(data)
+            if result is not None:
+                return result
+        except (SyntaxError, ValueError):
+            pass
 
     # Try to find a JSON object with a decisions key embedded in the response
     json_match = re.search(
@@ -447,13 +473,17 @@ def _parse_decisions(gatekeeper_response: str) -> list[dict]:
     decisions: list[dict] = []
     # Match each {...} block that contains a study_index
     block_pattern = re.compile(
-        r'\{[^{}]*?"study_index"[^{}]*?\}', re.DOTALL | re.IGNORECASE
+        r"\{[^{}]*?[\"']?study_index[\"']?[^{}]*?\}",
+        re.DOTALL | re.IGNORECASE,
     )
-    idx_pat = re.compile(r'"?study_index"?\s*[:=]\s*(\d+)')
-    dec_pat = re.compile(r'"?decision"?\s*[:=]\s*["\']?(INCLUDE|EXCLUDE)["\']?',
-                         re.IGNORECASE)
+    idx_pat = re.compile(r"[\"']?study_index[\"']?\s*[:=]\s*(\d+)")
+    dec_pat = re.compile(
+        r"[\"']?decision[\"']?\s*[:=]\s*[\"']?(INCLUDE|EXCLUDE)[\"']?",
+        re.IGNORECASE,
+    )
     reason_pat = re.compile(
-        r'"?(?:reason|rationale)"?\s*[:=]\s*"([^"]+)"', re.IGNORECASE
+        r"[\"']?(?:reason|rationale)[\"']?\s*[:=]\s*[\"'](.+?)[\"'](?=\s*[,}])",
+        re.IGNORECASE | re.DOTALL,
     )
     for block in block_pattern.finditer(gatekeeper_response):
         text = block.group()

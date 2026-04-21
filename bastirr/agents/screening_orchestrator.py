@@ -40,6 +40,13 @@ CRITICAL RULES
 2. ALWAYS USE YOUR TOOLS — do NOT write custom parsers for the gatekeeper output.
 3. Do NOT add stricter screening instructions than the protocol already provides.
 4. Do NOT pre-judge individual studies.
+5. The Gatekeeper output must contain exactly one decision object per study.
+6. If the Gatekeeper returns an incomplete decision list, rerun it before saving.
+7. Do NOT reconstruct screening decisions yourself in orchestrator code.
+8. Do NOT hard-code include/exclude indices, titles, or study-specific verdicts.
+9. Do NOT use keyword-matching heuristics to generate screening decisions or rationales.
+10. If the Gatekeeper response cannot be saved as a complete per-study decision set,
+    fail closed and rerun the Gatekeeper; do not create a manager-side fallback list.
 
 WORKFLOW
 Code block 1:
@@ -49,7 +56,9 @@ Code block 1:
 
 Code block 2:
   - Call gatekeeper with the selection criteria verbatim and the candidates_json.
-  - Call save_screening_evidence_json(screening_response=gatekeeper_response, output_dir=output_dir).
+  - Ensure the gatekeeper response contains one decision per study; do not accept
+    outputs that summarize excluded studies without individual decisions.
+  - Call save_screening_evidence_json(screening_response=gatekeeper_response, output_dir=output_dir, expected_n_studies=expected_n_studies).
   - Call format_screening_summary(review_title=review_title, screening_response=gatekeeper_response).
   - Return the formatted summary with final_answer().
 """
@@ -89,10 +98,10 @@ def create_screening_orchestrator_agent(
         managed_agents=[gatekeeper],
         name="orchestrator",
         instructions=SCREENING_ORCHESTRATOR_INSTRUCTIONS,
-        max_steps=4,
+        max_steps=10,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         step_callbacks=step_callbacks or [],
-        additional_authorized_imports=["json", "re", "os"],
+        additional_authorized_imports=[],
         logger=logger,
     )

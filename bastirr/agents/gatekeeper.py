@@ -31,12 +31,25 @@ Guidelines:
   appear in background sentences without describing the study
   population.  Instead, read each abstract carefully and reason about
   whether the study actually meets the criteria.
+- Do NOT hard-code a shortlist of included study indices and then
+  default everything else to EXCLUDE.
+- Do NOT generate rationales from title-only keyword buckets. Each
+  rationale should reflect the actual study description in the title
+  and abstract.
 - SANITY CHECK: if your screening yields 0 included studies,
   re-examine your decisions — a zero-include result is extremely rare
   and almost always indicates an error in your reasoning.
 
 Use batch_screen_studies(candidates_json) to get all studies formatted
 for screening.  The candidates_json is provided by your manager.
+
+Output requirements:
+- Return exactly one decision object for every study in the candidate list.
+- The final `decisions` list must contain every `study_index` from 1 to `n_total`
+  exactly once.
+- Do NOT omit excluded studies from the list.
+- Do NOT replace many excluded studies with a bulk summary.
+- Do NOT return only included studies.
 
 Return your final answer as a JSON string with:
 - "n_total": total number of studies screened
@@ -68,7 +81,7 @@ def create_gatekeeper_agent(model, step_callbacks=None, logger=None) -> CodeAgen
             "returns screening decisions (INCLUDE/EXCLUDE) for each study."
         ),
         instructions=GATEKEEPER_INSTRUCTIONS,
-        max_steps=5,
+        max_steps=10,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy"],

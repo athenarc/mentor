@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 from bastirr.benchmarking.model_presets import ResolvedModelPreset
 from bastirr.benchmarking.review_suites import ScreeningBenchmarkReview
-from bastirr.benchmarking.runner import run_screening_benchmark
+from bastirr.benchmarking.runner import _aggregate_runs, run_screening_benchmark
 
 
 class _ResolvedPresetWrapper:
@@ -62,6 +62,11 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
             "run_index": 1,
             "run_status": "completed",
             "error": "",
+            "screening_completion_status": "complete",
+            "scored_for_aggregate": True,
+            "screening_attempt_count": 1,
+            "rerun_triggered": False,
+            "incomplete_reason": "",
             "duration_seconds": 1.5,
             "run_dir": "/tmp/synthetic",
             "gatekeeper_preset": gatekeeper_model.key,
@@ -146,6 +151,7 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
             self.assertEqual(csv_header[2], "review_key")
             self.assertEqual(payload["runs"][0]["review_key"], review_case.key)
             self.assertEqual(payload["gold_label_policy"], "exclude_label_0_5")
+            self.assertTrue(payload["runs"][0]["scored_for_aggregate"])
             self.assertEqual(payload["leaderboard"][0]["gatekeeper_preset"], gatekeeper_model.key)
             self.assertEqual(
                 payload["review_leaderboard"][0]["review_key"],
@@ -159,3 +165,54 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                 payload["leaderboard"][0]["gatekeeper_model_label"],
                 gatekeeper_model.model_label,
             )
+
+    def test_aggregate_runs_excludes_incomplete_runs_from_metric_means(self):
+        complete_row = {
+            "gold_label_policy": "exclude_label_0_5",
+            "gatekeeper_preset": "openai_gpt5",
+            "gatekeeper_model_label": "gpt-5",
+            "gatekeeper_backend": "openai",
+            "gatekeeper_api_base": "",
+            "orchestrator_policy": "fixed",
+            "orchestrator_preset": "openai_gpt5",
+            "orchestrator_model_label": "gpt-5",
+            "orchestrator_backend": "openai",
+            "orchestrator_api_base": "",
+            "review_key": "review_a",
+            "run_status": "completed",
+            "parse_success": True,
+            "decision_coverage": 1.0,
+            "accuracy": 0.9,
+            "precision": 1.0,
+            "recall": 0.8,
+            "specificity": 1.0,
+            "f1": 0.888,
+            "duration_seconds": 10.0,
+            "scored_for_aggregate": True,
+        }
+        incomplete_row = {
+            **complete_row,
+            "review_key": "review_b",
+            "run_status": "incomplete",
+            "parse_success": False,
+            "decision_coverage": 0.025,
+            "accuracy": 0.995,
+            "precision": 1.0,
+            "recall": 0.8,
+            "specificity": 1.0,
+            "f1": 0.888,
+            "duration_seconds": 12.0,
+            "scored_for_aggregate": False,
+        }
+
+        aggregates = _aggregate_runs([complete_row, incomplete_row])
+
+        self.assertEqual(len(aggregates), 1)
+        aggregate = aggregates[0]
+        self.assertEqual(aggregate["n_runs"], 2)
+        self.assertEqual(aggregate["n_scored_runs"], 1)
+        self.assertEqual(aggregate["n_incomplete_runs"], 1)
+        self.assertEqual(aggregate["n_error_runs"], 0)
+        self.assertAlmostEqual(aggregate["mean_f1"], complete_row["f1"])
+        self.assertAlmostEqual(aggregate["mean_accuracy"], complete_row["accuracy"])
+        self.assertAlmostEqual(aggregate["parse_success_rate"], 0.5)

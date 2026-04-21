@@ -62,3 +62,56 @@ class ScreeningBenchmarkRegistryAndToolsTests(unittest.TestCase):
 
         self.assertEqual(set(payload), {"screening_decisions"})
         self.assertEqual(len(payload["screening_decisions"]), 2)
+
+    def test_save_screening_evidence_json_parses_python_literal_wrapper(self):
+        screening_response = """{
+            'screening_json': {
+                'decisions': [
+                    {
+                        'study_index': 1,
+                        'decision': 'INCLUDE',
+                        'rationale': 'Eligible population'
+                    },
+                    {
+                        'study_index': 2,
+                        'decision': 'EXCLUDE',
+                        'rationale': 'Wrong intervention'
+                    }
+                ]
+            }
+        }"""
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            save_screening_evidence_json(
+                screening_response=screening_response,
+                output_dir=tmpdir,
+            )
+            output_path = os.path.join(tmpdir, "evidence.json")
+            with open(output_path, "r", encoding="utf-8") as f:
+                payload = json.load(f)
+
+        self.assertEqual(len(payload["screening_decisions"]), 2)
+        self.assertEqual(payload["screening_decisions"][0]["study_index"], 1)
+        self.assertEqual(payload["screening_decisions"][1]["decision"], "EXCLUDE")
+
+    def test_save_screening_evidence_json_rejects_incomplete_decision_set(self):
+        screening_response = json.dumps({
+            "n_total": 2,
+            "n_included": 1,
+            "n_excluded": 1,
+            "decisions": [
+                {
+                    "study_index": 1,
+                    "decision": "INCLUDE",
+                    "rationale": "Matches criteria",
+                }
+            ],
+        })
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            with self.assertRaises(ValueError):
+                save_screening_evidence_json(
+                    screening_response=screening_response,
+                    output_dir=tmpdir,
+                    expected_n_studies=2,
+                )

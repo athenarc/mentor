@@ -1,0 +1,54 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "INCLUDE",
+      "reason": "Double-blind, placebo-controlled trial of aminophylline in patients with acute ischaemic stroke; randomization and start-within-1-week not explicitly stated but likely in acute setting—include conservatively per criteria."
+    },
+    {
+      "study_index": 2,
+      "decision": "INCLUDE",
+      "reason": "Double-blind trial comparing intravenous aminophylline vs placebo in patients with acute cerebral infarction; randomization/start time not explicitly stated but design consistent with RCT in acute phase—include conservatively."
+    },
+    {
+      "study_index": 3,
+      "decision": "EXCLUDE",
+      "reason": "Open-label, single-arm dose-escalation safety study; no randomization or placebo/control."
+    },
+    {
+      "study_index": 4,
+      "decision": "EXCLUDE",
+      "reason": "Mixed population focused on cerebral metabolism; stroke population and acute timing not established; randomization unclear."
+    },
+    {
+      "study_index": 5,
+      "decision": "EXCLUDE",
+      "reason": "Randomized double-blind cross-over physiological study in patients recovering from stroke; treatment timing appears beyond 1 week after onset (not acute)."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Randomized double-blind cross-over study in recovering stroke patients; intervention not initiated within 1 week of onset."
+    },
+    {
+      "study_index": 7,
+      "decision": "EXCLUDE",
+      "reason": "Physiologic infusion study; stroke population not established; not a randomized placebo-controlled trial in acute ischaemic stroke."
+    },
+    {
+      "study_index": 8,
+      "decision": "EXCLUDE",
+      "reason": "Animal study (cats); not a randomized clinical trial in people with acute ischaemic stroke."
+    },
+    {
+      "study_index": 9,
+      "decision": "EXCLUDE",
+      "reason": "Animal study (dogs) of cardiovascular effects; not a randomized clinical trial in acute ischaemic stroke."
+    },
+    {
+      "study_index": 10,
+      "decision": "EXCLUDE",
+      "reason": "Mechanistic/observational discussion; no randomized placebo-controlled trial in acute ischaemic stroke."
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "INCLUDE",
+      "reason": "Double-blind RCT of aminophylline vs placebo in patients with acute ischaemic stroke; treatment given over first 3 days (acute phase), matching criteria."
+    },
+    {
+      "study_index": 2,
+      "decision": "INCLUDE",
+      "reason": "Double-blind trial comparing IV aminophylline with placebo in acute cerebral infarction; randomized and acute setting with control."
+    },
+    {
+      "study_index": 3,
+      "decision": "EXCLUDE",
+      "reason": "Open-label, single-arm dose-escalation (no randomization/control) of caffeine+ethanol in acute stroke."
+    },
+    {
+      "study_index": 4,
+      "decision": "EXCLUDE",
+      "reason": "Physiologic metabolism study; population not specified as acute ischaemic stroke and randomization/control not established."
+    },
+    {
+      "study_index": 5,
+      "decision": "EXCLUDE",
+      "reason": "Randomized cross-over in patients recovering from acute ischaemic stroke (beyond acute one-week window); physiologic CBF outcome."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Randomized cross-over in recovering stroke patients (not within one week of onset); physiologic CBF study."
+    },
+    {
+      "study_index": 7,
+      "decision": "EXCLUDE",
+      "reason": "Intracarotid aminophylline infusion physiological study; not a randomized controlled trial in acute ischaemic stroke."
+    },
+    {
+      "study_index": 8,
+      "decision": "EXCLUDE",
+      "reason": "Animal (cat) study; not a randomized clinical trial in humans with acute ischaemic stroke."
+    },
+    {
+      "study_index": 9,
+      "decision": "EXCLUDE",
+      "reason": "Animal (dog) cardiovascular study; not a randomized clinical trial in acute ischaemic stroke."
+    },
+    {
+      "study_index": 10,
+      "decision": "EXCLUDE",
+      "reason": "Non-randomized/uncontrolled clinical observations in cerebrovascular disorders; not an acute ischaemic stroke RCT vs placebo/control."
+    }
+  ]
+}

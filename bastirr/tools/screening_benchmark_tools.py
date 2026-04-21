@@ -19,6 +19,7 @@ from bastirr.tools.report_tools import _parse_decisions
 def save_screening_evidence_json(
     screening_response: str,
     output_dir: str,
+    expected_n_studies: int | None = None,
 ) -> str:
     """
     Save screening-only outputs in a screening-specific evidence.json shape.
@@ -26,11 +27,22 @@ def save_screening_evidence_json(
     Args:
         screening_response: Raw response string from the Gatekeeper.
         output_dir: Directory where ``evidence.json`` should be written.
+        expected_n_studies: Optional expected number of unique study decisions.
+            When provided, the tool fails closed if the parsed decision count
+            does not exactly match this value.
 
     Returns:
         A status string describing the saved file path.
     """
-    result = {"screening_decisions": _parse_decisions(screening_response)}
+    decisions = _parse_decisions(screening_response)
+    if expected_n_studies is not None and len(decisions) != expected_n_studies:
+        raise ValueError(
+            "Incomplete screening response: expected "
+            f"{expected_n_studies} parsed decisions, found {len(decisions)}. "
+            "Do not save partial or grouped screening outputs."
+        )
+
+    result = {"screening_decisions": decisions}
 
     output_path = os.path.join(output_dir, "evidence.json")
     with open(output_path, "w", encoding="utf-8") as f:

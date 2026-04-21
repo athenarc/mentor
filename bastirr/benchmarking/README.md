@@ -51,7 +51,12 @@ The benchmark execution path is:
    - the saved screening decisions
    - the dataset gold labels
    - the original review object
-10. The harness writes per-run and experiment-level summaries.
+10. If the saved screening output is incomplete, the harness automatically
+    retries the screening run once with stricter completion instructions.
+11. The screening saver fails closed when the parsed decision count does not
+    match the expected number of studies, so partial outputs are not silently
+    persisted as valid benchmark artifacts.
+12. The harness writes per-run and experiment-level summaries.
 
 ## Components
 
@@ -69,7 +74,8 @@ Key files:
 Responsibilities:
 
 - `screening_orchestrator.py`: thin manager that does retrieval plus
-  Gatekeeper delegation only
+  Gatekeeper delegation only, and is explicitly forbidden from reconstructing
+  screening decisions itself
 - `screening_benchmark_tools.py`: screening-only persistence and short summary
 - `review_suites.py`: locked benchmark review registries
 - `model_presets.py`: named Gatekeeper and orchestrator model presets
@@ -298,6 +304,10 @@ Screening-only machine-readable output:
 This file is intentionally minimal. It reflects what the screening phase
 actually produced, without fake placeholders from Miner or Critic.
 
+The save tool validates completeness when an expected study count is provided.
+If the parsed decision list is partial, it raises instead of writing a
+misleading `evidence.json`.
+
 ### `metrics.json`
 
 Contains:
@@ -305,8 +315,19 @@ Contains:
 - confusion counts: `tp`, `fp`, `tn`, `fn`
 - `accuracy`, `precision`, `recall`, `specificity`, `f1`
 - decision coverage and parse completeness
+- completion metadata:
+  - `run_status`: `completed`, `incomplete`, or `error`
+  - `screening_completion_status`: `complete`, `partial`, or `none`
+  - `screening_attempt_count`
+  - `rerun_triggered`
+  - `scored_for_aggregate`
+  - `incomplete_reason`
 - timing and model metadata
 - paths to the inspection artifacts
+
+Important: benchmark leaderboards average metrics only over runs where
+`scored_for_aggregate=true`, meaning the run produced a complete valid
+per-study decision list.
 
 ### `screening_inspection.json`
 
@@ -376,7 +397,13 @@ This is where the resolved model names matter. The artifact is meant to stay
 readable even as more variants are added later.
 
 The header also records the active gold label policy so model averages are not
-read out of context.
+read out of context. It also shows how many runs were:
+
+- scored
+- incomplete
+- errors
+
+so incomplete screening outputs cannot be mistaken for normal benchmark scores.
 
 ### `review_leaderboard.md`
 
@@ -391,7 +418,8 @@ This is usually the more informative artifact when the suite is still small,
 because it makes model tradeoffs visible on each specific review rather than
 only through one overall average.
 
-Its header also records the active gold label policy.
+Its header also records the active gold label policy, and its per-review rows
+also separate scored, incomplete, and error runs.
 
 ## Validation Workflow
 

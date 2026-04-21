@@ -73,6 +73,8 @@ def batch_screen_studies(candidates_json: str) -> str:
         f"{criteria}",
         f"",
         f"INSTRUCTIONS: For each study below, decide INCLUDE or EXCLUDE.",
+        f"Return exactly one decision object per study; do not omit excluded studies, "
+        f"do not summarize exclusions in bulk, and do not return only included studies.",
         f"Return a JSON list with objects having keys: "
         f"'study_index', 'decision' (INCLUDE/EXCLUDE), 'rationale'.",
         f"",

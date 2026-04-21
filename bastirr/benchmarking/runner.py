@@ -37,6 +37,8 @@ logging.basicConfig(
 logger = logging.getLogger("bastirr.screening_benchmark")
 
 
+_MAX_SCREENING_ATTEMPTS = 2
+
 _SUMMARY_CSV_PRIORITY_FIELDS = [
     "benchmark_run_id",
     "suite",
@@ -46,6 +48,11 @@ _SUMMARY_CSV_PRIORITY_FIELDS = [
     "n_studies",
     "run_index",
     "run_status",
+    "screening_completion_status",
+    "scored_for_aggregate",
+    "screening_attempt_count",
+    "rerun_triggered",
+    "incomplete_reason",
     "gatekeeper_preset",
     "gatekeeper_model_label",
     "orchestrator_policy",
@@ -113,6 +120,25 @@ def _run_name(
 
 
 def _build_screening_task(review, output_dir: Path) -> str:
+    return _build_screening_task_with_retry_note(
+        review,
+        output_dir,
+        expected_n_studies=len(review.studies),
+    )
+
+
+def _build_screening_task_with_retry_note(
+    review,
+    output_dir: Path,
+    expected_n_studies: int,
+    retry_note: str | None = None,
+) -> str:
+    retry_block = ""
+    if retry_note:
+        retry_block = (
+            "Retry guidance:\n"
+            f"{retry_note}\n\n"
+        )
     return (
         "Conduct only the title/abstract screening phase for this review.\n\n"
         f"Review title: {review.title}\n\n"
@@ -120,11 +146,48 @@ def _build_screening_task(review, output_dir: Path) -> str:
         f"Review objective:\n{review.objective}\n\n"
         f"Selection criteria:\n{review.selection_criteria}\n\n"
         f"Output directory: {output_dir}\n\n"
+        f"Expected study decisions: {expected_n_studies}\n\n"
+        f"{retry_block}"
         "Execute the screening-only pipeline:\n"
         "1. Use get_candidates_json() to retrieve the preloaded candidate studies.\n"
         "2. Use the gatekeeper to screen all studies using the selection criteria verbatim.\n"
-        "3. Use save_screening_evidence_json() to save evidence.json in the output directory.\n"
+        "3. Use save_screening_evidence_json() to save evidence.json in the output directory, "
+        "passing expected_n_studies exactly.\n"
         "4. Use format_screening_summary() and return the summary as the final answer.\n"
+        "Do not construct screening decisions inside orchestrator code. If the Gatekeeper output "
+        "is incomplete or invalid, rerun the Gatekeeper instead of creating a fallback list.\n"
+    )
+
+
+def _screening_completion_status(metrics: dict) -> str:
+    if metrics.get("parse_success"):
+        return "complete"
+    if metrics.get("screening_decision_count", 0) == 0:
+        return "none"
+    return "partial"
+
+
+def _build_incomplete_reason(metrics: dict) -> str:
+    if metrics.get("parse_success"):
+        return ""
+    return (
+        f"Parsed {metrics.get('screening_decision_count', 0)}/"
+        f"{metrics.get('n_studies', 0)} unique decisions "
+        f"(missing={metrics.get('missing_decision_count', 0)}, "
+        f"duplicate={metrics.get('duplicate_decision_count', 0)}, "
+        f"invalid={metrics.get('invalid_decision_count', 0)})."
+    )
+
+
+def _build_retry_note(metrics: dict) -> str:
+    return (
+        "The previous attempt did not produce a complete screening output. "
+        f"It yielded {metrics.get('screening_decision_count', 0)} unique decisions "
+        f"for {metrics.get('n_studies', 0)} studies. "
+        "Return exactly one decision object for every study index from 1 to n_total. "
+        "Do not summarize excluded studies in bulk. Do not omit any study index. "
+        "Do not return only included studies. The saved evidence.json must contain "
+        "a complete per-study decision list."
     )
 
 
@@ -189,6 +252,8 @@ def _build_run_metrics(
     run_dir: Path,
     run_status: str,
     label_policy: str,
+    screening_attempt_count: int,
+    rerun_triggered: bool,
     error: str = "",
 ) -> dict:
     metrics = compute_screening_metrics(
@@ -196,6 +261,13 @@ def _build_run_metrics(
         screening_decisions,
         label_policy=label_policy,
     )
+    completion_status = _screening_completion_status(metrics)
+    scored_for_aggregate = run_status == "completed" and metrics["parse_success"]
+    incomplete_reason = ""
+    if run_status == "error":
+        incomplete_reason = error or _build_incomplete_reason(metrics)
+    elif not scored_for_aggregate:
+        incomplete_reason = _build_incomplete_reason(metrics)
     metrics.update({
         "benchmark_run_id": _run_name(
             review_case,
@@ -212,6 +284,11 @@ def _build_run_metrics(
         "run_index": run_index,
         "run_status": run_status,
         "error": error,
+        "screening_completion_status": completion_status,
+        "scored_for_aggregate": scored_for_aggregate,
+        "screening_attempt_count": screening_attempt_count,
+        "rerun_triggered": rerun_triggered,
+        "incomplete_reason": incomplete_reason,
         "duration_seconds": duration_seconds,
         "run_dir": str(run_dir),
         "gatekeeper_preset": gatekeeper_model.key,
@@ -288,17 +365,71 @@ def run_screening_review(
     run_status = "completed"
     error = ""
     evidence_path = run_dir / "evidence.json"
+    screening_attempt_count = 0
+    rerun_triggered = False
+    decisions: list[dict] = []
+    last_attempt_error = ""
 
     activity_logger.mark_pipeline_start()
     started_at = time.perf_counter()
     try:
-        screening_orchestrator = create_screening_orchestrator_agent(
-            orchestrator_model.create_model(),
-            gatekeeper_model.create_model(),
-            step_callbacks=step_callbacks,
-            logger=agent_logger,
-        )
-        screening_orchestrator.run(_build_screening_task(review, run_dir))
+        retry_note = None
+        for attempt_index in range(1, _MAX_SCREENING_ATTEMPTS + 1):
+            screening_attempt_count = attempt_index
+            if attempt_index > 1:
+                rerun_triggered = True
+                retry_message = (
+                    f"Retrying screening attempt {attempt_index}/{_MAX_SCREENING_ATTEMPTS} "
+                    f"because the previous attempt returned an incomplete decision set."
+                )
+                logger.warning(
+                    "%s review=%s gatekeeper=%s",
+                    retry_message,
+                    review_case.key,
+                    gatekeeper_model.key,
+                )
+                agent_logger.log(retry_message)
+
+            try:
+                screening_orchestrator = create_screening_orchestrator_agent(
+                    orchestrator_model.create_model(),
+                    gatekeeper_model.create_model(),
+                    step_callbacks=step_callbacks,
+                    logger=agent_logger,
+                )
+                screening_orchestrator.run(
+                    _build_screening_task_with_retry_note(
+                        review,
+                        run_dir,
+                        expected_n_studies=len(review.studies),
+                        retry_note=retry_note,
+                    )
+                )
+            except Exception as attempt_exc:
+                last_attempt_error = f"{type(attempt_exc).__name__}: {attempt_exc}"
+                if attempt_index == _MAX_SCREENING_ATTEMPTS:
+                    raise
+                retry_note = (
+                    "The previous attempt failed before a complete evidence save. "
+                    f"Error: {last_attempt_error} "
+                    "Rerun the Gatekeeper and save only the raw Gatekeeper response. "
+                    "Do not construct decisions in orchestrator code."
+                )
+                continue
+
+            decisions = _read_screening_decisions(evidence_path)
+            attempt_metrics = compute_screening_metrics(
+                review,
+                decisions,
+                label_policy=label_policy,
+            )
+            if attempt_metrics["parse_success"]:
+                break
+            retry_note = _build_retry_note(attempt_metrics)
+        else:
+            run_status = "incomplete"
+            if last_attempt_error and not error:
+                error = last_attempt_error
     except Exception as exc:
         run_status = "error"
         error = f"{type(exc).__name__}: {exc}"
@@ -327,6 +458,8 @@ def run_screening_review(
         run_dir=run_dir,
         run_status=run_status,
         label_policy=label_policy,
+        screening_attempt_count=screening_attempt_count,
+        rerun_triggered=rerun_triggered,
         error=error,
     )
     metrics.update(
@@ -376,7 +509,7 @@ def _aggregate_runs(run_metrics: list[dict]) -> list[dict]:
         orchestrator_backend,
         orchestrator_api_base,
     ), rows in grouped.items():
-        completed_rows = [row for row in rows if row.get("run_status") == "completed"]
+        scored_rows = [row for row in rows if row.get("scored_for_aggregate")]
         aggregates.append({
             "gold_label_policy": rows[0]["gold_label_policy"],
             "gatekeeper_preset": rows[0]["gatekeeper_preset"],
@@ -389,19 +522,21 @@ def _aggregate_runs(run_metrics: list[dict]) -> list[dict]:
             "orchestrator_backend": orchestrator_backend,
             "orchestrator_api_base": orchestrator_api_base,
             "n_runs": len(rows),
-            "n_completed_runs": len(completed_rows),
-            "n_failed_runs": len(rows) - len(completed_rows),
+            "n_scored_runs": len(scored_rows),
+            "n_completed_runs": sum(1 for row in rows if row.get("run_status") == "completed"),
+            "n_incomplete_runs": sum(1 for row in rows if row.get("run_status") == "incomplete"),
+            "n_error_runs": sum(1 for row in rows if row.get("run_status") == "error"),
             "n_unique_reviews": len({row["review_key"] for row in rows}),
             "parse_success_rate": _mean_for(
                 [{"value": 1.0 if row.get("parse_success") else 0.0} for row in rows],
                 "value",
             ),
             "mean_decision_coverage": _mean_for(rows, "decision_coverage"),
-            "mean_accuracy": _mean_for(completed_rows, "accuracy"),
-            "mean_precision": _mean_for(completed_rows, "precision"),
-            "mean_recall": _mean_for(completed_rows, "recall"),
-            "mean_specificity": _mean_for(completed_rows, "specificity"),
-            "mean_f1": _mean_for(completed_rows, "f1"),
+            "mean_accuracy": _mean_for(scored_rows, "accuracy"),
+            "mean_precision": _mean_for(scored_rows, "precision"),
+            "mean_recall": _mean_for(scored_rows, "recall"),
+            "mean_specificity": _mean_for(scored_rows, "specificity"),
+            "mean_f1": _mean_for(scored_rows, "f1"),
             "mean_duration_seconds": _mean_for(rows, "duration_seconds"),
         })
 
@@ -451,7 +586,7 @@ def _aggregate_runs_by_review(run_metrics: list[dict]) -> list[dict]:
         orchestrator_model_label,
         orchestrator_api_base,
     ), rows in grouped.items():
-        completed_rows = [row for row in rows if row.get("run_status") == "completed"]
+        scored_rows = [row for row in rows if row.get("scored_for_aggregate")]
         aggregates.append({
             "gold_label_policy": rows[0]["gold_label_policy"],
             "review_key": review_key,
@@ -471,18 +606,20 @@ def _aggregate_runs_by_review(run_metrics: list[dict]) -> list[dict]:
             "orchestrator_backend": rows[0]["orchestrator_backend"],
             "orchestrator_api_base": orchestrator_api_base,
             "n_runs": len(rows),
-            "n_completed_runs": len(completed_rows),
-            "n_failed_runs": len(rows) - len(completed_rows),
+            "n_scored_runs": len(scored_rows),
+            "n_completed_runs": sum(1 for row in rows if row.get("run_status") == "completed"),
+            "n_incomplete_runs": sum(1 for row in rows if row.get("run_status") == "incomplete"),
+            "n_error_runs": sum(1 for row in rows if row.get("run_status") == "error"),
             "parse_success_rate": _mean_for(
                 [{"value": 1.0 if row.get("parse_success") else 0.0} for row in rows],
                 "value",
             ),
             "mean_decision_coverage": _mean_for(rows, "decision_coverage"),
-            "mean_accuracy": _mean_for(completed_rows, "accuracy"),
-            "mean_precision": _mean_for(completed_rows, "precision"),
-            "mean_recall": _mean_for(completed_rows, "recall"),
-            "mean_specificity": _mean_for(completed_rows, "specificity"),
-            "mean_f1": _mean_for(completed_rows, "f1"),
+            "mean_accuracy": _mean_for(scored_rows, "accuracy"),
+            "mean_precision": _mean_for(scored_rows, "precision"),
+            "mean_recall": _mean_for(scored_rows, "recall"),
+            "mean_specificity": _mean_for(scored_rows, "specificity"),
+            "mean_f1": _mean_for(scored_rows, "f1"),
             "mean_duration_seconds": _mean_for(rows, "duration_seconds"),
         })
 
@@ -564,18 +701,23 @@ def _write_leaderboard_markdown(experiment_dir: Path, aggregates: list[dict]) ->
             else "Gold label policy: n/a"
         ),
         "",
-        "| Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |",
-        "|------|------------------|---------------------|--------------------|------|----|--------|-----------|----------|-------------|---------------|----------|",
+        "Metrics are averaged only over scored runs with complete per-study decision coverage.",
+        "",
+        "| Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |",
+        "|------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|",
     ]
 
     for rank, row in enumerate(aggregates, start=1):
         lines.append(
-            "| {rank} | {gatekeeper} | {policy} | {orchestrator} | {runs} | {f1} | {recall} | {precision} | {accuracy} | {specificity} | {parse_success} | {coverage} |".format(
+            "| {rank} | {gatekeeper} | {policy} | {orchestrator} | {runs} | {scored} | {incomplete} | {errors} | {f1} | {recall} | {precision} | {accuracy} | {specificity} | {parse_success} | {coverage} |".format(
                 rank=rank,
                 gatekeeper=row["gatekeeper_model_label"],
                 policy=row["orchestrator_policy"],
                 orchestrator=row["orchestrator_model_label"],
                 runs=row["n_runs"],
+                scored=row["n_scored_runs"],
+                incomplete=row["n_incomplete_runs"],
+                errors=row["n_error_runs"],
                 f1=_format_metric(row["mean_f1"]),
                 recall=_format_metric(row["mean_recall"]),
                 precision=_format_metric(row["mean_precision"]),
@@ -651,17 +793,22 @@ def _write_review_leaderboard_markdown(
                     f"**Gold exclude:** {gold_exclude_count}"
                 ),
                 "",
-                "| Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |",
-                "|------|------------------|---------------------|--------------------|------|----|--------|-----------|----------|-------------|---------------|----------|",
+                "Metrics below are averaged only over scored runs with complete per-study decision coverage.",
+                "",
+                "| Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |",
+                "|------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|",
             ])
             for rank, row in enumerate(sorted_rows, start=1):
                 lines.append(
-                    "| {rank} | {gatekeeper} | {policy} | {orchestrator} | {runs} | {f1} | {recall} | {precision} | {accuracy} | {specificity} | {parse_success} | {coverage} |".format(
+                    "| {rank} | {gatekeeper} | {policy} | {orchestrator} | {runs} | {scored} | {incomplete} | {errors} | {f1} | {recall} | {precision} | {accuracy} | {specificity} | {parse_success} | {coverage} |".format(
                         rank=rank,
                         gatekeeper=row["gatekeeper_model_label"],
                         policy=row["orchestrator_policy"],
                         orchestrator=row["orchestrator_model_label"],
                         runs=row["n_runs"],
+                        scored=row["n_scored_runs"],
+                        incomplete=row["n_incomplete_runs"],
+                        errors=row["n_error_runs"],
                         f1=_format_metric(row["mean_f1"]),
                         recall=_format_metric(row["mean_recall"]),
                         precision=_format_metric(row["mean_precision"]),
