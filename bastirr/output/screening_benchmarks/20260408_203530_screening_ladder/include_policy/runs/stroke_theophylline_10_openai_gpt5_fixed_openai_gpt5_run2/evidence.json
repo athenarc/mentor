@@ -1,0 +1,54 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "INCLUDE",
+      "reason": "Randomized double-blind trial of aminophylline (theophylline analogue) versus placebo in patients with acute ischaemic stroke; treatment initiated in the acute hospitalization period (within one week implied). Meets population, intervention, comparator, and timing."
+    },
+    {
+      "study_index": 2,
+      "decision": "INCLUDE",
+      "reason": "Randomized double-blind, placebo-controlled trial of intravenous aminophylline in acute cerebral infarction (acute ischaemic stroke), treatment given in acute phase. Meets PICOT criteria."
+    },
+    {
+      "study_index": 3,
+      "decision": "EXCLUDE",
+      "reason": "Open-label, single-arm dose-escalation (no randomized comparator). Not a randomized controlled trial."
+    },
+    {
+      "study_index": 4,
+      "decision": "EXCLUDE",
+      "reason": "Study of vincamine with small aminophylline subgroup; population not specified as acute ischaemic stroke and randomization unclear. Does not meet randomized RCT in acute stroke within one week."
+    },
+    {
+      "study_index": 5,
+      "decision": "EXCLUDE",
+      "reason": "Randomized cross-over physiological study in patients recovering from acute ischaemic stroke, not within one week of onset; not an acute treatment RCT versus placebo/control."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Randomized cross-over physiological study in stroke patients recovering (not within one week). Not a randomized acute treatment trial meeting timing criteria."
+    },
+    {
+      "study_index": 7,
+      "decision": "EXCLUDE",
+      "reason": "Physiologic study of intracarotid aminophylline effects on cerebral blood flow; population not defined as acute ischaemic stroke and no randomized comparator."
+    },
+    {
+      "study_index": 8,
+      "decision": "EXCLUDE",
+      "reason": "Animal study in cats; not a randomized clinical trial in humans with acute ischaemic stroke."
+    },
+    {
+      "study_index": 9,
+      "decision": "EXCLUDE",
+      "reason": "Animal study in dogs; not a randomized clinical trial in humans with acute ischaemic stroke."
+    },
+    {
+      "study_index": 10,
+      "decision": "EXCLUDE",
+      "reason": "Mechanistic/observational discussion; lacks randomized controlled design in acute ischaemic stroke."
+    }
+  ]
+}

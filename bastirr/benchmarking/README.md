@@ -23,7 +23,7 @@ The harness keeps the important architectural boundary from the main system:
 This gives us a fairer screening benchmark while reusing the real Gatekeeper
 implementation and the same review data loader.
 
-Both the review suites and the model presets are now file-backed so they can
+Both the review suites and the model presets are file-backed so they can
 be edited without touching Python code:
 
 - `bastirr/benchmarking/config/review_suites.json`
@@ -57,6 +57,10 @@ The benchmark execution path is:
     match the expected number of studies, so partial outputs are not silently
     persisted as valid benchmark artifacts.
 12. The harness writes per-run and experiment-level summaries.
+13. After scoring, the harness generates policy-local notebooks and
+    policy-local HTML summary reports.
+14. When both policy folders are present, it also generates a top-level
+    policy-comparison HTML report at the experiment root.
 
 ## Components
 
@@ -69,7 +73,11 @@ Key files:
 - `bastirr/benchmarking/model_presets.py`
 - `bastirr/benchmarking/metrics.py`
 - `bastirr/benchmarking/inspection.py`
+- `bastirr/benchmarking/notebooks.py`
+- `bastirr/benchmarking/html_reports.py`
+- `bastirr/benchmarking/comparison_reports.py`
 - `bastirr/benchmarking/runner.py`
+- `bastirr/generate_screening_html_report.py`
 
 Responsibilities:
 
@@ -81,47 +89,76 @@ Responsibilities:
 - `model_presets.py`: named Gatekeeper and orchestrator model presets
 - `metrics.py`: gold-label mapping and study-level metrics
 - `inspection.py`: study-by-study gold-vs-prediction comparison artifacts
-- `runner.py`: experiment loop, logging, metrics, summaries, and output layout
+- `notebooks.py`: policy-local exploratory notebook generation
+- `html_reports.py`: policy-local HTML summary report generation
+- `comparison_reports.py`: experiment-level side-by-side policy comparison report generation
+- `runner.py`: experiment loop, logging, metrics, summaries, output layout,
+  and artifact generation
 
-## Gold Label Policy
+## Gold Label Policies
 
-The benchmark evaluates title/abstract screening rather than final-review
-inclusion. Gold labels are mapped like this:
+The benchmark treats gold-label interpretation as a scoring lens rather
+than a run-time setting for the agents.
 
-- `1.0` -> `INCLUDE`
-- `0.5` -> `INCLUDE`
-- `0.0` -> `EXCLUDE`
+The raw screening run happens once per review/model/repeat configuration, and
+the saved Gatekeeper decisions are then scored under both policies by default.
+This means the agent outputs do not change across policies; only the metric and
+inspection interpretation changes.
 
-Why:
+Underlying dataset labels mean:
 
-- `1.0` means the study was included in the final review
-- `0.5` means it survived title/abstract screening but was excluded later,
-  usually after fuller assessment
-- `0.0` means it should have been excluded at screening
+- `1.0`: included in the final review
+- `0.5`: passed title/abstract screening but was excluded later
+- `0.0`: excluded at screening
 
-The inspection artifacts also preserve the final-review meaning:
+The inspection artifacts preserve those review-level meanings directly:
 
 - `included_in_review`
 - `excluded_after_full_text`
 - `excluded_at_screening`
 
-This mapping is now configurable per benchmark run with `--gold-label-policy`:
+By default, each benchmark experiment materializes both scoring policies from
+the same saved screening outputs:
 
-- `include_label_0_5`: `1.0` and `0.5` count as `INCLUDE`
-- `exclude_label_0_5`: only `1.0` counts as `INCLUDE`
+- `include_label_0_5`: screening-oriented lens where `1.0` and `0.5` count as
+  `INCLUDE`, and only `0.0` counts as `EXCLUDE`
+- `exclude_label_0_5`: stricter lens where only `1.0` counts as `INCLUDE`, and
+  both `0.5` and `0.0` count as `EXCLUDE`
+
+That is why a benchmark folder contains sibling `include_policy/` and
+`exclude_policy/` directories when both are generated.
+
+You can restrict scoring to one policy or an explicit subset with:
+
+- `--gold-label-policy`
+- `--gold-label-policies`
 
 ## Locked Review Suite
 
-The default suite is `screening_ladder`. It is a fixed ladder of escalating review
-sizes:
+The default suite is `screening_ladder`. It is a fixed ladder of escalating
+review sizes, and the same underlying review bundle is reused for both gold
+label policies.
 
-| Key | Split | Studies | Gold Pass | Gold Exclude |
-|-----|-------|---------|-----------|--------------|
-| `stroke_theophylline_10` | `val` | 10 | 6 | 4 |
-| `alopecia_areata_25` | `random_test` | 25 | 17 | 8 |
-| `iud_insertion_pain_50` | `random_test` | 50 | 30 | 20 |
-| `pelvic_floor_training_100` | `random_test` | 100 | 48 | 52 |
-| `heart_failure_mhealth_200` | `heart_test` | 200 | 137 | 63 |
+Because the benchmark scores both policies by default, the most useful way
+to read the suite is:
+
+- `final_include_count`: studies with dataset label `1.0`
+- `pass_to_full_text_count`: studies with dataset label `0.5`
+- `screen_exclude_count`: studies with dataset label `0.0`
+
+From those underlying counts:
+
+- `include_label_0_5` treats `final_include_count + pass_to_full_text_count`
+  as gold `INCLUDE`
+- `exclude_label_0_5` treats only `final_include_count` as gold `INCLUDE`
+
+| Key | Split | Studies | Final Include (`1.0`) | Passed To Full Text (`0.5`) | Excluded At Screening (`0.0`) |
+|-----|-------|---------|------------------------|------------------------------|--------------------------------|
+| `stroke_theophylline_10` | `val` | 10 | 2 | 4 | 4 |
+| `alopecia_areata_25` | `random_test` | 25 | 13 | 4 | 8 |
+| `iud_insertion_pain_50` | `random_test` | 50 | 26 | 4 | 20 |
+| `pelvic_floor_training_100` | `random_test` | 100 | 26 | 22 | 52 |
+| `heart_failure_mhealth_200` | `heart_test` | 200 | 4 | 133 | 63 |
 
 The suite definitions live in `bastirr/benchmarking/config/review_suites.json`.
 
@@ -165,7 +202,7 @@ PYTHONPATH=. python3 -m bastirr.run_screening_benchmark --list-model-presets
 
 ## Environment Variables
 
-The generic Bastirr model configuration still exists and is still useful for
+The generic Bastirr model configuration remains useful for
 single-model runs:
 
 - `BASTIRR_MODEL_BACKEND`
@@ -209,6 +246,8 @@ Important options:
 - `--orchestrator-policy fixed|match-gatekeeper`
 - `--orchestrator-model PRESET`
 - `--gold-label-policy include_label_0_5|exclude_label_0_5`
+- `--gold-label-policies POLICY [POLICY ...]`
+- `--skip-policy-notebook-execution`
 - `--hide-subagent-steps`
 - `--list-suites`
 - `--list-model-presets`
@@ -245,6 +284,11 @@ PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
   --model-presets openai_gpt5 \
   --gold-label-policy exclude_label_0_5 \
   --repeats 5
+
+# Write both policy views from the same raw screening runs (default behavior)
+PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
+  --model-presets openai_gpt5 \
+  --repeats 5
 ```
 
 ## Orchestrator Policies
@@ -268,13 +312,25 @@ bastirr/output/screening_benchmarks/<timestamp>_<suite>/
 
 Inside each experiment directory:
 
+- `include_policy/`
+- `exclude_policy/`
+
+The experiment root is intentionally minimal. It acts as the parent container
+for the policy-specific views rather than storing benchmark outputs itself.
+Raw agent artifacts such as `workflow.log`, `activity.md`, and `evidence.json`
+are copied into each policy-specific run directory so every policy view is
+self-contained.
+
+Each policy directory contains policy-specific derived artifacts:
+
+- `runs/`
 - `summary.json`
 - `summary.csv`
 - `leaderboard.md`
 - `review_leaderboard.md`
-- `runs/`
+- `screening_results_analysis.ipynb`
 
-Inside each run directory:
+Inside each policy run directory:
 
 - `workflow.log`
 - `activity.md`
@@ -365,23 +421,102 @@ This is the best artifact when manually reading one run.
 
 ## Experiment-Level Artifacts
 
-### `summary.json`
+### Policy `summary.json`
 
-Full machine-readable experiment output:
+Full machine-readable scoring output for one gold-label policy:
 
-- selected suite
-- selected review keys
-- selected model presets
-- repeats
-- gold label policy
+- active gold label policy
 - per-run metrics rows
 - aggregated model-level leaderboard rows
 - aggregated review-level leaderboard rows
 
+At the parent experiment level, the runtime summary also records:
+
+- the generated policy folders
+- policy-local notebook paths
+- policy-local HTML report paths
+- the comparison HTML report path when both policies are present
+
 ### `summary.csv`
 
-Flat row-per-run export of the run metrics. Useful for spreadsheet work or
-lightweight analysis.
+Flat row-per-run export for one gold-label policy. Useful for spreadsheet work
+or lightweight analysis.
+
+### `screening_results_analysis.ipynb`
+
+Policy-local exploratory notebook generated from that folder's own
+`summary.csv`, `summary.json`, and `runs/` tree. It does not compare against
+the alternate policy. Instead it focuses on:
+
+- run completeness and coverage
+- metric stability across repeats
+- review-level performance patterns
+- pass-count calibration
+- repeated study-level mismatches
+
+The benchmark generates this notebook automatically for each policy folder.
+By default it also tries to pre-execute the notebook so plots are already
+rendered. If you want only the notebook file without execution, use
+`--skip-policy-notebook-execution`. Notebook execution is best-effort: if the
+local Jupyter kernel cannot be launched, the `.ipynb` file is written and
+can be opened or executed later.
+
+### `screening_results_summary.html`
+
+Policy-local visual summary report generated from that folder's own
+`summary.csv`, `summary.json`, and per-run inspection artifacts.
+
+It is a presentation-style benchmark overview rather than an exploratory
+notebook. The report highlights:
+
+- run health and pooled macro metrics
+- pooled confusion totals
+- review-level performance and runtime
+- repeat-to-repeat stability across scored runs
+- recurring study-level mistakes
+
+The report is generated automatically for each policy folder during both normal
+benchmark runs and benchmark backfills.
+
+The report intentionally links only to browser-friendly artifacts such as
+`summary.csv`, `summary.json`, and sibling HTML reports. The notebook remains a
+filesystem artifact in the policy folder, but it is not linked from the HTML
+report because raw `.ipynb` files do not render well in a normal browser.
+
+You can also regenerate HTML reports manually:
+
+```bash
+venv/bin/python -m bastirr.generate_screening_html_report \
+  bastirr/output/screening_benchmarks/20260409_000456_screening_ladder/include_policy
+```
+
+Or point it at the parent benchmark directory to regenerate all policy reports:
+
+```bash
+venv/bin/python -m bastirr.generate_screening_html_report \
+  bastirr/output/screening_benchmarks/20260409_000456_screening_ladder
+```
+
+When you point the command at the parent benchmark directory, it also generates
+the top-level comparison report:
+
+### `screening_policy_comparison.html`
+
+Experiment-level side-by-side report that compares the `include_policy` and
+`exclude_policy` views created from the same saved screening runs. It focuses
+on:
+
+- side-by-side policy cards
+- recall and F1 movement by review
+- error composition under each policy
+- review-by-review metric comparison
+
+It intentionally does not repeat the full study-level detail from the
+individual policy reports. Use the policy-local reports when you need:
+
+- pooled confusion totals for one policy
+- repeat variability within one policy
+- recurring study-level mistakes within one policy
 
 ### `leaderboard.md`
 
@@ -414,7 +549,7 @@ shows:
 - study count and gold pass/exclude totals
 - one ranked row per model configuration
 
-This is usually the more informative artifact when the suite is still small,
+This is usually the more informative artifact when the suite is small,
 because it makes model tradeoffs visible on each specific review rather than
 only through one overall average.
 
@@ -428,15 +563,15 @@ Recommended local validation after changing the benchmark harness:
 ```bash
 venv/bin/python -m unittest discover -s tests -v
 venv/bin/python -m compileall bastirr tests
-PYTHONPATH=. python3 -m bastirr.run_screening_benchmark --list-model-presets
-PYTHONPATH=. python3 -m bastirr.run_screening_benchmark --list-reviews
+venv/bin/python -m bastirr.run_screening_benchmark --list-model-presets
+venv/bin/python -m bastirr.run_screening_benchmark --list-reviews
 ```
 
 If the runtime behavior changed, also run a smoke benchmark on the 10-study
 review with GPT-5:
 
 ```bash
-PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
+venv/bin/python -m bastirr.run_screening_benchmark \
   --model-presets openai_gpt5 \
   --orchestrator-policy fixed \
   --orchestrator-model openai_gpt5 \
@@ -450,6 +585,24 @@ Then inspect:
 - `screening_inspection.md`
 - `activity.md`
 - `workflow.log`
+
+## Legacy Backfill
+
+Older flat benchmark directories can be restructured into the current
+policy-owned layout without rerunning any models:
+
+```bash
+venv/bin/python -m bastirr.backfill_screening_benchmark \
+  bastirr/output/screening_benchmarks/<timestamp>_<suite>
+```
+
+To backfill the policy folders but leave the notebooks unexecuted:
+
+```bash
+venv/bin/python -m bastirr.backfill_screening_benchmark \
+  bastirr/output/screening_benchmarks/<timestamp>_<suite> \
+  --skip-policy-notebook-execution
+```
 
 ## Notes And Boundaries
 

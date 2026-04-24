@@ -81,8 +81,15 @@ def main() -> None:
     parser.add_argument(
         "--gold-label-policy",
         choices=list(SCREENING_LABEL_POLICIES),
-        default="include_label_0_5",
-        help="How to interpret dataset label 0.5 when scoring saved screening decisions",
+        default=None,
+        help="Optional single gold-label policy to score; if omitted, the benchmark writes both built-in policies from the same raw runs",
+    )
+    parser.add_argument(
+        "--gold-label-policies",
+        nargs="+",
+        choices=list(SCREENING_LABEL_POLICIES),
+        default=None,
+        help="Optional explicit list of gold-label policies to score from the same raw runs",
     )
     parser.add_argument(
         "--hide-subagent-steps",
@@ -90,6 +97,11 @@ def main() -> None:
         action="store_false",
         default=False,
         help="Hide sub-agent step details in activity.md",
+    )
+    parser.add_argument(
+        "--skip-policy-notebook-execution",
+        action="store_true",
+        help="Generate policy results-analysis notebooks without executing them",
     )
     parser.add_argument(
         "--list-suites",
@@ -129,8 +141,12 @@ def main() -> None:
         orchestrator_policy=args.orchestrator_policy,
         orchestrator_model_key=args.orchestrator_model,
         review_keys=args.reviews,
-        gold_label_policy=args.gold_label_policy,
+        gold_label_policies=(
+            args.gold_label_policies
+            or ([args.gold_label_policy] if args.gold_label_policy else None)
+        ),
         include_subagent_steps=args.include_subagent_steps,
+        execute_policy_notebooks=not args.skip_policy_notebook_execution,
     )
     print(f"\nBenchmark complete. Results written to:\n  {experiment_dir}\n")
 

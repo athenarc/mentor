@@ -2,11 +2,16 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
+from bastirr.benchmarking.backfill import backfill_policy_views
 from bastirr.benchmarking.model_presets import ResolvedModelPreset
 from bastirr.benchmarking.review_suites import ScreeningBenchmarkReview
-from bastirr.benchmarking.runner import _aggregate_runs, run_screening_benchmark
+from bastirr.benchmarking.runner import (
+    _aggregate_runs,
+    run_screening_benchmark,
+)
 
 
 class _ResolvedPresetWrapper:
@@ -18,7 +23,7 @@ class _ResolvedPresetWrapper:
 
 
 class ScreeningBenchmarkRunnerTests(unittest.TestCase):
-    def test_run_screening_benchmark_writes_summary_files(self):
+    def test_run_screening_benchmark_writes_policy_outputs_only(self):
         review_case = ScreeningBenchmarkReview(
             key="synthetic_review",
             split="val",
@@ -48,65 +53,39 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
             api_key="test-key",
             api_key_source="OPENAI_API_KEY",
         )
-        synthetic_metrics = {
-            "benchmark_run_id": "synthetic_review_ollama_qwen3_5_27b_bf16_fixed_openai_gpt5_run1",
-            "suite": "screening_ladder",
-            "gold_label_policy": "exclude_label_0_5",
-            "gold_label_policy_description": (
-                "dataset label 1.0 counts as INCLUDE; 0.5 and 0.0 count as EXCLUDE"
+        synthetic_raw_run = {
+            "suite_name": "screening_ladder",
+            "review_case": review_case,
+            "review": SimpleNamespace(
+                title=review_case.title,
+                review_url=review_case.review_url,
+                selection_criteria="Synthetic criteria",
+                studies=[],
             ),
-            "review_key": review_case.key,
-            "review_title": review_case.title,
-            "review_url": review_case.review_url,
-            "split": review_case.split,
+            "screening_decisions": [{"study_index": 1, "decision": "INCLUDE", "reason": "Matches"}],
+            "gatekeeper_model": gatekeeper_model,
+            "orchestrator_model": orchestrator_model,
+            "orchestrator_policy": "fixed",
             "run_index": 1,
+            "duration_seconds": 1.5,
+            "raw_run_dir": Path("/tmp/synthetic"),
             "run_status": "completed",
             "error": "",
-            "screening_completion_status": "complete",
-            "scored_for_aggregate": True,
             "screening_attempt_count": 1,
             "rerun_triggered": False,
-            "incomplete_reason": "",
-            "duration_seconds": 1.5,
-            "run_dir": "/tmp/synthetic",
-            "gatekeeper_preset": gatekeeper_model.key,
-            "gatekeeper_model_label": gatekeeper_model.model_label,
-            "gatekeeper_backend": gatekeeper_model.backend,
-            "gatekeeper_model_id": gatekeeper_model.model_id,
-            "gatekeeper_api_base": gatekeeper_model.api_base,
-            "gatekeeper_api_key_source": gatekeeper_model.api_key_source,
-            "orchestrator_policy": "fixed",
-            "orchestrator_preset": orchestrator_model.key,
-            "orchestrator_model_label": orchestrator_model.model_label,
-            "orchestrator_backend": orchestrator_model.backend,
-            "orchestrator_model_id": orchestrator_model.model_id,
-            "orchestrator_api_base": "",
-            "orchestrator_api_key_source": orchestrator_model.api_key_source,
-            "n_studies": 10,
-            "gold_pass_count": 6,
-            "gold_exclude_count": 4,
-            "predicted_pass_count": 5,
-            "predicted_exclude_count": 5,
-            "screening_decision_count": 10,
-            "missing_decision_count": 0,
-            "duplicate_decision_count": 0,
-            "invalid_decision_count": 0,
-            "decision_coverage": 1.0,
-            "parse_success": True,
-            "tp": 5,
-            "fp": 0,
-            "tn": 4,
-            "fn": 1,
-            "accuracy": 0.9,
-            "precision": 1.0,
-            "recall": 5 / 6,
-            "specificity": 1.0,
-            "f1": 10 / 11,
         }
 
         with tempfile.TemporaryDirectory() as tmpdir:
             experiment_dir = Path(tmpdir) / "benchmark"
             experiment_dir.mkdir(parents=True, exist_ok=True)
+            policy_dir = experiment_dir / "exclude_policy"
+
+            def _fake_materialize_policy_outputs(*args, **kwargs):
+                policy_dir.mkdir(parents=True, exist_ok=True)
+                (policy_dir / "runs").mkdir(parents=True, exist_ok=True)
+                for name in ("summary.json", "summary.csv", "leaderboard.md", "review_leaderboard.md"):
+                    (policy_dir / name).write_text("test\n", encoding="utf-8")
+                return policy_dir, {"runs": [{"review_key": review_case.key, "scored_for_aggregate": True}]}
 
             with patch(
                 "bastirr.benchmarking.runner._experiment_root",
@@ -122,7 +101,29 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                 return_value=_ResolvedPresetWrapper(orchestrator_model),
             ), patch(
                 "bastirr.benchmarking.runner.run_screening_review",
-                return_value=synthetic_metrics,
+                return_value=synthetic_raw_run,
+            ), patch(
+                "bastirr.benchmarking.runner._materialize_policy_outputs",
+                side_effect=_fake_materialize_policy_outputs,
+            ), patch(
+                "bastirr.benchmarking.runner.write_policy_eda_notebook",
+                return_value={
+                    "notebook_path": str(policy_dir / "screening_results_analysis.ipynb"),
+                    "executed": False,
+                    "execution_error": "",
+                },
+            ), patch(
+                "bastirr.benchmarking.runner.write_policy_html_report",
+                return_value={
+                    "report_path": str(policy_dir / "screening_results_summary.html"),
+                    "title": "Title and Abstract Screening Benchmark Summary",
+                },
+            ), patch(
+                "bastirr.benchmarking.runner.write_policy_comparison_report",
+                return_value={
+                    "report_path": str(experiment_dir / "screening_policy_comparison.html"),
+                    "title": "Screening Benchmark Policy Comparison",
+                },
             ):
                 actual_dir, summary = run_screening_benchmark(
                     suite_name="screening_ladder",
@@ -131,40 +132,36 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                     orchestrator_policy="fixed",
                     orchestrator_model_key="openai_gpt5",
                     review_keys=[review_case.key],
-                    gold_label_policy="exclude_label_0_5",
+                    gold_label_policies=["exclude_label_0_5"],
                 )
 
             self.assertEqual(actual_dir, experiment_dir)
-            self.assertEqual(len(summary["runs"]), 1)
-            self.assertTrue((experiment_dir / "summary.json").exists())
-            self.assertTrue((experiment_dir / "summary.csv").exists())
-            self.assertTrue((experiment_dir / "leaderboard.md").exists())
-            self.assertTrue((experiment_dir / "review_leaderboard.md").exists())
+            self.assertFalse((experiment_dir / "summary.json").exists())
+            self.assertFalse((experiment_dir / "summary.csv").exists())
+            self.assertFalse((experiment_dir / "leaderboard.md").exists())
+            self.assertFalse((experiment_dir / "review_leaderboard.md").exists())
+            self.assertFalse((experiment_dir / "runs").exists())
+            self.assertTrue((policy_dir / "summary.json").exists())
+            self.assertTrue((policy_dir / "summary.csv").exists())
+            self.assertTrue((policy_dir / "leaderboard.md").exists())
+            self.assertTrue((policy_dir / "review_leaderboard.md").exists())
 
-            with open(experiment_dir / "summary.csv", "r", encoding="utf-8") as f:
-                csv_header = f.readline().strip().split(",")
-
-            with open(experiment_dir / "summary.json", "r", encoding="utf-8") as f:
-                payload = json.load(f)
-            self.assertEqual(csv_header[0], "benchmark_run_id")
-            self.assertEqual(csv_header[1], "suite")
-            self.assertEqual(csv_header[2], "review_key")
-            self.assertEqual(payload["runs"][0]["review_key"], review_case.key)
-            self.assertEqual(payload["gold_label_policy"], "exclude_label_0_5")
-            self.assertTrue(payload["runs"][0]["scored_for_aggregate"])
-            self.assertEqual(payload["leaderboard"][0]["gatekeeper_preset"], gatekeeper_model.key)
+            self.assertEqual(summary["suite"], "screening_ladder")
+            self.assertEqual(summary["gold_label_policies"], ["exclude_label_0_5"])
+            self.assertIn("exclude_label_0_5", summary["policy_outputs"])
             self.assertEqual(
-                payload["review_leaderboard"][0]["review_key"],
-                review_case.key,
+                summary["policy_outputs"]["exclude_label_0_5"]["directory"],
+                str(policy_dir),
             )
             self.assertEqual(
-                payload["review_leaderboard"][0]["gold_label_policy"],
-                "exclude_label_0_5",
+                summary["policy_outputs"]["exclude_label_0_5"]["eda_notebook"],
+                str(policy_dir / "screening_results_analysis.ipynb"),
             )
             self.assertEqual(
-                payload["leaderboard"][0]["gatekeeper_model_label"],
-                gatekeeper_model.model_label,
+                summary["policy_outputs"]["exclude_label_0_5"]["html_report"],
+                str(policy_dir / "screening_results_summary.html"),
             )
+            self.assertIsNone(summary["comparison_html_report"])
 
     def test_aggregate_runs_excludes_incomplete_runs_from_metric_means(self):
         complete_row = {
@@ -216,3 +213,125 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
         self.assertAlmostEqual(aggregate["mean_f1"], complete_row["f1"])
         self.assertAlmostEqual(aggregate["mean_accuracy"], complete_row["accuracy"])
         self.assertAlmostEqual(aggregate["parse_success_rate"], 0.5)
+
+    def test_backfill_policy_views_restructures_flat_benchmark_directory(self):
+        review_case = ScreeningBenchmarkReview(
+            key="synthetic_review",
+            split="val",
+            review_url="https://example.test/review",
+            title="Synthetic Review",
+            expected_n_studies=2,
+            expected_n_screen_pass=1,
+            expected_n_screen_exclude=1,
+        )
+        gatekeeper_model = ResolvedModelPreset(
+            key="openai_gpt5",
+            description="OpenAI API",
+            display_name="gpt-5",
+            backend="openai",
+            model_id="gpt-5",
+            api_base=None,
+            api_key="test-key",
+            api_key_source="OPENAI_API_KEY",
+        )
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            experiment_dir = Path(tmpdir) / "benchmark"
+            run_dir = experiment_dir / "runs" / "synthetic_review_openai_gpt5_fixed_openai_gpt5_run1"
+            run_dir.mkdir(parents=True, exist_ok=True)
+
+            (experiment_dir / "summary.json").write_text(json.dumps({
+                "suite": "screening_ladder",
+                "repeats": 1,
+                "review_keys": [review_case.key],
+                "model_presets": ["openai_gpt5"],
+                "orchestrator_policy": "fixed",
+                "orchestrator_preset": "openai_gpt5",
+            }), encoding="utf-8")
+            for filename in ("summary.csv", "leaderboard.md", "review_leaderboard.md"):
+                (experiment_dir / filename).write_text("legacy\n", encoding="utf-8")
+
+            (run_dir / "workflow.log").write_text("workflow\n", encoding="utf-8")
+            (run_dir / "activity.md").write_text("activity\n", encoding="utf-8")
+            (run_dir / "screening_inspection.json").write_text("{}\n", encoding="utf-8")
+            (run_dir / "screening_inspection.md").write_text("inspection\n", encoding="utf-8")
+            (run_dir / "evidence.json").write_text(json.dumps({
+                "screening_decisions": [
+                    {"study_index": 1, "decision": "INCLUDE", "reason": "Matches"},
+                    {"study_index": 2, "decision": "EXCLUDE", "reason": "No match"},
+                ]
+            }), encoding="utf-8")
+            (run_dir / "metrics.json").write_text(json.dumps({
+                "review_key": review_case.key,
+                "gatekeeper_preset": "openai_gpt5",
+                "orchestrator_preset": "openai_gpt5",
+                "orchestrator_policy": "fixed",
+                "run_index": 1,
+                "duration_seconds": 1.5,
+                "run_status": "completed",
+                "error": "",
+            }), encoding="utf-8")
+
+            def _fake_materialize_policy_outputs(
+                experiment_dir_arg,
+                *,
+                label_policy,
+                **_kwargs,
+            ):
+                policy_dir = experiment_dir_arg / (
+                    "include_policy" if label_policy == "include_label_0_5" else "exclude_policy"
+                )
+                (policy_dir / "runs").mkdir(parents=True, exist_ok=True)
+                for filename in ("summary.json", "summary.csv", "leaderboard.md", "review_leaderboard.md"):
+                    (policy_dir / filename).write_text("policy\n", encoding="utf-8")
+                return policy_dir, {"gold_label_policy": label_policy}
+
+            with patch(
+                "bastirr.benchmarking.backfill.resolve_review_selection",
+                return_value=[review_case],
+            ), patch(
+                "bastirr.benchmarking.backfill.load_review",
+                return_value=SimpleNamespace(title=review_case.title, review_url=review_case.review_url),
+            ), patch(
+                "bastirr.benchmarking.backfill.get_model_preset",
+                return_value=_ResolvedPresetWrapper(gatekeeper_model),
+            ), patch(
+                "bastirr.benchmarking.backfill._materialize_policy_outputs",
+                side_effect=_fake_materialize_policy_outputs,
+            ), patch(
+                "bastirr.benchmarking.backfill.write_policy_eda_notebook",
+                return_value={
+                    "notebook_path": str(experiment_dir / "include_policy" / "screening_results_analysis.ipynb"),
+                    "executed": False,
+                    "execution_error": "",
+                },
+            ), patch(
+                "bastirr.benchmarking.backfill.write_policy_html_report",
+                return_value={
+                    "report_path": str(experiment_dir / "include_policy" / "screening_results_summary.html"),
+                    "title": "Title and Abstract Screening Benchmark Summary",
+                },
+            ), patch(
+                "bastirr.benchmarking.backfill.write_policy_comparison_report",
+                return_value={
+                    "report_path": str(experiment_dir / "screening_policy_comparison.html"),
+                    "title": "Screening Benchmark Policy Comparison",
+                },
+            ):
+                result = backfill_policy_views(experiment_dir)
+
+            self.assertTrue((experiment_dir / "include_policy").exists())
+            self.assertTrue((experiment_dir / "exclude_policy").exists())
+            self.assertFalse((experiment_dir / "summary.json").exists())
+            self.assertFalse((experiment_dir / "summary.csv").exists())
+            self.assertFalse((experiment_dir / "leaderboard.md").exists())
+            self.assertFalse((experiment_dir / "review_leaderboard.md").exists())
+            self.assertFalse((experiment_dir / "runs").exists())
+            self.assertIn("include_label_0_5", result["policies"])
+            self.assertIn("exclude_label_0_5", result["policies"])
+            self.assertIn("eda_notebook", result["policies"]["include_label_0_5"])
+            self.assertIn("html_report", result["policies"]["include_label_0_5"])
+            self.assertEqual(
+                result["comparison_html_report"],
+                str(experiment_dir / "screening_policy_comparison.html"),
+            )

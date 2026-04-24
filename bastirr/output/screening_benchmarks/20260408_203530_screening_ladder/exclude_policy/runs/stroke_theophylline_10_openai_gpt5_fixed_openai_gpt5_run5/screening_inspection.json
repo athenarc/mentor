@@ -1,0 +1,140 @@
+{
+  "review_title": "Theophylline, aminophylline, caffeine and analogues for acute ischaemic stroke",
+  "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD000211.pub2/full",
+  "screening_criteria": "Randomised trials of theophylline or an analogue compound compared with placebo or control in people with confirmed or presumed acute ischaemic stroke. Trials were included if treatment was started within one week of stroke onset.",
+  "gold_label_policy": "exclude_label_0_5",
+  "gold_label_policy_description": "dataset label 1.0 counts as INCLUDE; 0.5 and 0.0 count as EXCLUDE",
+  "gold_screening_policy": {
+    "1.0": "INCLUDE",
+    "0.5": "EXCLUDE",
+    "0.0": "EXCLUDE"
+  },
+  "summary": {
+    "n_studies": 10,
+    "gold_pass_count": 2,
+    "gold_exclude_count": 8,
+    "predicted_pass_count": 2,
+    "predicted_exclude_count": 8,
+    "tp": 2,
+    "fp": 0,
+    "tn": 8,
+    "fn": 0,
+    "match_count": 10,
+    "mismatch_count": 0,
+    "missing_decision_count": 0,
+    "duplicate_decision_count": 0,
+    "invalid_decision_count": 0
+  },
+  "studies": [
+    {
+      "study_index": 1,
+      "study_title": "Lack of effect of theophylline on the outcome of acute cerebral infarction",
+      "gold_label": 1.0,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "included_in_review",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Double-blind aminophylline (theophylline analogue) vs placebo in acute ischaemic stroke; randomized trial implied; acute treatment.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 2,
+      "study_title": "Controlled trial of intravenous aminophylline in acute cerebral infarction",
+      "gold_label": 1.0,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "included_in_review",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Double-blind placebo-controlled trial of intravenous aminophylline in acute cerebral infarction (ischaemic stroke); acute treatment.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 3,
+      "study_title": "Pilot dose‐escalation study of caffeine plus ethanol (caffeinol) in acute ischemic stroke",
+      "gold_label": 0.5,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_after_full_text",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Open-label, single-arm dose-escalation (no randomization/control) despite acute timing.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 4,
+      "study_title": "Effects of vincamin on cerebral metabolism",
+      "gold_label": 0.5,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_after_full_text",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not an RCT in acute ischaemic stroke population; metabolic study with vincamine/aminophylline, population not confirmed AIS, design not randomized vs placebo/control.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 5,
+      "study_title": "Caffeine reduces cerebral blood flow in patients recovering from an acute ischaemic stroke",
+      "gold_label": 0.5,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_after_full_text",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomized cross-over caffeine vs placebo in patients recovering from stroke; not within one week of onset (not acute).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 6,
+      "study_title": "Effects of caffeine on cerebral blood flow in stroke patients",
+      "gold_label": 0.5,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_after_full_text",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomized cross-over caffeine vs placebo in recovering stroke patients; not acute within one week.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 7,
+      "study_title": "The effect of intracarotid aminophylline infusion on the cerebral circulation",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Physiological infusion study; not a randomized controlled trial in acute ischaemic stroke population.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 8,
+      "study_title": "Responses to surface arteries and blood flow of ischemic and non ischemic cerebral cortex to aminophylline, ergotamine tartrate, and acetazolamide",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Animal study (cats); not a randomized human trial in acute ischaemic stroke.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 9,
+      "study_title": "A comparative study between the cardiovascular effect of cetiedil, a new vasodilator, and papaverine and aminophylline",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Animal study (dogs); not relevant human RCT in acute ischaemic stroke.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 10,
+      "study_title": "The mechanism of action of aminophylline upon cerebral vascular disorders",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Non-randomized/mechanistic discussion; no RCT vs placebo/control in acute ischaemic stroke.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    }
+  ]
+}

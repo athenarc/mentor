@@ -7,19 +7,25 @@ from __future__ import annotations
 import csv
 import json
 import logging
+import os
+import shutil
+import tempfile
 import time
 from datetime import datetime
 from pathlib import Path
 from statistics import fmean
 
+from bastirr.benchmarking.comparison_reports import write_policy_comparison_report
 from bastirr.agents.screening_orchestrator import create_screening_orchestrator_agent
+from bastirr.benchmarking.html_reports import write_policy_html_report
 from bastirr.benchmarking.inspection import write_screening_inspection_artifacts
-from bastirr.benchmarking.metrics import compute_screening_metrics
+from bastirr.benchmarking.metrics import SCREENING_LABEL_POLICIES, compute_screening_metrics
 from bastirr.benchmarking.model_presets import (
     ResolvedModelPreset,
     get_model_preset,
     resolve_model_presets,
 )
+from bastirr.benchmarking.notebooks import write_policy_eda_notebook
 from bastirr.benchmarking.review_suites import (
     ScreeningBenchmarkReview,
     resolve_review_selection,
@@ -38,6 +44,10 @@ logger = logging.getLogger("bastirr.screening_benchmark")
 
 
 _MAX_SCREENING_ATTEMPTS = 2
+_POLICY_DIR_NAMES = {
+    "include_label_0_5": "include_policy",
+    "exclude_label_0_5": "exclude_policy",
+}
 
 _SUMMARY_CSV_PRIORITY_FIELDS = [
     "benchmark_run_id",
@@ -103,6 +113,20 @@ def _experiment_root(suite_name: str) -> Path:
     return path
 
 
+def _policy_dir_name(label_policy: str) -> str:
+    return _POLICY_DIR_NAMES.get(label_policy, label_policy)
+
+
+def _link_or_copy(src: Path, dst: Path) -> None:
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    if dst.exists() or dst.is_symlink():
+        dst.unlink()
+    try:
+        os.link(src, dst)
+    except OSError:
+        shutil.copy2(src, dst)
+
+
 def _run_name(
     review_case: ScreeningBenchmarkReview,
     gatekeeper_model: ResolvedModelPreset,
@@ -117,14 +141,6 @@ def _run_name(
         orchestrator_model.key,
         f"run{run_index}",
     ])
-
-
-def _build_screening_task(review, output_dir: Path) -> str:
-    return _build_screening_task_with_retry_note(
-        review,
-        output_dir,
-        expected_n_studies=len(review.studies),
-    )
 
 
 def _build_screening_task_with_retry_note(
@@ -313,6 +329,19 @@ def _write_metrics_json(run_dir: Path, metrics: dict) -> None:
         json.dump(metrics, f, ensure_ascii=False, indent=2)
 
 
+def _write_screening_evidence_file(run_dir: Path, screening_decisions: list[dict]) -> None:
+    with open(run_dir / "evidence.json", "w", encoding="utf-8") as f:
+        json.dump({"screening_decisions": screening_decisions}, f, ensure_ascii=False, indent=2)
+
+
+def _materialize_policy_run_dir(raw_run_dir: Path, policy_run_dir: Path) -> None:
+    policy_run_dir.mkdir(parents=True, exist_ok=True)
+    for filename in ("workflow.log", "activity.md"):
+        source = raw_run_dir / filename
+        if source.exists():
+            _link_or_copy(source, policy_run_dir / filename)
+
+
 def run_screening_review(
     *,
     suite_name: str,
@@ -321,7 +350,7 @@ def run_screening_review(
     orchestrator_model: ResolvedModelPreset,
     orchestrator_policy: str,
     run_index: int,
-    experiment_dir: Path,
+    output_root: Path,
     label_policy: str,
     include_subagent_steps: bool = True,
 ) -> dict:
@@ -339,7 +368,7 @@ def run_screening_review(
     run_dir, agent_logger, activity_logger = setup_run_logging(
         review.title,
         include_subagent_steps=include_subagent_steps,
-        output_root=experiment_dir / "runs",
+        output_root=output_root,
         run_name=_run_name(
             review_case,
             gatekeeper_model,
@@ -445,33 +474,113 @@ def run_screening_review(
         agent_logger.close()
 
     decisions = _read_screening_decisions(evidence_path)
+    return {
+        "suite_name": suite_name,
+        "review_case": review_case,
+        "review": review,
+        "screening_decisions": decisions,
+        "gatekeeper_model": gatekeeper_model,
+        "orchestrator_model": orchestrator_model,
+        "orchestrator_policy": orchestrator_policy,
+        "run_index": run_index,
+        "duration_seconds": duration_seconds,
+        "raw_run_dir": run_dir,
+        "run_status": run_status,
+        "error": error,
+        "screening_attempt_count": screening_attempt_count,
+        "rerun_triggered": rerun_triggered,
+    }
+
+
+def _build_policy_run_metrics(
+    raw_run: dict,
+    *,
+    label_policy: str,
+    policy_run_dir: Path,
+) -> dict:
     metrics = _build_run_metrics(
-        review_case=review_case,
-        review=review,
-        screening_decisions=decisions,
-        gatekeeper_model=gatekeeper_model,
-        orchestrator_model=orchestrator_model,
-        orchestrator_policy=orchestrator_policy,
-        suite_name=suite_name,
-        run_index=run_index,
-        duration_seconds=duration_seconds,
-        run_dir=run_dir,
-        run_status=run_status,
+        review_case=raw_run["review_case"],
+        review=raw_run["review"],
+        screening_decisions=raw_run["screening_decisions"],
+        gatekeeper_model=raw_run["gatekeeper_model"],
+        orchestrator_model=raw_run["orchestrator_model"],
+        orchestrator_policy=raw_run["orchestrator_policy"],
+        suite_name=raw_run["suite_name"],
+        run_index=raw_run["run_index"],
+        duration_seconds=raw_run["duration_seconds"],
+        run_dir=policy_run_dir,
+        run_status=raw_run["run_status"],
         label_policy=label_policy,
-        screening_attempt_count=screening_attempt_count,
-        rerun_triggered=rerun_triggered,
-        error=error,
+        screening_attempt_count=raw_run["screening_attempt_count"],
+        rerun_triggered=raw_run["rerun_triggered"],
+        error=raw_run["error"],
     )
     metrics.update(
         write_screening_inspection_artifacts(
-            run_dir=run_dir,
-            review=review,
-            screening_decisions=decisions,
+            run_dir=policy_run_dir,
+            review=raw_run["review"],
+            screening_decisions=raw_run["screening_decisions"],
             metrics=metrics,
         )
     )
-    _write_metrics_json(run_dir, metrics)
+    _write_metrics_json(policy_run_dir, metrics)
     return metrics
+
+
+def _materialize_policy_outputs(
+    experiment_dir: Path,
+    *,
+    suite_name: str,
+    repeats: int,
+    review_keys: list[str],
+    model_presets: list[str],
+    orchestrator_policy: str,
+    orchestrator_preset: str,
+    label_policy: str,
+    raw_runs: list[dict],
+) -> tuple[Path, dict]:
+    policy_dir = experiment_dir / _policy_dir_name(label_policy)
+    policy_dir.mkdir(parents=True, exist_ok=True)
+
+    run_metrics: list[dict] = []
+    for raw_run in raw_runs:
+        run_name = _run_name(
+            raw_run["review_case"],
+            raw_run["gatekeeper_model"],
+            raw_run["orchestrator_policy"],
+            raw_run["orchestrator_model"],
+            raw_run["run_index"],
+        )
+        policy_run_dir = policy_dir / "runs" / run_name
+        _materialize_policy_run_dir(raw_run["raw_run_dir"], policy_run_dir)
+        _write_screening_evidence_file(policy_run_dir, raw_run["screening_decisions"])
+        run_metrics.append(
+            _build_policy_run_metrics(
+                raw_run,
+                label_policy=label_policy,
+                policy_run_dir=policy_run_dir,
+            )
+        )
+
+    aggregates = _aggregate_runs(run_metrics)
+    review_aggregates = _aggregate_runs_by_review(run_metrics)
+    summary = _write_summary_json(
+        policy_dir,
+        suite_name=suite_name,
+        repeats=repeats,
+        review_keys=review_keys,
+        model_presets=model_presets,
+        orchestrator_policy=orchestrator_policy,
+        orchestrator_preset=orchestrator_preset,
+        gold_label_policy=label_policy,
+        run_metrics=run_metrics,
+        aggregates=aggregates,
+        review_aggregates=review_aggregates,
+    )
+    _write_summary_csv(policy_dir, run_metrics)
+    _write_leaderboard_markdown(policy_dir, aggregates)
+    _write_review_leaderboard_markdown(policy_dir, review_aggregates)
+    return policy_dir, summary
 
 
 def _mean_for(rows: list[dict], key: str) -> float | None:
@@ -831,8 +940,9 @@ def run_screening_benchmark(
     orchestrator_policy: str = "fixed",
     orchestrator_model_key: str = "openai_gpt5",
     review_keys: list[str] | None = None,
-    gold_label_policy: str = "include_label_0_5",
+    gold_label_policies: list[str] | None = None,
     include_subagent_steps: bool = True,
+    execute_policy_notebooks: bool = True,
 ) -> tuple[Path, dict]:
     """
     Run the Gatekeeper screening benchmark matrix and write experiment summaries.
@@ -841,6 +951,7 @@ def run_screening_benchmark(
         raise ValueError("--repeats must be at least 1")
     if orchestrator_policy not in {"fixed", "match-gatekeeper"}:
         raise ValueError("--orchestrator-policy must be 'fixed' or 'match-gatekeeper'")
+    selected_label_policies = gold_label_policies or list(SCREENING_LABEL_POLICIES)
 
     selected_reviews = resolve_review_selection(suite_name, review_keys)
     resolved_gatekeeper_models = resolve_model_presets(model_presets)
@@ -857,56 +968,91 @@ def run_screening_benchmark(
         orchestrator_policy,
     )
 
-    run_metrics: list[dict] = []
-    for gatekeeper_model in resolved_gatekeeper_models:
-        for review_case in selected_reviews:
-            for run_index in range(1, repeats + 1):
-                orchestrator_model = (
-                    fixed_orchestrator_model
-                    if orchestrator_policy == "fixed"
-                    else gatekeeper_model
-                )
-                logger.info(
-                    "Benchmark run: review=%s gatekeeper=%s orchestrator=%s repeat=%d/%d",
-                    review_case.key,
-                    gatekeeper_model.key,
-                    orchestrator_model.key,
-                    run_index,
-                    repeats,
-                )
-                metrics = run_screening_review(
-                    suite_name=suite_name,
-                    review_case=review_case,
-                    gatekeeper_model=gatekeeper_model,
-                    orchestrator_model=orchestrator_model,
-                    orchestrator_policy=orchestrator_policy,
-                    run_index=run_index,
-                    experiment_dir=experiment_dir,
-                    label_policy=gold_label_policy,
-                    include_subagent_steps=include_subagent_steps,
-                )
-                run_metrics.append(metrics)
+    raw_runs: list[dict] = []
+    with tempfile.TemporaryDirectory(prefix="screening_benchmark_raw_") as raw_runs_tmp:
+        raw_runs_output_root = Path(raw_runs_tmp)
+        for gatekeeper_model in resolved_gatekeeper_models:
+            for review_case in selected_reviews:
+                for run_index in range(1, repeats + 1):
+                    orchestrator_model = (
+                        fixed_orchestrator_model
+                        if orchestrator_policy == "fixed"
+                        else gatekeeper_model
+                    )
+                    logger.info(
+                        "Benchmark run: review=%s gatekeeper=%s orchestrator=%s repeat=%d/%d",
+                        review_case.key,
+                        gatekeeper_model.key,
+                        orchestrator_model.key,
+                        run_index,
+                        repeats,
+                    )
+                    raw_run = run_screening_review(
+                        suite_name=suite_name,
+                        review_case=review_case,
+                        gatekeeper_model=gatekeeper_model,
+                        orchestrator_model=orchestrator_model,
+                        orchestrator_policy=orchestrator_policy,
+                        run_index=run_index,
+                        output_root=raw_runs_output_root,
+                        label_policy="include_label_0_5",
+                        include_subagent_steps=include_subagent_steps,
+                    )
+                    raw_runs.append(raw_run)
 
-    aggregates = _aggregate_runs(run_metrics)
-    review_aggregates = _aggregate_runs_by_review(run_metrics)
-    summary = _write_summary_json(
-        experiment_dir,
-        suite_name=suite_name,
-        repeats=repeats,
-        review_keys=[review.key for review in selected_reviews],
-        model_presets=[model.key for model in resolved_gatekeeper_models],
-        orchestrator_policy=orchestrator_policy,
-        orchestrator_preset=(
+        review_key_list = [review.key for review in selected_reviews]
+        model_key_list = [model.key for model in resolved_gatekeeper_models]
+        orchestrator_preset = (
             fixed_orchestrator_model.key
             if orchestrator_policy == "fixed"
             else "match-gatekeeper"
-        ),
-        gold_label_policy=gold_label_policy,
-        run_metrics=run_metrics,
-        aggregates=aggregates,
-        review_aggregates=review_aggregates,
-    )
-    _write_summary_csv(experiment_dir, run_metrics)
-    _write_leaderboard_markdown(experiment_dir, aggregates)
-    _write_review_leaderboard_markdown(experiment_dir, review_aggregates)
-    return experiment_dir, summary
+        )
+
+        policy_summaries: dict[str, dict] = {}
+        for label_policy in selected_label_policies:
+            policy_dir, summary = _materialize_policy_outputs(
+                experiment_dir,
+                suite_name=suite_name,
+                repeats=repeats,
+                review_keys=review_key_list,
+                model_presets=model_key_list,
+                orchestrator_policy=orchestrator_policy,
+                orchestrator_preset=orchestrator_preset,
+                label_policy=label_policy,
+                raw_runs=raw_runs,
+            )
+            notebook_info = write_policy_eda_notebook(
+                policy_dir,
+                execute=execute_policy_notebooks,
+            )
+            html_report_info = write_policy_html_report(policy_dir)
+            policy_summaries[label_policy] = {
+                "directory": str(policy_dir),
+                "summary_json": str(policy_dir / "summary.json"),
+                "summary_csv": str(policy_dir / "summary.csv"),
+                "leaderboard_markdown": str(policy_dir / "leaderboard.md"),
+                "review_leaderboard_markdown": str(policy_dir / "review_leaderboard.md"),
+                "runs_dir": str(policy_dir / "runs"),
+                "html_report": html_report_info["report_path"],
+                "eda_notebook": notebook_info["notebook_path"],
+                "eda_notebook_executed": notebook_info["executed"],
+                "eda_notebook_execution_error": notebook_info["execution_error"],
+                "summary": summary,
+            }
+
+        comparison_report = None
+        if {"include_label_0_5", "exclude_label_0_5"}.issubset(policy_summaries):
+            comparison_report = write_policy_comparison_report(experiment_dir)["report_path"]
+
+    return experiment_dir, {
+        "generated_at": datetime.now().isoformat(),
+        "suite": suite_name,
+        "repeats": repeats,
+        "review_keys": review_key_list,
+        "model_presets": model_key_list,
+        "orchestrator_policy": orchestrator_policy,
+        "orchestrator_preset": orchestrator_preset,
+        "gold_label_policies": selected_label_policies,
+        "comparison_html_report": comparison_report,
+        "policy_outputs": policy_summaries,
+    }
