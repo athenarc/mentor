@@ -53,10 +53,10 @@ cp .env.example .env
 cd systematic_review_dataset && ./download_dataset.sh && cd ..
 
 # 4. List available reviews
-PYTHONPATH=. python3 -m bastirr.run_demo --list-reviews --split HIV_test
+python3 -m bastirr.run_demo --list-reviews --split HIV_test
 
 # 5. Run the demo (uses default HIV Cotrimoxazole review with OpenAI)
-PYTHONPATH=. python3 -m bastirr.run_demo
+python3 -m bastirr.run_demo
 ```
 
 ## Project Structure
@@ -68,6 +68,9 @@ bastirr/
 ├── logging_utils.py         # Run logging (workflow + decision summary)
 ├── run_demo.py              # CLI entry point & end-to-end runner
 ├── requirements.txt         # Python dependencies
+├── scripts/
+│   ├── __init__.py          # Bastirr-specific utility scripts
+│   └── render_workflow_presentation.py  # Presentation HTML exporter for completed runs
 ├── data/
 │   └── __init__.py          # Dataset loader (SystematicReview dataclass)
 ├── agents/
@@ -91,7 +94,7 @@ bastirr/
 
 | Directory | Description |
 |-----------|-------------|
-| `bastirr/` | Core agent package — agents, tools, config, data loader, CLI runner. |
+| `bastirr/` | Core agent package — agents, tools, config, data loader, CLI runner, and Bastirr-specific utility scripts. |
 | `systematic_review_dataset/` | Cochrane dataset (8,608 reviews, 544K studies) used as the input source for the demo. |
 | `resources/architecture_docs/` | Design specs defining the 5-agent architecture, MCP integration, and Expert-in-the-Loop approach. |
 | `resources/vaccine_indicators_demo/` | Separate LLM pipeline for medical evidence extraction (PDF → OCR → extraction → synthesis). |
@@ -106,6 +109,107 @@ This is a **scaffolding implementation** — the agents run end-to-end and produ
 - **Critic**: Synthesizes from abstract-level evidence
 
 The pipeline has been validated on the Cotrimoxazole/HIV review (10 candidates, 1 included), achieving 10/10 screening accuracy against the Cochrane ground truth. Outputs include a structured Markdown report (`report.md`) and a machine-readable evidence file (`evidence.json`).
+
+## Workflow Presentation Exporter
+
+Bastirr includes a presentation-oriented exporter for completed runs:
+
+- **Script**: `bastirr/scripts/render_workflow_presentation.py`
+- **Primary input**: `workflow.log`
+- **Optional enrichment**: sibling `activity.md`
+- **Output**: self-contained `workflow_presentation.html`
+
+The exporter is designed for demos, reviews, and handovers. It preserves the chronological run trace while making it easier to present:
+
+- run metadata and protocol summaries
+- phase summaries from `activity.md`
+- code and executed-code toggles
+- optional presenter annotations
+- phase and inline-step navigation
+
+It uses the standard project dependencies from `requirements.txt`, including `pygments` for syntax highlighting in rendered code blocks.
+
+### Basic usage
+
+Generate a presentation HTML file beside a completed run:
+
+```bash
+python3 -m bastirr.scripts.render_workflow_presentation \
+  --workflow "bastirr/output/<timestamp>_<review-title>/workflow.log"
+```
+
+Disable annotations entirely:
+
+```bash
+python3 -m bastirr.scripts.render_workflow_presentation \
+  --workflow "bastirr/output/<timestamp>_<review-title>/workflow.log" \
+  --disable-annotations
+```
+
+Use a specific annotations file and output path:
+
+```bash
+python3 -m bastirr.scripts.render_workflow_presentation \
+  --workflow "bastirr/output/<timestamp>_<review-title>/workflow.log" \
+  --annotations "bastirr/output/<timestamp>_<review-title>/workflow_presentation_annotations.json" \
+  --output "bastirr/output/<timestamp>_<review-title>/presentation.html"
+```
+
+Workflow-only mode without `activity.md` enrichment:
+
+```bash
+python3 -m bastirr.scripts.render_workflow_presentation \
+  --workflow "bastirr/output/<timestamp>_<review-title>/workflow.log" \
+  --activity none
+```
+
+### CLI options
+
+```text
+PYTHONPATH=. python3 -m bastirr.scripts.render_workflow_presentation [OPTIONS]
+
+Options:
+  --workflow PATH                  Path to workflow.log (required)
+  --activity PATH|none             Optional activity.md path; defaults to sibling file if present
+  --annotations PATH               Optional annotations JSON
+  --disable-annotations            Ignore annotations even if provided
+  --output PATH                    Output HTML path; defaults to workflow_presentation.html beside workflow.log
+  --title TEXT                     Override the page title
+  --hide-code-default true|false   Hide raw code blocks on initial load (default: true)
+  --hide-executed-code-default true|false
+                                   Hide executed-code blocks on initial load (default: true)
+```
+
+### Annotation file
+
+The exporter supports an optional sidecar JSON file for presenter notes:
+
+```json
+{
+  "hero": {
+    "title": "What to notice",
+    "body": [
+      "The orchestrator only sees the protocol, not the candidate studies."
+    ]
+  },
+  "sections": {
+    "phase-2": {
+      "title": "Search handoff",
+      "body": [
+        "This phase shows the librarian search and the candidate handoff to screening."
+      ]
+    }
+  }
+}
+```
+
+Navigation in the exported HTML follows the run structure:
+
+- `Intro`
+- phase sections (`PHASE-1`, `PHASE-2`, ...)
+- inline `Workflow Output` step markers inside each phase (`PHASE-2 · Step 1`, `PHASE-2 · Step 2`, ...)
+
+This makes the file suitable both for presentation and for structured walkthroughs of a Bastirr run.
 
 ### Next Steps
 
@@ -140,7 +244,7 @@ BASTIRR_MODEL=gpt-5
 OPENAI_API_KEY=sk-...
 
 # Or via CLI
-PYTHONPATH=. python3 -m bastirr.run_demo --model gpt-5
+python3 -m bastirr.run_demo --model gpt-5
 ```
 
 ### Anthropic (via LiteLLM)
@@ -152,7 +256,7 @@ BASTIRR_MODEL=anthropic/claude-3-5-sonnet-latest
 BASTIRR_API_KEY=sk-ant-...
 
 # Or via CLI
-PYTHONPATH=. python3 -m bastirr.run_demo --backend litellm --model anthropic/claude-3-5-sonnet-latest
+python3 -m bastirr.run_demo --backend litellm --model anthropic/claude-3-5-sonnet-latest
 ```
 
 ### Local Models (Ollama)
@@ -167,7 +271,7 @@ BASTIRR_MODEL=ollama_chat/llama3.2
 BASTIRR_API_BASE=http://localhost:11434
 
 # Or via CLI
-PYTHONPATH=. python3 -m bastirr.run_demo \
+python3 -m bastirr.run_demo \
   --backend litellm \
   --model ollama_chat/llama3.2 \
   --api-base http://localhost:11434
@@ -185,7 +289,7 @@ LiteLLM supports 100+ providers. See [LiteLLM docs](https://docs.litellm.ai/) fo
 ## CLI Arguments
 
 ```bash
-PYTHONPATH=. python3 -m bastirr.run_demo [OPTIONS]
+python3 -m bastirr.run_demo [OPTIONS]
 
 Options:
   --review-url URL     Cochrane review URL to process
