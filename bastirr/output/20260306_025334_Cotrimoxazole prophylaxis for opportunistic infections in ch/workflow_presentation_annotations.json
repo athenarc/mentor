@@ -1,0 +1,29 @@
+{
+  "hero": {
+    "title": "What to notice in this run",
+    "body": [
+      "This export is meant for presentation use: it keeps the chronology of the raw workflow log, but foregrounds the task prompt, agent thinking, execution logs, and final answers.",
+      "Code and parsed-code execution are still available for credibility, but they are hidden by default so we can focus on what each agent is doing and why."
+    ]
+  },
+  "sections": {
+    "phase-1": {
+      "title": "Framing note",
+      "body": [
+        "The orchestrator starts by extracting the review protocol and turning it into a concrete multi-step plan before any agent is called."
+      ]
+    },
+    "phase-2": {
+      "title": "Librarian behavior",
+      "body": [
+        "This is the retrieval phase. The important thing to show here is that the librarian broadens the search space first, and only later does the gatekeeper apply strict inclusion criteria."
+      ]
+    },
+    "phase-6": {
+      "title": "Critic nuance",
+      "body": [
+        "This phase is where the system turns extracted study facts into an interpretable synthesis and explicit quality judgment. For a presentation, this is often the best place to pause and explain how the agent goes from evidence to conclusion."
+      ]
+    }
+  }
+}
