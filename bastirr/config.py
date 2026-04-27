@@ -38,7 +38,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 MODEL_BACKEND = os.getenv("BASTIRR_MODEL_BACKEND", "openai")
 
 # Model identifier  (provider-prefixed for LiteLLM, e.g. "ollama_chat/llama3")
-DEFAULT_MODEL_ID = os.getenv("BASTIRR_MODEL", "gpt-4o")
+DEFAULT_MODEL_ID = os.getenv("BASTIRR_MODEL", "gpt-5")
 
 # Optional: API base URL (for local servers such as Ollama, vLLM, etc.)
 API_BASE = os.getenv("BASTIRR_API_BASE", "")  # e.g. http://localhost:11434

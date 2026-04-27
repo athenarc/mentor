@@ -131,16 +131,16 @@ Bastirr supports **multiple model backends** via smolagents:
 
 ### OpenAI (default)
 
-Use OpenAI models like GPT-4o, GPT-4-turbo, GPT-5, etc.
+Use OpenAI models like GPT-5, GPT-5.2, etc.
 
 ```bash
 # Via .env
 BASTIRR_MODEL_BACKEND=openai
-BASTIRR_MODEL=gpt-4o
+BASTIRR_MODEL=gpt-5
 OPENAI_API_KEY=sk-...
 
 # Or via CLI
-PYTHONPATH=. python3 -m bastirr.run_demo --model gpt-4o
+PYTHONPATH=. python3 -m bastirr.run_demo --model gpt-5
 ```
 
 ### Anthropic (via LiteLLM)
@@ -190,7 +190,7 @@ PYTHONPATH=. python3 -m bastirr.run_demo [OPTIONS]
 Options:
   --review-url URL     Cochrane review URL to process
   --split SPLIT        Dataset split: dev, val, random_test, heart_test, HIV_test
-  --model MODEL_ID     Model identifier (e.g. gpt-4o, anthropic/claude-3-5-sonnet-latest)
+  --model MODEL_ID     Model identifier (e.g. gpt-5, anthropic/claude-3-5-sonnet-latest)
   --backend BACKEND    Model backend: openai (default) or litellm or hf-hub (local inference)
   --api-base URL       API base URL for local servers (e.g. http://localhost:11434)
   --list-reviews       List available reviews and exit
@@ -204,7 +204,7 @@ All configuration lives in [`bastirr/config.py`](bastirr/config.py). Key setting
 |---------|--------|---------|-------------|
 | `OPENAI_API_KEY` | `.env` | (required for OpenAI) | OpenAI API key |
 | `BASTIRR_MODEL_BACKEND` | `.env` | `openai` | Model backend: `openai` or `litellm` |
-| `BASTIRR_MODEL` | `.env` | `gpt-4o` | Model identifier (provider-prefixed for LiteLLM) |
+| `BASTIRR_MODEL` | `.env` | `gpt-5` | Model identifier (provider-prefixed for LiteLLM) |
 | `BASTIRR_API_BASE` | `.env` | — | API base URL for local servers |
 | `BASTIRR_API_KEY` | `.env` | — | Generic API key for non-OpenAI providers |
 | `BASTIRR_EXECUTOR_TIMEOUT` | `.env` | `500` | Max seconds per code-execution step |
