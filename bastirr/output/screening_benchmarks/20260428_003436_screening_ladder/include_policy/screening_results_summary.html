@@ -428,7 +428,7 @@
           <h1>Title and Abstract Screening Benchmark Summary</h1>
           <p>
             This page summarizes the measured screening performance for the benchmark bundle in
-            <code>20260408_170127_screening_ladder</code> under the active gold-label
+            <code>20260428_003436_screening_ladder</code> under the active gold-label
             policy. It focuses on run health, aggregate metrics, review-level behavior, runtime,
             repeat stability, and recurring study-level errors across scored runs.
           </p>
@@ -551,7 +551,7 @@
           <h2>Recurring study-level mistakes</h2>
         </div>
         <p>
-          These titles were misclassified repeatedly across scored runs. Most recurring mistakes are false negatives, concentrated in heart failure mhealth 200, alopecia areata 25.
+          These titles were misclassified repeatedly across scored runs. Most recurring mistakes are false negatives, concentrated in alopecia areata 25, heart failure mhealth 200.
         </p>
       </div>
       <div class="study-list" id="study-list"></div>
@@ -570,26 +570,26 @@
     "runsIncomplete": 0,
     "parseSuccessRate": 1.0,
     "decisionCoverage": 1.0,
-    "macroAccuracy": 0.732,
-    "macroPrecision": 0.9882352941176471,
-    "macroRecall": 0.5813739802490339,
+    "macroAccuracy": 0.7430000000000001,
+    "macroPrecision": 0.9857142857142858,
+    "macroRecall": 0.6071139258623157,
     "macroSpecificity": 0.975,
-    "macroF1": 0.6623665125747487,
-    "meanDurationSeconds": 499.18490429180093,
-    "durationStdSeconds": 595.8581568069935,
+    "macroF1": 0.6906573974652386,
+    "meanDurationSeconds": 670.0104673002018,
+    "durationStdSeconds": 331.5798442426464,
     "confusion": {
-      "tp": 86,
+      "tp": 81,
       "fp": 1,
       "tn": 146,
-      "fn": 152
+      "fn": 157
     },
     "dispersion": {
-      "accuracy": 0.22184679398179277,
-      "precision": 0.02352941176470589,
-      "recall": 0.3363646255547512,
+      "accuracy": 0.2087965516956638,
+      "precision": 0.02857142857142856,
+      "recall": 0.2966420832551126,
       "specificity": 0.05,
-      "f1": 0.3146022692138554,
-      "duration": 595.8581568069935
+      "f1": 0.31985799124115516,
+      "duration": 331.5798442426464
     }
   },
   "reviews": [
@@ -598,105 +598,123 @@
       "label": "stroke theophylline 10",
       "studies": 10,
       "goldInclude": 6,
-      "accuracy": 0.6,
+      "accuracy": 0.8,
       "precision": 1.0,
-      "recall": 0.3333333333333333,
+      "recall": 0.6666666666666666,
       "specificity": 1.0,
-      "f1": 0.5,
-      "duration": 113.45948550000321
+      "f1": 0.8,
+      "duration": 789.2889655420004
     },
     {
       "key": "alopecia_areata_25",
       "label": "alopecia areata 25",
       "studies": 25,
       "goldInclude": 17,
-      "accuracy": 0.92,
-      "precision": 0.9411764705882353,
-      "recall": 0.9411764705882353,
+      "accuracy": 0.8,
+      "precision": 0.9285714285714286,
+      "recall": 0.7647058823529411,
       "specificity": 0.875,
-      "f1": 0.9411764705882353,
-      "duration": 159.06082016599248
+      "f1": 0.8387096774193549,
+      "duration": 330.7610746250066
     },
     {
       "key": "iud_insertion_pain_50",
       "label": "iud insertion pain 50",
       "studies": 50,
       "goldInclude": 30,
-      "accuracy": 0.94,
+      "accuracy": 0.92,
       "precision": 1.0,
-      "recall": 0.9,
+      "recall": 0.8666666666666667,
       "specificity": 1.0,
-      "f1": 0.9473684210526316,
-      "duration": 198.32409733399982
+      "f1": 0.9285714285714286,
+      "duration": 640.1133343749971
     },
     {
       "key": "pelvic_floor_training_100",
       "label": "pelvic floor training 100",
       "studies": 100,
       "goldInclude": 48,
-      "accuracy": 0.84,
+      "accuracy": 0.86,
       "precision": 1.0,
-      "recall": 0.6666666666666666,
+      "recall": 0.7083333333333334,
       "specificity": 1.0,
-      "f1": 0.8,
-      "duration": 344.2654268750048
+      "f1": 0.8292682926829268,
+      "duration": 354.32128545900196
     },
     {
       "key": "heart_failure_mhealth_200",
       "label": "heart failure mhealth 200",
       "studies": 200,
       "goldInclude": 137,
-      "accuracy": 0.36,
+      "accuracy": 0.335,
       "precision": 1.0,
-      "recall": 0.06569343065693431,
+      "recall": 0.029197080291970802,
       "specificity": 1.0,
-      "f1": 0.12328767123287672,
-      "duration": 1680.8146915840043
+      "f1": 0.05673758865248227,
+      "duration": 1235.5676765000026
     }
   ],
   "worstRuns": [
     {
       "run": "heart failure mhealth 200 run 1",
       "review": "heart failure mhealth 200",
-      "accuracy": 0.36,
+      "accuracy": 0.335,
       "precision": 1.0,
-      "recall": 0.06569343065693431,
-      "f1": 0.12328767123287672
+      "recall": 0.029197080291970802,
+      "f1": 0.05673758865248227
     },
     {
       "run": "stroke theophylline 10 run 1",
       "review": "stroke theophylline 10",
-      "accuracy": 0.6,
-      "precision": 1.0,
-      "recall": 0.3333333333333333,
-      "f1": 0.5
-    },
-    {
-      "run": "pelvic floor training 100 run 1",
-      "review": "pelvic floor training 100",
-      "accuracy": 0.84,
+      "accuracy": 0.8,
       "precision": 1.0,
       "recall": 0.6666666666666666,
       "f1": 0.8
     },
     {
+      "run": "pelvic floor training 100 run 1",
+      "review": "pelvic floor training 100",
+      "accuracy": 0.86,
+      "precision": 1.0,
+      "recall": 0.7083333333333334,
+      "f1": 0.8292682926829268
+    },
+    {
       "run": "alopecia areata 25 run 1",
       "review": "alopecia areata 25",
-      "accuracy": 0.92,
-      "precision": 0.9411764705882353,
-      "recall": 0.9411764705882353,
-      "f1": 0.9411764705882353
+      "accuracy": 0.8,
+      "precision": 0.9285714285714286,
+      "recall": 0.7647058823529411,
+      "f1": 0.8387096774193549
     },
     {
       "run": "iud insertion pain 50 run 1",
       "review": "iud insertion pain 50",
-      "accuracy": 0.94,
+      "accuracy": 0.92,
       "precision": 1.0,
-      "recall": 0.9,
-      "f1": 0.9473684210526316
+      "recall": 0.8666666666666667,
+      "f1": 0.9285714285714286
     }
   ],
   "studies": [
+    {
+      "ref": "alopecia areata 25 #15",
+      "title": "Topical minoxidil in extensive alopecia areata, including 3-year follow-up",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "alopecia_areata_25"
+    },
+    {
+      "ref": "alopecia areata 25 #16",
+      "title": "Therapies versus placebo in the treatment of patchy alopecia areata",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "alopecia_areata_25"
+    },
     {
       "ref": "alopecia areata 25 #19",
       "title": "Randomized trial of aromatherapy. Successful treatment for alopecia areata.",
@@ -704,6 +722,15 @@
       "error": "false_positive",
       "gold": "0.0",
       "outcome": "excluded_at_screening",
+      "review_key": "alopecia_areata_25"
+    },
+    {
+      "ref": "alopecia areata 25 #23",
+      "title": "Treatment of alopecia totalis with a combination of inosine pranobex and diphencyprone compared to each treatment alone",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
       "review_key": "alopecia_areata_25"
     },
     {
@@ -754,33 +781,6 @@
     {
       "ref": "heart failure mhealth 200 #133",
       "title": "The effect of a personalized approach to patient education on heart failure self-management",
-      "mistakes": 1,
-      "error": "false_negative",
-      "gold": "0.5",
-      "outcome": "excluded_after_full_text",
-      "review_key": "heart_failure_mhealth_200"
-    },
-    {
-      "ref": "heart failure mhealth 200 #134",
-      "title": "Embedding patient education in mobile platform for patients with heart failure",
-      "mistakes": 1,
-      "error": "false_negative",
-      "gold": "0.5",
-      "outcome": "excluded_after_full_text",
-      "review_key": "heart_failure_mhealth_200"
-    },
-    {
-      "ref": "heart failure mhealth 200 #135",
-      "title": "An interactive technology self-management solution",
-      "mistakes": 1,
-      "error": "false_negative",
-      "gold": "0.5",
-      "outcome": "excluded_after_full_text",
-      "review_key": "heart_failure_mhealth_200"
-    },
-    {
-      "ref": "heart failure mhealth 200 #136",
-      "title": "Heart Messages: a tailored message intervention for improving heart failure outcomes",
       "mistakes": 1,
       "error": "false_negative",
       "gold": "0.5",

@@ -16,11 +16,11 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
         )
 
     def test_deepseek_preset_label_carries_reasoning_context(self):
-        preset = get_model_preset("deepseek_v3_2_thinking").resolve(strict=False)
+        preset = get_model_preset("deepseek_v4_pro").resolve(strict=False)
 
         self.assertEqual(
             preset.model_label,
-            "deepseek-reasoner [DeepSeek V3.2 Thinking]",
+            "deepseek-v4-pro [DeepSeek V4 Pro]",
         )
 
     def test_legacy_aliases_are_rejected(self):

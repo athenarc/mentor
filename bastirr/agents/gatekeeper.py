@@ -84,7 +84,7 @@ def create_gatekeeper_agent(model, step_callbacks=None, logger=None) -> CodeAgen
         max_steps=10,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
-        additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy"],
+        additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy", "pickle", "sys"],
         step_callbacks=step_callbacks or [],
         logger=logger,
     )

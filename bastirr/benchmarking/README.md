@@ -178,14 +178,13 @@ The preset definitions live in `bastirr/benchmarking/config/model_presets.json`.
 Built-in presets:
 
 - `openai_gpt5`
-- `deepseek_v3_2_thinking`
+- `deepseek_v4_pro`
 - `ollama_qwen3_5_27b_bf16`
 
 Current meanings:
 
 - `openai_gpt5`: `gpt-5` via the OpenAI API
-- `deepseek_v3_2_thinking`: `deepseek-reasoner`, which corresponds to DeepSeek V3.2
-  with Thinking enabled
+- `deepseek_v4_pro`: `deepseek-v4-pro` via the DeepSeek API
 - `ollama_qwen3_5_27b_bf16`: `qwen3.5:27b-bf16` via Ollama's OpenAI-compatible API at
   `http://localhost:11434/v1`
 
@@ -269,7 +268,7 @@ PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
 
 # Match the thin orchestrator model to the Gatekeeper model
 PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
-  --model-presets openai_gpt5 deepseek_v3_2_thinking \
+  --model-presets openai_gpt5 deepseek_v4_pro \
   --orchestrator-policy match-gatekeeper \
   --repeats 5
 

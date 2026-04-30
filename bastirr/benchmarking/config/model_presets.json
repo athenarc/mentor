@@ -12,12 +12,12 @@
       "requires_api_key": true
     },
     {
-      "key": "deepseek_v3_2_thinking",
-      "description": "DeepSeek V3.2 Thinking",
-      "display_name_default": "deepseek-reasoner",
+      "key": "deepseek_v4_pro",
+      "description": "DeepSeek V4 Pro",
+      "display_name_default": "deepseek-v4-pro",
       "display_name_env_var": "BASTIRR_DEEPSEEK_MODEL",
       "backend": "openai",
-      "model_id_default": "deepseek-reasoner",
+      "model_id_default": "deepseek-v4-pro",
       "model_id_env_var": "BASTIRR_DEEPSEEK_MODEL",
       "api_base_default": "https://api.deepseek.com",
       "api_base_env_var": "DEEPSEEK_API_HOST",

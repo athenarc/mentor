@@ -102,6 +102,6 @@ def create_screening_orchestrator_agent(
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         step_callbacks=step_callbacks or [],
-        additional_authorized_imports=[],
+        additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy", "sys", "pickle"],
         logger=logger,
     )

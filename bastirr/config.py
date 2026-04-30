@@ -52,7 +52,7 @@ API_KEY = os.getenv("BASTIRR_API_KEY", "")
 GPT5_MODEL_ID = os.getenv("BASTIRR_GPT5_MODEL", "gpt-5")
 DEEPSEEK_MODEL_ID = os.getenv(
     "BASTIRR_DEEPSEEK_MODEL",
-    os.getenv("DEEPSEEK_MODEL", "deepseek-reasoner"),
+    os.getenv("DEEPSEEK_MODEL", "deepseek-v4-pro"),
 )
 QWEN_OLLAMA_MODEL_ID = os.getenv(
     "BASTIRR_QWEN_OLLAMA_MODEL",
