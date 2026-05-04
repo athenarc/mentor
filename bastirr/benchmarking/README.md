@@ -183,8 +183,8 @@ Built-in presets:
 
 Current meanings:
 
-- `openai_gpt5`: `gpt-5` via the OpenAI API
-- `deepseek_v4_pro`: `deepseek-v4-pro` via the DeepSeek API
+- `openai_gpt5`: GPT-5 benchmark preset, now called through OpenRouter
+- `deepseek_v4_pro`: DeepSeek V4 Pro benchmark preset, now called through OpenRouter
 - `ollama_qwen3_5_27b_bf16`: `qwen3.5:27b-bf16` via Ollama's OpenAI-compatible API at
   `http://localhost:11434/v1`
 
@@ -212,12 +212,23 @@ single-model runs:
 
 The benchmark also supports optional built-in preset overrides:
 
+- `OPENROUTER_API_KEY`
+- `OPENROUTER_API_BASE`
 - `BASTIRR_GPT5_MODEL`
 - `BASTIRR_DEEPSEEK_MODEL`
 - `BASTIRR_QWEN_OLLAMA_MODEL`
 - `BASTIRR_OLLAMA_API_BASE`
-- `DEEPSEEK_API_KEY`
-- `DEEPSEEK_API_HOST`
+
+Recommended OpenRouter setup for the benchmark presets:
+
+```bash
+OPENROUTER_API_KEY=sk-or-v1-...
+OPENROUTER_API_BASE=https://openrouter.ai/api/v1
+
+# Optional explicit preset overrides
+BASTIRR_GPT5_MODEL=openai/gpt-5
+BASTIRR_DEEPSEEK_MODEL=deepseek/deepseek-v4-pro
+```
 
 Example Ollama setup using the OpenAI-compatible path:
 

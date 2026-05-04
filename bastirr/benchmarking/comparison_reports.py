@@ -10,6 +10,7 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from bastirr.benchmarking.model_presets import get_model_preset
 
 COMPARISON_REPORT_FILENAME = "screening_policy_comparison.html"
 
@@ -100,17 +101,17 @@ _COMPARISON_CSS = """
     }
 
     .hero h1 {
-      font-size: clamp(2.4rem, 4vw, 4.3rem);
-      line-height: 0.95;
-      max-width: 10ch;
+      font-size: clamp(2.25rem, 4vw, 3.55rem);
+      line-height: 0.98;
+      max-width: 15ch;
       margin-bottom: 14px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.3fr 1fr;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
       gap: 28px;
-      align-items: end;
+      align-items: start;
     }
 
     .hero-copy { display: grid; gap: 18px; }
@@ -119,6 +120,40 @@ _COMPARISON_CSS = """
       max-width: 65ch;
       color: var(--muted);
       font-size: 1.04rem;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .hero-model {
+      display: grid;
+      gap: 6px;
+      justify-items: start;
+      align-content: start;
+      min-height: 0;
+      padding: 0;
+    }
+
+    .hero-model .k {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-weight: 700;
+    }
+
+    .hero-model .v {
+      color: var(--ink);
+      font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+      font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+      line-height: 1.02;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+      text-wrap: pretty;
     }
 
     .badge-row, .source-row {
@@ -439,7 +474,6 @@ _COMPARISON_CSS = """
     }
 
     @media (max-width: 980px) {
-      .hero-grid,
       .grid-2,
       .metric-grid {
         grid-template-columns: 1fr;
@@ -452,7 +486,15 @@ _COMPARISON_CSS = """
       .section-header {
         display: grid;
       }
+    }
 
+    @media (max-width: 720px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
       .source-row {
         grid-template-columns: 1fr;
       }
@@ -468,6 +510,10 @@ _COMPARISON_CSS = """
       .section {
         padding: 20px;
         border-radius: 24px;
+      }
+
+      .hero-model {
+        min-height: 0;
       }
 
       .hero-stat-panel,
@@ -506,6 +552,35 @@ def _as_int(value, default: int = 0) -> int:
         return int(float(value))
     except (TypeError, ValueError):
         return default
+
+
+def _display_gatekeeper_model(label: str) -> str:
+    normalized = str(label).strip()
+    if not normalized:
+        return normalized
+    if "[" in normalized and normalized.endswith("]"):
+        _prefix, bracket_part = normalized.rsplit("[", 1)
+        bracket_value = bracket_part[:-1].strip()
+        if bracket_value:
+            return bracket_value
+    return normalized
+
+
+def _report_gatekeeper_name_from_preset(preset_key: str) -> str:
+    preset = get_model_preset(preset_key).resolve(strict=False)
+    return preset.description or _display_gatekeeper_model(preset.model_label)
+
+
+def _unique_in_order(values: list[str]) -> list[str]:
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for value in values:
+        normalized = str(value).strip()
+        if not normalized or normalized in seen:
+            continue
+        seen.add(normalized)
+        ordered.append(normalized)
+    return ordered
 
 
 def _load_policy_payload(policy_dir: Path) -> dict:
@@ -596,6 +671,51 @@ def _render_links(experiment_dir: Path) -> str:
                     f'<a class="source-link" href="./{html.escape(policy_dir.name)}/{html.escape(filename)}">{html.escape(policy_label)} {html.escape(label)}</a>'
                 )
     return "\n".join(f"            {link}" for link in links)
+
+
+def _gatekeeper_model_summary(*payloads: dict) -> dict | None:
+    preset_keys = _unique_in_order(
+        [
+            str(row.get("gatekeeper_preset", ""))
+            for payload in payloads
+            for row in payload["summary"].get("leaderboard", [])
+        ]
+        + [
+            str(run.get("gatekeeper_preset", ""))
+            for payload in payloads
+            for run in payload["runs"]
+        ]
+    )
+    labels: list[str] = []
+    for preset_key in preset_keys:
+        try:
+            labels.append(_report_gatekeeper_name_from_preset(preset_key))
+        except ValueError:
+            continue
+    if not labels:
+        labels = _unique_in_order(
+            [
+                str(row.get("gatekeeper_model_label", ""))
+                for payload in payloads
+                for row in payload["summary"].get("leaderboard", [])
+            ]
+            + [
+                str(run.get("gatekeeper_model_label", ""))
+                for payload in payloads
+                for run in payload["runs"]
+            ]
+        )
+    if not labels:
+        return None
+    if len(labels) == 1:
+        return {
+            "label": "Gatekeeper model",
+            "value": _display_gatekeeper_model(labels[0]),
+        }
+    return {
+        "label": "Gatekeeper models",
+        "value": ", ".join(_display_gatekeeper_model(label) for label in labels),
+    }
 
 
 def _build_comparison_payload(experiment_dir: Path) -> dict:
@@ -703,8 +823,10 @@ def _build_comparison_payload(experiment_dir: Path) -> dict:
 
     comparison = {
         "title": "Screening Benchmark Policy Comparison",
+        "title_html": "Screening Benchmark<br>Policy Comparison",
         "eyebrow": "Benchmark presentation • same screening runs • two label policies",
         "experiment": experiment_dir.name,
+        "gatekeeper_model": _gatekeeper_model_summary(include, exclude),
         "hero_paragraph": (
             "These two benchmark views use the same review set and the same screening decisions, "
             "but they score label 0.5 differently. The comparison below shows how that single "
@@ -790,7 +912,7 @@ def _comparison_html(payload: dict) -> str:
       <div class="eyebrow">{html.escape(payload["eyebrow"])}</div>
       <div class="hero-grid">
         <div class="hero-copy">
-          <h1>{html.escape(payload["title"])}</h1>
+          <h1>{payload["title_html"]}</h1>
           <p>
             {html.escape(payload["hero_paragraph"])}
           </p>
@@ -801,7 +923,10 @@ def _comparison_html(payload: dict) -> str:
 {payload["links_html"]}
           </div>
         </div>
-        <div class="hero-stat-panel" id="hero-stats"></div>
+        <div class="hero-side">
+          {f'''<div class="hero-model"><div class="k">{html.escape(payload["gatekeeper_model"]["label"])}</div><div class="v">{html.escape(payload["gatekeeper_model"]["value"])}</div></div>''' if payload.get("gatekeeper_model") else ""}
+          <div class="hero-stat-panel" id="hero-stats"></div>
+        </div>
       </div>
     </header>
 

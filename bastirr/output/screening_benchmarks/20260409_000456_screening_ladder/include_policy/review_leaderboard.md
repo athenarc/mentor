@@ -14,7 +14,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | gpt-5 [OpenAI API] | fixed | gpt-5 [OpenAI API] | 5 | 5 | 0 | 0 | 0.500 | 0.333 | 1.000 | 0.600 | 1.000 | 1.000 | 1.000 |
+| 1 | gpt-5 [OpenAI GPT5] | fixed | gpt-5 [OpenAI GPT5] | 5 | 5 | 0 | 0 | 0.500 | 0.333 | 1.000 | 0.600 | 1.000 | 1.000 | 1.000 |
 
 ## alopecia_areata_25
 
@@ -26,7 +26,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | gpt-5 [OpenAI API] | fixed | gpt-5 [OpenAI API] | 5 | 5 | 0 | 0 | 0.895 | 0.859 | 0.936 | 0.864 | 0.875 | 1.000 | 1.000 |
+| 1 | gpt-5 [OpenAI GPT5] | fixed | gpt-5 [OpenAI GPT5] | 5 | 5 | 0 | 0 | 0.895 | 0.859 | 0.936 | 0.864 | 0.875 | 1.000 | 1.000 |
 
 ## iud_insertion_pain_50
 
@@ -38,7 +38,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | gpt-5 [OpenAI API] | fixed | gpt-5 [OpenAI API] | 5 | 5 | 0 | 0 | 0.928 | 0.867 | 1.000 | 0.920 | 1.000 | 1.000 | 1.000 |
+| 1 | gpt-5 [OpenAI GPT5] | fixed | gpt-5 [OpenAI GPT5] | 5 | 5 | 0 | 0 | 0.928 | 0.867 | 1.000 | 0.920 | 1.000 | 1.000 | 1.000 |
 
 ## pelvic_floor_training_100
 
@@ -50,7 +50,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | gpt-5 [OpenAI API] | fixed | gpt-5 [OpenAI API] | 5 | 5 | 0 | 0 | 0.759 | 0.613 | 1.000 | 0.814 | 1.000 | 1.000 | 1.000 |
+| 1 | gpt-5 [OpenAI GPT5] | fixed | gpt-5 [OpenAI GPT5] | 5 | 5 | 0 | 0 | 0.759 | 0.613 | 1.000 | 0.814 | 1.000 | 1.000 | 1.000 |
 
 ## heart_failure_mhealth_200
 
@@ -62,4 +62,4 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | gpt-5 [OpenAI API] | fixed | gpt-5 [OpenAI API] | 5 | 4 | 1 | 0 | 0.104 | 0.055 | 1.000 | 0.352 | 1.000 | 0.800 | 0.996 |
+| 1 | gpt-5 [OpenAI GPT5] | fixed | gpt-5 [OpenAI GPT5] | 5 | 4 | 1 | 0 | 0.104 | 0.055 | 1.000 | 0.352 | 1.000 | 0.800 | 0.996 |

@@ -12,6 +12,7 @@ from pathlib import Path
 from statistics import fmean, pstdev
 
 from bastirr.benchmarking.comparison_reports import write_policy_comparison_report
+from bastirr.benchmarking.model_presets import get_model_preset
 
 HTML_REPORT_FILENAME = "screening_results_summary.html"
 
@@ -108,17 +109,17 @@ _REPORT_CSS = """
     }
 
     .hero h1 {
-      font-size: clamp(2.2rem, 4vw, 4rem);
-      line-height: 0.95;
+      font-size: clamp(2.2rem, 4vw, 3.45rem);
+      line-height: 0.98;
       margin-bottom: 12px;
-      max-width: 11ch;
+      max-width: 16ch;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.25fr 1fr;
+      grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
       gap: 26px;
-      align-items: end;
+      align-items: start;
     }
 
     .hero-copy {
@@ -130,6 +131,40 @@ _REPORT_CSS = """
       max-width: 68ch;
       color: var(--muted);
       font-size: 1.04rem;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .hero-model {
+      display: grid;
+      gap: 6px;
+      justify-items: start;
+      align-content: start;
+      min-height: 0;
+      padding: 0;
+    }
+
+    .hero-model .k {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-weight: 700;
+    }
+
+    .hero-model .v {
+      color: var(--ink);
+      font-family: Georgia, "Palatino Linotype", serif;
+      font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+      line-height: 1.02;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+      text-wrap: pretty;
     }
 
     .link-row, .badge-row {
@@ -402,12 +437,18 @@ _REPORT_CSS = """
     }
 
     @media (max-width: 980px) {
-      .hero-grid, .grid-2, .mini-grid {
+      .grid-2, .mini-grid {
         grid-template-columns: 1fr;
       }
 
       .section-header {
         display: grid;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -420,6 +461,10 @@ _REPORT_CSS = """
       .hero, .section {
         padding: 20px;
         border-radius: 24px;
+      }
+
+      .hero-model {
+        min-height: 0;
       }
 
       .stat-grid, .confusion-grid {
@@ -486,6 +531,65 @@ def _metric_sd(values: list[float]) -> float:
     if len(values) <= 1:
         return 0.0
     return pstdev(values)
+
+
+def _display_gatekeeper_model(label: str) -> str:
+    normalized = str(label).strip()
+    if not normalized:
+        return normalized
+    if "[" in normalized and normalized.endswith("]"):
+        prefix, bracket_part = normalized.rsplit("[", 1)
+        bracket_value = bracket_part[:-1].strip()
+        if bracket_value:
+            return bracket_value
+        return prefix.strip()
+    return normalized
+
+
+def _report_gatekeeper_name_from_preset(preset_key: str) -> str:
+    preset = get_model_preset(preset_key).resolve(strict=False)
+    return preset.description or _display_gatekeeper_model(preset.model_label)
+
+
+def _unique_in_order(values: list[str]) -> list[str]:
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for value in values:
+        normalized = str(value).strip()
+        if not normalized or normalized in seen:
+            continue
+        seen.add(normalized)
+        ordered.append(normalized)
+    return ordered
+
+
+def _gatekeeper_model_summary(leaderboard_rows: list[dict], runs: list[dict]) -> dict | None:
+    preset_keys = _unique_in_order(
+        [str(row.get("gatekeeper_preset", "")) for row in leaderboard_rows]
+        + [str(run.get("gatekeeper_preset", "")) for run in runs]
+    )
+    labels: list[str] = []
+    for preset_key in preset_keys:
+        try:
+            labels.append(_report_gatekeeper_name_from_preset(preset_key))
+        except ValueError:
+            continue
+    if not labels:
+        labels = _unique_in_order(
+            [str(row.get("gatekeeper_model_label", "")) for row in leaderboard_rows]
+            + [str(run.get("gatekeeper_model_label", "")) for run in runs]
+        )
+    if not labels:
+        return None
+    if len(labels) == 1:
+        return {
+            "label": "Gatekeeper model",
+            "value": _display_gatekeeper_model(labels[0]),
+        }
+    return {
+        "label": "Gatekeeper models",
+        "value": ", ".join(_display_gatekeeper_model(label) for label in labels),
+    }
 
 
 def _top_metric_names(metrics: dict[str, float], count: int = 2) -> list[str]:
@@ -746,16 +850,19 @@ def _build_report_payload(policy_dir: Path) -> dict:
         "confusion": confusion,
         "dispersion": dispersion,
     }
+    model_summary = _gatekeeper_model_summary(leaderboard_rows, runs)
 
     return {
         "meta": {
             "title": report_title,
+            "title_html": "Title and Abstract<br>Screening Benchmark<br>Summary",
             "eyebrow": f"Policy-scored benchmark summary • {human_policy}",
             "eyebrow_code": label_policy,
             "experiment_name": experiment_name,
             "policy_path": _display_path(policy_dir),
             "badges": badge_counts,
             "links": links,
+            "gatekeeper_model": model_summary,
             "run_health_paragraph": _narrative_run_health(overall),
             "review_paragraph": _narrative_review_performance(reviews),
             "variability_paragraph": _narrative_variability(runs, scored_runs),
@@ -800,7 +907,7 @@ def _report_html(payload: dict) -> str:
       <div class="eyebrow">{html.escape(meta["eyebrow"])} • <code>{html.escape(meta["eyebrow_code"])}</code></div>
       <div class="hero-grid">
         <div class="hero-copy">
-          <h1>{html.escape(meta["title"])}</h1>
+          <h1>{meta["title_html"]}</h1>
           <p>
             This page summarizes the measured screening performance for the benchmark bundle in
             <code>{html.escape(meta["experiment_name"])}</code> under the active gold-label
@@ -817,7 +924,10 @@ def _report_html(payload: dict) -> str:
 {_render_links(meta["links"])}
           </div>
         </div>
-        <div class="stat-grid" id="hero-stats"></div>
+        <div class="hero-side">
+          {f'''<div class="hero-model"><div class="k">{html.escape(meta["gatekeeper_model"]["label"])}</div><div class="v">{html.escape(meta["gatekeeper_model"]["value"])}</div></div>''' if meta.get("gatekeeper_model") else ""}
+          <div class="stat-grid" id="hero-stats"></div>
+        </div>
       </div>
     </header>
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+from typing import Any
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
@@ -11,7 +12,8 @@ from pathlib import Path
 from smolagents import LiteLLMModel, OpenAIServerModel, TransformersModel
 
 
-_CONFIG_PATH = Path(__file__).resolve().parent / "config" / "model_presets.json"
+_CONFIG_DIR = Path(__file__).resolve().parent / "config"
+_DEFAULT_CONFIG_PATH = _CONFIG_DIR / "model_presets.json"
 
 
 @dataclass(frozen=True)
@@ -26,11 +28,13 @@ class ResolvedModelPreset:
     api_base: str | None
     api_key: str | None
     api_key_source: str
+    request_kwargs: dict[str, Any] | None = None
     default_api_key: str | None = None
 
     def create_model(self):
         """Instantiate the smolagents model for this preset without env leakage."""
         api_key = self.api_key or self.default_api_key
+        request_kwargs = dict(self.request_kwargs or {})
 
         if self.backend == "litellm":
             kwargs = {"model_id": self.model_id}
@@ -38,6 +42,7 @@ class ResolvedModelPreset:
                 kwargs["api_key"] = api_key
             if self.api_base:
                 kwargs["api_base"] = self.api_base
+            kwargs.update(request_kwargs)
             return LiteLLMModel(**kwargs)
 
         if self.backend == "hf-hub":
@@ -48,6 +53,7 @@ class ResolvedModelPreset:
             kwargs["api_key"] = api_key
         if self.api_base:
             kwargs["api_base"] = self.api_base
+        kwargs.update(request_kwargs)
         return OpenAIServerModel(**kwargs)
 
     @property
@@ -86,6 +92,7 @@ class ModelPreset:
     display_name_env_var: str | None = None
     model_id_env_var: str | None = None
     api_base_env_var: str | None = None
+    request_kwargs_default: dict[str, Any] | None = None
 
     def resolve(self, *, strict: bool = True) -> ResolvedModelPreset:
         """Resolve config-backed and environment-backed details."""
@@ -127,14 +134,27 @@ class ModelPreset:
             api_base=api_base,
             api_key=api_key,
             api_key_source=api_key_source,
+            request_kwargs=self.request_kwargs_default,
             default_api_key=self.default_api_key,
         )
 
 
 @lru_cache(maxsize=1)
 def _load_model_preset_config() -> dict:
-    with open(_CONFIG_PATH, "r", encoding="utf-8") as f:
+    with open(_get_config_path(), "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+@lru_cache(maxsize=1)
+def _get_config_path() -> Path:
+    raw_path = os.getenv("BASTIRR_MODEL_PRESETS_CONFIG", "").strip()
+    if not raw_path:
+        return _DEFAULT_CONFIG_PATH
+
+    candidate = Path(raw_path)
+    if not candidate.is_absolute():
+        candidate = _CONFIG_DIR / candidate
+    return candidate
 
 
 @lru_cache(maxsize=1)
@@ -155,14 +175,10 @@ def _build_canonical_model_presets() -> dict[str, ModelPreset]:
             display_name_env_var=item.get("display_name_env_var"),
             model_id_env_var=item.get("model_id_env_var"),
             api_base_env_var=item.get("api_base_env_var"),
+            request_kwargs_default=item.get("request_kwargs_default"),
         )
         presets[preset.key] = preset
     return presets
-
-
-@lru_cache(maxsize=1)
-def _build_model_preset_aliases() -> dict[str, str]:
-    return dict(_load_model_preset_config().get("aliases", {}))
 
 
 def list_model_presets() -> list[str]:
@@ -171,14 +187,13 @@ def list_model_presets() -> list[str]:
 
 
 def get_model_preset(name: str) -> ModelPreset:
-    """Return a canonical model preset, resolving aliases when needed."""
-    canonical_name = _build_model_preset_aliases().get(name, name)
+    """Return a canonical model preset."""
     presets = _build_canonical_model_presets()
-    if canonical_name not in presets:
+    if name not in presets:
         raise ValueError(
             f"Unknown model preset '{name}'. Available presets: {', '.join(list_model_presets())}"
         )
-    return presets[canonical_name]
+    return presets[name]
 
 
 def resolve_model_presets(names: list[str] | None = None) -> list[ResolvedModelPreset]:
@@ -197,4 +212,3 @@ def resolve_model_presets(names: list[str] | None = None) -> list[ResolvedModelP
 
 
 CANONICAL_MODEL_PRESETS = _build_canonical_model_presets()
-MODEL_PRESET_ALIASES = _build_model_preset_aliases()

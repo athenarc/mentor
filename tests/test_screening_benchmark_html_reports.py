@@ -31,13 +31,15 @@ class ScreeningBenchmarkHtmlReportTests(unittest.TestCase):
                     "suite": "screening_ladder",
                     "repeats": 1,
                     "review_keys": ["synthetic_review"],
-                    "gold_label_policy": "exclude_label_0_5",
-                    "leaderboard": [{
-                        "mean_accuracy": 0.9,
-                        "mean_precision": 0.8571,
-                        "mean_recall": 1.0,
-                        "mean_specificity": 0.75,
-                        "mean_f1": 0.9231,
+                        "gold_label_policy": "exclude_label_0_5",
+                        "leaderboard": [{
+                            "gatekeeper_preset": "openai_gpt5",
+                            "gatekeeper_model_label": "gpt-5",
+                            "mean_accuracy": 0.9,
+                            "mean_precision": 0.8571,
+                            "mean_recall": 1.0,
+                            "mean_specificity": 0.75,
+                            "mean_f1": 0.9231,
                         "mean_duration_seconds": 12.0,
                     }],
                     "review_leaderboard": [{
@@ -79,6 +81,8 @@ class ScreeningBenchmarkHtmlReportTests(unittest.TestCase):
 
             report_html = report_path.read_text(encoding="utf-8")
             self.assertIn("Title and Abstract Screening Benchmark Summary", report_html)
+            self.assertIn("Gatekeeper model", report_html)
+            self.assertIn("OpenAI GPT5", report_html)
             self.assertNotIn("Exclude Strategy Benchmark Summary", report_html)
             self.assertIn("Metric standard deviation across scored runs", report_html)
             self.assertNotIn("Metric range across scored runs", report_html)
@@ -103,6 +107,8 @@ class ScreeningBenchmarkHtmlReportTests(unittest.TestCase):
                         "review_keys": ["synthetic_review"],
                         "gold_label_policy": policy_name,
                         "leaderboard": [{
+                            "gatekeeper_preset": "openai_gpt5",
+                            "gatekeeper_model_label": "gpt-5",
                             "mean_accuracy": 0.9,
                             "mean_precision": 0.8571,
                             "mean_recall": 1.0,
@@ -158,6 +164,8 @@ class ScreeningBenchmarkHtmlReportTests(unittest.TestCase):
                         "review_keys": ["synthetic_review"],
                         "gold_label_policy": policy_key,
                         "leaderboard": [{
+                            "gatekeeper_preset": "openai_gpt5",
+                            "gatekeeper_model_label": "gpt-5",
                             "mean_accuracy": 0.9,
                             "mean_precision": 0.8571,
                             "mean_recall": review_recall,
@@ -203,6 +211,8 @@ class ScreeningBenchmarkHtmlReportTests(unittest.TestCase):
             self.assertTrue(report_path.exists())
             report_html = report_path.read_text(encoding="utf-8")
             self.assertIn("Screening Benchmark Policy Comparison", report_html)
+            self.assertIn("Gatekeeper model", report_html)
+            self.assertIn("OpenAI GPT5", report_html)
             self.assertIn("Review-by-review comparison", report_html)
             self.assertIn("Error composition", report_html)
             self.assertNotIn("The core story", report_html)

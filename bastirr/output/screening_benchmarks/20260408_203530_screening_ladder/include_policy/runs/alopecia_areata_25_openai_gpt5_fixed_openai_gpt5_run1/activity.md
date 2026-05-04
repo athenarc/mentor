@@ -11,9 +11,9 @@
 > **Dataset split:** random_test  
 > **Studies:** 25  
 > **Gatekeeper preset:** openai_gpt5  
-> **Gatekeeper model:** gpt-5 [OpenAI API]  
+> **Gatekeeper model:** gpt-5 [OpenAI GPT5]  
 > **Orchestrator preset:** openai_gpt5  
-> **Orchestrator model:** gpt-5 [OpenAI API]  
+> **Orchestrator model:** gpt-5 [OpenAI GPT5]  
 > **Orchestrator policy:** fixed  
 > **Gold label policy:** include_label_0_5  
 
