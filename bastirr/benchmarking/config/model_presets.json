@@ -64,7 +64,7 @@
                 "extra_body": {
                     "provider": {
                         "order": [
-                            "alibaba"
+                            "novita/bf16"
                         ],
                         "allow_fallbacks": false,
                         "require_parameters": true
@@ -97,13 +97,13 @@
             }
         },
         {
-            "key": "gemma_4_26B",
-            "description": "Gemma 4 26B",
-            "display_name_default": "gemma-4-26b",
-            "display_name_env_var": "BASTIRR_GEMMA_MODEL",
+            "key": "mistral_medium_3.5",
+            "description": "Mistral Medium 3.5",
+            "display_name_default": "mistral-medium-3.5",
+            "display_name_env_var": "BASTIRR_MISTRAL_MODEL",
             "backend": "openai",
-            "model_id_default": "google/gemma-4-26b-a4b-it",
-            "model_id_env_var": "BASTIRR_GEMMA_MODEL",
+            "model_id_default": "mistralai/mistral-medium-3-5",
+            "model_id_env_var": "BASTIRR_MISTRAL_MODEL",
             "api_base_default": "https://openrouter.ai/api/v1",
             "api_base_env_var": "OPENROUTER_API_BASE",
             "api_key_env_var": "OPENROUTER_API_KEY",
@@ -112,7 +112,31 @@
                 "extra_body": {
                     "provider": {
                         "order": [
-                            "io-net/bf16"
+                            "mistral"
+                        ],
+                        "allow_fallbacks": false,
+                        "require_parameters": true
+                    }
+                }
+            }
+        },
+        {
+            "key": "openai_gpt5.4_mini",
+            "description": "OpenAI GPT-5.4 Mini",
+            "display_name_default": "openai-gpt-5.4-mini",
+            "display_name_env_var": "BASTIRR_OPENAI_MODEL",
+            "backend": "openai",
+            "model_id_default": "openai/gpt-5.4-mini",
+            "model_id_env_var": "BASTIRR_OPENAI_MODEL",
+            "api_base_default": "https://openrouter.ai/api/v1",
+            "api_base_env_var": "OPENROUTER_API_BASE",
+            "api_key_env_var": "OPENROUTER_API_KEY",
+            "requires_api_key": true,
+            "request_kwargs_default": {
+                "extra_body": {
+                    "provider": {
+                        "order": [
+                            "openai"
                         ],
                         "allow_fallbacks": false,
                         "require_parameters": true

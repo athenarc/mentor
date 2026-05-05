@@ -1,0 +1,54 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "INCLUDE",
+      "reason": "Double-blind randomised trial of theophylline (as aminophylline) vs placebo in acute ischemic stroke patients. Treatment was administered during 3 days, implying within 1 week of onset. Meets all selection criteria."
+    },
+    {
+      "study_index": 2,
+      "decision": "INCLUDE",
+      "reason": "Double-blind randomised trial of intravenous aminophylline vs placebo in acute cerebral infarction (ischaemic stroke) patients. As a controlled trial in acute phase, it is reasonable to assume treatment started within 1 week of stroke onset."
+    },
+    {
+      "study_index": 3,
+      "decision": "EXCLUDE",
+      "reason": "Open-label, single-arm dose-escalation study (not randomised). While it involves caffeine (an analogue) in acute ischemic stroke with treatment started within 6 hours, the lack of randomisation violates the core selection criterion."
+    },
+    {
+      "study_index": 4,
+      "decision": "EXCLUDE",
+      "reason": "Not a randomised trial - patients were assigned to different treatment groups without mention of randomisation. Also, the study focuses on cerebral metabolism rather than acute stroke treatment outcomes, and the population is not clearly acute ischaemic stroke patients."
+    },
+    {
+      "study_index": 5,
+      "decision": "EXCLUDE",
+      "reason": "While randomised and double-blind, the study population consists of patients recovering from stroke (not acute phase). The treatment timing is not specified to be within 1 week of stroke onset, and the focus is on cerebral blood flow measurement rather than treatment outcome."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Randomised double-blind crossover study, but in patients recovering from stroke (not acute phase). The treatment is not clearly started within 1 week of stroke onset. Focuses on blood flow measurement rather than treatment outcome."
+    },
+    {
+      "study_index": 7,
+      "decision": "EXCLUDE",
+      "reason": "Not a randomised trial. The study examines physiological effects of aminophylline on cerebral blood flow in 12 patients, without control group or randomisation. Population not clearly acute ischaemic stroke."
+    },
+    {
+      "study_index": 8,
+      "decision": "EXCLUDE",
+      "reason": "Animal study (cats) - not human participants. Does not meet the population criterion of people with acute ischaemic stroke."
+    },
+    {
+      "study_index": 9,
+      "decision": "EXCLUDE",
+      "reason": "Animal study (dogs) - not human participants. Focuses on cardiovascular effects in anesthetized animals, not acute ischaemic stroke treatment."
+    },
+    {
+      "study_index": 10,
+      "decision": "EXCLUDE",
+      "reason": "Not a randomised controlled trial - appears to be a historical review or case series. The abstract mentions uncontrolled observations and lack of convincing controlled series. Does not meet the randomisation criterion."
+    }
+  ]
+}
