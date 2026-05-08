@@ -160,7 +160,42 @@ From those underlying counts:
 | `pelvic_floor_training_100` | `random_test` | 100 | 26 | 22 | 52 |
 | `heart_failure_mhealth_200` | `heart_test` | 200 | 4 | 133 | 63 |
 
-The suite definitions live in `bastirr/benchmarking/config/review_suites.json`.
+The benchmark also includes `screening_ladder_dev_exclude_balanced`, a
+dev-only five-review ladder selected so that `exclude_label_0_5` stays within
+a more reasonable class balance at every size point. The largest review in that
+suite is slightly smaller (`194` studies instead of `200`) because the
+available dev-set candidates become extremely imbalanced under the stricter
+policy beyond that point.
+
+Its underlying dataset counts are:
+
+| Key | Split | Studies | Final Include (`1.0`) | Passed To Full Text (`0.5`) | Excluded At Screening (`0.0`) |
+|-----|-------|---------|------------------------|------------------------------|--------------------------------|
+| `endometrial_progestagens_10` | `dev` | 10 | 5 | 0 | 5 |
+| `tricyclic_depression_children_25` | `dev` | 25 | 12 | 3 | 10 |
+| `adhesive_capsulitis_50` | `dev` | 50 | 25 | 6 | 19 |
+| `desmopressin_transfusion_100` | `dev` | 100 | 54 | 18 | 28 |
+| `prom_feedback_194` | `dev` | 194 | 98 | 50 | 46 |
+
+The benchmark also includes `screening_ladder_dev_no_label_0_5`, a dev-only
+five-review ladder composed entirely of reviews whose dataset labels contain no
+`0.5` studies. Under that suite, `include_label_0_5` and
+`exclude_label_0_5` score the same underlying gold labels, which makes it
+useful for isolating benchmark behavior in reviews without full-text-screening
+exclusions.
+
+Its underlying dataset counts are:
+
+| Key | Split | Studies | Final Include (`1.0`) | Passed To Full Text (`0.5`) | Excluded At Screening (`0.0`) |
+|-----|-------|---------|------------------------|------------------------------|--------------------------------|
+| `surgical_termination_10` | `dev` | 10 | 7 | 0 | 3 |
+| `advanced_endometrial_carcinoma_24` | `dev` | 24 | 12 | 0 | 12 |
+| `chlamydia_poc_test_50` | `dev` | 50 | 19 | 0 | 31 |
+| `ovarian_cancer_diagnosis_92` | `dev` | 92 | 45 | 0 | 47 |
+| `home_based_rehabilitation_183` | `dev` | 183 | 138 | 0 | 45 |
+
+The suite definitions live in
+`bastirr/benchmarking/config/review_suites.json`.
 
 Useful discovery commands:
 
@@ -275,6 +310,23 @@ PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
 
 # Run every model in the default screening ladder, 5 times each
 PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
+  --repeats 5
+
+# Run GPT-5 on the dev-only ladder that stays better balanced under
+# exclude_label_0_5
+PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
+  --suite screening_ladder_dev_exclude_balanced \
+  --model-presets openai_gpt5 \
+  --orchestrator-policy fixed \
+  --orchestrator-model openai_gpt5 \
+  --repeats 5
+
+# Run GPT-5 on the dev-only ladder with no 0.5 labels anywhere in the suite
+PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
+  --suite screening_ladder_dev_no_label_0_5 \
+  --model-presets openai_gpt5 \
+  --orchestrator-policy fixed \
+  --orchestrator-model openai_gpt5 \
   --repeats 5
 
 # Match the thin orchestrator model to the Gatekeeper model

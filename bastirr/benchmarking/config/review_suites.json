@@ -50,6 +50,108 @@
           "expected_n_screen_exclude": 63
         }
       ]
+    },
+    {
+      "name": "screening_ladder_dev_exclude_balanced",
+      "description": "Dev-only escalating screening benchmark ladder selected to remain within a reasonable balance under exclude_label_0_5 scoring.",
+      "reviews": [
+        {
+          "key": "endometrial_progestagens_10",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001040.pub2/full",
+          "title": "Adjuvant progestagens for endometrial cancer",
+          "expected_n_studies": 10,
+          "expected_n_screen_pass": 5,
+          "expected_n_screen_exclude": 5
+        },
+        {
+          "key": "tricyclic_depression_children_25",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD002317.pub2/full",
+          "title": "Tricyclic drugs for depression in children and adolescents",
+          "expected_n_studies": 25,
+          "expected_n_screen_pass": 15,
+          "expected_n_screen_exclude": 10
+        },
+        {
+          "key": "adhesive_capsulitis_50",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011275/full",
+          "title": "Manual therapy and exercise for adhesive capsulitis (frozen shoulder)",
+          "expected_n_studies": 50,
+          "expected_n_screen_pass": 31,
+          "expected_n_screen_exclude": 19
+        },
+        {
+          "key": "desmopressin_transfusion_100",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001884.pub3/full",
+          "title": "Desmopressin use for minimising perioperative blood transfusion",
+          "expected_n_studies": 100,
+          "expected_n_screen_pass": 72,
+          "expected_n_screen_exclude": 28
+        },
+        {
+          "key": "prom_feedback_194",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011589.pub2/full",
+          "title": "Routine provision of feedback from patient-reported outcome measurements to healthcare providers and patients in clinical practice",
+          "expected_n_studies": 194,
+          "expected_n_screen_pass": 148,
+          "expected_n_screen_exclude": 46
+        }
+      ]
+    },
+    {
+      "name": "screening_ladder_dev_no_label_0_5",
+      "description": "Dev-only escalating screening benchmark ladder composed of reviews whose dataset labels contain no 0.5 studies.",
+      "reviews": [
+        {
+          "key": "surgical_termination_10",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD002900/full",
+          "title": "Surgical methods for first trimester termination of pregnancy",
+          "expected_n_studies": 10,
+          "expected_n_screen_pass": 7,
+          "expected_n_screen_exclude": 3
+        },
+        {
+          "key": "advanced_endometrial_carcinoma_24",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003915.pub4/full",
+          "title": "Chemotherapy for advanced, recurrent or metastatic endometrial carcinoma",
+          "expected_n_studies": 24,
+          "expected_n_screen_pass": 12,
+          "expected_n_screen_exclude": 12
+        },
+        {
+          "key": "chlamydia_poc_test_50",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011708.pub2/full",
+          "title": "Rapid point of care test for detecting urogenital Chlamydia trachomatis infection in nonpregnant women and men at reproductive age",
+          "expected_n_studies": 50,
+          "expected_n_screen_pass": 19,
+          "expected_n_screen_exclude": 31
+        },
+        {
+          "key": "ovarian_cancer_diagnosis_92",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011964.pub2/full",
+          "title": "Menopausal status, ultrasound and biomarker tests in combination for the diagnosis of ovarian cancer in symptomatic women",
+          "expected_n_studies": 92,
+          "expected_n_screen_pass": 45,
+          "expected_n_screen_exclude": 47
+        },
+        {
+          "key": "home_based_rehabilitation_183",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD014823/full",
+          "title": "Factors that influence the provision of home-based rehabilitation services for people needing rehabilitation: a qualitative evidence synthesis",
+          "expected_n_studies": 183,
+          "expected_n_screen_pass": 138,
+          "expected_n_screen_exclude": 45
+        }
+      ]
     }
   ]
 }

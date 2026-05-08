@@ -16,6 +16,26 @@ class ScreeningBenchmarkRegistryAndToolsTests(unittest.TestCase):
         self.assertEqual(suite[0].expected_n_studies, 10)
         self.assertEqual(suite[-1].expected_n_studies, 200)
 
+    def test_balanced_dev_ladder_suite_contains_expected_reviews(self):
+        suite = get_review_suite("screening_ladder_dev_exclude_balanced")
+        self.assertEqual(len(suite), 5)
+        self.assertEqual(suite[0].key, "endometrial_progestagens_10")
+        self.assertEqual(suite[-1].key, "prom_feedback_194")
+        self.assertEqual(suite[0].split, "dev")
+        self.assertEqual(suite[-1].split, "dev")
+        self.assertEqual(suite[2].expected_n_studies, 50)
+        self.assertEqual(suite[-1].expected_n_studies, 194)
+
+    def test_no_label_0_5_dev_ladder_suite_contains_expected_reviews(self):
+        suite = get_review_suite("screening_ladder_dev_no_label_0_5")
+        self.assertEqual(len(suite), 5)
+        self.assertEqual(suite[0].key, "surgical_termination_10")
+        self.assertEqual(suite[-1].key, "home_based_rehabilitation_183")
+        self.assertEqual(suite[0].split, "dev")
+        self.assertEqual(suite[-1].split, "dev")
+        self.assertEqual(suite[1].expected_n_studies, 24)
+        self.assertEqual(suite[3].expected_n_studies, 92)
+
     def test_unknown_suite_name_is_rejected(self):
         with self.assertRaises(ValueError):
             get_review_suite("informative")
