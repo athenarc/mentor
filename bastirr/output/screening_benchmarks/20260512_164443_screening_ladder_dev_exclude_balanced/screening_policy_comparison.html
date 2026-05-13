@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Screening Benchmark Policy Comparison</title>
+  <style>
+
+    :root {
+      --bg: #f5efe3;
+      --bg-soft: #fbf7ef;
+      --ink: #1d2433;
+      --muted: #5e6678;
+      --line: rgba(29, 36, 51, 0.12);
+      --card: rgba(255, 252, 246, 0.8);
+      --include: #1b7f79;
+      --include-soft: #bce6dc;
+      --exclude: #b4512d;
+      --exclude-soft: #f4ccb1;
+      --navy: #223a5e;
+      --gold: #d4a53a;
+      --rose: #d96f4c;
+      --shadow: 0 18px 40px rgba(44, 37, 24, 0.12);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(27, 127, 121, 0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(212, 165, 58, 0.16), transparent 26%),
+        linear-gradient(180deg, #f8f3e8 0%, #f4ede0 34%, #f7f2e9 100%);
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", sans-serif;
+      line-height: 1.5;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+      letter-spacing: -0.02em;
+    }
+
+    p { margin: 0; }
+    a { color: inherit; }
+
+    .page {
+      width: min(1200px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(29, 36, 51, 0.08);
+      border-radius: 34px;
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(255, 251, 244, 0.96), rgba(246, 238, 224, 0.9)),
+        linear-gradient(135deg, rgba(27, 127, 121, 0.08), rgba(180, 81, 45, 0.06));
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -80px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(212, 165, 58, 0.24), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--muted);
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.25rem, 4vw, 3.55rem);
+      line-height: 0.98;
+      max-width: 15ch;
+      margin-bottom: 14px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .hero-copy { display: grid; gap: 18px; }
+
+    .hero-copy p {
+      max-width: 65ch;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .hero-model {
+      display: grid;
+      gap: 6px;
+      justify-items: start;
+      align-content: start;
+      min-height: 0;
+      padding: 0;
+    }
+
+    .hero-model .k {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-weight: 700;
+    }
+
+    .hero-model .v {
+      color: var(--ink);
+      font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+      font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+      line-height: 1.02;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+      text-wrap: pretty;
+    }
+
+    .badge-row, .source-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .source-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 14px;
+    }
+
+    .badge, .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(29, 36, 51, 0.08);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.93rem;
+    }
+
+    .hero-stat-panel {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .hero-stat {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(29, 36, 51, 0.08);
+    }
+
+    .hero-stat .label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .hero-stat .value {
+      margin-top: 4px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .hero-stat .note {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .section {
+      margin-top: 28px;
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(29, 36, 51, 0.08);
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .section-header p {
+      max-width: 72ch;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .policy-card {
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(29, 36, 51, 0.08);
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .policy-card.include::before,
+    .policy-card.exclude::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 6px;
+      border-radius: 24px 0 0 24px;
+    }
+
+    .policy-card.include::before {
+      background: linear-gradient(180deg, var(--include), #104f4c);
+    }
+
+    .policy-card.exclude::before {
+      background: linear-gradient(180deg, var(--exclude), #6f2a13);
+    }
+
+    .policy-card h3 { font-size: 1.5rem; }
+
+    .policy-subtitle {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .policy-story {
+      margin-top: 16px;
+      color: var(--ink);
+      font-size: 1rem;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .metric-chip {
+      display: grid;
+      padding: 12px;
+      border-radius: 16px;
+      background: var(--bg-soft);
+      border: 1px solid rgba(29, 36, 51, 0.06);
+    }
+
+    .metric-chip .k {
+      min-height: 2.4em;
+      display: flex;
+      align-items: flex-start;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .metric-chip .v {
+      margin-top: 2px;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .micro-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .micro-cell {
+      min-height: 92px;
+      padding: 14px;
+      border-radius: 18px;
+      color: white;
+      display: grid;
+      align-content: start;
+      gap: 2px;
+    }
+
+    .micro-cell.light { color: var(--ink); }
+
+    .micro-cell .cell-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.82;
+    }
+
+    .micro-cell .cell-value {
+      font-size: 1.65rem;
+      font-weight: 700;
+    }
+
+    .micro-cell .cell-note {
+      font-size: 0.9rem;
+      opacity: 0.88;
+    }
+
+    .viz-card {
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(29, 36, 51, 0.08);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .viz-card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 6px;
+    }
+
+    .viz-card p {
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .chart {
+      width: 100%;
+      min-height: 300px;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .error-policy-block + .error-policy-block {
+      margin-top: 20px;
+    }
+
+    .error-policy-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .error-policy-total {
+      color: var(--muted);
+      font-size: 0.96rem;
+      white-space: nowrap;
+    }
+
+    .stacked-bar {
+      position: relative;
+      height: 20px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(29, 36, 51, 0.08);
+    }
+
+    .error-rows {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .error-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .error-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .error-value {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 980px) {
+      .grid-2,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stat-panel {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section-header {
+        display: grid;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .source-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100vw - 20px, 1200px);
+        padding-top: 14px;
+      }
+
+      .hero,
+      .section {
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      .hero-model {
+        min-height: 0;
+      }
+
+      .hero-stat-panel,
+      .micro-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">Benchmark presentation • same screening runs • two label policies</div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>Screening Benchmark<br>Policy Comparison</h1>
+          <p>
+            These two benchmark views use the same review set and the same screening decisions, but they score label 0.5 differently. The comparison below shows how that single evaluation choice changes the apparent strengths and weaknesses of the screener.
+          </p>
+          <div class="badge-row">
+            <span class="badge">5 reviews</span>
+            <span class="badge">5 attempted runs per policy</span>
+            <span class="badge">same saved screening decisions</span>
+          </div>
+          <div class="source-row">
+            <a class="source-link" href="./exclude_policy/summary.csv">exclude summary.csv</a>
+            <a class="source-link" href="./include_policy/summary.csv">include summary.csv</a>
+            <a class="source-link" href="./exclude_policy/summary.json">exclude summary.json</a>
+            <a class="source-link" href="./include_policy/summary.json">include summary.json</a>
+            <a class="source-link" href="./exclude_policy/screening_results_summary.html">exclude report</a>
+            <a class="source-link" href="./include_policy/screening_results_summary.html">include report</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-model"><div class="k">Gatekeeper model</div><div class="v">Kimi K2.6</div></div>
+          <div class="hero-stat-panel" id="hero-stats"></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Policy cards</h2>
+        </div>
+        <p>
+          These cards summarize the two scoring lenses side by side. The underlying raw screening outputs are the same; only the interpretation of label 0.5 changes.
+        </p>
+      </div>
+      <div class="grid-2" id="policy-cards"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Where the metrics move</h2>
+        </div>
+        <p>
+          These view-by-review comparisons show where the policy choice creates real movement, rather than just shifting the overall average.
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="viz-card">
+          <h3>Recall by review</h3>
+          <p>Each pair compares the same review under the two label policies.</p>
+          <div id="recall-chart" class="chart"></div>
+          <div class="legend">
+            <span class="legend-item"><span class="swatch" style="background: var(--include);"></span> include_label_0_5</span>
+            <span class="legend-item"><span class="swatch" style="background: var(--exclude);"></span> exclude_label_0_5</span>
+          </div>
+        </div>
+        <div class="viz-card">
+          <h3>F1 by review</h3>
+          <p>This makes the policy effect visible without collapsing it into one overall average.</p>
+          <div id="f1-chart" class="chart"></div>
+          <div class="legend">
+            <span class="legend-item"><span class="swatch" style="background: var(--include);"></span> include_label_0_5</span>
+            <span class="legend-item"><span class="swatch" style="background: var(--exclude);"></span> exclude_label_0_5</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Error composition</h2>
+        </div>
+        <p>
+          This view shows which underlying dataset outcomes are driving the mistakes under each policy, not just how many mistakes there are.
+        </p>
+      </div>
+      <div class="viz-card">
+        <h3>Error mix by policy</h3>
+        <p>Each stacked bar partitions total misclassifications by underlying dataset outcome.</p>
+        <div id="error-composition"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Review-by-review comparison</h2>
+        </div>
+        <p>
+          The table below keeps the two policies aligned review by review so the metric shifts stay easy to inspect.
+        </p>
+      </div>
+      <div class="viz-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Review</th>
+              <th>Studies</th>
+              <th>Include policy F1</th>
+              <th>Include policy recall</th>
+              <th>Exclude policy F1</th>
+              <th>Exclude policy recall</th>
+            </tr>
+          </thead>
+          <tbody id="review-table"></tbody>
+        </table>
+      </div>
+      <p class="footer-note">
+        Table values are macro means over scored runs in each policy folder.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const data = {
+  "policies": {
+    "include": {
+      "name": "include_label_0_5",
+      "short": "Screening-friendly policy",
+      "folder": "include_policy",
+      "story": "Treats label 0.5 as screen-positive, which is closer to permissive title/abstract screening.",
+      "overall": {
+        "gold_label_policy": "include_label_0_5",
+        "gatekeeper_preset": "kimi_k2.6",
+        "gatekeeper_model_label": "kimi-k2.6 [Kimi K2.6]",
+        "gatekeeper_backend": "openai",
+        "gatekeeper_api_base": "https://openrouter.ai/api/v1",
+        "orchestrator_policy": "fixed",
+        "orchestrator_preset": "kimi_k2.6",
+        "orchestrator_model_label": "kimi-k2.6 [Kimi K2.6]",
+        "orchestrator_backend": "openai",
+        "orchestrator_api_base": "https://openrouter.ai/api/v1",
+        "n_runs": 5,
+        "n_scored_runs": 5,
+        "n_completed_runs": 5,
+        "n_incomplete_runs": 0,
+        "n_error_runs": 0,
+        "n_unique_reviews": 5,
+        "parse_success_rate": 1.0,
+        "mean_decision_coverage": 1.0,
+        "mean_accuracy": 0.8308041237113402,
+        "mean_precision": 0.9905882352941177,
+        "mean_recall": 0.7587426135813232,
+        "mean_specificity": 0.9826086956521738,
+        "mean_f1": 0.8520627869984093,
+        "mean_duration_seconds": 1126.794895737199
+      },
+      "micro": {
+        "tp": 178,
+        "fp": 4,
+        "tn": 104,
+        "fn": 93
+      },
+      "reviews": [
+        {
+          "key": "endometrial_progestagens_10",
+          "label": "endometrial progestagens 10",
+          "studies": 10,
+          "f1": 1.0,
+          "recall": 1.0,
+          "review_title": "Adjuvant progestagens for endometrial cancer",
+          "gold_pass_count": 5
+        },
+        {
+          "key": "tricyclic_depression_children_25",
+          "label": "tricyclic depression children 25",
+          "studies": 25,
+          "f1": 0.8,
+          "recall": 0.6666666666666666,
+          "review_title": "Tricyclic drugs for depression in children and adolescents",
+          "gold_pass_count": 15
+        },
+        {
+          "key": "adhesive_capsulitis_50",
+          "label": "adhesive capsulitis 50",
+          "studies": 50,
+          "f1": 0.8727272727272727,
+          "recall": 0.7741935483870968,
+          "review_title": "Manual therapy and exercise for adhesive capsulitis (frozen shoulder)",
+          "gold_pass_count": 31
+        },
+        {
+          "key": "desmopressin_transfusion_100",
+          "label": "desmopressin transfusion 100",
+          "studies": 100,
+          "f1": 0.8923076923076924,
+          "recall": 0.8055555555555556,
+          "review_title": "Desmopressin use for minimising perioperative blood transfusion",
+          "gold_pass_count": 72
+        },
+        {
+          "key": "prom_feedback_194",
+          "label": "prom feedback 194",
+          "studies": 194,
+          "f1": 0.6952789699570815,
+          "recall": 0.5472972972972973,
+          "review_title": "Routine provision of feedback from patient‐reported outcome measurements to healthcare providers and patients in clinical practice",
+          "gold_pass_count": 148
+        }
+      ],
+      "errorBreakdown": [
+        {
+          "label": "0.5 → excluded after full text",
+          "errors": 66,
+          "color": "var(--include)"
+        },
+        {
+          "label": "1.0 → included in review",
+          "errors": 27,
+          "color": "#223a5e"
+        },
+        {
+          "label": "0.0 → excluded at screening",
+          "errors": 4,
+          "color": "#d4a53a"
+        }
+      ]
+    },
+    "exclude": {
+      "name": "exclude_label_0_5",
+      "short": "Strict final-inclusion proxy",
+      "folder": "exclude_policy",
+      "story": "Treats label 0.5 as screen-negative, which is closer to a stricter downstream inclusion proxy.",
+      "overall": {
+        "gold_label_policy": "exclude_label_0_5",
+        "gatekeeper_preset": "kimi_k2.6",
+        "gatekeeper_model_label": "kimi-k2.6 [Kimi K2.6]",
+        "gatekeeper_backend": "openai",
+        "gatekeeper_api_base": "https://openrouter.ai/api/v1",
+        "orchestrator_policy": "fixed",
+        "orchestrator_preset": "kimi_k2.6",
+        "orchestrator_model_label": "kimi-k2.6 [Kimi K2.6]",
+        "orchestrator_backend": "openai",
+        "orchestrator_api_base": "https://openrouter.ai/api/v1",
+        "n_runs": 5,
+        "n_scored_runs": 5,
+        "n_completed_runs": 5,
+        "n_incomplete_runs": 0,
+        "n_error_runs": 0,
+        "n_unique_reviews": 5,
+        "parse_success_rate": 1.0,
+        "mean_decision_coverage": 1.0,
+        "mean_accuracy": 0.9221030927835052,
+        "mean_precision": 0.9472684246112237,
+        "mean_recall": 0.8961058201058201,
+        "mean_specificity": 0.9455942028985508,
+        "mean_f1": 0.9190017437675518,
+        "mean_duration_seconds": 1126.794895737199
+      },
+      "micro": {
+        "tp": 167,
+        "fp": 15,
+        "tn": 170,
+        "fn": 27
+      },
+      "reviews": [
+        {
+          "key": "endometrial_progestagens_10",
+          "label": "endometrial progestagens 10",
+          "studies": 10,
+          "f1": 1.0,
+          "recall": 1.0,
+          "review_title": "Adjuvant progestagens for endometrial cancer",
+          "gold_pass_count": 5
+        },
+        {
+          "key": "tricyclic_depression_children_25",
+          "label": "tricyclic depression children 25",
+          "studies": 25,
+          "f1": 0.9090909090909091,
+          "recall": 0.8333333333333334,
+          "review_title": "Tricyclic drugs for depression in children and adolescents",
+          "gold_pass_count": 12
+        },
+        {
+          "key": "adhesive_capsulitis_50",
+          "label": "adhesive capsulitis 50",
+          "studies": 50,
+          "f1": 0.8979591836734694,
+          "recall": 0.88,
+          "review_title": "Manual therapy and exercise for adhesive capsulitis (frozen shoulder)",
+          "gold_pass_count": 25
+        },
+        {
+          "key": "desmopressin_transfusion_100",
+          "label": "desmopressin transfusion 100",
+          "studies": 100,
+          "f1": 0.9464285714285714,
+          "recall": 0.9814814814814815,
+          "review_title": "Desmopressin use for minimising perioperative blood transfusion",
+          "gold_pass_count": 54
+        },
+        {
+          "key": "prom_feedback_194",
+          "label": "prom feedback 194",
+          "studies": 194,
+          "f1": 0.8415300546448088,
+          "recall": 0.7857142857142857,
+          "review_title": "Routine provision of feedback from patient‐reported outcome measurements to healthcare providers and patients in clinical practice",
+          "gold_pass_count": 98
+        }
+      ],
+      "errorBreakdown": [
+        {
+          "label": "1.0 → included in review",
+          "errors": 27,
+          "color": "var(--exclude)"
+        },
+        {
+          "label": "0.5 → excluded after full text",
+          "errors": 11,
+          "color": "#223a5e"
+        },
+        {
+          "label": "0.0 → excluded at screening",
+          "errors": 4,
+          "color": "#d4a53a"
+        }
+      ]
+    }
+  },
+  "policyCards": [
+    {
+      "role": "include",
+      "policy": "include_label_0_5",
+      "short": "Screening-friendly policy",
+      "folder": "include_policy",
+      "story": "Treats label 0.5 as screen-positive, which is closer to permissive title/abstract screening.",
+      "metrics": [
+        [
+          "Macro F1",
+          0.8520627869984093
+        ],
+        [
+          "Macro recall",
+          0.7587426135813232
+        ],
+        [
+          "Macro precision",
+          0.9905882352941177
+        ],
+        [
+          "Macro accuracy",
+          0.8308041237113402
+        ]
+      ],
+      "micro_cells": [
+        {
+          "label": "True positive",
+          "value": 178,
+          "note": 0.46965699208443273,
+          "bg": "var(--include)"
+        },
+        {
+          "label": "False negative",
+          "value": 93,
+          "note": 0.24538258575197888,
+          "bg": "var(--rose)"
+        },
+        {
+          "label": "False positive",
+          "value": 4,
+          "note": 0.010554089709762533,
+          "bg": "var(--gold)",
+          "light": true
+        },
+        {
+          "label": "True negative",
+          "value": 104,
+          "note": 0.27440633245382584,
+          "bg": "var(--navy)"
+        }
+      ]
+    },
+    {
+      "role": "exclude",
+      "policy": "exclude_label_0_5",
+      "short": "Strict final-inclusion proxy",
+      "folder": "exclude_policy",
+      "story": "Treats label 0.5 as screen-negative, which is closer to a stricter downstream inclusion proxy.",
+      "metrics": [
+        [
+          "Macro F1",
+          0.9190017437675518
+        ],
+        [
+          "Macro recall",
+          0.8961058201058201
+        ],
+        [
+          "Macro precision",
+          0.9472684246112237
+        ],
+        [
+          "Macro accuracy",
+          0.9221030927835052
+        ]
+      ],
+      "micro_cells": [
+        {
+          "label": "True positive",
+          "value": 167,
+          "note": 0.44063324538258575,
+          "bg": "var(--navy)"
+        },
+        {
+          "label": "False negative",
+          "value": 27,
+          "note": 0.0712401055408971,
+          "bg": "var(--rose)"
+        },
+        {
+          "label": "False positive",
+          "value": 15,
+          "note": 0.0395778364116095,
+          "bg": "var(--gold)",
+          "light": true
+        },
+        {
+          "label": "True negative",
+          "value": 170,
+          "note": 0.44854881266490765,
+          "bg": "var(--include)"
+        }
+      ]
+    }
+  ],
+  "reviewRows": [
+    {
+      "key": "endometrial_progestagens_10",
+      "label": "endometrial progestagens 10",
+      "studies": 10,
+      "include_f1": 1.0,
+      "include_recall": 1.0,
+      "exclude_f1": 1.0,
+      "exclude_recall": 1.0
+    },
+    {
+      "key": "tricyclic_depression_children_25",
+      "label": "tricyclic depression children 25",
+      "studies": 25,
+      "include_f1": 0.8,
+      "include_recall": 0.6666666666666666,
+      "exclude_f1": 0.9090909090909091,
+      "exclude_recall": 0.8333333333333334
+    },
+    {
+      "key": "adhesive_capsulitis_50",
+      "label": "adhesive capsulitis 50",
+      "studies": 50,
+      "include_f1": 0.8727272727272727,
+      "include_recall": 0.7741935483870968,
+      "exclude_f1": 0.8979591836734694,
+      "exclude_recall": 0.88
+    },
+    {
+      "key": "desmopressin_transfusion_100",
+      "label": "desmopressin transfusion 100",
+      "studies": 100,
+      "include_f1": 0.8923076923076924,
+      "include_recall": 0.8055555555555556,
+      "exclude_f1": 0.9464285714285714,
+      "exclude_recall": 0.9814814814814815
+    },
+    {
+      "key": "prom_feedback_194",
+      "label": "prom feedback 194",
+      "studies": 194,
+      "include_f1": 0.6952789699570815,
+      "include_recall": 0.5472972972972973,
+      "exclude_f1": 0.8415300546448088,
+      "exclude_recall": 0.7857142857142857
+    }
+  ],
+  "heroStats": [
+    {
+      "label": "Macro recall swing",
+      "value": "14 pts",
+      "note": "Change in macro recall when label 0.5 is scored as EXCLUDE instead of INCLUDE."
+    },
+    {
+      "label": "Macro F1 swing",
+      "value": "7 pts",
+      "note": "Change in macro F1 across the same raw screening runs."
+    },
+    {
+      "label": "Largest review recall delta",
+      "value": "prom feedback 194 (24 pts)",
+      "note": "Review with the biggest policy-driven movement in mean recall."
+    },
+    {
+      "label": "Shared raw run bundle",
+      "value": "5 runs",
+      "note": "Both policy views are scored from the same saved screening decisions."
+    }
+  ]
+};
+
+    const fmtPct = value => `${(value * 100).toFixed(1)}%`;
+    const fmtPctShort = value => `${(value * 100).toFixed(0)}%`;
+    const fmtNum = value => Number(value).toLocaleString();
+
+    function heroStats() {
+      const mount = document.getElementById("hero-stats");
+      mount.innerHTML = data.heroStats.map(stat => `
+        <div class="hero-stat">
+          <div class="label">${stat.label}</div>
+          <div class="value">${stat.value}</div>
+          <div class="note">${stat.note}</div>
+        </div>
+      `).join("");
+    }
+
+    function policyCards() {
+      const mount = document.getElementById("policy-cards");
+      mount.innerHTML = data.policyCards.map(card => `
+        <article class="policy-card ${card.role}">
+          <h3>${card.policy}</h3>
+          <div class="policy-subtitle">${card.short} • folder <code>${card.folder}</code></div>
+          <p class="policy-story">${card.story}</p>
+          <div class="metric-grid">
+            ${card.metrics.map(([k, v]) => `
+              <div class="metric-chip">
+                <div class="k">${k}</div>
+                <div class="v">${fmtPct(v)}</div>
+              </div>
+            `).join("")}
+          </div>
+          <div class="micro-grid">
+            ${card.micro_cells.map(cell => `
+              <div class="micro-cell ${cell.light ? "light" : ""}" style="background:${cell.bg}">
+                <div class="cell-label">${cell.label}</div>
+                <div class="cell-value">${fmtNum(cell.value)}</div>
+                  <div class="cell-note">${fmtPct(cell.note)} of pooled decisions</div>
+              </div>
+            `).join("")}
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderDumbbell(mountId, metric) {
+      const mount = document.getElementById(mountId);
+      const width = mount.clientWidth || 520;
+      const rowHeight = 58;
+      const margin = { top: 20, right: 24, bottom: 36, left: 180 };
+      const innerWidth = width - margin.left - margin.right;
+      const height = margin.top + margin.bottom + rowHeight * data.reviewRows.length;
+      const lines = [];
+
+      data.reviewRows.forEach((row, index) => {
+        const y = margin.top + rowHeight * index + 18;
+        const includeValue = row[`include_${metric}`];
+        const excludeValue = row[`exclude_${metric}`];
+        const x1 = margin.left + innerWidth * includeValue;
+        const x2 = margin.left + innerWidth * excludeValue;
+        const left = Math.min(x1, x2);
+        const right = Math.max(x1, x2);
+        lines.push(`
+          <text x="${margin.left - 12}" y="${y + 4}" text-anchor="end" fill="#5e6678" font-size="13">${row.label}</text>
+          <line x1="${left}" y1="${y}" x2="${right}" y2="${y}" stroke="#b8b1a1" stroke-width="3" stroke-linecap="round"></line>
+          <circle cx="${x1}" cy="${y}" r="8" fill="var(--include)"></circle>
+          <circle cx="${x2}" cy="${y}" r="8" fill="var(--exclude)"></circle>
+          <text x="${x1}" y="${y - 14}" text-anchor="middle" fill="var(--include)" font-size="12" font-weight="700">${fmtPctShort(includeValue)}</text>
+          <text x="${x2}" y="${y + 24}" text-anchor="middle" fill="var(--exclude)" font-size="12" font-weight="700">${fmtPctShort(excludeValue)}</text>
+        `);
+      });
+
+      const ticks = [0, 0.25, 0.5, 0.75, 1.0].map(value => {
+        const x = margin.left + innerWidth * value;
+        return `
+          <line x1="${x}" y1="${margin.top - 8}" x2="${x}" y2="${height - margin.bottom + 8}" stroke="rgba(29,36,51,0.1)" stroke-width="1"></line>
+          <text x="${x}" y="${height - 10}" text-anchor="middle" fill="#5e6678" font-size="12">${fmtPctShort(value)}</text>
+        `;
+      }).join("");
+
+      mount.innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" width="100%" height="${height}">
+          ${ticks}
+          ${lines.join("")}
+        </svg>
+      `;
+    }
+
+    function renderErrorComposition() {
+      const mount = document.getElementById("error-composition");
+      const policies = ["include", "exclude"];
+      mount.innerHTML = policies.map(key => {
+        const policy = data.policies[key];
+        const total = policy.errorBreakdown.reduce((sum, item) => sum + item.errors, 0) || 1;
+        let cursor = 0;
+        const bar = policy.errorBreakdown.map(item => {
+          const width = (item.errors / total) * 100;
+          const segment = `
+            <div style="position:absolute;left:${cursor}%;top:0;width:${width}%;height:100%;background:${item.color};"></div>
+          `;
+          cursor += width;
+          return segment;
+        }).join("");
+
+        const legend = policy.errorBreakdown.map(item => `
+          <div class="error-row">
+            <div class="error-label">
+              <span class="swatch" style="background:${item.color};"></span>
+              ${item.label}
+            </div>
+            <div class="error-value">${item.errors} • ${fmtPct(item.errors / total)}</div>
+          </div>
+        `).join("");
+
+        return `
+          <div class="error-policy-block">
+            <div class="error-policy-header">
+              <div style="font-weight:700;">${policy.name}</div>
+              <div class="error-policy-total">${total} total errors</div>
+            </div>
+            <div class="stacked-bar">
+              ${bar}
+            </div>
+            <div class="error-rows">
+              ${legend}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderReviewTable() {
+      document.getElementById("review-table").innerHTML = data.reviewRows.map(row => `
+        <tr>
+          <td><strong>${row.label}</strong></td>
+          <td>${row.studies}</td>
+          <td>${fmtPct(row.include_f1)}</td>
+          <td>${fmtPct(row.include_recall)}</td>
+          <td>${fmtPct(row.exclude_f1)}</td>
+          <td>${fmtPct(row.exclude_recall)}</td>
+        </tr>
+      `).join("");
+    }
+
+    heroStats();
+    policyCards();
+    renderDumbbell("recall-chart", "recall");
+    renderDumbbell("f1-chart", "f1");
+    renderErrorComposition();
+    renderReviewTable();
+  </script>
+</body>
+</html>

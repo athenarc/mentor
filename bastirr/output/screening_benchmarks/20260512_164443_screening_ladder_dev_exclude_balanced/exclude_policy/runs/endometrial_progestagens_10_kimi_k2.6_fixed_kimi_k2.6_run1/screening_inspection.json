@@ -1,0 +1,140 @@
+{
+  "review_title": "Adjuvant progestagens for endometrial cancer",
+  "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001040.pub2/full",
+  "screening_criteria": "Randomised controlled trials (RCTs) of progestagen therapy in women who have had surgery for endometrial cancer.",
+  "gold_label_policy": "exclude_label_0_5",
+  "gold_label_policy_description": "dataset label 1.0 counts as INCLUDE; 0.5 and 0.0 count as EXCLUDE",
+  "gold_screening_policy": {
+    "1.0": "INCLUDE",
+    "0.5": "EXCLUDE",
+    "0.0": "EXCLUDE"
+  },
+  "summary": {
+    "n_studies": 10,
+    "gold_pass_count": 5,
+    "gold_exclude_count": 5,
+    "predicted_pass_count": 5,
+    "predicted_exclude_count": 5,
+    "tp": 5,
+    "fp": 0,
+    "tn": 5,
+    "fn": 0,
+    "match_count": 10,
+    "mismatch_count": 0,
+    "missing_decision_count": 0,
+    "duplicate_decision_count": 0,
+    "invalid_decision_count": 0
+  },
+  "studies": [
+    {
+      "study_index": 1,
+      "study_title": "Treatment of FIGO (1971) stage 1 endometrial carcinoma with intensive surgery, radiotherapy and hormonotherapy according to pathological prognostic groups. Long term results of a randomised multicentre trial",
+      "gold_label": 1.0,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "included_in_review",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Multicentre RCT evaluating adjuvant medroxyprogesterone acetate (MPA) versus no further treatment after surgery in women with stage I endometrial carcinoma. Patients were randomized after surgery to MPA or control. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 2,
+      "study_title": "Progestin therapy of endometrial, breast and ovarian carcinoma. A review of clinical observations.",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a narrative review and survey of published literature on progestin therapy across multiple tumour types, not a primary randomised controlled trial. No original trial data are reported.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 3,
+      "study_title": "Measuring inconsistency in meta‐analyses",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Methodological paper on statistical measures for meta-analyses. It does not report a clinical trial and does not involve progestagen therapy for endometrial cancer patients.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 4,
+      "study_title": "Statistical methods for examining heterogeneity and combining results from several studies in meta‐analysis",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Methodological chapter describing statistical techniques for meta-analysis. Not a primary RCT and contains no patient-level data on progestagen therapy after surgery for endometrial cancer.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 5,
+      "study_title": "A randomised trial of adjuvant progestagens in early endometrial cancer",
+      "gold_label": 1.0,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "included_in_review",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Large randomised controlled trial (n=1148) of adjuvant progesterone versus no additional therapy after surgery in patients with Stage I or II endometrial cancer. Directly meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 6,
+      "study_title": "Meta‐analysis in clinical trials",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Methodological paper discussing random-effects approaches to combining evidence from series of experiments. Not a primary clinical trial of progestagen therapy.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 7,
+      "study_title": "A randomised trial of progestagens in the primary treatment of endometrial carcinoma",
+      "gold_label": 1.0,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "included_in_review",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomised trial comparing progestogen versus control in women with endometrial carcinoma who were treated with surgery. Although the abstract frames the intervention as part of primary treatment 'in conjunction with surgery and radiotherapy', all patients underwent surgery and it is an RCT of progestagen therapy in that population. Included conservatively for full-text review to confirm adjuvant timing.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 8,
+      "study_title": "Extracting summary statistics to perform meta‐analyses of the published literature for survival endpoints",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Methodological paper presenting techniques for extracting summary statistics from published survival data for meta-analyses. Not a primary RCT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 9,
+      "study_title": "Aduvant progesterone therapy for stage 1 endometrial cancer",
+      "gold_label": 1.0,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "included_in_review",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Small RCT (n=35) comparing adjuvant 6-methyl-17α-hydroxyprogesterone versus placebo after total abdominal hysterectomy and bilateral salpingo-oophorectomy in stage IA/IB endometrial cancer. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 10,
+      "study_title": "Adjuvant progestagen therapy improves survival in patients with endometrial cancer after hysterectomy. results of one‐institutional prospective clinical trial",
+      "gold_label": 1.0,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "included_in_review",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Single-institution prospective RCT (n=205) randomly assigning patients to adjuvant progestagen treatment or no additional therapy after surgery for endometrial cancer. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    }
+  ]
+}
