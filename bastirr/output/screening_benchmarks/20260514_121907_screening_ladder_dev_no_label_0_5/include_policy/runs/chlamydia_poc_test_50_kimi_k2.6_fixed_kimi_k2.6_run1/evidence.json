@@ -1,0 +1,254 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "EXCLUDE",
+      "reason": "This is a mathematical modeling study estimating required sensitivity of POC tests based on transmission dynamics. It does not involve actual patient testing or present empirical 2×2 diagnostic accuracy data."
+    },
+    {
+      "study_index": 2,
+      "decision": "EXCLUDE",
+      "reason": "This study examines concordance between Medicare claims and SEER data for prostate cancer bone metastases. It is entirely unrelated to Chlamydia trachomatis or point-of-care testing."
+    },
+    {
+      "study_index": 3,
+      "decision": "EXCLUDE",
+      "reason": "While described as a prospective trial, the abstract presents only decision-analysis outcomes (proportion receiving same-day treatment) rather than diagnostic accuracy metrics or 2×2 tables. The study is framed as a decision analysis, not a primary diagnostic accuracy study reporting sensitivity/specificity with 2×2 data."
+    },
+    {
+      "study_index": 4,
+      "decision": "INCLUDE",
+      "reason": "Pilot study evaluating the QuickVue rapid test against PCR for endocervical samples, reporting sensitivity and specificity for high and low prevalence populations. This is a primary diagnostic accuracy study of a POC test versus a NAAT reference standard."
+    },
+    {
+      "study_index": 5,
+      "decision": "EXCLUDE",
+      "reason": "This is a clinical practice guideline for syndromic management of STIs. It is not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Narrative review discussing ASSURED criteria and rapid test development. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 7,
+      "decision": "INCLUDE",
+      "reason": "Prospective study evaluating two POC tests (CRT and ACON) compared with NAAT gold standard in men and women in Vanuatu. Reports sensitivity and specificity with clear diagnostic accuracy data."
+    },
+    {
+      "study_index": 8,
+      "decision": "INCLUDE",
+      "reason": "Evaluation of Clearview Chlamydia MF rapid test compared with Roche Amplicor NAAT in 1,497 women. Reports sensitivity, specificity, and PPV. This is a primary diagnostic accuracy study of a POC test versus NAAT."
+    },
+    {
+      "study_index": 9,
+      "decision": "INCLUDE",
+      "reason": "Prospective cohort study evaluating a rapid urine test versus PCR in 1,211 men, reporting sensitivity (82.6%), specificity (98.5%), PPV, and NPV with explicit 2×2 data in the abstract (e.g., 90/109). This is a primary diagnostic accuracy study of a POC test versus NAAT in men."
+    },
+    {
+      "study_index": 10,
+      "decision": "EXCLUDE",
+      "reason": "CDC recommendations and guidelines update. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 11,
+      "decision": "EXCLUDE",
+      "reason": "Systematic review of POC diagnostics. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 12,
+      "decision": "EXCLUDE",
+      "reason": "Summary of evidence for CDC treatment guidelines. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 13,
+      "decision": "EXCLUDE",
+      "reason": "Decision tree modeling study using a hypothetical cohort of 10,000 women, not empirical patient data. Parameter values were estimated from published and unpublished data. This is not a primary diagnostic accuracy study presenting 2×2 data from prospectively enrolled participants."
+    },
+    {
+      "study_index": 14,
+      "decision": "INCLUDE",
+      "reason": "Evaluation of HandiLab-C rapid home test compared with two NAATs (Roche Amplicor and Abbott m2000) in 231 women. Reports sensitivity, specificity, PPV, and NPV. Primary diagnostic accuracy study of a POC test versus NAAT."
+    },
+    {
+      "study_index": 15,
+      "decision": "EXCLUDE",
+      "reason": "Review of treatment for Haemophilus ducreyi (chancroid). Wrong organism and wrong study type (treatment effectiveness, not diagnostic accuracy)."
+    },
+    {
+      "study_index": 16,
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper describing the QUADAS-2 quality assessment tool. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 17,
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about bivariate meta-regression for diagnostic test accuracy meta-analyses. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 18,
+      "decision": "EXCLUDE",
+      "reason": "Systematic reviews of POC tests (two separate reviews). Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 19,
+      "decision": "EXCLUDE",
+      "reason": "Mathematical modeling study of partner notification using an individual-based model. Not a diagnostic accuracy study of POC tests."
+    },
+    {
+      "study_index": 20,
+      "decision": "INCLUDE",
+      "reason": "Cross-sectional study evaluating Clearview and CRT rapid tests against PCR in 1,484 FSWs and 838 OB-GYN clinic women. Reports sensitivity, specificity, PPV, and NPV. Primary diagnostic accuracy study of POC tests versus NAAT."
+    },
+    {
+      "study_index": 21,
+      "decision": "EXCLUDE",
+      "reason": "Methodological study about publication bias in meta-analyses of diagnostic test accuracy. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 22,
+      "decision": "EXCLUDE",
+      "reason": "Critical review of randomized controlled trials evaluating chlamydia screening to prevent PID. Not a diagnostic accuracy study of POC tests versus NAAT."
+    },
+    {
+      "study_index": 23,
+      "decision": "EXCLUDE",
+      "reason": "Cohort study examining risk factors for PID in female sex workers. Not a diagnostic accuracy study."
+    },
+    {
+      "study_index": 24,
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about applying GRADE to diagnostic tests in guidelines. Not a primary diagnostic accuracy study of Chlamydia POC tests."
+    },
+    {
+      "study_index": 25,
+      "decision": "EXCLUDE",
+      "reason": "Narrative review comparing diagnostic methods. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 26,
+      "decision": "EXCLUDE",
+      "reason": "Systematic review of clinical and cost-effectiveness. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 27,
+      "decision": "EXCLUDE",
+      "reason": "Systematic review of NAAT testing on urine specimens. Not a primary diagnostic accuracy study of POC tests."
+    },
+    {
+      "study_index": 28,
+      "decision": "INCLUDE",
+      "reason": "Evaluation of Biostar Chlamydia OIA (rapid optical immunoassay) compared with culture, DFA, and PCR in 306 women at an urban STD clinic. Reports sensitivity and specificity. While the composite reference standard approach requires verification at full-text review, this appears to be a primary diagnostic accuracy study of a POC test. Include for full-text assessment."
+    },
+    {
+      "study_index": 29,
+      "decision": "EXCLUDE",
+      "reason": "National population-based prevalence survey reporting STI prevalences. Not a diagnostic accuracy study evaluating POC tests against a reference standard."
+    },
+    {
+      "study_index": 30,
+      "decision": "INCLUDE",
+      "reason": "Cross-sectional diagnostic accuracy study evaluating ACON and QuickVue rapid tests compared with NAATs in 1,500 symptomatic women aged 14-49 in Colombia. Reports sensitivity and specificity. Excluded pregnant women and those with recent antibiotics. Primary diagnostic accuracy study of POC tests versus NAAT."
+    },
+    {
+      "study_index": 31,
+      "decision": "INCLUDE",
+      "reason": "Comparison of Clearview EIA (rapid test) with amplification assays (AMP CT, LCx) in 787 women. Reports sensitivity and specificity. The composite reference standard and inclusion of the index test in the reference require verification, but this appears to be a diagnostic accuracy study of a POC test. Include for full-text assessment."
+    },
+    {
+      "study_index": 32,
+      "decision": "INCLUDE",
+      "reason": "Evaluation of BioStar Chlamydia OIA rapid test against two different NAATs in 261 adolescent females. Reports sensitivity (59.4%) and specificity (98.4%). Primary diagnostic accuracy study of a POC test versus NAAT."
+    },
+    {
+      "study_index": 33,
+      "decision": "INCLUDE",
+      "reason": "Pilot study evaluating CRT Device versus BD ProbeTec ET PCR in 100 asymptomatic men. Reports sensitivity (20%) and specificity (100%). Primary diagnostic accuracy study of a POC test versus NAAT in asymptomatic men."
+    },
+    {
+      "study_index": 34,
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional prevalence study using PCR only. No evaluation of POC tests against a reference standard."
+    },
+    {
+      "study_index": 35,
+      "decision": "EXCLUDE",
+      "reason": "Review article about laboratory diagnosis methods. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 36,
+      "decision": "EXCLUDE",
+      "reason": "Surveillance study measuring STI prevalence and risk behaviors in FSWs and MSM. Not a diagnostic accuracy study of POC tests."
+    },
+    {
+      "study_index": 37,
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional prevalence and etiology study using PCR, culture, and serology. No evaluation of rapid POC tests against a reference standard."
+    },
+    {
+      "study_index": 38,
+      "decision": "INCLUDE",
+      "reason": "Evaluation of a rapid POC test compared with PCR in 278 sex workers in Guatemala. Reports sensitivity (62.96%) and specificity (99.60%). Primary diagnostic accuracy study of a POC test versus NAAT."
+    },
+    {
+      "study_index": 39,
+      "decision": "EXCLUDE",
+      "reason": "Review article about various diagnostic tests. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 40,
+      "decision": "INCLUDE",
+      "reason": "Performance evaluation study of Chlamydia Rapid Test versus PCR and strand displacement amplification in 1,349 women aged 16-54. Reports sensitivity (83.5%), specificity (98.9%), PPV, and NPV with self-collected vaginal swabs. Primary diagnostic accuracy study of POC test versus NAAT."
+    },
+    {
+      "study_index": 41,
+      "decision": "EXCLUDE",
+      "reason": "Study analyzing serovar distributions in infected persons. Not a diagnostic accuracy study evaluating POC tests against a reference standard."
+    },
+    {
+      "study_index": 42,
+      "decision": "INCLUDE",
+      "reason": "Performance evaluation of CRT versus NAAT (Aptima) in 912 women in Suriname. Reports sensitivity (41.2%), specificity (96.4%), PPV, and NPV. Primary diagnostic accuracy study of POC test versus NAAT."
+    },
+    {
+      "study_index": 43,
+      "decision": "EXCLUDE",
+      "reason": "Review about immune mechanisms and infertility. Not a diagnostic accuracy study of POC tests."
+    },
+    {
+      "study_index": 44,
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about search strategies for diagnostic test accuracy studies. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 45,
+      "decision": "INCLUDE",
+      "reason": "Cross-sectional survey comparing rapid optical immunoassay (OIA) with ligase chain reaction (LCR, a NAAT) in 415 outpatients. Reports sensitivity (31.6%) and specificity (98.9%). Primary diagnostic accuracy study of a POC test versus NAAT."
+    },
+    {
+      "study_index": 46,
+      "decision": "INCLUDE",
+      "reason": "Evaluation of three POC tests (Handilab-C, Biorapid, QuickVue) compared with NAAT in 772 women. Reports sensitivities (12-27%). Primary diagnostic accuracy study of POC tests versus NAAT."
+    },
+    {
+      "study_index": 47,
+      "decision": "EXCLUDE",
+      "reason": "Review of risk factors for genital chlamydial infection. Not a diagnostic accuracy study of POC tests."
+    },
+    {
+      "study_index": 48,
+      "decision": "EXCLUDE",
+      "reason": "Guidelines for laboratory diagnosis. Not a primary diagnostic accuracy study."
+    },
+    {
+      "study_index": 49,
+      "decision": "INCLUDE",
+      "reason": "Feasibility and accuracy study of a prototype POC device compared with cervical NAAT in adolescent women. Reports sensitivity and specificity (initial 38%, improved to 80%). Small sample and iterative design with manufacturer involvement, but it is an evaluation of diagnostic accuracy of a POC test versus NAAT. Include for full-text assessment."
+    },
+    {
+      "study_index": 50,
+      "decision": "EXCLUDE",
+      "reason": "Retrospective chart review examining treatment outcomes and follow-up compliance. Not a diagnostic accuracy study comparing POC tests with a reference standard."
+    }
+  ]
+}

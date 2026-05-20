@@ -1,0 +1,54 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "INCLUDE",
+      "reason": "Meets all criteria: Randomised double-blind trial comparing theophylline (as aminophylline) with placebo in 46 patients with acute ischemic stroke. Treatment was administered during the acute phase."
+    },
+    {
+      "study_index": 2,
+      "decision": "INCLUDE",
+      "reason": "Meets all criteria: Randomised double-blind trial comparing intravenous aminophylline with placebo in 79 patients with acute cerebral infarction (ischaemic stroke)."
+    },
+    {
+      "study_index": 3,
+      "decision": "EXCLUDE",
+      "reason": "Does not meet criteria: This is an open-label, single-arm dose-escalation study without randomisation and without a placebo/control group. The authors explicitly state 'A randomized, placebo-controlled trial is needed'."
+    },
+    {
+      "study_index": 4,
+      "decision": "EXCLUDE",
+      "reason": "Does not meet criteria: Primary focus is on vincamin, not theophylline/aminophylline. Aminophylline was only given to 12 of 60 subjects as a secondary comparison. Population unclear - not confirmed to be acute stroke patients."
+    },
+    {
+      "study_index": 5,
+      "decision": "EXCLUDE",
+      "reason": "Does not meet criteria: Patients are 'recovering from an acute ischaemic stroke' - this is a chronic/recovery phase study, not acute stroke treatment. Treatment was not started within one week of stroke onset."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Does not meet criteria: Patients are 'recovering from an acute ischaemic stroke' - this is a chronic/recovery phase study, not acute stroke treatment. Treatment was not started within one week of stroke onset."
+    },
+    {
+      "study_index": 7,
+      "decision": "EXCLUDE",
+      "reason": "Does not meet criteria: This is a mechanistic/physiological study without randomisation or control group. It measures cerebral blood flow changes after aminophylline infusion, not a treatment trial for acute stroke outcomes."
+    },
+    {
+      "study_index": 8,
+      "decision": "EXCLUDE",
+      "reason": "Does not meet criteria: This is an animal study conducted in cats, not in human patients with acute ischaemic stroke."
+    },
+    {
+      "study_index": 9,
+      "decision": "EXCLUDE",
+      "reason": "Does not meet criteria: This is an animal study conducted in anesthetized dogs, not in human patients with acute ischaemic stroke."
+    },
+    {
+      "study_index": 10,
+      "decision": "EXCLUDE",
+      "reason": "Does not meet criteria: This appears to be a review/commentary article discussing previous studies, not a randomised controlled trial. The abstract references historical studies (1953-1964) and states 'Convincing controlled series, however, are still lacking'."
+    }
+  ]
+}

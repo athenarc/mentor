@@ -81,7 +81,7 @@ def create_gatekeeper_agent(model, step_callbacks=None, logger=None) -> CodeAgen
             "returns screening decisions (INCLUDE/EXCLUDE) for each study."
         ),
         instructions=GATEKEEPER_INSTRUCTIONS,
-        max_steps=10,
+        max_steps=20,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy", "pickle", "sys"],

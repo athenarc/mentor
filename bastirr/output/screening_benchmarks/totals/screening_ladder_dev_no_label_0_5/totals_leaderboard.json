@@ -1,0 +1,167 @@
+{
+  "gold_label_policy": "exclude_label_0_5",
+  "general_leaderboard": [
+    {
+      "rank": 1,
+      "gatekeeper_model": "qwen3.5-122b-a10b [Qwen 3.5 122B A10B]",
+      "f1": 0.952,
+      "recall": 0.942,
+      "precision": 0.966,
+      "accuracy": 0.943,
+      "specificity": 0.957,
+      "parse_success": 1.000,
+      "coverage": 1.000,
+      "runs": 5,
+      "scored": 5,
+      "incomplete": 0,
+      "errors": 0
+    },
+    {
+      "rank": 2,
+      "gatekeeper_model": "qwen3.5-27b [Qwen 3.5 27B]",
+      "f1": 0.920,
+      "recall": 0.889,
+      "precision": 0.964,
+      "accuracy": 0.908,
+      "specificity": 0.953,
+      "parse_success": 1.000,
+      "coverage": 1.000,
+      "runs": 5,
+      "scored": 5,
+      "incomplete": 0,
+      "errors": 0
+    },
+    {
+      "rank": 3,
+      "gatekeeper_model": "openai-gpt-5--xhigh [OpenAI GPT5]",
+      "f1": 0.917,
+      "recall": 0.879,
+      "precision": 0.970,
+      "accuracy": 0.909,
+      "specificity": 0.970,
+      "parse_success": 1.000,
+      "coverage": 1.000,
+      "runs": 5,
+      "scored": 5,
+      "incomplete": 0,
+      "errors": 0
+    },
+    {
+      "rank": 4,
+      "gatekeeper_model": "deepseek-v4-pro [DeepSeek V4 Pro]",
+      "f1": 0.903,
+      "recall": 0.851,
+      "precision": 0.971,
+      "accuracy": 0.896,
+      "specificity": 0.970,
+      "parse_success": 1.000,
+      "coverage": 1.000,
+      "runs": 5,
+      "scored": 5,
+      "incomplete": 0,
+      "errors": 0
+    },
+    {
+      "rank": 5,
+      "gatekeeper_model": "kimi-k2.6 [Kimi K2.6]",
+      "f1": 0.892,
+      "recall": 0.835,
+      "precision": 0.974,
+      "accuracy": 0.878,
+      "specificity": 0.970,
+      "parse_success": 1.000,
+      "coverage": 1.000,
+      "runs": 5,
+      "scored": 5,
+      "incomplete": 0,
+      "errors": 0
+    },
+    {
+      "rank": 6,
+      "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]",
+      "f1": 0.849,
+      "recall": 0.791,
+      "precision": 0.935,
+      "accuracy": 0.842,
+      "specificity": 0.935,
+      "parse_success": 1.000,
+      "coverage": 1.000,
+      "runs": 5,
+      "scored": 5,
+      "incomplete": 0,
+      "errors": 0
+    }
+  ],
+  "review_leaderboards": {
+    "surgical_termination_10": {
+      "title": "Surgical methods for first trimester termination of pregnancy",
+      "studies": 10,
+      "gold_pass": 7,
+      "gold_exclude": 3,
+      "rankings": [
+        { "rank": 1, "gatekeeper_model": "openai-gpt-5--xhigh [OpenAI GPT5]", "f1": 1.000, "recall": 1.000, "precision": 1.000, "accuracy": 1.000, "specificity": 1.000 },
+        { "rank": 2, "gatekeeper_model": "qwen3.5-122b-a10b [Qwen 3.5 122B A10B]", "f1": 0.923, "recall": 0.857, "precision": 1.000, "accuracy": 0.900, "specificity": 1.000 },
+        { "rank": 3, "gatekeeper_model": "qwen3.5-27b [Qwen 3.5 27B]", "f1": 0.833, "recall": 0.714, "precision": 1.000, "accuracy": 0.800, "specificity": 1.000 },
+        { "rank": 3, "gatekeeper_model": "deepseek-v4-pro--xhigh [DeepSeek V4 Pro]", "f1": 0.833, "recall": 0.714, "precision": 1.000, "accuracy": 0.800, "specificity": 1.000 },
+        { "rank": 3, "gatekeeper_model": "kimi-k2.6 [Kimi K2.6]", "f1": 0.833, "recall": 0.714, "precision": 1.000, "accuracy": 0.800, "specificity": 1.000 },
+        { "rank": 3, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.833, "recall": 0.714, "precision": 1.000, "accuracy": 0.800, "specificity": 1.000 }
+      ]
+    },
+    "advanced_endometrial_carcinoma_24": {
+      "title": "Chemotherapy for advanced, recurrent or metastatic endometrial carcinoma",
+      "studies": 24,
+      "gold_pass": 12,
+      "gold_exclude": 12,
+      "rankings": [
+        { "rank": 1, "gatekeeper_model": "qwen3.5-122b-a10b [Qwen 3.5 122B A10B]", "f1": 1.000, "recall": 1.000, "precision": 1.000, "accuracy": 1.000, "specificity": 1.000 },
+        { "rank": 2, "gatekeeper_model": "kimi-k2.6 [Kimi K2.6]", "f1": 0.957, "recall": 0.917, "precision": 1.000, "accuracy": 0.958, "specificity": 1.000 },
+        { "rank": 2, "gatekeeper_model": "qwen3.5-27b [Qwen 3.5 27B]", "f1": 0.957, "recall": 0.917, "precision": 1.000, "accuracy": 0.958, "specificity": 1.000 },
+        { "rank": 2, "gatekeeper_model": "deepseek-v4-pro--xhigh [DeepSeek V4 Pro]", "f1": 0.957, "recall": 0.917, "precision": 1.000, "accuracy": 0.958, "specificity": 1.000 },
+        { "rank": 2, "gatekeeper_model": "openai-gpt-5--xhigh [OpenAI GPT5]", "f1": 0.957, "recall": 0.917, "precision": 1.000, "accuracy": 0.958, "specificity": 1.000 },
+        { "rank": 2, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.957, "recall": 0.917, "precision": 1.000, "accuracy": 0.958, "specificity": 1.000 }
+      ]
+    },
+    "chlamydia_poc_test_50": {
+      "title": "Rapid point of care test for detecting urogenital   Chlamydia trachomatis infection in nonpregnant women and men at reproductive age",
+      "studies": 50,
+      "gold_pass": 19,
+      "gold_exclude": 31,
+      "rankings": [
+        { "rank": 1, "gatekeeper_model": "openai-gpt-5--xhigh [OpenAI GPT5]", "f1": 0.973, "recall": 0.947, "precision": 1.000, "accuracy": 0.980, "specificity": 1.000 },
+        { "rank": 1, "gatekeeper_model": "qwen3.5-122b-a10b [Qwen 3.5 122B A10B]", "f1": 0.973, "recall": 0.947, "precision": 1.000, "accuracy": 0.980, "specificity": 1.000 },
+        { "rank": 1, "gatekeeper_model": "qwen3.5-27b [Qwen 3.5 27B]", "f1": 0.973, "recall": 0.947, "precision": 1.000, "accuracy": 0.980, "specificity": 1.000 },
+        { "rank": 2, "gatekeeper_model": "kimi-k2.6 [Kimi K2.6]", "f1": 0.944, "recall": 0.895, "precision": 1.000, "accuracy": 0.960, "specificity": 1.000 },
+        { "rank": 3, "gatekeeper_model": "deepseek-v4-pro--xhigh [DeepSeek V4 Pro]", "f1": 0.914, "recall": 0.842, "precision": 1.000, "accuracy": 0.940, "specificity": 1.000 },
+        { "rank": 4, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.800, "recall": 0.737, "precision": 0.875, "accuracy": 0.860, "specificity": 0.935 }
+      ]
+    },
+    "ovarian_cancer_diagnosis_92": {
+      "title": "Menopausal status, ultrasound and biomarker tests in combination for the diagnosis of ovarian cancer in symptomatic women",
+      "studies": 92,
+      "gold_pass": 45,
+      "gold_exclude": 47,
+      "rankings": [
+        { "rank": 1, "gatekeeper_model": "kimi-k2.6 [Kimi K2.6]", "f1": 0.926, "recall": 0.978, "precision": 0.880, "accuracy": 0.924, "specificity": 0.872 },
+        { "rank": 2, "gatekeeper_model": "qwen3.5-122b-a10b [Qwen 3.5 122B A10B]", "f1": 0.907, "recall": 0.978, "precision": 0.846, "accuracy": 0.902, "specificity": 0.830 },
+        { "rank": 2, "gatekeeper_model": "qwen3.5-27b [Qwen 3.5 27B]", "f1": 0.907, "recall": 0.978, "precision": 0.846, "accuracy": 0.902, "specificity": 0.830 },
+        { "rank": 3, "gatekeeper_model": "deepseek-v4-pro--xhigh [DeepSeek V4 Pro]", "f1": 0.882, "recall": 0.911, "precision": 0.854, "accuracy": 0.880, "specificity": 0.851 },
+        { "rank": 4, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.896, "recall": 0.956, "precision": 0.843, "accuracy": 0.891, "specificity": 0.830 },
+        { "rank": 5, "gatekeeper_model": "openai-gpt-5--xhigh [OpenAI GPT5]", "f1": 0.857, "recall": 0.867, "precision": 0.848, "accuracy": 0.859, "specificity": 0.851 }
+      ]
+    },
+    "home_based_rehabilitation_183": {
+      "title": "Factors that influence the provision of home‐based rehabilitation services for people needing rehabilitation: a qualitative evidence synthesis",
+      "studies": 183,
+      "gold_pass": 138,
+      "gold_exclude": 45,
+      "rankings": [
+        { "rank": 1, "gatekeeper_model": "qwen3.5-122b-a10b [Qwen 3.5 122B A10B]", "f1": 0.955, "recall": 0.928, "precision": 0.985, "accuracy": 0.934, "specificity": 0.956 },
+        { "rank": 2, "gatekeeper_model": "qwen3.5-27b [Qwen 3.5 27B]", "f1": 0.932, "recall": 0.891, "precision": 0.976, "accuracy": 0.902, "specificity": 0.933 },
+        { "rank": 3, "gatekeeper_model": "deepseek-v4-pro--xhigh [DeepSeek V4 Pro]", "f1": 0.930, "recall": 0.870, "precision": 1.000, "accuracy": 0.902, "specificity": 1.000 },
+        { "rank": 4, "gatekeeper_model": "kimi-k2.6 [Kimi K2.6]", "f1": 0.802, "recall": 0.674, "precision": 0.989, "accuracy": 0.749, "specificity": 0.978 },
+        { "rank": 5, "gatekeeper_model": "openai-gpt-5--xhigh [OpenAI GPT5]", "f1": 0.800, "recall": 0.667, "precision": 1.000, "accuracy": 0.749, "specificity": 1.000 },
+        { "rank": 6, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.760, "recall": 0.630, "precision": 0.956, "accuracy": 0.699, "specificity": 0.911 }
+      ]
+    }
+  }
+}

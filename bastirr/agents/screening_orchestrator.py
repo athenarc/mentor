@@ -98,7 +98,7 @@ def create_screening_orchestrator_agent(
         managed_agents=[gatekeeper],
         name="orchestrator",
         instructions=SCREENING_ORCHESTRATOR_INSTRUCTIONS,
-        max_steps=10,
+        max_steps=20,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         step_callbacks=step_callbacks or [],

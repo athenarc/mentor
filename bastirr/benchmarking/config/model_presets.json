@@ -20,7 +20,8 @@
                         ],
                         "allow_fallbacks": false,
                         "require_parameters": true
-                    }
+                    },
+                    "reasoning": {"effort": "xhigh"}
                 }
             }
         },
@@ -38,6 +39,10 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
+                    "reasoning": {
+                        "enabled": true,
+                        "effort": "xhigh"
+                    },
                     "provider": {
                         "order": [
                             "deepseek"
@@ -62,6 +67,36 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
+                    "reasoning": {
+                        "enabled": true
+                    },
+                    "provider": {
+                        "order": [
+                            "novita/bf16"
+                        ],
+                        "allow_fallbacks": false,
+                        "require_parameters": true
+                    }
+                }
+            }
+        },
+        {
+            "key": "qwen3.5_122b_a10b",
+            "description": "Qwen 3.5 122B A10B",
+            "display_name_default": "qwen3.5-122b-a10b",
+            "display_name_env_var": "BASTIRR_QWEN_MODEL",
+            "backend": "openai",
+            "model_id_default": "qwen/qwen3.5-122b-a10b",
+            "model_id_env_var": "BASTIRR_QWEN_MODEL",
+            "api_base_default": "https://openrouter.ai/api/v1",
+            "api_base_env_var": "OPENROUTER_API_BASE",
+            "api_key_env_var": "OPENROUTER_API_KEY",
+            "requires_api_key": true,
+            "request_kwargs_default": {
+                "extra_body": {
+                    "reasoning": {
+                        "enabled": true
+                    },
                     "provider": {
                         "order": [
                             "novita/bf16"
@@ -86,6 +121,9 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
+                    "reasoning": {
+                        "enabled": true
+                    },
                     "provider": {
                         "order": [
                             "moonshotai/int4"
@@ -140,6 +178,33 @@
                         ],
                         "allow_fallbacks": false,
                         "require_parameters": true
+                    }
+                }
+            }
+        },
+        {
+            "key": "openai_gpt_oss_120b",
+            "description": "OpenAI GPT-OSS 120B",
+            "display_name_default": "gpt-oss-120b",
+            "display_name_env_var": "BASTIRR_GPTOSS_MODEL",
+            "backend": "openai",
+            "model_id_default": "openai/gpt-oss-120b",
+            "model_id_env_var": "BASTIRR_GPTOSS_MODEL",
+            "api_base_default": "https://openrouter.ai/api/v1",
+            "api_base_env_var": "OPENROUTER_API_BASE",
+            "api_key_env_var": "OPENROUTER_API_KEY",
+            "requires_api_key": true,
+            "request_kwargs_default": {
+                "extra_body": {
+                    "provider": {
+                        "order": [
+                            "dekallm/bf16"
+                        ],
+                        "allow_fallbacks": false,
+                        "require_parameters": true
+                    },
+                    "reasoning": {
+                        "enabled": true
                     }
                 }
             }

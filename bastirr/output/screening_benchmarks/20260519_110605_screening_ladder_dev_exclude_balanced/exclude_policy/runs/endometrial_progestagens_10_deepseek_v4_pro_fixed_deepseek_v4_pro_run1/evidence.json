@@ -1,0 +1,54 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "INCLUDE",
+      "reason": "RCT: multicentre randomised trial. Progestagen: adjuvant medroxyprogesterone acetate (MPA). Population: women who had surgery for stage I endometrial carcinoma. Meets all criteria."
+    },
+    {
+      "study_index": 2,
+      "decision": "EXCLUDE",
+      "reason": "Not an RCT; it is a review article surveying the literature on progestin therapy."
+    },
+    {
+      "study_index": 3,
+      "decision": "EXCLUDE",
+      "reason": "Not an RCT; methodological paper on measuring inconsistency in meta-analysis. No patients, no progestagen therapy, no endometrial cancer surgery."
+    },
+    {
+      "study_index": 4,
+      "decision": "EXCLUDE",
+      "reason": "Not an RCT; methodological book chapter on statistical methods for meta-analysis. Does not evaluate progestagen therapy."
+    },
+    {
+      "study_index": 5,
+      "decision": "INCLUDE",
+      "reason": "RCT: randomised controlled trial. Progestagen: adjuvant progesterone. Population: women with Stage I/II endometrial cancer after surgery. Meets all criteria."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Not an RCT; methodological paper on meta-analysis methods. No original trial data on progestagen therapy."
+    },
+    {
+      "study_index": 7,
+      "decision": "INCLUDE",
+      "reason": "RCT: randomised trial. Progestagen: progestogens. Population: women with endometrial carcinoma treated with surgery (and radiotherapy). Explicitly an RCT of progestagen therapy in women who had surgery for endometrial cancer; however note it is described as 'primary treatment' rather than strictly adjuvant."
+    },
+    {
+      "study_index": 8,
+      "decision": "EXCLUDE",
+      "reason": "Not an RCT; methodological paper on extracting summary statistics for survival meta-analysis. No original clinical trial."
+    },
+    {
+      "study_index": 9,
+      "decision": "INCLUDE",
+      "reason": "Controlled trial of adjuvant progesterone vs placebo in women after hysterectomy for stage I endometrial cancer, likely randomised (placebo-controlled design). The abstract does not explicitly state 'randomised', but as per guidelines we include uncertain cases for full-text assessment."
+    },
+    {
+      "study_index": 10,
+      "decision": "INCLUDE",
+      "reason": "RCT: prospective study with random assignment. Progestagen: adjuvant progestagen. Population: women after hysterectomy for endometrial cancer. Meets all criteria."
+    }
+  ]
+}
