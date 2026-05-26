@@ -63,6 +63,21 @@
     },
     {
       "rank": 5,
+      "gatekeeper_model": "openai-gpt-5--xhigh [OpenAI GPT5]",
+      "f1": 0.906,
+      "recall": 0.884,
+      "precision": 0.936,
+      "accuracy": 0.910,
+      "specificity": 0.933,
+      "parse_success": 1.000,
+      "coverage": 1.000,
+      "runs": 5,
+      "scored": 5,
+      "incomplete": 0,
+      "errors": 0
+    },
+    {
+      "rank": 6,
       "gatekeeper_model": "deepseek-v4-pro [DeepSeek V4 Pro]",
       "f1": 0.900,
       "recall": 0.878,
@@ -77,7 +92,7 @@
       "errors": 0
     },
     {
-      "rank": 6,
+      "rank": 7,
       "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]",
       "f1": 0.798,
       "recall": 0.785,
@@ -104,7 +119,8 @@
         { "rank": 1, "gatekeeper_model": "qwen3.5-27b [Qwen 3.5 27B]", "f1": 1.000, "recall": 1.000, "precision": 1.000, "accuracy": 1.000, "specificity": 1.000 },
         { "rank": 1, "gatekeeper_model": "deepseek-v4-pro--xhigh [DeepSeek V4 Pro]", "f1": 1.000, "recall": 1.000, "precision": 1.000, "accuracy": 1.000, "specificity": 1.000 },
         { "rank": 2, "gatekeeper_model": "deepseek-v4-pro [DeepSeek V4 Pro]", "f1": 0.889, "recall": 0.800, "precision": 1.000, "accuracy": 0.900, "specificity": 1.000 },
-        { "rank": 3, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.750, "recall": 0.600, "precision": 1.000, "accuracy": 0.800, "specificity": 1.000 }
+        { "rank": 3, "gatekeeper_model": "openai-gpt-5--xhigh [OpenAI GPT5]", "f1": 0.857, "recall": 0.750, "precision": 1.000, "accuracy": 0.880, "specificity": 1.000 },
+        { "rank": 4, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.750, "recall": 0.600, "precision": 1.000, "accuracy": 0.800, "specificity": 1.000 }
       ]
     },
     "tricyclic_depression_children_25": {
@@ -118,6 +134,7 @@
         { "rank": 1, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.909, "recall": 0.833, "precision": 1.000, "accuracy": 0.920, "specificity": 1.000 },
         { "rank": 2, "gatekeeper_model": "qwen3.5-27b [Qwen 3.5 27B]", "f1": 0.870, "recall": 0.833, "precision": 0.909, "accuracy": 0.880, "specificity": 0.923 },
         { "rank": 3, "gatekeeper_model": "deepseek-v4-pro--xhigh [DeepSeek V4 Pro]", "f1": 0.857, "recall": 0.750, "precision": 1.000, "accuracy": 0.880, "specificity": 1.000 },
+        { "rank": 3, "gatekeeper_model": "openai-gpt-5--xhigh [OpenAI GPT5]", "f1": 0.857, "recall": 0.750, "precision": 1.000, "accuracy": 0.880, "specificity": 1.000 },
         { "rank": 3, "gatekeeper_model": "deepseek-v4-pro [DeepSeek V4 Pro]", "f1": 0.857, "recall": 0.750, "precision": 1.000, "accuracy": 0.880, "specificity": 1.000 }
       ]
     },
@@ -128,11 +145,12 @@
       "gold_exclude": 25,
       "rankings": [
         { "rank": 1, "gatekeeper_model": "deepseek-v4-pro [DeepSeek V4 Pro]", "f1": 0.923, "recall": 0.960, "precision": 0.889, "accuracy": 0.920, "specificity": 0.880 },
-        { "rank": 2, "gatekeeper_model": "deepseek-v4-pro--xhigh [DeepSeek V4 Pro]", "f1": 0.902, "recall": 0.920, "precision": 0.885, "accuracy": 0.900, "specificity": 0.880 },
-        { "rank": 3, "gatekeeper_model": "qwen3.5-27b [Qwen 3.5 27B]", "f1": 0.906, "recall": 0.960, "precision": 0.857, "accuracy": 0.900, "specificity": 0.840 },
-        { "rank": 4, "gatekeeper_model": "openai-gpt-5 [OpenAI GPT5]", "f1": 0.898, "recall": 0.880, "precision": 0.917, "accuracy": 0.900, "specificity": 0.920 },
-        { "rank": 4, "gatekeeper_model": "kimi-k2.6 [Kimi K2.6]", "f1": 0.898, "recall": 0.880, "precision": 0.917, "accuracy": 0.900, "specificity": 0.920 },
-        { "rank": 5, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.863, "recall": 0.880, "precision": 0.846, "accuracy": 0.860, "specificity": 0.840 }
+        { "rank": 2, "gatekeeper_model": "openai-gpt-5--xhigh [OpenAI GPT5]", "f1": 0.920, "recall": 0.920, "precision": 0.920, "accuracy": 0.920, "specificity": 0.920 },
+        { "rank": 3, "gatekeeper_model": "deepseek-v4-pro--xhigh [DeepSeek V4 Pro]", "f1": 0.902, "recall": 0.920, "precision": 0.885, "accuracy": 0.900, "specificity": 0.880 },
+        { "rank": 4, "gatekeeper_model": "qwen3.5-27b [Qwen 3.5 27B]", "f1": 0.906, "recall": 0.960, "precision": 0.857, "accuracy": 0.900, "specificity": 0.840 },
+        { "rank": 5, "gatekeeper_model": "openai-gpt-5 [OpenAI GPT5]", "f1": 0.898, "recall": 0.880, "precision": 0.917, "accuracy": 0.900, "specificity": 0.920 },
+        { "rank": 5, "gatekeeper_model": "kimi-k2.6 [Kimi K2.6]", "f1": 0.898, "recall": 0.880, "precision": 0.917, "accuracy": 0.900, "specificity": 0.920 },
+        { "rank": 6, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.863, "recall": 0.880, "precision": 0.846, "accuracy": 0.860, "specificity": 0.840 }
       ]
     },
     "desmopressin_transfusion_100": {
@@ -142,11 +160,12 @@
       "gold_exclude": 46,
       "rankings": [
         { "rank": 1, "gatekeeper_model": "deepseek-v4-pro [DeepSeek V4 Pro]", "f1": 0.963, "recall": 0.963, "precision": 0.963, "accuracy": 0.960, "specificity": 0.957 },
-        { "rank": 2, "gatekeeper_model": "deepseek-v4-pro--xhigh [DeepSeek V4 Pro]", "f1": 0.936, "recall": 0.944, "precision": 0.927, "accuracy": 0.930, "specificity": 0.913 },
-        { "rank": 3, "gatekeeper_model": "openai-gpt-5 [OpenAI GPT5]", "f1": 0.955, "recall": 0.981, "precision": 0.930, "accuracy": 0.950, "specificity": 0.913 },
+        { "rank": 2, "gatekeeper_model": "openai-gpt-5 [OpenAI GPT5]", "f1": 0.955, "recall": 0.981, "precision": 0.930, "accuracy": 0.950, "specificity": 0.913 },
         { "rank": 4, "gatekeeper_model": "kimi-k2.6 [Kimi K2.6]", "f1": 0.946, "recall": 0.981, "precision": 0.914, "accuracy": 0.940, "specificity": 0.891 },
         { "rank": 5, "gatekeeper_model": "qwen3.5-27b [Qwen 3.5 27B]", "f1": 0.945, "recall": 0.963, "precision": 0.929, "accuracy": 0.940, "specificity": 0.913 },
-        { "rank": 6, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.891, "recall": 0.981, "precision": 0.815, "accuracy": 0.870, "specificity": 0.739 }
+        { "rank": 6, "gatekeeper_model": "deepseek-v4-pro--xhigh [DeepSeek V4 Pro]", "f1": 0.936, "recall": 0.944, "precision": 0.927, "accuracy": 0.930, "specificity": 0.913 },
+        { "rank": 6, "gatekeeper_model": "openai-gpt-5--xhigh [OpenAI GPT5]", "f1": 0.936, "recall": 0.944, "precision": 0.927, "accuracy": 0.930, "specificity": 0.913 },
+        { "rank": 7, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.891, "recall": 0.981, "precision": 0.815, "accuracy": 0.870, "specificity": 0.739 }
       ]
     },
     "prom_feedback_194": {
@@ -160,7 +179,8 @@
         { "rank": 3, "gatekeeper_model": "deepseek-v4-pro [DeepSeek V4 Pro]", "f1": 0.870, "recall": 0.918, "precision": 0.826, "accuracy": 0.861, "specificity": 0.802 },
         { "rank": 4, "gatekeeper_model": "openai-gpt-5 [OpenAI GPT5]", "f1": 0.857, "recall": 0.888, "precision": 0.829, "accuracy": 0.851, "specificity": 0.812 },
         { "rank": 5, "gatekeeper_model": "kimi-k2.6 [Kimi K2.6]", "f1": 0.842, "recall": 0.786, "precision": 0.906, "accuracy": 0.851, "specificity": 0.917 },
-        { "rank": 6, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.579, "recall": 0.633, "precision": 0.534, "accuracy": 0.536, "specificity": 0.438 }
+        { "rank": 6, "gatekeeper_model": "openai-gpt-5--xhigh [OpenAI GPT5]", "f1": 0.819, "recall": 0.806, "precision": 0.832, "accuracy": 0.820, "specificity": 0.833 },
+        { "rank": 7, "gatekeeper_model": "gpt-oss-120b [OpenAI GPT-OSS 120B]", "f1": 0.579, "recall": 0.633, "precision": 0.534, "accuracy": 0.536, "specificity": 0.438 }
       ]
     }
   }

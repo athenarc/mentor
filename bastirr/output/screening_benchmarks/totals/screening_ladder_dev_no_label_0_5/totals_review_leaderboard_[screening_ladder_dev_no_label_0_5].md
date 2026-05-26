@@ -58,8 +58,8 @@ Gold label policy: `exclude_label_0_5`
 | 1 | kimi-k2.6 [Kimi K2.6] | 0.926 | 0.978 | 0.880 | 0.924 | 0.872 |
 | 2 | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 0.907 | 0.978 | 0.846 | 0.902 | 0.830 |
 | 2 | qwen3.5-27b [Qwen 3.5 27B] | 0.907 | 0.978 | 0.846 | 0.902 | 0.830 |
-| 3 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 0.882 | 0.911 | 0.854 | 0.880 | 0.851 |
-| 4 | gpt-oss-120b [OpenAI GPT-OSS 120B] | 0.896 | 0.956 | 0.843 | 0.891 | 0.830 |
+| 3 | gpt-oss-120b [OpenAI GPT-OSS 120B] | 0.896 | 0.956 | 0.843 | 0.891 | 0.830 |
+| 4 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 0.882 | 0.911 | 0.854 | 0.880 | 0.851 |
 | 5 | openai-gpt-5--xhigh [OpenAI GPT5] | 0.857 | 0.867 | 0.848 | 0.859 | 0.851 |
 
 ## home_based_rehabilitation_183
