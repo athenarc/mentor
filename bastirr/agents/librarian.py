@@ -57,6 +57,12 @@ All search tools (``search_studies``, ``search_papers_in_bip``,
 objects (dicts), NOT JSON strings. Do NOT call json.loads() on their
 results. Instead, access the fields directly.
 
+CODE RULES:
+- NEVER use locals(), globals(), exec(), or eval() — they are blocked
+  by the execution sandbox. Use try/except or explicit variable checks
+  instead.
+- Use json.loads() and json.dumps() for all JSON operations.
+
 When using MCP search tools, you MUST:
 - construct a small set of well-motivated queries per review (avoid
   dozens of tiny variations with minimal differences)
