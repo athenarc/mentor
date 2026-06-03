@@ -1,0 +1,347 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "INCLUDE",
+      "reason": "Postoperative RCT: after surgery, patients in defined risk strata were randomized to adjuvant medroxyprogesterone acetate (MPA) vs. control (no further therapy or RT±MPA). Meets RCT of adjuvant progestagen after surgery."
+    },
+    {
+      "study_index": 2,
+      "decision": "EXCLUDE",
+      "reason": "Narrative review; not a randomized postoperative trial in surgically treated endometrial cancer patients."
+    },
+    {
+      "study_index": 3,
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on meta-analysis inconsistency; not a clinical RCT of adjuvant progestagens."
+    },
+    {
+      "study_index": 4,
+      "decision": "EXCLUDE",
+      "reason": "Statistical/methods chapter; not a clinical randomized adjuvant progestagen trial."
+    },
+    {
+      "study_index": 5,
+      "decision": "INCLUDE",
+      "reason": "Explicit RCT after surgery: 1,148 post-surgery patients randomized to adjuvant progesterone vs no additional therapy. Fits criteria."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "General meta-analysis methodology; not a randomized clinical trial of adjuvant progestagens."
+    },
+    {
+      "study_index": 7,
+      "decision": "EXCLUDE",
+      "reason": "Randomized on diagnosis with progestogens as part of primary treatment alongside surgery/radiotherapy; not clearly postoperative adjuvant randomization after surgery."
+    },
+    {
+      "study_index": 8,
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on extracting survival stats for meta-analyses; not a clinical RCT."
+    },
+    {
+      "study_index": 9,
+      "decision": "INCLUDE",
+      "reason": "Postoperative, placebo-controlled trial: TAH-BSO performed; then hydroxyprogesterone within 24h weekly ×14 vs placebo. Implies randomized adjuvant therapy after surgery."
+    },
+    {
+      "study_index": 10,
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized assignment after surgery to adjuvant progestagens vs no therapy; explicitly postoperative RCT."
+    }
+  ],
+  "evidence": [
+    {
+      "study_index": 1,
+      "citation": "Not reported",
+      "population": "Apparent FIGO (1971) Stage I endometrial carcinoma; postoperative. Patients categorized by pathological extension: i) disease limited to endometrium (no further treatment), ii) inner myometrial invasion with well/moderate differentiation, iii) moderate/deep myometrial invasion or undifferentiated grade, iv) node-positive disease (N+). Intention-to-treat analysis on 856 patients.",
+      "setting": "Randomised multicentre postoperative adjuvant trial; stratified by pathological risk; Stage I disease.",
+      "intervention": "Medroxyprogesterone acetate (MPA) 100 mg orally twice daily for 12 months; in higher-risk strata MPA was combined with radiotherapy.",
+      "comparison": "Across strata: observation (no further therapy) vs MPA; pelvic (± para-aortic) radiotherapy alone vs radiotherapy + MPA.",
+      "outcomes": [
+        {
+          "outcome_name": "Relapse-free survival (RFS) at 84 months",
+          "effect_measure": null,
+          "effect_size": null,
+          "ci_95_lower": null,
+          "ci_95_upper": null,
+          "p_value": null
+        },
+        {
+          "outcome_name": "Recurrence rate",
+          "effect_measure": null,
+          "effect_size": null,
+          "ci_95_lower": null,
+          "ci_95_upper": null,
+          "p_value": null
+        }
+      ],
+      "study_design": "RCT",
+      "follow_up": "84 months (intention-to-treat)",
+      "adverse_events": "Not reported",
+      "key_findings": [
+        "No significant difference in relapse-free survival between MPA-treated and untreated groups at 84 months (ITT; n=856).",
+        "Adjuvant hormonotherapy (MPA) did not improve cure rate.",
+        "Treatment allocation based on pathological extension influenced relapse-free survival."
+      ],
+      "notes": "Title: Treatment of FIGO (1971) stage 1 endometrial carcinoma with intensive surgery, radiotherapy and hormonotherapy according to pathological prognostic groups. Long term results of a randomised multicentre trial. Year: Not reported; Journal: Not reported. Stratified randomizations by risk group; disease-limited-to-endometrium subgroup was not randomized (observation only). Blinding not stated."
+    },
+    {
+      "study_index": 5,
+      "citation": "Not reported",
+      "population": "Stage I–II endometrial cancer after surgery; 1148 patients randomized to adjuvant progestagen therapy vs no additional therapy. High-risk subgroup of 461 patients analyzed.",
+      "setting": "Randomized controlled postoperative adjuvant trial; multicentre setting not specified.",
+      "intervention": "Adjuvant progestagen therapy (agent and dose not specified) initiated after surgery.",
+      "comparison": "No additional therapy (observation).",
+      "outcomes": [
+        {
+          "outcome_name": "Overall survival (crude survival)",
+          "effect_measure": null,
+          "effect_size": null,
+          "ci_95_lower": null,
+          "ci_95_upper": null,
+          "p_value": null
+        },
+        {
+          "outcome_name": "Relapse rate",
+          "effect_measure": null,
+          "effect_size": null,
+          "ci_95_lower": null,
+          "ci_95_upper": null,
+          "p_value": null
+        },
+        {
+          "outcome_name": "Non-cancer (intercurrent disease) mortality",
+          "effect_measure": null,
+          "effect_size": null,
+          "ci_95_lower": null,
+          "ci_95_upper": null,
+          "p_value": 0.04
+        },
+        {
+          "outcome_name": "Median survival among patients with cancer-related death (months)",
+          "effect_measure": null,
+          "effect_size": null,
+          "ci_95_lower": null,
+          "ci_95_upper": null,
+          "p_value": 0.03
+        },
+        {
+          "outcome_name": "Disease-free survival (high-risk subgroup)",
+          "effect_measure": null,
+          "effect_size": null,
+          "ci_95_lower": null,
+          "ci_95_upper": null,
+          "p_value": null
+        }
+      ],
+      "study_design": "RCT",
+      "follow_up": "42–132 months (median 72 months)",
+      "adverse_events": [
+        "Higher death due to intercurrent disease in progestagen group (P=0.04)."
+      ],
+      "key_findings": [
+        "Crude overall survival and relapse rates were similar between groups.",
+        "Deaths due to intercurrent (non-cancer) disease were higher in the progestagen group (P=0.04).",
+        "Among those with cancer-related death, median survival was longer with progestagens (30 vs 22 months; P=0.03).",
+        "In 461 high-risk patients, there was a tendency toward fewer cancer-related deaths and better disease-free survival with treatment; crude survival unchanged."
+      ],
+      "notes": "Title: A randomised trial of adjuvant progestagens in early endometrial cancer. Year: Not reported; Journal: Not reported. Agent and dose not specified in abstract; blinding not reported."
+    },
+    {
+      "study_index": 9,
+      "citation": "Not reported",
+      "population": "Stage IA or IB endometrial carcinoma; all underwent total abdominal hysterectomy and bilateral salpingo-oophorectomy (TAH-BSO). 35 patients randomized: 18 to hormone, 17 to placebo.",
+      "setting": "Placebo-controlled randomized postoperative adjuvant trial.",
+      "intervention": "6‑methyl‑17α‑hydroxyprogesterone initiated within 24 hours after surgery and then weekly for 14 weeks (dose and route not reported).",
+      "comparison": "Placebo on the same schedule.",
+      "outcomes": [
+        {
+          "outcome_name": "Cancer-specific mortality at 5 years",
+          "effect_measure": null,
+          "effect_size": null,
+          "ci_95_lower": null,
+          "ci_95_upper": null,
+          "p_value": null
+        },
+        {
+          "outcome_name": "Overall survival at 5 years",
+          "effect_measure": null,
+          "effect_size": null,
+          "ci_95_lower": null,
+          "ci_95_upper": null,
+          "p_value": null
+        },
+        {
+          "outcome_name": "Recurrence rate",
+          "effect_measure": null,
+          "effect_size": null,
+          "ci_95_lower": null,
+          "ci_95_upper": null,
+          "p_value": null
+        }
+      ],
+      "study_design": "RCT",
+      "follow_up": "5 years",
+      "adverse_events": "Not reported",
+      "key_findings": [
+        "At 5 years, cancer deaths were 2/18 in the hormone group vs 1/17 in the placebo group.",
+        "No improvement in survival or recurrence with adjuvant hormone vs placebo over 5 years."
+      ],
+      "notes": "Title: Aduvant progesterone therapy for stage 1 endometrial cancer. Year: Not reported; Journal: Wiley Online Library (source noted). Agent designation in abstract alternates between '6-methyl-17α-hydroxyprogesterone' and 'hydroxyprogesterone'; dose/route not reported."
+    },
+    {
+      "study_index": 10,
+      "citation": "Not reported",
+      "population": "Postoperative endometrial cancer after hysterectomy; 205 patients randomized.",
+      "setting": "Single-institution prospective randomized postoperative adjuvant trial.",
+      "intervention": "Adjuvant progestagen therapy (agent/dose not specified).",
+      "comparison": "No additional therapy (observation).",
+      "outcomes": [
+        {
+          "outcome_name": "Overall survival",
+          "effect_measure": null,
+          "effect_size": null,
+          "ci_95_lower": null,
+          "ci_95_upper": null,
+          "p_value": 0.001
+        }
+      ],
+      "study_design": "RCT",
+      "follow_up": "5 years",
+      "adverse_events": "Not reported",
+      "key_findings": [
+        "Progestagen group had significantly longer survival compared with control (log-rank test; P<0.001)."
+      ],
+      "notes": "Title: Adjuvant progestagen therapy improves survival in patients with endometrial cancer after hysterectomy. Results of one-institutional prospective clinical trial. Year: Not reported; Journal: Not reported (article.imrpress.com). p-value reported as P<0.001 via log-rank; exact hazard ratios and CIs not reported in the abstract. Single-institution design; risk of bias details not provided."
+    }
+  ],
+  "quality_assessment": [
+    {
+      "study_index": 1,
+      "citation": "Not reported",
+      "quality_rating": "moderate",
+      "strengths": [
+        "Randomized design with stratification by pathological risk",
+        "Large sample size (ITT n=856)",
+        "Multicentre setting",
+        "Long follow-up (84 months)",
+        "Clinically relevant outcomes (relapse-free survival, recurrence)"
+      ],
+      "limitations": [
+        "Partial randomization: lowest-risk subgroup not randomized (observation only)",
+        "Co-interventions varied by stratum (radiotherapy ± MPA), confounding the isolated effect of progestagen",
+        "Allocation concealment not reported",
+        "Blinding not reported",
+        "Adverse events not reported",
+        "No effect estimates (e.g., HRs, CIs) reported; only direction of effect",
+        "Older staging (FIGO 1971), limiting external validity"
+      ],
+      "risk_of_bias": "unclear",
+      "risk_of_bias_concerns": [
+        "Randomization process: unclear details and non-randomized subgroup",
+        "Allocation concealment: not reported",
+        "Blinding of participants/personnel: not reported (performance bias possible)",
+        "Blinding of outcome assessment: not reported",
+        "Incomplete outcome data: attrition/handling not detailed despite long follow-up",
+        "Selective reporting: effect sizes not presented",
+        "Other: confounding by radiotherapy co-interventions across strata"
+      ],
+      "applicability": "indirect"
+    },
+    {
+      "study_index": 5,
+      "citation": "Not reported",
+      "quality_rating": "moderate",
+      "strengths": [
+        "Randomized controlled design",
+        "Very large sample size (n=1148) with long follow-up (median 72 months)",
+        "Evaluated multiple clinically important endpoints (OS, relapse/DFS)",
+        "Reported a safety signal (higher non-cancer mortality)"
+      ],
+      "limitations": [
+        "Randomization/allocation methods not detailed",
+        "Blinding not reported (likely open-label)",
+        "Intervention agent and dose not specified",
+        "Effect estimates (HRs/CIs) not reported, only p-values or descriptive results",
+        "Details on causes of non-cancer mortality not provided",
+        "High-risk subgroup findings may be exploratory and underpowered",
+        "Baseline balance and handling of missing data not reported"
+      ],
+      "risk_of_bias": "unclear",
+      "risk_of_bias_concerns": [
+        "Randomization process: insufficient detail",
+        "Allocation concealment: not reported",
+        "Blinding: not reported (risk of performance/detection bias)",
+        "Incomplete outcome data: not clearly reported over long follow-up",
+        "Selective reporting: lack of effect size metrics and safety detail",
+        "Other: unspecified progestagen regimen limits reproducibility"
+      ],
+      "applicability": "direct"
+    },
+    {
+      "study_index": 9,
+      "citation": "Not reported",
+      "quality_rating": "low",
+      "strengths": [
+        "Randomized, placebo-controlled design",
+        "Clear, stage-specific population (IA/IB) after standard surgery",
+        "Fixed 5-year follow-up for key outcomes"
+      ],
+      "limitations": [
+        "Very small sample size (n=35) with low event counts (severely underpowered)",
+        "Dose/route of the agent not reported",
+        "Adverse events not reported",
+        "Effect estimates (HRs/CIs) not reported",
+        "Blinding procedures not explicitly described despite placebo control"
+      ],
+      "risk_of_bias": "unclear",
+      "risk_of_bias_concerns": [
+        "Randomization process: scant details",
+        "Allocation concealment: not reported",
+        "Blinding: likely but not explicitly described",
+        "Incomplete outcome data: not described",
+        "Selective reporting: effect sizes and AE profiles not provided",
+        "Other: extreme imprecision due to tiny sample"
+      ],
+      "applicability": "indirect"
+    },
+    {
+      "study_index": 10,
+      "citation": "Not reported",
+      "quality_rating": "low",
+      "strengths": [
+        "Randomized design",
+        "Clinically important endpoint (overall survival)",
+        "Five-year follow-up"
+      ],
+      "limitations": [
+        "Single-institution trial with unclear randomization and concealment methods",
+        "No details on agent/dose/regimen",
+        "Only a log-rank p-value provided (no HRs, CIs); magnitude and precision unclear",
+        "Adverse events and discontinuations not reported",
+        "Potential baseline imbalances and open-label conduct cannot be excluded",
+        "Finding (large OS benefit) is inconsistent with larger multicentre trials"
+      ],
+      "risk_of_bias": "high",
+      "risk_of_bias_concerns": [
+        "Randomization and allocation concealment: not described (selection bias possible)",
+        "Blinding: not reported (performance/detection bias possible)",
+        "Selective reporting: lack of effect estimates and safety outcomes",
+        "Other: single-centre, unexplained large effect size discordant with larger RCTs"
+      ],
+      "applicability": "direct"
+    }
+  ],
+  "synthesis": "Effectiveness — recurrence and disease-free outcomes: Across three trials, adjuvant progestagens did not demonstrate a reduction in recurrence or improvement in relapse-free/disease-free survival in the overall populations. A large multicentre, risk‑stratified RCT found no difference in relapse‑free survival at 84 months when MPA was added (or not) according to stratum [1]. A very large RCT reported similar crude relapse rates between progestagen and observation arms overall; in a high‑risk subgroup (n=461), there was only a tendency toward better disease‑free survival with progestagens, without a corresponding crude survival benefit [5]. A small placebo-controlled RCT (n=35) also showed no improvement in recurrence at 5 years [9]. Taken together, these results indicate little to no effect of adjuvant progestagens on recurrence‑related outcomes in early-stage endometrial cancer, with any potential benefit in high‑risk subgroups remaining uncertain due to imprecision.\n\nEffectiveness — overall and cancer‑specific survival: Findings are inconsistent. The largest trial reporting crude survival showed no difference between groups [5]; a small placebo‑controlled study found no OS or cancer‑specific survival advantage at 5 years [9]. In contrast, a single‑institution trial (n=205) reported significantly longer overall survival with progestagens (log‑rank P<0.001) [10], but this positive result lacks effect size estimates, has unclear methods, and conflicts with larger trials. One large RCT reported, among participants who died of cancer, a longer median survival in the progestagen arm (30 vs 22 months; P=0.03), but this is a conditional analysis that does not establish an ITT survival benefit [5]. Overall, the weight of evidence from larger, more generalizable RCTs suggests no improvement in overall or cancer‑specific survival with adjuvant progestagens.\n\nSafety and tolerability: Adverse events and discontinuations were largely not reported. Notably, a large RCT observed higher non‑cancer (intercurrent) mortality in the progestagen group (P=0.04) [5], raising a potential safety concern (e.g., cardiovascular or thromboembolic risks), although specific causes were not detailed. Other trials did not provide systematic adverse event data [1][9][10], preventing firm conclusions on safety.\n\nHeterogeneity, precision, and consistency: Trials varied in progestagen agents (e.g., medroxyprogesterone vs hydroxyprogesterone vs unspecified), dosing/duration (e.g., MPA 100 mg BID for 12 months; weekly injections for 14 weeks; unspecified regimens), and co‑interventions (e.g., radiotherapy in selected strata) [1][5][9][10]. Designs ranged from single‑centre to large multicentre. Effect estimates (HRs, CIs) were seldom reported, limiting precision assessment. Despite heterogeneity, results for recurrence/DFS were largely consistent (no clear benefit); survival results were inconsistent due to a single positive outlier [10].\n\nApplicability: Populations were primarily early‑stage (Stage I–II) after surgery, aligning with the adjuvant setting. However, indirectness arises from older staging systems, evolving standards of adjuvant radiotherapy, and variable or unspecified progestagen regimens. Co‑administration of radiotherapy in risk‑based strata [1] further complicates isolation of a progestagen effect.\n\nConclusion: The preponderance of randomized evidence indicates that adjuvant progestagen therapy after surgery for early-stage endometrial cancer does not reduce recurrence or clearly improve survival. Safety is insufficiently characterized, with one large trial signaling higher non‑cancer mortality with progestagens [5]. Given methodological limitations and inconsistent survival findings, routine use of adjuvant progestagens is not supported outside research settings.\n\nPractice implications: Do not routinely offer adjuvant progestagens after surgery for early‑stage endometrial cancer. Management should prioritize established risk‑adapted strategies (e.g., observation or radiotherapy when indicated). Consider progestagens only within high‑quality clinical trials, particularly for predefined biologically plausible subgroups (e.g., high‑risk disease, hormone receptor–positive tumors) with rigorous safety monitoring.\n\nResearch gaps: Future multicentre RCTs should standardize agents/dosing/duration; predefine high‑risk and biomarker‑selected subgroups; report hazard ratios with confidence intervals; comprehensively capture adverse events (including venous thromboembolism and cardiovascular events) and treatment discontinuations; and evaluate patient‑reported outcomes and quality of life.",
+  "evidence_strength": "moderate",
+  "limitations": [
+    "Effect estimates (HRs, CIs) rarely reported; reliance on p-values and descriptive results limits precision.",
+    "Heterogeneity in agents, dosing, duration, and co-interventions (e.g., radiotherapy) complicates synthesis.",
+    "Adverse events and discontinuations underreported; safety profile remains uncertain.",
+    "Randomization, allocation concealment, and blinding methods frequently unclear.",
+    "Older staging systems and evolving adjuvant standards may reduce applicability to current practice.",
+    "One single-institution positive trial conflicts with larger studies and has high risk of bias."
+  ]
+}
