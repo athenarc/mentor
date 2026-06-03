@@ -6,7 +6,7 @@ workflow by delegating to specialised sub-agents (Librarian, Gatekeeper,
 Miner, Critic) via smolagents' managed_agents pattern.
 """
 
-from smolagents import CodeAgent
+from smolagents import CodeAgent, Model
 
 from bastirr.config import EXECUTOR_TIMEOUT_SECONDS
 from bastirr.agents.librarian import create_librarian_agent
@@ -132,7 +132,22 @@ Code block 5 — FORMAT & SAVE:
 """
 
 
-def create_orchestrator_agent(model, step_callbacks=None, logger=None) -> CodeAgent:
+def _require_model(model: Model | None, role: str) -> Model:
+    """Return a concrete model or raise a role-specific configuration error."""
+    if model is None:
+        raise ValueError(
+            f"Missing model configuration for role '{role}'. "
+            "Provide a shared model or define every role in models_by_role."
+        )
+    return model
+
+
+def create_orchestrator_agent(
+    model: Model | None = None,
+    models_by_role: dict[str, Model] | None = None,
+    step_callbacks=None,
+    logger=None,
+) -> CodeAgent:
     """
     Create the Orchestrator (Manager) agent with all sub-agents.
 
@@ -141,7 +156,11 @@ def create_orchestrator_agent(model, step_callbacks=None, logger=None) -> CodeAg
     and Critic agents using smolagents' managed_agents pattern.
 
     Args:
-        model: A smolagents model instance (e.g. OpenAIServerModel).
+        model: Shared smolagents model instance used for all agents when
+            ``models_by_role`` is not provided.
+        models_by_role: Optional mapping from agent role to model instance.
+            Supported keys are ``orchestrator``, ``librarian``, ``gatekeeper``,
+            ``miner``, and ``critic``.
         step_callbacks: Optional callbacks invoked after each agent step.
             Can be a list (registered for ActionStep only) or a dict
             mapping step types to callbacks (e.g.
@@ -152,16 +171,33 @@ def create_orchestrator_agent(model, step_callbacks=None, logger=None) -> CodeAg
     Returns:
         Configured CodeAgent that manages the full workflow.
     """
+    if model is None and not models_by_role:
+        raise ValueError("create_orchestrator_agent requires either a shared model or models_by_role.")
+
+    models_by_role = models_by_role or {}
+    shared_model = model
+    orchestrator_model = models_by_role.get("orchestrator") or shared_model
+    librarian_model = models_by_role.get("librarian") or shared_model
+    gatekeeper_model = models_by_role.get("gatekeeper") or shared_model
+    miner_model = models_by_role.get("miner") or shared_model
+    critic_model = models_by_role.get("critic") or shared_model
+
+    orchestrator_model = _require_model(orchestrator_model, "orchestrator")
+    librarian_model = _require_model(librarian_model, "librarian")
+    gatekeeper_model = _require_model(gatekeeper_model, "gatekeeper")
+    miner_model = _require_model(miner_model, "miner")
+    critic_model = _require_model(critic_model, "critic")
+
     # Create all sub-agents (share the same logger so all output is captured)
-    librarian = create_librarian_agent(model, step_callbacks=step_callbacks, logger=logger)
-    gatekeeper = create_gatekeeper_agent(model, step_callbacks=step_callbacks, logger=logger)
-    miner = create_miner_agent(model, step_callbacks=step_callbacks, logger=logger)
-    critic = create_critic_agent(model, step_callbacks=step_callbacks, logger=logger)
+    librarian = create_librarian_agent(librarian_model, step_callbacks=step_callbacks, logger=logger)
+    gatekeeper = create_gatekeeper_agent(gatekeeper_model, step_callbacks=step_callbacks, logger=logger)
+    miner = create_miner_agent(miner_model, step_callbacks=step_callbacks, logger=logger)
+    critic = create_critic_agent(critic_model, step_callbacks=step_callbacks, logger=logger)
 
     return CodeAgent(
         tools=[format_report, save_evidence_json, extract_included_studies,
                get_candidates_json],
-        model=model,
+        model=orchestrator_model,
         managed_agents=[librarian, gatekeeper, miner, critic],
         instructions=ORCHESTRATOR_INSTRUCTIONS,
         max_steps=10,

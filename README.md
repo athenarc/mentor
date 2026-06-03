@@ -44,19 +44,19 @@ pip install 'smolagents[litellm]'
 # Optional: Install dataset analysis dependencies (for EDA notebooks)
 # pip install -r systematic_review_dataset/requirements.txt
 
-# 2. Set up API key
-#    Copy the template and add your OpenAI API key
+# 2. Set up API access
+#    Copy the template and add your API key
 cp .env.example .env
-#    Then edit .env and set: OPENAI_API_KEY=sk-...
+#    Then edit .env and set: BASTIRR_API_KEY=...
 
 # 3. Ensure the dataset is downloaded
 cd systematic_review_dataset && ./download_dataset.sh && cd ..
 
 # 4. List available reviews
-PYTHONPATH=. python3 -m bastirr.run_demo --list-reviews --split HIV_test
+python3 -m bastirr.run_demo --list-reviews --split HIV_test
 
 # 5. Run the demo (uses default HIV Cotrimoxazole review with OpenAI)
-PYTHONPATH=. python3 -m bastirr.run_demo
+python3 -m bastirr.run_demo
 ```
 
 ## Project Structure
@@ -68,6 +68,9 @@ bastirr/
 ├── logging_utils.py         # Run logging (workflow + decision summary)
 ├── run_demo.py              # CLI entry point & end-to-end runner
 ├── requirements.txt         # Python dependencies
+├── scripts/
+│   ├── __init__.py          # Bastirr-specific utility scripts
+│   └── render_workflow_presentation.py  # Presentation HTML exporter for completed runs
 ├── data/
 │   └── __init__.py          # Dataset loader (SystematicReview dataclass)
 ├── agents/
@@ -91,7 +94,7 @@ bastirr/
 
 | Directory | Description |
 |-----------|-------------|
-| `bastirr/` | Core agent package — agents, tools, config, data loader, CLI runner. |
+| `bastirr/` | Core agent package — agents, tools, config, data loader, CLI runner, and Bastirr-specific utility scripts. |
 | `systematic_review_dataset/` | Cochrane dataset (8,608 reviews, 544K studies) used as the input source for the demo. |
 | `resources/architecture_docs/` | Design specs defining the 5-agent architecture, MCP integration, and Expert-in-the-Loop approach. |
 | `resources/vaccine_indicators_demo/` | Separate LLM pipeline for medical evidence extraction (PDF → OCR → extraction → synthesis). |
@@ -106,6 +109,107 @@ This is a **scaffolding implementation** — the agents run end-to-end and produ
 - **Critic**: Synthesizes from abstract-level evidence
 
 The pipeline has been validated on the Cotrimoxazole/HIV review (10 candidates, 1 included), achieving 10/10 screening accuracy against the Cochrane ground truth. Outputs include a structured Markdown report (`report.md`) and a machine-readable evidence file (`evidence.json`).
+
+## Workflow Presentation Exporter
+
+Bastirr includes a presentation-oriented exporter for completed runs:
+
+- **Script**: `bastirr/scripts/render_workflow_presentation.py`
+- **Primary input**: `workflow.log`
+- **Optional enrichment**: sibling `activity.md`
+- **Output**: self-contained `workflow_presentation.html`
+
+The exporter is designed for demos, reviews, and handovers. It preserves the chronological run trace while making it easier to present:
+
+- run metadata and protocol summaries
+- phase summaries from `activity.md`
+- code and executed-code toggles
+- optional presenter annotations
+- phase and inline-step navigation
+
+It uses the standard project dependencies from `requirements.txt`, including `pygments` for syntax highlighting in rendered code blocks.
+
+### Basic usage
+
+Generate a presentation HTML file beside a completed run:
+
+```bash
+python3 -m bastirr.scripts.render_workflow_presentation \
+  --workflow "bastirr/output/<timestamp>_<review-title>/workflow.log"
+```
+
+Disable annotations entirely:
+
+```bash
+python3 -m bastirr.scripts.render_workflow_presentation \
+  --workflow "bastirr/output/<timestamp>_<review-title>/workflow.log" \
+  --disable-annotations
+```
+
+Use a specific annotations file and output path:
+
+```bash
+python3 -m bastirr.scripts.render_workflow_presentation \
+  --workflow "bastirr/output/<timestamp>_<review-title>/workflow.log" \
+  --annotations "bastirr/output/<timestamp>_<review-title>/workflow_presentation_annotations.json" \
+  --output "bastirr/output/<timestamp>_<review-title>/presentation.html"
+```
+
+Workflow-only mode without `activity.md` enrichment:
+
+```bash
+python3 -m bastirr.scripts.render_workflow_presentation \
+  --workflow "bastirr/output/<timestamp>_<review-title>/workflow.log" \
+  --activity none
+```
+
+### CLI options
+
+```text
+PYTHONPATH=. python3 -m bastirr.scripts.render_workflow_presentation [OPTIONS]
+
+Options:
+  --workflow PATH                  Path to workflow.log (required)
+  --activity PATH|none             Optional activity.md path; defaults to sibling file if present
+  --annotations PATH               Optional annotations JSON
+  --disable-annotations            Ignore annotations even if provided
+  --output PATH                    Output HTML path; defaults to workflow_presentation.html beside workflow.log
+  --title TEXT                     Override the page title
+  --hide-code-default true|false   Hide raw code blocks on initial load (default: true)
+  --hide-executed-code-default true|false
+                                   Hide executed-code blocks on initial load (default: true)
+```
+
+### Annotation file
+
+The exporter supports an optional sidecar JSON file for presenter notes:
+
+```json
+{
+  "hero": {
+    "title": "What to notice",
+    "body": [
+      "The orchestrator only sees the protocol, not the candidate studies."
+    ]
+  },
+  "sections": {
+    "phase-2": {
+      "title": "Search handoff",
+      "body": [
+        "This phase shows the librarian search and the candidate handoff to screening."
+      ]
+    }
+  }
+}
+```
+
+Navigation in the exported HTML follows the run structure:
+
+- `Intro`
+- phase sections (`PHASE-1`, `PHASE-2`, ...)
+- inline `Workflow Output` step markers inside each phase (`PHASE-2 · Step 1`, `PHASE-2 · Step 2`, ...)
+
+This makes the file suitable both for presentation and for structured walkthroughs of a Bastirr run.
 
 ### Next Steps
 
@@ -129,19 +233,156 @@ The default demo uses a small HIV review:
 
 Bastirr supports **multiple model backends** via smolagents:
 
-### OpenAI (default)
+### OpenAI-Compatible (default)
 
-Use OpenAI models like GPT-4o, GPT-4-turbo, GPT-5, etc.
+Use OpenAI-compatible endpoints with `OpenAIServerModel`.
+This covers direct OpenAI and OpenRouter.
 
 ```bash
-# Via .env
+# Via .env: direct OpenAI
 BASTIRR_MODEL_BACKEND=openai
-BASTIRR_MODEL=gpt-4o
-OPENAI_API_KEY=sk-...
+BASTIRR_MODEL=gpt-5
+BASTIRR_API_KEY=sk-...
 
 # Or via CLI
-PYTHONPATH=. python3 -m bastirr.run_demo --model gpt-4o
+python3 -m bastirr.run_demo --model gpt-5
 ```
+
+```bash
+# Via .env: OpenRouter
+BASTIRR_MODEL_BACKEND=openai
+BASTIRR_MODEL=openai/gpt-5
+BASTIRR_API_BASE=https://openrouter.ai/api/v1
+BASTIRR_API_KEY=sk-or-v1-...
+```
+
+### Runtime Model Profiles
+
+For reusable runtime setups, Bastirr supports JSON-backed model profiles.
+
+- Default profile file: `bastirr/runtime_config/model_profiles.json`
+- Select a profile with `BASTIRR_MODEL_PROFILE=<profile-key>` or `--model-profile <profile-key>`
+- Override the profile file with `BASTIRR_MODEL_PROFILES_CONFIG=/absolute/path/to/model_profiles.json`
+
+Profiles can define:
+
+- a single shared model for all agents
+- different models by role (`orchestrator`, `librarian`, `gatekeeper`, `miner`, `critic`)
+- OpenRouter `extra_body` request configuration such as provider pinning and reasoning settings
+
+Recommended split of responsibility:
+
+- the profile owns non-secret runtime configuration such as `backend`, `model_id`, `api_base`, and `request_kwargs`
+- environment variables provide secrets such as API keys
+- env-based overrides like `api_base_env_var` or `model_id_env_var` should only be used when you intentionally want to make a profile mutable at runtime
+
+Shared-profile example:
+
+```bash
+BASTIRR_MODEL_PROFILE=openrouter_gpt5
+BASTIRR_API_KEY=sk-or-v1-...
+BASTIRR_API_BASE=https://openrouter.ai/api/v1
+python3 -m bastirr.run_demo
+```
+
+Non-shared profiles use explicit agent-role keys instead of `shared`.
+The supported role keys are:
+
+- `orchestrator`
+- `librarian`
+- `gatekeeper`
+- `miner`
+- `critic`
+
+Resolution rules:
+
+- if `shared` is present, it is used as the default for every role
+- any explicit role entry overrides `shared` for that role
+- if `shared` is absent, all five role entries must be provided
+- `api_key_env_vars` is checked in order, and the first non-empty env var wins
+
+Minimal non-shared example:
+
+```json
+{
+  "profiles": [
+    {
+      "key": "multimodel_openrouter",
+      "description": "GPT-5 for coordination, DeepSeek for screening.",
+      "agents": {
+        "shared": {
+          "backend": "openai",
+          "model_id": "openai/gpt-5",
+          "api_base": "https://openrouter.ai/api/v1",
+          "api_key_env_vars": ["BASTIRR_API_KEY"],
+          "requires_api_key": true,
+          "request_kwargs": {
+            "extra_body": {
+              "provider": {
+                "order": ["openai/default"],
+                "allow_fallbacks": false,
+                "require_parameters": true
+              },
+              "reasoning": {
+                "effort": "high"
+              }
+            }
+          }
+        },
+        "gatekeeper": {
+          "backend": "openai",
+          "model_id": "deepseek/deepseek-v4-pro",
+          "api_base": "https://openrouter.ai/api/v1",
+          "api_key_env_vars": ["BASTIRR_API_KEY"],
+          "requires_api_key": true,
+          "request_kwargs": {
+            "extra_body": {
+              "provider": {
+                "order": ["deepseek"],
+                "allow_fallbacks": false,
+                "require_parameters": true
+              },
+              "reasoning": {
+                "enabled": true,
+                "effort": "high"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+In that example:
+
+- `orchestrator`, `librarian`, `miner`, and `critic` inherit the `shared` GPT-5 config
+- `gatekeeper` overrides only its own model and request configuration
+- the OpenRouter base URL is owned by the profile, while the API key still comes from `BASTIRR_API_KEY`
+
+To use a custom profile file:
+
+```bash
+BASTIRR_MODEL_PROFILES_CONFIG=/absolute/path/to/model_profiles.json
+BASTIRR_MODEL_PROFILE=multimodel_openrouter
+BASTIRR_API_KEY=sk-or-v1-...
+python3 -m bastirr.run_demo
+```
+
+Useful profile fields:
+
+- `backend`: `openai`, `litellm`, or `hf-hub`
+- `backend_env_var`: optional env var name that overrides `backend`
+- `model_id`: default model identifier
+- `model_id_env_var`: optional env var name that overrides `model_id`
+- `api_base`: default API base
+- `api_base_env_var`: optional env var name that overrides `api_base`
+- `api_key_env_vars`: ordered list of env vars to try for the API key
+- `requires_api_key`: whether Bastirr should fail early if no key resolves
+- `request_kwargs`: extra kwargs forwarded to the underlying `smolagents` model constructor
+
+For OpenRouter with the OpenAI SDK compatibility path, provider routing and reasoning controls belong under `request_kwargs.extra_body`.
 
 ### Anthropic (via LiteLLM)
 
@@ -152,7 +393,7 @@ BASTIRR_MODEL=anthropic/claude-3-5-sonnet-latest
 BASTIRR_API_KEY=sk-ant-...
 
 # Or via CLI
-PYTHONPATH=. python3 -m bastirr.run_demo --backend litellm --model anthropic/claude-3-5-sonnet-latest
+python3 -m bastirr.run_demo --backend litellm --model anthropic/claude-3-5-sonnet-latest
 ```
 
 ### Local Models (Ollama)
@@ -167,7 +408,7 @@ BASTIRR_MODEL=ollama_chat/llama3.2
 BASTIRR_API_BASE=http://localhost:11434
 
 # Or via CLI
-PYTHONPATH=. python3 -m bastirr.run_demo \
+python3 -m bastirr.run_demo \
   --backend litellm \
   --model ollama_chat/llama3.2 \
   --api-base http://localhost:11434
@@ -211,14 +452,15 @@ The candidate list used by the pipeline is what the Librarian publishes via
 ## CLI Arguments
 
 ```bash
-PYTHONPATH=. python3 -m bastirr.run_demo [OPTIONS]
+python3 -m bastirr.run_demo [OPTIONS]
 
 Options:
   --review-url URL     Cochrane review URL to process
   --split SPLIT        Dataset split: dev, val, random_test, heart_test, HIV_test
-  --model MODEL_ID     Model identifier (e.g. gpt-4o, anthropic/claude-3-5-sonnet-latest)
+  --model MODEL_ID     Model identifier (e.g. gpt-5, anthropic/claude-3-5-sonnet-latest)
   --backend BACKEND    Model backend: openai (default) or litellm or hf-hub (local inference)
   --api-base URL       API base URL for local servers (e.g. http://localhost:11434)
+  --model-profile KEY  Runtime model profile key from bastirr/runtime_config/model_profiles.json
   --list-reviews       List available reviews and exit
 ```
 
@@ -228,11 +470,13 @@ All configuration lives in [`bastirr/config.py`](bastirr/config.py). Key setting
 
 | Setting | Source | Default | Description |
 |---------|--------|---------|-------------|
-| `OPENAI_API_KEY` | `.env` | (required for OpenAI) | OpenAI API key |
+| `BASTIRR_API_KEY` | `.env` | — | Preferred API key for OpenAI-compatible backends |
+| `OPENAI_API_KEY` | `.env` | — | Legacy fallback for direct OpenAI if `BASTIRR_API_KEY` is unset |
 | `BASTIRR_MODEL_BACKEND` | `.env` | `openai` | Model backend: `openai` or `litellm` |
-| `BASTIRR_MODEL` | `.env` | `gpt-4o` | Model identifier (provider-prefixed for LiteLLM) |
-| `BASTIRR_API_BASE` | `.env` | — | API base URL for local servers |
-| `BASTIRR_API_KEY` | `.env` | — | Generic API key for non-OpenAI providers |
+| `BASTIRR_MODEL` | `.env` | `gpt-5` | Model identifier (provider-prefixed for LiteLLM) |
+| `BASTIRR_API_BASE` | `.env` | — | API base URL for OpenAI-compatible or local servers |
+| `BASTIRR_MODEL_PROFILE` | `.env` | — | Runtime model profile key |
+| `BASTIRR_MODEL_PROFILES_CONFIG` | `.env` | `bastirr/runtime_config/model_profiles.json` | Alternate runtime model-profile file |
 | `BASTIRR_EXECUTOR_TIMEOUT` | `.env` | `500` | Max seconds per code-execution step |
 | `SEARCH_SOURCES` | `.env` | `local` | Comma-separated search sources: `local`, `bip`, `pubmed` |
 | `SEARCH_BIP_MCP_URL` | `.env` | `https://bip-mcp.imsi.athenarc.gr/mcp` | BIP MCP endpoint (used when `bip` in `SEARCH_SOURCES`) |
