@@ -14,7 +14,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
 
 ## tricyclic_depression_children_25
 
@@ -26,7 +26,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.857 | 0.750 | 1.000 | 0.880 | 1.000 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.857 | 0.750 | 1.000 | 0.880 | 1.000 | 1.000 | 1.000 |
 
 ## adhesive_capsulitis_50
 
@@ -38,7 +38,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.902 | 0.920 | 0.885 | 0.900 | 0.880 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.902 | 0.920 | 0.885 | 0.900 | 0.880 | 1.000 | 1.000 |
 
 ## desmopressin_transfusion_100
 
@@ -50,7 +50,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.936 | 0.944 | 0.927 | 0.930 | 0.913 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.936 | 0.944 | 0.927 | 0.930 | 0.913 | 1.000 | 1.000 |
 
 ## prom_feedback_194
 
@@ -62,4 +62,4 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.882 | 0.918 | 0.849 | 0.876 | 0.833 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.882 | 0.918 | 0.849 | 0.876 | 0.833 | 1.000 | 1.000 |

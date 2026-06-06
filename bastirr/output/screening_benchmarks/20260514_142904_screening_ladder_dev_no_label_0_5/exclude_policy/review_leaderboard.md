@@ -14,7 +14,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | gpt-5 [OpenAI GPT5] | fixed | gpt-5 [OpenAI GPT5] | 1 | 1 | 0 | 0 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
+| 1 | openai-gpt-5--xhigh [OpenAI GPT5] | fixed | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0 | 0 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
 
 ## advanced_endometrial_carcinoma_24
 
@@ -26,7 +26,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | gpt-5 [OpenAI GPT5] | fixed | gpt-5 [OpenAI GPT5] | 1 | 1 | 0 | 0 | 0.957 | 0.917 | 1.000 | 0.958 | 1.000 | 1.000 | 1.000 |
+| 1 | openai-gpt-5--xhigh [OpenAI GPT5] | fixed | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0 | 0 | 0.957 | 0.917 | 1.000 | 0.958 | 1.000 | 1.000 | 1.000 |
 
 ## chlamydia_poc_test_50
 
@@ -38,7 +38,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | gpt-5 [OpenAI GPT5] | fixed | gpt-5 [OpenAI GPT5] | 1 | 1 | 0 | 0 | 0.973 | 0.947 | 1.000 | 0.980 | 1.000 | 1.000 | 1.000 |
+| 1 | openai-gpt-5--xhigh [OpenAI GPT5] | fixed | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0 | 0 | 0.973 | 0.947 | 1.000 | 0.980 | 1.000 | 1.000 | 1.000 |
 
 ## ovarian_cancer_diagnosis_92
 
@@ -50,7 +50,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | gpt-5 [OpenAI GPT5] | fixed | gpt-5 [OpenAI GPT5] | 1 | 1 | 0 | 0 | 0.857 | 0.867 | 0.848 | 0.859 | 0.851 | 1.000 | 1.000 |
+| 1 | openai-gpt-5--xhigh [OpenAI GPT5] | fixed | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0 | 0 | 0.857 | 0.867 | 0.848 | 0.859 | 0.851 | 1.000 | 1.000 |
 
 ## home_based_rehabilitation_183
 
@@ -62,4 +62,4 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | gpt-5 [OpenAI GPT5] | fixed | gpt-5 [OpenAI GPT5] | 1 | 1 | 0 | 0 | 0.800 | 0.667 | 1.000 | 0.749 | 1.000 | 1.000 | 1.000 |
+| 1 | openai-gpt-5--xhigh [OpenAI GPT5] | fixed | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0 | 0 | 0.800 | 0.667 | 1.000 | 0.749 | 1.000 | 1.000 | 1.000 |

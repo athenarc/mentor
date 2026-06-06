@@ -1,0 +1,974 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing two decision aids for osteoarthritis; surgeons received preference reports but this is about decision aids, not routine PROMs feedback on health outcomes."
+    },
+    {
+      "study_index": 2,
+      "decision": "INCLUDE",
+      "reason": "RCT directly comparing dentist-informed of patient MDAS anxiety scores vs dentist not informed. MDAS is a patient-reported outcome measure; direct comparison of feedback vs no feedback."
+    },
+    {
+      "study_index": 3,
+      "decision": "INCLUDE",
+      "reason": "RCT comparing session-by-session progress feedback using Outcome Rating Scale vs no feedback in university counselling. Direct comparison of PROMs feedback to therapist vs no feedback."
+    },
+    {
+      "study_index": 4,
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing feedback to therapist+supervisor vs feedback to therapist alone. Both groups receive feedback; does not compare PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 5,
+      "decision": "EXCLUDE",
+      "reason": "RCT of web-based self-management application (Oncokompas) vs delayed access. Self-management intervention, not routine PROMs feedback to healthcare providers."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Integrated literature review of graphic display of PRO data; not an RCT."
+    },
+    {
+      "study_index": 7,
+      "decision": "EXCLUDE",
+      "reason": "RCT of mobile telehealth intervention including self-monitoring and nurse feedback. Telehealth/disease management intervention, not routine PROMs feedback in clinical practice."
+    },
+    {
+      "study_index": 8,
+      "decision": "INCLUDE",
+      "reason": "3-arm RCT directly comparing regular completion of HRQL questionnaires with feedback to physicians vs completion without feedback vs no HRQL measurement. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 9,
+      "decision": "EXCLUDE",
+      "reason": "RCT of depression screening with one-time identification to physicians vs control. Case-finding/screening intervention, not routine provision of PROMs feedback."
+    },
+    {
+      "study_index": 10,
+      "decision": "EXCLUDE",
+      "reason": "Laboratory study of performance feedback after alcohol; not an RCT in clinical practice."
+    },
+    {
+      "study_index": 11,
+      "decision": "EXCLUDE",
+      "reason": "RCT of anxiety screening with physician reporting vs control. One-time screening intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 12,
+      "decision": "EXCLUDE",
+      "reason": "Validation study of SF-36 questionnaire; not an RCT of feedback."
+    },
+    {
+      "study_index": 13,
+      "decision": "EXCLUDE",
+      "reason": "RCT of internet-based intervention ('Featback') with different therapist support levels. Self-help treatment intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 14,
+      "decision": "INCLUDE",
+      "reason": "RCT comparing physicians receiving reports summarizing patient functional status responses vs no report. Direct comparison of routine PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 15,
+      "decision": "EXCLUDE",
+      "reason": "RCT with complex factorial design of asthma education and monitoring with feedback. Focus is symptom perception training, not routine PROMs feedback to healthcare providers."
+    },
+    {
+      "study_index": 16,
+      "decision": "EXCLUDE",
+      "reason": "Feasibility study of multimodal intervention; abstract insufficient to determine if RCT or involves PROMs feedback."
+    },
+    {
+      "study_index": 17,
+      "decision": "EXCLUDE",
+      "reason": "Structured review of PROMs impact on routine practice; not an RCT."
+    },
+    {
+      "study_index": 18,
+      "decision": "EXCLUDE",
+      "reason": "Study of VTE risk in immune-mediated diseases; not related to PROMs feedback."
+    },
+    {
+      "study_index": 19,
+      "decision": "INCLUDE",
+      "reason": "RCT comparing systematic pain assessment with feedback to physicians and patients vs usual care. Direct comparison of routine PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 20,
+      "decision": "EXCLUDE",
+      "reason": "Abstract describes development of COVID-19 self-care screening tool, not integration of PROMs. Scale development study, not RCT of feedback."
+    },
+    {
+      "study_index": 21,
+      "decision": "INCLUDE",
+      "reason": "RCT comparing Work Stress Questionnaire with physician feedback vs treatment as usual. Direct comparison of patient-reported outcome feedback vs no feedback in primary care."
+    },
+    {
+      "study_index": 22,
+      "decision": "EXCLUDE",
+      "reason": "RCT of telephone monitoring plus educational materials vs educational materials alone. Monitoring/triage intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 23,
+      "decision": "INCLUDE",
+      "reason": "RCT comparing OQ-Analyst feedback system using OQ-45.2 vs no feedback in psychiatric clinics. Direct comparison of routine outcome monitoring feedback vs no feedback."
+    },
+    {
+      "study_index": 24,
+      "decision": "EXCLUDE",
+      "reason": "Pilot RCT of mobile app for supportive care awareness. App intervention, not routine PROMs feedback to clinicians."
+    },
+    {
+      "study_index": 25,
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional mixed-methods study evaluating PRO data presentation formats; not an RCT of feedback effects."
+    },
+    {
+      "study_index": 26,
+      "decision": "EXCLUDE",
+      "reason": "RCT of knowledge test feedback session; not PROMs feedback."
+    },
+    {
+      "study_index": 27,
+      "decision": "EXCLUDE",
+      "reason": "Qualitative interview study about severity questionnaire use; not an RCT."
+    },
+    {
+      "study_index": 28,
+      "decision": "EXCLUDE",
+      "reason": "Feasibility cluster-RCT of stroke self-management programme; not PROMs feedback."
+    },
+    {
+      "study_index": 29,
+      "decision": "EXCLUDE",
+      "reason": "RCT of PRIME-MD psychiatric screening in ED with patient and/or physician feedback. One-time ED screening, not routine PROMs feedback."
+    },
+    {
+      "study_index": 30,
+      "decision": "EXCLUDE",
+      "reason": "Pragmatic cluster RCT of automated IVR calls for patient-reported medication experiences. Disease management for medication titration, not routine PROMs feedback."
+    },
+    {
+      "study_index": 31,
+      "decision": "INCLUDE",
+      "reason": "3-arm RCT: usual care, HRQL assessment alone, or HRQL assessment with structured interview and discussion. Compares HRQL feedback with interpretive assistance vs no feedback."
+    },
+    {
+      "study_index": 32,
+      "decision": "INCLUDE",
+      "reason": "RCT comparing patient-reported cancer needs/QOL/psychosocial information made available to healthcare team vs information not seen. Direct comparison of PROMs feedback to healthcare team vs no feedback."
+    },
+    {
+      "study_index": 33,
+      "decision": "EXCLUDE",
+      "reason": "Protocol for pragmatic RCT of self-monitoring and personalized feedback; no results available."
+    },
+    {
+      "study_index": 34,
+      "decision": "EXCLUDE",
+      "reason": "RCT of fully automated internet-based self-help intervention for eating disorders; not routine PROMs feedback to healthcare providers."
+    },
+    {
+      "study_index": 35,
+      "decision": "EXCLUDE",
+      "reason": "Scoping review on quality of care and multimorbidity; not an RCT."
+    },
+    {
+      "study_index": 36,
+      "decision": "INCLUDE",
+      "reason": "RCT comparing supportive care models with PRO feedback to telephone caseworkers or oncologists/GPs vs usual care. Direct comparison of PRO feedback to healthcare workers vs no feedback."
+    },
+    {
+      "study_index": 37,
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on inconsistency in meta-analyses; not an RCT."
+    },
+    {
+      "study_index": 38,
+      "decision": "INCLUDE",
+      "reason": "3-arm RCT: QoL questionnaire with feedback during clinic, QoL questionnaire without feedback, or no questionnaire. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 39,
+      "decision": "EXCLUDE",
+      "reason": "RCT of depression screening with physician sensitization and feedback. One-time screening intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 40,
+      "decision": "EXCLUDE",
+      "reason": "Exploratory interview study with oncologists; not an RCT."
+    },
+    {
+      "study_index": 41,
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis and theory paper on feedback interventions; not an RCT in clinical practice."
+    },
+    {
+      "study_index": 42,
+      "decision": "INCLUDE",
+      "reason": "3-arm RCT: health status reports (AIMS/MHAQ) to physicians, attention placebo, or control. Direct comparison of PROMs feedback to clinicians vs no feedback."
+    },
+    {
+      "study_index": 43,
+      "decision": "INCLUDE",
+      "reason": "RCT comparing pain scale summaries in clinical charts for oncologists vs no summary. Direct comparison of routine patient-reported pain assessment feedback vs no feedback."
+    },
+    {
+      "study_index": 44,
+      "decision": "EXCLUDE",
+      "reason": "Study developing a tool for standardized assessment of PRO measures; not an RCT of feedback."
+    },
+    {
+      "study_index": 45,
+      "decision": "EXCLUDE",
+      "reason": "Cluster RCT of clinical pharmacist tobacco counseling; not PROMs feedback."
+    },
+    {
+      "study_index": 46,
+      "decision": "EXCLUDE",
+      "reason": "Review paper describing applications of PROs; not an RCT."
+    },
+    {
+      "study_index": 47,
+      "decision": "INCLUDE",
+      "reason": "Pilot RCT of daily electronic PRO symptom reporting (PRO-CTCAE) in inpatient bone marrow transplant clinic vs usual care. Direct comparison of PRO feedback to nurses vs no feedback."
+    },
+    {
+      "study_index": 48,
+      "decision": "INCLUDE",
+      "reason": "RCT of at-home symptom monitoring with e-mail alerts to clinical team for severe symptoms vs no alerts. Direct comparison of PRO feedback to clinicians vs no feedback."
+    },
+    {
+      "study_index": 49,
+      "decision": "EXCLUDE",
+      "reason": "RCT of GHQ psychiatric screening feedback to primary care providers. Screening/case-finding intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 50,
+      "decision": "INCLUDE",
+      "reason": "RCT including patient self-assessment of disease activity (DAS) reported to rheumatologists vs usual care. Direct comparison of patient-reported disease activity feedback vs no feedback."
+    },
+    {
+      "study_index": 51,
+      "decision": "INCLUDE",
+      "reason": "RCT comparing OQ-45 feedback vs no feedback in Swedish psychiatric outpatients. Direct comparison of routine outcome monitoring feedback vs no feedback."
+    },
+    {
+      "study_index": 52,
+      "decision": "EXCLUDE",
+      "reason": "RCT of web-mediated follow-up with weekly self-scored symptoms vs routine scheduled follow-up. Follow-up/surveillance intervention replacing standard care, not routine PROMs feedback added to practice."
+    },
+    {
+      "study_index": 53,
+      "decision": "EXCLUDE",
+      "reason": "Study developing Neurological Fatigue Index for MND; not an RCT of feedback."
+    },
+    {
+      "study_index": 54,
+      "decision": "INCLUDE",
+      "reason": "Pilot RCT of patient-centered personality test feedback vs assessment-only in residential substance use disorder treatment. Direct comparison of PROMs feedback to patients vs no feedback."
+    },
+    {
+      "study_index": 55,
+      "decision": "EXCLUDE",
+      "reason": "Commentary/opinion paper on PROs; not an RCT."
+    },
+    {
+      "study_index": 56,
+      "decision": "INCLUDE",
+      "reason": "Randomized crossover trial of HRQL questionnaire with graphic summary provided to physicians and patients vs no summary. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 57,
+      "decision": "INCLUDE",
+      "reason": "RCT of PROMIS symptom scores displayed to clinicians vs not displayed. Direct comparison of PROMs feedback to clinicians vs no feedback in primary care."
+    },
+    {
+      "study_index": 58,
+      "decision": "INCLUDE",
+      "reason": "3-arm RCT: standard psychiatric assessment, QoL assessment with assessment, or QoL feedback with assessment. Direct comparison of QoL feedback vs no feedback."
+    },
+    {
+      "study_index": 59,
+      "decision": "INCLUDE",
+      "reason": "RCT of PRO feedback to oncologists and families with e-mail alerts for high scores vs no feedback. Direct comparison of routine PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 60,
+      "decision": "EXCLUDE",
+      "reason": "RCT of developmental screening tools at 18-month visit. Developmental screening, not routine PROMs feedback on health outcomes."
+    },
+    {
+      "study_index": 61,
+      "decision": "INCLUDE",
+      "reason": "RCT of QoL profile with expert report sent to coordinating practitioner vs standard postoperative care. Direct comparison of PROMs feedback to healthcare provider vs no feedback."
+    },
+    {
+      "study_index": 62,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT comparing psychometric evaluation and feedback-based quality monitoring vs traditional expert review in psychotherapy. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 63,
+      "decision": "INCLUDE",
+      "reason": "RCT of real-time electronic HRQL (elcss-ql) data provided to oncologists vs standard clinical assessment. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 64,
+      "decision": "EXCLUDE",
+      "reason": "Prospective controlled study of GHQ feedback to emergency physicians. ED screening study, not routine PROMs feedback."
+    },
+    {
+      "study_index": 65,
+      "decision": "EXCLUDE",
+      "reason": "Prospective study with RCT of disclosure of depression scores. One-time screening disclosure, not routine PROMs feedback."
+    },
+    {
+      "study_index": 66,
+      "decision": "INCLUDE",
+      "reason": "RCT of Electronic Self-Report Assessment-Cancer with SQLI summary to clinical team vs no summary. Direct comparison of electronic PROMs feedback to clinicians vs no feedback."
+    },
+    {
+      "study_index": 67,
+      "decision": "EXCLUDE",
+      "reason": "RCT of flare management intervention with monthly questionnaires and nurse counseling vs usual care. Disease management intervention, not specifically routine PROMs feedback."
+    },
+    {
+      "study_index": 68,
+      "decision": "EXCLUDE",
+      "reason": "Commentary on PROMs use in practice; not an RCT."
+    },
+    {
+      "study_index": 69,
+      "decision": "EXCLUDE",
+      "reason": "Review and framework paper on implementing PROs; not an RCT."
+    },
+    {
+      "study_index": 70,
+      "decision": "EXCLUDE",
+      "reason": "RCT of short-term life review intervention for spiritual well-being; not PROMs feedback."
+    },
+    {
+      "study_index": 71,
+      "decision": "EXCLUDE",
+      "reason": "RCT of depression screening with feedback and offer of psychiatric evaluation. Screening program with treatment referral, not routine PROMs feedback."
+    },
+    {
+      "study_index": 72,
+      "decision": "EXCLUDE",
+      "reason": "RCT of depression care management intervention; not specifically PROMs feedback."
+    },
+    {
+      "study_index": 73,
+      "decision": "EXCLUDE",
+      "reason": "RCT of adverse effects screening (AEP) feedback to physicians. Adverse effects screening, not routine PROMs feedback on health outcomes."
+    },
+    {
+      "study_index": 74,
+      "decision": "EXCLUDE",
+      "reason": "Study of continuous feedback system (PCOMS) in two client samples. 'Randomized by timeframe' suggests quasi-experimental design, not a true RCT."
+    },
+    {
+      "study_index": 75,
+      "decision": "EXCLUDE",
+      "reason": "Cluster RCT of lifestyle monitoring and feedback tool plus counseling vs counseling alone vs usual care. Lifestyle intervention, not routine PROMs feedback in healthcare."
+    },
+    {
+      "study_index": 76,
+      "decision": "EXCLUDE",
+      "reason": "RCT of postconcussive syndrome screening feedback in healthy undergraduates. Laboratory study with non-clinical population."
+    },
+    {
+      "study_index": 77,
+      "decision": "EXCLUDE",
+      "reason": "Cluster RCT of electronic previsit questionnaire for youth violence screening. Screening for risk behavior, not routine PROMs feedback."
+    },
+    {
+      "study_index": 78,
+      "decision": "INCLUDE",
+      "reason": "RCT of QoL-monitor assessing QoL, distress and care needs with feedback to patients and HCPs vs usual care. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 79,
+      "decision": "EXCLUDE",
+      "reason": "RCT of composite screening questionnaire feedback to GPs. Screening intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 80,
+      "decision": "EXCLUDE",
+      "reason": "Paper developing classification system for PRO measures; not an RCT."
+    },
+    {
+      "study_index": 81,
+      "decision": "EXCLUDE",
+      "reason": "Cluster RCT of alcohol screening results with recommendations to physicians. Alcohol screening, not routine PROMs feedback."
+    },
+    {
+      "study_index": 82,
+      "decision": "EXCLUDE",
+      "reason": "Cochrane protocol for systematic review; not an RCT."
+    },
+    {
+      "study_index": 83,
+      "decision": "EXCLUDE",
+      "reason": "Abstract truncated; appears to be about sun protection behavior feedback, not PROMs in clinical practice."
+    },
+    {
+      "study_index": 84,
+      "decision": "EXCLUDE",
+      "reason": "Pilot RCT of web-based communication tool for care coordination; not routine PROMs feedback."
+    },
+    {
+      "study_index": 85,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT of peer benchmarked PROMs feedback to hip replacement surgeons vs no feedback. Direct comparison of PROMs feedback to healthcare professionals vs no feedback."
+    },
+    {
+      "study_index": 86,
+      "decision": "EXCLUDE",
+      "reason": "Study dividing patients into four groups to examine feedback effects. 'Divided' rather than randomized; quasi-experimental design."
+    },
+    {
+      "study_index": 87,
+      "decision": "INCLUDE",
+      "reason": "3-arm RCT: no additional info, GHQ feedback, or PROQSY computerized assessment feedback. Direct comparison of computerized PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 88,
+      "decision": "INCLUDE",
+      "reason": "RCT of HRQOL monitoring with face-to-face discussion vs usual care. Direct comparison of routine HRQOL feedback vs no feedback."
+    },
+    {
+      "study_index": 89,
+      "decision": "EXCLUDE",
+      "reason": "Pragmatic cluster RCT of risk-stratification strategy for low back pain. Risk stratification tool, not routine PROMs feedback."
+    },
+    {
+      "study_index": 90,
+      "decision": "EXCLUDE",
+      "reason": "RCT of recovery-focused assessment and intervention package. Complex intervention, not specifically routine PROMs feedback."
+    },
+    {
+      "study_index": 91,
+      "decision": "EXCLUDE",
+      "reason": "Paper on MRC guidance for evaluating complex interventions; not an RCT."
+    },
+    {
+      "study_index": 92,
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing in-person alcohol counseling vs computer-generated feedback letters vs assessment only. Alcohol intervention, not routine PROMs in clinical practice."
+    },
+    {
+      "study_index": 93,
+      "decision": "EXCLUDE",
+      "reason": "Protocol for study comparing modes of PROM administration; not about feedback effects."
+    },
+    {
+      "study_index": 94,
+      "decision": "INCLUDE",
+      "reason": "RCT of SF-36 results given to physicians vs withheld in outpatient neurology clinic. Direct comparison of PROMs feedback to clinicians vs no feedback."
+    },
+    {
+      "study_index": 95,
+      "decision": "EXCLUDE",
+      "reason": "RCT of electronic health risk behavior screening with personalized feedback. Health risk behavior screening, not routine PROMs feedback on health outcomes."
+    },
+    {
+      "study_index": 96,
+      "decision": "EXCLUDE",
+      "reason": "Realist synthesis of how PROMs support communication; not an RCT."
+    },
+    {
+      "study_index": 97,
+      "decision": "INCLUDE",
+      "reason": "RCT of computerized system eliciting patient symptoms/preferences with information provided to clinicians vs not provided. Direct comparison of patient-reported information feedback vs no feedback."
+    },
+    {
+      "study_index": 98,
+      "decision": "EXCLUDE",
+      "reason": "RCT of adverse events profile screening with feedback. Adverse effects screening, not routine PROMs feedback."
+    },
+    {
+      "study_index": 99,
+      "decision": "EXCLUDE",
+      "reason": "RCT of mobile telehealth intervention examining behavioral effects. Telehealth intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 100,
+      "decision": "INCLUDE",
+      "reason": "RCT comparing feedback to therapists, feedback to both patients and therapists, vs treatment as usual. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 101,
+      "decision": "EXCLUDE",
+      "reason": "Study developing haemophilia-specific QoL questionnaire; not an RCT of feedback."
+    },
+    {
+      "study_index": 102,
+      "decision": "INCLUDE",
+      "reason": "Cluster-randomized phase III trial of real-time symptom monitoring with longitudinal monitoring sheet printed for oncologists vs no print-out. Direct comparison of PRO feedback to clinicians vs no feedback."
+    },
+    {
+      "study_index": 103,
+      "decision": "INCLUDE",
+      "reason": "Group randomized trial of symptom assessment with tailored longitudinal report and management suggestions to clinicians vs usual care. Direct comparison of PROMs feedback to clinicians vs no feedback."
+    },
+    {
+      "study_index": 104,
+      "decision": "EXCLUDE",
+      "reason": "RCT of real-time patient experience feedback to physicians. Patient experience/satisfaction, not patient-reported health outcomes."
+    },
+    {
+      "study_index": 105,
+      "decision": "EXCLUDE",
+      "reason": "Study of screening results given to physicians; not clearly an RCT and focuses on agreement rather than feedback effects."
+    },
+    {
+      "study_index": 106,
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review protocol on multimorbidity interventions; not an RCT."
+    },
+    {
+      "study_index": 107,
+      "decision": "EXCLUDE",
+      "reason": "Study of feedback and counseling protocol for mental health problems. Clinic-level assignment, not individual randomization; unclear if RCT."
+    },
+    {
+      "study_index": 108,
+      "decision": "INCLUDE",
+      "reason": "RCT of symptom monitoring plus feedback vs usual care in prostate cancer survivors. Direct comparison of PRO feedback vs no feedback."
+    },
+    {
+      "study_index": 109,
+      "decision": "INCLUDE",
+      "reason": "RCT of computer-generated functional status feedback to physicians with management suggestions vs control. Direct comparison of routine PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 110,
+      "decision": "INCLUDE",
+      "reason": "RCT comparing feedback to therapist, feedback to therapist and patient, vs no feedback in short and long-term psychotherapy. Direct comparison of outcome monitoring feedback vs no feedback."
+    },
+    {
+      "study_index": 111,
+      "decision": "INCLUDE",
+      "reason": "RCT of monthly standardized outcome questionnaires with feedback vs treatment as usual in adult mental health. Direct comparison of routine PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 112,
+      "decision": "INCLUDE",
+      "reason": "RCT of personalized feedback added to guided CBT self-help vs guided self-help alone. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 113,
+      "decision": "INCLUDE",
+      "reason": "RCT of Symptom Monitor for systematic symptom reporting vs no monitor in palliative cancer care. Direct comparison of routine symptom monitoring/feedback vs no monitoring."
+    },
+    {
+      "study_index": 114,
+      "decision": "INCLUDE",
+      "reason": "RCT of symptom reporting via tablets with feedback to clinicians vs usual care during routine cancer treatment. Direct comparison of PRO feedback vs no feedback."
+    },
+    {
+      "study_index": 115,
+      "decision": "INCLUDE",
+      "reason": "RCT of outcome monitoring feedback vs no feedback examining therapist moderators. Direct comparison of feedback vs no feedback."
+    },
+    {
+      "study_index": 116,
+      "decision": "EXCLUDE",
+      "reason": "RCT of video decision aid vs standard education for lung cancer screening decisions. Decision aid, not routine PROMs feedback."
+    },
+    {
+      "study_index": 117,
+      "decision": "EXCLUDE",
+      "reason": "RCT of ED screening and nursing assessment with referrals vs usual care. ED screening intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 118,
+      "decision": "EXCLUDE",
+      "reason": "RCT of electronic PRO tool for adverse event detection vs standard monitoring in clinical trial setting. Adverse event detection in trials, not routine clinical practice."
+    },
+    {
+      "study_index": 119,
+      "decision": "INCLUDE",
+      "reason": "Pilot RCT of daily symptom self-reporting with reports presented during team rounds vs usual care. Direct comparison of PRO feedback to clinicians vs no feedback."
+    },
+    {
+      "study_index": 120,
+      "decision": "EXCLUDE",
+      "reason": "RCT of smartphone-based remote monitoring vs face-to-face care for IBD. Replacement of care delivery model, not routine PROMs feedback added to practice."
+    },
+    {
+      "study_index": 121,
+      "decision": "EXCLUDE",
+      "reason": "RCT of patient access to self-assessment platform vs usual care. Patient portal for self-monitoring, not clinician feedback of PROMs."
+    },
+    {
+      "study_index": 122,
+      "decision": "EXCLUDE",
+      "reason": "RCT of mobile-based ecological momentary intervention for alcohol use. Alcohol reduction intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 123,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT of outcome management with continuous feedback to patients and clinicians vs treatment as usual. Direct comparison of routine outcome feedback vs no feedback."
+    },
+    {
+      "study_index": 124,
+      "decision": "EXCLUDE",
+      "reason": "RCT of physician-targeted intervention with HAM-D feedback and treatment recommendations. Screening with treatment recommendations, not routine PROMs feedback."
+    },
+    {
+      "study_index": 125,
+      "decision": "EXCLUDE",
+      "reason": "RCT of postoperative app with symptom reporting integrated into EHR. Both groups received app; comparison was with vs without reminders. Not direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 126,
+      "decision": "EXCLUDE",
+      "reason": "Pilot study of IVR pain monitoring; not explicitly randomized and focus is on technological approach to symptom management."
+    },
+    {
+      "study_index": 127,
+      "decision": "EXCLUDE",
+      "reason": "Study developing ADDQoL questionnaire; not an RCT of feedback."
+    },
+    {
+      "study_index": 128,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT of generic feedback and individual feedback vs no feedback for end-of-life care in dementia. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 129,
+      "decision": "EXCLUDE",
+      "reason": "Description of PROMIS initiative; not an RCT of feedback."
+    },
+    {
+      "study_index": 130,
+      "decision": "EXCLUDE",
+      "reason": "RCT of nurse-led telephone follow-up vs hospital follow-up. Follow-up delivery model, not routine PROMs feedback."
+    },
+    {
+      "study_index": 131,
+      "decision": "EXCLUDE",
+      "reason": "RCT of intensive screening and feedback with treatment recommendations. Screening intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 132,
+      "decision": "INCLUDE",
+      "reason": "RCT of interactive tailored patient assessment summary displayed to physicians and nurses vs no summary. Direct comparison of PROMs feedback to clinicians vs no feedback."
+    },
+    {
+      "study_index": 133,
+      "decision": "EXCLUDE",
+      "reason": "RCT of experience sampling method self-monitoring with/without feedback. Self-monitoring intervention, not routine clinician feedback of PROMs."
+    },
+    {
+      "study_index": 134,
+      "decision": "EXCLUDE",
+      "reason": "RCT of virtual rehabilitation vs conventional physical therapy; not PROMs feedback."
+    },
+    {
+      "study_index": 135,
+      "decision": "INCLUDE",
+      "reason": "RCT of treatment progress and alliance feedback to clients and therapists vs treatment as usual. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 136,
+      "decision": "EXCLUDE",
+      "reason": "Study developing and validating COOP Charts; not an RCT of feedback effects."
+    },
+    {
+      "study_index": 137,
+      "decision": "INCLUDE",
+      "reason": "RCT of PROMIS Pain Interference feedback to patients prior to surgeon visit vs no feedback. Direct comparison of PROMs feedback to patients vs no feedback."
+    },
+    {
+      "study_index": 138,
+      "decision": "EXCLUDE",
+      "reason": "Study of feedback plus clinical support tools; not clearly a randomized trial ('examined whether')."
+    },
+    {
+      "study_index": 139,
+      "decision": "EXCLUDE",
+      "reason": "Systematic review of PRO impact in clinical practice; not an RCT."
+    },
+    {
+      "study_index": 140,
+      "decision": "EXCLUDE",
+      "reason": "RCT of asthma morbidity/drug use information feedback to GPs. General information feedback, not PROMs on health outcomes."
+    },
+    {
+      "study_index": 141,
+      "decision": "EXCLUDE",
+      "reason": "Commentary on NHS outcomes framework; not an RCT."
+    },
+    {
+      "study_index": 142,
+      "decision": "EXCLUDE",
+      "reason": "RCT of PRIME-MD in ED. ED screening for psychiatric illness, not routine PROMs feedback."
+    },
+    {
+      "study_index": 143,
+      "decision": "EXCLUDE",
+      "reason": "Study of SIP with physicians using stratified random assignment to compare reactions, not feedback vs no feedback effects."
+    },
+    {
+      "study_index": 144,
+      "decision": "INCLUDE",
+      "reason": "RCT of COOP Charts health status assessment vs no assessment in HMO. Direct comparison of routine health status feedback vs no feedback."
+    },
+    {
+      "study_index": 145,
+      "decision": "EXCLUDE",
+      "reason": "RCT of mHealth with automated feedback to informal caregivers. Feedback to caregivers, not healthcare professionals or patients in clinical practice."
+    },
+    {
+      "study_index": 146,
+      "decision": "EXCLUDE",
+      "reason": "RCT of stellate ganglion block vs sham for PTSD. Procedural intervention, not PROMs feedback."
+    },
+    {
+      "study_index": 147,
+      "decision": "INCLUDE",
+      "reason": "RCT of patient-reported outcome measures for monitoring depression with feedback vs control. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 148,
+      "decision": "INCLUDE",
+      "reason": "RCT of SCL-90 mental health assessment feedback to clinicians vs no feedback. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 149,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT of structured patient-clinician communication with immediate feedback of patient-reported ratings vs treatment as usual. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 150,
+      "decision": "EXCLUDE",
+      "reason": "Position paper on international PROMIS initiative; not an RCT."
+    },
+    {
+      "study_index": 151,
+      "decision": "EXCLUDE",
+      "reason": "RCT of GHQ screening feedback to primary care providers. Screening intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 152,
+      "decision": "INCLUDE",
+      "reason": "RCT of treatment progress information and clinical support tools to patients and therapists vs treatment as usual. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 153,
+      "decision": "INCLUDE",
+      "reason": "RCT of depression self-rating scale used in recurrent GP consultations vs treatment as usual. Direct comparison of routine PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 154,
+      "decision": "EXCLUDE",
+      "reason": "Systematic review of feedback on perceived health status; not an RCT."
+    },
+    {
+      "study_index": 155,
+      "decision": "EXCLUDE",
+      "reason": "RCT of physical function assessment with feedback. Uses performance measures, not patient-reported outcomes."
+    },
+    {
+      "study_index": 156,
+      "decision": "EXCLUDE",
+      "reason": "Review of options for implementing PROs in clinical practice; not an RCT."
+    },
+    {
+      "study_index": 157,
+      "decision": "EXCLUDE",
+      "reason": "Qualitative study of mental health questionnaire use; not an RCT."
+    },
+    {
+      "study_index": 158,
+      "decision": "EXCLUDE",
+      "reason": "Protocol for RCT of web-based CBT; no results."
+    },
+    {
+      "study_index": 159,
+      "decision": "EXCLUDE",
+      "reason": "Bibliographic study of patient-assessed health outcome measures; not an RCT."
+    },
+    {
+      "study_index": 160,
+      "decision": "INCLUDE",
+      "reason": "RCT of electronic Survey of Anxiety and Information for Dentists (eSAID) feedback vs control. Direct comparison of patient-reported information feedback vs no feedback."
+    },
+    {
+      "study_index": 161,
+      "decision": "INCLUDE",
+      "reason": "RCT of Well-being Questionnaire monitoring with nurse discussion vs standard care. Direct comparison of routine PRO feedback vs no feedback."
+    },
+    {
+      "study_index": 162,
+      "decision": "EXCLUDE",
+      "reason": "Review paper on moving PROs from trials to practice; not an RCT."
+    },
+    {
+      "study_index": 163,
+      "decision": "EXCLUDE",
+      "reason": "Factorial experiment of message components for health risk assessment. Communication experiment, not routine PROMs feedback in practice."
+    },
+    {
+      "study_index": 164,
+      "decision": "EXCLUDE",
+      "reason": "Qualitative study of health visitor identification of postnatal depression; not an RCT."
+    },
+    {
+      "study_index": 165,
+      "decision": "EXCLUDE",
+      "reason": "RCT of PHQ-9 depression screening with feedback. Screening intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 166,
+      "decision": "EXCLUDE",
+      "reason": "Validation study of self-assessment hearing screening tool; not an RCT of feedback."
+    },
+    {
+      "study_index": 167,
+      "decision": "EXCLUDE",
+      "reason": "Study of heart rate feedback effects on self-reported stress. Physiology feedback, not PROMs feedback in clinical practice."
+    },
+    {
+      "study_index": 168,
+      "decision": "EXCLUDE",
+      "reason": "Cluster RCT of discharge readiness assessment. Discharge planning tool, not routine PROMs feedback."
+    },
+    {
+      "study_index": 169,
+      "decision": "EXCLUDE",
+      "reason": "RCT of electronic self-report with self-care instruction and communication coaching vs usual education. Complex intervention including more than just PROMs feedback."
+    },
+    {
+      "study_index": 170,
+      "decision": "EXCLUDE",
+      "reason": "Study of screening impact on depression recognition; not clearly an RCT."
+    },
+    {
+      "study_index": 171,
+      "decision": "INCLUDE",
+      "reason": "RCT of outcome questionnaire feedback with clinical support tools for at-risk in-patients vs treatment as usual. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 172,
+      "decision": "EXCLUDE",
+      "reason": "Literature review on effectiveness of patient-based health measures; not an RCT."
+    },
+    {
+      "study_index": 173,
+      "decision": "EXCLUDE",
+      "reason": "Study of mobile app for participatory syndromic surveillance; not routine PROMs feedback in clinical practice."
+    },
+    {
+      "study_index": 174,
+      "decision": "INCLUDE",
+      "reason": "RCT of HRQL assessment with graphical feedback to clinicians vs assessment without feedback. Direct comparison of PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 175,
+      "decision": "EXCLUDE",
+      "reason": "RCT of web-based asthma self-management system with case management. Self-management intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 176,
+      "decision": "EXCLUDE",
+      "reason": "RCT of distress screening with varying intensities of feedback and triage. Screening program, not routine PROMs feedback."
+    },
+    {
+      "study_index": 177,
+      "decision": "EXCLUDE",
+      "reason": "Discussion paper on systematic reviews of complex interventions; not an RCT."
+    },
+    {
+      "study_index": 178,
+      "decision": "EXCLUDE",
+      "reason": "RCT of communication skills training for oncologists; not PROMs feedback."
+    },
+    {
+      "study_index": 179,
+      "decision": "EXCLUDE",
+      "reason": "RCT of depression case-finding with feedback and education. Screening/case-finding intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 180,
+      "decision": "EXCLUDE",
+      "reason": "RCT of BDI feedback to GPs. Screening feedback, not routine PROMs feedback."
+    },
+    {
+      "study_index": 181,
+      "decision": "EXCLUDE",
+      "reason": "Cluster RCT of pre-conversation communication priming for goals-of-care discussions. Communication priming, not PROMs feedback."
+    },
+    {
+      "study_index": 182,
+      "decision": "EXCLUDE",
+      "reason": "Commentary on PROMs potential; not an RCT."
+    },
+    {
+      "study_index": 183,
+      "decision": "EXCLUDE",
+      "reason": "Description of study design for app-based self-monitoring; protocol paper, not results."
+    },
+    {
+      "study_index": 184,
+      "decision": "EXCLUDE",
+      "reason": "Cluster RCT of tailored printouts for colorectal cancer risk discussion. Risk assessment tool, not routine PROMs feedback."
+    },
+    {
+      "study_index": 185,
+      "decision": "EXCLUDE",
+      "reason": "RCT of structured telephone follow-up after knee arthroplasty. Follow-up intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 186,
+      "decision": "EXCLUDE",
+      "reason": "Systematic review of routinely administered psychiatric questionnaires; not an RCT."
+    },
+    {
+      "study_index": 187,
+      "decision": "EXCLUDE",
+      "reason": "Paper on GRADE system for rating evidence; not an RCT."
+    },
+    {
+      "study_index": 188,
+      "decision": "EXCLUDE",
+      "reason": "Conceptual paper on comorbidity; not an RCT."
+    },
+    {
+      "study_index": 189,
+      "decision": "EXCLUDE",
+      "reason": "RCT of web-based survivorship care system with nurse practitioner review. Care delivery system, not routine PROMs feedback."
+    },
+    {
+      "study_index": 190,
+      "decision": "INCLUDE",
+      "reason": "RCT of routine completion and feedback of outcome measures vs no feedback. Direct comparison of routine PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 191,
+      "decision": "INCLUDE",
+      "reason": "RCT of computerized HRQL measurement with instant graphical feedback to physicians vs no feedback. Direct comparison of routine PROMs feedback vs no feedback."
+    },
+    {
+      "study_index": 192,
+      "decision": "EXCLUDE",
+      "reason": "Overview of phase III trials using HRQL; not an RCT of feedback."
+    },
+    {
+      "study_index": 193,
+      "decision": "EXCLUDE",
+      "reason": "Cluster RCT of tailored implementation intervention for depression guidelines. Implementation intervention, not routine PROMs feedback."
+    },
+    {
+      "study_index": 194,
+      "decision": "EXCLUDE",
+      "reason": "Software description for EndNote reference manager; not a study."
+    }
+  ]
+}

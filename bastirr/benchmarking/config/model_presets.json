@@ -3,7 +3,7 @@
         {
             "key": "openai_gpt5",
             "description": "OpenAI GPT5",
-            "display_name_default": "gpt-5",
+            "display_name_default": "openai-gpt-5",
             "display_name_env_var": "BASTIRR_GPT5_MODEL",
             "backend": "openai",
             "model_id_default": "openai/gpt-5",
@@ -21,7 +21,35 @@
                         "allow_fallbacks": false,
                         "require_parameters": true
                     },
-                    "reasoning": {"effort": "xhigh"}
+                    "reasoning": {"enabled": true}
+                }
+            }
+        },
+        {
+            "key": "openai_gpt5--xhigh",
+            "description": "OpenAI GPT5",
+            "display_name_default": "openai-gpt-5--xhigh",
+            "display_name_env_var": "BASTIRR_GPT5_MODEL",
+            "backend": "openai",
+            "model_id_default": "openai/gpt-5",
+            "model_id_env_var": "BASTIRR_GPT5_MODEL",
+            "api_base_default": "https://openrouter.ai/api/v1",
+            "api_base_env_var": "OPENROUTER_API_BASE",
+            "api_key_env_var": "OPENROUTER_API_KEY",
+            "requires_api_key": true,
+            "request_kwargs_default": {
+                "extra_body": {
+                    "reasoning": {
+                        "enabled": true,
+                        "effort": "xhigh"
+                    },
+                    "provider": {
+                        "order": [
+                            "openai/default"
+                        ],
+                        "allow_fallbacks": false,
+                        "require_parameters": true
+                    }
                 }
             }
         },
@@ -29,6 +57,31 @@
             "key": "deepseek_v4_pro",
             "description": "DeepSeek V4 Pro",
             "display_name_default": "deepseek-v4-pro",
+            "display_name_env_var": "BASTIRR_DEEPSEEK_MODEL",
+            "backend": "openai",
+            "model_id_default": "deepseek/deepseek-v4-pro",
+            "model_id_env_var": "BASTIRR_DEEPSEEK_MODEL",
+            "api_base_default": "https://openrouter.ai/api/v1",
+            "api_base_env_var": "OPENROUTER_API_BASE",
+            "api_key_env_var": "OPENROUTER_API_KEY",
+            "requires_api_key": true,
+            "request_kwargs_default": {
+                "extra_body": {
+                    "reasoning": {"enabled": true},
+                    "provider": {
+                        "order": [
+                            "deepseek"
+                        ],
+                        "allow_fallbacks": false,
+                        "require_parameters": true
+                    }
+                }
+            }
+        },
+        {
+            "key": "deepseek_v4_pro--xhigh",
+            "description": "DeepSeek V4 Pro",
+            "display_name_default": "deepseek-v4-pro--xhigh",
             "display_name_env_var": "BASTIRR_DEEPSEEK_MODEL",
             "backend": "openai",
             "model_id_default": "deepseek/deepseek-v4-pro",
@@ -67,9 +120,7 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
-                    "reasoning": {
-                        "enabled": true
-                    },
+                    "reasoning": {"enabled": true},
                     "provider": {
                         "order": [
                             "novita/bf16"
@@ -94,9 +145,7 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
-                    "reasoning": {
-                        "enabled": true
-                    },
+                    "reasoning": {"enabled": true},
                     "provider": {
                         "order": [
                             "novita/bf16"
@@ -121,9 +170,7 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
-                    "reasoning": {
-                        "enabled": true
-                    },
+                    "reasoning": {"enabled": true},
                     "provider": {
                         "order": [
                             "moonshotai/int4"
@@ -196,15 +243,38 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
+                    "reasoning": {"enabled": true},
                     "provider": {
                         "order": [
                             "dekallm/bf16"
                         ],
                         "allow_fallbacks": false,
                         "require_parameters": true
-                    },
-                    "reasoning": {
-                        "enabled": true
+                    }
+                }
+            }
+        },
+        {
+            "key": "nvidia_nemotron_3_super_120b_a12b",
+            "description": "NVIDIA Nemotron 3 Super 120B A12B",
+            "display_name_default": "nvidia-nemotron-3-super-120b-a12b",
+            "display_name_env_var": "BASTIRR_NVIDIA_NEMOTRON_MODEL",
+            "backend": "openai",
+            "model_id_default": "nvidia/nemotron-3-super-120b-a12b",
+            "model_id_env_var": "BASTIRR_NVIDIA_NEMOTRON_MODEL",
+            "api_base_default": "https://openrouter.ai/api/v1",
+            "api_base_env_var": "OPENROUTER_API_BASE",
+            "api_key_env_var": "OPENROUTER_API_KEY",
+            "requires_api_key": true,
+            "request_kwargs_default": {
+                "extra_body": {
+                    "reasoning": {"enabled": true},
+                    "provider": {
+                        "order": [
+                            "deepinfra/bf16"
+                        ],
+                        "allow_fallbacks": false,
+                        "require_parameters": true
                     }
                 }
             }

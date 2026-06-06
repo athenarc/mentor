@@ -14,7 +14,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.833 | 0.714 | 1.000 | 0.800 | 1.000 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.833 | 0.714 | 1.000 | 0.800 | 1.000 | 1.000 | 1.000 |
 
 ## advanced_endometrial_carcinoma_24
 
@@ -26,7 +26,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.957 | 0.917 | 1.000 | 0.958 | 1.000 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.957 | 0.917 | 1.000 | 0.958 | 1.000 | 1.000 | 1.000 |
 
 ## chlamydia_poc_test_50
 
@@ -38,7 +38,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.914 | 0.842 | 1.000 | 0.940 | 1.000 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.914 | 0.842 | 1.000 | 0.940 | 1.000 | 1.000 | 1.000 |
 
 ## ovarian_cancer_diagnosis_92
 
@@ -50,7 +50,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.882 | 0.911 | 0.854 | 0.880 | 0.851 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.882 | 0.911 | 0.854 | 0.880 | 0.851 | 1.000 | 1.000 |
 
 ## home_based_rehabilitation_183
 
@@ -62,4 +62,4 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.930 | 0.870 | 1.000 | 0.902 | 1.000 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.930 | 0.870 | 1.000 | 0.902 | 1.000 | 1.000 | 1.000 |

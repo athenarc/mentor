@@ -1,0 +1,974 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "INCLUDE",
+      "reason": "RCT comparing patient preference report (PROMs) feedback to surgeons vs usual care"
+    },
+    {
+      "study_index": 2,
+      "decision": "INCLUDE",
+      "reason": "RCT with dentist informed of MDAS (anxiety PROM) score vs not informed"
+    },
+    {
+      "study_index": 3,
+      "decision": "INCLUDE",
+      "reason": "RCT with session-by-session progress feedback using Outcome Rating Scale (PROM) vs no feedback"
+    },
+    {
+      "study_index": 4,
+      "decision": "INCLUDE",
+      "reason": "RCT with continuous feedback on patient progress to therapist/supervisor vs therapist alone"
+    },
+    {
+      "study_index": 5,
+      "decision": "EXCLUDE",
+      "reason": "RCT but intervention is patient self-monitoring with automated feedback to patients themselves, not PROMs feedback to healthcare professionals"
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Literature review, not a randomized trial"
+    },
+    {
+      "study_index": 7,
+      "decision": "INCLUDE",
+      "reason": "RCT with mobile telehealth including graphical and nurse-initiated feedback vs standard care"
+    },
+    {
+      "study_index": 8,
+      "decision": "INCLUDE",
+      "reason": "RCT with HRQL feedback to physicians vs attention-control (no feedback) vs control"
+    },
+    {
+      "study_index": 9,
+      "decision": "INCLUDE",
+      "reason": "RCT with depression screening scores (Zung scale) identified to physicians vs not identified"
+    },
+    {
+      "study_index": 10,
+      "decision": "EXCLUDE",
+      "reason": "Laboratory study on driving performance, not clinical practice PROMs feedback"
+    },
+    {
+      "study_index": 11,
+      "decision": "INCLUDE",
+      "reason": "RCT with reporting of anxiety symptom levels and functioning status to physicians vs control"
+    },
+    {
+      "study_index": 12,
+      "decision": "EXCLUDE",
+      "reason": "Psychometric validation study, not testing feedback intervention"
+    },
+    {
+      "study_index": 13,
+      "decision": "EXCLUDE",
+      "reason": "RCT but automated feedback to patients for self-management, not PROMs feedback to healthcare professionals"
+    },
+    {
+      "study_index": 14,
+      "decision": "INCLUDE",
+      "reason": "RCT with physicians receiving reports summarizing patients' responses vs no report"
+    },
+    {
+      "study_index": 15,
+      "decision": "INCLUDE",
+      "reason": "RCT with home monitoring conditions including symptom monitoring with feedback vs without feedback"
+    },
+    {
+      "study_index": 16,
+      "decision": "EXCLUDE",
+      "reason": "Feasibility study not specifically testing PROMs feedback intervention"
+    },
+    {
+      "study_index": 17,
+      "decision": "EXCLUDE",
+      "reason": "Structured review, not a randomized trial"
+    },
+    {
+      "study_index": 18,
+      "decision": "EXCLUDE",
+      "reason": "Observational study on VTE risk in immune-mediated diseases, not PROMs feedback"
+    },
+    {
+      "study_index": 19,
+      "decision": "INCLUDE",
+      "reason": "RCT with pain assessment information sent to physicians vs control"
+    },
+    {
+      "study_index": 20,
+      "decision": "EXCLUDE",
+      "reason": "Validation study for self-care screening tool, not PROMs feedback RCT"
+    },
+    {
+      "study_index": 21,
+      "decision": "INCLUDE",
+      "reason": "RCT with WSQ intervention and physicians' feedback vs treatment as usual"
+    },
+    {
+      "study_index": 22,
+      "decision": "INCLUDE",
+      "reason": "RCT with monthly telephone monitoring of distress with referrals vs educational materials alone"
+    },
+    {
+      "study_index": 23,
+      "decision": "INCLUDE",
+      "reason": "RCT with OQ-Analyst patient feedback system vs no feedback"
+    },
+    {
+      "study_index": 24,
+      "decision": "INCLUDE",
+      "reason": "Pilot RCT with mobile app for symptom reporting and feedback vs control"
+    },
+    {
+      "study_index": 25,
+      "decision": "EXCLUDE",
+      "reason": "Mixed-methods evaluation of PRO presentation formats, not RCT testing feedback intervention"
+    },
+    {
+      "study_index": 26,
+      "decision": "EXCLUDE",
+      "reason": "RCT on preoperative knowledge feedback, not PROMs feedback to healthcare professionals"
+    },
+    {
+      "study_index": 27,
+      "decision": "EXCLUDE",
+      "reason": "Qualitative interview study with GPs, not randomized trial"
+    },
+    {
+      "study_index": 28,
+      "decision": "EXCLUDE",
+      "reason": "Feasibility cluster RCT on self-management programme, not specifically PROMs feedback"
+    },
+    {
+      "study_index": 29,
+      "decision": "INCLUDE",
+      "reason": "RCT with PRIME-MD results told to patient and physician vs other conditions"
+    },
+    {
+      "study_index": 30,
+      "decision": "EXCLUDE",
+      "reason": "Protocol paper describing trial design and challenges, not completed trial results"
+    },
+    {
+      "study_index": 31,
+      "decision": "INCLUDE",
+      "reason": "RCT with HRQL assessment followed by structured interview and discussion vs HRQL alone vs usual care"
+    },
+    {
+      "study_index": 32,
+      "decision": "INCLUDE",
+      "reason": "RCT with patient-reported cancer needs, QOL, and psychosocial information made available to healthcare team vs not"
+    },
+    {
+      "study_index": 33,
+      "decision": "EXCLUDE",
+      "reason": "Protocol paper, not completed trial results"
+    },
+    {
+      "study_index": 34,
+      "decision": "EXCLUDE",
+      "reason": "RCT but automated self-monitoring and feedback system for patients, not PROMs feedback to healthcare professionals"
+    },
+    {
+      "study_index": 35,
+      "decision": "EXCLUDE",
+      "reason": "Scoping review, not randomized trial"
+    },
+    {
+      "study_index": 36,
+      "decision": "INCLUDE",
+      "reason": "RCT with data from CATIs used to generate feedback to TCW or O/GPs vs usual care"
+    },
+    {
+      "study_index": 37,
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on meta-analysis inconsistency, not RCT"
+    },
+    {
+      "study_index": 38,
+      "decision": "INCLUDE",
+      "reason": "RCT with QoL questionnaire with feedback vs attention group (no feedback) vs control"
+    },
+    {
+      "study_index": 39,
+      "decision": "INCLUDE",
+      "reason": "RCT with screening, sensitization, and informational feedback to physicians about depression"
+    },
+    {
+      "study_index": 40,
+      "decision": "EXCLUDE",
+      "reason": "Qualitative interview study with oncologists, not randomized trial"
+    },
+    {
+      "study_index": 41,
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT"
+    },
+    {
+      "study_index": 42,
+      "decision": "INCLUDE",
+      "reason": "RCT with health status reports to physicians vs attention placebo vs control"
+    },
+    {
+      "study_index": 43,
+      "decision": "INCLUDE",
+      "reason": "RCT with pain scale summary in clinical charts for intervention group vs control"
+    },
+    {
+      "study_index": 44,
+      "decision": "EXCLUDE",
+      "reason": "Tool development study, not RCT testing feedback intervention"
+    },
+    {
+      "study_index": 45,
+      "decision": "EXCLUDE",
+      "reason": "Cluster RCT on tobacco cessation counseling, not PROMs feedback intervention"
+    },
+    {
+      "study_index": 46,
+      "decision": "EXCLUDE",
+      "reason": "Review article, not randomized trial"
+    },
+    {
+      "study_index": 47,
+      "decision": "INCLUDE",
+      "reason": "Pilot RCT with daily symptom reporting using electronic PROs vs control"
+    },
+    {
+      "study_index": 48,
+      "decision": "INCLUDE",
+      "reason": "RCT with at-home symptom monitoring plus alerts to clinicians vs no alerts"
+    },
+    {
+      "study_index": 49,
+      "decision": "INCLUDE",
+      "reason": "RCT with feedback of GHQ information to clinicians vs control"
+    },
+    {
+      "study_index": 50,
+      "decision": "INCLUDE",
+      "reason": "RCT with nurse-led programme and patient self-assessment of disease activity vs control"
+    },
+    {
+      "study_index": 51,
+      "decision": "INCLUDE",
+      "reason": "RCT with OQ-45 feedback vs control"
+    },
+    {
+      "study_index": 52,
+      "decision": "INCLUDE",
+      "reason": "RCT with web-mediated follow-up based on self-scored patient symptoms vs routine follow-up"
+    },
+    {
+      "study_index": 53,
+      "decision": "EXCLUDE",
+      "reason": "Tool development study, not RCT"
+    },
+    {
+      "study_index": 54,
+      "decision": "EXCLUDE",
+      "reason": "Pilot RCT with feedback to patients on personality testing, not PROMs feedback to healthcare professionals"
+    },
+    {
+      "study_index": 55,
+      "decision": "EXCLUDE",
+      "reason": "Review/conceptual paper, not randomized trial"
+    },
+    {
+      "study_index": 56,
+      "decision": "INCLUDE",
+      "reason": "RCT with HRQL assessments with feedback to physicians and patients vs control"
+    },
+    {
+      "study_index": 57,
+      "decision": "INCLUDE",
+      "reason": "RCT with PROMIS symptom scores to clinicians vs control"
+    },
+    {
+      "study_index": 58,
+      "decision": "INCLUDE",
+      "reason": "RCT with QoL assessment with feedback for clinicians vs control"
+    },
+    {
+      "study_index": 59,
+      "decision": "INCLUDE",
+      "reason": "RCT with PROs feedback to providers and families vs no feedback"
+    },
+    {
+      "study_index": 60,
+      "decision": "EXCLUDE",
+      "reason": "RCT on developmental screening tools, not PROMs feedback to clinicians"
+    },
+    {
+      "study_index": 61,
+      "decision": "INCLUDE",
+      "reason": "RCT with QoL pathway including diagnosis of diseased QoL and expert report sent to practitioner vs standard care"
+    },
+    {
+      "study_index": 62,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT with quality monitoring with psychometric evaluation and feedback vs usual audit procedure"
+    },
+    {
+      "study_index": 63,
+      "decision": "INCLUDE",
+      "reason": "RCT with oncologist receiving elcss-ql data vs standard clinical assessment"
+    },
+    {
+      "study_index": 64,
+      "decision": "INCLUDE",
+      "reason": "RCT with GHQ results provided to emergency physicians vs control"
+    },
+    {
+      "study_index": 65,
+      "decision": "INCLUDE",
+      "reason": "RCT with disclosure of depression scores to general practitioners vs control"
+    },
+    {
+      "study_index": 66,
+      "decision": "INCLUDE",
+      "reason": "RCT with electronic self-report assessment with summary provided to clinical team vs no summary"
+    },
+    {
+      "study_index": 67,
+      "decision": "INCLUDE",
+      "reason": "RCT with FLARE-RA questionnaire administered with telephone nurse-led counseling vs usual care"
+    },
+    {
+      "study_index": 68,
+      "decision": "EXCLUDE",
+      "reason": "Editorial/opinion piece, not randomized trial"
+    },
+    {
+      "study_index": 69,
+      "decision": "EXCLUDE",
+      "reason": "Review/framework paper, not randomized trial"
+    },
+    {
+      "study_index": 70,
+      "decision": "EXCLUDE",
+      "reason": "RCT on life review intervention, not PROMs feedback to healthcare professionals"
+    },
+    {
+      "study_index": 71,
+      "decision": "INCLUDE",
+      "reason": "RCT with communication of screening result and offer of psychiatric evaluation vs no feedback"
+    },
+    {
+      "study_index": 72,
+      "decision": "EXCLUDE",
+      "reason": "RCT on depression care management, not specifically PROMs feedback intervention"
+    },
+    {
+      "study_index": 73,
+      "decision": "INCLUDE",
+      "reason": "RCT with AEP scores made available to treating physicians vs control"
+    },
+    {
+      "study_index": 74,
+      "decision": "INCLUDE",
+      "reason": "RCT with PCOMS feedback to therapists vs no-feedback condition"
+    },
+    {
+      "study_index": 75,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT with monitoring and feedback tool combined with SSP vs SSP vs usual care"
+    },
+    {
+      "study_index": 76,
+      "decision": "EXCLUDE",
+      "reason": "RCT with PCS screening feedback to participants, not PROMs feedback to healthcare professionals"
+    },
+    {
+      "study_index": 77,
+      "decision": "EXCLUDE",
+      "reason": "Cluster RCT on youth violence screening, not PROMs feedback to clinicians"
+    },
+    {
+      "study_index": 78,
+      "decision": "INCLUDE",
+      "reason": "RCT with QoL-monitor assessing QoL, distress and care needs with feedback to HCPs vs usual care"
+    },
+    {
+      "study_index": 79,
+      "decision": "INCLUDE",
+      "reason": "RCT with composite screening questionnaire disclosed to and scored by GPs vs blinded"
+    },
+    {
+      "study_index": 80,
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on classification system, not RCT"
+    },
+    {
+      "study_index": 81,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT with providing physicians with alcohol screening results and recommendations vs control"
+    },
+    {
+      "study_index": 82,
+      "decision": "EXCLUDE",
+      "reason": "Review article, not randomized trial"
+    },
+    {
+      "study_index": 83,
+      "decision": "EXCLUDE",
+      "reason": "RCT on behavioral feedback for sun protection, not PROMs feedback to healthcare professionals"
+    },
+    {
+      "study_index": 84,
+      "decision": "INCLUDE",
+      "reason": "Pilot cluster RCT with web-based tool including symptom reporting vs usual care"
+    },
+    {
+      "study_index": 85,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT with peer benchmarked PROMs feedback to surgeons vs control"
+    },
+    {
+      "study_index": 86,
+      "decision": "INCLUDE",
+      "reason": "RCT with feedback regarding patient progress to therapists vs control"
+    },
+    {
+      "study_index": 87,
+      "decision": "INCLUDE",
+      "reason": "RCT with computerized assessment results provided for GP vs GHQ results vs no additional information"
+    },
+    {
+      "study_index": 88,
+      "decision": "INCLUDE",
+      "reason": "RCT with systematic monitoring of HRQOL with face-to-face discussion with physician vs usual care"
+    },
+    {
+      "study_index": 89,
+      "decision": "EXCLUDE",
+      "reason": "Cluster RCT on STarT Back risk-stratification strategy, not PROMs feedback per se"
+    },
+    {
+      "study_index": 90,
+      "decision": "INCLUDE",
+      "reason": "RCT with recovery-focused pre-diagnostic wellbeing assessment and counselling with written feedback vs treatment as usual"
+    },
+    {
+      "study_index": 91,
+      "decision": "EXCLUDE",
+      "reason": "Methodological guidance paper, not randomized trial"
+    },
+    {
+      "study_index": 92,
+      "decision": "INCLUDE",
+      "reason": "RCT with computer-generated feedback letters vs in-person counseling vs assessment only"
+    },
+    {
+      "study_index": 93,
+      "decision": "EXCLUDE",
+      "reason": "Protocol paper for non-inferiority trial on administration methods, not testing feedback intervention"
+    },
+    {
+      "study_index": 94,
+      "decision": "INCLUDE",
+      "reason": "RCT with SF-36 results given to physicians before encounter vs withheld for control"
+    },
+    {
+      "study_index": 95,
+      "decision": "INCLUDE",
+      "reason": "RCT with electronic screening and personalized feedback with clinical decision support vs usual care"
+    },
+    {
+      "study_index": 96,
+      "decision": "EXCLUDE",
+      "reason": "Realist synthesis review, not randomized trial"
+    },
+    {
+      "study_index": 97,
+      "decision": "INCLUDE",
+      "reason": "RCT with computerized support system providing symptoms and preferences to clinicians prior to consultation vs control"
+    },
+    {
+      "study_index": 98,
+      "decision": "INCLUDE",
+      "reason": "RCT with systematic screening using AEP vs usual care without AEP"
+    },
+    {
+      "study_index": 99,
+      "decision": "INCLUDE",
+      "reason": "RCT with mobile telehealth including graphical and nurse-initiated feedback vs standard care"
+    },
+    {
+      "study_index": 100,
+      "decision": "INCLUDE",
+      "reason": "RCT with treatment progress information to therapists and patients vs treatment as usual"
+    },
+    {
+      "study_index": 101,
+      "decision": "EXCLUDE",
+      "reason": "Tool development study, not randomized trial"
+    },
+    {
+      "study_index": 102,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT with oncologist receiving immediate print-out LoMoS vs control"
+    },
+    {
+      "study_index": 103,
+      "decision": "INCLUDE",
+      "reason": "Group RCT with clinical decision support providing symptom assessment and management suggestions vs usual care"
+    },
+    {
+      "study_index": 104,
+      "decision": "INCLUDE",
+      "reason": "RCT with real-time daily patient feedback to providers vs control"
+    },
+    {
+      "study_index": 105,
+      "decision": "EXCLUDE",
+      "reason": "Observational study on agreement, not RCT testing feedback"
+    },
+    {
+      "study_index": 106,
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review, not randomized trial"
+    },
+    {
+      "study_index": 107,
+      "decision": "INCLUDE",
+      "reason": "RCT with detailed feedback about patient's mental health problem and desires vs control"
+    },
+    {
+      "study_index": 108,
+      "decision": "INCLUDE",
+      "reason": "RCT with symptom monitoring plus feedback vs usual care"
+    },
+    {
+      "study_index": 109,
+      "decision": "INCLUDE",
+      "reason": "RCT with computer-generated feedback to physicians about functional status vs control"
+    },
+    {
+      "study_index": 110,
+      "decision": "INCLUDE",
+      "reason": "RCT with outcome monitoring feedback to therapists and patients vs no feedback"
+    },
+    {
+      "study_index": 111,
+      "decision": "INCLUDE",
+      "reason": "RCT with monthly postal questionnaires assessing needs, QoL, etc. with 3-monthly feedback vs treatment as usual"
+    },
+    {
+      "study_index": 112,
+      "decision": "INCLUDE",
+      "reason": "RCT with personalized feedback added to guided CBT self-help vs without feedback"
+    },
+    {
+      "study_index": 113,
+      "decision": "INCLUDE",
+      "reason": "RCT with systematic symptom monitoring using Symptom Monitor vs control"
+    },
+    {
+      "study_index": 114,
+      "decision": "INCLUDE",
+      "reason": "RCT with symptom reporting via tablet computers with printouts to physicians vs usual care"
+    },
+    {
+      "study_index": 115,
+      "decision": "INCLUDE",
+      "reason": "RCT with outcome monitoring feedback to therapists vs no-feedback control"
+    },
+    {
+      "study_index": 116,
+      "decision": "EXCLUDE",
+      "reason": "RCT on decision aid for lung cancer screening, not PROMs feedback to healthcare professionals"
+    },
+    {
+      "study_index": 117,
+      "decision": "INCLUDE",
+      "reason": "RCT with disclosure of ISAR screen results with nursing assessment and referral vs usual care"
+    },
+    {
+      "study_index": 118,
+      "decision": "INCLUDE",
+      "reason": "RCT with electronic PRO-tool for adverse event reporting vs standard monitoring"
+    },
+    {
+      "study_index": 119,
+      "decision": "INCLUDE",
+      "reason": "Pilot RCT with symptom reports presented graphically with alerts vs usual care"
+    },
+    {
+      "study_index": 120,
+      "decision": "INCLUDE",
+      "reason": "RCT with smartphone apps for symptoms and biomarkers monitoring vs standard face-to-face care"
+    },
+    {
+      "study_index": 121,
+      "decision": "INCLUDE",
+      "reason": "RCT with access to interactive e-health platform for self-assessment vs usual care"
+    },
+    {
+      "study_index": 122,
+      "decision": "INCLUDE",
+      "reason": "RCT with mobile Web-based EMA with texting feedback vs EMA without feedback vs control"
+    },
+    {
+      "study_index": 123,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT with continuous feedback of outcome to patients and clinicians vs no feedback"
+    },
+    {
+      "study_index": 124,
+      "decision": "EXCLUDE",
+      "reason": "Longitudinal observational study, not randomized trial"
+    },
+    {
+      "study_index": 125,
+      "decision": "INCLUDE",
+      "reason": "RCT feasibility trial with web-based app for symptom monitoring vs control"
+    },
+    {
+      "study_index": 126,
+      "decision": "INCLUDE",
+      "reason": "Pilot study with IVR intervention with oncologist email alerts vs control"
+    },
+    {
+      "study_index": 127,
+      "decision": "EXCLUDE",
+      "reason": "Tool development study, not randomized trial"
+    },
+    {
+      "study_index": 128,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT with feedback strategies on end-of-life care quality vs no feedback"
+    },
+    {
+      "study_index": 129,
+      "decision": "EXCLUDE",
+      "reason": "Progress report on PROMIS network, not randomized trial"
+    },
+    {
+      "study_index": 130,
+      "decision": "EXCLUDE",
+      "reason": "RCT on telephone vs hospital follow-up, not PROMs feedback intervention"
+    },
+    {
+      "study_index": 131,
+      "decision": "INCLUDE",
+      "reason": "RCT with patient-specific treatment recommendations to physicians vs control"
+    },
+    {
+      "study_index": 132,
+      "decision": "INCLUDE",
+      "reason": "RCT with assessment summary provided to physicians and nurses in intervention vs control"
+    },
+    {
+      "study_index": 133,
+      "decision": "INCLUDE",
+      "reason": "RCT with ESM self-monitoring with weekly feedback sessions vs self-monitoring without feedback vs control"
+    },
+    {
+      "study_index": 134,
+      "decision": "EXCLUDE",
+      "reason": "RCT on virtual rehabilitation vs conventional physical therapy, not PROMs feedback"
+    },
+    {
+      "study_index": 135,
+      "decision": "INCLUDE",
+      "reason": "RCT with treatment progress and alliance information to clients and therapists vs treatment as usual"
+    },
+    {
+      "study_index": 136,
+      "decision": "EXCLUDE",
+      "reason": "Validation study of COOP Charts, not RCT testing feedback intervention"
+    },
+    {
+      "study_index": 137,
+      "decision": "INCLUDE",
+      "reason": "RCT with feedback about PROMIS Pain Interference CAT to patients prior to visit vs not"
+    },
+    {
+      "study_index": 138,
+      "decision": "INCLUDE",
+      "reason": "RCT with feedback regarding client progress and clinical support tools vs control"
+    },
+    {
+      "study_index": 139,
+      "decision": "EXCLUDE",
+      "reason": "Systematic review, not randomized trial"
+    },
+    {
+      "study_index": 140,
+      "decision": "INCLUDE",
+      "reason": "RCT with feedback of information about patients' asthma to primary care teams vs control"
+    },
+    {
+      "study_index": 141,
+      "decision": "EXCLUDE",
+      "reason": "Commentary/opinion piece, not randomized trial"
+    },
+    {
+      "study_index": 142,
+      "decision": "INCLUDE",
+      "reason": "RCT with PRIME-MD results given to physician vs no report"
+    },
+    {
+      "study_index": 143,
+      "decision": "EXCLUDE",
+      "reason": "Observational study on utility of SIP, not randomized trial"
+    },
+    {
+      "study_index": 144,
+      "decision": "INCLUDE",
+      "reason": "RCT with Dartmouth COOP Charts to measure health status vs control"
+    },
+    {
+      "study_index": 145,
+      "decision": "INCLUDE",
+      "reason": "RCT with IVR monitoring and automated emails to CarePartner vs standard mHealth"
+    },
+    {
+      "study_index": 146,
+      "decision": "EXCLUDE",
+      "reason": "RCT on SGB vs sham for PTSD, not PROMs feedback"
+    },
+    {
+      "study_index": 147,
+      "decision": "INCLUDE",
+      "reason": "RCT feasibility trial with PROMs for monitoring depression with feedback to patients determined by practitioners"
+    },
+    {
+      "study_index": 148,
+      "decision": "INCLUDE",
+      "reason": "RCT with clinicians receiving clinical feedback reports at intake and 6 weeks vs control"
+    },
+    {
+      "study_index": 149,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT with structured patient-clinician dialogue with immediate feedback vs treatment as usual"
+    },
+    {
+      "study_index": 150,
+      "decision": "EXCLUDE",
+      "reason": "Conceptual paper on PROMIS initiative, not randomized trial"
+    },
+    {
+      "study_index": 151,
+      "decision": "INCLUDE",
+      "reason": "RCT with feedback of GHQ results to clinicians vs control"
+    },
+    {
+      "study_index": 152,
+      "decision": "INCLUDE",
+      "reason": "RCT with treatment progress information and clinical support tools vs treatment-as-usual"
+    },
+    {
+      "study_index": 153,
+      "decision": "INCLUDE",
+      "reason": "RCT with depression self-rating scale used in recurrent consultations vs TAU"
+    },
+    {
+      "study_index": 154,
+      "decision": "EXCLUDE",
+      "reason": "Systematic review, not randomized trial"
+    },
+    {
+      "study_index": 155,
+      "decision": "INCLUDE",
+      "reason": "RCT with information about physical functioning provided to patient and physician vs functional assessments alone"
+    },
+    {
+      "study_index": 156,
+      "decision": "EXCLUDE",
+      "reason": "Review of options and considerations, not randomized trial"
+    },
+    {
+      "study_index": 157,
+      "decision": "EXCLUDE",
+      "reason": "Qualitative study, not randomized trial"
+    },
+    {
+      "study_index": 158,
+      "decision": "EXCLUDE",
+      "reason": "Protocol paper for RCT, not completed trial results"
+    },
+    {
+      "study_index": 159,
+      "decision": "EXCLUDE",
+      "reason": "Bibliographic study, not randomized trial"
+    },
+    {
+      "study_index": 160,
+      "decision": "INCLUDE",
+      "reason": "RCT with electronic survey of anxiety and information for dentists vs control"
+    },
+    {
+      "study_index": 161,
+      "decision": "INCLUDE",
+      "reason": "RCT with monitoring and discussing psychological well-being vs standard care"
+    },
+    {
+      "study_index": 162,
+      "decision": "EXCLUDE",
+      "reason": "Commentary/review, not randomized trial"
+    },
+    {
+      "study_index": 163,
+      "decision": "EXCLUDE",
+      "reason": "Randomized factorial experiment of feedback messages, not PROMs feedback to clinicians"
+    },
+    {
+      "study_index": 164,
+      "decision": "EXCLUDE",
+      "reason": "Qualitative study, not randomized trial"
+    },
+    {
+      "study_index": 165,
+      "decision": "INCLUDE",
+      "reason": "RCT with providers given completed PHQ-9 questionnaires vs control"
+    },
+    {
+      "study_index": 166,
+      "decision": "EXCLUDE",
+      "reason": "Validation study, not RCT testing feedback intervention"
+    },
+    {
+      "study_index": 167,
+      "decision": "EXCLUDE",
+      "reason": "Study on self-tracking physiology, not PROMs feedback to healthcare professionals"
+    },
+    {
+      "study_index": 168,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT with readiness evaluation and discharge intervention protocols including patient self-assessment vs usual care"
+    },
+    {
+      "study_index": 169,
+      "decision": "INCLUDE",
+      "reason": "RCT with electronic self-report assessment with self-care instruction vs control"
+    },
+    {
+      "study_index": 170,
+      "decision": "INCLUDE",
+      "reason": "RCT with self-administered depression questionnaire to alert residents"
+    },
+    {
+      "study_index": 171,
+      "decision": "INCLUDE",
+      "reason": "RCT with patient progress feedback and clinical support tools to therapists vs treatment-as-usual"
+    },
+    {
+      "study_index": 172,
+      "decision": "EXCLUDE",
+      "reason": "Literature review, not randomized trial"
+    },
+    {
+      "study_index": 173,
+      "decision": "EXCLUDE",
+      "reason": "Observational study on surveillance system performance, not randomized trial"
+    },
+    {
+      "study_index": 174,
+      "decision": "INCLUDE",
+      "reason": "RCT with HRQL assessment with feedback to clinicians vs control"
+    },
+    {
+      "study_index": 175,
+      "decision": "INCLUDE",
+      "reason": "Pilot RCT with web-based self-management portal with monitoring, feedback and support vs usual care"
+    },
+    {
+      "study_index": 176,
+      "decision": "INCLUDE",
+      "reason": "RCT with routine online screening for distress with various conditions vs minimal screening"
+    },
+    {
+      "study_index": 177,
+      "decision": "EXCLUDE",
+      "reason": "Debate paper, not randomized trial"
+    },
+    {
+      "study_index": 178,
+      "decision": "EXCLUDE",
+      "reason": "RCT on communication skills training, not PROMs feedback"
+    },
+    {
+      "study_index": 179,
+      "decision": "INCLUDE",
+      "reason": "RCT with physicians notified of GDS scores vs control"
+    },
+    {
+      "study_index": 180,
+      "decision": "INCLUDE",
+      "reason": "RCT with feedback of BDI scores to GPs vs control"
+    },
+    {
+      "study_index": 181,
+      "decision": "EXCLUDE",
+      "reason": "RCT on communication-priming intervention, not PROMs feedback"
+    },
+    {
+      "study_index": 182,
+      "decision": "EXCLUDE",
+      "reason": "Commentary/opinion piece, not randomized trial"
+    },
+    {
+      "study_index": 183,
+      "decision": "EXCLUDE",
+      "reason": "Study design and recruitment paper, not completed trial results"
+    },
+    {
+      "study_index": 184,
+      "decision": "INCLUDE",
+      "reason": "Cluster RCT with tailored printouts from CRIS vs non-tailored information"
+    },
+    {
+      "study_index": 185,
+      "decision": "EXCLUDE",
+      "reason": "RCT on nurse-managed telephone follow-up, not PROMs feedback"
+    },
+    {
+      "study_index": 186,
+      "decision": "EXCLUDE",
+      "reason": "Systematic review, not randomized trial"
+    },
+    {
+      "study_index": 187,
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper, not randomized trial"
+    },
+    {
+      "study_index": 188,
+      "decision": "EXCLUDE",
+      "reason": "Conceptual paper, not randomized trial"
+    },
+    {
+      "study_index": 189,
+      "decision": "INCLUDE",
+      "reason": "RCT with online health questionnaires with remote NP review vs standard care"
+    },
+    {
+      "study_index": 190,
+      "decision": "INCLUDE",
+      "reason": "RCT with routine completion and feedback of outcome measures vs control"
+    },
+    {
+      "study_index": 191,
+      "decision": "INCLUDE",
+      "reason": "RCT with computerized measurement and feedback of HRQoL to physicians vs control"
+    },
+    {
+      "study_index": 192,
+      "decision": "EXCLUDE",
+      "reason": "Overview of phase III trials, not RCT testing PROMs feedback"
+    },
+    {
+      "study_index": 193,
+      "decision": "EXCLUDE",
+      "reason": "Cluster RCT on guideline implementation, not PROMs feedback specifically"
+    },
+    {
+      "study_index": 194,
+      "decision": "EXCLUDE",
+      "reason": "Software description, not research study"
+    }
+  ]
+}

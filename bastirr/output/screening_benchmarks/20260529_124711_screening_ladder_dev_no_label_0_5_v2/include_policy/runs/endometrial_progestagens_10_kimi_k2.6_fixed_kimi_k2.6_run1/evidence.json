@@ -1,0 +1,54 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "decision": "INCLUDE",
+      "reason": "Multicentre RCT evaluating adjuvant medroxyprogesterone acetate (a progestagen) following surgery for stage I endometrial carcinoma. Meets all selection criteria: RCT design, post-surgical population, and progestagen intervention."
+    },
+    {
+      "study_index": 2,
+      "decision": "EXCLUDE",
+      "reason": "This is a narrative review and survey of the literature, not a primary randomised controlled trial. It does not report original RCT data of progestagen therapy after surgery for endometrial cancer."
+    },
+    {
+      "study_index": 3,
+      "decision": "EXCLUDE",
+      "reason": "Methodology paper concerning statistical inconsistency in meta-analyses. Not an RCT and does not report clinical data on progestagen therapy for endometrial cancer."
+    },
+    {
+      "study_index": 4,
+      "decision": "EXCLUDE",
+      "reason": "Methodology chapter on meta-analysis statistical techniques. Not a clinical trial and contains no patient-level data on progestagen therapy after surgery."
+    },
+    {
+      "study_index": 5,
+      "decision": "INCLUDE",
+      "reason": "Randomised controlled trial directly comparing adjuvant progestagen therapy with no additional therapy after surgery in patients with Stage I or II endometrial cancer. Fully meets selection criteria."
+    },
+    {
+      "study_index": 6,
+      "decision": "EXCLUDE",
+      "reason": "Methodology paper discussing random-effects approaches to combining evidence across trials. Not a primary RCT and does not report data on progestagen therapy for endometrial cancer."
+    },
+    {
+      "study_index": 7,
+      "decision": "INCLUDE",
+      "reason": "Randomised trial of progestagen versus control in women with endometrial carcinoma treated with surgery (all patients post-operation). Meets the RCT criterion and involves progestagen therapy in a post-surgical population."
+    },
+    {
+      "study_index": 8,
+      "decision": "EXCLUDE",
+      "reason": "Methodology paper on extracting statistics for survival meta-analyses. Not a clinical trial and provides no primary data on progestagen therapy after surgery for endometrial cancer."
+    },
+    {
+      "study_index": 9,
+      "decision": "INCLUDE",
+      "reason": "Controlled trial comparing adjuvant hydroxyprogesterone versus placebo after total abdominal hysterectomy for stage I endometrial cancer. The parallel placebo-controlled design with balanced allocation strongly suggests an RCT, though randomisation is not explicitly stated in the abstract. Included conservatively pending full-text verification."
+    },
+    {
+      "study_index": 10,
+      "decision": "INCLUDE",
+      "reason": "Prospective institutional clinical trial with random assignment to adjuvant progestagen or no additional therapy after surgery for endometrial cancer. Meets RCT and population/intervention criteria."
+    }
+  ]
+}

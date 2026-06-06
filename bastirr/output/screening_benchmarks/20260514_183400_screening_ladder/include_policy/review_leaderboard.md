@@ -14,7 +14,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.800 | 0.667 | 1.000 | 0.800 | 1.000 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.800 | 0.667 | 1.000 | 0.800 | 1.000 | 1.000 | 1.000 |
 
 ## alopecia_areata_25
 
@@ -26,7 +26,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.875 | 0.824 | 0.933 | 0.840 | 0.875 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.875 | 0.824 | 0.933 | 0.840 | 0.875 | 1.000 | 1.000 |
 
 ## iud_insertion_pain_50
 
@@ -38,7 +38,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.929 | 0.867 | 1.000 | 0.920 | 1.000 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.929 | 0.867 | 1.000 | 0.920 | 1.000 | 1.000 | 1.000 |
 
 ## pelvic_floor_training_100
 
@@ -50,7 +50,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.800 | 0.667 | 1.000 | 0.840 | 1.000 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.800 | 0.667 | 1.000 | 0.840 | 1.000 | 1.000 | 1.000 |
 
 ## heart_failure_mhealth_200
 
@@ -62,4 +62,4 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | deepseek-v4-pro [DeepSeek V4 Pro] | fixed | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.070 | 0.036 | 1.000 | 0.340 | 1.000 | 1.000 | 1.000 |
+| 1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | fixed | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0 | 0 | 0.070 | 0.036 | 1.000 | 0.340 | 1.000 | 1.000 | 1.000 |

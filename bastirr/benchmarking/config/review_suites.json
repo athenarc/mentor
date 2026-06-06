@@ -152,6 +152,57 @@
           "expected_n_screen_exclude": 45
         }
       ]
+    },
+    {
+      "name": "screening_ladder_dev_no_label_0_5_v2",
+      "description": "Dev-only escalating screening benchmark ladder composed of reviews whose dataset labels contain no 0.5 studies.",
+      "reviews": [
+        {
+          "key": "endometrial_progestagens_10",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001040.pub2/full",
+          "title": "Adjuvant progestagens for endometrial cancer",
+          "expected_n_studies": 10,
+          "expected_n_screen_pass": 5,
+          "expected_n_screen_exclude": 5
+        },
+        {
+          "key": "glucocorticoids_rheumatoid_26",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006356/full",
+          "title": "Effects of glucocorticoids on radiological progression in rheumatoid arthritis",
+          "expected_n_studies": 26,
+          "expected_n_screen_pass": 12,
+          "expected_n_screen_exclude": 14
+        },
+        {
+          "key": "vitamin_d_ckd_not_dialysis_51",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008175/full",
+          "title": "Vitamin D compounds for people with chronic kidney disease not requiring dialysis",
+          "expected_n_studies": 51,
+          "expected_n_screen_pass": 14,
+          "expected_n_screen_exclude": 37
+        },
+        {
+          "key": "continuity_of_care_cancer_92",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007672.pub2/full",
+          "title": "Interventions to improve continuity of care in the follow-up of patients with cancer",
+          "expected_n_studies": 92,
+          "expected_n_screen_pass": 42,
+          "expected_n_screen_exclude": 50
+        },
+        {
+          "key": "glaucoma_140",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008803.pub2/full",
+          "title": "Optic nerve head and fibre layer imaging for diagnosing glaucoma",
+          "expected_n_studies": 140,
+          "expected_n_screen_pass": 96,
+          "expected_n_screen_exclude": 44
+        }
+      ]
     }
   ]
 }
