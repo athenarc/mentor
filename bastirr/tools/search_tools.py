@@ -5,34 +5,46 @@ In the full Bastirr system, the Librarian would query PubMed, OpenAIRE, etc.
 For this scaffolding, it retrieves candidate studies from a pre-loaded
 study database — simulating a search by returning title + abstract records.
 
-Call ``load_review_data(json_str)`` once (from the runner) before any
-agent tools are invoked.  The tools read from the module-level store.
+Call ``load_review_data(json_str, output_dir=...)`` once (from the runner)
+before any agent tools are invoked.
 """
 
 import json
+from dataclasses import dataclass
 
 from smolagents import tool
 
-
-# ---------------------------------------------------------------------------
-# Module-level study store  (populated by the runner before the pipeline)
-# ---------------------------------------------------------------------------
-_review_data: dict | None = None
+from bastirr.search_metadata import update_search_strategy
 
 
-def load_review_data(review_data_json: str) -> None:
-    """Load review data into the module-level store.
+@dataclass
+class _RunContext:
+    review_data: dict | None = None
+    output_dir: str | None = None
 
-    This is called once by ``run_demo.py`` (or any runner) **before** the
-    pipeline starts.  All librarian tools read from this store, simulating
-    a database that the librarian can query.
+
+_run = _RunContext()
+
+
+def load_review_data(review_data_json: str, *, output_dir: str | None = None) -> None:
+    """Load review data and optional run output directory for the pipeline.
 
     Args:
         review_data_json: Full JSON string with keys ``title``, ``objective``,
             ``background``, ``selection_criteria``, and ``studies``.
+        output_dir: Run output directory where ``search_metadata.json`` is written.
     """
-    global _review_data
-    _review_data = json.loads(review_data_json)
+    _run.review_data = json.loads(review_data_json)
+    _run.output_dir = output_dir
+
+
+def _require_output_dir() -> str:
+    if not _run.output_dir:
+        raise RuntimeError(
+            "No output_dir configured. The runner must call "
+            "load_review_data(..., output_dir=...) before the pipeline starts."
+        )
+    return _run.output_dir
 
 
 # ---------------------------------------------------------------------------
@@ -46,6 +58,9 @@ def search_studies(query: str) -> str:
     In this scaffolding version, it returns all candidate studies from the
     pre-loaded study database (simulating a real database search).
 
+    The Boolean query is persisted to ``search_metadata.json`` in the run
+    output directory.
+
     Args:
         query: The research question or search query.
 
@@ -53,23 +68,30 @@ def search_studies(query: str) -> str:
         A formatted string listing all candidate studies with their index,
         title, and abstract (truncated).
     """
-    if _review_data is None:
+    if _run.review_data is None:
         return "ERROR: No review data loaded. The runner must call load_review_data() first."
 
-    studies = _review_data.get("studies", [])
+    studies = _run.review_data.get("studies", [])
+    try:
+        update_search_strategy(
+            _require_output_dir(),
+            boolean_query=query,
+            n_candidates=len(studies),
+        )
+    except RuntimeError as exc:
+        return f"ERROR: {exc}"
 
     lines = [
         f"Search results for: {query}",
         f"Found {len(studies)} candidate studies.",
-        f"Review: {_review_data.get('title', 'N/A')}",
-        f"Selection criteria: {_review_data.get('selection_criteria', 'N/A')}",
+        f"Review: {_run.review_data.get('title', 'N/A')}",
+        f"Selection criteria: {_run.review_data.get('selection_criteria', 'N/A')}",
         "",
     ]
 
     for i, study in enumerate(studies):
         title = study.get("title", "No title")
         abstract = study.get("abstract", "No abstract")
-        # Truncate abstract for readability
         abstract_preview = abstract[:300] + "..." if len(abstract) > 300 else abstract
         lines.append(f"--- Study {i + 1} ---")
         lines.append(f"Title: {title}")
@@ -89,16 +111,38 @@ def get_review_protocol() -> str:
     Returns:
         A formatted string with the review protocol details.
     """
-    if _review_data is None:
+    if _run.review_data is None:
         return "ERROR: No review data loaded."
 
     return (
         f"=== REVIEW PROTOCOL ===\n"
-        f"Title: {_review_data.get('title', 'N/A')}\n\n"
-        f"Background:\n{_review_data.get('background', 'N/A')}\n\n"
-        f"Objective:\n{_review_data.get('objective', 'N/A')}\n\n"
-        f"Selection Criteria:\n{_review_data.get('selection_criteria', 'N/A')}\n"
+        f"Title: {_run.review_data.get('title', 'N/A')}\n\n"
+        f"Background:\n{_run.review_data.get('background', 'N/A')}\n\n"
+        f"Objective:\n{_run.review_data.get('objective', 'N/A')}\n\n"
+        f"Selection Criteria:\n{_run.review_data.get('selection_criteria', 'N/A')}\n"
     )
+
+
+@tool
+def record_search_description(description: str) -> str:
+    """
+    Record the narrative search strategy in ``search_metadata.json``.
+
+    Call this after formulating the PICO-driven strategy and before
+    ``search_studies()``.  Pass the strategy rationale only — do not
+    include the Boolean query here (that is captured by ``search_studies``).
+
+    Args:
+        description: Narrative description of concepts, synonyms, and limits.
+
+    Returns:
+        Confirmation message.
+    """
+    try:
+        update_search_strategy(_require_output_dir(), description=description)
+    except RuntimeError as exc:
+        return f"ERROR: {exc}"
+    return "Search description saved to search_metadata.json."
 
 
 # ---------------------------------------------------------------------------
@@ -118,6 +162,6 @@ def get_candidates_json() -> str:
     Returns:
         A JSON string with the candidate studies and review metadata.
     """
-    if _review_data is None:
+    if _run.review_data is None:
         return "{}"
-    return json.dumps(_review_data, ensure_ascii=False)
+    return json.dumps(_run.review_data, ensure_ascii=False)

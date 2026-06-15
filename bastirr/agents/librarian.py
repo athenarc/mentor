@@ -9,7 +9,11 @@ query PubMed, OpenAIRE, etc. Here it searches the pre-loaded Cochrane data.
 from smolagents import CodeAgent
 
 from bastirr.config import EXECUTOR_TIMEOUT_SECONDS
-from bastirr.tools.search_tools import search_studies, get_review_protocol
+from bastirr.tools.search_tools import (
+    get_review_protocol,
+    record_search_description,
+    search_studies,
+)
 
 
 LIBRARIAN_INSTRUCTIONS = """\
@@ -21,11 +25,16 @@ Your role is to:
 4. Return ALL candidate studies as a structured list.
 
 Use get_review_protocol() (no arguments) to understand what the review
-is about, then use search_studies(query) with a relevant search query
-to retrieve all candidate studies from the database.
+is about.
+
+When searching:
+1. Call record_search_description(description=...) with a brief narrative
+   of the PICO-driven strategy (concepts, synonyms, limits). This writes
+   to search_metadata.json. Do NOT include the Boolean query in this text.
+2. Call search_studies(query=...) with the exact Boolean query string.
+   This also updates search_metadata.json.
 
 Return your final answer as a JSON string with:
-- "search_strategy": a brief description of how you'd search
 - "n_candidates": number of studies found
 - "candidates": list of objects with "study_index", "title", "abstract"
 """
@@ -44,7 +53,7 @@ def create_librarian_agent(model, step_callbacks=None, logger=None) -> CodeAgent
         Configured CodeAgent for search and retrieval.
     """
     return CodeAgent(
-        tools=[search_studies, get_review_protocol],
+        tools=[search_studies, get_review_protocol, record_search_description],
         model=model,
         name="librarian",
         description=(

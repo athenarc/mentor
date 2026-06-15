@@ -22,6 +22,7 @@ import sys
 from pathlib import Path
 
 from bastirr.config import (
+    GENERATE_PRISMA,
     create_model,
     resolve_api_base,
     resolve_api_key,
@@ -30,6 +31,7 @@ from bastirr.config import (
 from bastirr.data import load_review, list_reviews
 from bastirr.logging_utils import setup_run_logging, make_step_callbacks
 from bastirr.model_profiles import get_selected_model_profile, resolve_runtime_model_profile
+from bastirr.search_metadata import init_search_metadata
 from bastirr.tools.search_tools import load_review_data
 
 logging.basicConfig(
@@ -128,10 +130,6 @@ def run_demo(
     review_json = review_to_json(review)
     protocol_json = protocol_to_json(review)
 
-    # Load the full review data (incl. studies) into the librarian's
-    # search store.  The orchestrator will only see the protocol.
-    load_review_data(review_json)
-
     # -----------------------------------------------------------------------
     # 2. Set up run logging
     # -----------------------------------------------------------------------
@@ -144,6 +142,16 @@ def run_demo(
     activity_logger.log_metadata("Review URL", review_url)
     activity_logger.log_metadata("Dataset split", split)
     activity_logger.log_metadata("Studies", str(len(review.studies)))
+
+    # Load studies into the librarian store and seed search_metadata.json.
+    load_review_data(review_json, output_dir=str(run_dir))
+    init_search_metadata(
+        run_dir,
+        title=review.title,
+        objective=review.objective,
+        background=review.background,
+        selection_criteria=review.selection_criteria,
+    )
 
     # -----------------------------------------------------------------------
     # 3. Initialize model and orchestrator
@@ -236,8 +244,8 @@ def run_demo(
         f"4. Use the miner to extract evidence from included studies\n"
         f"5. Use the critic to synthesize the evidence\n"
         f"6. Use format_report() to format a clean Markdown report\n"
-        f"7. Use save_evidence_json() to save structured data "
-        f"(output_dir: \"{run_dir}\")\n\n"
+        f"7. Use save_evidence_json() and save_search_metadata() to save "
+        f"structured data (output_dir: \"{run_dir}\")\n\n"
         f"Return the formatted report as your final answer."
     )
 
@@ -255,6 +263,21 @@ def run_demo(
         report = str(result)
         report_path = save_report(report, run_dir)
         logger.info(f"Report saved to: {report_path}")
+
+        if GENERATE_PRISMA:
+            try:
+                from bastirr.prisma import generate_prisma_bundle
+
+                prisma_dir = generate_prisma_bundle(
+                    run_dir,
+                    review=review,
+                    model=_activity_summary_model,
+                )
+                logger.info(f"PRISMA bundle saved to: {prisma_dir}")
+            except Exception as exc:
+                logger.warning("PRISMA bundle generation failed (run otherwise OK): %s", exc)
+        else:
+            logger.info("PRISMA bundle skipped (BASTIRR_GENERATE_PRISMA is disabled)")
 
         # Print ground truth comparison
         logger.info("\n" + "=" * 70)

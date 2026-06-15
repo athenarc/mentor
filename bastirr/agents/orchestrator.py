@@ -16,6 +16,7 @@ from bastirr.agents.critic import create_critic_agent
 from bastirr.tools.report_tools import (
     format_report,
     save_evidence_json,
+    save_search_metadata,
     extract_included_studies,
 )
 from bastirr.tools.search_tools import get_candidates_json
@@ -47,6 +48,9 @@ You also have four utility tools:
   a clean, consistent Markdown report. ALWAYS use this as the last step.
 - **save_evidence_json** — saves structured evidence as a separate JSON
   file alongside the report.
+- **save_search_metadata** — finalizes ``search_metadata.json`` for PRISMA
+  reporting (call in the same final step as save_evidence_json).  The
+  librarian writes search strategy fields during the search step.
 
 ═══════════════════════════════════════════════════════════════════════
 PLANNING GUIDANCE
@@ -66,7 +70,8 @@ CRITICAL RULES — read carefully before writing any code
 
 2. ALWAYS USE YOUR TOOLS — NEVER WRITE YOUR OWN PARSERS.
    Your tools (get_candidates_json, extract_included_studies,
-   format_report, save_evidence_json) handle all data retrieval and
+   format_report, save_evidence_json, save_search_metadata) handle all data
+   retrieval and
    response parsing.  Do NOT write json.loads(), regex, or any other
    parsing code on agent responses.  If a tool exists for something,
    use it.
@@ -126,6 +131,12 @@ Code block 5 — FORMAT & SAVE:
       evidence_response=miner_response,
       screening_response=gatekeeper_response,
       synthesis_response=critic_response,
+      output_dir=output_dir)
+  save_search_metadata(
+      review_title=..., review_objective=...,
+      review_background=...,
+      selection_criteria=selection_criteria,
+      num_candidates=...,
       output_dir=output_dir)
   final_answer(report_str)
 
@@ -195,8 +206,8 @@ def create_orchestrator_agent(
     critic = create_critic_agent(critic_model, step_callbacks=step_callbacks, logger=logger)
 
     return CodeAgent(
-        tools=[format_report, save_evidence_json, extract_included_studies,
-               get_candidates_json],
+        tools=[format_report, save_evidence_json, save_search_metadata,
+               extract_included_studies, get_candidates_json],
         model=orchestrator_model,
         managed_agents=[librarian, gatekeeper, miner, critic],
         instructions=ORCHESTRATOR_INSTRUCTIONS,

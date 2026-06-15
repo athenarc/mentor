@@ -26,6 +26,10 @@ OUTPUT_DIR = BASTIRR_DIR / "output"
 # generous finite value so genuine infinite loops still get caught.
 EXECUTOR_TIMEOUT_SECONDS = int(os.getenv("BASTIRR_EXECUTOR_TIMEOUT", "500"))
 
+# When true, run_demo writes PRISMA checklist/flowchart artifacts under prisma/.
+# Manual regeneration: python -m bastirr.scripts.generate_prisma (ignores this flag).
+GENERATE_PRISMA = os.getenv("BASTIRR_GENERATE_PRISMA", "true").strip().lower() == "true"
+
 # ---------------------------------------------------------------------------
 # API keys  (sourced from .env)
 # ---------------------------------------------------------------------------

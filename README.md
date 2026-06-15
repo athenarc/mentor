@@ -20,7 +20,7 @@ Bastirr is a scaffolding implementation of a multi-agent architecture designed t
       get_protocol    screen_study   extract_from   assess_quality
 ```
 
-All four sub-agents are **managed agents** of the Orchestrator. The Orchestrator also has its own utility tools: `format_report`, `save_evidence_json`, `extract_included_studies`, and `get_candidates_json`.
+All four sub-agents are **managed agents** of the Orchestrator. The Orchestrator also has its own utility tools: `format_report`, `save_evidence_json`, `save_search_metadata`, `extract_included_studies`, and `get_candidates_json`.
 
 **Data flow:** The Orchestrator delegates to agents in sequence:
 1. **Librarian** — retrieves candidate studies from a module-level data store (simulating a database query)
@@ -28,7 +28,8 @@ All four sub-agents are **managed agents** of the Orchestrator. The Orchestrator
 3. **Gatekeeper** — screens each study (INCLUDE/EXCLUDE) against selection criteria
 4. **Miner** — extracts PICO evidence from included studies' abstracts
 5. **Critic** — assesses quality and synthesizes a citation-backed narrative
-6. **Orchestrator** calls `format_report()` and `save_evidence_json()` to produce outputs
+6. **Orchestrator** calls `format_report()`, `save_evidence_json()`, and `save_search_metadata()` to produce outputs
+7. **Runner** calls `generate_prisma_bundle()` to write PRISMA 2020 checklist and flowchart artifacts
 
 > **Key design decision:** The Orchestrator's task text contains *only* the review protocol (title, objective, background, selection criteria) — never the candidate studies. Studies are loaded into a module-level store before the pipeline starts and accessed by the Librarian's tools. This prevents the Orchestrator from pre-screening studies during its planning phase and future-proofs the architecture for real database search.
 
@@ -68,8 +69,10 @@ bastirr/
 ├── logging_utils.py         # Run logging (workflow + decision summary)
 ├── run_demo.py              # CLI entry point & end-to-end runner
 ├── requirements.txt         # Python dependencies
+├── prisma/                  # PRISMA 2020 checklist + flowchart generation
 ├── scripts/
 │   ├── __init__.py          # Bastirr-specific utility scripts
+│   ├── generate_prisma.py   # Re-generate PRISMA artifacts from an existing run
 │   └── render_workflow_presentation.py  # Presentation HTML exporter for completed runs
 ├── data/
 │   └── __init__.py          # Dataset loader (SystematicReview dataclass)
@@ -108,7 +111,40 @@ This is a **scaffolding implementation** — the agents run end-to-end and produ
 - **Miner**: Extracts from abstracts only (no PDF OCR pipeline)
 - **Critic**: Synthesizes from abstract-level evidence
 
-The pipeline has been validated on the Cotrimoxazole/HIV review (10 candidates, 1 included), achieving 10/10 screening accuracy against the Cochrane ground truth. Outputs include a structured Markdown report (`report.md`) and a machine-readable evidence file (`evidence.json`).
+The pipeline has been validated on the Cotrimoxazole/HIV review (10 candidates, 1 included), achieving 10/10 screening accuracy against the Cochrane ground truth. Outputs include a structured Markdown report (`report.md`), a machine-readable evidence file (`evidence.json`), and a PRISMA bundle under `prisma/`.
+
+### PRISMA outputs
+
+After each successful run, Bastirr writes a `prisma/` folder alongside `report.md`:
+
+| File | Purpose |
+|------|---------|
+| `checklist.md` | PRISMA 2020 checklist table with a **Response** column |
+| `checklist.json` | Same content, machine-readable |
+| `counts.json` | Flow numbers and pipeline stage metadata |
+| `flowchart.png` | PRISMA 2020 new-review flow diagram (title/abstract stage) |
+| `excluded_studies.md` / `excluded_studies.json` | Excluded records with reasons (item 16b) |
+
+**Limitation (v1):** counts and flowchart reflect **title/abstract screening only**. Full-text retrieval boxes are not populated; this is documented in `counts.json`.
+
+Disable automatic PRISMA generation in `run_demo`:
+
+```bash
+BASTIRR_GENERATE_PRISMA=false python -m bastirr.run_demo
+```
+
+Install optional flowchart dependencies ([prisma-flow-diagram](https://pypi.org/project/prisma-flow-diagram/) on PyPI):
+
+```bash
+pip install -r bastirr/requirements-prisma.txt
+```
+
+Re-generate PRISMA artifacts from an existing run (e.g. after editing `evidence.json`):
+
+```bash
+python -m bastirr.scripts.generate_prisma \
+  --run-dir bastirr/output/<timestamp>_<review-title>/
+```
 
 ## Workflow Presentation Exporter
 
