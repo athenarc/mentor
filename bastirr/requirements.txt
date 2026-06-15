@@ -5,6 +5,9 @@ pandas>=1.5.0
 python-dotenv>=1.0.0
 pygments>=2.16.0
 
+# Optional: PRISMA flowchart PNG (prisma-flow-diagram + matplotlib)
+# pip install -r bastirr/requirements-prisma.txt
+
 # Optional: install for LiteLLM backend (local models, Anthropic, Bedrock, etc.)
 # pip install 'smolagents[litellm]'
 # Or install directly:

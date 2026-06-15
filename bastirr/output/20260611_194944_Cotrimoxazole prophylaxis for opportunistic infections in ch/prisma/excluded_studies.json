@@ -1,0 +1,61 @@
+{
+  "prisma_item": "16b",
+  "stage": "title_abstract_screening",
+  "source": "evidence.json screening_decisions",
+  "excluded": [
+    {
+      "study_index": 2,
+      "title": "Study 2",
+      "reason": "Randomised trial but population is HIV-infected adults, not children <15 years or infants <18 months with HIV-infected mothers. Wrong population.",
+      "decision": "EXCLUDE"
+    },
+    {
+      "study_index": 3,
+      "title": "Study 3",
+      "reason": "Randomised trial of cotrimoxazole prophylaxis, but population is adults (patients with Kaposi's sarcoma, typical adult AIDS presentation; adult dosing 800/160 mg twice daily; no mention of children). Does not meet age criteria. Wrong population.",
+      "decision": "EXCLUDE"
+    },
+    {
+      "study_index": 4,
+      "title": "Study 4",
+      "reason": "Case series of four homosexual men; not a randomised or quasi-randomised trial. Also wrong population (adults). Not an intervention study.",
+      "decision": "EXCLUDE"
+    },
+    {
+      "study_index": 5,
+      "title": "Study 5",
+      "reason": "Cross-sectional necropsy study of children who died; no intervention, not a trial. Does not compare cotrimoxazole vs placebo/no treatment.",
+      "decision": "EXCLUDE"
+    },
+    {
+      "study_index": 6,
+      "title": "Study 6",
+      "reason": "Prospective cohort study (observational) comparing HIV-infected vs uninfected children. Not a randomised or quasi-randomised trial. No intervention of cotrimoxazole prophylaxis.",
+      "decision": "EXCLUDE"
+    },
+    {
+      "study_index": 7,
+      "title": "Study 7",
+      "reason": "Prospective observational study of morbidity in HIV-infected and uninfected children. Not a trial; no cotrimoxazole prophylaxis intervention.",
+      "decision": "EXCLUDE"
+    },
+    {
+      "study_index": 8,
+      "title": "Study 8",
+      "reason": "Randomised controlled trial but in HIV-infected adults with tuberculosis (median age 32, range 18-64). Does not meet population criteria (children <15 or infants <18 months).",
+      "decision": "EXCLUDE"
+    },
+    {
+      "study_index": 9,
+      "title": "Study 9",
+      "reason": "Review/editorial about mother-to-child transmission. Not a trial, no intervention. Not relevant study design.",
+      "decision": "EXCLUDE"
+    },
+    {
+      "study_index": 10,
+      "title": "Study 10",
+      "reason": "Prospective observational study of PCP incidence in HIV-infected children. Not a randomised or quasi-randomised trial. Although some children were on prophylaxis, the study does not compare cotrimoxazole vs placebo/no treatment in a controlled design.",
+      "decision": "EXCLUDE"
+    }
+  ]
+}

@@ -11,7 +11,11 @@ as a separate JSON file alongside the report.
 
 import json
 import re
+from typing import Any
+
 from smolagents import tool
+
+from bastirr.search_metadata import finalize_search_metadata
 
 
 # ---------------------------------------------------------------------------
@@ -1022,3 +1026,44 @@ def save_evidence_json(
         return f"Evidence saved to {output_path}"
     except Exception as e:
         return f"Failed to save evidence JSON: {e}"
+
+
+@tool
+def save_search_metadata(
+    review_title: str,
+    review_objective: str,
+    review_background: str,
+    selection_criteria: str,
+    num_candidates: int,
+    output_dir: str,
+) -> str:
+    """
+    Finalize ``search_metadata.json`` with protocol fields and candidate count.
+
+    Search strategy fields (description, boolean query) are written by the
+    librarian's ``record_search_description`` and ``search_studies`` tools
+    during the search step — do not pass the raw librarian agent response.
+
+    Args:
+        review_title: Title of the systematic review.
+        review_objective: Research objective of the review.
+        review_background: Background / rationale text.
+        selection_criteria: Inclusion and exclusion criteria.
+        num_candidates: Number of candidate studies found by the librarian.
+        output_dir: Path to the run output directory.
+
+    Returns:
+        The path to the saved search metadata file, or an error message.
+    """
+    try:
+        path = finalize_search_metadata(
+            output_dir,
+            title=review_title,
+            objective=review_objective,
+            background=review_background,
+            selection_criteria=selection_criteria,
+            num_candidates=int(num_candidates),
+        )
+        return f"Search metadata saved to {path}"
+    except Exception as e:
+        return f"Failed to save search metadata: {e}"

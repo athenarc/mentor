@@ -1,0 +1,9 @@
+# Optional: PRISMA 2020 flow diagram generation (prisma-flow-diagram backend)
+#
+#   pip install -r bastirr/requirements-prisma.txt
+#
+# Note: prisma-flow-diagram imports colrev at load time.
+
+matplotlib>=3.8.0
+prisma-flow-diagram>=0.1.0
+colrev>=0.16.0
