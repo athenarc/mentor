@@ -145,6 +145,8 @@ Aggregate totals keep these architectures separate by default.
 
 ### Mini-Batch Loop Mode
 
+For copyable run commands, see `bastirr/benchmarking/CHUNKED_LOOP_RUNS.md`.
+
 The loop CLI also supports a bounded mini-batch mode:
 
 ```bash
