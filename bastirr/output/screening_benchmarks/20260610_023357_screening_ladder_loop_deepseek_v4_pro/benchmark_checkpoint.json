@@ -1,0 +1,104 @@
+{
+  "generated_at": "2026-06-12T00:44:33.991320",
+  "suite": "screening_ladder",
+  "benchmark_architecture": "loop_orchestrator_v1",
+  "repeats": 1,
+  "review_keys": [
+    "stroke_theophylline_10",
+    "alopecia_areata_25",
+    "iud_insertion_pain_50",
+    "pelvic_floor_training_100",
+    "heart_failure_mhealth_200"
+  ],
+  "model_presets": [
+    "deepseek_v4_pro"
+  ],
+  "orchestrator_policy": "fixed",
+  "orchestrator_preset": "deepseek_v4_pro",
+  "gold_label_policies": [
+    "include_label_0_5",
+    "exclude_label_0_5"
+  ],
+  "raw_runs_dir": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/_raw_runs",
+  "completed_raw_run_count": 5,
+  "total_expected_raw_runs": 5,
+  "completed_runs": [
+    {
+      "benchmark_run_id": "stroke_theophylline_10_deepseek_v4_pro_fixed_deepseek_v4_pro_run1",
+      "review_key": "stroke_theophylline_10",
+      "gatekeeper_preset": "deepseek_v4_pro",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "deepseek_v4_pro",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/_raw_runs/20260610_023357_stroke_theophylline_10_deepseek_v4_pro_fixed_deepseek_v4_pro"
+    },
+    {
+      "benchmark_run_id": "alopecia_areata_25_deepseek_v4_pro_fixed_deepseek_v4_pro_run1",
+      "review_key": "alopecia_areata_25",
+      "gatekeeper_preset": "deepseek_v4_pro",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "deepseek_v4_pro",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/_raw_runs/20260610_025158_alopecia_areata_25_deepseek_v4_pro_fixed_deepseek_v4_pro_run"
+    },
+    {
+      "benchmark_run_id": "iud_insertion_pain_50_deepseek_v4_pro_fixed_deepseek_v4_pro_run1",
+      "review_key": "iud_insertion_pain_50",
+      "gatekeeper_preset": "deepseek_v4_pro",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "deepseek_v4_pro",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/_raw_runs/20260610_033124_iud_insertion_pain_50_deepseek_v4_pro_fixed_deepseek_v4_pro_"
+    },
+    {
+      "benchmark_run_id": "pelvic_floor_training_100_deepseek_v4_pro_fixed_deepseek_v4_pro_run1",
+      "review_key": "pelvic_floor_training_100",
+      "gatekeeper_preset": "deepseek_v4_pro",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "deepseek_v4_pro",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/_raw_runs/20260610_044148_pelvic_floor_training_100_deepseek_v4_pro_fixed_deepseek_v4_"
+    },
+    {
+      "benchmark_run_id": "heart_failure_mhealth_200_deepseek_v4_pro_fixed_deepseek_v4_pro_run1",
+      "review_key": "heart_failure_mhealth_200",
+      "gatekeeper_preset": "deepseek_v4_pro",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "deepseek_v4_pro",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/_raw_runs/20260611_131058_heart_failure_mhealth_200_deepseek_v4_pro_fixed_deepseek_v4_"
+    }
+  ],
+  "comparison_html_report": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/screening_policy_comparison.html",
+  "policy_outputs": {
+    "include_label_0_5": {
+      "directory": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/include_policy",
+      "summary_json": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/include_policy/summary.json",
+      "summary_csv": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/include_policy/summary.csv",
+      "leaderboard_markdown": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/include_policy/leaderboard.md",
+      "review_leaderboard_markdown": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/include_policy/review_leaderboard.md",
+      "runs_dir": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/include_policy/runs",
+      "html_report": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/include_policy/screening_results_summary.html",
+      "eda_notebook": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/include_policy/screening_results_analysis.ipynb",
+      "eda_notebook_executed": false,
+      "eda_notebook_execution_error": ""
+    },
+    "exclude_label_0_5": {
+      "directory": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/exclude_policy",
+      "summary_json": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/exclude_policy/summary.json",
+      "summary_csv": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/exclude_policy/summary.csv",
+      "leaderboard_markdown": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/exclude_policy/leaderboard.md",
+      "review_leaderboard_markdown": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/exclude_policy/review_leaderboard.md",
+      "runs_dir": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/exclude_policy/runs",
+      "html_report": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/exclude_policy/screening_results_summary.html",
+      "eda_notebook": "bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro/exclude_policy/screening_results_analysis.ipynb",
+      "eda_notebook_executed": false,
+      "eda_notebook_execution_error": ""
+    }
+  }
+}

@@ -13,6 +13,10 @@ from bastirr.benchmarking.model_presets import (
 from bastirr.benchmarking.review_suites import get_review_suite, list_review_suites
 from bastirr.benchmarking.runner import run_screening_benchmark
 from bastirr.benchmarking.metrics import SCREENING_LABEL_POLICIES
+from bastirr.benchmarking.totals import (
+    register_canonical_sources_from_experiment,
+    write_screening_totals,
+)
 
 
 def _print_model_presets() -> None:
@@ -104,6 +108,21 @@ def main() -> None:
         help="Generate policy results-analysis notebooks without executing them",
     )
     parser.add_argument(
+        "--skip-totals-aggregation",
+        action="store_true",
+        help="Do not refresh aggregate totals after the benchmark completes",
+    )
+    parser.add_argument(
+        "--canonical",
+        choices=["auto", "none", "force"],
+        default="auto",
+        help=(
+            "Canonical registry behavior after the benchmark completes. "
+            "'auto' registers completed/scored repeat=1 runs, 'none' leaves "
+            "canonical_sources.json unchanged, and 'force' can register repeated runs."
+        ),
+    )
+    parser.add_argument(
         "--list-suites",
         action="store_true",
         help="List the available review suites and exit",
@@ -147,8 +166,24 @@ def main() -> None:
         ),
         include_subagent_steps=args.include_subagent_steps,
         execute_policy_notebooks=not args.skip_policy_notebook_execution,
+        canonical_mode=args.canonical,
     )
+    canonical_info = register_canonical_sources_from_experiment(
+        experiment_dir,
+        mode=args.canonical,
+    )
+    totals_info = None
+    if not args.skip_totals_aggregation:
+        totals_info = write_screening_totals(source_mode="canonical")
     print(f"\nBenchmark complete. Results written to:\n  {experiment_dir}\n")
+    if canonical_info.get("canonical_sources_path"):
+        print(
+            "Canonical sources updated:\n"
+            f"  {canonical_info['canonical_sources_path']}\n"
+            f"  registered entries: {canonical_info['registered_sources']}\n"
+        )
+    if totals_info:
+        print(f"Totals refreshed under:\n  {totals_info['totals_root']}\n")
 
 
 if __name__ == "__main__":

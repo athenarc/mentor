@@ -1,0 +1,150 @@
+{
+  "generated_at": "2026-06-17T21:32:13.579493",
+  "totals_root": "bastirr/output/screening_benchmarks/totals",
+  "source_mode": "canonical",
+  "groups": [
+    {
+      "generated_at": "2026-06-17T21:32:13.537382",
+      "suite": "screening_ladder",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "n_source_runs": 55,
+      "n_aggregated_source_runs": 55,
+      "n_excluded_incomplete_model_groups": 0,
+      "n_raw_source_runs": 157,
+      "source_summary_count": 11,
+      "source_mode": "canonical",
+      "canonical_gold_label_policies": [
+        "exclude_label_0_5"
+      ],
+      "deduplication": "canonical manifest entries only",
+      "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder/exclude_policy/batch_orchestrator_v1"
+    },
+    {
+      "generated_at": "2026-06-17T21:32:13.545632",
+      "suite": "screening_ladder",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "loop_chunk_orchestrator_v1",
+      "n_source_runs": 5,
+      "n_aggregated_source_runs": 5,
+      "n_excluded_incomplete_model_groups": 0,
+      "n_raw_source_runs": 157,
+      "source_summary_count": 1,
+      "source_mode": "canonical",
+      "canonical_gold_label_policies": [
+        "exclude_label_0_5"
+      ],
+      "deduplication": "canonical manifest entries only",
+      "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder/exclude_policy/loop_chunk_orchestrator_v1"
+    },
+    {
+      "generated_at": "2026-06-17T21:32:13.548394",
+      "suite": "screening_ladder",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "loop_orchestrator_v1",
+      "n_source_runs": 5,
+      "n_aggregated_source_runs": 5,
+      "n_excluded_incomplete_model_groups": 0,
+      "n_raw_source_runs": 157,
+      "source_summary_count": 1,
+      "source_mode": "canonical",
+      "canonical_gold_label_policies": [
+        "exclude_label_0_5"
+      ],
+      "deduplication": "canonical manifest entries only",
+      "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder/exclude_policy/loop_orchestrator_v1"
+    },
+    {
+      "generated_at": "2026-06-17T21:32:13.552649",
+      "suite": "screening_ladder_dev_exclude_balanced",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "n_source_runs": 42,
+      "n_aggregated_source_runs": 40,
+      "n_excluded_incomplete_model_groups": 1,
+      "n_raw_source_runs": 157,
+      "source_summary_count": 9,
+      "source_mode": "canonical",
+      "canonical_gold_label_policies": [
+        "exclude_label_0_5"
+      ],
+      "deduplication": "canonical manifest entries only",
+      "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder_dev_exclude_balanced/exclude_policy/batch_orchestrator_v1"
+    },
+    {
+      "generated_at": "2026-06-17T21:32:13.559804",
+      "suite": "screening_ladder_dev_no_label_0_5",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "n_source_runs": 35,
+      "n_aggregated_source_runs": 35,
+      "n_excluded_incomplete_model_groups": 0,
+      "n_raw_source_runs": 157,
+      "source_summary_count": 7,
+      "source_mode": "canonical",
+      "canonical_gold_label_policies": [
+        "exclude_label_0_5"
+      ],
+      "deduplication": "canonical manifest entries only",
+      "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder_dev_no_label_0_5/exclude_policy/batch_orchestrator_v1"
+    },
+    {
+      "generated_at": "2026-06-17T21:32:13.565352",
+      "suite": "screening_ladder_dev_no_label_0_5_v2",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "n_source_runs": 15,
+      "n_aggregated_source_runs": 15,
+      "n_excluded_incomplete_model_groups": 0,
+      "n_raw_source_runs": 157,
+      "source_summary_count": 3,
+      "source_mode": "canonical",
+      "canonical_gold_label_policies": [
+        "exclude_label_0_5"
+      ],
+      "deduplication": "canonical manifest entries only",
+      "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder_dev_no_label_0_5_v2/exclude_policy/batch_orchestrator_v1"
+    }
+  ],
+  "horizontal_comparison_groups": [
+    {
+      "generated_at": "2026-06-17T21:32:13.571003",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "n_source_runs": 142,
+      "source_summary_count": 29,
+      "source_suites": [
+        "screening_ladder",
+        "screening_ladder_dev_exclude_balanced",
+        "screening_ladder_dev_no_label_0_5",
+        "screening_ladder_dev_no_label_0_5_v2"
+      ],
+      "deduplication": "one row per policy/review/architecture/model variant across suites; provider ignored; repeat=1 summaries preferred, then newest source",
+      "directory": "bastirr/output/screening_benchmarks/totals/horizontal_comparison/exclude_policy/batch_orchestrator_v1"
+    },
+    {
+      "generated_at": "2026-06-17T21:32:13.577173",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "loop_chunk_orchestrator_v1",
+      "n_source_runs": 5,
+      "source_summary_count": 1,
+      "source_suites": [
+        "screening_ladder"
+      ],
+      "deduplication": "one row per policy/review/architecture/model variant across suites; provider ignored; repeat=1 summaries preferred, then newest source",
+      "directory": "bastirr/output/screening_benchmarks/totals/horizontal_comparison/exclude_policy/loop_chunk_orchestrator_v1"
+    },
+    {
+      "generated_at": "2026-06-17T21:32:13.578109",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "loop_orchestrator_v1",
+      "n_source_runs": 5,
+      "source_summary_count": 1,
+      "source_suites": [
+        "screening_ladder"
+      ],
+      "deduplication": "one row per policy/review/architecture/model variant across suites; provider ignored; repeat=1 summaries preferred, then newest source",
+      "directory": "bastirr/output/screening_benchmarks/totals/horizontal_comparison/exclude_policy/loop_orchestrator_v1"
+    }
+  ]
+}

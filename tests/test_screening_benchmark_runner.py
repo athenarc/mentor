@@ -161,6 +161,9 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                 summary["policy_outputs"]["exclude_label_0_5"]["html_report"],
                 str(policy_dir / "screening_results_summary.html"),
             )
+            self.assertEqual(summary["raw_runs_dir"], str(experiment_dir / "_raw_runs"))
+            self.assertTrue((experiment_dir / "_raw_runs").exists())
+            self.assertTrue((experiment_dir / "benchmark_checkpoint.json").exists())
             self.assertIsNone(summary["comparison_html_report"])
 
     def test_aggregate_runs_excludes_incomplete_runs_from_metric_means(self):

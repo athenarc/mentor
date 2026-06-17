@@ -81,9 +81,10 @@ def batch_screen_studies(candidates_json: str) -> str:
     ]
 
     for i, study in enumerate(studies):
+        study_index = study.get("study_index", i + 1)
         title = study.get("title", "No title")
         abstract = study.get("abstract", "No abstract")
-        lines.append(f"--- Study {i + 1} ---")
+        lines.append(f"--- Study {study_index} ---")
         lines.append(f"Title: {title}")
         lines.append(f"Abstract: {abstract}")
         lines.append("")

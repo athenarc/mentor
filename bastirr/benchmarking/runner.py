@@ -9,7 +9,6 @@ import json
 import logging
 import os
 import shutil
-import tempfile
 import time
 from datetime import datetime
 from pathlib import Path
@@ -30,6 +29,11 @@ from bastirr.benchmarking.review_suites import (
     ScreeningBenchmarkReview,
     resolve_review_selection,
 )
+from bastirr.benchmarking.telemetry import (
+    collect_activity_telemetry,
+    compute_rationale_metrics,
+)
+from bastirr.benchmarking.totals import register_canonical_sources_from_experiment
 from bastirr.config import OUTPUT_DIR
 from bastirr.data import load_review
 from bastirr.logging_utils import make_step_callbacks, setup_run_logging
@@ -56,6 +60,7 @@ _SUMMARY_CSV_PRIORITY_FIELDS = [
     "review_title",
     "split",
     "n_studies",
+    "benchmark_architecture",
     "run_index",
     "run_status",
     "screening_completion_status",
@@ -89,6 +94,19 @@ _SUMMARY_CSV_PRIORITY_FIELDS = [
     "duplicate_decision_count",
     "invalid_decision_count",
     "duration_seconds",
+    "duration_per_study_seconds",
+    "total_input_tokens",
+    "total_output_tokens",
+    "total_tokens",
+    "total_steps",
+    "orchestrator_step_count",
+    "gatekeeper_step_count",
+    "error_step_count",
+    "retry_count",
+    "resume_count",
+    "empty_rationale_count",
+    "duplicate_rationale_count",
+    "rationale_reuse_rate",
     "error",
     "review_url",
     "run_dir",
@@ -113,6 +131,12 @@ def _experiment_root(suite_name: str) -> Path:
     return path
 
 
+def _raw_runs_checkpoint_root(experiment_dir: Path) -> Path:
+    path = experiment_dir / "_raw_runs"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
 def _policy_dir_name(label_policy: str) -> str:
     return _POLICY_DIR_NAMES.get(label_policy, label_policy)
 
@@ -125,6 +149,17 @@ def _link_or_copy(src: Path, dst: Path) -> None:
         os.link(src, dst)
     except OSError:
         shutil.copy2(src, dst)
+
+
+def _atomic_write(path: Path, write_fn) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = path.with_name(f".{path.name}.{os.getpid()}.tmp")
+    try:
+        write_fn(tmp_path)
+        os.replace(tmp_path, path)
+    finally:
+        if tmp_path.exists():
+            tmp_path.unlink()
 
 
 def _run_name(
@@ -270,6 +305,8 @@ def _build_run_metrics(
     label_policy: str,
     screening_attempt_count: int,
     rerun_triggered: bool,
+    benchmark_architecture: str = "batch_orchestrator_v1",
+    telemetry: dict | None = None,
     error: str = "",
 ) -> dict:
     metrics = compute_screening_metrics(
@@ -297,6 +334,7 @@ def _build_run_metrics(
         "review_title": review.title,
         "review_url": review.review_url,
         "split": review_case.split,
+        "benchmark_architecture": benchmark_architecture,
         "run_index": run_index,
         "run_status": run_status,
         "error": error,
@@ -321,22 +359,31 @@ def _build_run_metrics(
         "orchestrator_api_base": orchestrator_model.api_base or "",
         "orchestrator_api_key_source": orchestrator_model.api_key_source,
     })
+    metrics.update(compute_rationale_metrics(screening_decisions))
+    if telemetry:
+        metrics.update(telemetry)
     return metrics
 
 
 def _write_metrics_json(run_dir: Path, metrics: dict) -> None:
-    with open(run_dir / "metrics.json", "w", encoding="utf-8") as f:
-        json.dump(metrics, f, ensure_ascii=False, indent=2)
+    def _write(path: Path) -> None:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(metrics, f, ensure_ascii=False, indent=2)
+
+    _atomic_write(run_dir / "metrics.json", _write)
 
 
 def _write_screening_evidence_file(run_dir: Path, screening_decisions: list[dict]) -> None:
-    with open(run_dir / "evidence.json", "w", encoding="utf-8") as f:
-        json.dump({"screening_decisions": screening_decisions}, f, ensure_ascii=False, indent=2)
+    def _write(path: Path) -> None:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump({"screening_decisions": screening_decisions}, f, ensure_ascii=False, indent=2)
+
+    _atomic_write(run_dir / "evidence.json", _write)
 
 
 def _materialize_policy_run_dir(raw_run_dir: Path, policy_run_dir: Path) -> None:
     policy_run_dir.mkdir(parents=True, exist_ok=True)
-    for filename in ("workflow.log", "activity.md"):
+    for filename in ("workflow.log", "activity.md", "screening_progress.json"):
         source = raw_run_dir / filename
         if source.exists():
             _link_or_copy(source, policy_run_dir / filename)
@@ -398,6 +445,7 @@ def run_screening_review(
     rerun_triggered = False
     decisions: list[dict] = []
     last_attempt_error = ""
+    telemetry: dict = {}
 
     activity_logger.mark_pipeline_start()
     started_at = time.perf_counter()
@@ -470,6 +518,13 @@ def run_screening_review(
     finally:
         duration_seconds = time.perf_counter() - started_at
         activity_path = activity_logger.finalize(model=None)
+        telemetry = collect_activity_telemetry(
+            activity_logger,
+            duration_seconds=duration_seconds,
+            n_studies=len(review.studies),
+            retry_count=max(screening_attempt_count - 1, 0),
+            resume_count=0,
+        )
         logger.info("Activity log saved to: %s", activity_path)
         agent_logger.close()
 
@@ -489,6 +544,8 @@ def run_screening_review(
         "error": error,
         "screening_attempt_count": screening_attempt_count,
         "rerun_triggered": rerun_triggered,
+        "benchmark_architecture": "batch_orchestrator_v1",
+        "telemetry": telemetry,
     }
 
 
@@ -513,6 +570,8 @@ def _build_policy_run_metrics(
         label_policy=label_policy,
         screening_attempt_count=raw_run["screening_attempt_count"],
         rerun_triggered=raw_run["rerun_triggered"],
+        benchmark_architecture=raw_run.get("benchmark_architecture", "batch_orchestrator_v1"),
+        telemetry=raw_run.get("telemetry"),
         error=raw_run["error"],
     )
     metrics.update(
@@ -583,6 +642,127 @@ def _materialize_policy_outputs(
     return policy_dir, summary
 
 
+def _policy_output_record(
+    policy_dir: Path,
+    summary: dict,
+    *,
+    notebook_info: dict | None = None,
+    html_report_info: dict | None = None,
+) -> dict:
+    notebook_info = notebook_info or {}
+    html_report_info = html_report_info or {}
+    return {
+        "directory": str(policy_dir),
+        "summary_json": str(policy_dir / "summary.json"),
+        "summary_csv": str(policy_dir / "summary.csv"),
+        "leaderboard_markdown": str(policy_dir / "leaderboard.md"),
+        "review_leaderboard_markdown": str(policy_dir / "review_leaderboard.md"),
+        "runs_dir": str(policy_dir / "runs"),
+        "html_report": html_report_info.get("report_path", ""),
+        "eda_notebook": notebook_info.get("notebook_path", ""),
+        "eda_notebook_executed": bool(notebook_info.get("executed", False)),
+        "eda_notebook_execution_error": notebook_info.get("execution_error", ""),
+        "summary": summary,
+    }
+
+
+def _checkpoint_policy_outputs(
+    experiment_dir: Path,
+    *,
+    suite_name: str,
+    repeats: int,
+    review_keys: list[str],
+    model_presets: list[str],
+    orchestrator_policy: str,
+    orchestrator_preset: str,
+    selected_label_policies: list[str],
+    raw_runs: list[dict],
+) -> dict[str, dict]:
+    policy_summaries: dict[str, dict] = {}
+    for label_policy in selected_label_policies:
+        policy_dir, summary = _materialize_policy_outputs(
+            experiment_dir,
+            suite_name=suite_name,
+            repeats=repeats,
+            review_keys=review_keys,
+            model_presets=model_presets,
+            orchestrator_policy=orchestrator_policy,
+            orchestrator_preset=orchestrator_preset,
+            label_policy=label_policy,
+            raw_runs=raw_runs,
+        )
+        policy_summaries[label_policy] = _policy_output_record(policy_dir, summary)
+    return policy_summaries
+
+
+def _write_benchmark_checkpoint(
+    experiment_dir: Path,
+    *,
+    suite_name: str,
+    benchmark_architecture: str,
+    repeats: int,
+    review_keys: list[str],
+    model_presets: list[str],
+    orchestrator_policy: str,
+    orchestrator_preset: str,
+    selected_label_policies: list[str],
+    total_expected_raw_runs: int,
+    raw_runs: list[dict],
+    policy_summaries: dict[str, dict],
+    comparison_report: str | None = None,
+    extra_metadata: dict | None = None,
+) -> None:
+    completed_runs = []
+    for raw_run in raw_runs:
+        completed_runs.append({
+            "benchmark_run_id": _run_name(
+                raw_run["review_case"],
+                raw_run["gatekeeper_model"],
+                raw_run["orchestrator_policy"],
+                raw_run["orchestrator_model"],
+                raw_run["run_index"],
+            ),
+            "review_key": raw_run["review_case"].key,
+            "gatekeeper_preset": raw_run["gatekeeper_model"].key,
+            "orchestrator_policy": raw_run["orchestrator_policy"],
+            "orchestrator_preset": raw_run["orchestrator_model"].key,
+            "run_index": raw_run["run_index"],
+            "run_status": raw_run["run_status"],
+            "raw_run_dir": str(raw_run["raw_run_dir"]),
+        })
+    payload = {
+        "generated_at": datetime.now().isoformat(),
+        "suite": suite_name,
+        "benchmark_architecture": benchmark_architecture,
+        "repeats": repeats,
+        "review_keys": review_keys,
+        "model_presets": model_presets,
+        "orchestrator_policy": orchestrator_policy,
+        "orchestrator_preset": orchestrator_preset,
+        "gold_label_policies": selected_label_policies,
+        "raw_runs_dir": str(_raw_runs_checkpoint_root(experiment_dir)),
+        "completed_raw_run_count": len(raw_runs),
+        "total_expected_raw_runs": total_expected_raw_runs,
+        "completed_runs": completed_runs,
+        "comparison_html_report": comparison_report,
+        "policy_outputs": {
+            policy: {
+                key: value
+                for key, value in record.items()
+                if key != "summary"
+            }
+            for policy, record in policy_summaries.items()
+        },
+    }
+    if extra_metadata:
+        payload.update(extra_metadata)
+    def _write(path: Path) -> None:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(payload, f, ensure_ascii=False, indent=2)
+
+    _atomic_write(experiment_dir / "benchmark_checkpoint.json", _write)
+
+
 def _mean_for(rows: list[dict], key: str) -> float | None:
     values = [
         row[key]
@@ -595,9 +775,10 @@ def _mean_for(rows: list[dict], key: str) -> float | None:
 
 
 def _aggregate_runs(run_metrics: list[dict]) -> list[dict]:
-    grouped: dict[tuple[str, str, str, str, str, str, str], list[dict]] = {}
+    grouped: dict[tuple[str, str, str, str, str, str, str, str], list[dict]] = {}
     for row in run_metrics:
         key = (
+            row.get("benchmark_architecture", "batch_orchestrator_v1"),
             row["gatekeeper_model_label"],
             row["gatekeeper_backend"],
             row["gatekeeper_api_base"],
@@ -610,6 +791,7 @@ def _aggregate_runs(run_metrics: list[dict]) -> list[dict]:
 
     aggregates: list[dict] = []
     for (
+        benchmark_architecture,
         gatekeeper_model_label,
         gatekeeper_backend,
         gatekeeper_api_base,
@@ -621,6 +803,7 @@ def _aggregate_runs(run_metrics: list[dict]) -> list[dict]:
         scored_rows = [row for row in rows if row.get("scored_for_aggregate")]
         aggregates.append({
             "gold_label_policy": rows[0]["gold_label_policy"],
+            "benchmark_architecture": benchmark_architecture,
             "gatekeeper_preset": rows[0]["gatekeeper_preset"],
             "gatekeeper_model_label": gatekeeper_model_label,
             "gatekeeper_backend": gatekeeper_backend,
@@ -647,6 +830,19 @@ def _aggregate_runs(run_metrics: list[dict]) -> list[dict]:
             "mean_specificity": _mean_for(scored_rows, "specificity"),
             "mean_f1": _mean_for(scored_rows, "f1"),
             "mean_duration_seconds": _mean_for(rows, "duration_seconds"),
+            "mean_duration_per_study_seconds": _mean_for(rows, "duration_per_study_seconds"),
+            "mean_total_input_tokens": _mean_for(rows, "total_input_tokens"),
+            "mean_total_output_tokens": _mean_for(rows, "total_output_tokens"),
+            "mean_total_tokens": _mean_for(rows, "total_tokens"),
+            "mean_total_steps": _mean_for(rows, "total_steps"),
+            "mean_orchestrator_steps": _mean_for(rows, "orchestrator_step_count"),
+            "mean_gatekeeper_steps": _mean_for(rows, "gatekeeper_step_count"),
+            "mean_error_steps": _mean_for(rows, "error_step_count"),
+            "mean_retry_count": _mean_for(rows, "retry_count"),
+            "mean_resume_count": _mean_for(rows, "resume_count"),
+            "mean_empty_rationale_count": _mean_for(rows, "empty_rationale_count"),
+            "mean_duplicate_rationale_count": _mean_for(rows, "duplicate_rationale_count"),
+            "mean_rationale_reuse_rate": _mean_for(rows, "rationale_reuse_rate"),
         })
 
     aggregates.sort(
@@ -662,7 +858,7 @@ def _aggregate_runs(run_metrics: list[dict]) -> list[dict]:
 
 
 def _aggregate_runs_by_review(run_metrics: list[dict]) -> list[dict]:
-    grouped: dict[tuple[str, str, str, int, int, int, str, str, str, str, str, str], list[dict]] = {}
+    grouped: dict[tuple[str, str, str, int, int, int, str, str, str, str, str, str, str], list[dict]] = {}
     for row in run_metrics:
         key = (
             row["review_key"],
@@ -671,6 +867,7 @@ def _aggregate_runs_by_review(run_metrics: list[dict]) -> list[dict]:
             row["n_studies"],
             row["gold_pass_count"],
             row["gold_exclude_count"],
+            row.get("benchmark_architecture", "batch_orchestrator_v1"),
             row["gatekeeper_model_label"],
             row["gatekeeper_backend"],
             row["gatekeeper_api_base"],
@@ -688,6 +885,7 @@ def _aggregate_runs_by_review(run_metrics: list[dict]) -> list[dict]:
         n_studies,
         gold_pass_count,
         gold_exclude_count,
+        benchmark_architecture,
         gatekeeper_model_label,
         gatekeeper_backend,
         gatekeeper_api_base,
@@ -698,6 +896,7 @@ def _aggregate_runs_by_review(run_metrics: list[dict]) -> list[dict]:
         scored_rows = [row for row in rows if row.get("scored_for_aggregate")]
         aggregates.append({
             "gold_label_policy": rows[0]["gold_label_policy"],
+            "benchmark_architecture": benchmark_architecture,
             "review_key": review_key,
             "review_title": review_title,
             "review_url": review_url,
@@ -730,6 +929,15 @@ def _aggregate_runs_by_review(run_metrics: list[dict]) -> list[dict]:
             "mean_specificity": _mean_for(scored_rows, "specificity"),
             "mean_f1": _mean_for(scored_rows, "f1"),
             "mean_duration_seconds": _mean_for(rows, "duration_seconds"),
+            "mean_duration_per_study_seconds": _mean_for(rows, "duration_per_study_seconds"),
+            "mean_total_tokens": _mean_for(rows, "total_tokens"),
+            "mean_total_steps": _mean_for(rows, "total_steps"),
+            "mean_error_steps": _mean_for(rows, "error_step_count"),
+            "mean_retry_count": _mean_for(rows, "retry_count"),
+            "mean_resume_count": _mean_for(rows, "resume_count"),
+            "mean_empty_rationale_count": _mean_for(rows, "empty_rationale_count"),
+            "mean_duplicate_rationale_count": _mean_for(rows, "duplicate_rationale_count"),
+            "mean_rationale_reuse_rate": _mean_for(rows, "rationale_reuse_rate"),
         })
 
     aggregates.sort(
@@ -775,8 +983,11 @@ def _write_summary_json(
         "leaderboard": aggregates,
         "review_leaderboard": review_aggregates,
     }
-    with open(experiment_dir / "summary.json", "w", encoding="utf-8") as f:
-        json.dump(summary, f, ensure_ascii=False, indent=2)
+    def _write(path: Path) -> None:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(summary, f, ensure_ascii=False, indent=2)
+
+    _atomic_write(experiment_dir / "summary.json", _write)
     return summary
 
 
@@ -793,10 +1004,13 @@ def _write_summary_csv(experiment_dir: Path, run_metrics: list[dict]) -> None:
         if field not in seen:
             fieldnames.append(field)
             seen.add(field)
-    with open(experiment_dir / "summary.csv", "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(run_metrics)
+    def _write(path: Path) -> None:
+        with open(path, "w", encoding="utf-8", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(run_metrics)
+
+    _atomic_write(experiment_dir / "summary.csv", _write)
 
 
 def _write_leaderboard_markdown(experiment_dir: Path, aggregates: list[dict]) -> None:
@@ -812,14 +1026,15 @@ def _write_leaderboard_markdown(experiment_dir: Path, aggregates: list[dict]) ->
         "",
         "Metrics are averaged only over scored runs with complete per-study decision coverage.",
         "",
-        "| Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |",
-        "|------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|",
+        "| Rank | Architecture | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |",
+        "|------|--------------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|",
     ]
 
     for rank, row in enumerate(aggregates, start=1):
         lines.append(
-            "| {rank} | {gatekeeper} | {policy} | {orchestrator} | {runs} | {scored} | {incomplete} | {errors} | {f1} | {recall} | {precision} | {accuracy} | {specificity} | {parse_success} | {coverage} |".format(
+            "| {rank} | {architecture} | {gatekeeper} | {policy} | {orchestrator} | {runs} | {scored} | {incomplete} | {errors} | {f1} | {recall} | {precision} | {accuracy} | {specificity} | {parse_success} | {coverage} |".format(
                 rank=rank,
+                architecture=row.get("benchmark_architecture", "batch_orchestrator_v1"),
                 gatekeeper=row["gatekeeper_model_label"],
                 policy=row["orchestrator_policy"],
                 orchestrator=row["orchestrator_model_label"],
@@ -837,8 +1052,11 @@ def _write_leaderboard_markdown(experiment_dir: Path, aggregates: list[dict]) ->
             )
         )
 
-    with open(experiment_dir / "leaderboard.md", "w", encoding="utf-8") as f:
-        f.write("\n".join(lines) + "\n")
+    def _write(path: Path) -> None:
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+
+    _atomic_write(experiment_dir / "leaderboard.md", _write)
 
 
 def _write_review_leaderboard_markdown(
@@ -904,13 +1122,14 @@ def _write_review_leaderboard_markdown(
                 "",
                 "Metrics below are averaged only over scored runs with complete per-study decision coverage.",
                 "",
-                "| Rank | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |",
-                "|------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|",
+                "| Rank | Architecture | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |",
+                "|------|--------------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|",
             ])
             for rank, row in enumerate(sorted_rows, start=1):
                 lines.append(
-                    "| {rank} | {gatekeeper} | {policy} | {orchestrator} | {runs} | {scored} | {incomplete} | {errors} | {f1} | {recall} | {precision} | {accuracy} | {specificity} | {parse_success} | {coverage} |".format(
+                    "| {rank} | {architecture} | {gatekeeper} | {policy} | {orchestrator} | {runs} | {scored} | {incomplete} | {errors} | {f1} | {recall} | {precision} | {accuracy} | {specificity} | {parse_success} | {coverage} |".format(
                         rank=rank,
+                        architecture=row.get("benchmark_architecture", "batch_orchestrator_v1"),
                         gatekeeper=row["gatekeeper_model_label"],
                         policy=row["orchestrator_policy"],
                         orchestrator=row["orchestrator_model_label"],
@@ -928,8 +1147,11 @@ def _write_review_leaderboard_markdown(
                     )
                 )
 
-    with open(experiment_dir / "review_leaderboard.md", "w", encoding="utf-8") as f:
-        f.write("\n".join(lines) + "\n")
+    def _write(path: Path) -> None:
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+
+    _atomic_write(experiment_dir / "review_leaderboard.md", _write)
 
 
 def run_screening_benchmark(
@@ -943,6 +1165,7 @@ def run_screening_benchmark(
     gold_label_policies: list[str] | None = None,
     include_subagent_steps: bool = True,
     execute_policy_notebooks: bool = True,
+    canonical_mode: str = "none",
 ) -> tuple[Path, dict]:
     """
     Run the Gatekeeper screening benchmark matrix and write experiment summaries.
@@ -951,12 +1174,25 @@ def run_screening_benchmark(
         raise ValueError("--repeats must be at least 1")
     if orchestrator_policy not in {"fixed", "match-gatekeeper"}:
         raise ValueError("--orchestrator-policy must be 'fixed' or 'match-gatekeeper'")
+    if canonical_mode not in {"auto", "none", "force"}:
+        raise ValueError("canonical_mode must be 'auto', 'none', or 'force'")
     selected_label_policies = gold_label_policies or list(SCREENING_LABEL_POLICIES)
 
     selected_reviews = resolve_review_selection(suite_name, review_keys)
     resolved_gatekeeper_models = resolve_model_presets(model_presets)
     fixed_orchestrator_model = get_model_preset(orchestrator_model_key).resolve()
     experiment_dir = _experiment_root(suite_name)
+    review_key_list = [review.key for review in selected_reviews]
+    model_key_list = [model.key for model in resolved_gatekeeper_models]
+    orchestrator_preset = (
+        fixed_orchestrator_model.key
+        if orchestrator_policy == "fixed"
+        else "match-gatekeeper"
+    )
+    raw_runs_output_root = _raw_runs_checkpoint_root(experiment_dir)
+    total_expected_raw_runs = (
+        len(selected_reviews) * len(resolved_gatekeeper_models) * repeats
+    )
 
     logger.info("Screening benchmark output dir: %s", experiment_dir)
     logger.info(
@@ -969,80 +1205,100 @@ def run_screening_benchmark(
     )
 
     raw_runs: list[dict] = []
-    with tempfile.TemporaryDirectory(prefix="screening_benchmark_raw_") as raw_runs_tmp:
-        raw_runs_output_root = Path(raw_runs_tmp)
-        for gatekeeper_model in resolved_gatekeeper_models:
-            for review_case in selected_reviews:
-                for run_index in range(1, repeats + 1):
-                    orchestrator_model = (
-                        fixed_orchestrator_model
-                        if orchestrator_policy == "fixed"
-                        else gatekeeper_model
+    policy_summaries: dict[str, dict] = {}
+    comparison_report = None
+    for gatekeeper_model in resolved_gatekeeper_models:
+        for review_case in selected_reviews:
+            for run_index in range(1, repeats + 1):
+                orchestrator_model = (
+                    fixed_orchestrator_model
+                    if orchestrator_policy == "fixed"
+                    else gatekeeper_model
+                )
+                logger.info(
+                    "Benchmark run: review=%s gatekeeper=%s orchestrator=%s repeat=%d/%d",
+                    review_case.key,
+                    gatekeeper_model.key,
+                    orchestrator_model.key,
+                    run_index,
+                    repeats,
+                )
+                raw_run = run_screening_review(
+                    suite_name=suite_name,
+                    review_case=review_case,
+                    gatekeeper_model=gatekeeper_model,
+                    orchestrator_model=orchestrator_model,
+                    orchestrator_policy=orchestrator_policy,
+                    run_index=run_index,
+                    output_root=raw_runs_output_root,
+                    label_policy="include_label_0_5",
+                    include_subagent_steps=include_subagent_steps,
+                )
+                raw_runs.append(raw_run)
+                policy_summaries = _checkpoint_policy_outputs(
+                    experiment_dir,
+                    suite_name=suite_name,
+                    repeats=repeats,
+                    review_keys=review_key_list,
+                    model_presets=model_key_list,
+                    orchestrator_policy=orchestrator_policy,
+                    orchestrator_preset=orchestrator_preset,
+                    selected_label_policies=selected_label_policies,
+                    raw_runs=raw_runs,
+                )
+                _write_benchmark_checkpoint(
+                    experiment_dir,
+                    suite_name=suite_name,
+                    benchmark_architecture="batch_orchestrator_v1",
+                    repeats=repeats,
+                    review_keys=review_key_list,
+                    model_presets=model_key_list,
+                    orchestrator_policy=orchestrator_policy,
+                    orchestrator_preset=orchestrator_preset,
+                    selected_label_policies=selected_label_policies,
+                    total_expected_raw_runs=total_expected_raw_runs,
+                    raw_runs=raw_runs,
+                    policy_summaries=policy_summaries,
+                    comparison_report=comparison_report,
+                )
+                if canonical_mode != "none":
+                    register_canonical_sources_from_experiment(
+                        experiment_dir,
+                        mode=canonical_mode,
                     )
-                    logger.info(
-                        "Benchmark run: review=%s gatekeeper=%s orchestrator=%s repeat=%d/%d",
-                        review_case.key,
-                        gatekeeper_model.key,
-                        orchestrator_model.key,
-                        run_index,
-                        repeats,
-                    )
-                    raw_run = run_screening_review(
-                        suite_name=suite_name,
-                        review_case=review_case,
-                        gatekeeper_model=gatekeeper_model,
-                        orchestrator_model=orchestrator_model,
-                        orchestrator_policy=orchestrator_policy,
-                        run_index=run_index,
-                        output_root=raw_runs_output_root,
-                        label_policy="include_label_0_5",
-                        include_subagent_steps=include_subagent_steps,
-                    )
-                    raw_runs.append(raw_run)
 
-        review_key_list = [review.key for review in selected_reviews]
-        model_key_list = [model.key for model in resolved_gatekeeper_models]
-        orchestrator_preset = (
-            fixed_orchestrator_model.key
-            if orchestrator_policy == "fixed"
-            else "match-gatekeeper"
+    for label_policy, output_record in list(policy_summaries.items()):
+        policy_dir = Path(output_record["directory"])
+        notebook_info = write_policy_eda_notebook(
+            policy_dir,
+            execute=execute_policy_notebooks,
+        )
+        html_report_info = write_policy_html_report(policy_dir)
+        policy_summaries[label_policy] = _policy_output_record(
+            policy_dir,
+            output_record["summary"],
+            notebook_info=notebook_info,
+            html_report_info=html_report_info,
         )
 
-        policy_summaries: dict[str, dict] = {}
-        for label_policy in selected_label_policies:
-            policy_dir, summary = _materialize_policy_outputs(
-                experiment_dir,
-                suite_name=suite_name,
-                repeats=repeats,
-                review_keys=review_key_list,
-                model_presets=model_key_list,
-                orchestrator_policy=orchestrator_policy,
-                orchestrator_preset=orchestrator_preset,
-                label_policy=label_policy,
-                raw_runs=raw_runs,
-            )
-            notebook_info = write_policy_eda_notebook(
-                policy_dir,
-                execute=execute_policy_notebooks,
-            )
-            html_report_info = write_policy_html_report(policy_dir)
-            policy_summaries[label_policy] = {
-                "directory": str(policy_dir),
-                "summary_json": str(policy_dir / "summary.json"),
-                "summary_csv": str(policy_dir / "summary.csv"),
-                "leaderboard_markdown": str(policy_dir / "leaderboard.md"),
-                "review_leaderboard_markdown": str(policy_dir / "review_leaderboard.md"),
-                "runs_dir": str(policy_dir / "runs"),
-                "html_report": html_report_info["report_path"],
-                "eda_notebook": notebook_info["notebook_path"],
-                "eda_notebook_executed": notebook_info["executed"],
-                "eda_notebook_execution_error": notebook_info["execution_error"],
-                "summary": summary,
-            }
+    if {"include_label_0_5", "exclude_label_0_5"}.issubset(policy_summaries):
+        comparison_report = write_policy_comparison_report(experiment_dir)["report_path"]
 
-        comparison_report = None
-        if {"include_label_0_5", "exclude_label_0_5"}.issubset(policy_summaries):
-            comparison_report = write_policy_comparison_report(experiment_dir)["report_path"]
+    _write_benchmark_checkpoint(
+        experiment_dir,
+        suite_name=suite_name,
+        benchmark_architecture="batch_orchestrator_v1",
+        repeats=repeats,
+        review_keys=review_key_list,
+        model_presets=model_key_list,
+        orchestrator_policy=orchestrator_policy,
+        orchestrator_preset=orchestrator_preset,
+        selected_label_policies=selected_label_policies,
+        total_expected_raw_runs=total_expected_raw_runs,
+        raw_runs=raw_runs,
+        policy_summaries=policy_summaries,
+        comparison_report=comparison_report,
+    )
 
     return experiment_dir, {
         "generated_at": datetime.now().isoformat(),
@@ -1053,6 +1309,10 @@ def run_screening_benchmark(
         "orchestrator_policy": orchestrator_policy,
         "orchestrator_preset": orchestrator_preset,
         "gold_label_policies": selected_label_policies,
+        "raw_runs_dir": str(raw_runs_output_root),
+        "checkpoint_manifest": str(experiment_dir / "benchmark_checkpoint.json"),
+        "completed_raw_run_count": len(raw_runs),
+        "total_expected_raw_runs": total_expected_raw_runs,
         "comparison_html_report": comparison_report,
         "policy_outputs": policy_summaries,
     }

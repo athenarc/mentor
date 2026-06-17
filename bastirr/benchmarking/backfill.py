@@ -128,6 +128,33 @@ def backfill_policy_views(
             "error": metrics.get("error", ""),
             "screening_attempt_count": int(metrics.get("screening_attempt_count", 1)),
             "rerun_triggered": bool(metrics.get("rerun_triggered", False)),
+            "benchmark_architecture": metrics.get("benchmark_architecture", "batch_orchestrator_v1"),
+            "telemetry": {
+                key: metrics[key]
+                for key in (
+                    "total_input_tokens",
+                    "total_output_tokens",
+                    "total_tokens",
+                    "total_steps",
+                    "action_step_count",
+                    "planning_step_count",
+                    "error_step_count",
+                    "retry_count",
+                    "resume_count",
+                    "duration_per_study_seconds",
+                    "agent_step_counts",
+                    "agent_input_tokens",
+                    "agent_output_tokens",
+                    "agent_duration_seconds",
+                    "orchestrator_step_count",
+                    "gatekeeper_step_count",
+                    "orchestrator_input_tokens",
+                    "orchestrator_output_tokens",
+                    "gatekeeper_input_tokens",
+                    "gatekeeper_output_tokens",
+                )
+                if key in metrics
+            },
         })
 
     policy_outputs: dict[str, dict] = {}

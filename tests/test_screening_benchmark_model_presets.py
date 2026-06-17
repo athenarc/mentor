@@ -1,5 +1,4 @@
 import unittest
-from unittest.mock import patch
 
 import bastirr.benchmarking.model_presets as model_presets
 from bastirr.benchmarking.model_presets import get_model_preset
@@ -20,7 +19,7 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
         self.assertEqual(preset.api_key_source, "OPENROUTER_API_KEY")
         self.assertEqual(
             preset.model_label,
-            "gpt-5 [OpenAI GPT5]",
+            "openai-gpt-5 [OpenAI GPT5]",
         )
 
     def test_deepseek_preset_uses_openrouter_key_source(self):
@@ -35,15 +34,15 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
             "deepseek-v4-pro [DeepSeek V4 Pro]",
         )
 
-    def test_qwen_preset_uses_openai_compatible_ollama_shape(self):
-        preset = get_model_preset("ollama_qwen3_5_27b_bf16").resolve(strict=False)
+    def test_qwen_preset_uses_openrouter_shape(self):
+        preset = get_model_preset("qwen3.5_27b").resolve(strict=False)
 
         self.assertEqual(preset.backend, "openai")
-        self.assertEqual(preset.model_id, "qwen3.5:27b-bf16")
-        self.assertEqual(preset.api_base, "http://localhost:11434/v1")
+        self.assertEqual(preset.model_id, "qwen/qwen3.5-27b")
+        self.assertEqual(preset.api_base, "https://openrouter.ai/api/v1")
         self.assertEqual(
             preset.model_label,
-            "qwen3.5:27b-bf16 [Ollama via OpenAI-compatible API]",
+            "qwen3.5-27b [Qwen 3.5 27B]",
         )
 
     def test_unknown_aliases_are_rejected(self):
@@ -54,37 +53,33 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             get_model_preset("qwen_ollama_27b")
 
-    def test_openrouter_config_file_exposes_provider_pinning(self):
-        with patch.dict(
-            "os.environ",
-            {"BASTIRR_MODEL_PRESETS_CONFIG": "model_presets_or.json"},
-            clear=False,
-        ):
-            self.tearDown()
-            preset = get_model_preset("openai_gpt5").resolve(strict=False)
-            self.assertEqual(
-                preset.request_kwargs,
-                {
-                    "extra_body": {
-                        "provider": {
-                            "order": ["openai/default"],
-                            "allow_fallbacks": False,
-                            "require_parameters": True,
-                        }
-                    }
-                },
-            )
+    def test_default_config_exposes_provider_pinning(self):
+        preset = get_model_preset("openai_gpt5").resolve(strict=False)
+        self.assertEqual(
+            preset.request_kwargs,
+            {
+                "extra_body": {
+                    "provider": {
+                        "order": ["openai/default"],
+                        "allow_fallbacks": False,
+                        "require_parameters": True,
+                    },
+                    "reasoning": {"enabled": True},
+                }
+            },
+        )
 
-            deepseek_preset = get_model_preset("deepseek_v4_pro").resolve(strict=False)
-            self.assertEqual(
-                deepseek_preset.request_kwargs,
-                {
-                    "extra_body": {
-                        "provider": {
-                            "order": ["deepseek"],
-                            "allow_fallbacks": False,
-                            "require_parameters": True,
-                        }
-                    }
-                },
-            )
+        deepseek_preset = get_model_preset("deepseek_v4_pro").resolve(strict=False)
+        self.assertEqual(
+            deepseek_preset.request_kwargs,
+            {
+                "extra_body": {
+                    "reasoning": {"enabled": True},
+                    "provider": {
+                        "order": ["deepseek"],
+                        "allow_fallbacks": False,
+                        "require_parameters": True,
+                    },
+                }
+            },
+        )

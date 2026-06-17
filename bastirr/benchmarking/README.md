@@ -57,21 +57,156 @@ The benchmark execution path is:
     match the expected number of studies, so partial outputs are not silently
     persisted as valid benchmark artifacts.
 12. The harness writes per-run and experiment-level summaries.
-13. After scoring, the harness generates policy-local notebooks and
+13. After each completed review run, the harness checkpoints policy-local
+    `runs/`, `summary.json`, `summary.csv`, and leaderboard files to the
+    permanent experiment directory.
+14. After scoring, the harness generates policy-local notebooks and
     policy-local HTML summary reports.
-14. When both policy folders are present, it also generates a top-level
+15. When both policy folders are present, it also generates a top-level
     policy-comparison HTML report at the experiment root.
+
+## Looped Screening Benchmark
+
+The batch benchmark remains available through:
+
+```bash
+venv/bin/python -m bastirr.run_screening_benchmark
+```
+
+The looped benchmark is a separate architecture available through:
+
+```bash
+venv/bin/python -m bastirr.run_screening_loop_benchmark
+```
+
+The looped path uses the same review suites, model presets, scoring policies,
+inspection artifacts, notebooks, and HTML reports, but changes the raw agent
+run topology:
+
+- the Orchestrator receives protocol context and study indices only
+- each candidate is retrieved through a one-study, label-free tool call
+- Gatekeeper receives exactly one title/abstract at a time
+- each decision is appended immediately to `evidence.json`
+- `screening_progress.json` tracks partial progress for retry/resume attempts
+
+Looped runs are marked with:
+
+```text
+benchmark_architecture = loop_orchestrator_v1
+```
+
+Looped experiment directories include the model key for single-model runs:
+
+```text
+bastirr/output/screening_benchmarks/<timestamp>_<suite>_loop_<model_key>/
+```
+
+For multi-model loop runs, the suffix is bounded as `modelsN`, for example
+`<timestamp>_<suite>_loop_models3/`.
+
+To run only one review from a suite, pass the review key with `--reviews`:
+
+```bash
+venv/bin/python -m bastirr.run_screening_loop_benchmark \
+  --suite screening_ladder \
+  --reviews heart_failure_mhealth_200 \
+  --model-presets deepseek_v4_pro \
+  --orchestrator-policy fixed \
+  --orchestrator-model deepseek_v4_pro \
+  --repeats 1
+```
+
+This creates a new single-review experiment and refreshes aggregate totals
+unless `--skip-totals-aggregation` is supplied.
+
+To replace a failed review inside an existing loop experiment, use
+`--rerun-in-experiment` with `--reviews`:
+
+```bash
+venv/bin/python -m bastirr.run_screening_loop_benchmark \
+  --rerun-in-experiment bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro \
+  --reviews heart_failure_mhealth_200 \
+  --skip-policy-notebook-execution
+```
+
+The in-place rerun reuses the experiment's original suite, model preset,
+orchestrator policy, repeats, and gold-label policies. It reruns only the
+selected review key, replaces that run in the policy views, rewrites
+`summary.json`, `summary.csv`, leaderboards, HTML reports, and the checkpoint
+manifest, and then refreshes aggregate totals unless skipped.
+
+Batch runs are marked as:
+
+```text
+benchmark_architecture = batch_orchestrator_v1
+```
+
+Aggregate totals keep these architectures separate by default.
+
+### Mini-Batch Loop Mode
+
+The loop CLI also supports a bounded mini-batch mode:
+
+```bash
+venv/bin/python -m bastirr.run_screening_loop_benchmark \
+  --suite screening_ladder \
+  --model-presets deepseek_v4_pro \
+  --orchestrator-policy fixed \
+  --orchestrator-model deepseek_v4_pro \
+  --repeats 1 \
+  --loop-mode chunked
+```
+
+Chunked mode is still an agent workflow:
+
+```text
+Benchmark runner chooses chunk indices
+Orchestrator retrieves one chunk through get_candidate_studies_chunk_json()
+Orchestrator delegates that chunk to Gatekeeper
+Orchestrator appends the validated chunk through append_screening_chunk_decisions_json()
+```
+
+The deterministic runner controls only chunk scheduling, checkpointing, and
+metrics. It does not classify studies and does not bypass the Orchestrator or
+Gatekeeper. Chunked runs are marked with:
+
+```text
+benchmark_architecture = loop_chunk_orchestrator_v1
+```
+
+Chunked experiment folders use:
+
+```text
+bastirr/output/screening_benchmarks/<timestamp>_<suite>_loop_chunked_<model_key>/
+```
+
+Default chunk scheduling:
+
+- up to 25 studies: 1 chunk
+- 26-50 studies: 2 chunks
+- 51-100 studies: 4 chunks
+- 101-150 studies: 5 chunks
+- 151-225 studies: 6 chunks
+- above 225 studies: about 40 studies per chunk
+
+You can override this with either `--chunk-count N` or `--chunk-size N`.
+Use only one override at a time.
 
 ## Components
 
 Key files:
 
 - `bastirr/run_screening_benchmark.py`
+- `bastirr/run_screening_loop_benchmark.py`
 - `bastirr/agents/screening_orchestrator.py`
+- `bastirr/agents/screening_loop_orchestrator.py`
 - `bastirr/tools/screening_benchmark_tools.py`
+- `bastirr/benchmarking/loop_runner.py`
 - `bastirr/benchmarking/review_suites.py`
 - `bastirr/benchmarking/model_presets.py`
 - `bastirr/benchmarking/metrics.py`
+- `bastirr/benchmarking/telemetry.py`
+- `bastirr/benchmarking/totals.py`
 - `bastirr/benchmarking/inspection.py`
 - `bastirr/benchmarking/notebooks.py`
 - `bastirr/benchmarking/html_reports.py`
@@ -383,6 +518,19 @@ Raw agent artifacts such as `workflow.log`, `activity.md`, and `evidence.json`
 are copied into each policy-specific run directory so every policy view is
 self-contained.
 
+The benchmark also maintains checkpoint artifacts at the experiment root:
+
+- `_raw_runs/`: persistent raw agent run directories, including any looped
+  `evidence.json` and `screening_progress.json` written while a review is in
+  progress
+- `benchmark_checkpoint.json`: machine-readable checkpoint manifest with the
+  number of completed raw runs, expected raw runs, policy output paths, and
+  raw run directories
+
+Policy folders are refreshed after every completed review run. If a later
+large review stalls or the process is terminated, the completed earlier runs
+remain available under each policy folder and in `_raw_runs/`.
+
 Each policy directory contains policy-specific derived artifacts:
 
 - `runs/`
@@ -398,6 +546,7 @@ Inside each policy run directory:
 - `activity.md`
 - `evidence.json`
 - `metrics.json`
+- `screening_progress.json` for looped runs
 - `screening_inspection.json`
 - `screening_inspection.md`
 
@@ -441,11 +590,38 @@ Contains:
   - `scored_for_aggregate`
   - `incomplete_reason`
 - timing and model metadata
+- benchmark architecture metadata
+- workflow telemetry:
+  - input/output/total tokens
+  - total and per-agent step counts
+  - error, retry, and resume counts
+  - duration per study
+- rationale shortcut indicators:
+  - empty rationale count
+  - duplicate rationale count
+  - rationale reuse rate
 - paths to the inspection artifacts
 
 Important: benchmark leaderboards average metrics only over runs where
 `scored_for_aggregate=true`, meaning the run produced a complete valid
 per-study decision list.
+
+### `screening_progress.json`
+
+Looped runs write a progress artifact alongside `evidence.json`:
+
+```json
+{
+  "expected_n_studies": 10,
+  "completed_count": 4,
+  "completed_study_indices": [1, 2, 3, 4],
+  "next_study_index": 5,
+  "screening_decisions": []
+}
+```
+
+This file lets a retry continue from missing studies instead of replacing
+already saved decisions.
 
 ### `screening_inspection.json`
 
@@ -618,6 +794,87 @@ only through one overall average.
 Its header also records the active gold label policy, and its per-review rows
 also separate scored, incomplete, and error runs.
 
+### Aggregate totals
+
+Both benchmark CLIs refresh aggregate totals after a completed run unless
+`--skip-totals-aggregation` is supplied. Normal runs also update the canonical
+source manifest before totals are recomputed:
+
+```text
+bastirr/output/screening_benchmarks/totals/canonical_sources.json
+```
+
+The manifest is keyed by suite, gold-label policy, benchmark architecture,
+review key, Gatekeeper preset, Orchestrator policy, and Orchestrator preset.
+Provider/API base is not part of model identity. By default, only completed and
+scored `repeats=1` runs are registered, and experiment folders whose names
+contain `_repN` are excluded from canonical seeding/auto-registration. Use
+`--canonical none` for calibration or debug runs, and `--canonical force` only
+when a repeated run should replace the canonical pointer.
+
+For manual validation, canonical seeding also writes:
+
+```text
+bastirr/output/screening_benchmarks/totals/canonical_sources_audit.md
+```
+
+This audit view groups selections by suite, policy, architecture, Gatekeeper
+preset, and selected source experiment directory, so it is easier to check that
+a model/suite points to the intended timestamped run folder.
+
+Totals are written under:
+
+```text
+bastirr/output/screening_benchmarks/totals/<suite>/<policy>/<architecture>/
+```
+
+To seed or inspect the canonical manifest without rewriting aggregate totals:
+
+```bash
+venv/bin/python -m bastirr.recompute_screening_totals --build-canonical-only
+```
+
+Totals can also be recomputed without running a benchmark. The default source
+mode is `canonical`, so it reads only `canonical_sources.json`:
+
+```bash
+venv/bin/python -m bastirr.recompute_screening_totals
+```
+
+For audits, the older discovery behavior is still available:
+
+```bash
+venv/bin/python -m bastirr.recompute_screening_totals --source-mode discover
+```
+
+Each architecture-separated totals folder contains:
+
+- `totals_leaderboard.json`
+- `totals_leaderboard.md`
+- `totals_review_leaderboard.json`
+- `totals_review_leaderboard.md`
+- `per_sr/<review_key>_leaderboard.json`
+- `per_sr/<review_key>_leaderboard.md`
+
+Horizontal size-band comparisons are pooled across suites and written under:
+
+```text
+bastirr/output/screening_benchmarks/totals/horizontal_comparison/<policy>/<architecture>/
+```
+
+Each horizontal comparison folder contains:
+
+- `horizontal_size_bands.json`
+- `horizontal_size_bands.md`
+
+The horizontal size bands are:
+
+- `small_10`: up to 15 studies
+- `lower_mid_25`: 16-35 studies
+- `mid_50`: 36-65 studies
+- `upper_mid_100`: 66-100 studies
+- `large_100_plus`: greater than 100 studies, displayed as `100+`
+
 ## Validation Workflow
 
 Recommended local validation after changing the benchmark harness:
@@ -627,6 +884,7 @@ venv/bin/python -m unittest discover -s tests -v
 venv/bin/python -m compileall bastirr tests
 venv/bin/python -m bastirr.run_screening_benchmark --list-model-presets
 venv/bin/python -m bastirr.run_screening_benchmark --list-reviews
+venv/bin/python -m bastirr.run_screening_loop_benchmark --list-reviews
 ```
 
 If the runtime behavior changed, also run a smoke benchmark on the 10-study

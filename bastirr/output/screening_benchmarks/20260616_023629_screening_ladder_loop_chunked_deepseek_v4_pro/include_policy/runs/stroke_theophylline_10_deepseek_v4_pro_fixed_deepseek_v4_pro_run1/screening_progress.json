@@ -1,0 +1,89 @@
+{
+  "expected_n_studies": 10,
+  "completed_count": 10,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Double-blind trial comparing aminophylline (theophylline analogue) with placebo in patients with acute ischaemic stroke. Likely randomised, treatment started during acute phase (3-day infusion). Meets all selection criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Double-blind RCT of intravenous aminophylline vs placebo in 79 patients with acute cerebral infarction. Treatment started within the acute phase, fulfilling population, intervention, comparator, and design requirements.",
+      "confidence": ""
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Open-label, single-arm, dose-escalation study without a concurrent placebo or control group. Not a randomised trial; does not meet study design criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study investigates vincamin (not a theophylline analogue) and does not compare theophylline/analogue to placebo/control. Participants are not clearly acute ischaemic stroke patients. Fails population, intervention, and design criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised, double-blind, placebo-controlled cross-over trial of caffeine (an analogue) in patients recovering from acute ischaemic stroke. While timing of treatment relative to stroke onset is unclear, conservative inclusion is warranted.",
+      "confidence": ""
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised, double-blind, placebo-controlled cross-over trial of caffeine in stroke patients. Similar to Study 5; conservative inclusion as it may fall within the spectrum of acute ischaemic stroke and meets the intervention/comparator design.",
+      "confidence": ""
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not a randomised trial. Intracarotid aminophylline infusion study without a placebo or control group. Does not meet the required comparative design.",
+      "confidence": ""
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Animal experiment (cats with middle cerebral artery occlusion). Not a human study, thus fails the population criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Animal experiment (anesthetized dogs). Not a trial in patients with acute ischaemic stroke, and does not compare a theophylline analogue against placebo/control. Excluded on population and design grounds.",
+      "confidence": ""
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Appears to be a narrative review discussing historical studies; no original trial data. Not a randomised controlled trial. Excluded due to study design.",
+      "confidence": ""
+    }
+  ]
+}
