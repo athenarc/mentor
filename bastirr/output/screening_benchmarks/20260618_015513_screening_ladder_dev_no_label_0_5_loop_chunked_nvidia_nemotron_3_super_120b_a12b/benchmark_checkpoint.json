@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-06-18T04:03:50.160628",
+  "suite": "screening_ladder_dev_no_label_0_5",
+  "benchmark_architecture": "loop_chunk_orchestrator_v1",
+  "repeats": 1,
+  "review_keys": [
+    "surgical_termination_10",
+    "advanced_endometrial_carcinoma_24",
+    "chlamydia_poc_test_50",
+    "ovarian_cancer_diagnosis_92",
+    "home_based_rehabilitation_183"
+  ],
+  "model_presets": [
+    "nvidia_nemotron_3_super_120b_a12b"
+  ],
+  "orchestrator_policy": "fixed",
+  "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+  "gold_label_policies": [
+    "exclude_label_0_5"
+  ],
+  "raw_runs_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/_raw_runs",
+  "completed_raw_run_count": 5,
+  "total_expected_raw_runs": 5,
+  "completed_runs": [
+    {
+      "benchmark_run_id": "surgical_termination_10_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1",
+      "review_key": "surgical_termination_10",
+      "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/_raw_runs/20260618_015520_surgical_termination_10_nvidia_nemotron_3_super_120b_a12b_fi"
+    },
+    {
+      "benchmark_run_id": "advanced_endometrial_carcinoma_24_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1",
+      "review_key": "advanced_endometrial_carcinoma_24",
+      "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/_raw_runs/20260618_021053_advanced_endometrial_carcinoma_24_nvidia_nemotron_3_super_12"
+    },
+    {
+      "benchmark_run_id": "chlamydia_poc_test_50_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1",
+      "review_key": "chlamydia_poc_test_50",
+      "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/_raw_runs/20260618_023417_chlamydia_poc_test_50_nvidia_nemotron_3_super_120b_a12b_fixe"
+    },
+    {
+      "benchmark_run_id": "ovarian_cancer_diagnosis_92_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1",
+      "review_key": "ovarian_cancer_diagnosis_92",
+      "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+      "run_index": 1,
+      "run_status": "incomplete",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/_raw_runs/20260618_024051_ovarian_cancer_diagnosis_92_nvidia_nemotron_3_super_120b_a12"
+    },
+    {
+      "benchmark_run_id": "home_based_rehabilitation_183_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1",
+      "review_key": "home_based_rehabilitation_183",
+      "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/_raw_runs/20260618_031847_home_based_rehabilitation_183_nvidia_nemotron_3_super_120b_a"
+    }
+  ],
+  "comparison_html_report": null,
+  "policy_outputs": {
+    "exclude_label_0_5": {
+      "directory": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy",
+      "summary_json": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/summary.json",
+      "summary_csv": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/summary.csv",
+      "leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/leaderboard.md",
+      "review_leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/review_leaderboard.md",
+      "runs_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/runs",
+      "html_report": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/screening_results_summary.html",
+      "eda_notebook": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/screening_results_analysis.ipynb",
+      "eda_notebook_executed": false,
+      "eda_notebook_execution_error": "jupyter command not available"
+    }
+  },
+  "loop_mode": "chunked",
+  "chunk_count": null,
+  "chunk_size": null
+}

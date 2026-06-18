@@ -172,7 +172,7 @@ def create_single_study_gatekeeper_agent(model, step_callbacks=None, logger=None
             "protocol and it returns exactly one INCLUDE/EXCLUDE decision."
         ),
         instructions=SINGLE_STUDY_GATEKEEPER_INSTRUCTIONS,
-        max_steps=8,
+        max_steps=20,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy", "pickle", "sys"],
@@ -194,7 +194,7 @@ def create_chunk_gatekeeper_agent(model, step_callbacks=None, logger=None) -> Co
             "the review protocol and it returns one decision per chunk study."
         ),
         instructions=CHUNK_GATEKEEPER_INSTRUCTIONS,
-        max_steps=12,
+        max_steps=20,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy", "pickle", "sys"],

@@ -1,0 +1,84 @@
+{
+  "generated_at": "2026-06-18T10:41:32.875344",
+  "suite": "screening_ladder_dev_no_label_0_5",
+  "benchmark_architecture": "loop_chunk_orchestrator_v1",
+  "repeats": 1,
+  "review_keys": [
+    "surgical_termination_10",
+    "advanced_endometrial_carcinoma_24",
+    "chlamydia_poc_test_50",
+    "ovarian_cancer_diagnosis_92",
+    "home_based_rehabilitation_183"
+  ],
+  "model_presets": [
+    "openai_gpt_oss_120b"
+  ],
+  "orchestrator_policy": "fixed",
+  "orchestrator_preset": "openai_gpt_oss_120b",
+  "gold_label_policies": [
+    "exclude_label_0_5"
+  ],
+  "raw_runs_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/_raw_runs",
+  "completed_raw_run_count": 4,
+  "total_expected_raw_runs": 5,
+  "completed_runs": [
+    {
+      "benchmark_run_id": "surgical_termination_10_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1",
+      "review_key": "surgical_termination_10",
+      "gatekeeper_preset": "openai_gpt_oss_120b",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "openai_gpt_oss_120b",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/_raw_runs/20260618_040358_surgical_termination_10_openai_gpt_oss_120b_fixed_openai_gpt"
+    },
+    {
+      "benchmark_run_id": "advanced_endometrial_carcinoma_24_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1",
+      "review_key": "advanced_endometrial_carcinoma_24",
+      "gatekeeper_preset": "openai_gpt_oss_120b",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "openai_gpt_oss_120b",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/_raw_runs/20260618_050915_advanced_endometrial_carcinoma_24_openai_gpt_oss_120b_fixed_"
+    },
+    {
+      "benchmark_run_id": "chlamydia_poc_test_50_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1",
+      "review_key": "chlamydia_poc_test_50",
+      "gatekeeper_preset": "openai_gpt_oss_120b",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "openai_gpt_oss_120b",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/_raw_runs/20260618_054928_chlamydia_poc_test_50_openai_gpt_oss_120b_fixed_openai_gpt_o"
+    },
+    {
+      "benchmark_run_id": "ovarian_cancer_diagnosis_92_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1",
+      "review_key": "ovarian_cancer_diagnosis_92",
+      "gatekeeper_preset": "openai_gpt_oss_120b",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "openai_gpt_oss_120b",
+      "run_index": 1,
+      "run_status": "incomplete",
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/_raw_runs/20260618_071333_ovarian_cancer_diagnosis_92_openai_gpt_oss_120b_fixed_openai"
+    }
+  ],
+  "comparison_html_report": null,
+  "policy_outputs": {
+    "exclude_label_0_5": {
+      "directory": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy",
+      "summary_json": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/summary.json",
+      "summary_csv": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/summary.csv",
+      "leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/leaderboard.md",
+      "review_leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/review_leaderboard.md",
+      "runs_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs",
+      "html_report": "",
+      "eda_notebook": "",
+      "eda_notebook_executed": false,
+      "eda_notebook_execution_error": ""
+    }
+  },
+  "loop_mode": "chunked",
+  "chunk_count": null,
+  "chunk_size": null
+}

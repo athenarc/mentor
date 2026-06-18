@@ -1,0 +1,89 @@
+{
+  "expected_n_studies": 10,
+  "completed_count": 10,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised multicentre trial in stage I endometrial carcinoma; women received surgery and were randomised to adjuvant MPA versus no treatment or RT±MPA across risk groups—meets RCT adjuvant progestagen criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Narrative review of progestin therapy across cancers; not a randomized controlled trial in postoperative endometrial cancer.",
+      "confidence": ""
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methods paper on inconsistency in meta-analyses; not a clinical trial and not specific to adjuvant progestagen therapy.",
+      "confidence": ""
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Statistical methods chapter for meta-analysis; not a randomized trial or clinical study of adjuvant progestagens post-surgery.",
+      "confidence": ""
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Large RCT: after surgery, patients with stage I/II endometrial cancer randomized to adjuvant progestagen versus no further therapy—directly matches inclusion criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "General meta-analysis methodology paper; not an RCT of adjuvant progestagens post-surgery.",
+      "confidence": ""
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised trial of progestogens as part of primary treatment in conjunction with surgery/radiotherapy; patients had surgery and were randomized to progestogen vs control—likely adjuvant timing; include conservatively pending full-text confirmation.",
+      "confidence": ""
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methods paper on extracting survival statistics for meta-analyses; not a clinical RCT of adjuvant progestagens.",
+      "confidence": ""
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Small randomized, placebo-controlled postoperative trial: stage I patients received hydroxyprogesterone within 24h after hysterectomy vs placebo—meets adjuvant RCT criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Single-institution randomized postoperative trial: adjuvant progestagen versus no therapy after surgery in endometrial cancer—meets inclusion criteria.",
+      "confidence": ""
+    }
+  ]
+}

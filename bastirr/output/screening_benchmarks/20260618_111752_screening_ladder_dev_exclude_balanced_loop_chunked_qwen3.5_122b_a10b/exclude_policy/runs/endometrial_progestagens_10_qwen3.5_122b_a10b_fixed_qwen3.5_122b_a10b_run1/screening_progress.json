@@ -1,0 +1,89 @@
+{
+  "expected_n_studies": 10,
+  "completed_count": 10,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomised multicentre trial that evaluated adjuvant medroxyprogesterone acetate (MPA) in women with stage I endometrial carcinoma who had surgery. Patients were randomised to receive MPA or no further treatment after surgery. Meets all selection criteria: RCT, progestagen therapy, post-surgery setting, endometrial cancer population.",
+      "confidence": ""
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a literature review article, not a randomised controlled trial. The abstract explicitly states it is 'a survey of the literature' and discusses 'clinical observations' rather than reporting original RCT data. Does not meet the selection criteria requiring RCTs.",
+      "confidence": ""
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological paper about meta-analysis statistics, not a clinical trial of progestagen therapy for endometrial cancer. Does not meet any selection criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological chapter about meta-analysis techniques, not a clinical trial of progestagen therapy for endometrial cancer. Does not meet any selection criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomised controlled trial with 1148 patients with Stage I or Stage II endometrial cancer who were randomly assigned to adjuvant progesterone or no additional therapy after surgery. Meets all selection criteria: RCT, progestagen therapy, post-surgery setting, endometrial cancer population.",
+      "confidence": ""
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological paper about meta-analysis approaches, not a clinical trial of progestagen therapy for endometrial cancer. Does not meet any selection criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomised trial in Yorkshire with 429 patients randomised to progestogen or control group. All patients received surgery (implied by 'after operation' in abstract). Progestagens were part of primary treatment in conjunction with surgery and radiotherapy. Meets selection criteria: RCT, progestagen therapy, surgical setting, endometrial cancer population.",
+      "confidence": ""
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological paper about extracting statistics for meta-analyses, not a clinical trial of progestagen therapy for endometrial cancer. Does not meet any selection criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomised placebo-controlled trial with 35 patients with stage IA or IB endometrial carcinoma who received total abdominal hysterectomy and bilateral salpingo‐oophorectomy. Eighteen received adjuvant 6-methyl-17α-hydroxyprogesterone after surgery, 17 received placebo. Meets all selection criteria: RCT, progestagen therapy, post-surgery setting, endometrial cancer population.",
+      "confidence": ""
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a prospective clinical trial with random assignment of 205 patients to adjuvant progestagen treatment or no additional therapy after hysterectomy (surgery). Follow-up was 5 years. Meets all selection criteria: RCT (randomly assigned), progestagen therapy, post-surgery setting, endometrial cancer population.",
+      "confidence": ""
+    }
+  ]
+}

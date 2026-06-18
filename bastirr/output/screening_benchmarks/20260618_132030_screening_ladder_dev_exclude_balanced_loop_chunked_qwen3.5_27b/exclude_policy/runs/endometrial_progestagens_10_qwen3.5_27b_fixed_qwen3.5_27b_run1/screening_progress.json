@@ -1,0 +1,89 @@
+{
+  "expected_n_studies": 10,
+  "completed_count": 10,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT of adjuvant medroxyprogesterone acetate (MPA) in women with stage 1 endometrial cancer after surgery. Patients were randomised to MPA vs no treatment or radiotherapy vs radiotherapy plus MPA.",
+      "confidence": ""
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review/survey of literature on progestin therapy, not a randomised controlled trial. It summarizes observations from multiple studies rather than being a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological paper about measuring inconsistency in meta-analyses, not an RCT of progestagen therapy for endometrial cancer.",
+      "confidence": ""
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological chapter about statistical methods for meta-analysis, not an RCT of progestagen therapy for endometrial cancer.",
+      "confidence": ""
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised controlled trial of adjuvant progesterone therapy in women with Stage I or II endometrial cancer after surgery. 1148 patients randomised to progesterone vs no additional therapy.",
+      "confidence": ""
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological paper about meta-analysis in clinical trials, not an RCT of progestagen therapy for endometrial cancer.",
+      "confidence": ""
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised trial of progestogens as part of primary treatment of endometrial carcinoma in conjunction with surgery and radiotherapy. 429 patients randomised to progestogen or control group.",
+      "confidence": ""
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological paper about extracting summary statistics for meta-analyses of survival endpoints, not an RCT of progestagen therapy for endometrial cancer.",
+      "confidence": ""
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised controlled trial of adjuvant progesterone therapy (6-methyl-17α-hydroxyprogesterone) in 35 patients with stage 1 endometrial cancer after hysterectomy and bilateral salpingo-oophorectomy.",
+      "confidence": ""
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomised clinical trial of adjuvant progestagen therapy in 205 patients with endometrial cancer after hysterectomy. Patients randomised to progestagen treatment vs no additional therapy.",
+      "confidence": ""
+    }
+  ]
+}
