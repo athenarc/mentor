@@ -1176,7 +1176,7 @@ def run_screening_benchmark(
         raise ValueError("--orchestrator-policy must be 'fixed' or 'match-gatekeeper'")
     if canonical_mode not in {"auto", "none", "force"}:
         raise ValueError("canonical_mode must be 'auto', 'none', or 'force'")
-    selected_label_policies = gold_label_policies or list(SCREENING_LABEL_POLICIES)
+    selected_label_policies = list(SCREENING_LABEL_POLICIES)
 
     selected_reviews = resolve_review_selection(suite_name, review_keys)
     resolved_gatekeeper_models = resolve_model_presets(model_presets)

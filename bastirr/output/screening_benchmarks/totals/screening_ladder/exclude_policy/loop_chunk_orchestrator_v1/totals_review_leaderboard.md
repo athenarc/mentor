@@ -7,7 +7,12 @@
 
 | Rank | Architecture | Gatekeeper Model | Runs | Scored | F1 | Recall | Precision | Accuracy | Specificity |
 |------|--------------|------------------|------|--------|----|--------|-----------|----------|-------------|
-| 1 | loop_chunk_orchestrator_v1 | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0.667 | 1.000 | 0.500 | 0.800 | 0.750 |
+| 1 | loop_chunk_orchestrator_v1 | kimi-k2.6 [Kimi K2.6] | 1 | 1 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
+| 2 | loop_chunk_orchestrator_v1 | openai-gpt-5 [OpenAI GPT5] | 1 | 1 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
+| 3 | loop_chunk_orchestrator_v1 | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
+| 4 | loop_chunk_orchestrator_v1 | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
+| 5 | loop_chunk_orchestrator_v1 | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0.667 | 1.000 | 0.500 | 0.800 | 0.750 |
+| 6 | loop_chunk_orchestrator_v1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0.667 | 1.000 | 0.500 | 0.800 | 0.750 |
 
 ## alopecia_areata_25
 
@@ -17,6 +22,11 @@
 | Rank | Architecture | Gatekeeper Model | Runs | Scored | F1 | Recall | Precision | Accuracy | Specificity |
 |------|--------------|------------------|------|--------|----|--------|-----------|----------|-------------|
 | 1 | loop_chunk_orchestrator_v1 | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0.889 | 0.923 | 0.857 | 0.880 | 0.833 |
+| 2 | loop_chunk_orchestrator_v1 | openai-gpt-5 [OpenAI GPT5] | 1 | 1 | 0.867 | 1.000 | 0.765 | 0.840 | 0.667 |
+| 3 | loop_chunk_orchestrator_v1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0.857 | 0.923 | 0.800 | 0.840 | 0.750 |
+| 4 | loop_chunk_orchestrator_v1 | kimi-k2.6 [Kimi K2.6] | 1 | 1 | 0.857 | 0.923 | 0.800 | 0.840 | 0.750 |
+| 5 | loop_chunk_orchestrator_v1 | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 0.839 | 1.000 | 0.722 | 0.800 | 0.583 |
+| 6 | loop_chunk_orchestrator_v1 | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0.828 | 0.923 | 0.750 | 0.800 | 0.667 |
 
 ## iud_insertion_pain_50
 
@@ -25,7 +35,12 @@
 
 | Rank | Architecture | Gatekeeper Model | Runs | Scored | F1 | Recall | Precision | Accuracy | Specificity |
 |------|--------------|------------------|------|--------|----|--------|-----------|----------|-------------|
-| 1 | loop_chunk_orchestrator_v1 | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0.943 | 0.962 | 0.926 | 0.940 | 0.917 |
+| 1 | loop_chunk_orchestrator_v1 | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0.981 | 1.000 | 0.963 | 0.980 | 0.958 |
+| 2 | loop_chunk_orchestrator_v1 | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 0.963 | 1.000 | 0.929 | 0.960 | 0.917 |
+| 3 | loop_chunk_orchestrator_v1 | kimi-k2.6 [Kimi K2.6] | 1 | 1 | 0.962 | 0.962 | 0.962 | 0.960 | 0.958 |
+| 4 | loop_chunk_orchestrator_v1 | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0.943 | 0.962 | 0.926 | 0.940 | 0.917 |
+| 5 | loop_chunk_orchestrator_v1 | openai-gpt-5 [OpenAI GPT5] | 1 | 1 | 0.943 | 0.962 | 0.926 | 0.940 | 0.917 |
+| 6 | loop_chunk_orchestrator_v1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0.941 | 0.923 | 0.960 | 0.940 | 0.958 |
 
 ## pelvic_floor_training_100
 
@@ -34,7 +49,12 @@
 
 | Rank | Architecture | Gatekeeper Model | Runs | Scored | F1 | Recall | Precision | Accuracy | Specificity |
 |------|--------------|------------------|------|--------|----|--------|-----------|----------|-------------|
-| 1 | loop_chunk_orchestrator_v1 | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0.833 | 0.962 | 0.735 | 0.900 | 0.878 |
+| 1 | loop_chunk_orchestrator_v1 | kimi-k2.6 [Kimi K2.6] | 1 | 1 | 0.873 | 0.923 | 0.828 | 0.930 | 0.932 |
+| 2 | loop_chunk_orchestrator_v1 | openai-gpt-5 [OpenAI GPT5] | 1 | 1 | 0.862 | 0.962 | 0.781 | 0.920 | 0.905 |
+| 3 | loop_chunk_orchestrator_v1 | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0.862 | 0.962 | 0.781 | 0.920 | 0.905 |
+| 4 | loop_chunk_orchestrator_v1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0.847 | 0.962 | 0.758 | 0.910 | 0.892 |
+| 5 | loop_chunk_orchestrator_v1 | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0.833 | 0.962 | 0.735 | 0.900 | 0.878 |
+| 6 | loop_chunk_orchestrator_v1 | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 0.806 | 0.962 | 0.694 | 0.880 | 0.851 |
 
 ## heart_failure_mhealth_200
 
@@ -43,5 +63,10 @@
 
 | Rank | Architecture | Gatekeeper Model | Runs | Scored | F1 | Recall | Precision | Accuracy | Specificity |
 |------|--------------|------------------|------|--------|----|--------|-----------|----------|-------------|
-| 1 | loop_chunk_orchestrator_v1 | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0.500 | 1.000 | 0.333 | 0.960 | 0.959 |
+| 1 | loop_chunk_orchestrator_v1 | kimi-k2.6 [Kimi K2.6] | 1 | 1 | 0.800 | 1.000 | 0.667 | 0.990 | 0.990 |
+| 2 | loop_chunk_orchestrator_v1 | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0.727 | 1.000 | 0.571 | 0.985 | 0.985 |
+| 3 | loop_chunk_orchestrator_v1 | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0.500 | 1.000 | 0.333 | 0.960 | 0.959 |
+| 4 | loop_chunk_orchestrator_v1 | openai-gpt-5 [OpenAI GPT5] | 1 | 1 | 0.400 | 1.000 | 0.250 | 0.940 | 0.939 |
+| 5 | loop_chunk_orchestrator_v1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0.381 | 1.000 | 0.235 | 0.935 | 0.934 |
+| 6 | loop_chunk_orchestrator_v1 | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 0.136 | 1.000 | 0.073 | 0.745 | 0.740 |
 

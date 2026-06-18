@@ -1,0 +1,140 @@
+{
+  "review_title": "Theophylline, aminophylline, caffeine and analogues for acute ischaemic stroke",
+  "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD000211.pub2/full",
+  "screening_criteria": "Randomised trials of theophylline or an analogue compound compared with placebo or control in people with confirmed or presumed acute ischaemic stroke. Trials were included if treatment was started within one week of stroke onset.",
+  "gold_label_policy": "include_label_0_5",
+  "gold_label_policy_description": "dataset labels 1.0 and 0.5 count as INCLUDE; 0.0 counts as EXCLUDE",
+  "gold_screening_policy": {
+    "1.0": "INCLUDE",
+    "0.5": "INCLUDE",
+    "0.0": "EXCLUDE"
+  },
+  "summary": {
+    "n_studies": 10,
+    "gold_pass_count": 6,
+    "gold_exclude_count": 4,
+    "predicted_pass_count": 2,
+    "predicted_exclude_count": 8,
+    "tp": 2,
+    "fp": 0,
+    "tn": 4,
+    "fn": 4,
+    "match_count": 6,
+    "mismatch_count": 4,
+    "missing_decision_count": 0,
+    "duplicate_decision_count": 0,
+    "invalid_decision_count": 0
+  },
+  "studies": [
+    {
+      "study_index": 1,
+      "study_title": "Lack of effect of theophylline on the outcome of acute cerebral infarction",
+      "gold_label": 1.0,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "included_in_review",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Double-blind trial of aminophylline versus placebo in patients with acute cerebral infarction. The parallel-group, placebo-controlled, double-blind design satisfies the randomised trial criterion, and the population and intervention match the review protocol. Treatment was administered during the acute hospital period.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 2,
+      "study_title": "Controlled trial of intravenous aminophylline in acute cerebral infarction",
+      "gold_label": 1.0,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "included_in_review",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Double-blind controlled trial comparing intravenous aminophylline with placebo in 79 patients with acute cerebral infarction. This is a randomised trial in the target population with the required intervention and comparator, and treatment was given in the acute phase.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 3,
+      "study_title": "Pilot dose‐escalation study of caffeine plus ethanol (caffeinol) in acute ischemic stroke",
+      "gold_label": 0.5,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "excluded_after_full_text",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Open-label, single-arm dose-escalation study without a placebo or control arm. The study explicitly lacks randomisation and a comparator, therefore it does not meet the selection criteria for randomised trials of theophylline/analogue versus placebo or control.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
+    },
+    {
+      "study_index": 4,
+      "study_title": "Effects of vincamin on cerebral metabolism",
+      "gold_label": 0.5,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "excluded_after_full_text",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study of vincamin and aminophyllin in 60 subjects with no mention of acute ischaemic stroke as the population. The primary intervention is vincamin, not theophylline/aminophylline as a stroke treatment, and there is no indication this is a randomised trial in acute stroke patients.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
+    },
+    {
+      "study_index": 5,
+      "study_title": "Caffeine reduces cerebral blood flow in patients recovering from an acute ischaemic stroke",
+      "gold_label": 0.5,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "excluded_after_full_text",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Although randomised and placebo-controlled, this cross-over study recruited patients recovering from stroke and examined acute caffeine challenge effects on cerebral blood flow after 48 hours of abstinence. It does not represent treatment started within one week of stroke onset for therapeutic purposes, and the participants were in recovery rather than the acute treatment phase.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
+    },
+    {
+      "study_index": 6,
+      "study_title": "Effects of caffeine on cerebral blood flow in stroke patients",
+      "gold_label": 0.5,
+      "gold_screening_decision": "INCLUDE",
+      "gold_review_outcome": "excluded_after_full_text",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomised cross-over study of caffeine versus placebo in patients recovering from acute ischaemic stroke. Like study 5, it is a physiological challenge study in recovering patients rather than a therapeutic trial initiated within one week of stroke onset, so it falls outside the selection criteria.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
+    },
+    {
+      "study_index": 7,
+      "study_title": "The effect of intracarotid aminophylline infusion on the cerebral circulation",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Interventional study of intracarotid aminophylline in 12 patients with no control or placebo group described, and no evidence of randomisation. The population is not clearly acute ischaemic stroke patients, and the design lacks the required comparator.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 8,
+      "study_title": "Responses to surface arteries and blood flow of ischemic and non ischemic cerebral cortex to aminophylline, ergotamine tartrate, and acetazolamide",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Animal study conducted in cats with middle cerebral artery occlusion. The review is restricted to human randomised trials, so this study is excluded on population grounds.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 9,
+      "study_title": "A comparative study between the cardiovascular effect of cetiedil, a new vasodilator, and papaverine and aminophylline",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Animal study in anaesthetised dogs examining cardiovascular effects of aminophylline and other vasodilators. Excluded because the review includes only human trials in people with acute ischaemic stroke.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    },
+    {
+      "study_index": 10,
+      "study_title": "The mechanism of action of aminophylline upon cerebral vascular disorders",
+      "gold_label": 0.0,
+      "gold_screening_decision": "EXCLUDE",
+      "gold_review_outcome": "excluded_at_screening",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This appears to be a narrative review or discussion of uncontrolled case reports concerning aminophylline in cerebral vascular disorders. The abstract explicitly states that convincing controlled series are lacking. It does not meet the criterion of being a randomised trial.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
+    }
+  ]
+}

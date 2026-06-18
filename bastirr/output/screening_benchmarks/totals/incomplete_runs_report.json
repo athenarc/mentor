@@ -1,0 +1,477 @@
+{
+  "generated_at": "2026-06-19T02:23:14.042888",
+  "source_mode": "canonical",
+  "diagnostic_source_mode": "discover",
+  "canonical_gold_label_policies": [
+    "exclude_label_0_5"
+  ],
+  "n_groups_with_incomplete_runs": 4,
+  "n_incomplete_or_unscored_runs": 10,
+  "n_excluded_incomplete_model_groups": 8,
+  "groups": [
+    {
+      "suite": "screening_ladder",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "loop_chunk_orchestrator_v1",
+      "n_source_runs": 40,
+      "n_incomplete_or_unscored_runs": 2,
+      "n_excluded_incomplete_model_groups": 2,
+      "incomplete_or_unscored_runs": [
+        {
+          "suite": "screening_ladder",
+          "gold_label_policy": "exclude_label_0_5",
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "review_key": "pelvic_floor_training_100",
+          "review_title": "Pelvic floor muscle training versus no treatment, or inactive control treatments, for urinary incontinence in women",
+          "n_studies": 100,
+          "gatekeeper_preset": "qwen3.5_27b",
+          "gatekeeper_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "qwen3.5_27b",
+          "orchestrator_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
+          "run_index": 1,
+          "run_status": "incomplete",
+          "scored_for_aggregate": false,
+          "parse_success": false,
+          "decision_coverage": 0.75,
+          "screening_decision_count": 75,
+          "missing_decision_count": 25,
+          "invalid_decision_count": 0,
+          "duplicate_decision_count": 0,
+          "incomplete_reason": "Parsed 75/100 unique decisions (missing=25, duplicate=0, invalid=0).",
+          "error": "",
+          "source_summary_json": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/summary.json",
+          "source_experiment_dir": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b"
+        },
+        {
+          "suite": "screening_ladder",
+          "gold_label_policy": "exclude_label_0_5",
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "review_key": "pelvic_floor_training_100",
+          "review_title": "Pelvic floor muscle training versus no treatment, or inactive control treatments, for urinary incontinence in women",
+          "n_studies": 100,
+          "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "orchestrator_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "run_index": 1,
+          "run_status": "incomplete",
+          "scored_for_aggregate": false,
+          "parse_success": false,
+          "decision_coverage": 0.25,
+          "screening_decision_count": 25,
+          "missing_decision_count": 75,
+          "invalid_decision_count": 0,
+          "duplicate_decision_count": 0,
+          "incomplete_reason": "Parsed 25/100 unique decisions (missing=75, duplicate=0, invalid=0).",
+          "error": "",
+          "source_summary_json": "bastirr/output/screening_benchmarks/20260618_144851_screening_ladder_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/summary.json",
+          "source_experiment_dir": "bastirr/output/screening_benchmarks/20260618_144851_screening_ladder_loop_chunked_nvidia_nemotron_3_super_120b_a12b"
+        }
+      ],
+      "excluded_incomplete_model_groups": [
+        {
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "gold_label_policy": "exclude_label_0_5",
+          "suite": "screening_ladder",
+          "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "orchestrator_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "n_expected_runs": 5,
+          "n_scored_runs": 4,
+          "n_source_rows": 5,
+          "missing_review_keys": [
+            "pelvic_floor_training_100"
+          ],
+          "source_summary_jsons": [
+            "bastirr/output/screening_benchmarks/20260618_144851_screening_ladder_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/summary.json"
+          ]
+        },
+        {
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "gold_label_policy": "exclude_label_0_5",
+          "suite": "screening_ladder",
+          "gatekeeper_preset": "qwen3.5_27b",
+          "gatekeeper_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "qwen3.5_27b",
+          "orchestrator_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
+          "n_expected_runs": 5,
+          "n_scored_runs": 4,
+          "n_source_rows": 5,
+          "missing_review_keys": [
+            "pelvic_floor_training_100"
+          ],
+          "source_summary_jsons": [
+            "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/summary.json"
+          ]
+        }
+      ]
+    },
+    {
+      "suite": "screening_ladder_dev_exclude_balanced",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "n_source_runs": 45,
+      "n_incomplete_or_unscored_runs": 3,
+      "n_excluded_incomplete_model_groups": 1,
+      "incomplete_or_unscored_runs": [
+        {
+          "suite": "screening_ladder_dev_exclude_balanced",
+          "gold_label_policy": "exclude_label_0_5",
+          "benchmark_architecture": "batch_orchestrator_v1",
+          "review_key": "adhesive_capsulitis_50",
+          "review_title": "Manual therapy and exercise for adhesive capsulitis (frozen shoulder)",
+          "n_studies": 50,
+          "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "orchestrator_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "run_index": 1,
+          "run_status": "incomplete",
+          "scored_for_aggregate": false,
+          "parse_success": false,
+          "decision_coverage": 0.0,
+          "screening_decision_count": 0,
+          "missing_decision_count": 50,
+          "invalid_decision_count": 0,
+          "duplicate_decision_count": 0,
+          "incomplete_reason": "Parsed 0/50 unique decisions (missing=50, duplicate=0, invalid=0).",
+          "error": "",
+          "source_summary_json": "bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced/exclude_policy/summary.json",
+          "source_experiment_dir": "bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced"
+        },
+        {
+          "suite": "screening_ladder_dev_exclude_balanced",
+          "gold_label_policy": "exclude_label_0_5",
+          "benchmark_architecture": "batch_orchestrator_v1",
+          "review_key": "desmopressin_transfusion_100",
+          "review_title": "Desmopressin use for minimising perioperative blood transfusion",
+          "n_studies": 100,
+          "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "orchestrator_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "run_index": 1,
+          "run_status": "incomplete",
+          "scored_for_aggregate": false,
+          "parse_success": false,
+          "decision_coverage": 0.0,
+          "screening_decision_count": 0,
+          "missing_decision_count": 100,
+          "invalid_decision_count": 0,
+          "duplicate_decision_count": 0,
+          "incomplete_reason": "Parsed 0/100 unique decisions (missing=100, duplicate=0, invalid=0).",
+          "error": "",
+          "source_summary_json": "bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced/exclude_policy/summary.json",
+          "source_experiment_dir": "bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced"
+        },
+        {
+          "suite": "screening_ladder_dev_exclude_balanced",
+          "gold_label_policy": "exclude_label_0_5",
+          "benchmark_architecture": "batch_orchestrator_v1",
+          "review_key": "prom_feedback_194",
+          "review_title": "Routine provision of feedback from patient‐reported outcome measurements to healthcare providers and patients in clinical practice",
+          "n_studies": 194,
+          "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "orchestrator_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "run_index": 1,
+          "run_status": "incomplete",
+          "scored_for_aggregate": false,
+          "parse_success": false,
+          "decision_coverage": 0.0,
+          "screening_decision_count": 0,
+          "missing_decision_count": 194,
+          "invalid_decision_count": 0,
+          "duplicate_decision_count": 0,
+          "incomplete_reason": "Parsed 0/194 unique decisions (missing=194, duplicate=0, invalid=0).",
+          "error": "",
+          "source_summary_json": "bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced/exclude_policy/summary.json",
+          "source_experiment_dir": "bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced"
+        }
+      ],
+      "excluded_incomplete_model_groups": [
+        {
+          "benchmark_architecture": "batch_orchestrator_v1",
+          "gold_label_policy": "exclude_label_0_5",
+          "suite": "screening_ladder_dev_exclude_balanced",
+          "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "orchestrator_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "n_expected_runs": 5,
+          "n_scored_runs": 2,
+          "n_source_rows": 5,
+          "missing_review_keys": [
+            "adhesive_capsulitis_50",
+            "desmopressin_transfusion_100",
+            "prom_feedback_194"
+          ],
+          "source_summary_jsons": [
+            "bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced/exclude_policy/summary.json"
+          ]
+        }
+      ]
+    },
+    {
+      "suite": "screening_ladder_dev_exclude_balanced",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "loop_chunk_orchestrator_v1",
+      "n_source_runs": 39,
+      "n_incomplete_or_unscored_runs": 3,
+      "n_excluded_incomplete_model_groups": 3,
+      "incomplete_or_unscored_runs": [
+        {
+          "suite": "screening_ladder_dev_exclude_balanced",
+          "gold_label_policy": "exclude_label_0_5",
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "review_key": "desmopressin_transfusion_100",
+          "review_title": "Desmopressin use for minimising perioperative blood transfusion",
+          "n_studies": 100,
+          "gatekeeper_preset": "qwen3.5_122b_a10b",
+          "gatekeeper_model_label": "qwen3.5-122b-a10b [Qwen 3.5 122B A10B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "qwen3.5_122b_a10b",
+          "orchestrator_model_label": "qwen3.5-122b-a10b [Qwen 3.5 122B A10B]",
+          "run_index": 1,
+          "run_status": "incomplete",
+          "scored_for_aggregate": false,
+          "parse_success": false,
+          "decision_coverage": 0.75,
+          "screening_decision_count": 75,
+          "missing_decision_count": 25,
+          "invalid_decision_count": 0,
+          "duplicate_decision_count": 0,
+          "incomplete_reason": "Parsed 75/100 unique decisions (missing=25, duplicate=0, invalid=0).",
+          "error": "",
+          "source_summary_json": "bastirr/output/screening_benchmarks/20260618_111752_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_122b_a10b/exclude_policy/summary.json",
+          "source_experiment_dir": "bastirr/output/screening_benchmarks/20260618_111752_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_122b_a10b"
+        },
+        {
+          "suite": "screening_ladder_dev_exclude_balanced",
+          "gold_label_policy": "exclude_label_0_5",
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "review_key": "desmopressin_transfusion_100",
+          "review_title": "Desmopressin use for minimising perioperative blood transfusion",
+          "n_studies": 100,
+          "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "orchestrator_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "run_index": 1,
+          "run_status": "incomplete",
+          "scored_for_aggregate": false,
+          "parse_success": false,
+          "decision_coverage": 0.5,
+          "screening_decision_count": 50,
+          "missing_decision_count": 50,
+          "invalid_decision_count": 0,
+          "duplicate_decision_count": 0,
+          "incomplete_reason": "Parsed 50/100 unique decisions (missing=50, duplicate=0, invalid=0).",
+          "error": "",
+          "source_summary_json": "bastirr/output/screening_benchmarks/20260618_214138_screening_ladder_dev_exclude_balanced_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/summary.json",
+          "source_experiment_dir": "bastirr/output/screening_benchmarks/20260618_214138_screening_ladder_dev_exclude_balanced_loop_chunked_nvidia_nemotron_3_super_120b_a12b"
+        },
+        {
+          "suite": "screening_ladder_dev_exclude_balanced",
+          "gold_label_policy": "exclude_label_0_5",
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "review_key": "prom_feedback_194",
+          "review_title": "Routine provision of feedback from patient‐reported outcome measurements to healthcare providers and patients in clinical practice",
+          "n_studies": 194,
+          "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "orchestrator_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "run_index": 1,
+          "run_status": "incomplete",
+          "scored_for_aggregate": false,
+          "parse_success": false,
+          "decision_coverage": 0.9175257731958762,
+          "screening_decision_count": 178,
+          "missing_decision_count": 16,
+          "invalid_decision_count": 0,
+          "duplicate_decision_count": 0,
+          "incomplete_reason": "Parsed 178/194 unique decisions (missing=16, duplicate=0, invalid=0).",
+          "error": "",
+          "source_summary_json": "bastirr/output/screening_benchmarks/20260618_214138_screening_ladder_dev_exclude_balanced_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/summary.json",
+          "source_experiment_dir": "bastirr/output/screening_benchmarks/20260618_214138_screening_ladder_dev_exclude_balanced_loop_chunked_nvidia_nemotron_3_super_120b_a12b"
+        }
+      ],
+      "excluded_incomplete_model_groups": [
+        {
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "gold_label_policy": "exclude_label_0_5",
+          "suite": "screening_ladder_dev_exclude_balanced",
+          "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "orchestrator_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "n_expected_runs": 5,
+          "n_scored_runs": 3,
+          "n_source_rows": 5,
+          "missing_review_keys": [
+            "desmopressin_transfusion_100",
+            "prom_feedback_194"
+          ],
+          "source_summary_jsons": [
+            "bastirr/output/screening_benchmarks/20260618_214138_screening_ladder_dev_exclude_balanced_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/summary.json"
+          ]
+        },
+        {
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "gold_label_policy": "exclude_label_0_5",
+          "suite": "screening_ladder_dev_exclude_balanced",
+          "gatekeeper_preset": "qwen3.5_122b_a10b",
+          "gatekeeper_model_label": "qwen3.5-122b-a10b [Qwen 3.5 122B A10B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "qwen3.5_122b_a10b",
+          "orchestrator_model_label": "qwen3.5-122b-a10b [Qwen 3.5 122B A10B]",
+          "n_expected_runs": 5,
+          "n_scored_runs": 4,
+          "n_source_rows": 5,
+          "missing_review_keys": [
+            "desmopressin_transfusion_100"
+          ],
+          "source_summary_jsons": [
+            "bastirr/output/screening_benchmarks/20260618_111752_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_122b_a10b/exclude_policy/summary.json"
+          ]
+        },
+        {
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "gold_label_policy": "exclude_label_0_5",
+          "suite": "screening_ladder_dev_exclude_balanced",
+          "gatekeeper_preset": "qwen3.5_27b",
+          "gatekeeper_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "qwen3.5_27b",
+          "orchestrator_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
+          "n_expected_runs": 5,
+          "n_scored_runs": 4,
+          "n_source_rows": 4,
+          "missing_review_keys": [
+            "prom_feedback_194"
+          ],
+          "source_summary_jsons": [
+            "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/summary.json"
+          ]
+        }
+      ]
+    },
+    {
+      "suite": "screening_ladder_dev_no_label_0_5",
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "loop_chunk_orchestrator_v1",
+      "n_source_runs": 44,
+      "n_incomplete_or_unscored_runs": 2,
+      "n_excluded_incomplete_model_groups": 2,
+      "incomplete_or_unscored_runs": [
+        {
+          "suite": "screening_ladder_dev_no_label_0_5",
+          "gold_label_policy": "exclude_label_0_5",
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "review_key": "ovarian_cancer_diagnosis_92",
+          "review_title": "Menopausal status, ultrasound and biomarker tests in combination for the diagnosis of ovarian cancer in symptomatic women",
+          "n_studies": 92,
+          "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "orchestrator_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "run_index": 1,
+          "run_status": "incomplete",
+          "scored_for_aggregate": false,
+          "parse_success": false,
+          "decision_coverage": 0.6195652173913043,
+          "screening_decision_count": 57,
+          "missing_decision_count": 35,
+          "invalid_decision_count": 0,
+          "duplicate_decision_count": 0,
+          "incomplete_reason": "Parsed 57/92 unique decisions (missing=35, duplicate=0, invalid=0).",
+          "error": "",
+          "source_summary_json": "bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/summary.json",
+          "source_experiment_dir": "bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b"
+        },
+        {
+          "suite": "screening_ladder_dev_no_label_0_5",
+          "gold_label_policy": "exclude_label_0_5",
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "review_key": "ovarian_cancer_diagnosis_92",
+          "review_title": "Menopausal status, ultrasound and biomarker tests in combination for the diagnosis of ovarian cancer in symptomatic women",
+          "n_studies": 92,
+          "gatekeeper_preset": "openai_gpt_oss_120b",
+          "gatekeeper_model_label": "gpt-oss-120b [OpenAI GPT-OSS 120B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "openai_gpt_oss_120b",
+          "orchestrator_model_label": "gpt-oss-120b [OpenAI GPT-OSS 120B]",
+          "run_index": 1,
+          "run_status": "incomplete",
+          "scored_for_aggregate": false,
+          "parse_success": false,
+          "decision_coverage": 0.75,
+          "screening_decision_count": 69,
+          "missing_decision_count": 23,
+          "invalid_decision_count": 0,
+          "duplicate_decision_count": 0,
+          "incomplete_reason": "Parsed 69/92 unique decisions (missing=23, duplicate=0, invalid=0).",
+          "error": "AgentGenerationError: Error in generating model output:\nError code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'openai/gpt-oss-120b is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'DekaLLM', 'is_byok': False, 'retry_after_seconds': 60, 'retry_after_seconds_raw': 60, 'headers': {'Retry-After': '60'}}}, 'user_id': 'org_3CnigLDeixtSa69Bh0d5DyNh7mt'}",
+          "source_summary_json": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/summary.json",
+          "source_experiment_dir": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b"
+        }
+      ],
+      "excluded_incomplete_model_groups": [
+        {
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "gold_label_policy": "exclude_label_0_5",
+          "suite": "screening_ladder_dev_no_label_0_5",
+          "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+          "orchestrator_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+          "n_expected_runs": 5,
+          "n_scored_runs": 4,
+          "n_source_rows": 5,
+          "missing_review_keys": [
+            "ovarian_cancer_diagnosis_92"
+          ],
+          "source_summary_jsons": [
+            "bastirr/output/screening_benchmarks/20260618_015513_screening_ladder_dev_no_label_0_5_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/summary.json"
+          ]
+        },
+        {
+          "benchmark_architecture": "loop_chunk_orchestrator_v1",
+          "gold_label_policy": "exclude_label_0_5",
+          "suite": "screening_ladder_dev_no_label_0_5",
+          "gatekeeper_preset": "openai_gpt_oss_120b",
+          "gatekeeper_model_label": "gpt-oss-120b [OpenAI GPT-OSS 120B]",
+          "orchestrator_policy": "fixed",
+          "orchestrator_preset": "openai_gpt_oss_120b",
+          "orchestrator_model_label": "gpt-oss-120b [OpenAI GPT-OSS 120B]",
+          "n_expected_runs": 5,
+          "n_scored_runs": 3,
+          "n_source_rows": 4,
+          "missing_review_keys": [
+            "home_based_rehabilitation_183",
+            "ovarian_cancer_diagnosis_92"
+          ],
+          "source_summary_jsons": [
+            "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/summary.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

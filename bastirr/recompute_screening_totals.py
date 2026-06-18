@@ -9,6 +9,7 @@ from bastirr.benchmarking.metrics import SCREENING_LABEL_POLICIES
 from bastirr.benchmarking.totals import (
     DEFAULT_CANONICAL_POLICY,
     SOURCE_MODES,
+    merge_canonical_sources,
     write_canonical_sources,
     write_screening_totals,
 )
@@ -56,6 +57,25 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--merge-canonical-sources",
+        nargs="+",
+        type=Path,
+        default=None,
+        help=(
+            "Merge one or more canonical_sources.json files into "
+            "<totals-root>/canonical_sources.json before regenerating totals. "
+            "The existing target manifest is included automatically."
+        ),
+    )
+    parser.add_argument(
+        "--merge-canonical-only",
+        action="store_true",
+        help=(
+            "With --merge-canonical-sources, write the merged canonical manifest "
+            "and exit without regenerating aggregate totals."
+        ),
+    )
+    parser.add_argument(
         "--include-repeated-canonical-sources",
         action="store_true",
         help=(
@@ -94,7 +114,19 @@ def main() -> None:
             "multi-policy seeding."
         ),
     )
+    parser.add_argument(
+        "--write-incomplete-report",
+        action="store_true",
+        help=(
+            "Write totals/incomplete_runs_report.json and .md with unscored "
+            "runs and model groups excluded because one or more SRs were not scored."
+        ),
+    )
     args = parser.parse_args()
+    if args.build_canonical_only and args.merge_canonical_sources:
+        parser.error("--build-canonical-only cannot be combined with --merge-canonical-sources")
+    if args.merge_canonical_only and not args.merge_canonical_sources:
+        parser.error("--merge-canonical-only requires --merge-canonical-sources")
     if args.canonical_gold_label_policies is not None:
         canonical_gold_label_policies = args.canonical_gold_label_policies
     elif args.canonical_policy == "all":
@@ -118,11 +150,26 @@ def main() -> None:
         print("Aggregate totals were not regenerated.")
         return
 
+    if args.merge_canonical_sources:
+        merged = merge_canonical_sources(
+            source_manifest_paths=args.merge_canonical_sources,
+            totals_root=args.totals_root,
+        )
+        print("Canonical sources merged under:")
+        print(f"  {merged['canonical_sources_path']}")
+        print(f"Input canonical sources: {merged['n_input_sources']}")
+        print(f"Deduplicated sources: {merged['n_deduplicated_sources']}")
+        print(f"Merged canonical sources: {merged['n_sources']}")
+        if args.merge_canonical_only:
+            print("Aggregate totals were not regenerated.")
+            return
+
     result = write_screening_totals(
         output_root=args.output_root,
         totals_root=args.totals_root,
         source_mode=args.source_mode,
         canonical_gold_label_policies=canonical_gold_label_policies,
+        write_incomplete_report=args.write_incomplete_report,
     )
     print(f"Totals refreshed under:\n  {result['totals_root']}")
     print(f"Source mode: {result['source_mode']}")
@@ -133,6 +180,8 @@ def main() -> None:
         "Horizontal comparison groups: "
         f"{len(result.get('horizontal_comparison_groups', []))}"
     )
+    if result.get("incomplete_runs_report"):
+        print(f"Incomplete runs report: {result['incomplete_runs_report']}")
 
 
 if __name__ == "__main__":

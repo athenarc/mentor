@@ -12,7 +12,6 @@ from bastirr.benchmarking.model_presets import (
 )
 from bastirr.benchmarking.review_suites import get_review_suite, list_review_suites
 from bastirr.benchmarking.runner import run_screening_benchmark
-from bastirr.benchmarking.metrics import SCREENING_LABEL_POLICIES
 from bastirr.benchmarking.totals import (
     register_canonical_sources_from_experiment,
     write_screening_totals,
@@ -83,19 +82,6 @@ def main() -> None:
         help="Preset key used when --orchestrator-policy=fixed",
     )
     parser.add_argument(
-        "--gold-label-policy",
-        choices=list(SCREENING_LABEL_POLICIES),
-        default=None,
-        help="Optional single gold-label policy to score; if omitted, the benchmark writes both built-in policies from the same raw runs",
-    )
-    parser.add_argument(
-        "--gold-label-policies",
-        nargs="+",
-        choices=list(SCREENING_LABEL_POLICIES),
-        default=None,
-        help="Optional explicit list of gold-label policies to score from the same raw runs",
-    )
-    parser.add_argument(
         "--hide-subagent-steps",
         dest="include_subagent_steps",
         action="store_false",
@@ -160,10 +146,6 @@ def main() -> None:
         orchestrator_policy=args.orchestrator_policy,
         orchestrator_model_key=args.orchestrator_model,
         review_keys=args.reviews,
-        gold_label_policies=(
-            args.gold_label_policies
-            or ([args.gold_label_policy] if args.gold_label_policy else None)
-        ),
         include_subagent_steps=args.include_subagent_steps,
         execute_policy_notebooks=not args.skip_policy_notebook_execution,
         canonical_mode=args.canonical,

@@ -21,6 +21,12 @@ CANONICAL_SOURCES_FILENAME = "canonical_sources.json"
 CANONICAL_SOURCES_AUDIT_JSON_FILENAME = "canonical_sources_audit.json"
 CANONICAL_SOURCES_AUDIT_MD_FILENAME = "canonical_sources_audit.md"
 CANONICAL_AUDIT_DIRNAME = "_archive"
+EXPLICIT_MANIFEST_SELECTION_RULES = [
+    "new benchmark runs replace the same suite/policy/review/architecture/model variant",
+    "auto mode registers repeat=1 completed/scored runs only",
+    "force mode can register repeated completed/scored runs",
+    "canonical registration defaults to exclude-label policy only",
+]
 DEFAULT_CANONICAL_POLICY = "exclude_label_0_5"
 DEFAULT_CANONICAL_GOLD_LABEL_POLICIES = (DEFAULT_CANONICAL_POLICY,)
 SOURCE_MODES = ("canonical", "discover", "all")
@@ -335,6 +341,32 @@ def _canonical_source_entry(row: dict, *, selection_reason: str) -> dict:
     }
 
 
+def _normalize_manifest_path(value: str) -> str:
+    if not value:
+        return ""
+    path = Path(value)
+    if path.is_absolute() and not path.exists():
+        parts = path.parts
+        for index in range(len(parts) - 2):
+            if parts[index:index + 3] == ("bastirr", "output", "screening_benchmarks"):
+                return str(Path(*parts[index:]))
+    return _repo_relative_path(path)
+
+
+def _normalize_canonical_manifest_source(entry: dict) -> dict:
+    normalized = dict(entry)
+    normalized["source_summary_json"] = _normalize_manifest_path(
+        str(normalized.get("source_summary_json", ""))
+    )
+    normalized["source_experiment_dir"] = _normalize_manifest_path(
+        str(normalized.get("source_experiment_dir", ""))
+    )
+    normalized.setdefault("benchmark_architecture", BATCH_ARCHITECTURE)
+    normalized["run_index"] = _as_int(normalized.get("run_index")) or 1
+    normalized["source_repeats"] = _as_int(normalized.get("source_repeats")) or 1
+    return normalized
+
+
 def _read_canonical_manifest(path: Path) -> dict:
     if not path.exists():
         return {"version": 1, "sources": []}
@@ -354,6 +386,7 @@ def _write_canonical_manifest(path: Path, payload: dict) -> dict:
     payload = dict(payload)
     payload.pop("canonical_sources_audit_json_path", None)
     payload.pop("canonical_sources_audit_md_path", None)
+    payload.pop("_transient_merge_stats", None)
     payload["generated_at"] = datetime.now().isoformat()
     payload["sources"] = sorted(
         payload.get("sources", []),
@@ -369,6 +402,50 @@ def _write_canonical_manifest(path: Path, payload: dict) -> dict:
     )
     _write_json(path, payload)
     return payload
+
+
+def _merge_manifest_header(
+    manifests: list[dict],
+    *,
+    target_manifest_path: Path,
+    discovery_stats: dict,
+) -> dict:
+    count_keys = [
+        "n_discovered_runs",
+        "n_completed_scored_repeat_eligible_runs",
+        "n_excluded_repetition_folder_runs",
+        "n_eligible_runs",
+    ]
+    base = next(
+        (
+            manifest
+            for manifest in manifests
+            if all(key in manifest for key in count_keys)
+        ),
+        manifests[0] if manifests else {},
+    )
+    header = {
+        key: value
+        for key, value in base.items()
+        if key not in {"sources", "n_sources", "generated_at"}
+        and not key.startswith("merged_")
+        and key not in {"n_input_sources", "n_deduplicated_sources", "source_manifest_counts"}
+    }
+    header.update({
+        "version": 1,
+        "selection_mode": "explicit_manifest",
+        "canonical_sources_path": _repo_relative_path(target_manifest_path),
+        "selection_rules": EXPLICIT_MANIFEST_SELECTION_RULES,
+        "n_discovered_runs": len(discovery_stats["all_runs"]),
+        "n_completed_scored_repeat_eligible_runs": len(
+            discovery_stats["pre_repetition_filter_rows"]
+        ),
+        "n_excluded_repetition_folder_runs": len(
+            discovery_stats["excluded_repetition_rows"]
+        ),
+        "n_eligible_runs": len(discovery_stats["eligible_rows"]),
+    })
+    return header
 
 
 def _canonical_audit_groups(sources: list[dict]) -> list[dict]:
@@ -524,6 +601,42 @@ def _eligible_canonical_rows(
     ]
 
 
+def _canonical_discovery_stats(
+    *,
+    output_root: Path,
+    include_repeated: bool,
+    include_repetition_folders: bool,
+    gold_label_policies: Iterable[str] | None,
+) -> dict:
+    all_runs: list[dict] = []
+    for summary_path in _summary_paths(output_root):
+        all_runs.extend(_load_policy_runs(summary_path))
+
+    pre_repetition_filter_rows = _eligible_canonical_rows(
+        all_runs,
+        include_repeated=include_repeated,
+        include_repetition_folders=True,
+        gold_label_policies=gold_label_policies,
+    )
+    excluded_repetition_rows = [
+        row
+        for row in pre_repetition_filter_rows
+        if not include_repetition_folders and _is_repetition_source(row)
+    ]
+    eligible_rows = _eligible_canonical_rows(
+        all_runs,
+        include_repeated=include_repeated,
+        include_repetition_folders=include_repetition_folders,
+        gold_label_policies=gold_label_policies,
+    )
+    return {
+        "all_runs": all_runs,
+        "pre_repetition_filter_rows": pre_repetition_filter_rows,
+        "excluded_repetition_rows": excluded_repetition_rows,
+        "eligible_rows": eligible_rows,
+    }
+
+
 def write_canonical_sources(
     *,
     output_root: Path | None = None,
@@ -541,27 +654,16 @@ def write_canonical_sources(
     output_root = output_root or (OUTPUT_DIR / "screening_benchmarks")
     totals_root = totals_root or (output_root / "totals")
     canonical_gold_label_policies = tuple(gold_label_policies or ())
-    all_runs: list[dict] = []
-    for summary_path in _summary_paths(output_root):
-        all_runs.extend(_load_policy_runs(summary_path))
-
-    pre_repetition_filter_rows = _eligible_canonical_rows(
-        all_runs,
-        include_repeated=include_repeated,
-        include_repetition_folders=True,
-        gold_label_policies=canonical_gold_label_policies,
-    )
-    excluded_repetition_rows = [
-        row
-        for row in pre_repetition_filter_rows
-        if not include_repetition_folders and _is_repetition_source(row)
-    ]
-    eligible_rows = _eligible_canonical_rows(
-        all_runs,
+    discovery_stats = _canonical_discovery_stats(
+        output_root=output_root,
         include_repeated=include_repeated,
         include_repetition_folders=include_repetition_folders,
         gold_label_policies=canonical_gold_label_policies,
     )
+    all_runs = discovery_stats["all_runs"]
+    pre_repetition_filter_rows = discovery_stats["pre_repetition_filter_rows"]
+    excluded_repetition_rows = discovery_stats["excluded_repetition_rows"]
+    eligible_rows = discovery_stats["eligible_rows"]
     selected_rows = _dedupe_latest_model_review_runs(eligible_rows)
     excluded_repetition_sources = [
         _canonical_source_entry(
@@ -607,6 +709,115 @@ def write_canonical_sources(
         excluded_repetition_sources=excluded_repetition_sources,
     )
     return written
+
+
+def merge_canonical_sources(
+    *,
+    source_manifest_paths: Iterable[Path | str],
+    totals_root: Path | None = None,
+) -> dict:
+    """
+    Merge canonical source manifests into ``totals_root/canonical_sources.json``.
+
+    The current manifest at ``totals_root`` is included when present. Duplicate
+    canonical entries are resolved by newest source timestamp, matching the
+    normal canonical discovery preference.
+    """
+    default_output_root = OUTPUT_DIR / "screening_benchmarks"
+    totals_root = totals_root or (default_output_root / "totals")
+    output_root = totals_root.parent
+    target_manifest_path = totals_root / CANONICAL_SOURCES_FILENAME
+
+    input_paths = [target_manifest_path]
+    input_paths.extend(Path(path) for path in source_manifest_paths)
+
+    merged_by_key: dict[tuple, dict] = {}
+    source_counts: list[dict] = []
+    manifests: list[dict] = []
+    canonical_policies: set[str] = set()
+    missing_summary_paths: list[str] = []
+
+    for manifest_path in input_paths:
+        if not manifest_path.exists():
+            continue
+        manifest = _read_canonical_manifest(manifest_path)
+        manifests.append(manifest)
+        sources = [
+            _normalize_canonical_manifest_source(source)
+            for source in manifest.get("sources", [])
+            if isinstance(source, dict)
+        ]
+        source_counts.append({
+            "manifest_path": _repo_relative_path(manifest_path),
+            "n_sources": len(sources),
+        })
+        canonical_policies.update(
+            str(policy)
+            for policy in manifest.get("canonical_gold_label_policies", [])
+            if str(policy)
+        )
+        for source in sources:
+            summary_json = source.get("source_summary_json", "")
+            if summary_json and not _resolve_repo_path(summary_json).exists():
+                missing_summary_paths.append(summary_json)
+            key = _canonical_entry_key(source)
+            previous = merged_by_key.get(key)
+            if previous is None or (
+                str(source.get("source_timestamp", "")),
+                str(source.get("source_summary_json", "")),
+            ) >= (
+                str(previous.get("source_timestamp", "")),
+                str(previous.get("source_summary_json", "")),
+            ):
+                merged_by_key[key] = dict(source)
+
+    if missing_summary_paths:
+        preview = "; ".join(sorted(set(missing_summary_paths))[:5])
+        raise ValueError(
+            f"{len(set(missing_summary_paths))} merged canonical source summaries "
+            f"do not exist in this checkout: {preview}"
+        )
+
+    input_source_total = sum(row["n_sources"] for row in source_counts)
+    canonical_gold_label_policies = tuple(sorted(canonical_policies))
+    discovery_stats = _canonical_discovery_stats(
+        output_root=output_root,
+        include_repeated=False,
+        include_repetition_folders=False,
+        gold_label_policies=canonical_gold_label_policies,
+    )
+    payload = {
+        **_merge_manifest_header(
+            manifests,
+            target_manifest_path=target_manifest_path,
+            discovery_stats=discovery_stats,
+        ),
+        "canonical_gold_label_policies": list(canonical_gold_label_policies),
+        "n_sources": len(merged_by_key),
+        "sources": [
+            {
+                **source,
+                "selection_reason": (
+                    "seeded from discovered summaries"
+                    if source.get("selection_reason") == "merged from canonical source manifests"
+                    else source.get("selection_reason", "seeded from discovered summaries")
+                ),
+            }
+            for source in merged_by_key.values()
+        ],
+    }
+    written = _write_canonical_manifest(target_manifest_path, payload)
+    _write_canonical_audit_files(
+        totals_root,
+        written,
+        excluded_repetition_sources=[],
+    )
+    return {
+        **written,
+        "n_input_sources": input_source_total,
+        "n_deduplicated_sources": input_source_total - len(merged_by_key),
+        "source_manifest_counts": source_counts,
+    }
 
 
 def _load_runs_from_canonical_sources(*, totals_root: Path) -> list[dict]:
@@ -716,12 +927,7 @@ def register_canonical_sources_from_experiment(
         **manifest,
         "version": 1,
         "selection_mode": "explicit_manifest",
-        "selection_rules": [
-            "new benchmark runs replace the same suite/policy/review/architecture/model variant",
-            "auto mode registers repeat=1 completed/scored runs only",
-            "force mode can register repeated completed/scored runs",
-            "canonical registration defaults to exclude-label policy only",
-        ],
+        "selection_rules": EXPLICIT_MANIFEST_SELECTION_RULES,
         "canonical_gold_label_policies": list(canonical_gold_label_policies),
         "sources": list(by_key.values()),
     }
@@ -884,6 +1090,161 @@ def _complete_model_group_report(
             row.get("gatekeeper_preset", ""),
         ),
     )
+
+
+def _incomplete_run_row(row: dict) -> dict:
+    return {
+        "suite": row.get("suite", ""),
+        "gold_label_policy": row.get("gold_label_policy", ""),
+        "benchmark_architecture": row.get("benchmark_architecture", BATCH_ARCHITECTURE),
+        "review_key": row.get("review_key", ""),
+        "review_title": row.get("review_title", ""),
+        "n_studies": _as_int(row.get("n_studies")),
+        "gatekeeper_preset": row.get("gatekeeper_preset", ""),
+        "gatekeeper_model_label": row.get("gatekeeper_model_label", ""),
+        "orchestrator_policy": row.get("orchestrator_policy", ""),
+        "orchestrator_preset": row.get("orchestrator_preset", ""),
+        "orchestrator_model_label": row.get("orchestrator_model_label", ""),
+        "run_index": _as_int(row.get("run_index")) or 1,
+        "run_status": row.get("run_status", ""),
+        "scored_for_aggregate": bool(row.get("scored_for_aggregate")),
+        "parse_success": bool(row.get("parse_success")),
+        "decision_coverage": _as_float(row.get("decision_coverage")),
+        "screening_decision_count": _as_int(row.get("screening_decision_count")),
+        "missing_decision_count": _as_int(row.get("missing_decision_count")),
+        "invalid_decision_count": _as_int(row.get("invalid_decision_count")),
+        "duplicate_decision_count": _as_int(row.get("duplicate_decision_count")),
+        "incomplete_reason": row.get("incomplete_reason", ""),
+        "error": row.get("error", ""),
+        "source_summary_json": row.get("source_summary_json", ""),
+        "source_experiment_dir": row.get("source_experiment_dir", ""),
+    }
+
+
+def _build_incomplete_totals_report(
+    rows: list[dict],
+    *,
+    source_mode: str,
+    diagnostic_source_mode: str,
+    canonical_gold_label_policies: Iterable[str] | None,
+) -> dict:
+    grouped: dict[tuple[str, str, str], list[dict]] = defaultdict(list)
+    for row in rows:
+        grouped[(
+            row.get("suite", ""),
+            row.get("gold_label_policy", ""),
+            row.get("benchmark_architecture", BATCH_ARCHITECTURE),
+        )].append(row)
+
+    groups = []
+    incomplete_runs = []
+    for (suite, label_policy, architecture), group_rows in sorted(grouped.items()):
+        if not suite or not label_policy:
+            continue
+        _complete_rows, excluded_groups = _complete_model_group_report(group_rows)
+        group_incomplete_runs = [
+            _incomplete_run_row(row)
+            for row in group_rows
+            if not bool(row.get("scored_for_aggregate"))
+        ]
+        if not group_incomplete_runs and not excluded_groups:
+            continue
+        groups.append({
+            "suite": suite,
+            "gold_label_policy": label_policy,
+            "benchmark_architecture": architecture,
+            "n_source_runs": len(group_rows),
+            "n_incomplete_or_unscored_runs": len(group_incomplete_runs),
+            "n_excluded_incomplete_model_groups": len(excluded_groups),
+            "incomplete_or_unscored_runs": group_incomplete_runs,
+            "excluded_incomplete_model_groups": excluded_groups,
+        })
+        incomplete_runs.extend(group_incomplete_runs)
+
+    return {
+        "generated_at": datetime.now().isoformat(),
+        "source_mode": source_mode,
+        "diagnostic_source_mode": diagnostic_source_mode,
+        "canonical_gold_label_policies": list(canonical_gold_label_policies or []),
+        "n_groups_with_incomplete_runs": len(groups),
+        "n_incomplete_or_unscored_runs": len(incomplete_runs),
+        "n_excluded_incomplete_model_groups": sum(
+            group["n_excluded_incomplete_model_groups"]
+            for group in groups
+        ),
+        "groups": groups,
+    }
+
+
+def _write_incomplete_totals_md(path: Path, report: dict) -> None:
+    lines = [
+        "# Incomplete Screening Totals Report",
+        "",
+        f"Source mode: `{report.get('source_mode', '')}`",
+        f"Diagnostic source mode: `{report.get('diagnostic_source_mode', '')}`",
+        f"Canonical policy filter: {', '.join(report.get('canonical_gold_label_policies', [])) or 'none'}",
+        f"Groups with incomplete runs: {report.get('n_groups_with_incomplete_runs', 0)}",
+        f"Incomplete/unscored source runs: {report.get('n_incomplete_or_unscored_runs', 0)}",
+        f"Excluded incomplete model groups: {report.get('n_excluded_incomplete_model_groups', 0)}",
+        "",
+    ]
+    if not report.get("groups"):
+        lines.append("No incomplete or unscored runs were found.")
+        path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        return
+
+    for group in report["groups"]:
+        lines.extend([
+            f"## {group['suite']} / {group['gold_label_policy']} / {group['benchmark_architecture']}",
+            "",
+            f"Source runs: {group['n_source_runs']}",
+            f"Incomplete/unscored runs: {group['n_incomplete_or_unscored_runs']}",
+            f"Excluded model groups: {group['n_excluded_incomplete_model_groups']}",
+            "",
+        ])
+        if group.get("excluded_incomplete_model_groups"):
+            lines.extend([
+                "### Missing SRs By Model Group",
+                "",
+                "| Architecture | Gatekeeper Preset | Gatekeeper Model | Expected | Scored | Missing SRs | Source Summaries |",
+                "|--------------|-------------------|------------------|----------|--------|-------------|------------------|",
+            ])
+            for row in group["excluded_incomplete_model_groups"]:
+                lines.append(
+                    "| {architecture} | {preset} | {model} | {expected} | {scored} | {missing} | {sources} |".format(
+                        architecture=row.get("benchmark_architecture", ""),
+                        preset=row.get("gatekeeper_preset", ""),
+                        model=row.get("gatekeeper_model_label", ""),
+                        expected=row.get("n_expected_runs", 0),
+                        scored=row.get("n_scored_runs", 0),
+                        missing=", ".join(row.get("missing_review_keys", [])),
+                        sources=", ".join(row.get("source_summary_jsons", [])),
+                    )
+                )
+            lines.append("")
+        if group.get("incomplete_or_unscored_runs"):
+            lines.extend([
+                "### Incomplete/Unscored Source Runs",
+                "",
+                "| Review | Run | Status | Scored | Coverage | Missing Decisions | Reason | Source Summary |",
+                "|--------|-----|--------|--------|----------|-------------------|--------|----------------|",
+            ])
+            for row in group["incomplete_or_unscored_runs"]:
+                reason = row.get("incomplete_reason") or row.get("error") or ""
+                lines.append(
+                    "| {review} | {run} | {status} | {scored} | {coverage} | {missing} | {reason} | {source} |".format(
+                        review=row.get("review_key", ""),
+                        run=row.get("run_index", 1),
+                        status=row.get("run_status", ""),
+                        scored=str(row.get("scored_for_aggregate", False)),
+                        coverage=_format_metric(row.get("decision_coverage")),
+                        missing=row.get("missing_decision_count", 0),
+                        reason=str(reason).replace("|", "\\|"),
+                        source=row.get("source_summary_json", ""),
+                    )
+                )
+            lines.append("")
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def _aggregate_review_rows(rows: list[dict]) -> list[dict]:
@@ -1211,6 +1572,7 @@ def write_screening_totals(
     totals_root: Path | None = None,
     source_mode: str = "discover",
     canonical_gold_label_policies: Iterable[str] | None = DEFAULT_CANONICAL_GOLD_LABEL_POLICIES,
+    write_incomplete_report: bool = False,
 ) -> dict:
     """
     Write aggregate totals across screening benchmark policy summaries.
@@ -1240,6 +1602,36 @@ def write_screening_totals(
     if source_mode == "discover":
         all_runs = [row for row in all_runs if not _is_repetition_source(row)]
         all_runs = _dedupe_latest_model_review_runs(all_runs)
+
+    incomplete_report = None
+    if write_incomplete_report:
+        diagnostic_source_mode = source_mode
+        diagnostic_rows = list(all_runs)
+        if source_mode == "canonical":
+            diagnostic_source_mode = "discover"
+            diagnostic_rows = []
+            for summary_path in _summary_paths(output_root):
+                diagnostic_rows.extend(_load_policy_runs(summary_path))
+            policy_set = set(canonical_gold_label_policies or [])
+            if policy_set:
+                diagnostic_rows = [
+                    row
+                    for row in diagnostic_rows
+                    if row.get("gold_label_policy", "") in policy_set
+                ]
+            diagnostic_rows = [row for row in diagnostic_rows if not _is_repetition_source(row)]
+            diagnostic_rows = _dedupe_latest_model_review_runs(diagnostic_rows)
+        incomplete_report = _build_incomplete_totals_report(
+            diagnostic_rows,
+            source_mode=source_mode,
+            diagnostic_source_mode=diagnostic_source_mode,
+            canonical_gold_label_policies=canonical_gold_label_policies,
+        )
+        _write_json(totals_root / "incomplete_runs_report.json", incomplete_report)
+        _write_incomplete_totals_md(
+            totals_root / "incomplete_runs_report.md",
+            incomplete_report,
+        )
 
     grouped: dict[tuple[str, str, str], list[dict]] = defaultdict(list)
     for row in all_runs:
@@ -1335,6 +1727,11 @@ def write_screening_totals(
             "source_mode": source_mode,
             "groups": written_groups,
             "horizontal_comparison_groups": horizontal_groups,
+            "incomplete_runs_report": (
+                _repo_relative_path(totals_root / "incomplete_runs_report.json")
+                if incomplete_report is not None
+                else ""
+            ),
         },
     )
     return {
@@ -1342,4 +1739,9 @@ def write_screening_totals(
         "source_mode": source_mode,
         "groups": written_groups,
         "horizontal_comparison_groups": horizontal_groups,
+        "incomplete_runs_report": (
+            _repo_relative_path(totals_root / "incomplete_runs_report.json")
+            if incomplete_report is not None
+            else ""
+        ),
     }

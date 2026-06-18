@@ -22,7 +22,6 @@ python3 -m bastirr.run_screening_loop_benchmark \
   --orchestrator-model deepseek_v4_pro \
   --repeats 1 \
   --loop-mode chunked \
-  --gold-label-policy exclude_label_0_5 \
   --canonical auto
 ```
 
@@ -42,7 +41,6 @@ python3 -m bastirr.run_screening_loop_benchmark \
   --orchestrator-model deepseek_v4_pro \
   --repeats 1 \
   --loop-mode chunked \
-  --gold-label-policy exclude_label_0_5 \
   --canonical auto
 ```
 
@@ -58,9 +56,9 @@ python3 -m bastirr.run_screening_loop_benchmark \
   --canonical auto
 ```
 
-The rerun uses the experiment checkpoint for suite, model, repeats,
-orchestrator settings, and gold-label policy. It replaces only the selected
-review result and recomputes summaries/totals.
+The rerun uses the experiment checkpoint for suite, model, repeats, and
+orchestrator settings. It replaces only the selected review result and
+recomputes both policy summaries/totals.
 
 ## Chunk Controls
 
@@ -111,7 +109,9 @@ python3 -m bastirr.run_screening_loop_benchmark --list-model-presets
 
 ## Notes
 
-- Use `--gold-label-policy exclude_label_0_5` for canonical totals.
+- Benchmark runs always write both `include_policy/` and `exclude_policy/`.
+- Use `bastirr.recompute_screening_totals --canonical-policy ...` for canonical
+  totals selection.
 - Use `--canonical none` for exploratory runs that should not update
   `canonical_sources.json`.
 - Use `--skip-totals-aggregation` only when you explicitly want to defer totals

@@ -22,6 +22,7 @@ from bastirr.benchmarking.telemetry import (
     compute_rationale_metrics,
 )
 from bastirr.benchmarking.totals import (
+    merge_canonical_sources,
     register_canonical_sources_from_experiment,
     size_band_for,
     write_canonical_sources,
@@ -1145,6 +1146,9 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
                     "scored_for_aggregate": scored,
                     "parse_success": scored,
                     "decision_coverage": 1.0 if scored else 0.0,
+                    "screening_decision_count": 10 if scored else 0,
+                    "missing_decision_count": 0 if scored else (10 if review_key.endswith("_10") else 25),
+                    "incomplete_reason": "" if scored else "missing 25 decisions",
                     "accuracy": f1,
                     "precision": f1,
                     "recall": f1,
@@ -1173,7 +1177,10 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
             stale_suite_horizontal.parent.mkdir(parents=True, exist_ok=True)
             stale_suite_horizontal.write_text("{}", encoding="utf-8")
 
-            result = write_screening_totals(output_root=output_root)
+            result = write_screening_totals(
+                output_root=output_root,
+                write_incomplete_report=True,
+            )
 
             self.assertEqual(size_band_for(100)["key"], "upper_mid_100")
             self.assertEqual(size_band_for(101)["key"], "large_100_plus")
@@ -1218,6 +1225,33 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
                 / "totals"
                 / "totals_index.json"
             ).read_text(encoding="utf-8"))
+            self.assertTrue(result["incomplete_runs_report"].endswith("incomplete_runs_report.json"))
+            self.assertTrue(totals_index["incomplete_runs_report"].endswith("incomplete_runs_report.json"))
+            incomplete_report = json.loads((
+                output_root
+                / "totals"
+                / "incomplete_runs_report.json"
+            ).read_text(encoding="utf-8"))
+            self.assertEqual(incomplete_report["n_incomplete_or_unscored_runs"], 1)
+            self.assertEqual(incomplete_report["n_excluded_incomplete_model_groups"], 1)
+            incomplete_group = incomplete_report["groups"][0]
+            self.assertEqual(
+                incomplete_group["excluded_incomplete_model_groups"][0]["missing_review_keys"],
+                ["partial_review_25"],
+            )
+            self.assertEqual(
+                incomplete_group["incomplete_or_unscored_runs"][0]["review_key"],
+                "partial_review_25",
+            )
+            self.assertEqual(
+                incomplete_group["incomplete_or_unscored_runs"][0]["missing_decision_count"],
+                25,
+            )
+            self.assertTrue((
+                output_root
+                / "totals"
+                / "incomplete_runs_report.md"
+            ).exists())
             self.assertFalse(totals_index["totals_root"].startswith("/"))
             self.assertTrue(all(
                 not group["directory"].startswith("/")
@@ -1379,6 +1413,138 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
             self.assertEqual(
                 {group["gold_label_policy"] for group in all_result["groups"]},
                 {"exclude_label_0_5", "include_label_0_5"},
+            )
+
+    def test_merge_canonical_sources_unions_manifests_and_dedupes(self):
+        with tempfile.TemporaryDirectory(dir=Path.cwd()) as tmpdir:
+            output_root = Path(tmpdir) / "screening_benchmarks"
+            totals_root = output_root / "totals"
+            remote_root = output_root / "totals_remote"
+            summary_a = output_root / "exp_a" / "exclude_policy" / "summary.json"
+            summary_b = output_root / "exp_b" / "exclude_policy" / "summary.json"
+            summary_rep = output_root / "exp_rep2" / "exclude_policy" / "summary.json"
+            summary_a.parent.mkdir(parents=True, exist_ok=True)
+            summary_b.parent.mkdir(parents=True, exist_ok=True)
+            summary_rep.parent.mkdir(parents=True, exist_ok=True)
+
+            def _run(review_key: str, model: str) -> dict:
+                return {
+                    "suite": "screening_ladder",
+                    "gold_label_policy": "exclude_label_0_5",
+                    "benchmark_architecture": "batch_orchestrator_v1",
+                    "review_key": review_key,
+                    "review_title": review_key,
+                    "n_studies": 10,
+                    "gatekeeper_preset": model,
+                    "gatekeeper_model_label": model,
+                    "orchestrator_policy": "fixed",
+                    "orchestrator_preset": model,
+                    "orchestrator_model_label": model,
+                    "run_index": 1,
+                    "run_status": "completed",
+                    "scored_for_aggregate": True,
+                }
+
+            summary_a.write_text(json.dumps({
+                "suite": "screening_ladder",
+                "gold_label_policy": "exclude_label_0_5",
+                "repeats": 1,
+                "runs": [_run("review_a", "model_a")],
+            }), encoding="utf-8")
+            summary_b.write_text(json.dumps({
+                "suite": "screening_ladder",
+                "gold_label_policy": "exclude_label_0_5",
+                "repeats": 1,
+                "runs": [
+                    _run("review_a", "model_a"),
+                    _run("review_b", "model_b"),
+                ],
+            }), encoding="utf-8")
+            summary_rep.write_text(json.dumps({
+                "suite": "screening_ladder",
+                "gold_label_policy": "exclude_label_0_5",
+                "repeats": 1,
+                "runs": [_run("review_c", "model_c")],
+            }), encoding="utf-8")
+
+            def _source(review_key: str, model: str, summary_path: Path, stamp: str) -> dict:
+                return {
+                    "suite": "screening_ladder",
+                    "gold_label_policy": "exclude_label_0_5",
+                    "benchmark_architecture": "batch_orchestrator_v1",
+                    "review_key": review_key,
+                    "review_title": review_key,
+                    "n_studies": 10,
+                    "gatekeeper_preset": model,
+                    "gatekeeper_model_label": model,
+                    "orchestrator_policy": "fixed",
+                    "orchestrator_preset": model,
+                    "orchestrator_model_label": model,
+                    "run_index": 1,
+                    "run_status": "completed",
+                    "scored_for_aggregate": True,
+                    "source_repeats": 1,
+                    "source_timestamp": stamp,
+                    "source_summary_json": str(summary_path),
+                    "source_experiment_dir": str(summary_path.parent.parent),
+                    "selection_reason": "test",
+                }
+
+            totals_root.mkdir(parents=True, exist_ok=True)
+            remote_root.mkdir(parents=True, exist_ok=True)
+            (totals_root / "canonical_sources.json").write_text(json.dumps({
+                "version": 1,
+                "canonical_gold_label_policies": ["exclude_label_0_5"],
+                "n_discovered_runs": 10,
+                "n_completed_scored_repeat_eligible_runs": 3,
+                "n_excluded_repetition_folder_runs": 1,
+                "n_eligible_runs": 2,
+                "sources": [
+                    _source("review_a", "model_a", summary_a, "2026-01-01|20260101_000000"),
+                ],
+            }), encoding="utf-8")
+            (remote_root / "canonical_sources.json").write_text(json.dumps({
+                "version": 1,
+                "canonical_gold_label_policies": ["exclude_label_0_5"],
+                "sources": [
+                    _source("review_a", "model_a", summary_b, "2026-01-02|20260102_000000"),
+                    _source("review_b", "model_b", summary_b, "2026-01-02|20260102_000000"),
+                ],
+            }), encoding="utf-8")
+
+            merged = merge_canonical_sources(
+                totals_root=totals_root,
+                source_manifest_paths=[remote_root / "canonical_sources.json"],
+            )
+
+            self.assertEqual(merged["n_input_sources"], 3)
+            self.assertEqual(merged["n_deduplicated_sources"], 1)
+            self.assertEqual(merged["n_sources"], 2)
+            persisted = json.loads((totals_root / "canonical_sources.json").read_text())
+            self.assertEqual(persisted["selection_mode"], "explicit_manifest")
+            self.assertNotIn("merged_from", persisted)
+            self.assertNotIn("n_input_sources", persisted)
+            self.assertNotIn("n_deduplicated_sources", persisted)
+            self.assertNotIn("source_manifest_counts", persisted)
+            self.assertEqual(persisted["n_discovered_runs"], 4)
+            self.assertEqual(persisted["n_completed_scored_repeat_eligible_runs"], 4)
+            self.assertEqual(persisted["n_excluded_repetition_folder_runs"], 1)
+            self.assertEqual(persisted["n_eligible_runs"], 3)
+            self.assertTrue(all(
+                source.get("selection_reason") != "merged from canonical source manifests"
+                for source in persisted["sources"]
+            ))
+            sources_by_review = {
+                source["review_key"]: source
+                for source in merged["sources"]
+            }
+            self.assertEqual(
+                sources_by_review["review_a"]["source_summary_json"],
+                str(summary_b.resolve().relative_to(Path.cwd())),
+            )
+            self.assertEqual(
+                sources_by_review["review_b"]["source_summary_json"],
+                str(summary_b.resolve().relative_to(Path.cwd())),
             )
 
     def test_register_canonical_sources_from_experiment_replaces_same_variant(self):

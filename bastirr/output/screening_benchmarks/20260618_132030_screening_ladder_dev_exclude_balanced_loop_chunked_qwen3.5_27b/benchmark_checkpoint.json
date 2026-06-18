@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T14:41:08.914656",
+  "generated_at": "2026-06-19T01:49:51.963476",
   "suite": "screening_ladder_dev_exclude_balanced",
   "benchmark_architecture": "loop_chunk_orchestrator_v1",
   "repeats": 1,
@@ -16,9 +16,10 @@
   "orchestrator_policy": "fixed",
   "orchestrator_preset": "qwen3.5_27b",
   "gold_label_policies": [
+    "include_label_0_5",
     "exclude_label_0_5"
   ],
-  "raw_runs_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/_raw_runs",
+  "raw_runs_dir": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/_raw_runs",
   "completed_raw_run_count": 4,
   "total_expected_raw_runs": 5,
   "completed_runs": [
@@ -30,7 +31,7 @@
       "orchestrator_preset": "qwen3.5_27b",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/_raw_runs/20260618_132037_endometrial_progestagens_10_qwen35_27b_fixed_qwen35_27b_run1"
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/endometrial_progestagens_10_qwen3.5_27b_fixed_qwen3.5_27b_run1"
     },
     {
       "benchmark_run_id": "tricyclic_depression_children_25_qwen3.5_27b_fixed_qwen3.5_27b_run1",
@@ -40,7 +41,7 @@
       "orchestrator_preset": "qwen3.5_27b",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/_raw_runs/20260618_132217_tricyclic_depression_children_25_qwen35_27b_fixed_qwen35_27b"
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/tricyclic_depression_children_25_qwen3.5_27b_fixed_qwen3.5_27b_run1"
     },
     {
       "benchmark_run_id": "adhesive_capsulitis_50_qwen3.5_27b_fixed_qwen3.5_27b_run1",
@@ -50,7 +51,7 @@
       "orchestrator_preset": "qwen3.5_27b",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/_raw_runs/20260618_132737_adhesive_capsulitis_50_qwen35_27b_fixed_qwen35_27b_run1"
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/adhesive_capsulitis_50_qwen3.5_27b_fixed_qwen3.5_27b_run1"
     },
     {
       "benchmark_run_id": "desmopressin_transfusion_100_qwen3.5_27b_fixed_qwen3.5_27b_run1",
@@ -60,20 +61,32 @@
       "orchestrator_preset": "qwen3.5_27b",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/_raw_runs/20260618_135628_desmopressin_transfusion_100_qwen35_27b_fixed_qwen35_27b_run"
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/desmopressin_transfusion_100_qwen3.5_27b_fixed_qwen3.5_27b_run1"
     }
   ],
-  "comparison_html_report": null,
+  "comparison_html_report": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/screening_policy_comparison.html",
   "policy_outputs": {
+    "include_label_0_5": {
+      "directory": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/include_policy",
+      "summary_json": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/include_policy/summary.json",
+      "summary_csv": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/include_policy/summary.csv",
+      "leaderboard_markdown": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/include_policy/leaderboard.md",
+      "review_leaderboard_markdown": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/include_policy/review_leaderboard.md",
+      "runs_dir": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/include_policy/runs",
+      "html_report": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/include_policy/screening_results_summary.html",
+      "eda_notebook": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/include_policy/screening_results_analysis.ipynb",
+      "eda_notebook_executed": false,
+      "eda_notebook_execution_error": ""
+    },
     "exclude_label_0_5": {
-      "directory": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy",
-      "summary_json": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/summary.json",
-      "summary_csv": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/summary.csv",
-      "leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/leaderboard.md",
-      "review_leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/review_leaderboard.md",
-      "runs_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs",
-      "html_report": "",
-      "eda_notebook": "",
+      "directory": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy",
+      "summary_json": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/summary.json",
+      "summary_csv": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/summary.csv",
+      "leaderboard_markdown": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/leaderboard.md",
+      "review_leaderboard_markdown": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/review_leaderboard.md",
+      "runs_dir": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs",
+      "html_report": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/screening_results_summary.html",
+      "eda_notebook": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/screening_results_analysis.ipynb",
       "eda_notebook_executed": false,
       "eda_notebook_execution_error": ""
     }

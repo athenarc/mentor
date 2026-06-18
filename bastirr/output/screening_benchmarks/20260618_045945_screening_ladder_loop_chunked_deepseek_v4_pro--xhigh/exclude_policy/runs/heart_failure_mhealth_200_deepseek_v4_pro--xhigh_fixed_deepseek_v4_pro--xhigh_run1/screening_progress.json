@@ -1,0 +1,1609 @@
+{
+  "expected_n_studies": 200,
+  "completed_count": 200,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199,
+    200
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing a tablet-based education/information system plus weight scale versus standard HF information. The tablet delivers health education per guidelines, meeting the mHealth education intervention criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT evaluating a web-based education website (heartfailurematters.org) versus usual care. The website is an internet-based education programme, fitting the selection criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Pilot RCT of a web-based self-care/education intervention in HF patients. Though small, it is an RCT of an internet-delivered education programme.",
+      "confidence": ""
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing SMS follow-up (a mobile-based communication) with telephone and regular follow-up. SMS follow-up likely includes educational content; it fits the mHealth-delivered education definition.",
+      "confidence": ""
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Although an RCT, the intervention is a multi-component psychoeducation programme delivered primarily through face-to-face counselling, with computer-based materials that are not explicitly mobile or web-based. Does not meet the mHealth education definition.",
+      "confidence": ""
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cost-effectiveness analysis of the same trial as study 5. Same intervention lacking clear mHealth delivery.",
+      "confidence": ""
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of a nurse-guided education program with telephone communication and follow-up visits; no mHealth component. Telephone alone does not constitute mHealth education as defined.",
+      "confidence": ""
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of video education (likely TV/DVD) added to standard education. Not an internet/mobile-based education programme.",
+      "confidence": ""
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Non-randomised pilot study with 8 patients; no control group. Not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Reports recruitment analysis of a study; not an RCT itself. Also includes mixed conditions (HF, hypertension, dyslipidemia), not exclusively HF.",
+      "confidence": ""
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of a web-based monitoring device; the focus is on compliance monitoring, not an education programme. Does not meet the 'mHealth-delivered education' criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Exploratory field study with constant comparative analysis, not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Descriptive usability survey, not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study protocol only; no results from a conducted RCT are reported.",
+      "confidence": ""
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Multifaceted collaborative care intervention including home telemonitoring, but the core is not an mHealth-delivered education programme. The education component, if any, is not the primary mHealth focus.",
+      "confidence": ""
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Design paper, not a completed RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized field experiment evaluating a web-based home care resource (HeartCareII) that provides educational content. Fits mHealth-delivered education via the internet.",
+      "confidence": ""
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of motivational interviewing (face-to-face and telephone follow-up). No mHealth education delivery.",
+      "confidence": ""
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not exclusive to HF (includes high CVD risk). The intervention uses a tablet app during in-person sessions, not a stand-alone mHealth-delivered education programme versus usual HF care.",
+      "confidence": ""
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT of a mobile phone-assisted case management programme that includes education and self-care support. Clearly mHealth-delivered education versus usual care.",
+      "confidence": ""
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of telehomecare focused on monitoring and transmission of clinical data, not an education programme.",
+      "confidence": ""
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Analysis of telehealth influence on self-management; still a telemonitoring intervention, not a dedicated education programme.",
+      "confidence": ""
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of continued telehealth (Health Buddy) after homecare; primarily a monitoring system, not an mHealth education intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Pilot RCT using internet-based synchronized video sessions for group education/support plus a Fitbit. The video sessions deliver education via the internet, meeting the criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Quasi-experimental design, not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Development and feasibility testing; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of e-mail reminders sent to nurses, not a patient-facing mHealth education programme.",
+      "confidence": ""
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Single-arm feasibility study, not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protocol publication, not a completed RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review, not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of telemonitoring medication adherence with an electronic device; not an education programme.",
+      "confidence": ""
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT includes patients with COPD as well as HF; intervention is telehealth (monitoring/support), not specifically an mHealth education programme.",
+      "confidence": ""
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing medication reminder devices (pillbox, smartphone). Focus is on adherence reminders, not an education intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of a medication monitoring system (MedSentry); not an education programme.",
+      "confidence": ""
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "The study evaluates integrated care services supported by IT across multiple chronic conditions, not specifically an mHealth-delivered education program for heart failure; it is not a randomized controlled trial comparing mHealth education to usual HF care.",
+      "confidence": ""
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Despite the title mentioning a trial on home telemonitoring in chronic heart failure, the abstract describes a pilot trial on recruitment strategies for a smoking reduction intervention in disadvantaged smokers, not involving HF patients or mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT tests an Internet-based telemedicine system for frequent surveillance and communication in HF, not an mHealth-delivered education program; the intervention focuses on monitoring and communication, not structured education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT evaluates a Web-based telemedicine system for HF management and communication, not an education intervention; it focuses on remote surveillance rather than delivering education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "The study protocol is for an RCT testing an electronic medication adherence support device (telemonitoring), not an mHealth-delivered education program; the intervention is a monitoring device, not educational content.",
+      "confidence": ""
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an overview of systematic reviews, not a randomized controlled trial; it synthesizes existing evidence rather than testing an mHealth education intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study is an economic model derived from a meta-analysis, not a randomized controlled trial; it does not constitute primary research on mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a meta-analysis of RCTs on implantable device telemonitoring, not an original RCT; it assesses telemonitoring, not mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "The IN TOUCH RCT compares ICT-guided disease management with telemonitoring to a control, but the intervention is a comprehensive disease management system, not specifically an mHealth-delivered education program.",
+      "confidence": ""
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review of controlled clinical studies on educational voice messages, not an original RCT; it also includes various conditions beyond heart failure.",
+      "confidence": ""
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective analysis of clinical decision support within an mHealth trial, not an RCT evaluating an educational intervention; it focuses on medication adjustment algorithms, not patient education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study describes a telephonic health coaching program for a high-risk population (not exclusively HF) using a retrospective observational design, not an RCT of mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Although an RCT, it tests computer-based imagery/text for heart disease risk in sedentary young adults, not patients with heart failure; the population does not meet the HF criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This mixed-methods pilot study randomizes HF patients to mHealth equipment for remote monitoring, but the intervention is monitoring, not an education program; also it is not a fully powered RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a qualitative study exploring user experiences with digital pen telehealth, not an RCT; it does not test an mHealth education intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT examines an online support group for heart patients (not exclusively HF) and compares moderated vs unmoderated formats; it does not focus on a structured mHealth education program and population is not confirmed HF.",
+      "confidence": ""
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT evaluates systematic education using a Kodak Photo-CD Portfolio technique, which is a CD-based, not mobile/wireless (mHealth) technology; thus it does not meet the mHealth criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT tests an interactive CD-ROM program for HF education, not an internet/mobile-based mHealth intervention; the technology is not mHealth.",
+      "confidence": ""
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "The study uses a quasi-experimental design, not a randomized controlled trial; therefore it does not meet the study design criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a pilot study of a tablet-based application without a control group and with only 12 patients; it is not a randomized controlled trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a proof-of-concept study of internet-based CBT for HF patients with depressive symptoms, not an RCT; it tests an ICBT program, not HF self-care education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This pilot RCT tests guided web-based CBT for depressive symptoms in HF patients, not an mHealth-delivered HF education program; the intervention targets depression, not HF self-care education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT compares remote monitoring plus fluid monitoring to standard care in patients with implanted cardiac devices, not an mHealth education intervention; it focuses on device monitoring.",
+      "confidence": ""
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT evaluates home telemonitoring for older HF patients to reduce rehospitalizations, not an education program; the intervention is monitoring, not education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 59,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT assesses a multidisciplinary disease management program for HF, which is not specifically an mHealth-delivered education intervention; it is a comprehensive care management program.",
+      "confidence": ""
+    },
+    {
+      "study_index": 60,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This article describes the study design and methods of the MITI-HF trial, not the results of an RCT; it is a protocol paper, not an eligible trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 61,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT tests a motivational interviewing intervention delivered via home visit and phone calls, not an mHealth-based education using mobile devices, apps, or web platforms; it does not meet the mHealth education criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 62,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a cost-effectiveness analysis of implantable cardiac devices using individual patient data from multiple trials, not an RCT of mHealth education; the intervention is device therapy, not education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 63,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective observational study comparing remote monitoring to hospital-only follow-up for ICD recipients, not a randomized controlled trial; it does not test an education intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 64,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT targets home health nurses with e-mail reminders to improve evidence-based HF care, not patients; the intervention is directed at providers, not patient education via mHealth.",
+      "confidence": ""
+    },
+    {
+      "study_index": 65,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT evaluates telephone-based tele-monitoring to improve self-care in HF patients, but the intervention uses standard telephone calls, not mHealth modalities such as SMS, apps, or web-based platforms; it is not clearly an mHealth education program.",
+      "confidence": ""
+    },
+    {
+      "study_index": 66,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a qualitative descriptive study of nurses' perceptions of a telehealth service, not an RCT; it does not evaluate an mHealth education intervention in HF patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 67,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "The BEAT-HF RCT tests remote patient monitoring combined with health coaching telephone calls, not a structured mHealth-delivered education program; the focus is on monitoring and coaching, not education per se.",
+      "confidence": ""
+    },
+    {
+      "study_index": 68,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a meta-analysis and narrative review of RCTs on consumer health information technology, not an original RCT; it synthesizes existing trials.",
+      "confidence": ""
+    },
+    {
+      "study_index": 69,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article; not a randomised controlled trial (RCT) and not an mHealth education intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 70,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT involving patients with chronic diseases including heart failure; health coaching by telephony is an educational intervention that may be delivered via mobile phones (mHealth); compared to control (likely usual care).",
+      "confidence": ""
+    },
+    {
+      "study_index": 71,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but the intervention is a multiparametric telemonitoring system and telephone support, not a primarily mHealth-delivered education programme.",
+      "confidence": ""
+    },
+    {
+      "study_index": 72,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but the intervention is remote patient monitoring (telehealth) with video visits; not a structured educational programme.",
+      "confidence": ""
+    },
+    {
+      "study_index": 73,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Qualitative study (focus groups); not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 74,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but compares two mHealth support approaches (standard mHealth vs mHealth+CarePartner); no usual care comparator, therefore does not meet the comparison criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 75,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protocol of a randomised trial; not a completed RCT with results.",
+      "confidence": ""
+    },
+    {
+      "study_index": 76,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but the E-Coach intervention is a technology-assisted care transition system focused on monitoring and support, not primarily mHealth-delivered education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 77,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT of a web-based online medical record with an integrated educational guide for HF patients; meets criteria for mHealth-delivered education versus usual care.",
+      "confidence": ""
+    },
+    {
+      "study_index": 78,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but population is general primary care patients, not specifically adults with heart failure; intervention is preventive messages not focused on HF mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 79,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "The provided abstract does not match the title; it describes an observational study on HbA1c in diabetes and HF, not an RCT of a multidisciplinary telehealth programme.",
+      "confidence": ""
+    },
+    {
+      "study_index": 80,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Qualitative focus group study; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 81,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Qualitative interview study; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 82,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but the intervention is mobile phone-based telemonitoring, not primarily an mHealth-delivered education programme; focuses on monitoring physiological parameters with some automated instructions.",
+      "confidence": ""
+    },
+    {
+      "study_index": 83,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protocol for an RCT; not completed trial results.",
+      "confidence": ""
+    },
+    {
+      "study_index": 84,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Design and rationale paper for an ongoing trial; not an RCT with results.",
+      "confidence": ""
+    },
+    {
+      "study_index": 85,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but the intervention is a single-session computer-based educational program, not delivered via mobile/wireless technology (mHealth); therefore does not meet the mHealth criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 86,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Narrative review/opinion on remote monitoring; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 87,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study protocol for an RCT; not completed trial results.",
+      "confidence": ""
+    },
+    {
+      "study_index": 88,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Pilot RCT but the intervention is home telemonitoring, not primarily an educational intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 89,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but intervention uses DVD and written materials, not mobile/wireless technology (mHealth).",
+      "confidence": ""
+    },
+    {
+      "study_index": 90,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but intervention is telemonitoring and telecare via PDA, not a primarily educational programme.",
+      "confidence": ""
+    },
+    {
+      "study_index": 91,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Survey/quality assessment of consumer information materials; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 92,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective matched cohort study; not a randomised controlled trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 93,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective study; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 94,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cost analysis; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 95,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Feasibility study; not an RCT evaluating outcomes.",
+      "confidence": ""
+    },
+    {
+      "study_index": 96,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protocol/rationale paper for an RCT; not completed trial results.",
+      "confidence": ""
+    },
+    {
+      "study_index": 97,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological study on taxonomy of behaviour change techniques; not an RCT of an intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 98,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Registry-based observational study; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 99,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but the intervention is a multicomponent nurse-coordinated disease management programme including telephone monitoring and education; not solely an mHealth-delivered education programme and may not be primarily mobile-based.",
+      "confidence": ""
+    },
+    {
+      "study_index": 100,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Article on grading evidence; not a clinical trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 101,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but compares two active educational interventions (telephone counselling vs brief education), not mHealth education versus usual HF care; no usual care control arm.",
+      "confidence": ""
+    },
+    {
+      "study_index": 102,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review of epidemiology and risk factors of heart failure. It is not a randomised controlled trial (RCT) and does not evaluate an mHealth-delivered education intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 103,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "A narrative review on cognitive impairment and self-care in HF. Not an RCT; no mHealth education intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 104,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review of epidemiology of HFpEF. Not an RCT; does not assess mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 105,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Secondary analysis of observational data examining mediation of social support and adherence. Not an RCT; no mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 106,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of web-based education for type 2 diabetes, not heart failure. Population does not meet inclusion criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 107,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational cohort study on quality of life and survival in HF. Not an RCT; no mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 108,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Literature update on factors related to self-care; not an RCT; no mHealth education intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 109,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of entertainment-based decision aid for breast cancer patients, not HF. Population does not meet criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 110,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Individual patient data meta-analysis of self-management interventions. Not an original RCT; no specific mHealth education vs usual care.",
+      "confidence": ""
+    },
+    {
+      "study_index": 111,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis examining drug/device effects on ventricular remodeling, not mHealth education. Not an original RCT of mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 112,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review of patient satisfaction with telemedicine; not an RCT, no mHealth education intervention evaluated.",
+      "confidence": ""
+    },
+    {
+      "study_index": 113,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Subgroup analysis of ATMOSPHERE trial comparing drug therapies (aliskiren, enalapril) in HF. Not mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 114,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "AHA scientific statement proposing a taxonomy for disease management. Not an RCT; no mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 115,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review of web-based interventions for empowerment/physical activity in chronic diseases. Not an original RCT; no HF-specific mHealth education trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 116,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis of catheter ablation for ventricular tachycardia. Not related to mHealth education or HF education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 117,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review of computer-based self-management programs for chronic illness. Not an original RCT; no specific mHealth education for HF.",
+      "confidence": ""
+    },
+    {
+      "study_index": 118,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational cohort study on numeracy and recidivism in acute HF. Not an RCT; no mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 119,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodology paper on behaviour change wheel; not an RCT, no mHealth education for HF.",
+      "confidence": ""
+    },
+    {
+      "study_index": 120,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis of remote patient monitoring for CHF. Not an original RCT; no specific mHealth education comparison.",
+      "confidence": ""
+    },
+    {
+      "study_index": 121,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Before-after (pre-post) study of a text messaging intervention for HF self-management. Not a randomised controlled trial; study design does not meet inclusion criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 122,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional survey of primary care providers' physical activity counseling; not an RCT, not HF patients, no mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 123,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and meta-analysis of computer-based interventions for type 2 diabetes. Not original RCT; population not HF.",
+      "confidence": ""
+    },
+    {
+      "study_index": 124,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and network meta-analysis of remote monitoring after HF discharge. Not an original RCT; no mHealth education vs usual care.",
+      "confidence": ""
+    },
+    {
+      "study_index": 125,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Commentary on eHealth and community nursing; not a trial, no HF-specific mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 126,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of avatar-based depression self-management for young adults. Population not HF; intervention not HF education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 127,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational cohort study on trends in HF hospitalization and mortality. Not an RCT; no mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 128,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study evaluating an online education/coaching program within the HeartCycle study. Not a randomised controlled trial; study design does not meet criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 129,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of tablet-PC vs conventional education after lung transplantation; population not HF.",
+      "confidence": ""
+    },
+    {
+      "study_index": 130,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional study on cognitive deficits and self-care in elderly HF patients. Not an RCT; no mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 131,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Trial design paper (PIONEER-HF) for sacubitril/valsartan vs enalapril in HF; not an mHealth education intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 132,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review of cognitive impairment in HF. Not an original RCT; no mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 133,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT of a personalised paper-based education tool (ultrasound image printout) for HF self-management. Intervention is not mHealth-delivered (paper-based, not mobile/wireless technology).",
+      "confidence": ""
+    },
+    {
+      "study_index": 134,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Developmental pilot/beta-test of a mobile app for HF education, with 10 patients, no control group. Not an RCT; study design does not meet criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 135,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not a randomized controlled trial; no control group mentioned, unclear study design.",
+      "confidence": ""
+    },
+    {
+      "study_index": 136,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not an RCT; describes development and pilot evaluation, explicitly states need for larger randomized trials.",
+      "confidence": ""
+    },
+    {
+      "study_index": 137,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but intervention is tailored telemonitoring without explicit mHealth-delivered education component.",
+      "confidence": ""
+    },
+    {
+      "study_index": 138,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but intervention is in-home nurse-delivered education, not mHealth (no internet/mobile component).",
+      "confidence": ""
+    },
+    {
+      "study_index": 139,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but intervention is a mobile-monitoring system (daily weight/symptom monitoring) without explicit educational content.",
+      "confidence": ""
+    },
+    {
+      "study_index": 140,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT protocol; intervention includes ICT-guided disease management likely incorporating educational components via telehealth.",
+      "confidence": ""
+    },
+    {
+      "study_index": 141,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT; person-centred telephone support in HF patients includes educational elements (co-creating health plan, self-care).",
+      "confidence": ""
+    },
+    {
+      "study_index": 142,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT; telephone-based health coaching delivers evidence-based information and self-management education for HF patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 143,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not an RCT; appears to be a narrative review or editorial (citation only).",
+      "confidence": ""
+    },
+    {
+      "study_index": 144,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not an RCT; longitudinal pre-post design with no control group.",
+      "confidence": ""
+    },
+    {
+      "study_index": 145,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing web-only self-care education vs. web+telephone education in HF patients; both arms are mHealth-delivered education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 146,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT reported in dissertation; randomized comparison of website-based versus web+telephone self-care education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 147,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but population is heart disease patients, not specifically heart failure; unclear if HF diagnosis required.",
+      "confidence": ""
+    },
+    {
+      "study_index": 148,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not an RCT; describes technical improvements to a telemonitoring system, not a clinical trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 149,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but intervention is telemonitoring (data upload to nurse station) without mHealth-delivered education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 150,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT protocol but intervention is telemedicine and personal health records for monitoring/consultation, not primarily education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 151,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Commentary/opinion piece, not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 152,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Quasi-experimental design, not randomized.",
+      "confidence": ""
+    },
+    {
+      "study_index": 153,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT; includes telephone education and support for HF patients, which qualifies as mHealth-delivered education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 154,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Pilot RCT but intervention is mHealth monitoring equipment without explicit educational component; focuses on monitoring.",
+      "confidence": ""
+    },
+    {
+      "study_index": 155,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Explorative pre-post design, not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 156,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but intervention is self-care education without mHealth delivery (likely face-to-face).",
+      "confidence": ""
+    },
+    {
+      "study_index": 157,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "News article, not a study.",
+      "confidence": ""
+    },
+    {
+      "study_index": 158,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not truly randomized; control group based on refusal to use app, high risk of selection bias.",
+      "confidence": ""
+    },
+    {
+      "study_index": 159,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but intervention is face-to-face self-management group programme, not mHealth.",
+      "confidence": ""
+    },
+    {
+      "study_index": 160,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective analysis, not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 161,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not an RCT; quality improvement project using teach-back telephone calls, no randomization.",
+      "confidence": ""
+    },
+    {
+      "study_index": 162,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Descriptive study with convenience sample, not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 163,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing telehealth self-management (likely includes educational components) to outpatient management in HF patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 164,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT of mHealth intervention (IVR with tailored self-management advice) for HF patients, including educational components.",
+      "confidence": ""
+    },
+    {
+      "study_index": 165,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Quasi-experimental design, not randomized.",
+      "confidence": ""
+    },
+    {
+      "study_index": 166,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but intervention is remote monitoring (weight, BP, ECG) without mHealth-delivered education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 167,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Feasibility study, not an RCT (no randomization or control group mentioned).",
+      "confidence": ""
+    },
+    {
+      "study_index": 168,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not a randomized controlled trial; observational study on retention in mobile health research. Does not test an mHealth education intervention in heart failure patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 169,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Although described as a randomized study, the intervention is daily automated phone calls for risk assessment, not mHealth-delivered education (e.g., internet, apps, SMS). Does not meet intervention criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 170,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Explicitly non-randomised open label study; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 171,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Insufficient abstract; appears to be a study of telemonitoring/transitional care rather than mHealth-delivered education. Likely not meeting educational intervention criteria. However, low confidence due to missing details.",
+      "confidence": ""
+    },
+    {
+      "study_index": 172,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Usability/design study of a web-based symptom monitoring tool, not a randomized controlled trial of an mHealth education intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 173,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not an RCT; appears to be a review or perspective on technology for training ICD patients. Does not focus on mHealth education for heart failure.",
+      "confidence": ""
+    },
+    {
+      "study_index": 174,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Clinical practice guideline, not a primary study (RCT).",
+      "confidence": ""
+    },
+    {
+      "study_index": 175,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review of registries; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 176,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but participants are young adult smokers, not adults with heart failure. Population does not meet criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 177,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a literature review on heart failure education programs, not a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 178,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review of mHealth interventions, not a primary randomized controlled trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 179,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Position statement of the ESC, not a clinical trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 180,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article on self-care in heart failure; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 181,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional observational study examining health literacy and HF knowledge, not an RCT of an mHealth education intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 182,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Self-report survey on technology use patterns; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 183,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review protocol/full review, not a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 184,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Position paper from the ESC e-Cardiology Working Group; not a randomized controlled trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 185,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Qualitative study applying human factors methods; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 186,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Abridged Cochrane systematic review and meta-analysis, not a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 187,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review of structured telephone support and telemonitoring; not a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 188,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and network meta-analysis, not a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 189,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and meta-analysis of home telemonitoring RCTs, not a primary study.",
+      "confidence": ""
+    },
+    {
+      "study_index": 190,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Commentary on social determinants of health; not an RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 191,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "PRISMA statement (reporting guideline); not a clinical trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 192,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "American Heart Association statistics update; not a primary study.",
+      "confidence": ""
+    },
+    {
+      "study_index": 193,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional study of nursing home performance and hospital readmissions; not an RCT of mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 194,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "ESC clinical practice guidelines for heart failure; not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 195,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Literature review on telehealth and self-management; not a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 196,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "AHA policy statement on telehealth implementation; not a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 197,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review update on disease management interventions; not a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 198,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Perspective on shared decision making; not a clinical trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 199,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article on smart technology for medication adherence; not an RCT specifically in heart failure with mHealth education.",
+      "confidence": ""
+    },
+    {
+      "study_index": 200,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and network meta-analysis of transitional care services; not a primary RCT.",
+      "confidence": ""
+    }
+  ]
+}

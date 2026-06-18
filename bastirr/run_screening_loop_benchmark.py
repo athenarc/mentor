@@ -11,7 +11,6 @@ from bastirr.benchmarking.loop_runner import (
     rerun_screening_loop_reviews_in_experiment,
     run_screening_loop_benchmark,
 )
-from bastirr.benchmarking.metrics import SCREENING_LABEL_POLICIES
 from bastirr.benchmarking.model_presets import (
     CANONICAL_MODEL_PRESETS,
     list_model_presets,
@@ -85,19 +84,6 @@ def main() -> None:
         "--orchestrator-model",
         default="openai_gpt5",
         help="Preset key used when --orchestrator-policy=fixed",
-    )
-    parser.add_argument(
-        "--gold-label-policy",
-        choices=list(SCREENING_LABEL_POLICIES),
-        default=None,
-        help="Optional single gold-label policy to score; if omitted, both built-in policies are written",
-    )
-    parser.add_argument(
-        "--gold-label-policies",
-        nargs="+",
-        choices=list(SCREENING_LABEL_POLICIES),
-        default=None,
-        help="Optional explicit list of gold-label policies to score from the same raw runs",
     )
     parser.add_argument(
         "--hide-subagent-steps",
@@ -203,10 +189,6 @@ def main() -> None:
             orchestrator_policy=args.orchestrator_policy,
             orchestrator_model_key=args.orchestrator_model,
             review_keys=args.reviews,
-            gold_label_policies=(
-                args.gold_label_policies
-                or ([args.gold_label_policy] if args.gold_label_policy else None)
-            ),
             include_subagent_steps=args.include_subagent_steps,
             execute_policy_notebooks=not args.skip_policy_notebook_execution,
             loop_mode=args.loop_mode,

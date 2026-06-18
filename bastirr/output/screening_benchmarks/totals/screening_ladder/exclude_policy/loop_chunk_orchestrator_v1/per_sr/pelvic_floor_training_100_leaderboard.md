@@ -7,5 +7,10 @@
 
 | Rank | Architecture | Gatekeeper Model | Runs | Scored | F1 | Recall | Precision | Accuracy | Specificity |
 |------|--------------|------------------|------|--------|----|--------|-----------|----------|-------------|
-| 1 | loop_chunk_orchestrator_v1 | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0.833 | 0.962 | 0.735 | 0.900 | 0.878 |
+| 1 | loop_chunk_orchestrator_v1 | kimi-k2.6 [Kimi K2.6] | 1 | 1 | 0.873 | 0.923 | 0.828 | 0.930 | 0.932 |
+| 2 | loop_chunk_orchestrator_v1 | openai-gpt-5 [OpenAI GPT5] | 1 | 1 | 0.862 | 0.962 | 0.781 | 0.920 | 0.905 |
+| 3 | loop_chunk_orchestrator_v1 | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0.862 | 0.962 | 0.781 | 0.920 | 0.905 |
+| 4 | loop_chunk_orchestrator_v1 | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0.847 | 0.962 | 0.758 | 0.910 | 0.892 |
+| 5 | loop_chunk_orchestrator_v1 | deepseek-v4-pro [DeepSeek V4 Pro] | 1 | 1 | 0.833 | 0.962 | 0.735 | 0.900 | 0.878 |
+| 6 | loop_chunk_orchestrator_v1 | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 0.806 | 0.962 | 0.694 | 0.880 | 0.851 |
 

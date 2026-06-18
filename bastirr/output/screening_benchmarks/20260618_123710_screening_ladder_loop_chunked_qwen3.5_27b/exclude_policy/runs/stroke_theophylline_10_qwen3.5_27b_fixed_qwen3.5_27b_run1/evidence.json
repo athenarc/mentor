@@ -1,0 +1,74 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a double-blind randomised trial comparing theophylline (as aminophylline) with placebo in 46 patients with acute ischemic stroke. The study meets all selection criteria: randomised design, theophylline/analogue intervention, placebo control, acute ischaemic stroke population, and treatment during acute phase.",
+      "confidence": ""
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a double-blind randomised trial comparing intravenous aminophylline with placebo in 79 patients with acute cerebral infarction. Meets all selection criteria: randomised design, aminophylline intervention, placebo control, acute ischaemic stroke population.",
+      "confidence": ""
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an open-label, single-arm, dose-escalation study, NOT a randomised trial. The abstract explicitly states 'A randomized, placebo-controlled trial is needed to determine the neuroprotective effect of this combination', confirming this is not a randomised trial. Does not meet the randomised trial criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "The primary intervention is vincamin (Pervincamine), not theophylline or its analogues. Aminophyllin is only a secondary comparison group (12 subjects vs 36 for vincamin). The population is described as 'subjects' without specification of acute ischaemic stroke. Does not meet the intervention or population criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is a randomised, double-blind, cross-over trial of caffeine vs placebo, the population consists of patients 'recovering from an acute ischaemic stroke', not patients with acute stroke. The study does not meet the acute ischaemic stroke population criterion - these are recovery-phase patients, not acute phase.",
+      "confidence": ""
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is a randomised, double-blind, cross-over trial of caffeine vs placebo, the population consists of patients 'recovering from an acute ischaemic stroke', not patients with acute stroke. The study does not meet the acute ischaemic stroke population criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study does not appear to be randomised - it is an observational study of 12 patients receiving intracarotid aminophylline infusion. There is no control group mentioned. Does not meet the randomised trial or control group criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an animal study conducted in cats with experimental middle cerebral artery occlusion. Does not meet the human population criterion for the review.",
+      "confidence": ""
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an animal study conducted in anesthetized intact dog preparations. Does not meet the human population criterion for the review.",
+      "confidence": ""
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This appears to be a review or commentary discussing historical studies and mechanisms, not a randomised trial. The abstract references other studies (Olivarius 1957, 1964; Wolff 1936) and states 'Convincing controlled series, however, are still lacking'. Does not meet the randomised trial criterion.",
+      "confidence": ""
+    }
+  ]
+}

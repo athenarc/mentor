@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T10:41:32.872346",
+  "generated_at": "2026-06-19T01:49:08.823068",
   "suite": "screening_ladder_dev_no_label_0_5",
   "repeats": 1,
   "review_keys": [
@@ -55,7 +55,7 @@
       "rerun_triggered": true,
       "incomplete_reason": "",
       "duration_seconds": 3910.5177564173937,
-      "run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/surgical_termination_10_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1",
+      "run_dir": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/surgical_termination_10_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1",
       "gatekeeper_preset": "openai_gpt_oss_120b",
       "gatekeeper_model_label": "gpt-oss-120b [OpenAI GPT-OSS 120B]",
       "gatekeeper_backend": "openai",
@@ -109,8 +109,8 @@
       "chunk_sizes": [
         10
       ],
-      "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/surgical_termination_10_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.json",
-      "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/surgical_termination_10_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.md"
+      "screening_inspection_json": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/surgical_termination_10_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.json",
+      "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/surgical_termination_10_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.md"
     },
     {
       "gold_label_policy": "exclude_label_0_5",
@@ -151,7 +151,7 @@
       "rerun_triggered": false,
       "incomplete_reason": "",
       "duration_seconds": 2404.928055834025,
-      "run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/advanced_endometrial_carcinoma_24_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1",
+      "run_dir": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/advanced_endometrial_carcinoma_24_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1",
       "gatekeeper_preset": "openai_gpt_oss_120b",
       "gatekeeper_model_label": "gpt-oss-120b [OpenAI GPT-OSS 120B]",
       "gatekeeper_backend": "openai",
@@ -205,8 +205,8 @@
       "chunk_sizes": [
         24
       ],
-      "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/advanced_endometrial_carcinoma_24_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.json",
-      "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/advanced_endometrial_carcinoma_24_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.md"
+      "screening_inspection_json": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/advanced_endometrial_carcinoma_24_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.json",
+      "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/advanced_endometrial_carcinoma_24_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.md"
     },
     {
       "gold_label_policy": "exclude_label_0_5",
@@ -247,7 +247,7 @@
       "rerun_triggered": false,
       "incomplete_reason": "",
       "duration_seconds": 5038.057966208085,
-      "run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/chlamydia_poc_test_50_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1",
+      "run_dir": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/chlamydia_poc_test_50_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1",
       "gatekeeper_preset": "openai_gpt_oss_120b",
       "gatekeeper_model_label": "gpt-oss-120b [OpenAI GPT-OSS 120B]",
       "gatekeeper_backend": "openai",
@@ -302,8 +302,8 @@
         25,
         25
       ],
-      "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/chlamydia_poc_test_50_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.json",
-      "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/chlamydia_poc_test_50_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.md"
+      "screening_inspection_json": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/chlamydia_poc_test_50_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.json",
+      "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/chlamydia_poc_test_50_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.md"
     },
     {
       "gold_label_policy": "exclude_label_0_5",
@@ -344,7 +344,7 @@
       "rerun_triggered": true,
       "incomplete_reason": "Parsed 69/92 unique decisions (missing=23, duplicate=0, invalid=0).",
       "duration_seconds": 12479.123210584745,
-      "run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/ovarian_cancer_diagnosis_92_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1",
+      "run_dir": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/ovarian_cancer_diagnosis_92_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1",
       "gatekeeper_preset": "openai_gpt_oss_120b",
       "gatekeeper_model_label": "gpt-oss-120b [OpenAI GPT-OSS 120B]",
       "gatekeeper_backend": "openai",
@@ -401,8 +401,8 @@
         23,
         23
       ],
-      "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/ovarian_cancer_diagnosis_92_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.json",
-      "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/ovarian_cancer_diagnosis_92_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.md"
+      "screening_inspection_json": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/ovarian_cancer_diagnosis_92_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.json",
+      "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260618_040350_screening_ladder_dev_no_label_0_5_loop_chunked_openai_gpt_oss_120b/exclude_policy/runs/ovarian_cancer_diagnosis_92_openai_gpt_oss_120b_fixed_openai_gpt_oss_120b_run1/screening_inspection.md"
     }
   ],
   "leaderboard": [

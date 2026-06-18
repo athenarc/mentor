@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T16:04:04.949048",
+  "generated_at": "2026-06-19T01:42:35.322936",
   "suite": "screening_ladder_dev_no_label_0_5",
   "benchmark_architecture": "loop_chunk_orchestrator_v1",
   "repeats": 1,
@@ -16,9 +16,10 @@
   "orchestrator_policy": "fixed",
   "orchestrator_preset": "deepseek_v4_pro--xhigh",
   "gold_label_policies": [
+    "include_label_0_5",
     "exclude_label_0_5"
   ],
-  "raw_runs_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/_raw_runs",
+  "raw_runs_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/_raw_runs",
   "completed_raw_run_count": 5,
   "total_expected_raw_runs": 5,
   "completed_runs": [
@@ -30,7 +31,7 @@
       "orchestrator_preset": "deepseek_v4_pro--xhigh",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/_raw_runs/20260618_144426_surgical_termination_10_deepseek_v4_pro--xhigh_fixed_deepsee"
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/runs/surgical_termination_10_deepseek_v4_pro--xhigh_fixed_deepseek_v4_pro--xhigh_run1"
     },
     {
       "benchmark_run_id": "advanced_endometrial_carcinoma_24_deepseek_v4_pro--xhigh_fixed_deepseek_v4_pro--xhigh_run1",
@@ -40,7 +41,7 @@
       "orchestrator_preset": "deepseek_v4_pro--xhigh",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/_raw_runs/20260618_144724_advanced_endometrial_carcinoma_24_deepseek_v4_pro--xhigh_fix"
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/runs/advanced_endometrial_carcinoma_24_deepseek_v4_pro--xhigh_fixed_deepseek_v4_pro--xhigh_run1"
     },
     {
       "benchmark_run_id": "chlamydia_poc_test_50_deepseek_v4_pro--xhigh_fixed_deepseek_v4_pro--xhigh_run1",
@@ -50,7 +51,7 @@
       "orchestrator_preset": "deepseek_v4_pro--xhigh",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/_raw_runs/20260618_144930_chlamydia_poc_test_50_deepseek_v4_pro--xhigh_fixed_deepseek_"
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/runs/chlamydia_poc_test_50_deepseek_v4_pro--xhigh_fixed_deepseek_v4_pro--xhigh_run1"
     },
     {
       "benchmark_run_id": "ovarian_cancer_diagnosis_92_deepseek_v4_pro--xhigh_fixed_deepseek_v4_pro--xhigh_run1",
@@ -60,7 +61,7 @@
       "orchestrator_preset": "deepseek_v4_pro--xhigh",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/_raw_runs/20260618_151245_ovarian_cancer_diagnosis_92_deepseek_v4_pro--xhigh_fixed_dee"
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/runs/ovarian_cancer_diagnosis_92_deepseek_v4_pro--xhigh_fixed_deepseek_v4_pro--xhigh_run1"
     },
     {
       "benchmark_run_id": "home_based_rehabilitation_183_deepseek_v4_pro--xhigh_fixed_deepseek_v4_pro--xhigh_run1",
@@ -70,22 +71,34 @@
       "orchestrator_preset": "deepseek_v4_pro--xhigh",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/_raw_runs/20260618_153531_home_based_rehabilitation_183_deepseek_v4_pro--xhigh_fixed_d"
+      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/runs/home_based_rehabilitation_183_deepseek_v4_pro--xhigh_fixed_deepseek_v4_pro--xhigh_run1"
     }
   ],
-  "comparison_html_report": null,
+  "comparison_html_report": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/screening_policy_comparison.html",
   "policy_outputs": {
-    "exclude_label_0_5": {
-      "directory": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy",
-      "summary_json": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/summary.json",
-      "summary_csv": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/summary.csv",
-      "leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/leaderboard.md",
-      "review_leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/review_leaderboard.md",
-      "runs_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/runs",
-      "html_report": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/screening_results_summary.html",
-      "eda_notebook": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/screening_results_analysis.ipynb",
+    "include_label_0_5": {
+      "directory": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/include_policy",
+      "summary_json": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/include_policy/summary.json",
+      "summary_csv": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/include_policy/summary.csv",
+      "leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/include_policy/leaderboard.md",
+      "review_leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/include_policy/review_leaderboard.md",
+      "runs_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/include_policy/runs",
+      "html_report": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/include_policy/screening_results_summary.html",
+      "eda_notebook": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/include_policy/screening_results_analysis.ipynb",
       "eda_notebook_executed": false,
-      "eda_notebook_execution_error": "jupyter command not available"
+      "eda_notebook_execution_error": ""
+    },
+    "exclude_label_0_5": {
+      "directory": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy",
+      "summary_json": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/summary.json",
+      "summary_csv": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/summary.csv",
+      "leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/leaderboard.md",
+      "review_leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/review_leaderboard.md",
+      "runs_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/runs",
+      "html_report": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/screening_results_summary.html",
+      "eda_notebook": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144419_screening_ladder_dev_no_label_0_5_loop_chunked_deepseek_v4_pro--xhigh/exclude_policy/screening_results_analysis.ipynb",
+      "eda_notebook_executed": false,
+      "eda_notebook_execution_error": ""
     }
   },
   "loop_mode": "chunked",

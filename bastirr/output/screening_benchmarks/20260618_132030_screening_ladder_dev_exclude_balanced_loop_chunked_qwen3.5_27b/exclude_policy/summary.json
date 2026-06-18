@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T14:41:08.911907",
+  "generated_at": "2026-06-19T01:49:51.956660",
   "suite": "screening_ladder_dev_exclude_balanced",
   "repeats": 1,
   "review_keys": [
@@ -55,7 +55,7 @@
       "rerun_triggered": false,
       "incomplete_reason": "",
       "duration_seconds": 92.60241637565196,
-      "run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/endometrial_progestagens_10_qwen3.5_27b_fixed_qwen3.5_27b_run1",
+      "run_dir": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/endometrial_progestagens_10_qwen3.5_27b_fixed_qwen3.5_27b_run1",
       "gatekeeper_preset": "qwen3.5_27b",
       "gatekeeper_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
       "gatekeeper_backend": "openai",
@@ -109,8 +109,8 @@
       "chunk_sizes": [
         10
       ],
-      "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/endometrial_progestagens_10_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
-      "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/endometrial_progestagens_10_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
+      "screening_inspection_json": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/endometrial_progestagens_10_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
+      "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/endometrial_progestagens_10_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
     },
     {
       "gold_label_policy": "exclude_label_0_5",
@@ -151,7 +151,7 @@
       "rerun_triggered": false,
       "incomplete_reason": "",
       "duration_seconds": 313.3616204597056,
-      "run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/tricyclic_depression_children_25_qwen3.5_27b_fixed_qwen3.5_27b_run1",
+      "run_dir": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/tricyclic_depression_children_25_qwen3.5_27b_fixed_qwen3.5_27b_run1",
       "gatekeeper_preset": "qwen3.5_27b",
       "gatekeeper_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
       "gatekeeper_backend": "openai",
@@ -205,8 +205,8 @@
       "chunk_sizes": [
         25
       ],
-      "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/tricyclic_depression_children_25_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
-      "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/tricyclic_depression_children_25_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
+      "screening_inspection_json": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/tricyclic_depression_children_25_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
+      "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/tricyclic_depression_children_25_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
     },
     {
       "gold_label_policy": "exclude_label_0_5",
@@ -247,7 +247,7 @@
       "rerun_triggered": true,
       "incomplete_reason": "",
       "duration_seconds": 1722.7171090003103,
-      "run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/adhesive_capsulitis_50_qwen3.5_27b_fixed_qwen3.5_27b_run1",
+      "run_dir": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/adhesive_capsulitis_50_qwen3.5_27b_fixed_qwen3.5_27b_run1",
       "gatekeeper_preset": "qwen3.5_27b",
       "gatekeeper_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
       "gatekeeper_backend": "openai",
@@ -302,8 +302,8 @@
         25,
         25
       ],
-      "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/adhesive_capsulitis_50_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
-      "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/adhesive_capsulitis_50_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
+      "screening_inspection_json": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/adhesive_capsulitis_50_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
+      "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/adhesive_capsulitis_50_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
     },
     {
       "gold_label_policy": "exclude_label_0_5",
@@ -344,7 +344,7 @@
       "rerun_triggered": true,
       "incomplete_reason": "",
       "duration_seconds": 2680.725874790922,
-      "run_dir": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/desmopressin_transfusion_100_qwen3.5_27b_fixed_qwen3.5_27b_run1",
+      "run_dir": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/desmopressin_transfusion_100_qwen3.5_27b_fixed_qwen3.5_27b_run1",
       "gatekeeper_preset": "qwen3.5_27b",
       "gatekeeper_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
       "gatekeeper_backend": "openai",
@@ -401,8 +401,8 @@
         25,
         25
       ],
-      "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/desmopressin_transfusion_100_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
-      "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-agents/bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/desmopressin_transfusion_100_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
+      "screening_inspection_json": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/desmopressin_transfusion_100_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
+      "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260618_132030_screening_ladder_dev_exclude_balanced_loop_chunked_qwen3.5_27b/exclude_policy/runs/desmopressin_transfusion_100_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
     }
   ],
   "leaderboard": [

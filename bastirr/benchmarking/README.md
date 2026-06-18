@@ -265,10 +265,9 @@ the same saved screening outputs:
 That is why a benchmark folder contains sibling `include_policy/` and
 `exclude_policy/` directories when both are generated.
 
-You can restrict scoring to one policy or an explicit subset with:
-
-- `--gold-label-policy`
-- `--gold-label-policies`
+Benchmark run commands always materialize both policy views. To choose which
+policy is used for aggregate canonical totals, use
+`bastirr.recompute_screening_totals --canonical-policy ...`.
 
 ## Locked Review Suite
 
@@ -427,8 +426,6 @@ Important options:
 - `--repeats N`
 - `--orchestrator-policy fixed|match-gatekeeper`
 - `--orchestrator-model PRESET`
-- `--gold-label-policy include_label_0_5|exclude_label_0_5`
-- `--gold-label-policies POLICY [POLICY ...]`
 - `--skip-policy-notebook-execution`
 - `--hide-subagent-steps`
 - `--list-suites`
@@ -478,13 +475,7 @@ PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
   --model-presets openai_gpt5 \
   --repeats 5
 
-# Rescore the same style of runs with label `0.5` treated as `EXCLUDE`
-PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
-  --model-presets openai_gpt5 \
-  --gold-label-policy exclude_label_0_5 \
-  --repeats 5
-
-# Write both policy views from the same raw screening runs (default behavior)
+# Write both policy views from the same raw screening runs
 PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
   --model-presets openai_gpt5 \
   --repeats 5

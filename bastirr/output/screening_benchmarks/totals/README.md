@@ -46,6 +46,24 @@ Excluded groups are still recorded in `totals_leaderboard.json` under:
 For example, an interrupted or incomplete `2/5` run will not compete against
 models with complete `5/5` runs.
 
+For a consolidated diagnostic view of incomplete runs, regenerate totals with:
+
+```bash
+venv/bin/python -m bastirr.recompute_screening_totals \
+  --source-mode canonical \
+  --write-incomplete-report
+```
+
+This writes:
+
+- `incomplete_runs_report.json`
+- `incomplete_runs_report.md`
+
+The report lists unscored source rows and model groups excluded because one or
+more SRs were not scored. For canonical totals, the diagnostic scans current
+summary files with the canonical policy filter, because `canonical_sources.json`
+contains only completed/scored rows.
+
 ## Horizontal Comparison
 
 `horizontal_comparison/` aggregates across suites by size band and architecture.
@@ -86,6 +104,26 @@ To build a manifest containing both policies:
 ```bash
 venv/bin/python -m bastirr.recompute_screening_totals --build-canonical-only --canonical-policy all
 ```
+
+## Merging Totals From Another Machine
+
+When benchmark outputs are copied from another machine, keep one totals folder
+as the target `totals/` folder and place the other machine's previous totals
+folder elsewhere, for example `totals_loc/`.
+
+Merge canonical manifests and regenerate all aggregate totals with:
+
+```bash
+venv/bin/python -m bastirr.recompute_screening_totals \
+  --merge-canonical-sources bastirr/output/screening_benchmarks/totals_loc/canonical_sources.json \
+  --source-mode canonical
+```
+
+The command includes the existing `totals/canonical_sources.json`
+automatically, unions it with the supplied manifest, deduplicates matching
+canonical entries by newest source timestamp, writes the merged
+`totals/canonical_sources.json`, and regenerates `totals_index.json` plus all
+leaderboards.
 
 Use manifest rebuilding carefully: `canonical_sources.json` is the source of
 truth for which runs are considered canonical.

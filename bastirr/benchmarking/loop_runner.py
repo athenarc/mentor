@@ -636,7 +636,7 @@ def run_screening_loop_benchmark(
         raise ValueError("--chunk-count and --chunk-size require --loop-mode chunked")
     if chunk_count is not None and chunk_size is not None:
         raise ValueError("Use only one of --chunk-count or --chunk-size")
-    selected_label_policies = gold_label_policies or list(SCREENING_LABEL_POLICIES)
+    selected_label_policies = list(SCREENING_LABEL_POLICIES)
 
     selected_reviews = resolve_review_selection(suite_name, review_keys)
     resolved_gatekeeper_models = resolve_model_presets(model_presets)
@@ -948,7 +948,7 @@ def rerun_screening_loop_reviews_in_experiment(
     suite_name = checkpoint["suite"]
     original_review_keys = checkpoint.get("review_keys") or []
     original_model_keys = checkpoint.get("model_presets") or []
-    selected_label_policies = checkpoint.get("gold_label_policies") or list(SCREENING_LABEL_POLICIES)
+    selected_label_policies = list(SCREENING_LABEL_POLICIES)
     orchestrator_policy = checkpoint["orchestrator_policy"]
     orchestrator_preset = checkpoint["orchestrator_preset"]
     repeats = int(checkpoint.get("repeats", 1))
