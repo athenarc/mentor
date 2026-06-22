@@ -5,78 +5,51 @@
 - **Screening criteria:** Randomised or quasi‐randomised controlled trials in women with SUI, UUI or MUI (based on symptoms, signs or urodynamics). One arm of the trial included PFMT. Another arm was a no treatment, placebo, sham or other inactive control treatment arm.
 - **Gold label policy:** `exclude_label_0_5`
 - **Gold screening rule:** dataset label 1.0 counts as INCLUDE; 0.5 and 0.0 count as EXCLUDE.
-- **Matches:** 66 / 100
-- **Mismatches:** 9
-- **Missing decisions:** 25
+- **Matches:** 93 / 100
+- **Mismatches:** 7
+- **Missing decisions:** 0
 
 ## Mismatches
 
 | Index | Predicted | Gold | Gold Outcome | Title | Agent Rationale |
 |-------|-----------|------|--------------|-------|-----------------|
-| 1 | MISSING | INCLUDE | included_in_review | Biofeedback and pelvic floor exercises for the rehabilitation of urinary stress incontinence | — |
-| 2 | MISSING | INCLUDE | included_in_review | Mobile app for treatment of stress urinary incontinence: a randomized controlled trial | — |
-| 3 | MISSING | INCLUDE | included_in_review | Effect of electromyographic biofeedback as an add‐on to pelvic floor muscle exercises on neuromuscular outcomes and quality of life in postmenopausal women with stress urinary incontinence: a randomized controlled trial | — |
-| 4 | MISSING | INCLUDE | included_in_review | Behavioral vs drug treatment for urge urinary incontinence in older women | — |
-| 5 | MISSING | INCLUDE | included_in_review | A comparison of effectiveness of biofeedback and pelvic muscle exercise treatment of stress incontinence in older community dwelling women | — |
-| 6 | MISSING | INCLUDE | included_in_review | Single blind, randomised controlled trial of pelvic floor exercises, electrical stimulation, vaginal cones, and no treatment in management of genuine stress incontinence in women | — |
-| 7 | MISSING | INCLUDE | included_in_review | The anatomical‐functional characteristics of the pelvic floor and quality of life of women with stress urinary incontinence subjected to perineal exercises | — |
-| 8 | MISSING | INCLUDE | included_in_review | Single‐blind, randomized, controlled trial of pelvic floor muscle training, electrical stimulation, vaginal cones, and no active treatment in the management of stress urinary incontinence | — |
-| 9 | MISSING | INCLUDE | included_in_review | Does pelvic floor muscle training abolish symptoms of urinary incontinence? A randomized controlled trial | — |
-| 10 | MISSING | INCLUDE | included_in_review | Group session teaching of behavioral modification program (BMP) for urinary incontinence: a randomized controlled trial among incontinent women | — |
-| 11 | MISSING | INCLUDE | included_in_review | The value of physical therapy in genuine female stress incontinence | — |
-| 12 | MISSING | INCLUDE | included_in_review | Effectiveness of multidimensional exercises for the treatment of stress urinary incontinence in elderly community‐dwelling Japanese women: a randomized, controlled, crossover trial | — |
-| 13 | MISSING | INCLUDE | included_in_review | Effects of exercise treatment with or without heat and steam generating sheet on urine loss in community‐dwelling Japanese elderly women with urinary incontinence | — |
-| 14 | MISSING | INCLUDE | included_in_review | The effects of multidimensional exercise treatment on community‐dwelling elderly Japanese women with stress, urge, and mixed urinary incontinence: a randomized controlled trial | — |
-| 15 | MISSING | INCLUDE | included_in_review | Effectiveness of a new standardised Urinary Continence Physiotherapy Programme for community‐dwelling older women in Hong Kong | — |
-| 16 | MISSING | INCLUDE | included_in_review | Pelvic floor muscle training in women with stress urinary incontinence causes hypertrophy of the urethral sphincters and reduces bladder neck mobility during coughing | — |
-| 17 | MISSING | INCLUDE | included_in_review | A pelvic muscle precontraction can reduce cough‐related urine loss in selected women with mild SUI | — |
-| 18 | MISSING | INCLUDE | included_in_review | Individual and group pelvic floor muscle training versus no treatment in female stress urinary incontinence: a randomized controlled pilot study | — |
-| 19 | MISSING | INCLUDE | included_in_review | A pilot study on the use of acupuncture or pelvic floor muscle training for mixed urinary incontinence | — |
-| 20 | MISSING | INCLUDE | included_in_review | Physical therapy for urinary incontinence in postmenopausal women with osteoporosis or low bone density: a randomized controlled trial | — |
-| 21 | MISSING | INCLUDE | included_in_review | A comparison of effectiveness of bladder training and pelvic muscle exercise on female urinary incontinence | — |
-| 22 | MISSING | INCLUDE | included_in_review | Muscle contraction of the pelvic floor and quality of life of women with stress urinary incontinence who underwent kinesitherapy | — |
-| 23 | MISSING | INCLUDE | included_in_review | Reeducation of pelvic floor muscles in volleyball athletes | — |
-| 24 | MISSING | INCLUDE | included_in_review | Non‐operative methods in the treatment of female genuine stress incontinence of urine | — |
-| 25 | MISSING | INCLUDE | included_in_review | Controlled trial of pelvic floor exercises in the treatment of urinary stress incontinence in general practice | — |
-| 29 | INCLUDE | EXCLUDE | excluded_after_full_text | Behavioral training with and without biofeedback in the treatment of urge incontinence in older women. A randomized controlled trial | RCT in women with urge/mixed UI. Behavioral training (with/without biofeedback) includes PFMT components. Self-help b... |
-| 33 | INCLUDE | EXCLUDE | excluded_after_full_text | Effect of behavioral training with or without pelvic floor electrical stimulation on stress incontinence in women. A randomized controlled trial | RCT in women with stress/mixed UI. Behavioral training (includes PFMT) compared to self-help booklet (inactive contro... |
-| 34 | INCLUDE | EXCLUDE | excluded_after_full_text | Effect of muscle strength training on urinary incontinence and physical function: a randomized controlled trial in long‐term care facilities | RCT in elderly women with UI. Training group included Kegel's exercises (PFMT). Control group mentioned but details u... |
-| 35 | INCLUDE | EXCLUDE | excluded_after_full_text | Behavioral therapy for urinary incontinence in India | RCT in women with UI. Behavioral therapy intervention (typically includes PFMT) compared to no therapy (inactive cont... |
-| 39 | INCLUDE | EXCLUDE | excluded_after_full_text | Effects of co‐contraction of both transverse abdominal muscle and pelvic floor muscle exercises for stress urinary incontinence: a randomized controlled trial | RCT in women with SUI. Intervention includes PFMT (co-contraction of TA and PFM). Control group present (though detai... |
-| 40 | INCLUDE | EXCLUDE | excluded_after_full_text | Defeating urinary incontinence with exercise training: results of a pilot study in frail older women | Pilot RCT in frail women with UI. Behavioral UI treatments (likely includes PFMT) combined with physical activity. Co... |
-| 82 | INCLUDE | EXCLUDE | excluded_after_full_text | Role of pelvic floor muscle therapy in obese perimenopausal females with stress incontinence: a randomized control trial | This is a randomised controlled trial in women with stress urinary incontinence. The intervention group received pelv... |
-| 83 | INCLUDE | EXCLUDE | excluded_after_full_text | Floor muscles contraction in women with stress urinary incontinence underwent to exercises and electric stimulation therapy: a randomized study | This is a randomised study in women with stress urinary incontinence (IUE). Three groups: electrotherapy + exercises,... |
-| 86 | INCLUDE | EXCLUDE | excluded_after_full_text | A randomized controlled trial of duloxetine alone, pelvic floor muscle training alone, combined treatment and no active treatment in women with stress urinary incontinence | This is a randomised controlled trial in women with SUI with 4 arms: combined treatment (PFMT+duloxetine), no active ... |
+| 4 | EXCLUDE | INCLUDE | included_in_review | Behavioral vs drug treatment for urge urinary incontinence in older women | Randomized placebo-controlled trial in women with urge/mixed incontinence. However, the intervention is 'biofeedback-... |
+| 29 | INCLUDE | EXCLUDE | excluded_after_full_text | Behavioral training with and without biofeedback in the treatment of urge incontinence in older women. A randomized controlled trial | RCT in women with urge/mixed incontinence. One arm received behavioral training with verbal feedback based on vaginal... |
+| 33 | INCLUDE | EXCLUDE | excluded_after_full_text | Effect of behavioral training with or without pelvic floor electrical stimulation on stress incontinence in women. A randomized controlled trial | RCT in women with stress/mixed incontinence. One arm received behavioral training (includes PFMT components). Control... |
+| 39 | INCLUDE | EXCLUDE | excluded_after_full_text | Effects of co‐contraction of both transverse abdominal muscle and pelvic floor muscle exercises for stress urinary incontinence: a randomized controlled trial | RCT in women with SUI. Intervention arm received TA and PFM co-contraction exercise (includes PFMT). Control group me... |
+| 82 | INCLUDE | EXCLUDE | excluded_after_full_text | Role of pelvic floor muscle therapy in obese perimenopausal females with stress incontinence: a randomized control trial | Randomized controlled trial in perimenopausal women with stress urinary incontinence. Intervention is pelvic floor mu... |
+| 83 | INCLUDE | EXCLUDE | excluded_after_full_text | Floor muscles contraction in women with stress urinary incontinence underwent to exercises and electric stimulation therapy: a randomized study | Randomized study in women with stress urinary incontinence. Intervention includes pelvic floor exercises. Control gro... |
+| 86 | INCLUDE | EXCLUDE | excluded_after_full_text | A randomized controlled trial of duloxetine alone, pelvic floor muscle training alone, combined treatment and no active treatment in women with stress urinary incontinence | Randomized controlled trial in women with SUI. Includes PFMT arm and a 'no active treatment' arm. Meets all selection... |
 
 ## All Studies
 
 | Index | Predicted | Gold | Match | Gold Outcome | Title |
 |-------|-----------|------|-------|--------------|-------|
-| 1 | MISSING | INCLUDE | missing | included_in_review | Biofeedback and pelvic floor exercises for the rehabilitation of urinary stress incontinence |
-| 2 | MISSING | INCLUDE | missing | included_in_review | Mobile app for treatment of stress urinary incontinence: a randomized controlled trial |
-| 3 | MISSING | INCLUDE | missing | included_in_review | Effect of electromyographic biofeedback as an add‐on to pelvic floor muscle exercises on neuromuscular outcomes and quality of life in postmenopausal women with stress urinary incontinence: a randomized controlled trial |
-| 4 | MISSING | INCLUDE | missing | included_in_review | Behavioral vs drug treatment for urge urinary incontinence in older women |
-| 5 | MISSING | INCLUDE | missing | included_in_review | A comparison of effectiveness of biofeedback and pelvic muscle exercise treatment of stress incontinence in older community dwelling women |
-| 6 | MISSING | INCLUDE | missing | included_in_review | Single blind, randomised controlled trial of pelvic floor exercises, electrical stimulation, vaginal cones, and no treatment in management of genuine stress incontinence in women |
-| 7 | MISSING | INCLUDE | missing | included_in_review | The anatomical‐functional characteristics of the pelvic floor and quality of life of women with stress urinary incontinence subjected to perineal exercises |
-| 8 | MISSING | INCLUDE | missing | included_in_review | Single‐blind, randomized, controlled trial of pelvic floor muscle training, electrical stimulation, vaginal cones, and no active treatment in the management of stress urinary incontinence |
-| 9 | MISSING | INCLUDE | missing | included_in_review | Does pelvic floor muscle training abolish symptoms of urinary incontinence? A randomized controlled trial |
-| 10 | MISSING | INCLUDE | missing | included_in_review | Group session teaching of behavioral modification program (BMP) for urinary incontinence: a randomized controlled trial among incontinent women |
-| 11 | MISSING | INCLUDE | missing | included_in_review | The value of physical therapy in genuine female stress incontinence |
-| 12 | MISSING | INCLUDE | missing | included_in_review | Effectiveness of multidimensional exercises for the treatment of stress urinary incontinence in elderly community‐dwelling Japanese women: a randomized, controlled, crossover trial |
-| 13 | MISSING | INCLUDE | missing | included_in_review | Effects of exercise treatment with or without heat and steam generating sheet on urine loss in community‐dwelling Japanese elderly women with urinary incontinence |
-| 14 | MISSING | INCLUDE | missing | included_in_review | The effects of multidimensional exercise treatment on community‐dwelling elderly Japanese women with stress, urge, and mixed urinary incontinence: a randomized controlled trial |
-| 15 | MISSING | INCLUDE | missing | included_in_review | Effectiveness of a new standardised Urinary Continence Physiotherapy Programme for community‐dwelling older women in Hong Kong |
-| 16 | MISSING | INCLUDE | missing | included_in_review | Pelvic floor muscle training in women with stress urinary incontinence causes hypertrophy of the urethral sphincters and reduces bladder neck mobility during coughing |
-| 17 | MISSING | INCLUDE | missing | included_in_review | A pelvic muscle precontraction can reduce cough‐related urine loss in selected women with mild SUI |
-| 18 | MISSING | INCLUDE | missing | included_in_review | Individual and group pelvic floor muscle training versus no treatment in female stress urinary incontinence: a randomized controlled pilot study |
-| 19 | MISSING | INCLUDE | missing | included_in_review | A pilot study on the use of acupuncture or pelvic floor muscle training for mixed urinary incontinence |
-| 20 | MISSING | INCLUDE | missing | included_in_review | Physical therapy for urinary incontinence in postmenopausal women with osteoporosis or low bone density: a randomized controlled trial |
-| 21 | MISSING | INCLUDE | missing | included_in_review | A comparison of effectiveness of bladder training and pelvic muscle exercise on female urinary incontinence |
-| 22 | MISSING | INCLUDE | missing | included_in_review | Muscle contraction of the pelvic floor and quality of life of women with stress urinary incontinence who underwent kinesitherapy |
-| 23 | MISSING | INCLUDE | missing | included_in_review | Reeducation of pelvic floor muscles in volleyball athletes |
-| 24 | MISSING | INCLUDE | missing | included_in_review | Non‐operative methods in the treatment of female genuine stress incontinence of urine |
-| 25 | MISSING | INCLUDE | missing | included_in_review | Controlled trial of pelvic floor exercises in the treatment of urinary stress incontinence in general practice |
+| 1 | INCLUDE | INCLUDE | correct | included_in_review | Biofeedback and pelvic floor exercises for the rehabilitation of urinary stress incontinence |
+| 2 | INCLUDE | INCLUDE | correct | included_in_review | Mobile app for treatment of stress urinary incontinence: a randomized controlled trial |
+| 3 | INCLUDE | INCLUDE | correct | included_in_review | Effect of electromyographic biofeedback as an add‐on to pelvic floor muscle exercises on neuromuscular outcomes and quality of life in postmenopausal women with stress urinary incontinence: a randomized controlled trial |
+| 4 | EXCLUDE | INCLUDE | incorrect | included_in_review | Behavioral vs drug treatment for urge urinary incontinence in older women |
+| 5 | INCLUDE | INCLUDE | correct | included_in_review | A comparison of effectiveness of biofeedback and pelvic muscle exercise treatment of stress incontinence in older community dwelling women |
+| 6 | INCLUDE | INCLUDE | correct | included_in_review | Single blind, randomised controlled trial of pelvic floor exercises, electrical stimulation, vaginal cones, and no treatment in management of genuine stress incontinence in women |
+| 7 | INCLUDE | INCLUDE | correct | included_in_review | The anatomical‐functional characteristics of the pelvic floor and quality of life of women with stress urinary incontinence subjected to perineal exercises |
+| 8 | INCLUDE | INCLUDE | correct | included_in_review | Single‐blind, randomized, controlled trial of pelvic floor muscle training, electrical stimulation, vaginal cones, and no active treatment in the management of stress urinary incontinence |
+| 9 | INCLUDE | INCLUDE | correct | included_in_review | Does pelvic floor muscle training abolish symptoms of urinary incontinence? A randomized controlled trial |
+| 10 | INCLUDE | INCLUDE | correct | included_in_review | Group session teaching of behavioral modification program (BMP) for urinary incontinence: a randomized controlled trial among incontinent women |
+| 11 | INCLUDE | INCLUDE | correct | included_in_review | The value of physical therapy in genuine female stress incontinence |
+| 12 | INCLUDE | INCLUDE | correct | included_in_review | Effectiveness of multidimensional exercises for the treatment of stress urinary incontinence in elderly community‐dwelling Japanese women: a randomized, controlled, crossover trial |
+| 13 | INCLUDE | INCLUDE | correct | included_in_review | Effects of exercise treatment with or without heat and steam generating sheet on urine loss in community‐dwelling Japanese elderly women with urinary incontinence |
+| 14 | INCLUDE | INCLUDE | correct | included_in_review | The effects of multidimensional exercise treatment on community‐dwelling elderly Japanese women with stress, urge, and mixed urinary incontinence: a randomized controlled trial |
+| 15 | INCLUDE | INCLUDE | correct | included_in_review | Effectiveness of a new standardised Urinary Continence Physiotherapy Programme for community‐dwelling older women in Hong Kong |
+| 16 | INCLUDE | INCLUDE | correct | included_in_review | Pelvic floor muscle training in women with stress urinary incontinence causes hypertrophy of the urethral sphincters and reduces bladder neck mobility during coughing |
+| 17 | INCLUDE | INCLUDE | correct | included_in_review | A pelvic muscle precontraction can reduce cough‐related urine loss in selected women with mild SUI |
+| 18 | INCLUDE | INCLUDE | correct | included_in_review | Individual and group pelvic floor muscle training versus no treatment in female stress urinary incontinence: a randomized controlled pilot study |
+| 19 | INCLUDE | INCLUDE | correct | included_in_review | A pilot study on the use of acupuncture or pelvic floor muscle training for mixed urinary incontinence |
+| 20 | INCLUDE | INCLUDE | correct | included_in_review | Physical therapy for urinary incontinence in postmenopausal women with osteoporosis or low bone density: a randomized controlled trial |
+| 21 | INCLUDE | INCLUDE | correct | included_in_review | A comparison of effectiveness of bladder training and pelvic muscle exercise on female urinary incontinence |
+| 22 | INCLUDE | INCLUDE | correct | included_in_review | Muscle contraction of the pelvic floor and quality of life of women with stress urinary incontinence who underwent kinesitherapy |
+| 23 | INCLUDE | INCLUDE | correct | included_in_review | Reeducation of pelvic floor muscles in volleyball athletes |
+| 24 | INCLUDE | INCLUDE | correct | included_in_review | Non‐operative methods in the treatment of female genuine stress incontinence of urine |
+| 25 | INCLUDE | INCLUDE | correct | included_in_review | Controlled trial of pelvic floor exercises in the treatment of urinary stress incontinence in general practice |
 | 26 | INCLUDE | INCLUDE | correct | included_in_review | The effects of pelvic floor muscle training on stress and mixed urinary incontinence and quality of life |
 | 27 | EXCLUDE | EXCLUDE | correct | excluded_after_full_text | The effects of involving a nurse practitioner in primary care for adult patients with urinary incontinence: the PromoCon study (Promoting Continence) |
 | 28 | EXCLUDE | EXCLUDE | correct | excluded_after_full_text | Consumer satisfaction among patients and their general practitioners about involving nurse specialists in primary care for patients with urinary incontinence |
@@ -85,13 +58,13 @@
 | 31 | EXCLUDE | EXCLUDE | correct | excluded_after_full_text | Intensive supervised versus unsupervised pelvic floor muscle training for the treatment of stress urinary incontinence: a randomized comparative trial |
 | 32 | EXCLUDE | EXCLUDE | correct | excluded_after_full_text | Effects of stabilization exercises focusing on pelvic floor muscles on low back pain and urinary incontinence in women |
 | 33 | INCLUDE | EXCLUDE | incorrect | excluded_after_full_text | Effect of behavioral training with or without pelvic floor electrical stimulation on stress incontinence in women. A randomized controlled trial |
-| 34 | INCLUDE | EXCLUDE | incorrect | excluded_after_full_text | Effect of muscle strength training on urinary incontinence and physical function: a randomized controlled trial in long‐term care facilities |
-| 35 | INCLUDE | EXCLUDE | incorrect | excluded_after_full_text | Behavioral therapy for urinary incontinence in India |
+| 34 | EXCLUDE | EXCLUDE | correct | excluded_after_full_text | Effect of muscle strength training on urinary incontinence and physical function: a randomized controlled trial in long‐term care facilities |
+| 35 | EXCLUDE | EXCLUDE | correct | excluded_after_full_text | Behavioral therapy for urinary incontinence in India |
 | 36 | EXCLUDE | EXCLUDE | correct | excluded_after_full_text | Cost‐effectiveness of an internet‐based treatment program for stress urinary incontinence |
 | 37 | EXCLUDE | EXCLUDE | correct | excluded_after_full_text | Internet‐based treatment of stress urinary incontinence: a randomised controlled study with focus on pelvic floor muscle training |
 | 38 | EXCLUDE | EXCLUDE | correct | excluded_after_full_text | Internet‐based treatment of stress urinary incontinence: 1‐ and 2‐year results of a randomized controlled trial with a focus on pelvic floor muscle training |
 | 39 | INCLUDE | EXCLUDE | incorrect | excluded_after_full_text | Effects of co‐contraction of both transverse abdominal muscle and pelvic floor muscle exercises for stress urinary incontinence: a randomized controlled trial |
-| 40 | INCLUDE | EXCLUDE | incorrect | excluded_after_full_text | Defeating urinary incontinence with exercise training: results of a pilot study in frail older women |
+| 40 | EXCLUDE | EXCLUDE | correct | excluded_after_full_text | Defeating urinary incontinence with exercise training: results of a pilot study in frail older women |
 | 41 | EXCLUDE | EXCLUDE | correct | excluded_after_full_text | Effect of a pelvic floor muscle training program on gynecologic cancer survivors with pelvic floor dysfunction: a randomized controlled trial |
 | 42 | EXCLUDE | EXCLUDE | correct | excluded_at_screening | ICIQ: a brief and robust measure for evaluating the symptoms and impact of urinary incontinence |
 | 43 | EXCLUDE | EXCLUDE | correct | excluded_at_screening | Conservative treatment of stress urinary incontinence in women: a systematic review of randomized clinical trials |

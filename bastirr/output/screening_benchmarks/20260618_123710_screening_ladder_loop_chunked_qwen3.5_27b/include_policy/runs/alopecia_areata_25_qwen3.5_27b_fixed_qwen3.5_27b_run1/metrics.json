@@ -36,8 +36,8 @@
   "screening_attempt_count": 1,
   "rerun_triggered": false,
   "incomplete_reason": "",
-  "duration_seconds": 257.3391889169943,
-  "run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs/alopecia_areata_25_qwen3.5_27b_fixed_qwen3.5_27b_run1",
+  "duration_seconds": 0.0,
+  "run_dir": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs/alopecia_areata_25_qwen3.5_27b_fixed_qwen3.5_27b_run1",
   "gatekeeper_preset": "qwen3.5_27b",
   "gatekeeper_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
   "gatekeeper_backend": "openai",
@@ -55,42 +55,6 @@
   "duplicate_rationale_count": 0,
   "unique_rationale_count": 25,
   "rationale_reuse_rate": 0.0,
-  "total_input_tokens": 108454,
-  "total_output_tokens": 15218,
-  "total_tokens": 123672,
-  "total_steps": 8,
-  "action_step_count": 8,
-  "planning_step_count": 0,
-  "error_step_count": 0,
-  "retry_count": 0,
-  "resume_count": 0,
-  "duration_per_study_seconds": 10.293567556679772,
-  "agent_step_counts": {
-    "orchestrator": 4,
-    "gatekeeper": 4
-  },
-  "agent_input_tokens": {
-    "orchestrator": 17291,
-    "gatekeeper": 91163
-  },
-  "agent_output_tokens": {
-    "orchestrator": 1319,
-    "gatekeeper": 13899
-  },
-  "agent_duration_seconds": {
-    "orchestrator": 257.3021388053894,
-    "gatekeeper": 232.41095423698425
-  },
-  "orchestrator_step_count": 4,
-  "gatekeeper_step_count": 4,
-  "orchestrator_input_tokens": 17291,
-  "orchestrator_output_tokens": 1319,
-  "gatekeeper_input_tokens": 91163,
-  "gatekeeper_output_tokens": 13899,
-  "chunk_count": 1,
-  "chunk_sizes": [
-    25
-  ],
-  "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs/alopecia_areata_25_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
-  "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs/alopecia_areata_25_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
+  "screening_inspection_json": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs/alopecia_areata_25_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
+  "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs/alopecia_areata_25_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
 }

@@ -13,15 +13,15 @@
     "n_studies": 100,
     "gold_pass_count": 26,
     "gold_exclude_count": 74,
-    "predicted_pass_count": 25,
-    "predicted_exclude_count": 75,
-    "tp": 1,
-    "fp": 24,
-    "tn": 50,
-    "fn": 25,
-    "match_count": 1,
-    "mismatch_count": 24,
-    "missing_decision_count": 75,
+    "predicted_pass_count": 24,
+    "predicted_exclude_count": 76,
+    "tp": 7,
+    "fp": 17,
+    "tn": 57,
+    "fn": 19,
+    "match_count": 64,
+    "mismatch_count": 36,
+    "missing_decision_count": 0,
     "duplicate_decision_count": 0,
     "invalid_decision_count": 0
   },
@@ -32,10 +32,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (NO), Design (OK), PFMT (OK), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 2,
@@ -43,10 +43,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (OK), PFMT (NO), Control (OK).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 3,
@@ -54,10 +54,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (OK), PFMT (OK), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 4,
@@ -65,10 +65,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (OK), PFMT (NO), Control (OK).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 5,
@@ -76,10 +76,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (OK), PFMT (OK), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 6,
@@ -87,10 +87,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets criteria: Population (OK), Design (OK), PFMT (OK), Control (OK).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 7,
@@ -98,10 +98,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (NO), PFMT (OK), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 8,
@@ -109,10 +109,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets criteria: Population (OK), Design (OK), PFMT (OK), Control (OK).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 9,
@@ -120,10 +120,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (NO), Design (OK), PFMT (OK), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 10,
@@ -131,10 +131,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (OK), PFMT (NO), Control (OK).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 11,
@@ -142,10 +142,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (OK), PFMT (NO), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 12,
@@ -153,10 +153,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (OK), PFMT (NO), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 13,
@@ -164,10 +164,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (OK), PFMT (NO), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 14,
@@ -175,10 +175,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (OK), PFMT (NO), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 15,
@@ -186,10 +186,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets criteria: Population (OK), Design (OK), PFMT (OK), Control (OK).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 16,
@@ -197,10 +197,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets criteria: Population (OK), Design (OK), PFMT (OK), Control (OK).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 17,
@@ -208,10 +208,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (OK), PFMT (OK), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 18,
@@ -219,10 +219,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets criteria: Population (OK), Design (OK), PFMT (OK), Control (OK).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 19,
@@ -230,10 +230,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets criteria: Population (OK), Design (OK), PFMT (OK), Control (OK).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 20,
@@ -241,10 +241,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (OK), PFMT (NO), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 21,
@@ -252,10 +252,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (NO), PFMT (OK), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 22,
@@ -263,10 +263,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (NO), PFMT (NO), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 23,
@@ -274,10 +274,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (NO), PFMT (NO), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 24,
@@ -285,10 +285,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (NO), PFMT (OK), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 25,
@@ -296,10 +296,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Failed criteria: Population (OK), Design (OK), PFMT (OK), Control (NO).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 26,
@@ -308,7 +308,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: RCT, UI population, PFMT intervention, inactive control.",
+      "predicted_reason": "Meets all criteria: RCT, women with UI, PFMT arm, control arm.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -319,7 +319,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: UI population. Including conservatively.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -329,10 +329,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: UI population, PFMT intervention. Including conservatively.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Population does not clearly include women with SUI, UUI, or MUI. No pelvic floor muscle training arm described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 29,
@@ -341,7 +341,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: RCT, UI population, PFMT intervention, inactive control.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -352,7 +352,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: RCT, UI population, PFMT intervention. Including conservatively.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -363,7 +363,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: inactive control. Including conservatively.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -374,7 +374,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: UI population. Including conservatively.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -385,7 +385,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: PFMT intervention. Including conservatively.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -396,7 +396,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: UI population. Including conservatively.",
+      "predicted_reason": "Meets all criteria: RCT, women with UI, PFMT arm, control arm.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -406,10 +406,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: UI population, PFMT intervention. Including conservatively.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No pelvic floor muscle training arm described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 36,
@@ -418,7 +418,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: RCT, UI population, PFMT intervention, inactive control.",
+      "predicted_reason": "Meets all criteria: RCT, women with UI, PFMT arm, control arm.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -429,7 +429,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: inactive control. Including conservatively.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -440,7 +440,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: inactive control. Including conservatively.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -451,7 +451,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: RCT, UI population, PFMT intervention, inactive control.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -461,10 +461,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: UI population, PFMT intervention. Including conservatively.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No pelvic floor muscle training arm described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 41,
@@ -472,10 +472,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: UI population, inactive control. Including conservatively.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Population does not clearly include women with SUI, UUI, or MUI. No control arm described as no treatment, placebo, sham, or inactive control.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 42,
@@ -483,10 +483,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: RCT, UI population, PFMT intervention, inactive control. Including conservatively.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized or quasi-randomized controlled trial. Population does not clearly include women with SUI, UUI, or MUI. No pelvic floor muscle training arm described. No control arm described as no treatment, placebo, sham, or inactive control.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 43,
@@ -495,7 +495,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: RCT, UI population, PFMT intervention, inactive control.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -506,7 +506,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: RCT, UI population, PFMT intervention, inactive control.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -516,10 +516,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: UI population, PFMT intervention, inactive control. Including conservatively.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Population does not clearly include women with SUI, UUI, or MUI. No pelvic floor muscle training arm described. No control arm described as no treatment, placebo, sham, or inactive control.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 46,
@@ -527,10 +527,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: RCT, UI population, PFMT intervention, inactive control. Including conservatively.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized or quasi-randomized controlled trial. No pelvic floor muscle training arm described. No control arm described as no treatment, placebo, sham, or inactive control.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 47,
@@ -538,10 +538,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: RCT, PFMT intervention, inactive control. Including conservatively.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized or quasi-randomized controlled trial. No pelvic floor muscle training arm described. No control arm described as no treatment, placebo, sham, or inactive control.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 48,
@@ -549,10 +549,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: RCT, PFMT intervention, inactive control. Including conservatively.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized or quasi-randomized controlled trial. No pelvic floor muscle training arm described. No control arm described as no treatment, placebo, sham, or inactive control.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 49,
@@ -561,7 +561,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: RCT, inactive control. Including conservatively.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -572,7 +572,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Uncertain about: inactive control. Including conservatively.",
+      "predicted_reason": "Conservative inclusion: study relates to urinary incontinence and pelvic floor training but lacks clear RCT or control details.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -582,10 +582,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a terminology consensus report, not a randomised or quasi-randomised controlled trial. It does not evaluate PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 52,
@@ -593,10 +593,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a secondary analysis of a cross-sectional survey (EpiLUTS) examining the burden of UI. It is an observational study, not an RCT, and does not involve any intervention including PFMT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 53,
@@ -604,10 +604,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This appears to be a chapter or review discussing neurotransmitters and neural regulation of the lower urinary tract. It is not an RCT and does not evaluate PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 54,
@@ -615,10 +615,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "The abstract indicates this is a review article aiming 'to review the present evidence in terms of the effectiveness of different PFM training regimens'. It is a literature review, not an original RCT comparing PFMT to inactive control.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 55,
@@ -626,10 +626,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This study evaluates functional electrical stimulation (FES) for bladder inhibition, not pelvic floor muscle training (PFMT). The intervention is not PFMT as required by the selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 56,
@@ -637,10 +637,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a physiological study examining pelvic muscle changes in healthy women (N=38, aged 35-54) without urinary incontinence. It is not an RCT and does not involve an incontinent population or compare PFMT to inactive control for UI treatment.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 57,
@@ -648,10 +648,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a methodological paper about GRADE guidelines for preparing summary of findings tables. It is not an RCT and does not evaluate PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 58,
@@ -659,10 +659,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a methodological paper about GRADE guidelines for continuous outcomes. It is not an RCT and does not evaluate PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 59,
@@ -670,10 +670,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a cross-sectional epidemiological survey assessing prevalence of urinary leakage. It is an observational study, not an RCT, and does not evaluate any intervention including PFMT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 60,
@@ -681,10 +681,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a terminology consensus report for female pelvic floor dysfunction, similar to study 51. It is not an RCT and does not evaluate PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 61,
@@ -692,10 +692,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "The title and available abstract indicate this is a methodological paper analyzing intervention quality in systematic reviews. It is not an RCT evaluating PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 62,
@@ -703,10 +703,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This appears to be an observational study assessing quality of life in women with UI using the Sickness Impact Profile. It is not an RCT and does not involve any intervention including PFMT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 63,
@@ -714,10 +714,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is explicitly a systematic review and economic modelling study, as stated in the title. It synthesizes evidence from other studies but is not an original RCT comparing PFMT to inactive control.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 64,
@@ -725,10 +725,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a questionnaire development and validation study. It is not an RCT and does not evaluate PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 65,
@@ -736,10 +736,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is an observational study measuring willingness to pay for symptom reduction using questionnaires. It is not an RCT and does not evaluate PFMT versus inactive control as an intervention.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 66,
@@ -747,10 +747,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a cross-sectional analysis examining the association between UI and self-rated health. It is an observational study, not an RCT, and does not evaluate any intervention including PFMT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 67,
@@ -758,10 +758,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a questionnaire development and validation study for assessing quality of life in women with UI. It is not an RCT and does not evaluate PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 68,
@@ -769,10 +769,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a study developing and testing a psychosocial scale (YIPS) for urinary incontinence. It is not an RCT and does not evaluate PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 69,
@@ -780,10 +780,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a validity study of a questionnaire (KHQ) in patients with overactive bladder. It is not an RCT and does not evaluate PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 70,
@@ -791,10 +791,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a meta-epidemiological study examining how trial quality affects meta-analysis results. While it analyzes RCTs, it is not itself an RCT testing PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 71,
@@ -802,10 +802,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a methodological paper presenting the CONSORT guidelines for RCT reporting. It is not an RCT and does not evaluate PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 72,
@@ -813,10 +813,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a cross-sectional survey assessing bother and quality of life impact of UI in women across four European countries. It is an observational study, not an RCT, and does not evaluate any intervention including PFMT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 73,
@@ -824,10 +824,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This study examines pelvic muscle function in nulliparous healthy continent women. The population does not have urinary incontinence, and it is not an RCT testing PFMT as an intervention for UI treatment.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 74,
@@ -835,10 +835,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This is a validation study developing and testing a severity index for UI by comparing it with pad-weighing tests. It is not an RCT and does not evaluate PFMT versus inactive control for urinary incontinence.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 75,
@@ -846,10 +846,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "This appears to be an observational study examining the impact of UI on sexual function using the FSFI, comparing incontinent and control groups. It is not an RCT and does not evaluate PFMT versus inactive control as an intervention.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 76,
@@ -857,10 +857,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, UI population (SUI/UUI/MUI), PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 77,
@@ -868,10 +868,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 78,
@@ -879,10 +879,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, UI population (SUI/UUI/MUI), PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 79,
@@ -890,10 +890,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, UI population (SUI/UUI/MUI), PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 80,
@@ -901,10 +901,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, PFMT intervention arm.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 81,
@@ -912,10 +912,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, UI population (SUI/UUI/MUI), PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 82,
@@ -923,10 +923,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT/Q-RCT in women with UI, includes PFMT arm, and includes control arm (no treatment/placebo/sham/inactive).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 83,
@@ -934,10 +934,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 84,
@@ -945,10 +945,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing UI population (SUI/UUI/MUI), PFMT intervention arm.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 85,
@@ -956,10 +956,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 86,
@@ -967,10 +967,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT/Q-RCT in women with UI, includes PFMT arm, and includes control arm (no treatment/placebo/sham/inactive).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 87,
@@ -978,10 +978,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 88,
@@ -989,10 +989,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 89,
@@ -1000,10 +1000,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 90,
@@ -1011,10 +1011,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 91,
@@ -1022,10 +1022,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, UI population (SUI/UUI/MUI), PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 92,
@@ -1033,10 +1033,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, UI population (SUI/UUI/MUI), PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 93,
@@ -1044,10 +1044,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, UI population (SUI/UUI/MUI).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 94,
@@ -1055,10 +1055,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, UI population (SUI/UUI/MUI), PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 95,
@@ -1066,10 +1066,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 96,
@@ -1077,10 +1077,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, UI population (SUI/UUI/MUI), PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 97,
@@ -1088,10 +1088,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 98,
@@ -1099,10 +1099,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing UI population (SUI/UUI/MUI), PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 99,
@@ -1110,10 +1110,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, UI population (SUI/UUI/MUI), PFMT intervention arm, control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 100,
@@ -1121,10 +1121,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing RCT/Q-RCT design, UI population (SUI/UUI/MUI), control arm (no treatment/placebo/sham/inactive).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     }
   ]
 }

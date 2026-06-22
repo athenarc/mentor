@@ -50,4 +50,16 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Architecture | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|--------------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | loop_chunk_orchestrator_v1 | gpt-oss-120b [OpenAI GPT-OSS 120B] | fixed | gpt-oss-120b [OpenAI GPT-OSS 120B] | 1 | 0 | 1 | 0 | n/a | n/a | n/a | n/a | n/a | 0.000 | 0.750 |
+| 1 | loop_chunk_orchestrator_v1 | gpt-oss-120b [OpenAI GPT-OSS 120B] | fixed | gpt-oss-120b [OpenAI GPT-OSS 120B] | 1 | 1 | 0 | 0 | 0.915 | 0.956 | 0.878 | 0.913 | 0.872 | 1.000 | 1.000 |
+
+## home_based_rehabilitation_183
+
+**Title:** Factors that influence the provision of home‐based rehabilitation services for people needing rehabilitation: a qualitative evidence synthesis
+**URL:** https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD014823/full
+**Studies:** 183 | **Gold pass:** 138 | **Gold exclude:** 45
+
+Metrics below are averaged only over scored runs with complete per-study decision coverage.
+
+| Rank | Architecture | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
+|------|--------------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
+| 1 | loop_chunk_orchestrator_v1 | gpt-oss-120b [OpenAI GPT-OSS 120B] | fixed | gpt-oss-120b [OpenAI GPT-OSS 120B] | 1 | 1 | 0 | 0 | 0.849 | 0.754 | 0.972 | 0.798 | 0.933 | 1.000 | 1.000 |

@@ -479,8 +479,8 @@
           <div class="badge-row">
             <span class="badge">5 reviews</span>
             <span class="badge">5 attempted runs</span>
-            <span class="badge">4 scored runs</span>
-            <span class="badge">1 incomplete run</span>
+            <span class="badge">5 scored runs</span>
+            <span class="badge">0 incomplete runs</span>
           </div>
           <div class="link-row">
             <a href="./summary.csv">summary.csv</a>
@@ -500,7 +500,7 @@
           <h2>Run health and aggregate metrics</h2>
         </div>
         <p>
-          The bundle scored 4 of 5 attempted runs under this policy. 1 run was excluded from scoring due to incomplete screening output. The strongest pooled macro metrics are precision and specificity, while recall is the lowest of the scored-run means.
+          All 5 attempted runs were scored under this policy. The strongest pooled macro metrics are precision and specificity, while recall is the lowest of the scored-run means.
         </p>
       </div>
       <div class="grid-2">
@@ -523,7 +523,7 @@
           <h2>Performance by review</h2>
         </div>
         <p>
-          Review difficulty varies across the bundle. iud insertion pain 50 has the strongest mean F1, while pelvic floor training 100 is the hardest case under this policy.
+          Review difficulty varies across the bundle. iud insertion pain 50 has the strongest mean F1, while heart failure mhealth 200 is the hardest case under this policy.
         </p>
       </div>
       <div class="grid-2">
@@ -564,7 +564,7 @@
           <h2>Run variability</h2>
         </div>
         <p>
-          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in stroke theophylline 10. The bundle also contains 1 incomplete run.
+          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in stroke theophylline 10.
         </p>
       </div>
       <div class="grid-2">
@@ -612,31 +612,31 @@
     const benchmark = {
   "overall": {
     "runsTotal": 5,
-    "runsScored": 4,
-    "runsCompleted": 4,
-    "runsIncomplete": 1,
-    "parseSuccessRate": 0.8,
+    "runsScored": 5,
+    "runsCompleted": 5,
+    "runsIncomplete": 0,
+    "parseSuccessRate": 1.0,
     "decisionCoverage": 1.0,
-    "macroAccuracy": 0.72,
-    "macroPrecision": 0.984375,
-    "macroRecall": 0.5828753399169887,
-    "macroSpecificity": 0.96875,
-    "macroF1": 0.6708125314447153,
-    "meanDurationSeconds": 1488.9092420999993,
-    "durationStdSeconds": 1163.1554389447217,
+    "macroAccuracy": 0.742,
+    "macroPrecision": 0.9875,
+    "macroRecall": 0.5954669386002577,
+    "macroSpecificity": 0.975,
+    "macroF1": 0.693612050472228,
+    "meanDurationSeconds": 0.0,
+    "durationStdSeconds": 0.0,
     "confusion": {
-      "tp": 70,
+      "tp": 101,
       "fp": 1,
-      "tn": 94,
-      "fn": 120
+      "tn": 146,
+      "fn": 137
     },
     "dispersion": {
-      "accuracy": 0.20976176963403032,
-      "precision": 0.027063293868263706,
-      "recall": 0.32980823111342455,
-      "specificity": 0.05412658773652741,
-      "f1": 0.27566822628923,
-      "duration": 1163.1554389447217
+      "accuracy": 0.19270703152713448,
+      "precision": 0.025,
+      "recall": 0.29606244084269595,
+      "specificity": 0.05,
+      "f1": 0.2507461845370807,
+      "duration": 0.0
     }
   },
   "reviews": [
@@ -650,7 +650,7 @@
       "recall": 0.3333333333333333,
       "specificity": 1.0,
       "f1": 0.5,
-      "duration": 102.29145862500445
+      "duration": 0.0
     },
     {
       "key": "alopecia_areata_25",
@@ -662,7 +662,7 @@
       "recall": 0.8823529411764706,
       "specificity": 0.875,
       "f1": 0.9090909090909091,
-      "duration": 257.3391889169943
+      "duration": 0.0
     },
     {
       "key": "iud_insertion_pain_50",
@@ -674,19 +674,19 @@
       "recall": 0.9333333333333333,
       "specificity": 1.0,
       "f1": 0.9655172413793104,
-      "duration": 850.5636759999979
+      "duration": 0.0
     },
     {
       "key": "pelvic_floor_training_100",
       "label": "pelvic floor training 100",
       "studies": 100,
       "goldInclude": 48,
-      "accuracy": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "specificity": 0.0,
-      "f1": 0.0,
-      "duration": 3223.3324279579974
+      "accuracy": 0.83,
+      "precision": 1.0,
+      "recall": 0.6458333333333334,
+      "specificity": 1.0,
+      "f1": 0.7848101265822784,
+      "duration": 0.0
     },
     {
       "key": "heart_failure_mhealth_200",
@@ -698,7 +698,7 @@
       "recall": 0.18248175182481752,
       "specificity": 1.0,
       "f1": 0.30864197530864196,
-      "duration": 3011.019459000003
+      "duration": 0.0
     }
   ],
   "worstRuns": [
@@ -717,6 +717,14 @@
       "precision": 1.0,
       "recall": 0.3333333333333333,
       "f1": 0.5
+    },
+    {
+      "run": "pelvic floor training 100 run 1",
+      "review": "pelvic floor training 100",
+      "accuracy": 0.83,
+      "precision": 1.0,
+      "recall": 0.6458333333333334,
+      "f1": 0.7848101265822784
     },
     {
       "run": "alopecia areata 25 run 1",

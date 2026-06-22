@@ -26,6 +26,11 @@ OUTPUT_DIR = BASTIRR_DIR / "output"
 # generous finite value so genuine infinite loops still get caught.
 EXECUTOR_TIMEOUT_SECONDS = int(os.getenv("BASTIRR_EXECUTOR_TIMEOUT", "500"))
 
+# Per-model HTTP request timeout in seconds. This is separate from the
+# smolagents code-executor timeout: a blocked model request can keep the
+# executor worker thread alive, so the model client needs its own timeout.
+MODEL_REQUEST_TIMEOUT_SECONDS = int(os.getenv("BASTIRR_MODEL_REQUEST_TIMEOUT", "900"))
+
 # ---------------------------------------------------------------------------
 # API keys  (sourced from .env)
 # ---------------------------------------------------------------------------

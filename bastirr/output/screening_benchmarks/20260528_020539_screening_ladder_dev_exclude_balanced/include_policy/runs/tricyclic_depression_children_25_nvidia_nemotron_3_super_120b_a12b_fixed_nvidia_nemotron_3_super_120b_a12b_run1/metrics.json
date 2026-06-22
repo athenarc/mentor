@@ -27,6 +27,7 @@
   "review_title": "Tricyclic drugs for depression in children and adolescents",
   "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD002317.pub2/full",
   "split": "dev",
+  "benchmark_architecture": "batch_orchestrator_v1",
   "run_index": 1,
   "run_status": "completed",
   "error": "",
@@ -36,7 +37,7 @@
   "rerun_triggered": false,
   "incomplete_reason": "",
   "duration_seconds": 756.8007798329927,
-  "run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced/include_policy/runs/tricyclic_depression_children_25_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1",
+  "run_dir": "bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced/include_policy/runs/tricyclic_depression_children_25_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1",
   "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
   "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
   "gatekeeper_backend": "openai",
@@ -50,6 +51,10 @@
   "orchestrator_model_id": "nvidia/nemotron-3-super-120b-a12b",
   "orchestrator_api_base": "https://openrouter.ai/api/v1",
   "orchestrator_api_key_source": "OPENROUTER_API_KEY",
-  "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced/include_policy/runs/tricyclic_depression_children_25_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1/screening_inspection.json",
-  "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced/include_policy/runs/tricyclic_depression_children_25_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1/screening_inspection.md"
+  "empty_rationale_count": 0,
+  "duplicate_rationale_count": 0,
+  "unique_rationale_count": 25,
+  "rationale_reuse_rate": 0.0,
+  "screening_inspection_json": "bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced/include_policy/runs/tricyclic_depression_children_25_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1/screening_inspection.json",
+  "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260528_020539_screening_ladder_dev_exclude_balanced/include_policy/runs/tricyclic_depression_children_25_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1/screening_inspection.md"
 }

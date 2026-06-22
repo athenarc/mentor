@@ -36,8 +36,8 @@
   "screening_attempt_count": 1,
   "rerun_triggered": false,
   "incomplete_reason": "",
-  "duration_seconds": 850.5636759999979,
-  "run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs/iud_insertion_pain_50_qwen3.5_27b_fixed_qwen3.5_27b_run1",
+  "duration_seconds": 0.0,
+  "run_dir": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs/iud_insertion_pain_50_qwen3.5_27b_fixed_qwen3.5_27b_run1",
   "gatekeeper_preset": "qwen3.5_27b",
   "gatekeeper_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
   "gatekeeper_backend": "openai",
@@ -55,43 +55,6 @@
   "duplicate_rationale_count": 0,
   "unique_rationale_count": 50,
   "rationale_reuse_rate": 0.0,
-  "total_input_tokens": 430711,
-  "total_output_tokens": 50971,
-  "total_tokens": 481682,
-  "total_steps": 22,
-  "action_step_count": 22,
-  "planning_step_count": 0,
-  "error_step_count": 4,
-  "retry_count": 0,
-  "resume_count": 0,
-  "duration_per_study_seconds": 17.01127351999996,
-  "agent_step_counts": {
-    "orchestrator": 10,
-    "gatekeeper": 12
-  },
-  "agent_input_tokens": {
-    "orchestrator": 46842,
-    "gatekeeper": 383869
-  },
-  "agent_output_tokens": {
-    "orchestrator": 2781,
-    "gatekeeper": 48190
-  },
-  "agent_duration_seconds": {
-    "orchestrator": 850.4744791984558,
-    "gatekeeper": 791.6666395664215
-  },
-  "orchestrator_step_count": 10,
-  "gatekeeper_step_count": 12,
-  "orchestrator_input_tokens": 46842,
-  "orchestrator_output_tokens": 2781,
-  "gatekeeper_input_tokens": 383869,
-  "gatekeeper_output_tokens": 48190,
-  "chunk_count": 2,
-  "chunk_sizes": [
-    25,
-    25
-  ],
-  "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs/iud_insertion_pain_50_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
-  "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs/iud_insertion_pain_50_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
+  "screening_inspection_json": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs/iud_insertion_pain_50_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
+  "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs/iud_insertion_pain_50_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
 }

@@ -126,7 +126,19 @@ To replace a failed review inside an existing loop experiment, use
 venv/bin/python -m bastirr.run_screening_loop_benchmark \
   --rerun-in-experiment bastirr/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro \
   --reviews heart_failure_mhealth_200 \
-  --skip-policy-notebook-execution
+  --skip-policy-notebook-execution \
+  --canonical auto
+```
+
+Batch experiments use the same in-place rerun shape:
+
+```bash
+venv/bin/python -m bastirr.run_screening_benchmark \
+  --rerun-in-experiment bastirr/output/screening_benchmarks/<timestamp>_<suite> \
+  --reviews adhesive_capsulitis_50 \
+  --skip-policy-notebook-execution \
+  --canonical auto \
+  --orchestrator-max-steps 30
 ```
 
 The in-place rerun reuses the experiment's original suite, model preset,
@@ -428,6 +440,9 @@ Important options:
 - `--orchestrator-model PRESET`
 - `--skip-policy-notebook-execution`
 - `--hide-subagent-steps`
+- `--canonical auto|none|force`
+- `--orchestrator-max-steps N`
+- `--rerun-in-experiment PATH`
 - `--list-suites`
 - `--list-model-presets`
 - `--list-reviews`
@@ -440,11 +455,13 @@ PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
   --model-presets openai_gpt5 \
   --orchestrator-policy fixed \
   --orchestrator-model openai_gpt5 \
-  --reviews stroke_theophylline_10
+  --reviews stroke_theophylline_10 \
+  --canonical auto
 
 # Run every model in the default screening ladder, 5 times each
 PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
-  --repeats 5
+  --repeats 5 \
+  --canonical none
 
 # Run GPT-5 on the dev-only ladder that stays better balanced under
 # exclude_label_0_5
@@ -453,7 +470,8 @@ PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
   --model-presets openai_gpt5 \
   --orchestrator-policy fixed \
   --orchestrator-model openai_gpt5 \
-  --repeats 5
+  --repeats 5 \
+  --canonical none
 
 # Run GPT-5 on the dev-only ladder with no 0.5 labels anywhere in the suite
 PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
@@ -461,24 +479,28 @@ PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
   --model-presets openai_gpt5 \
   --orchestrator-policy fixed \
   --orchestrator-model openai_gpt5 \
-  --repeats 5
+  --repeats 5 \
+  --canonical none
 
 # Match the thin orchestrator model to the Gatekeeper model
 PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
   --model-presets openai_gpt5 deepseek_v4_pro \
   --orchestrator-policy match-gatekeeper \
-  --repeats 5
+  --repeats 5 \
+  --canonical none
 
 # Restrict to a subset of reviews for a quicker sweep
 PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
   --reviews stroke_theophylline_10 alopecia_areata_25 \
   --model-presets openai_gpt5 \
-  --repeats 5
+  --repeats 5 \
+  --canonical none
 
 # Write both policy views from the same raw screening runs
 PYTHONPATH=. python3 -m bastirr.run_screening_benchmark \
   --model-presets openai_gpt5 \
-  --repeats 5
+  --repeats 5 \
+  --canonical none
 ```
 
 ## Orchestrator Policies
@@ -888,7 +910,8 @@ venv/bin/python -m bastirr.run_screening_benchmark \
   --model-presets openai_gpt5 \
   --orchestrator-policy fixed \
   --orchestrator-model openai_gpt5 \
-  --reviews stroke_theophylline_10
+  --reviews stroke_theophylline_10 \
+  --canonical auto
 ```
 
 Then inspect:

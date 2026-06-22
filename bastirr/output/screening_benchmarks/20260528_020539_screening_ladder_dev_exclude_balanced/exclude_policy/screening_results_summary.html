@@ -479,8 +479,8 @@
           <div class="badge-row">
             <span class="badge">5 reviews</span>
             <span class="badge">5 attempted runs</span>
-            <span class="badge">2 scored runs</span>
-            <span class="badge">3 incomplete runs</span>
+            <span class="badge">5 scored runs</span>
+            <span class="badge">0 incomplete runs</span>
           </div>
           <div class="link-row">
             <a href="./summary.csv">summary.csv</a>
@@ -500,7 +500,7 @@
           <h2>Run health and aggregate metrics</h2>
         </div>
         <p>
-          The bundle scored 2 of 5 attempted runs under this policy. 3 runs were excluded from scoring due to incomplete screening output. The strongest pooled macro metrics are specificity and accuracy, while precision is the lowest of the scored-run means.
+          All 5 attempted runs were scored under this policy. The strongest pooled macro metrics are specificity and precision, while recall is the lowest of the scored-run means.
         </p>
       </div>
       <div class="grid-2">
@@ -523,7 +523,7 @@
           <h2>Performance by review</h2>
         </div>
         <p>
-          Review difficulty varies across the bundle. endometrial progestagens 10 has the strongest mean F1, while adhesive capsulitis 50 is the hardest case under this policy.
+          Review difficulty varies across the bundle. endometrial progestagens 10 has the strongest mean F1, while prom feedback 194 is the hardest case under this policy.
         </p>
       </div>
       <div class="grid-2">
@@ -564,7 +564,7 @@
           <h2>Run variability</h2>
         </div>
         <p>
-          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in endometrial progestagens 10. The bundle also contains 3 incomplete runs.
+          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in endometrial progestagens 10.
         </p>
       </div>
       <div class="grid-2">
@@ -598,7 +598,7 @@
           <h2>Recurring study-level mistakes</h2>
         </div>
         <p>
-          These titles were misclassified repeatedly across scored runs. Most recurring mistakes are false negatives, concentrated in tricyclic depression children 25.
+          These titles were misclassified repeatedly across scored runs. Most recurring mistakes are false positives, concentrated in adhesive capsulitis 50.
         </p>
       </div>
       <div class="study-list" id="study-list"></div>
@@ -612,31 +612,31 @@
     const benchmark = {
   "overall": {
     "runsTotal": 5,
-    "runsScored": 2,
-    "runsCompleted": 2,
-    "runsIncomplete": 3,
-    "parseSuccessRate": 0.4,
+    "runsScored": 5,
+    "runsCompleted": 5,
+    "runsIncomplete": 0,
+    "parseSuccessRate": 1.0,
     "decisionCoverage": 1.0,
-    "macroAccuracy": 0.96,
-    "macroPrecision": 0.9583333333333333,
-    "macroRecall": 0.9583333333333333,
-    "macroSpecificity": 0.9615384615384616,
-    "macroF1": 0.9583333333333333,
-    "meanDurationSeconds": 1145.6813102831948,
-    "durationStdSeconds": 111.66392831198755,
+    "macroAccuracy": 0.8098969072164948,
+    "macroPrecision": 0.831365202411714,
+    "macroRecall": 0.783922902494331,
+    "macroSpecificity": 0.8398472686733557,
+    "macroF1": 0.8036919756161198,
+    "meanDurationSeconds": 658.3686115249991,
+    "durationStdSeconds": 282.45570805113977,
     "confusion": {
-      "tp": 16,
-      "fp": 1,
-      "tn": 17,
-      "fn": 1
+      "tp": 127,
+      "fp": 43,
+      "tn": 142,
+      "fn": 67
     },
     "dispersion": {
-      "accuracy": 0.03999999999999998,
-      "precision": 0.041666666666666685,
-      "recall": 0.041666666666666685,
-      "specificity": 0.038461538461538436,
-      "f1": 0.041666666666666685,
-      "duration": 111.66392831198755
+      "accuracy": 0.1300501141991413,
+      "precision": 0.11713204357919246,
+      "recall": 0.16206770385160843,
+      "specificity": 0.11340107341802409,
+      "f1": 0.13625054952022955,
+      "duration": 282.45570805113977
     }
   },
   "reviews": [
@@ -669,39 +669,63 @@
       "label": "adhesive capsulitis 50",
       "studies": 50,
       "goldInclude": 25,
-      "accuracy": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "specificity": 0.0,
-      "f1": 0.0,
-      "duration": 2148.598293707997
+      "accuracy": 0.76,
+      "precision": 0.7407407407407407,
+      "recall": 0.8,
+      "specificity": 0.72,
+      "f1": 0.7692307692307692,
+      "duration": 204.0350858750171
     },
     {
       "key": "desmopressin_transfusion_100",
       "label": "desmopressin transfusion 100",
       "studies": 100,
       "goldInclude": 54,
-      "accuracy": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "specificity": 0.0,
-      "f1": 0.0,
-      "duration": 333.4586690409924
+      "accuracy": 0.72,
+      "precision": 0.825,
+      "recall": 0.6111111111111112,
+      "specificity": 0.8478260869565217,
+      "f1": 0.7021276595744681,
+      "duration": 1059.4165325000067
     },
     {
       "key": "prom_feedback_194",
       "label": "prom feedback 194",
       "studies": 194,
       "goldInclude": 98,
-      "accuracy": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "specificity": 0.0,
-      "f1": 0.0,
-      "duration": 1956.075885624974
+      "accuracy": 0.6494845360824743,
+      "precision": 0.6744186046511628,
+      "recall": 0.5918367346938775,
+      "specificity": 0.7083333333333334,
+      "f1": 0.6304347826086958,
+      "duration": 738.1177362079616
     }
   ],
   "worstRuns": [
+    {
+      "run": "prom feedback 194 run 1",
+      "review": "prom feedback 194",
+      "accuracy": 0.6494845360824743,
+      "precision": 0.6744186046511628,
+      "recall": 0.5918367346938775,
+      "f1": 0.6304347826086958
+    },
+    {
+      "run": "desmopressin transfusion 100 run 1",
+      "review": "desmopressin transfusion 100",
+      "accuracy": 0.72,
+      "precision": 0.825,
+      "recall": 0.6111111111111112,
+      "f1": 0.7021276595744681
+    },
+    {
+      "run": "adhesive capsulitis 50 run 1",
+      "review": "adhesive capsulitis 50",
+      "accuracy": 0.76,
+      "precision": 0.7407407407407407,
+      "recall": 0.8,
+      "f1": 0.7692307692307692
+    },
     {
       "run": "tricyclic depression children 25 run 1",
       "review": "tricyclic depression children 25",
@@ -721,22 +745,94 @@
   ],
   "studies": [
     {
-      "ref": "tricyclic depression children 25 #15",
-      "title": "The effect of concomitant disorders in childhood depression on predicting treatment response",
+      "ref": "adhesive capsulitis 50 #11",
+      "title": "Prevalence and impact of musculoskeletal disorders of the upper limb in the general population",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.0",
+      "outcome": "excluded_at_screening",
+      "review_key": "adhesive_capsulitis_50"
+    },
+    {
+      "ref": "adhesive capsulitis 50 #12",
+      "title": "End‐range mobilization techniques in adhesive capsulitis of the shoulder joint: a multiple‐subject case report",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.0",
+      "outcome": "excluded_at_screening",
+      "review_key": "adhesive_capsulitis_50"
+    },
+    {
+      "ref": "adhesive capsulitis 50 #26",
+      "title": "Frozen shoulder: a long‐term prospective study",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.0",
+      "outcome": "excluded_at_screening",
+      "review_key": "adhesive_capsulitis_50"
+    },
+    {
+      "ref": "adhesive capsulitis 50 #27",
+      "title": "The effects of passive joint mobilization on pain and hypomobility associated with adhesive capsulitis of the shoulder",
       "mistakes": 1,
       "error": "false_negative",
       "gold": "1.0",
       "outcome": "included_in_review",
-      "review_key": "tricyclic_depression_children_25"
+      "review_key": "adhesive_capsulitis_50"
     },
     {
-      "ref": "tricyclic depression children 25 #21",
-      "title": "School phobia: a therapeutic trial with clomipramine and short‐term outcome",
+      "ref": "adhesive capsulitis 50 #28",
+      "title": "Is intraarticular sodium hyaluronate injection an alternative treatment in patients with adhesive capsulitis?",
       "mistakes": 1,
       "error": "false_positive",
       "gold": "0.5",
       "outcome": "excluded_after_full_text",
-      "review_key": "tricyclic_depression_children_25"
+      "review_key": "adhesive_capsulitis_50"
+    },
+    {
+      "ref": "adhesive capsulitis 50 #31",
+      "title": "Comparison of the efficacy of local corticosteroid injections and physiotherapy for the treatment of adhesive capsulitis",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "adhesive_capsulitis_50"
+    },
+    {
+      "ref": "adhesive capsulitis 50 #34",
+      "title": "Randomised controlled study of Mulligan's vs. Maitland's mobilization technique in adhesive capsulitis of shoulder joint",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "adhesive_capsulitis_50"
+    },
+    {
+      "ref": "adhesive capsulitis 50 #38",
+      "title": "Injections and physiotherapy for the painful stiff shoulder",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "adhesive_capsulitis_50"
+    },
+    {
+      "ref": "adhesive capsulitis 50 #4",
+      "title": "Arthrographic distension of the shoulder joint in the management of frozen shoulder",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "adhesive_capsulitis_50"
+    },
+    {
+      "ref": "adhesive capsulitis 50 #44",
+      "title": "Comparison of results of three different methods of treatment for adhesive capsulitis of shoulder",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "adhesive_capsulitis_50"
     }
   ]
 };

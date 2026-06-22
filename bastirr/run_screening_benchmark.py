@@ -5,13 +5,18 @@ CLI entry point for the Gatekeeper screening benchmark harness.
 from __future__ import annotations
 
 import argparse
+from pathlib import Path
 
 from bastirr.benchmarking.model_presets import (
     CANONICAL_MODEL_PRESETS,
     list_model_presets,
 )
 from bastirr.benchmarking.review_suites import get_review_suite, list_review_suites
-from bastirr.benchmarking.runner import run_screening_benchmark
+
+from bastirr.benchmarking.runner import (
+    rerun_screening_reviews_in_experiment,
+    run_screening_benchmark,
+)
 from bastirr.benchmarking.totals import (
     register_canonical_sources_from_experiment,
     write_screening_totals,
@@ -109,6 +114,20 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--orchestrator-max-steps",
+        type=int,
+        default=20,
+        help="Maximum smolagents CodeAgent steps for the batch Orchestrator.",
+    )
+    parser.add_argument(
+        "--rerun-in-experiment",
+        default=None,
+        help=(
+            "Existing batch benchmark experiment directory to update by rerunning "
+            "the review keys passed with --reviews"
+        ),
+    )
+    parser.add_argument(
         "--list-suites",
         action="store_true",
         help="List the available review suites and exit",
@@ -139,17 +158,29 @@ def main() -> None:
         _print_review_suite(args.suite)
         return
 
-    experiment_dir, _summary = run_screening_benchmark(
-        suite_name=args.suite,
-        model_presets=args.model_presets,
-        repeats=args.repeats,
-        orchestrator_policy=args.orchestrator_policy,
-        orchestrator_model_key=args.orchestrator_model,
-        review_keys=args.reviews,
-        include_subagent_steps=args.include_subagent_steps,
-        execute_policy_notebooks=not args.skip_policy_notebook_execution,
-        canonical_mode=args.canonical,
-    )
+    if args.rerun_in_experiment:
+        if not args.reviews:
+            parser.error("--rerun-in-experiment requires --reviews")
+        experiment_dir, _summary = rerun_screening_reviews_in_experiment(
+            experiment_dir=Path(args.rerun_in_experiment),
+            review_keys=args.reviews,
+            include_subagent_steps=args.include_subagent_steps,
+            execute_policy_notebooks=not args.skip_policy_notebook_execution,
+            orchestrator_max_steps=args.orchestrator_max_steps,
+        )
+    else:
+        experiment_dir, _summary = run_screening_benchmark(
+            suite_name=args.suite,
+            model_presets=args.model_presets,
+            repeats=args.repeats,
+            orchestrator_policy=args.orchestrator_policy,
+            orchestrator_model_key=args.orchestrator_model,
+            review_keys=args.reviews,
+            include_subagent_steps=args.include_subagent_steps,
+            execute_policy_notebooks=not args.skip_policy_notebook_execution,
+            canonical_mode=args.canonical,
+            orchestrator_max_steps=args.orchestrator_max_steps,
+        )
     canonical_info = register_canonical_sources_from_experiment(
         experiment_dir,
         mode=args.canonical,

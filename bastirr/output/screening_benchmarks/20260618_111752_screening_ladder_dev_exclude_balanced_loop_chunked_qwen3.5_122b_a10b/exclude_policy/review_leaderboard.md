@@ -50,7 +50,7 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 
 | Rank | Architecture | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|--------------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
-| 1 | loop_chunk_orchestrator_v1 | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | fixed | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 0 | 1 | 0 | n/a | n/a | n/a | n/a | n/a | 0.000 | 0.750 |
+| 1 | loop_chunk_orchestrator_v1 | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | fixed | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 0 | 0 | 0.929 | 0.963 | 0.897 | 0.920 | 0.870 | 1.000 | 1.000 |
 
 ## prom_feedback_194
 

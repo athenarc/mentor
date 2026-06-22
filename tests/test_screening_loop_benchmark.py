@@ -671,12 +671,14 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
                     gold_label_policies=["exclude_label_0_5"],
                     loop_mode="chunked",
                     chunk_count=2,
+                    orchestrator_max_steps=30,
                 )
 
             self.assertEqual(summary["benchmark_architecture"], LOOP_CHUNK_BENCHMARK_ARCHITECTURE)
             self.assertEqual(summary["loop_mode"], "chunked")
             self.assertEqual(chunk_runner_kwargs["chunk_count"], 2)
             self.assertIsNone(chunk_runner_kwargs["chunk_size"])
+            self.assertEqual(chunk_runner_kwargs["orchestrator_max_steps"], 30)
 
     def test_rerun_screening_loop_reviews_in_experiment_replaces_selected_review(self):
         review_cases = [
@@ -800,6 +802,7 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
             def _fake_run_screening_loop_review(**kwargs):
                 review_case = kwargs["review_case"]
                 self.assertEqual(review_case.key, "review_b")
+                self.assertEqual(kwargs["orchestrator_max_steps"], 30)
                 return {
                     "suite_name": "screening_ladder",
                     "review_case": review_case,
@@ -881,10 +884,12 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
                     experiment_dir=experiment_dir,
                     review_keys=["review_b"],
                     execute_policy_notebooks=False,
+                    orchestrator_max_steps=30,
                 )
 
             self.assertEqual(summary["rerun_review_keys"], ["review_b"])
             self.assertEqual(summary["completed_raw_run_count"], 2)
+            self.assertEqual(summary["orchestrator_max_steps"], 30)
             latest_raw_runs = materialized_raw_runs[-1]
             raw_by_review = {raw_run["review_case"].key: raw_run for raw_run in latest_raw_runs}
             self.assertEqual(raw_by_review["review_a"]["raw_run_dir"], old_a_raw)
@@ -1604,10 +1609,19 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
                 totals_root=totals_root,
                 mode="auto",
             )
+            stale_manifest_path = totals_root / "canonical_sources.json"
+            stale_manifest = json.loads(stale_manifest_path.read_text(encoding="utf-8"))
+            stale_manifest["n_sources"] = 999
+            stale_manifest_path.write_text(json.dumps(stale_manifest), encoding="utf-8")
             register_canonical_sources_from_experiment(
                 output_root / "new_exp",
                 totals_root=totals_root,
                 mode="auto",
+            )
+            persisted_manifest = json.loads(stale_manifest_path.read_text(encoding="utf-8"))
+            self.assertEqual(
+                persisted_manifest["n_sources"],
+                len(persisted_manifest["sources"]),
             )
             result = write_screening_totals(
                 output_root=output_root,

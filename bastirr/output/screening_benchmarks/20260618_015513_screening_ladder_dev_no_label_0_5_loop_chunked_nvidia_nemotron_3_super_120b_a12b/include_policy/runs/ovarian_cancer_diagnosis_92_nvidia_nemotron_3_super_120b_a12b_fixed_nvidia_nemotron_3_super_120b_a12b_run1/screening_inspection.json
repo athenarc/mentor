@@ -13,15 +13,15 @@
     "n_studies": 92,
     "gold_pass_count": 45,
     "gold_exclude_count": 47,
-    "predicted_pass_count": 20,
-    "predicted_exclude_count": 72,
-    "tp": 16,
-    "fp": 4,
-    "tn": 43,
-    "fn": 29,
-    "match_count": 44,
-    "mismatch_count": 13,
-    "missing_decision_count": 35,
+    "predicted_pass_count": 42,
+    "predicted_exclude_count": 50,
+    "tp": 32,
+    "fp": 10,
+    "tn": 37,
+    "fn": 13,
+    "match_count": 69,
+    "mismatch_count": 23,
+    "missing_decision_count": 0,
     "duplicate_decision_count": 0,
     "invalid_decision_count": 0
   },
@@ -32,10 +32,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), appropriate reference standard (histological confirmation or clinical follow-up).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 2,
@@ -43,10 +43,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate reference standard (histological confirmation or clinical follow-up).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 3,
@@ -54,10 +54,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 4,
@@ -65,10 +65,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), evaluation of single tests, multiple tests, or test combinations, appropriate reference standard (histological confirmation or clinical follow-up).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 5,
@@ -76,10 +76,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets criteria:  Validating multivariable model. Evaluates  test combinations. Uses histological/clinical follow-up reference. Studies women with pelvic mass suspicious for OC.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 6,
@@ -87,10 +87,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), appropriate reference standard (histological confirmation or clinical follow-up).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 7,
@@ -98,10 +98,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), appropriate reference standard (histological confirmation or clinical follow-up).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 8,
@@ -109,10 +109,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), appropriate reference standard (histological confirmation or clinical follow-up).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 9,
@@ -120,10 +120,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 10,
@@ -131,10 +131,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), evaluation of single tests, multiple tests, or test combinations, appropriate reference standard (histological confirmation or clinical follow-up).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 11,
@@ -142,10 +142,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), appropriate reference standard (histological confirmation or clinical follow-up).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 12,
@@ -153,10 +153,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: appears unrelated to ovarian cancer or adnexal masses. Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), appropriate reference standard (histological confirmation or clinical follow-up), appropriate population (women with pelvic mass suspicious for OC).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 13,
@@ -164,10 +164,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets criteria:  Validating multivariable model. Evaluates  test combinations. Uses histological/clinical follow-up reference. Studies women with pelvic mass suspicious for OC.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 14,
@@ -175,10 +175,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 15,
@@ -186,10 +186,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), appropriate reference standard (histological confirmation or clinical follow-up).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 16,
@@ -197,10 +197,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate reference standard (histological confirmation or clinical follow-up).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 17,
@@ -208,10 +208,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 18,
@@ -219,10 +219,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), appropriate reference standard (histological confirmation or clinical follow-up).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 19,
@@ -230,10 +230,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), evaluation of single tests, multiple tests, or test combinations, appropriate reference standard (histological confirmation or clinical follow-up).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 20,
@@ -241,10 +241,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), evaluation of single tests, multiple tests, or test combinations, appropriate reference standard (histological confirmation or clinical follow-up).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 21,
@@ -252,10 +252,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), appropriate reference standard (histological confirmation or clinical follow-up).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 22,
@@ -263,10 +263,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet criteria: missing appropriate study design (cross-sectional DTA, RCT comparing tests, or validating multivariable model), appropriate reference standard (histological confirmation or clinical follow-up).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 23,
@@ -274,10 +274,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets criteria:  Validating multivariable model. Evaluates  test combinations. Uses histological/clinical follow-up reference. Studies women with pelvic mass suspicious for OC.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 24,
@@ -286,7 +286,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Study evaluates diagnostic accuracy of ovarian cancer tests but reference standard not explicitly mentioned; given conservative approach, include for further review.",
+      "predicted_reason": "This is a cross-sectional diagnostic test accuracy study evaluating the ROMA test combination (HE4 and CA125) with histopathological verification as reference standard in women with ovarian masses (pelvic mass).",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -297,7 +297,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
+      "predicted_reason": "This is a projection study of cancer incidence and mortality, not a diagnostic test accuracy study evaluating tests for ovarian cancer diagnosis.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -308,7 +308,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
+      "predicted_reason": "This is a qualitative study describing women's experiences with diagnosis, not a diagnostic test accuracy study.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -319,7 +319,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
+      "predicted_reason": "This is a review article discussing ovarian carcinoma heterogeneity and models, not a primary diagnostic test accuracy study.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -330,7 +330,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
+      "predicted_reason": "This study evaluates biomarkers for lead time before diagnosis but does not restrict to women with a pelvic mass suspicious for OC; it uses ovarian cancer cases and controls from a general population.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -341,7 +341,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
+      "predicted_reason": "This is a methodological paper describing a tool for quality assessment of diagnostic accuracy studies, not a diagnostic test accuracy study itself.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -352,7 +352,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Study evaluates diagnostic accuracy of ovarian cancer tests but reference standard not explicitly mentioned; given conservative approach, include for further review.",
+      "predicted_reason": "This study validates the ROMA test combination (CA125, HE4, menopausal status) with histologic diagnosis as reference standard in women with pelvic mass.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -363,7 +363,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
+      "predicted_reason": "This is a review article about CA125, not a primary diagnostic test accuracy study.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -374,7 +374,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
+      "predicted_reason": "This is a theoretical model proposal for ovarian carcinogenesis, not a diagnostic test accuracy study.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -385,7 +385,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
+      "predicted_reason": "This is a review article discussing proteomic technologies and biomarkers, not a primary diagnostic test accuracy study.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -395,10 +395,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "This study validates the RMI test combination with histopathological findings as reference standard in premenopausal and postmenopausal women with adnexal masses (pelvic mass).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 35,
@@ -406,10 +406,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "This study evaluates the diagnostic accuracy of ROMA test combination with biopsy or clinical follow-up as reference standard in women with pelvic mass.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 36,
@@ -417,10 +417,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "This study evaluates the discriminative power of expert sonography, CA-125, RMI, and their combinations (test combinations) with surgical histopathology as reference standard.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 37,
@@ -429,7 +429,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Study evaluates diagnostic accuracy of ovarian cancer tests but reference standard not explicitly mentioned; given conservative approach, include for further review.",
+      "predicted_reason": "This study validates the IOTA three-step strategy (a test combination) with histological diagnosis as reference standard in women with adnexal masses.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -440,7 +440,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
+      "predicted_reason": "This is a methodological study evaluating tests for publication bias in meta-analyses of diagnostic test accuracy, not a primary diagnostic test accuracy study.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -450,10 +450,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "This study evaluates the diagnostic performance of HE4, CA125, and ROMA (test combinations) with histologic verification for early-stage epithelial ovarian cancer detection in women with pelvic masses.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 40,
@@ -461,10 +461,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "This study validates the IOTA ADNEX model (a multivariable model) for differential diagnosis of adnexal tumors with histologic confirmation as reference standard.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 41,
@@ -473,7 +473,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
+      "predicted_reason": "This is a cohort study evaluating outcomes of a testing strategy implementation (symptom triggered testing) on cancer outcomes, not a diagnostic test accuracy study of a specific test or combination.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -483,10 +483,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study focuses on cancer incidence/projections, qualitative experiences, literature review, molecular biology, or tool development rather than diagnostic test accuracy for ovarian cancer in symptomatic women with pelvic mass.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "This study validates a predictive model using HE4 and CA125 (test combination) with histology or follow-up as reference standard in women with pelvic mass.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 43,
@@ -495,7 +495,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
+      "predicted_reason": "This is a guideline document for evaluation and management of adnexal masses, not a primary diagnostic test accuracy study.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -506,7 +506,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
+      "predicted_reason": "This is a molecular study investigating genetic mutations in ovarian carcinomas, not a diagnostic test accuracy study.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -516,10 +516,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study does not meet selection criteria: lacks focus on diagnostic accuracy of ovarian cancer tests, does not evaluate relevant tests, inappropriate study design, or wrong population.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Despite the truncated abstract, the title indicates a comparison of HE4 with traditional tumor markers, suggesting a diagnostic accuracy study evaluating HE4 as a marker for ovarian cancer. Given the context, it likely involves women with ovarian masses or pelvic mass and reference standard histopathology.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 46,
@@ -527,10 +527,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study focuses on cancer incidence/projections, qualitative experiences, literature review, molecular biology, or tool development rather than diagnostic test accuracy for ovarian cancer in symptomatic women with pelvic mass.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "This study evaluates HE4 and ROMA (test combination) for distinguishing benign and malignant pelvic masses with histologic verification as reference standard in women with pelvic mass.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 47,
@@ -538,10 +538,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study examines incidence trends of borderline tumors and ovarian cancer over time; does not evaluate diagnostic tests or test combinations for ovarian cancer diagnosis in symptomatic women with pelvic mass.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 48,
@@ -549,10 +549,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study is a systematic review and meta-analysis of existing literature; not a primary diagnostic test accuracy study evaluating test combinations.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 49,
@@ -560,10 +560,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study does not clearly meet selection criteria for diagnostic test accuracy study evaluating test combinations for ovarian cancer diagnosis.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 50,
@@ -571,10 +571,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Prospective multicenter cross-sectional study evaluating IOTA LR2 model, ultrasound Simple Rules, RMI, and subjective assessment for preoperative characterization of adnexal masses; compares ≥2 tests with histological reference standard.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 51,
@@ -582,10 +582,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study is a meta-analysis of existing studies on HE4, CA125, and ROMA; not a primary diagnostic test accuracy study.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 52,
@@ -593,10 +593,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Prospective cross-sectional study evaluating and comparing CA-125, HE4, RMI, and ROMA in preoperative assessment of adnexal masses; uses histopathological diagnosis as gold standard; compares ≥2 tests.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 53,
@@ -604,10 +604,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Multicenter study evaluating HE4, CA125, and ROMA as diagnostic tools for ovarian cancer in patients with pelvic mass; assesses performance of single tests and multivariable model (ROMA) with histopathological reference standard.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 54,
@@ -615,10 +615,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Paper describes a hierarchical regression approach for meta-analysis of diagnostic test accuracy; not a diagnostic test accuracy study evaluating tests for ovarian cancer.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 55,
@@ -626,10 +626,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Paper evaluates performance of hierarchical models for meta-analysis of diagnostic test accuracy with few/sparse data; not a primary diagnostic test accuracy study.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 56,
@@ -637,10 +637,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study identifies germline mutations in genes associated with ovarian carcinoma; does not evaluate diagnostic tests or test combinations for ovarian cancer diagnosis in symptomatic women with pelvic mass.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 57,
@@ -648,10 +648,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Review article discusses prevalence, etiology, risk factors, diagnosis, and treatment of ovarian cancer; does not present original diagnostic test accuracy data.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 58,
@@ -659,10 +659,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Prospective multicenter blinded clinical trial validating ROMA in women with pelvic mass; estimates sensitivity, specificity, NPV, PPV; uses histopathological diagnosis as reference standard; evaluates multivariable model.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 59,
@@ -671,7 +671,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This is a prospective cross-sectional diagnostic test accuracy study evaluating four risk of malignancy indices (multivariable models) for detecting malignant ovarian tumors in women with pelvic masses, with surgical exploration as reference standard. It evaluates test combinations (RMI algorithms) for ovarian cancer diagnosis, meeting inclusion criteria.",
+      "predicted_reason": "Prospective study evaluating four risk of malignancy indices (RMI 1-4) for detection of malignant ovarian tumors; obtains sensitivity, specificity, PPV, NPV, diagnostic accuracy; uses surgical exploration as reference standard; compares ≥2 tests.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -682,7 +682,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This study evaluates the predictive value of Risk of Malignancy Index (multivariable model), CA-125, and inflammatory markers in discriminating ovarian cancers in postmenopausal women with adnexal masses who underwent surgery (histological confirmation). It assesses test combinations and single tests in a defined population, meeting criteria.",
+      "predicted_reason": "Study investigates predictive value of RMI (1-4), CA-125, and inflammatory markers (NLR, PLR) in discriminating ovarian cancers in geriatric and non-geriatric postmenopausal women with adnexal masses; uses histopathological results as reference standard; compares ≥2 tests.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -693,7 +693,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This study evaluates HE4, CA125, and ROMA (a multivariable model combining HE4 and CA125) for differentiating benign ovarian disease from epithelial ovarian cancer, stratified by menopausal status. It uses ROC analysis with histopathological confirmation, assessing test combinations for ovarian cancer diagnosis.",
+      "predicted_reason": "Study evaluates HE4, CA125, and ROMA in preoperative differentiation of benign and malignant adnexal masses; uses histopathological diagnosis as reference standard; assesses performance of single tests and multivariable model (ROMA).",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -704,7 +704,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a case-control study identifying symptoms associated with ovarian cancer in primary care. It does not evaluate diagnostic tests (ultrasound, biomarkers) or multivariable models for ovarian cancer diagnosis. The focus is on symptom prediction, not test accuracy of menopausal status, ultrasound, or biomarker combinations.",
+      "predicted_reason": "Case-control study identifies and quantifies symptoms of ovarian cancer in primary care; does not evaluate diagnostic tests or test combinations for ovarian cancer diagnosis.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -715,7 +715,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This prospective study validates the Risk of Ovarian Malignancy Algorithm (ROMA), a multivariable model combining HE4 and CA125, in women with pelvic masses scheduled for surgery. It evaluates test performance against histopathological reference standard, assessing a biomarker combination for ovarian cancer diagnosis.",
+      "predicted_reason": "Prospective validation study of ROMA using HE4 and CA125 in women with pelvic mass; analyzes performance of markers and ROMA; uses histopathological diagnosis as reference standard; evaluates multivariable model.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -726,7 +726,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a systematic review and meta-analysis of diagnostic test accuracy studies. The selection criteria require primary diagnostic test accuracy studies, not reviews or meta-analyses of existing studies.",
+      "predicted_reason": "Systematic review and meta-analysis of studies on diagnostic test performance for presurgical diagnosis of adnexal tumours; not a primary diagnostic test accuracy study.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -737,7 +737,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This study compares CA125, HE4, ROMA (multivariable model), and RMI for classifying ovarian masses in women diagnosed via imaging. It evaluates sensitivity and specificity using ROC curves, assessing test combinations and single models for ovarian cancer diagnosis, meeting criteria.",
+      "predicted_reason": "Study compares CA125, HE4, ROMA, and RMI for classification of ovarian masses; calculates sensitivity and specificity via ROC curves; uses histopathological diagnosis as reference standard (implied); evaluates ≥2 tests.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -748,7 +748,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a clinical practice commentary on genetic risk assessment for hereditary cancer syndromes. It does not evaluate diagnostic tests (ultrasound, biomarkers) or multivariable models for ovarian cancer diagnosis in symptomatic women with pelvic masses.",
+      "predicted_reason": "Statement from Society of Gynecologic Oncology on risk assessment for inherited gynecologic cancer predispositions; does not evaluate diagnostic test accuracy.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -759,7 +759,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This cross-sectional study evaluates serum CA-125, HE4, and ROMA (a multivariable model) at standard and optimal cut-offs for preoperative prediction of epithelial ovarian cancer in women with ovarian masses, with histopathological confirmation. It assesses test combinations for ovarian cancer diagnosis.",
+      "predicted_reason": "Cross-sectional descriptive study evaluating validity of serum CA-125, HE4, and ROMA at standard and optimal cut-offs for preoperative prediction of epithelial ovarian carcinoma; uses postoperative histopathology as reference standard; evaluates single tests and multivariable model.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -770,7 +770,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This study evaluates HE4, CA125, and ROMA2 index for detecting ovarian cancer in postmenopausal women with histologically verified ovarian cancer and benign tumors. It assesses a biomarker combination (ROMA) for ovarian cancer diagnosis in a defined menopausal group.",
+      "predicted_reason": "Study evaluates HE4 and ROMA index for primary detection of ovarian cancer in postmenopausal Czech women; uses histologically verified diagnoses; assesses diagnostic performance of single test (HE4) and multivariable model (ROMA).",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -781,7 +781,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This study evaluates conventional 2D ultrasound, CA125, RMI, IOTA simple rules, expert opinion, IOTA LR2, and 3D vascular indices for predicting malignant or benign ovarian tumors in postmenopausal women, with histopathological reference standard. It evaluates multiple tests and models for ovarian cancer diagnosis.",
+      "predicted_reason": "Study evaluates performance of 2D ultrasound and CA125, and added value of 3DPD ultrasound, in predicting malignant/benign ovarian tumors; uses histopathological results as reference standard; considers multiple tests and combinations (RMI, IOTA rules, expert opinion, LR2, 3D vascular indices).",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -791,10 +791,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a systematic review and meta-analysis comparing HE4 and CA-125 biomarkers for ovarian cancer diagnosis. The selection criteria require primary diagnostic test accuracy studies, not reviews.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Systematic review comparing two biomarkers (HE4 vs CA-125) for ovarian cancer diagnosis in women with suspected gynaecological disease, meeting criteria for cross-sectional diagnostic accuracy studies evaluating/comparing tests.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 71,
@@ -803,7 +803,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This diagnostic study evaluates HE4, CA125, and ROMA (a combination of both) for detecting ovarian malignancy in women with pelvic masses. It measures sensitivity, specificity, and AUC with histopathological reference, assessing a biomarker combination for ovarian cancer diagnosis.",
+      "predicted_reason": "Diagnostic accuracy study evaluating single tests (HE4, CA-125) and their combination (ROMA) in women with pelvic mass suspected of malignancy, with histological reference standard implied by surgery/radiological biopsy.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -814,7 +814,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This prospective study evaluates HE4, CA125, ROMA, and RMI for diagnosing epithelial ovarian cancer in women with complex pelvic masses. It assesses test combinations and single biomarkers with histopathological reference, meeting criteria for diagnostic test accuracy studies.",
+      "predicted_reason": "Prospective diagnostic accuracy study comparing ≥2 tests (HE4, CA125, ROMA, RMI) in women with pelvic mass, with histology reference standard.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -825,7 +825,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a methodological paper introducing PROBAST, a tool for assessing risk of bias in prediction model studies. It is not a diagnostic test accuracy study evaluating tests for ovarian cancer diagnosis.",
+      "predicted_reason": "Study describes a bias assessment tool (PROBAST) for prediction models, not a diagnostic accuracy study evaluating tests for ovarian cancer.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -836,7 +836,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This study evaluates the performance of ROMA (a multivariable model combining HE4 and CA125) for estimating risk of epithelial ovarian cancer in women with pelvic masses. It uses ROC analysis with histopathological confirmation, assessing a test combination for ovarian cancer diagnosis.",
+      "predicted_reason": "Diagnostic accuracy study evaluating a multivariable model (ROMA) for OC diagnosis in women with pelvic mass, using histology reference standard and stratifying by menopausal status.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -847,7 +847,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This study defines a methodology to categorize routes to cancer diagnosis using administrative data in England. It does not evaluate diagnostic tests (ultrasound, biomarkers) or multivariable models for ovarian cancer diagnosis in women with pelvic masses.",
+      "predicted_reason": "Study focuses on cancer diagnosis pathways using data linkages, not diagnostic test accuracy for ovarian cancer.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -858,7 +858,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Methodological paper on bivariate meta-analysis, not a diagnostic accuracy study evaluating tests for ovarian cancer in women with pelvic mass.",
+      "predicted_reason": "Study discusses statistical methodology (bivariate models) for meta-analysis, not a primary diagnostic accuracy study or validation study.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -869,7 +869,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Prospective population-based study evaluating RMI and ROMA (test combinations) in women with pelvic mass, using surgical pathology as reference standard.",
+      "predicted_reason": "Prospective diagnostic accuracy study comparing two tests (RMI and ROMA) in women with pelvic mass, with histology reference standard and menopausal subgroup analysis.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -880,7 +880,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Methodological paper describing a SAS macro for meta-analysis, not a diagnostic accuracy study.",
+      "predicted_reason": "Study describes a software tool for meta-analysis, not a primary diagnostic accuracy study.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -890,10 +890,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Meta-analysis of diagnostic accuracy studies, not a primary study evaluating tests or validating a multivariable model.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Systematic review/meta-analysis evaluating a test combination (ROMA) and comparing it to single tests (HE4, CA125) for ovarian cancer prediction, using histological reference standard.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 80,
@@ -902,7 +902,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Cross-sectional diagnostic accuracy study evaluating IOTA logistic regression models, simple rules, and RMI across lesion sizes, using histological diagnosis as reference.",
+      "predicted_reason": "Diagnostic accuracy study evaluating multiple tests (subjective assessment, IOTA models, simple rules, RMI) for benign vs malignant adnexal masses, with histology reference standard.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -913,7 +913,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Subset analysis of a prospective trial evaluating HE4 and CA-125 for ovarian cancer detection in premenopausal women with adnexal mass.",
+      "predicted_reason": "Diagnostic accuracy study evaluating single tests (HE4, CA-125) for OC diagnosis in premenopausal women with adnexal mass, with histology reference standard.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -923,10 +923,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Case-control study measuring HE4 in ovarian cancer patients and controls; does not specify population of women with pelvic mass suspicious for OC.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study evaluates biomarker (HE4) and test combination (ROMA) for ovarian cancer prediction/prognosis, assessing diagnostic performance in ovarian cancer patients vs controls.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 83,
@@ -935,7 +935,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study comparing biomarker levels in benign gynecologic disorders, not evaluating diagnostic accuracy for ovarian cancer.",
+      "predicted_reason": "Study only measures biomarker levels in benign disease without assessing diagnostic accuracy for ovarian cancer.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -946,7 +946,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Narrative review on biomarkers for ovarian cancer, not a primary diagnostic accuracy study.",
+      "predicted_reason": "Narrative review of biomarkers, not a diagnostic accuracy study evaluating test performance in a specific population.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -956,10 +956,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study developing and testing an HE4 ELISA in ovarian carcinoma patients and controls; does not specify population of women with pelvic mass suspicious for OC.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Diagnostic accuracy study evaluating a single test (HE4-based ELISA) for ovarian carcinoma in postmenopausal patients vs controls, with histology reference standard.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 86,
@@ -967,10 +967,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Systematic review of risk scores for ovarian malignancy, not a primary study.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Systematic review of diagnostic accuracy studies evaluating risk scores (multivariable models) for ovarian malignancy in women with adnexal masses, using histology reference standard.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 87,
@@ -979,7 +979,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study on sentinel node biopsy for endometrial cancer, not ovarian cancer.",
+      "predicted_reason": "Study focuses on endometrial cancer, not ovarian cancer.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -989,10 +989,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Meta-analysis of IOTA simple rules for ovarian cancer diagnosis, not a primary study.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meta-analysis of diagnostic accuracy studies evaluating a single test (IOTA simple rules) for ovarian cancer diagnosis in women with adnexal masses.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 89,
@@ -1001,7 +1001,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Diagnostic accuracy study evaluating CA125, HE4, and ROMA in women with benign gynecological disease and ovarian cancer, likely involving pelvic mass.",
+      "predicted_reason": "Diagnostic accuracy study evaluating single tests (CA 125, HE4) and a combination (ROMA) for ovarian cancer in women with benign gynecologic disease and ovarian cancer.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1011,10 +1011,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Review of diagnostic indices, not a primary diagnostic accuracy study.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study evaluates multiple diagnostic indices (multivariable models and combinations) for discriminating benign vs malignant ovarian masses in women with adnexal tumors.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 91,
@@ -1023,7 +1023,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Multicenter clinical trial validating HE4, CA125, ROMA, and RMI in women with ovarian cyst or pelvic tumor, using histological confirmation as reference.",
+      "predicted_reason": "Prospective diagnostic accuracy study validating multiple tests (HE4, CA125, ROMA, RMI) in women with pelvic mass (unknown ovarian cyst/pelvic tumor), with histology reference standard.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1034,7 +1034,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Diagnostic accuracy study evaluating the ADNEX model in premenopausal and postmenopausal Korean women with adnexal mass, using histological diagnosis as reference.",
+      "predicted_reason": "Diagnostic accuracy study evaluating a multivariable model (ADNEX) for differentiating benign vs malignant adnexal masses in Korean women, with histology reference standard and menopausal analysis.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     }

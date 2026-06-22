@@ -54,6 +54,8 @@ logger = logging.getLogger("bastirr.screening_loop_benchmark")
 
 LOOP_BENCHMARK_ARCHITECTURE = "loop_orchestrator_v1"
 LOOP_CHUNK_BENCHMARK_ARCHITECTURE = "loop_chunk_orchestrator_v1"
+DEFAULT_LOOP_ORCHESTRATOR_MAX_STEPS = 20
+DEFAULT_CHUNK_LOOP_ORCHESTRATOR_MAX_STEPS = 20
 _MAX_LOOP_ATTEMPTS = 2
 
 
@@ -76,6 +78,19 @@ def _loop_architecture_name(loop_mode: str) -> str:
     if loop_mode == "chunked":
         return LOOP_CHUNK_BENCHMARK_ARCHITECTURE
     return LOOP_BENCHMARK_ARCHITECTURE
+
+
+def _default_orchestrator_max_steps(loop_mode: str) -> int:
+    if loop_mode == "chunked":
+        return DEFAULT_CHUNK_LOOP_ORCHESTRATOR_MAX_STEPS
+    return DEFAULT_LOOP_ORCHESTRATOR_MAX_STEPS
+
+
+def _resolve_orchestrator_max_steps(value: int | None, *, loop_mode: str) -> int:
+    resolved = value if value is not None else _default_orchestrator_max_steps(loop_mode)
+    if resolved < 1:
+        raise ValueError("orchestrator_max_steps must be at least 1")
+    return resolved
 
 
 def _loop_experiment_root_for_mode(suite_name: str, model_keys: list[str], loop_mode: str) -> Path:
@@ -235,6 +250,7 @@ def run_screening_loop_review(
     output_root: Path,
     label_policy: str,
     include_subagent_steps: bool = True,
+    orchestrator_max_steps: int = DEFAULT_LOOP_ORCHESTRATOR_MAX_STEPS,
 ) -> dict:
     """
     Execute one looped screening benchmark run for a single review/model pair.
@@ -272,6 +288,7 @@ def run_screening_loop_review(
     activity_logger.log_metadata("Orchestrator preset", orchestrator_model.key)
     activity_logger.log_metadata("Orchestrator model", orchestrator_model.model_label)
     activity_logger.log_metadata("Orchestrator policy", orchestrator_policy)
+    activity_logger.log_metadata("Orchestrator max steps", str(orchestrator_max_steps))
     activity_logger.log_metadata("Gold label policy", label_policy)
 
     run_status = "completed"
@@ -320,6 +337,7 @@ def run_screening_loop_review(
                     gatekeeper_model.create_model(),
                     step_callbacks=step_callbacks,
                     logger=agent_logger,
+                    max_steps=orchestrator_max_steps,
                 )
                 loop_orchestrator.run(
                     _build_loop_screening_task(
@@ -414,6 +432,7 @@ def run_screening_chunk_loop_review(
     include_subagent_steps: bool = True,
     chunk_count: int | None = None,
     chunk_size: int | None = None,
+    orchestrator_max_steps: int = DEFAULT_CHUNK_LOOP_ORCHESTRATOR_MAX_STEPS,
 ) -> dict:
     """
     Execute one chunked loop screening benchmark run for a single review/model pair.
@@ -464,6 +483,7 @@ def run_screening_chunk_loop_review(
     activity_logger.log_metadata("Orchestrator preset", orchestrator_model.key)
     activity_logger.log_metadata("Orchestrator model", orchestrator_model.model_label)
     activity_logger.log_metadata("Orchestrator policy", orchestrator_policy)
+    activity_logger.log_metadata("Orchestrator max steps", str(orchestrator_max_steps))
     activity_logger.log_metadata("Gold label policy", label_policy)
 
     run_status = "completed"
@@ -518,6 +538,7 @@ def run_screening_chunk_loop_review(
                         gatekeeper_model.create_model(),
                         step_callbacks=step_callbacks,
                         logger=agent_logger,
+                        max_steps=orchestrator_max_steps,
                     )
                     retry_note = None
                     if attempt_index > 1:
@@ -619,6 +640,7 @@ def run_screening_loop_benchmark(
     loop_mode: str = "single-study",
     chunk_count: int | None = None,
     chunk_size: int | None = None,
+    orchestrator_max_steps: int | None = None,
     canonical_mode: str = "none",
 ) -> tuple[Path, dict]:
     """
@@ -636,6 +658,10 @@ def run_screening_loop_benchmark(
         raise ValueError("--chunk-count and --chunk-size require --loop-mode chunked")
     if chunk_count is not None and chunk_size is not None:
         raise ValueError("Use only one of --chunk-count or --chunk-size")
+    resolved_orchestrator_max_steps = _resolve_orchestrator_max_steps(
+        orchestrator_max_steps,
+        loop_mode=loop_mode,
+    )
     selected_label_policies = list(SCREENING_LABEL_POLICIES)
 
     selected_reviews = resolve_review_selection(suite_name, review_keys)
@@ -657,13 +683,14 @@ def run_screening_loop_benchmark(
 
     logger.info("Looped screening benchmark output dir: %s", experiment_dir)
     logger.info(
-        "Running looped suite=%s mode=%s reviews=%d gatekeeper_models=%d repeats=%d policy=%s",
+        "Running looped suite=%s mode=%s reviews=%d gatekeeper_models=%d repeats=%d policy=%s orchestrator_max_steps=%d",
         suite_name,
         loop_mode,
         len(selected_reviews),
         len(resolved_gatekeeper_models),
         repeats,
         orchestrator_policy,
+        resolved_orchestrator_max_steps,
     )
 
     raw_runs: list[dict] = []
@@ -708,6 +735,7 @@ def run_screening_loop_benchmark(
                         output_root=raw_runs_output_root,
                         label_policy="include_label_0_5",
                         include_subagent_steps=include_subagent_steps,
+                        orchestrator_max_steps=resolved_orchestrator_max_steps,
                         **runner_kwargs,
                     )
                 )
@@ -740,6 +768,7 @@ def run_screening_loop_benchmark(
                         "loop_mode": loop_mode,
                         "chunk_count": chunk_count,
                         "chunk_size": chunk_size,
+                        "orchestrator_max_steps": resolved_orchestrator_max_steps,
                     },
                 )
                 if canonical_mode != "none":
@@ -783,6 +812,7 @@ def run_screening_loop_benchmark(
             "loop_mode": loop_mode,
             "chunk_count": chunk_count,
             "chunk_size": chunk_size,
+            "orchestrator_max_steps": resolved_orchestrator_max_steps,
         },
     )
 
@@ -793,6 +823,7 @@ def run_screening_loop_benchmark(
         "loop_mode": loop_mode,
         "chunk_count": chunk_count,
         "chunk_size": chunk_size,
+        "orchestrator_max_steps": resolved_orchestrator_max_steps,
         "repeats": repeats,
         "review_keys": review_key_list,
         "model_presets": model_key_list,
@@ -919,6 +950,7 @@ def rerun_screening_loop_reviews_in_experiment(
     review_keys: list[str],
     include_subagent_steps: bool = True,
     execute_policy_notebooks: bool = True,
+    orchestrator_max_steps: int | None = None,
 ) -> tuple[Path, dict]:
     """
     Rerun selected reviews inside an existing looped experiment and rematerialize summaries.
@@ -944,6 +976,10 @@ def rerun_screening_loop_reviews_in_experiment(
         loop_mode = "chunked" if checkpoint_architecture == LOOP_CHUNK_BENCHMARK_ARCHITECTURE else "single-study"
     chunk_count = checkpoint.get("chunk_count")
     chunk_size = checkpoint.get("chunk_size")
+    resolved_orchestrator_max_steps = _resolve_orchestrator_max_steps(
+        orchestrator_max_steps if orchestrator_max_steps is not None else checkpoint.get("orchestrator_max_steps"),
+        loop_mode=loop_mode,
+    )
 
     suite_name = checkpoint["suite"]
     original_review_keys = checkpoint.get("review_keys") or []
@@ -1026,6 +1062,7 @@ def rerun_screening_loop_reviews_in_experiment(
                     output_root=raw_runs_output_root,
                     label_policy="include_label_0_5",
                     include_subagent_steps=include_subagent_steps,
+                    orchestrator_max_steps=resolved_orchestrator_max_steps,
                     **runner_kwargs,
                 )
                 run_id = _run_name(
@@ -1091,6 +1128,7 @@ def rerun_screening_loop_reviews_in_experiment(
             "loop_mode": loop_mode,
             "chunk_count": chunk_count,
             "chunk_size": chunk_size,
+            "orchestrator_max_steps": resolved_orchestrator_max_steps,
         },
     )
 
@@ -1101,6 +1139,7 @@ def rerun_screening_loop_reviews_in_experiment(
         "loop_mode": loop_mode,
         "chunk_count": chunk_count,
         "chunk_size": chunk_size,
+        "orchestrator_max_steps": resolved_orchestrator_max_steps,
         "repeats": repeats,
         "review_keys": original_review_keys,
         "rerun_review_keys": review_keys,

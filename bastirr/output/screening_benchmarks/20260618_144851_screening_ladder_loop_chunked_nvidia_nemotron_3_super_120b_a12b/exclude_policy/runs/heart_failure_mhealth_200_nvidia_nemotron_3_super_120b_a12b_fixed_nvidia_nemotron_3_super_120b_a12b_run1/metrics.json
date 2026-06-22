@@ -37,7 +37,7 @@
   "rerun_triggered": true,
   "incomplete_reason": "",
   "duration_seconds": 2626.8298449580034,
-  "run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144851_screening_ladder_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/runs/heart_failure_mhealth_200_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1",
+  "run_dir": "bastirr/output/screening_benchmarks/20260618_144851_screening_ladder_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/runs/heart_failure_mhealth_200_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1",
   "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
   "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
   "gatekeeper_backend": "openai",
@@ -87,15 +87,6 @@
   "orchestrator_output_tokens": 62205,
   "gatekeeper_input_tokens": 5228658,
   "gatekeeper_output_tokens": 268077,
-  "chunk_count": 6,
-  "chunk_sizes": [
-    34,
-    34,
-    33,
-    33,
-    33,
-    33
-  ],
-  "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144851_screening_ladder_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/runs/heart_failure_mhealth_200_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1/screening_inspection.json",
-  "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_144851_screening_ladder_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/runs/heart_failure_mhealth_200_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1/screening_inspection.md"
+  "screening_inspection_json": "bastirr/output/screening_benchmarks/20260618_144851_screening_ladder_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/runs/heart_failure_mhealth_200_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1/screening_inspection.json",
+  "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260618_144851_screening_ladder_loop_chunked_nvidia_nemotron_3_super_120b_a12b/exclude_policy/runs/heart_failure_mhealth_200_nvidia_nemotron_3_super_120b_a12b_fixed_nvidia_nemotron_3_super_120b_a12b_run1/screening_inspection.md"
 }

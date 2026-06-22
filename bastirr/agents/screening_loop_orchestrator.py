@@ -111,7 +111,7 @@ def create_screening_loop_orchestrator_agent(
     gatekeeper_model,
     step_callbacks=None,
     logger=None,
-    max_steps: int = 12,
+    max_steps: int = 20,
 ) -> CodeAgent:
     """
     Create the looped screening Orchestrator used by the new benchmark path.
@@ -146,7 +146,7 @@ def create_screening_chunk_loop_orchestrator_agent(
     gatekeeper_model,
     step_callbacks=None,
     logger=None,
-    max_steps: int = 8,
+    max_steps: int = 20,
 ) -> CodeAgent:
     """
     Create the mini-batch loop screening Orchestrator.

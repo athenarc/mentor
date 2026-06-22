@@ -1,9 +1,9 @@
 # Pipeline Activity Log
 
 > **Review:** Desmopressin use for minimising perioperative blood transfusion  
-> **Date:** 2026-06-18 11:44  
-> **Duration:** 32m 28s  
-> **Total tokens:** 1,871,615 (input: 1,691,934 / output: 179,681)
+> **Date:** 2026-06-20 03:53  
+> **Duration:** 52m 59s  
+> **Total tokens:** 2,750,311 (input: 2,422,686 / output: 327,625)
 
 > **Benchmark suite:** screening_ladder_dev_exclude_balanced  
 > **Benchmark architecture:** loop_chunk_orchestrator_v1  
@@ -19,15 +19,16 @@
 > **Orchestrator preset:** qwen3.5_122b_a10b  
 > **Orchestrator model:** qwen3.5-122b-a10b [Qwen 3.5 122B A10B]  
 > **Orchestrator policy:** fixed  
+> **Orchestrator max steps:** 30  
 > **Gold label policy:** include_label_0_5  
 
 ## Resource Usage by Agent
 
 | Agent | Steps | Time | Tokens (in / out) |
 |-------|-------|------|-------------------|
-| Orchestrator | 32 | 32m 28s | 267,778 / 13,769 |
-| Gatekeeper | 40 | 28m 50s | 1,424,156 / 165,912 |
-| **Total** | **72** | **32m 28s** | **1,691,934 / 179,681** |
+| Orchestrator | 34 | 52m 58s | 254,926 / 13,767 |
+| Gatekeeper | 61 | 49m 49s | 2,167,760 / 313,858 |
+| **Total** | **95** | **52m 59s** | **2,422,686 / 327,625** |
 
 ---
 
@@ -35,7 +36,7 @@
 
 ### 1. Orchestrator (python_interpreter)
 
-*11:44:11 — 7s — 4,302 tokens*
+*03:53:23 — 9s — 4,269 tokens*
 
 The orchestrator executed step 1. Used tools: python_interpreter.
 
@@ -43,7 +44,7 @@ The orchestrator executed step 1. Used tools: python_interpreter.
 
 ### 2. Orchestrator → Gatekeeper
 
-*11:47:00 — 2m 48s — 76,585 tokens*
+*03:54:40 — 1m 16s — 46,931 tokens*
 
 The orchestrator executed step 2. Used tools: python_interpreter.
 
@@ -51,7 +52,7 @@ The orchestrator executed step 2. Used tools: python_interpreter.
 
 ### 3. Orchestrator (python_interpreter)
 
-*11:47:06 — 6s — 5,031 tokens*
+*03:54:43 — 3s — 5,212 tokens*
 
 The orchestrator executed step 3. Used tools: python_interpreter. Encountered an error.
 
@@ -66,7 +67,7 @@ The orchestrator executed step 3. Used tools: python_interpreter. Encountered an
 
 ### 4. Orchestrator → Gatekeeper
 
-*11:49:11 — 2m 05s — 76,703 tokens*
+*03:57:57 — 3m 13s — 133,983 tokens*
 
 The orchestrator executed step 4. Used tools: python_interpreter.
 
@@ -74,7 +75,154 @@ The orchestrator executed step 4. Used tools: python_interpreter.
 
 ### 5. Orchestrator (python_interpreter)
 
-*11:49:17 — 6s — 6,348 tokens*
+*03:57:59 — 3s — 6,047 tokens*
+
+The orchestrator executed step 5. Used tools: python_interpreter. Encountered an error.
+
+> ⚠️ **Error:** Code execution failed at line 'append_result = append_screening_chunk_decisions_json(
+    screening_response=gatekeeper_response,
+    output_dir=output_dir,
+    expected_study_indices_json=chunk_study_indices_json,
+    expected_n_studies=expected_n_studies
+)' due to: ValueError: Gatekeeper decisions
+
+---
+
+### 6. Orchestrator → Gatekeeper
+
+*03:59:07 — 1m 07s — 48,323 tokens*
+
+The orchestrator executed step 6. Used tools: python_interpreter.
+
+---
+
+### 7. Orchestrator (python_interpreter)
+
+*03:59:10 — 3s — 6,839 tokens*
+
+The orchestrator executed step 7. Used tools: python_interpreter. Encountered an error.
+
+> ⚠️ **Error:** Code execution failed at line 'append_result = append_screening_chunk_decisions_json(
+    screening_response=gatekeeper_response,
+    output_dir=output_dir,
+    expected_study_indices_json=chunk_study_indices_json,
+    expected_n_studies=expected_n_studies
+)' due to: ValueError: Gatekeeper decisions
+
+---
+
+### 8. Orchestrator → Gatekeeper
+
+*04:00:32 — 1m 22s — 51,467 tokens*
+
+The orchestrator executed step 8. Used tools: python_interpreter.
+
+---
+
+### 9. Orchestrator (python_interpreter)
+
+*04:00:38 — 6s — 7,617 tokens*
+
+The orchestrator executed step 9. Used tools: python_interpreter. Encountered an error.
+
+> ⚠️ **Error:** Code execution failed at line 'append_result = append_screening_chunk_decisions_json(
+    screening_response=gatekeeper_response,
+    output_dir=output_dir,
+    expected_study_indices_json=chunk_study_indices_json,
+    expected_n_studies=expected_n_studies
+)' due to: ValueError: Chunk response did n
+
+---
+
+### 10. Orchestrator → Gatekeeper
+
+*04:02:56 — 2m 17s — 84,689 tokens*
+
+The orchestrator executed step 10. Used tools: python_interpreter.
+
+---
+
+### 11. Orchestrator (python_interpreter)
+
+*04:02:58 — 2s — 8,310 tokens*
+
+The orchestrator executed step 11. Used tools: python_interpreter. Encountered an error.
+
+> ⚠️ **Error:** Code execution failed at line 'append_result = append_screening_chunk_decisions_json(
+    screening_response=gatekeeper_response,
+    output_dir=output_dir,
+    expected_study_indices_json=chunk_study_indices_json,
+    expected_n_studies=expected_n_studies
+)' due to: ValueError: Chunk response did n
+
+---
+
+### 12. Orchestrator → Gatekeeper
+
+*04:06:11 — 3m 12s — 136,259 tokens*
+
+The orchestrator executed step 12. Used tools: python_interpreter.
+
+---
+
+### 13. Orchestrator (python_interpreter)
+
+*04:06:13 — 3s — 9,271 tokens*
+
+The orchestrator executed step 13. Used tools: python_interpreter.
+
+---
+
+### 14. Final Output (Orchestrator)
+
+*04:06:15 — 2s — 9,454 tokens*
+
+The orchestrator executed step 14. Used tools: python_interpreter. Produced the final output.
+
+---
+
+### 15. Orchestrator (python_interpreter)
+
+*04:06:22 — 7s — 4,372 tokens*
+
+The orchestrator executed step 1. Used tools: python_interpreter.
+
+---
+
+### 16. Orchestrator → Gatekeeper
+
+*04:09:35 — 3m 13s — 105,930 tokens*
+
+The orchestrator executed step 2. Used tools: python_interpreter.
+
+---
+
+### 17. Orchestrator (python_interpreter)
+
+*04:09:38 — 3s — 5,223 tokens*
+
+The orchestrator executed step 3. Used tools: python_interpreter. Encountered an error.
+
+> ⚠️ **Error:** Code execution failed at line 'append_result = append_screening_chunk_decisions_json(
+    screening_response=gatekeeper_response,
+    output_dir=output_dir,
+    expected_study_indices_json=chunk_study_indices_json,
+    expected_n_studies=expected_n_studies
+)' due to: ValueError: Gatekeeper decisions
+
+---
+
+### 18. Orchestrator → Gatekeeper
+
+*04:12:18 — 2m 39s — 121,720 tokens*
+
+The orchestrator executed step 4. Used tools: python_interpreter.
+
+---
+
+### 19. Orchestrator (python_interpreter)
+
+*04:12:21 — 3s — 6,162 tokens*
 
 The orchestrator executed step 5. Used tools: python_interpreter. Encountered an error.
 
@@ -87,27 +235,19 @@ The orchestrator executed step 5. Used tools: python_interpreter. Encountered an
 
 ---
 
-### 6. Orchestrator (python_interpreter)
+### 20. Orchestrator → Gatekeeper
 
-*11:49:22 — 5s — 7,153 tokens*
+*04:15:01 — 2m 40s — 122,086 tokens*
 
 The orchestrator executed step 6. Used tools: python_interpreter.
 
 ---
 
-### 7. Orchestrator → Gatekeeper
+### 21. Orchestrator (python_interpreter)
 
-*11:52:11 — 2m 48s — 116,923 tokens*
+*04:15:04 — 3s — 7,179 tokens*
 
-The orchestrator executed step 7. Used tools: python_interpreter.
-
----
-
-### 8. Orchestrator (python_interpreter)
-
-*11:52:16 — 5s — 8,189 tokens*
-
-The orchestrator executed step 8. Used tools: python_interpreter. Encountered an error.
+The orchestrator executed step 7. Used tools: python_interpreter. Encountered an error.
 
 > ⚠️ **Error:** Code execution failed at line 'append_result = append_screening_chunk_decisions_json(
     screening_response=gatekeeper_response,
@@ -118,35 +258,71 @@ The orchestrator executed step 8. Used tools: python_interpreter. Encountered an
 
 ---
 
-### 9. Orchestrator — Step 9
+### 22. Orchestrator → Gatekeeper
 
-*11:52:27 — 12s — 7,221 tokens*
+*04:18:00 — 2m 55s — 124,480 tokens*
 
-The orchestrator executed step 9. Encountered an error.
-
-> ⚠️ **Error:** Reached max steps.
+The orchestrator executed step 8. Used tools: python_interpreter.
 
 ---
 
-### 10. Orchestrator (python_interpreter)
+### 23. Orchestrator (python_interpreter)
 
-*11:52:40 — 12s — 4,490 tokens*
+*04:18:02 — 3s — 8,158 tokens*
 
-The orchestrator executed step 1. Used tools: python_interpreter.
-
----
-
-### 11. Orchestrator → Gatekeeper
-
-*11:56:16 — 3m 36s — 122,315 tokens*
-
-The orchestrator executed step 2. Used tools: python_interpreter.
+The orchestrator executed step 9. Used tools: python_interpreter.
 
 ---
 
-### 12. Orchestrator (python_interpreter)
+### 24. Final Output (Orchestrator)
 
-*11:56:19 — 3s — 5,470 tokens*
+*04:18:05 — 2s — 8,358 tokens*
+
+The orchestrator executed step 10. Used tools: python_interpreter. Produced the final output.
+
+---
+
+### 25. Orchestrator → Gatekeeper
+
+*04:21:09 — 3m 04s — 137,630 tokens*
+
+The orchestrator executed step 1. Used tools: python_interpreter. Produced the final output.
+
+---
+
+### 26. Orchestrator → Gatekeeper
+
+*04:24:25 — 3m 16s — 195,165 tokens*
+
+The orchestrator executed step 1. Used tools: python_interpreter. Encountered an error.
+
+> ⚠️ **Error:** Code execution failed at line 'append_screening_chunk_decisions_json(
+    screening_response=gatekeeper_response,
+    output_dir=output_dir,
+    expected_study_indices_json=chunk_study_indices_json,
+    expected_n_studies=expected_n_studies
+)' due to: ValueError: Gatekeeper decisions must be INCLUDE
+
+---
+
+### 27. Orchestrator → Gatekeeper
+
+*04:26:39 — 2m 13s — 77,484 tokens*
+
+The orchestrator executed step 2. Used tools: python_interpreter. Encountered an error.
+
+> ⚠️ **Error:** Code execution failed at line 'append_screening_chunk_decisions_json(
+    screening_response=gatekeeper_response,
+    output_dir=output_dir,
+    expected_study_indices_json=chunk_study_indices_json,
+    expected_n_studies=expected_n_studies
+)' due to: ValueError: Chunk response did not match expecte
+
+---
+
+### 28. Orchestrator → Gatekeeper
+
+*04:30:24 — 3m 45s — 212,184 tokens*
 
 The orchestrator executed step 3. Used tools: python_interpreter. Encountered an error.
 
@@ -159,189 +335,78 @@ The orchestrator executed step 3. Used tools: python_interpreter. Encountered an
 
 ---
 
-### 13. Orchestrator → Gatekeeper
+### 29. Orchestrator → Gatekeeper
 
-*11:59:21 — 3m 01s — 122,698 tokens*
+*04:33:21 — 2m 56s — 129,453 tokens*
 
-The orchestrator executed step 4. Used tools: python_interpreter.
+The orchestrator executed step 4. Used tools: python_interpreter. Encountered an error.
 
----
-
-### 14. Orchestrator (python_interpreter)
-
-*11:59:26 — 5s — 6,577 tokens*
-
-The orchestrator executed step 5. Used tools: python_interpreter.
-
----
-
-### 15. Final Output (Orchestrator)
-
-*11:59:28 — 3s — 6,787 tokens*
-
-The orchestrator executed step 6. Used tools: python_interpreter. Produced the final output.
-
----
-
-### 16. Orchestrator (python_interpreter)
-
-*11:59:43 — 14s — 4,397 tokens*
-
-The orchestrator executed step 1. Used tools: python_interpreter.
-
----
-
-### 17. Orchestrator (python_interpreter)
-
-*11:59:46 — 4s — 4,348 tokens*
-
-The orchestrator executed step 2. Used tools: python_interpreter. Encountered an error.
-
-> ⚠️ **Error:** Code execution failed at line 'print(f"Retrieved chunk payload with {len(chunk_payload.get('studies', []))} studies")' due to: InterpreterError: Object {"title": "Desmopressin use for minimising perioperative blood transfusion", "objective": "To examine the evidence for the efficacy of DDAVP in redu
-
----
-
-### 18. Orchestrator (python_interpreter)
-
-*11:59:53 — 6s — 15,297 tokens*
-
-The orchestrator executed step 3. Used tools: python_interpreter. Encountered an error.
-
-> ⚠️ **Error:** Code execution failed at line 'print(f"Retrieved chunk with {len(chunk_payload['studies'])} studies")' due to: InterpreterError: Could not index {"title": "Desmopressin use for minimising perioperative blood transfusion", "objective": "To examine the evidence for the efficacy of DDAVP in reducing pe
-
----
-
-### 19. Orchestrator (python_interpreter)
-
-*12:00:00 — 7s — 26,086 tokens*
-
-The orchestrator executed step 4. Used tools: python_interpreter.
-
----
-
-### 20. Orchestrator → Gatekeeper
-
-*12:01:48 — 1m 48s — 71,623 tokens*
-
-The orchestrator executed step 5. Used tools: python_interpreter.
-
----
-
-### 21. Orchestrator (python_interpreter)
-
-*12:02:02 — 13s — 27,500 tokens*
-
-The orchestrator executed step 6. Used tools: python_interpreter.
-
----
-
-### 22. Final Output (Orchestrator)
-
-*12:02:07 — 5s — 27,727 tokens*
-
-The orchestrator executed step 7. Used tools: python_interpreter. Produced the final output.
-
----
-
-### 23. Orchestrator → Gatekeeper
-
-*12:05:37 — 3m 30s — 278,080 tokens*
-
-The orchestrator executed step 1. Used tools: python_interpreter. Produced the final output.
-
----
-
-### 24. Orchestrator (python_interpreter)
-
-*12:05:43 — 6s — 4,197 tokens*
-
-The orchestrator executed step 1. Used tools: python_interpreter.
-
----
-
-### 25. Orchestrator → Gatekeeper
-
-*12:08:42 — 2m 58s — 112,535 tokens*
-
-The orchestrator executed step 2. Used tools: python_interpreter.
-
----
-
-### 26. Orchestrator (python_interpreter)
-
-*12:08:48 — 6s — 5,104 tokens*
-
-The orchestrator executed step 3. Used tools: python_interpreter. Encountered an error.
-
-> ⚠️ **Error:** Code execution failed at line 'append_result = append_screening_chunk_decisions_json(
+> ⚠️ **Error:** Code execution failed at line 'append_screening_chunk_decisions_json(
     screening_response=gatekeeper_response,
     output_dir=output_dir,
-    expected_study_indices_json=expected_study_indices_json,
+    expected_study_indices_json=chunk_study_indices_json,
     expected_n_studies=expected_n_studies
-)' due to: ValueError: Chunk response di
-
----
-
-### 27. Orchestrator (python_interpreter)
-
-*12:08:53 — 6s — 5,675 tokens*
-
-The orchestrator executed step 4. Used tools: python_interpreter.
-
----
-
-### 28. Orchestrator → Gatekeeper
-
-*12:12:48 — 3m 54s — 607,440 tokens*
-
-The orchestrator executed step 5. Used tools: python_interpreter.
-
----
-
-### 29. Orchestrator (python_interpreter)
-
-*12:12:51 — 4s — 6,481 tokens*
-
-The orchestrator executed step 6. Used tools: python_interpreter. Encountered an error.
-
-> ⚠️ **Error:** Code execution failed at line 'append_result = append_screening_chunk_decisions_json(
-    screening_response=gatekeeper_response,
-    output_dir=output_dir,
-    expected_study_indices_json=expected_study_indices_json,
-    expected_n_studies=expected_n_studies
-)' due to: ValueError: Chunk response di
+)' due to: ValueError: Chunk response did not match expecte
 
 ---
 
 ### 30. Orchestrator → Gatekeeper
 
-*12:16:16 — 3m 24s — 83,502 tokens*
+*04:36:28 — 3m 07s — 152,462 tokens*
 
-The orchestrator executed step 7. Used tools: python_interpreter.
+The orchestrator executed step 5. Used tools: python_interpreter. Encountered an error.
 
----
-
-### 31. Orchestrator (python_interpreter)
-
-*12:16:21 — 5s — 7,905 tokens*
-
-The orchestrator executed step 8. Used tools: python_interpreter. Encountered an error.
-
-> ⚠️ **Error:** Code execution failed at line 'append_result = append_screening_chunk_decisions_json(
+> ⚠️ **Error:** Code execution failed at line 'append_screening_chunk_decisions_json(
     screening_response=gatekeeper_response,
     output_dir=output_dir,
-    expected_study_indices_json=expected_study_indices_json,
+    expected_study_indices_json=chunk_study_indices_json,
     expected_n_studies=expected_n_studies
-)' due to: ValueError: Chunk response di
+)' due to: ValueError: Chunk response did not match expecte
 
 ---
 
-### 32. Orchestrator — Step 9
+### 31. Orchestrator → Gatekeeper
 
-*12:16:32 — 12s — 6,926 tokens*
+*04:37:21 — 52s — 40,250 tokens*
 
-The orchestrator executed step 9. Encountered an error.
+The orchestrator executed step 6. Used tools: python_interpreter. Encountered an error.
 
-> ⚠️ **Error:** Reached max steps.
+> ⚠️ **Error:** Code execution failed at line 'append_screening_chunk_decisions_json(
+    screening_response=gatekeeper_response,
+    output_dir=output_dir,
+    expected_study_indices_json=chunk_study_indices_json,
+    expected_n_studies=expected_n_studies
+)' due to: ValueError: Gatekeeper decisions must be INCLUDE
+
+---
+
+### 32. Orchestrator → Gatekeeper
+
+*04:41:43 — 4m 22s — 366,629 tokens*
+
+The orchestrator executed step 7. Used tools: python_interpreter. Encountered an error.
+
+> ⚠️ **Error:** Code execution failed at line 'append_screening_chunk_decisions_json(
+    screening_response=gatekeeper_response,
+    output_dir=output_dir,
+    expected_study_indices_json=chunk_study_indices_json,
+    expected_n_studies=expected_n_studies
+)' due to: ValueError: Chunk response did not match expecte
+
+---
+
+### 33. Orchestrator → Gatekeeper
+
+*04:46:08 — 4m 24s — 350,001 tokens*
+
+The orchestrator executed step 8. Used tools: python_interpreter.
+
+---
+
+### 34. Final Output (Orchestrator)
+
+*04:46:13 — 5s — 16,714 tokens*
+
+The orchestrator executed step 9. Used tools: python_interpreter. Produced the final output.
 
 ---

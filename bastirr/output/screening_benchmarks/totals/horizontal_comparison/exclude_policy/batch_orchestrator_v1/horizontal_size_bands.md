@@ -15,8 +15,8 @@
 | 7 | batch_orchestrator_v1 | qwen3.5_27b | qwen3.5-27b [Qwen 3.5 27B] | 3 | 3 | 3 | 0.944 | 0.905 | 1.000 | 0.933 |
 | 8 | batch_orchestrator_v1 | openai_gpt_oss_120b | gpt-oss-120b [OpenAI GPT-OSS 120B] | 3 | 3 | 3 | 0.861 | 0.771 | 1.000 | 0.867 |
 | 9 | batch_orchestrator_v1 | deepseek_v4_pro--xhigh | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 3 | 3 | 3 | 0.833 | 0.905 | 0.833 | 0.867 |
-| 10 | batch_orchestrator_v1 | deepseek_v4_pro | deepseek-v4-pro [DeepSeek V4 Pro] | 2 | 2 | 2 | 0.778 | 0.900 | 0.750 | 0.850 |
-| 11 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 2 | 2 | 2 | 0.750 | 0.857 | 0.750 | 0.800 |
+| 10 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 3 | 3 | 3 | 0.833 | 0.905 | 0.833 | 0.867 |
+| 11 | batch_orchestrator_v1 | deepseek_v4_pro | deepseek-v4-pro [DeepSeek V4 Pro] | 2 | 2 | 2 | 0.778 | 0.900 | 0.750 | 0.850 |
 
 ### Review Rows
 
@@ -24,6 +24,7 @@
 |--------|-------|---------|--------------|--------|------------------|------|--------|----|--------|-----------|----------|
 | endometrial_progestagens_10 | screening_ladder_dev_no_label_0_5_v2 | 10 | batch_orchestrator_v1 | deepseek_v4_pro--xhigh | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 1.000 | 1.000 | 1.000 | 1.000 |
 | endometrial_progestagens_10 | screening_ladder_dev_no_label_0_5_v2 | 10 | batch_orchestrator_v1 | kimi_k2.6 | kimi-k2.6 [Kimi K2.6] | 1 | 1 | 1.000 | 1.000 | 1.000 | 1.000 |
+| endometrial_progestagens_10 | screening_ladder_dev_exclude_balanced | 10 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 1 | 1 | 1.000 | 1.000 | 1.000 | 1.000 |
 | endometrial_progestagens_10 | screening_ladder_dev_exclude_balanced | 10 | batch_orchestrator_v1 | openai_gpt5 | openai-gpt-5 [OpenAI GPT5] | 1 | 1 | 1.000 | 1.000 | 1.000 | 1.000 |
 | endometrial_progestagens_10 | screening_ladder_dev_no_label_0_5_v2 | 10 | batch_orchestrator_v1 | openai_gpt5--xhigh | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 1.000 | 1.000 | 1.000 | 1.000 |
 | endometrial_progestagens_10 | screening_ladder_dev_exclude_balanced | 10 | batch_orchestrator_v1 | qwen3.5_122b_a10b | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 1.000 | 1.000 | 1.000 | 1.000 |
@@ -56,7 +57,7 @@
 | Rank | Architecture | Preset | Gatekeeper Model | Runs | Scored | Reviews | F1 | Recall | Precision | Accuracy |
 |------|--------------|--------|------------------|------|--------|---------|----|--------|-----------|----------|
 | 1 | batch_orchestrator_v1 | qwen3.5_122b_a10b | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 3 | 3 | 3 | 0.921 | 1.000 | 0.860 | 0.907 |
-| 2 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 2 | 2 | 2 | 0.914 | 0.962 | 0.875 | 0.900 |
+| 2 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 3 | 3 | 3 | 0.915 | 0.947 | 0.889 | 0.907 |
 | 3 | batch_orchestrator_v1 | kimi_k2.6 | kimi-k2.6 [Kimi K2.6] | 4 | 4 | 4 | 0.910 | 0.897 | 0.929 | 0.910 |
 | 4 | batch_orchestrator_v1 | openai_gpt_oss_120b | gpt-oss-120b [OpenAI GPT-OSS 120B] | 3 | 3 | 3 | 0.898 | 0.891 | 0.917 | 0.893 |
 | 5 | batch_orchestrator_v1 | openai_gpt5--xhigh | openai-gpt-5--xhigh [OpenAI GPT5] | 4 | 4 | 4 | 0.890 | 0.897 | 0.900 | 0.891 |
@@ -90,6 +91,7 @@
 | alopecia_areata_25 | screening_ladder | 25 | batch_orchestrator_v1 | openai_gpt5 | openai-gpt-5 [OpenAI GPT5] | 1 | 1 | 0.800 | 0.923 | 0.706 | 0.760 |
 | alopecia_areata_25 | screening_ladder | 25 | batch_orchestrator_v1 | mistral_medium_3.5 | mistral-medium-3.5 [Mistral Medium 3.5] | 1 | 1 | 0.235 | 0.154 | 0.500 | 0.480 |
 | tricyclic_depression_children_25 | screening_ladder_dev_exclude_balanced | 25 | batch_orchestrator_v1 | qwen3.5_122b_a10b | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 0.923 | 1.000 | 0.857 | 0.920 |
+| tricyclic_depression_children_25 | screening_ladder_dev_exclude_balanced | 25 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 1 | 1 | 0.917 | 0.917 | 0.917 | 0.920 |
 | tricyclic_depression_children_25 | screening_ladder_dev_exclude_balanced | 25 | batch_orchestrator_v1 | kimi_k2.6 | kimi-k2.6 [Kimi K2.6] | 1 | 1 | 0.909 | 0.833 | 1.000 | 0.920 |
 | tricyclic_depression_children_25 | screening_ladder_dev_exclude_balanced | 25 | batch_orchestrator_v1 | openai_gpt5 | openai-gpt-5 [OpenAI GPT5] | 1 | 1 | 0.909 | 0.833 | 1.000 | 0.920 |
 | tricyclic_depression_children_25 | screening_ladder_dev_exclude_balanced | 25 | batch_orchestrator_v1 | openai_gpt_oss_120b | gpt-oss-120b [OpenAI GPT-OSS 120B] | 1 | 1 | 0.909 | 0.833 | 1.000 | 0.920 |
@@ -113,8 +115,8 @@
 | 4 | batch_orchestrator_v1 | kimi_k2.6 | kimi-k2.6 [Kimi K2.6] | 4 | 4 | 4 | 0.951 | 0.934 | 0.970 | 0.955 |
 | 5 | batch_orchestrator_v1 | qwen3.5_27b | qwen3.5-27b [Qwen 3.5 27B] | 3 | 3 | 3 | 0.947 | 0.969 | 0.929 | 0.947 |
 | 6 | batch_orchestrator_v1 | deepseek_v4_pro | deepseek-v4-pro [DeepSeek V4 Pro] | 2 | 2 | 2 | 0.942 | 0.961 | 0.925 | 0.940 |
-| 7 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 2 | 2 | 2 | 0.942 | 0.890 | 1.000 | 0.950 |
-| 8 | batch_orchestrator_v1 | openai_gpt5 | openai-gpt-5 [OpenAI GPT5] | 2 | 2 | 2 | 0.940 | 0.940 | 0.940 | 0.940 |
+| 7 | batch_orchestrator_v1 | openai_gpt5 | openai-gpt-5 [OpenAI GPT5] | 2 | 2 | 2 | 0.940 | 0.940 | 0.940 | 0.940 |
+| 8 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 3 | 3 | 3 | 0.884 | 0.860 | 0.914 | 0.887 |
 | 9 | batch_orchestrator_v1 | openai_gpt_oss_120b | gpt-oss-120b [OpenAI GPT-OSS 120B] | 3 | 3 | 3 | 0.860 | 0.821 | 0.907 | 0.880 |
 | 10 | batch_orchestrator_v1 | openai_gpt5--xhigh | openai-gpt-5--xhigh [OpenAI GPT5] | 4 | 4 | 4 | 0.807 | 0.770 | 0.971 | 0.916 |
 | 11 | batch_orchestrator_v1 | deepseek_v4_pro--xhigh | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 4 | 4 | 4 | 0.783 | 0.734 | 0.962 | 0.896 |
@@ -131,6 +133,7 @@
 | adhesive_capsulitis_50 | screening_ladder_dev_exclude_balanced | 50 | batch_orchestrator_v1 | kimi_k2.6 | kimi-k2.6 [Kimi K2.6] | 1 | 1 | 0.898 | 0.880 | 0.917 | 0.900 |
 | adhesive_capsulitis_50 | screening_ladder_dev_exclude_balanced | 50 | batch_orchestrator_v1 | openai_gpt5 | openai-gpt-5 [OpenAI GPT5] | 1 | 1 | 0.898 | 0.880 | 0.917 | 0.900 |
 | adhesive_capsulitis_50 | screening_ladder_dev_exclude_balanced | 50 | batch_orchestrator_v1 | openai_gpt_oss_120b | gpt-oss-120b [OpenAI GPT-OSS 120B] | 1 | 1 | 0.863 | 0.880 | 0.846 | 0.860 |
+| adhesive_capsulitis_50 | screening_ladder_dev_exclude_balanced | 50 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 1 | 1 | 0.769 | 0.800 | 0.741 | 0.760 |
 | chlamydia_poc_test_50 | screening_ladder_dev_no_label_0_5 | 50 | batch_orchestrator_v1 | openai_gpt5--xhigh | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0.973 | 0.947 | 1.000 | 0.980 |
 | chlamydia_poc_test_50 | screening_ladder_dev_no_label_0_5 | 50 | batch_orchestrator_v1 | qwen3.5_122b_a10b | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 0.973 | 0.947 | 1.000 | 0.980 |
 | chlamydia_poc_test_50 | screening_ladder_dev_no_label_0_5 | 50 | batch_orchestrator_v1 | qwen3.5_27b | qwen3.5-27b [Qwen 3.5 27B] | 1 | 1 | 0.973 | 0.947 | 1.000 | 0.980 |
@@ -169,7 +172,7 @@
 | 8 | batch_orchestrator_v1 | kimi_k2.6 | kimi-k2.6 [Kimi K2.6] | 4 | 4 | 4 | 0.819 | 0.831 | 0.862 | 0.870 |
 | 9 | batch_orchestrator_v1 | mistral_medium_3.5 | mistral-medium-3.5 [Mistral Medium 3.5] | 1 | 1 | 1 | 0.727 | 0.769 | 0.690 | 0.850 |
 | 10 | batch_orchestrator_v1 | openai_gpt5.4_mini | openai-gpt-5.4-mini [OpenAI GPT-5.4 Mini] | 1 | 1 | 1 | 0.612 | 0.577 | 0.652 | 0.810 |
-| 11 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 2 | 2 | 2 | 0.211 | 0.147 | 0.377 | 0.594 |
+| 11 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 3 | 3 | 3 | 0.375 | 0.301 | 0.526 | 0.636 |
 
 ### Review Rows
 
@@ -193,6 +196,7 @@
 | desmopressin_transfusion_100 | screening_ladder_dev_exclude_balanced | 100 | batch_orchestrator_v1 | openai_gpt5--xhigh | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0.936 | 0.944 | 0.927 | 0.930 |
 | desmopressin_transfusion_100 | screening_ladder_dev_exclude_balanced | 100 | batch_orchestrator_v1 | qwen3.5_122b_a10b | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 0.915 | 1.000 | 0.844 | 0.900 |
 | desmopressin_transfusion_100 | screening_ladder_dev_exclude_balanced | 100 | batch_orchestrator_v1 | openai_gpt_oss_120b | gpt-oss-120b [OpenAI GPT-OSS 120B] | 1 | 1 | 0.891 | 0.981 | 0.815 | 0.870 |
+| desmopressin_transfusion_100 | screening_ladder_dev_exclude_balanced | 100 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 1 | 1 | 0.702 | 0.611 | 0.825 | 0.720 |
 | pelvic_floor_training_100 | screening_ladder | 100 | batch_orchestrator_v1 | openai_gpt5--xhigh | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0.877 | 0.962 | 0.806 | 0.930 |
 | pelvic_floor_training_100 | screening_ladder | 100 | batch_orchestrator_v1 | deepseek_v4_pro--xhigh | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0.862 | 0.962 | 0.781 | 0.920 |
 | pelvic_floor_training_100 | screening_ladder | 100 | batch_orchestrator_v1 | openai_gpt5 | openai-gpt-5 [OpenAI GPT5] | 1 | 1 | 0.862 | 0.962 | 0.781 | 0.920 |
@@ -219,8 +223,8 @@
 | 6 | batch_orchestrator_v1 | deepseek_v4_pro | deepseek-v4-pro [DeepSeek V4 Pro] | 2 | 2 | 2 | 0.685 | 0.709 | 0.663 | 0.920 |
 | 7 | batch_orchestrator_v1 | qwen3.5_27b | qwen3.5-27b [Qwen 3.5 27B] | 3 | 3 | 3 | 0.682 | 0.943 | 0.652 | 0.883 |
 | 8 | batch_orchestrator_v1 | openai_gpt_oss_120b | gpt-oss-120b [OpenAI GPT-OSS 120B] | 3 | 3 | 3 | 0.520 | 0.504 | 0.564 | 0.734 |
-| 9 | batch_orchestrator_v1 | mistral_medium_3.5 | mistral-medium-3.5 [Mistral Medium 3.5] | 1 | 1 | 1 | 0.444 | 1.000 | 0.286 | 0.950 |
-| 10 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 2 | 2 | 2 | 0.378 | 0.361 | 0.520 | 0.757 |
+| 9 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 3 | 3 | 3 | 0.462 | 0.438 | 0.571 | 0.721 |
+| 10 | batch_orchestrator_v1 | mistral_medium_3.5 | mistral-medium-3.5 [Mistral Medium 3.5] | 1 | 1 | 1 | 0.444 | 1.000 | 0.286 | 0.950 |
 | 11 | batch_orchestrator_v1 | openai_gpt5.4_mini | openai-gpt-5.4-mini [OpenAI GPT-5.4 Mini] | 1 | 1 | 1 | 0.148 | 1.000 | 0.080 | 0.770 |
 
 ### Review Rows
@@ -244,6 +248,7 @@
 | prom_feedback_194 | screening_ladder_dev_exclude_balanced | 194 | batch_orchestrator_v1 | kimi_k2.6 | kimi-k2.6 [Kimi K2.6] | 1 | 1 | 0.842 | 0.786 | 0.906 | 0.851 |
 | prom_feedback_194 | screening_ladder_dev_exclude_balanced | 194 | batch_orchestrator_v1 | openai_gpt5--xhigh | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0.819 | 0.806 | 0.832 | 0.820 |
 | prom_feedback_194 | screening_ladder_dev_exclude_balanced | 194 | batch_orchestrator_v1 | qwen3.5_122b_a10b | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 0.805 | 0.949 | 0.699 | 0.768 |
+| prom_feedback_194 | screening_ladder_dev_exclude_balanced | 194 | batch_orchestrator_v1 | nvidia_nemotron_3_super_120b_a12b | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 1 | 1 | 0.630 | 0.592 | 0.674 | 0.649 |
 | prom_feedback_194 | screening_ladder_dev_exclude_balanced | 194 | batch_orchestrator_v1 | openai_gpt_oss_120b | gpt-oss-120b [OpenAI GPT-OSS 120B] | 1 | 1 | 0.579 | 0.633 | 0.534 | 0.536 |
 | heart_failure_mhealth_200 | screening_ladder | 200 | batch_orchestrator_v1 | deepseek_v4_pro--xhigh | deepseek-v4-pro--xhigh [DeepSeek V4 Pro] | 1 | 1 | 0.889 | 1.000 | 0.800 | 0.995 |
 | heart_failure_mhealth_200 | screening_ladder | 200 | batch_orchestrator_v1 | kimi_k2.6 | kimi-k2.6 [Kimi K2.6] | 1 | 1 | 0.750 | 0.750 | 0.750 | 0.990 |

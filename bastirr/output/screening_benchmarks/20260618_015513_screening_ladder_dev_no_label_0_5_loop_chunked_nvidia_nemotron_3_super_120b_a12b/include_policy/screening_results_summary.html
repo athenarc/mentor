@@ -479,8 +479,8 @@
           <div class="badge-row">
             <span class="badge">5 reviews</span>
             <span class="badge">5 attempted runs</span>
-            <span class="badge">4 scored runs</span>
-            <span class="badge">1 incomplete run</span>
+            <span class="badge">5 scored runs</span>
+            <span class="badge">0 incomplete runs</span>
           </div>
           <div class="link-row">
             <a href="./summary.csv">summary.csv</a>
@@ -500,7 +500,7 @@
           <h2>Run health and aggregate metrics</h2>
         </div>
         <p>
-          The bundle scored 4 of 5 attempted runs under this policy. 1 run was excluded from scoring due to incomplete screening output. The strongest pooled macro metrics are precision and specificity, while recall is the lowest of the scored-run means.
+          All 5 attempted runs were scored under this policy. The strongest pooled macro metrics are precision and specificity, while recall is the lowest of the scored-run means.
         </p>
       </div>
       <div class="grid-2">
@@ -564,7 +564,7 @@
           <h2>Run variability</h2>
         </div>
         <p>
-          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in surgical termination 10. The bundle also contains 1 incomplete run.
+          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in surgical termination 10.
         </p>
       </div>
       <div class="grid-2">
@@ -612,31 +612,31 @@
     const benchmark = {
   "overall": {
     "runsTotal": 5,
-    "runsScored": 4,
-    "runsCompleted": 4,
-    "runsIncomplete": 1,
-    "parseSuccessRate": 0.8,
+    "runsScored": 5,
+    "runsCompleted": 5,
+    "runsIncomplete": 0,
+    "parseSuccessRate": 1.0,
     "decisionCoverage": 1.0,
-    "macroAccuracy": 0.8835997267759563,
-    "macroPrecision": 0.9838709677419355,
-    "macroRecall": 0.8284093385638007,
-    "macroSpecificity": 0.9555555555555555,
-    "macroF1": 0.8974092424888973,
-    "meanDurationSeconds": 1536.017140816152,
-    "durationStdSeconds": 857.6245541610065,
+    "macroAccuracy": 0.856879781420765,
+    "macroPrecision": 0.9394777265745008,
+    "macroRecall": 0.8049496930732628,
+    "macroSpecificity": 0.9218912529550828,
+    "macroF1": 0.865053830772727,
+    "meanDurationSeconds": 1375.8152255328082,
+    "durationStdSeconds": 768.4559568515751,
     "confusion": {
-      "tp": 148,
-      "fp": 8,
-      "tn": 83,
-      "fn": 28
+      "tp": 180,
+      "fp": 18,
+      "tn": 120,
+      "fn": 41
     },
     "dispersion": {
-      "accuracy": 0.06710907685958184,
-      "precision": 0.02793630334788514,
-      "recall": 0.0727139152383032,
-      "specificity": 0.07698003589195011,
-      "f1": 0.044796053607131285,
-      "duration": 857.6245541610065
+      "accuracy": 0.08036618988538549,
+      "precision": 0.09223550878699661,
+      "recall": 0.0801952033577656,
+      "specificity": 0.09630099594005008,
+      "f1": 0.07611070755360204,
+      "duration": 768.4559568515751
     }
   },
   "reviews": [
@@ -681,12 +681,12 @@
       "label": "ovarian cancer diagnosis 92",
       "studies": 92,
       "goldInclude": 45,
-      "accuracy": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "specificity": 0.0,
-      "f1": 0.0,
-      "duration": 2268.6650306247175
+      "accuracy": 0.75,
+      "precision": 0.7619047619047619,
+      "recall": 0.7111111111111111,
+      "specificity": 0.7872340425531915,
+      "f1": 0.735632183908046,
+      "duration": 1467.6554542079975
     },
     {
       "key": "home_based_rehabilitation_183",
@@ -702,6 +702,14 @@
     }
   ],
   "worstRuns": [
+    {
+      "run": "ovarian cancer diagnosis 92 run 1",
+      "review": "ovarian cancer diagnosis 92",
+      "accuracy": 0.75,
+      "precision": 0.7619047619047619,
+      "recall": 0.7111111111111111,
+      "f1": 0.735632183908046
+    },
     {
       "run": "surgical termination 10 run 1",
       "review": "surgical termination 10",

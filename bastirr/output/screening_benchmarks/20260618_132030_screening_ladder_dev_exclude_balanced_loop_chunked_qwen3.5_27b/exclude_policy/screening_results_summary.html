@@ -478,8 +478,8 @@
           </p>
           <div class="badge-row">
             <span class="badge">5 reviews</span>
-            <span class="badge">4 attempted runs</span>
-            <span class="badge">4 scored runs</span>
+            <span class="badge">5 attempted runs</span>
+            <span class="badge">5 scored runs</span>
             <span class="badge">0 incomplete runs</span>
           </div>
           <div class="link-row">
@@ -500,7 +500,7 @@
           <h2>Run health and aggregate metrics</h2>
         </div>
         <p>
-          All 4 attempted runs were scored under this policy. The strongest pooled macro metrics are recall and F1, while specificity is the lowest of the scored-run means.
+          All 5 attempted runs were scored under this policy. The strongest pooled macro metrics are recall and F1, while specificity is the lowest of the scored-run means.
         </p>
       </div>
       <div class="grid-2">
@@ -523,7 +523,7 @@
           <h2>Performance by review</h2>
         </div>
         <p>
-          Review difficulty varies across the bundle. endometrial progestagens 10 has the strongest mean F1, while tricyclic depression children 25 is the hardest case under this policy.
+          Review difficulty varies across the bundle. endometrial progestagens 10 has the strongest mean F1, while prom feedback 194 is the hardest case under this policy.
         </p>
       </div>
       <div class="grid-2">
@@ -611,32 +611,32 @@
   <script>
     const benchmark = {
   "overall": {
-    "runsTotal": 4,
-    "runsScored": 4,
-    "runsCompleted": 4,
+    "runsTotal": 5,
+    "runsScored": 5,
+    "runsCompleted": 5,
     "runsIncomplete": 0,
     "parseSuccessRate": 1.0,
     "decisionCoverage": 1.0,
-    "macroAccuracy": 0.9450000000000001,
-    "macroPrecision": 0.9232142857142858,
-    "macroRecall": 0.974537037037037,
-    "macroSpecificity": 0.9127257525083612,
-    "macroF1": 0.9474718636213175,
-    "meanDurationSeconds": 1202.3517551566474,
-    "durationStdSeconds": 1058.089929259158,
+    "macroAccuracy": 0.9219793814432989,
+    "macroPrecision": 0.8971299871299871,
+    "macroRecall": 0.9592214663643235,
+    "macroSpecificity": 0.8822639353400223,
+    "macroF1": 0.9263985435286329,
+    "meanDurationSeconds": 961.8814041253179,
+    "durationStdSeconds": 1061.5777868909292,
     "confusion": {
-      "tp": 94,
-      "fp": 11,
-      "tn": 78,
-      "fn": 2
+      "tp": 182,
+      "fp": 34,
+      "tn": 151,
+      "fn": 12
     },
     "dispersion": {
-      "accuracy": 0.03278719262150999,
-      "precision": 0.04596456167206662,
-      "recall": 0.03425613098830729,
-      "specificity": 0.057023860079247556,
-      "f1": 0.03176556061615994,
-      "duration": 1058.089929259158
+      "accuracy": 0.054587503285390415,
+      "precision": 0.06642104541712315,
+      "recall": 0.04332496772478873,
+      "specificity": 0.07945480297288084,
+      "f1": 0.050828928297989046,
+      "duration": 1061.5777868909292
     }
   },
   "reviews": [
@@ -687,9 +687,29 @@
       "specificity": 0.8478260869565217,
       "f1": 0.9298245614035088,
       "duration": 2680.725874790922
+    },
+    {
+      "key": "prom_feedback_194",
+      "label": "prom feedback 194",
+      "studies": 194,
+      "goldInclude": 98,
+      "accuracy": 0.8298969072164949,
+      "precision": 0.7927927927927928,
+      "recall": 0.8979591836734694,
+      "specificity": 0.7604166666666666,
+      "f1": 0.8421052631578948,
+      "duration": 0.0
     }
   ],
   "worstRuns": [
+    {
+      "run": "prom feedback 194 run 1",
+      "review": "prom feedback 194",
+      "accuracy": 0.8298969072164949,
+      "precision": 0.7927927927927928,
+      "recall": 0.8979591836734694,
+      "f1": 0.8421052631578948
+    },
     {
       "run": "tricyclic depression children 25 run 1",
       "review": "tricyclic depression children 25",

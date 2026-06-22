@@ -479,8 +479,8 @@
           <div class="badge-row">
             <span class="badge">5 reviews</span>
             <span class="badge">5 attempted runs</span>
-            <span class="badge">4 scored runs</span>
-            <span class="badge">1 incomplete run</span>
+            <span class="badge">5 scored runs</span>
+            <span class="badge">0 incomplete runs</span>
           </div>
           <div class="link-row">
             <a href="./summary.csv">summary.csv</a>
@@ -500,7 +500,7 @@
           <h2>Run health and aggregate metrics</h2>
         </div>
         <p>
-          The bundle scored 4 of 5 attempted runs under this policy. 1 run was excluded from scoring due to incomplete screening output. The strongest pooled macro metrics are precision and specificity, while recall is the lowest of the scored-run means.
+          All 5 attempted runs were scored under this policy. The strongest pooled macro metrics are specificity and precision, while recall is the lowest of the scored-run means.
         </p>
       </div>
       <div class="grid-2">
@@ -523,7 +523,7 @@
           <h2>Performance by review</h2>
         </div>
         <p>
-          Review difficulty varies across the bundle. iud insertion pain 50 has the strongest mean F1, while pelvic floor training 100 is the hardest case under this policy.
+          Review difficulty varies across the bundle. iud insertion pain 50 has the strongest mean F1, while heart failure mhealth 200 is the hardest case under this policy.
         </p>
       </div>
       <div class="grid-2">
@@ -564,7 +564,7 @@
           <h2>Run variability</h2>
         </div>
         <p>
-          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in stroke theophylline 10. The bundle also contains 1 incomplete run.
+          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in stroke theophylline 10.
         </p>
       </div>
       <div class="grid-2">
@@ -612,31 +612,31 @@
     const benchmark = {
   "overall": {
     "runsTotal": 5,
-    "runsScored": 4,
-    "runsCompleted": 4,
-    "runsIncomplete": 1,
-    "parseSuccessRate": 0.8,
+    "runsScored": 5,
+    "runsCompleted": 5,
+    "runsIncomplete": 0,
+    "parseSuccessRate": 1.0,
     "decisionCoverage": 1.0,
-    "macroAccuracy": 0.7787499999999999,
-    "macroPrecision": 0.9737179487179487,
-    "macroRecall": 0.6848361242307142,
-    "macroSpecificity": 0.964781746031746,
-    "macroF1": 0.7595519491003023,
-    "meanDurationSeconds": 1276.6385528998012,
-    "durationStdSeconds": 973.4469549585009,
+    "macroAccuracy": 0.759,
+    "macroPrecision": 0.9456410256410257,
+    "macroRecall": 0.6312022327179048,
+    "macroSpecificity": 0.9564407814407815,
+    "macroF1": 0.718752670391353,
+    "meanDurationSeconds": 952.8565335416046,
+    "durationStdSeconds": 871.4874924516342,
     "confusion": {
-      "tp": 71,
-      "fp": 2,
-      "tn": 93,
-      "fn": 119
+      "tp": 91,
+      "fp": 6,
+      "tn": 141,
+      "fn": 147
     },
     "dispersion": {
-      "accuracy": 0.20163007588155096,
-      "precision": 0.028110271729847043,
-      "recall": 0.2915230085386214,
-      "specificity": 0.052238996407414036,
-      "f1": 0.2626766901642829,
-      "duration": 973.4469549585009
+      "accuracy": 0.18461852561430556,
+      "precision": 0.06152563968989263,
+      "recall": 0.2819484152839994,
+      "specificity": 0.049612669327037354,
+      "f1": 0.24871179991550915,
+      "duration": 871.4874924516342
     }
   },
   "reviews": [
@@ -681,12 +681,12 @@
       "label": "pelvic floor training 100",
       "studies": 100,
       "goldInclude": 48,
-      "accuracy": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "specificity": 0.0,
-      "f1": 0.0,
-      "duration": 2496.632877457996
+      "accuracy": 0.68,
+      "precision": 0.8333333333333334,
+      "recall": 0.4166666666666667,
+      "specificity": 0.9230769230769231,
+      "f1": 0.5555555555555556,
+      "duration": 877.7227806670126
     },
     {
       "key": "heart_failure_mhealth_200",
@@ -709,6 +709,14 @@
       "precision": 0.9615384615384616,
       "recall": 0.18248175182481752,
       "f1": 0.3067484662576687
+    },
+    {
+      "run": "pelvic floor training 100 run 1",
+      "review": "pelvic floor training 100",
+      "accuracy": 0.68,
+      "precision": 0.8333333333333334,
+      "recall": 0.4166666666666667,
+      "f1": 0.5555555555555556
     },
     {
       "run": "alopecia areata 25 run 1",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-19T01:39:32.017127",
+  "generated_at": "2026-06-19T19:23:42.226514",
   "suite": "screening_ladder",
   "benchmark_architecture": "loop_chunk_orchestrator_v1",
   "repeats": 1,
@@ -19,7 +19,7 @@
     "include_label_0_5",
     "exclude_label_0_5"
   ],
-  "raw_runs_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/_raw_runs",
+  "raw_runs_dir": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/_raw_runs",
   "completed_raw_run_count": 5,
   "total_expected_raw_runs": 5,
   "completed_runs": [
@@ -31,7 +31,7 @@
       "orchestrator_preset": "qwen3.5_27b",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs/stroke_theophylline_10_qwen3.5_27b_fixed_qwen3.5_27b_run1"
+      "raw_run_dir": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/_raw_runs/20260618_123711_stroke_theophylline_10_qwen35_27b_fixed_qwen35_27b_run1"
     },
     {
       "benchmark_run_id": "alopecia_areata_25_qwen3.5_27b_fixed_qwen3.5_27b_run1",
@@ -41,7 +41,7 @@
       "orchestrator_preset": "qwen3.5_27b",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs/alopecia_areata_25_qwen3.5_27b_fixed_qwen3.5_27b_run1"
+      "raw_run_dir": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/_raw_runs/20260618_123854_alopecia_areata_25_qwen35_27b_fixed_qwen35_27b_run1"
     },
     {
       "benchmark_run_id": "iud_insertion_pain_50_qwen3.5_27b_fixed_qwen3.5_27b_run1",
@@ -51,7 +51,7 @@
       "orchestrator_preset": "qwen3.5_27b",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs/iud_insertion_pain_50_qwen3.5_27b_fixed_qwen3.5_27b_run1"
+      "raw_run_dir": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/_raw_runs/20260618_124312_iud_insertion_pain_50_qwen35_27b_fixed_qwen35_27b_run1"
     },
     {
       "benchmark_run_id": "pelvic_floor_training_100_qwen3.5_27b_fixed_qwen3.5_27b_run1",
@@ -60,8 +60,8 @@
       "orchestrator_policy": "fixed",
       "orchestrator_preset": "qwen3.5_27b",
       "run_index": 1,
-      "run_status": "incomplete",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs/pelvic_floor_training_100_qwen3.5_27b_fixed_qwen3.5_27b_run1"
+      "run_status": "completed",
+      "raw_run_dir": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/_raw_runs/20260619_173358_pelvic_floor_training_100_qwen35_27b_fixed_qwen35_27b_run1"
     },
     {
       "benchmark_run_id": "heart_failure_mhealth_200_qwen3.5_27b_fixed_qwen3.5_27b_run1",
@@ -71,32 +71,32 @@
       "orchestrator_preset": "qwen3.5_27b",
       "run_index": 1,
       "run_status": "completed",
-      "raw_run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs/heart_failure_mhealth_200_qwen3.5_27b_fixed_qwen3.5_27b_run1"
+      "raw_run_dir": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/_raw_runs/20260618_135106_heart_failure_mhealth_200_qwen35_27b_fixed_qwen35_27b_run1"
     }
   ],
-  "comparison_html_report": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/screening_policy_comparison.html",
+  "comparison_html_report": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/screening_policy_comparison.html",
   "policy_outputs": {
     "include_label_0_5": {
-      "directory": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy",
-      "summary_json": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/summary.json",
-      "summary_csv": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/summary.csv",
-      "leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/leaderboard.md",
-      "review_leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/review_leaderboard.md",
-      "runs_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs",
-      "html_report": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/screening_results_summary.html",
-      "eda_notebook": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/screening_results_analysis.ipynb",
+      "directory": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy",
+      "summary_json": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/summary.json",
+      "summary_csv": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/summary.csv",
+      "leaderboard_markdown": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/leaderboard.md",
+      "review_leaderboard_markdown": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/review_leaderboard.md",
+      "runs_dir": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs",
+      "html_report": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/screening_results_summary.html",
+      "eda_notebook": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/screening_results_analysis.ipynb",
       "eda_notebook_executed": false,
       "eda_notebook_execution_error": ""
     },
     "exclude_label_0_5": {
-      "directory": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy",
-      "summary_json": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/summary.json",
-      "summary_csv": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/summary.csv",
-      "leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/leaderboard.md",
-      "review_leaderboard_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/review_leaderboard.md",
-      "runs_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs",
-      "html_report": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/screening_results_summary.html",
-      "eda_notebook": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/screening_results_analysis.ipynb",
+      "directory": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy",
+      "summary_json": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/summary.json",
+      "summary_csv": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/summary.csv",
+      "leaderboard_markdown": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/leaderboard.md",
+      "review_leaderboard_markdown": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/review_leaderboard.md",
+      "runs_dir": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/runs",
+      "html_report": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/screening_results_summary.html",
+      "eda_notebook": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/exclude_policy/screening_results_analysis.ipynb",
       "eda_notebook_executed": false,
       "eda_notebook_execution_error": ""
     }

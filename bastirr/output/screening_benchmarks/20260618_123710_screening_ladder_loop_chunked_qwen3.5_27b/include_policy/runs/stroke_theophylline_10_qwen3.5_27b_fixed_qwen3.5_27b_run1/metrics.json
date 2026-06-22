@@ -36,8 +36,8 @@
   "screening_attempt_count": 1,
   "rerun_triggered": false,
   "incomplete_reason": "",
-  "duration_seconds": 102.29145862500445,
-  "run_dir": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs/stroke_theophylline_10_qwen3.5_27b_fixed_qwen3.5_27b_run1",
+  "duration_seconds": 0.0,
+  "run_dir": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs/stroke_theophylline_10_qwen3.5_27b_fixed_qwen3.5_27b_run1",
   "gatekeeper_preset": "qwen3.5_27b",
   "gatekeeper_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
   "gatekeeper_backend": "openai",
@@ -55,42 +55,6 @@
   "duplicate_rationale_count": 0,
   "unique_rationale_count": 10,
   "rationale_reuse_rate": 0.0,
-  "total_input_tokens": 45734,
-  "total_output_tokens": 6835,
-  "total_tokens": 52569,
-  "total_steps": 7,
-  "action_step_count": 7,
-  "planning_step_count": 0,
-  "error_step_count": 0,
-  "retry_count": 0,
-  "resume_count": 0,
-  "duration_per_study_seconds": 10.229145862500445,
-  "agent_step_counts": {
-    "orchestrator": 4,
-    "gatekeeper": 3
-  },
-  "agent_input_tokens": {
-    "orchestrator": 16980,
-    "gatekeeper": 28754
-  },
-  "agent_output_tokens": {
-    "orchestrator": 1110,
-    "gatekeeper": 5725
-  },
-  "agent_duration_seconds": {
-    "orchestrator": 101.97521615028381,
-    "gatekeeper": 80.14271926879883
-  },
-  "orchestrator_step_count": 4,
-  "gatekeeper_step_count": 3,
-  "orchestrator_input_tokens": 16980,
-  "orchestrator_output_tokens": 1110,
-  "gatekeeper_input_tokens": 28754,
-  "gatekeeper_output_tokens": 5725,
-  "chunk_count": 1,
-  "chunk_sizes": [
-    10
-  ],
-  "screening_inspection_json": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs/stroke_theophylline_10_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
-  "screening_inspection_markdown": "/Users/pkoloveas/Desktop/SR-project/SR-agents/bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs/stroke_theophylline_10_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
+  "screening_inspection_json": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs/stroke_theophylline_10_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.json",
+  "screening_inspection_markdown": "bastirr/output/screening_benchmarks/20260618_123710_screening_ladder_loop_chunked_qwen3.5_27b/include_policy/runs/stroke_theophylline_10_qwen3.5_27b_fixed_qwen3.5_27b_run1/screening_inspection.md"
 }

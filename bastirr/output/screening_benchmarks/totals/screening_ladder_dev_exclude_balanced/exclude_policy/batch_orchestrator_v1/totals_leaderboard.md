@@ -9,4 +9,5 @@
 | 5 | batch_orchestrator_v1 | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 5 | 5 | 0.914 | 0.990 | 0.852 | 0.902 | 0.810 | 1.000 | 1.000 | n/a | n/a |
 | 6 | batch_orchestrator_v1 | openai-gpt-5--xhigh [OpenAI GPT5] | 5 | 5 | 0.906 | 0.884 | 0.936 | 0.910 | 0.933 | 1.000 | 1.000 | n/a | n/a |
 | 7 | batch_orchestrator_v1 | deepseek-v4-pro [DeepSeek V4 Pro] | 5 | 5 | 0.900 | 0.878 | 0.936 | 0.904 | 0.928 | 1.000 | 1.000 | n/a | n/a |
-| 8 | batch_orchestrator_v1 | gpt-oss-120b [OpenAI GPT-OSS 120B] | 5 | 5 | 0.798 | 0.785 | 0.839 | 0.797 | 0.803 | 1.000 | 1.000 | n/a | n/a |
+| 8 | batch_orchestrator_v1 | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 5 | 5 | 0.804 | 0.784 | 0.831 | 0.810 | 0.840 | 1.000 | 1.000 | 1016677.667 | 22.333 |
+| 9 | batch_orchestrator_v1 | gpt-oss-120b [OpenAI GPT-OSS 120B] | 5 | 5 | 0.798 | 0.785 | 0.839 | 0.797 | 0.803 | 1.000 | 1.000 | n/a | n/a |

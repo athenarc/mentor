@@ -479,8 +479,8 @@
           <div class="badge-row">
             <span class="badge">5 reviews</span>
             <span class="badge">5 attempted runs</span>
-            <span class="badge">3 scored runs</span>
-            <span class="badge">2 incomplete runs</span>
+            <span class="badge">5 scored runs</span>
+            <span class="badge">0 incomplete runs</span>
           </div>
           <div class="link-row">
             <a href="./summary.csv">summary.csv</a>
@@ -500,7 +500,7 @@
           <h2>Run health and aggregate metrics</h2>
         </div>
         <p>
-          The bundle scored 3 of 5 attempted runs under this policy. 2 runs were excluded from scoring due to incomplete screening output. The strongest pooled macro metrics are F1 and precision, while recall is the lowest of the scored-run means.
+          All 5 attempted runs were scored under this policy. The strongest pooled macro metrics are F1 and precision, while recall is the lowest of the scored-run means.
         </p>
       </div>
       <div class="grid-2">
@@ -523,7 +523,7 @@
           <h2>Performance by review</h2>
         </div>
         <p>
-          Review difficulty varies across the bundle. adhesive capsulitis 50 has the strongest mean F1, while tricyclic depression children 25 is the hardest case under this policy.
+          Review difficulty varies across the bundle. desmopressin transfusion 100 has the strongest mean F1, while tricyclic depression children 25 is the hardest case under this policy.
         </p>
       </div>
       <div class="grid-2">
@@ -564,7 +564,7 @@
           <h2>Run variability</h2>
         </div>
         <p>
-          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in endometrial progestagens 10. The bundle also contains 2 incomplete runs.
+          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in endometrial progestagens 10.
         </p>
       </div>
       <div class="grid-2">
@@ -612,31 +612,31 @@
     const benchmark = {
   "overall": {
     "runsTotal": 5,
-    "runsScored": 3,
-    "runsCompleted": 3,
-    "runsIncomplete": 2,
-    "parseSuccessRate": 0.6,
+    "runsScored": 5,
+    "runsCompleted": 5,
+    "runsIncomplete": 0,
+    "parseSuccessRate": 1.0,
     "decisionCoverage": 1.0,
-    "macroAccuracy": 0.5866666666666667,
-    "macroPrecision": 0.6666666666666667,
-    "macroRecall": 0.5333333333333333,
-    "macroSpecificity": 0.6266666666666666,
-    "macroF1": 0.6821705426356589,
-    "meanDurationSeconds": 601.2095270413905,
-    "durationStdSeconds": 225.45762431050304,
+    "macroAccuracy": 0.6339587628865979,
+    "macroPrecision": 0.6853174603174603,
+    "macroRecall": 0.6148601662887377,
+    "macroSpecificity": 0.6416702898550725,
+    "macroF1": 0.6999005104522176,
+    "meanDurationSeconds": 1145.7440143493004,
+    "durationStdSeconds": 1500.92058200137,
     "confusion": {
-      "tp": 20,
-      "fp": 8,
-      "tn": 35,
-      "fn": 22
+      "tp": 127,
+      "fp": 54,
+      "tn": 131,
+      "fn": 67
     },
     "dispersion": {
-      "accuracy": 0.10873004286866726,
-      "precision": 0.3424674446093876,
-      "recall": 0.4109609335312651,
-      "specificity": 0.44582009326134636,
-      "f1": 0.32182733802460495,
-      "duration": 225.45762431050304
+      "accuracy": 0.10612192267435215,
+      "precision": 0.2946343032268036,
+      "recall": 0.34141739535509236,
+      "specificity": 0.3464770942848952,
+      "f1": 0.2839241246949038,
+      "duration": 1500.92058200137
     }
   },
   "reviews": [
@@ -681,24 +681,24 @@
       "label": "desmopressin transfusion 100",
       "studies": 100,
       "goldInclude": 54,
-      "accuracy": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "specificity": 0.0,
-      "f1": 0.0,
-      "duration": 990.2219334598631
+      "accuracy": 0.75,
+      "precision": 0.7301587301587301,
+      "recall": 0.8518518518518519,
+      "specificity": 0.6304347826086957,
+      "f1": 0.7863247863247863,
+      "duration": 863.7448464169865
     },
     {
       "key": "prom_feedback_194",
       "label": "prom feedback 194",
       "studies": 194,
       "goldInclude": 98,
-      "accuracy": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "specificity": 0.0,
-      "f1": 0.0,
-      "duration": 1240.9308037925512
+      "accuracy": 0.6597938144329897,
+      "precision": 0.6777777777777778,
+      "recall": 0.6224489795918368,
+      "specificity": 0.6979166666666666,
+      "f1": 0.6489361702127661,
+      "duration": 4090.080327374977
     }
   ],
   "worstRuns": [
@@ -709,6 +709,14 @@
       "precision": 0.0,
       "recall": 0.0,
       "f1": 0.0
+    },
+    {
+      "run": "prom feedback 194 run 1",
+      "review": "prom feedback 194",
+      "accuracy": 0.6597938144329897,
+      "precision": 0.6777777777777778,
+      "recall": 0.6224489795918368,
+      "f1": 0.6489361702127661
     },
     {
       "run": "endometrial progestagens 10 run 1",
@@ -725,6 +733,14 @@
       "precision": 0.8333333333333334,
       "recall": 0.6,
       "f1": 0.6976744186046512
+    },
+    {
+      "run": "desmopressin transfusion 100 run 1",
+      "review": "desmopressin transfusion 100",
+      "accuracy": 0.75,
+      "precision": 0.7301587301587301,
+      "recall": 0.8518518518518519,
+      "f1": 0.7863247863247863
     }
   ],
   "studies": [

@@ -69,6 +69,7 @@ def create_screening_orchestrator_agent(
     gatekeeper_model,
     step_callbacks=None,
     logger=None,
+    max_steps: int = 20,
 ) -> CodeAgent:
     """
     Create the thin screening orchestrator used by the benchmark harness.
@@ -78,6 +79,7 @@ def create_screening_orchestrator_agent(
         gatekeeper_model: Model instance for the Gatekeeper agent.
         step_callbacks: Optional smolagents step callbacks.
         logger: Optional shared AgentLogger instance.
+        max_steps: Maximum smolagents steps for the thin Orchestrator.
 
     Returns:
         Configured CodeAgent that manages only candidate retrieval and screening.
@@ -98,7 +100,7 @@ def create_screening_orchestrator_agent(
         managed_agents=[gatekeeper],
         name="orchestrator",
         instructions=SCREENING_ORCHESTRATOR_INSTRUCTIONS,
-        max_steps=20,
+        max_steps=max_steps,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         step_callbacks=step_callbacks or [],

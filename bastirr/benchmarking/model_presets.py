@@ -11,6 +11,8 @@ from pathlib import Path
 
 from smolagents import LiteLLMModel, OpenAIServerModel, TransformersModel
 
+from bastirr.config import MODEL_REQUEST_TIMEOUT_SECONDS
+
 
 _CONFIG_DIR = Path(__file__).resolve().parent / "config"
 _DEFAULT_CONFIG_PATH = _CONFIG_DIR / "model_presets.json"
@@ -35,6 +37,7 @@ class ResolvedModelPreset:
         """Instantiate the smolagents model for this preset without env leakage."""
         api_key = self.api_key or self.default_api_key
         request_kwargs = dict(self.request_kwargs or {})
+        request_timeout = MODEL_REQUEST_TIMEOUT_SECONDS
 
         if self.backend == "litellm":
             kwargs = {"model_id": self.model_id}
@@ -42,13 +45,18 @@ class ResolvedModelPreset:
                 kwargs["api_key"] = api_key
             if self.api_base:
                 kwargs["api_base"] = self.api_base
+            if request_timeout:
+                kwargs.setdefault("timeout", request_timeout)
             kwargs.update(request_kwargs)
             return LiteLLMModel(**kwargs)
 
         if self.backend == "hf-hub":
             return TransformersModel(model_id=self.model_id)
 
-        kwargs = {"model_id": self.model_id}
+        client_kwargs = {}
+        if request_timeout:
+            client_kwargs["timeout"] = request_timeout
+        kwargs = {"model_id": self.model_id, "client_kwargs": client_kwargs}
         if api_key:
             kwargs["api_key"] = api_key
         if self.api_base:

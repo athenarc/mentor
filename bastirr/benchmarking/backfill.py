@@ -5,12 +5,13 @@ Utilities for backfilling older screening benchmark directories.
 from __future__ import annotations
 
 import json
+import re
 import shutil
 from pathlib import Path
 
 from bastirr.benchmarking.comparison_reports import write_policy_comparison_report
 from bastirr.benchmarking.html_reports import write_policy_html_report
-from bastirr.benchmarking.metrics import SCREENING_LABEL_POLICIES
+from bastirr.benchmarking.metrics import SCREENING_LABEL_POLICIES, compute_screening_metrics
 from bastirr.benchmarking.model_presets import get_model_preset
 from bastirr.benchmarking.notebooks import write_policy_eda_notebook
 from bastirr.benchmarking.review_suites import resolve_review_selection
@@ -27,6 +28,7 @@ _POLICY_DIR_NAMES = {
     "include_label_0_5": "include_policy",
     "exclude_label_0_5": "exclude_policy",
 }
+_OPTIONAL_TRACE_FILENAMES = ("workflow.log", "activity.md", "screening_progress.json")
 _REVIEW_CACHE: dict[tuple[str, str], object] = {}
 
 
@@ -41,6 +43,36 @@ def _remove_path(path: Path) -> None:
         shutil.rmtree(path)
     else:
         path.unlink()
+
+
+def _snapshot_policy_trace_files(policy_dir: Path) -> dict[str, dict[str, bytes]]:
+    runs_dir = policy_dir / "runs"
+    if not runs_dir.exists():
+        return {}
+    snapshots: dict[str, dict[str, bytes]] = {}
+    for run_dir in sorted(path for path in runs_dir.iterdir() if path.is_dir()):
+        files = {
+            filename: (run_dir / filename).read_bytes()
+            for filename in _OPTIONAL_TRACE_FILENAMES
+            if (run_dir / filename).is_file()
+        }
+        if files:
+            snapshots[run_dir.name] = files
+    return snapshots
+
+
+def _restore_missing_policy_trace_files(
+    policy_dir: Path,
+    snapshots: dict[str, dict[str, bytes]],
+) -> None:
+    for run_name, files in snapshots.items():
+        run_dir = policy_dir / "runs" / run_name
+        if not run_dir.exists():
+            continue
+        for filename, content in files.items():
+            target = run_dir / filename
+            if not target.exists():
+                target.write_bytes(content)
 
 
 def _read_screening_decisions(evidence_path: Path) -> list[dict]:
@@ -133,10 +165,34 @@ def _raw_run_source_from_checkpoint(
     *,
     selected_label_policies: list[str],
 ) -> Path:
+    raw_runs_root = experiment_dir / "_raw_runs"
+    if raw_runs_root.exists():
+        matching_raw_dirs = []
+        for candidate in sorted(path for path in raw_runs_root.iterdir() if path.is_dir()):
+            metrics_path = candidate / "metrics.json"
+            evidence_path = candidate / "evidence.json"
+            if not evidence_path.exists():
+                continue
+            if metrics_path.exists():
+                with open(metrics_path, "r", encoding="utf-8") as f:
+                    metrics = json.load(f)
+                if (
+                    metrics.get("review_key") == checkpoint_run.get("review_key")
+                    and metrics.get("gatekeeper_preset") == checkpoint_run.get("gatekeeper_preset")
+                    and metrics.get("orchestrator_policy") == checkpoint_run.get("orchestrator_policy")
+                    and metrics.get("orchestrator_preset") == checkpoint_run.get("orchestrator_preset")
+                    and int(metrics.get("run_index") or 1) == int(checkpoint_run.get("run_index") or 1)
+                ):
+                    matching_raw_dirs.append(candidate)
+            elif _raw_dir_name_matches_checkpoint(candidate.name, checkpoint_run):
+                matching_raw_dirs.append(candidate)
+        if matching_raw_dirs:
+            return matching_raw_dirs[-1]
+
     raw_run_dir = checkpoint_run.get("raw_run_dir")
     if raw_run_dir:
         resolved = _resolve_existing_path(raw_run_dir)
-        if (resolved / "evidence.json").exists() and (resolved / "metrics.json").exists():
+        if (resolved / "evidence.json").exists():
             return resolved
 
     run_id = checkpoint_run["benchmark_run_id"]
@@ -156,6 +212,129 @@ def _raw_run_source_from_checkpoint(
     )
 
 
+def _checkpoint_run_key(row: dict) -> tuple:
+    return (
+        row.get("review_key", ""),
+        row.get("gatekeeper_preset", ""),
+        row.get("orchestrator_policy", ""),
+        row.get("orchestrator_preset", ""),
+        int(row.get("run_index") or 1),
+    )
+
+
+def _raw_dir_token(value: str) -> str:
+    return re.sub(r"[^A-Za-z0-9]+", "", value).lower()
+
+
+def _raw_dir_name_matches_checkpoint(raw_dir_name: str, checkpoint_run: dict) -> bool:
+    review_key = str(checkpoint_run.get("review_key", ""))
+    gatekeeper_preset = str(checkpoint_run.get("gatekeeper_preset", ""))
+    orchestrator_preset = str(checkpoint_run.get("orchestrator_preset", ""))
+    run_index = int(checkpoint_run.get("run_index") or 1)
+    return (
+        review_key in raw_dir_name
+        and _raw_dir_token(gatekeeper_preset) in _raw_dir_token(raw_dir_name)
+        and _raw_dir_token(orchestrator_preset) in _raw_dir_token(raw_dir_name)
+        and f"run{run_index}" in raw_dir_name
+    )
+
+
+def _infer_checkpoint_run_from_raw_dir(
+    raw_run_dir: Path,
+    *,
+    checkpoint: dict,
+) -> dict | None:
+    evidence_path = raw_run_dir / "evidence.json"
+    if not evidence_path.exists():
+        return None
+    metrics_path = raw_run_dir / "metrics.json"
+    if metrics_path.exists():
+        with open(metrics_path, "r", encoding="utf-8") as f:
+            metrics = json.load(f)
+        return {
+            "benchmark_run_id": metrics.get("benchmark_run_id", raw_run_dir.name),
+            "review_key": metrics.get("review_key", ""),
+            "gatekeeper_preset": metrics.get("gatekeeper_preset", ""),
+            "orchestrator_policy": metrics.get("orchestrator_policy", ""),
+            "orchestrator_preset": metrics.get("orchestrator_preset", ""),
+            "run_index": int(metrics.get("run_index") or 1),
+            "run_status": metrics.get("run_status", "completed"),
+            "raw_run_dir": str(raw_run_dir),
+        }
+
+    review_key = next(
+        (
+            key
+            for key in checkpoint.get("review_keys", [])
+            if str(key) in raw_run_dir.name
+        ),
+        "",
+    )
+    model_presets = checkpoint.get("model_presets") or []
+    gatekeeper_preset = next(
+        (
+            key
+            for key in model_presets
+            if _raw_dir_token(str(key)) in _raw_dir_token(raw_run_dir.name)
+        ),
+        model_presets[0] if len(model_presets) == 1 else "",
+    )
+    orchestrator_preset = checkpoint.get("orchestrator_preset", "")
+    if orchestrator_preset == "match-gatekeeper":
+        orchestrator_preset = gatekeeper_preset
+    if not review_key or not gatekeeper_preset or not orchestrator_preset:
+        return None
+    run_match = re.search(r"run(\d+)", raw_run_dir.name)
+    run_index = int(run_match.group(1)) if run_match else 1
+    return {
+        "benchmark_run_id": (
+            f"{review_key}_{gatekeeper_preset}_{checkpoint.get('orchestrator_policy', '')}_"
+            f"{orchestrator_preset}_run{run_index}"
+        ),
+        "review_key": review_key,
+        "gatekeeper_preset": gatekeeper_preset,
+        "orchestrator_policy": checkpoint.get("orchestrator_policy", ""),
+        "orchestrator_preset": orchestrator_preset,
+        "run_index": run_index,
+        "run_status": "completed",
+        "raw_run_dir": str(raw_run_dir),
+    }
+
+
+def _checkpoint_runs_with_recovered_raw_runs(
+    experiment_dir: Path,
+    *,
+    checkpoint: dict,
+) -> list[dict]:
+    checkpoint_runs = list(checkpoint.get("completed_runs", []))
+    seen_keys = {_checkpoint_run_key(row) for row in checkpoint_runs}
+    review_keys = set(checkpoint.get("review_keys") or [])
+    model_presets = set(checkpoint.get("model_presets") or [])
+    orchestrator_policy = checkpoint.get("orchestrator_policy", "")
+    orchestrator_preset = checkpoint.get("orchestrator_preset", "")
+    raw_runs_root = experiment_dir / "_raw_runs"
+    if not raw_runs_root.exists():
+        return checkpoint_runs
+
+    for raw_run_dir in sorted(path for path in raw_runs_root.iterdir() if path.is_dir()):
+        recovered = _infer_checkpoint_run_from_raw_dir(raw_run_dir, checkpoint=checkpoint)
+        if recovered is None:
+            continue
+        if review_keys and recovered.get("review_key") not in review_keys:
+            continue
+        if model_presets and recovered.get("gatekeeper_preset") not in model_presets:
+            continue
+        if recovered.get("orchestrator_policy") != orchestrator_policy:
+            continue
+        if recovered.get("orchestrator_preset") != orchestrator_preset:
+            continue
+        key = _checkpoint_run_key(recovered)
+        if key not in seen_keys:
+            checkpoint_runs.append(recovered)
+            seen_keys.add(key)
+    return checkpoint_runs
+
+
 def _load_checkpoint_raw_runs(
     experiment_dir: Path,
     *,
@@ -169,7 +348,10 @@ def _load_checkpoint_raw_runs(
     }
 
     raw_runs: list[dict] = []
-    for checkpoint_run in checkpoint.get("completed_runs", []):
+    for checkpoint_run in _checkpoint_runs_with_recovered_raw_runs(
+        experiment_dir,
+        checkpoint=checkpoint,
+    ):
         run_source_dir = _raw_run_source_from_checkpoint(
             experiment_dir,
             checkpoint_run,
@@ -177,8 +359,20 @@ def _load_checkpoint_raw_runs(
         )
         metrics_path = run_source_dir / "metrics.json"
         evidence_path = run_source_dir / "evidence.json"
-        with open(metrics_path, "r", encoding="utf-8") as f:
-            metrics = json.load(f)
+        has_metrics = metrics_path.exists()
+        if metrics_path.exists():
+            with open(metrics_path, "r", encoding="utf-8") as f:
+                metrics = json.load(f)
+        else:
+            metrics = {
+                "review_key": checkpoint_run.get("review_key", ""),
+                "gatekeeper_preset": checkpoint_run.get("gatekeeper_preset", ""),
+                "orchestrator_policy": checkpoint_run.get("orchestrator_policy", ""),
+                "orchestrator_preset": checkpoint_run.get("orchestrator_preset", ""),
+                "run_index": checkpoint_run.get("run_index", 1),
+                "run_status": "completed",
+                "error": "",
+            }
 
         review_key = checkpoint_run.get("review_key") or metrics["review_key"]
         review_case = review_case_by_key.get(review_key)
@@ -195,18 +389,28 @@ def _load_checkpoint_raw_runs(
                 f"'{review_case.split}' while backfilling '{experiment_dir.name}'."
             )
 
+        screening_decisions = _read_screening_decisions(evidence_path)
+        run_status = metrics.get("run_status", "completed")
+        if not has_metrics and run_status != "error":
+            status_metrics = compute_screening_metrics(
+                review,
+                screening_decisions,
+                label_policy=selected_label_policies[0],
+            )
+            run_status = "completed" if status_metrics.get("parse_success") else "incomplete"
+
         raw_runs.append({
             "suite_name": suite_name,
             "review_case": review_case,
             "review": review,
-            "screening_decisions": _read_screening_decisions(evidence_path),
+            "screening_decisions": screening_decisions,
             "gatekeeper_model": get_model_preset(metrics["gatekeeper_preset"]).resolve(),
             "orchestrator_model": get_model_preset(metrics["orchestrator_preset"]).resolve(),
             "orchestrator_policy": metrics["orchestrator_policy"],
             "run_index": int(metrics["run_index"]),
             "duration_seconds": float(metrics.get("duration_seconds", 0.0)),
             "raw_run_dir": run_source_dir,
-            "run_status": metrics.get("run_status", "completed"),
+            "run_status": run_status,
             "error": metrics.get("error", ""),
             "screening_attempt_count": int(metrics.get("screening_attempt_count", 1)),
             "rerun_triggered": bool(metrics.get("rerun_triggered", False)),
@@ -268,6 +472,7 @@ def _backfill_checkpoint_policy_views(
             continue
 
         policy_dir = experiment_dir / _policy_dir_name(label_policy)
+        trace_snapshots = _snapshot_policy_trace_files(policy_dir)
         _remove_path(policy_dir)
         policy_dir, policy_summary = _materialize_policy_outputs(
             experiment_dir,
@@ -280,6 +485,7 @@ def _backfill_checkpoint_policy_views(
             label_policy=label_policy,
             raw_runs=raw_runs,
         )
+        _restore_missing_policy_trace_files(policy_dir, trace_snapshots)
         notebook_info = write_policy_eda_notebook(
             policy_dir,
             execute=execute_policy_notebooks,
@@ -313,7 +519,7 @@ def _backfill_checkpoint_policy_views(
         comparison_report=comparison_report,
         extra_metadata={
             key: checkpoint[key]
-            for key in ("loop_mode", "chunk_count", "chunk_size")
+            for key in ("loop_mode", "chunk_count", "chunk_size", "orchestrator_max_steps")
             if key in checkpoint
         },
     )
@@ -454,6 +660,7 @@ def backfill_policy_views(
     policy_outputs: dict[str, dict] = {}
     for label_policy in selected_label_policies:
         policy_dir = experiment_dir / _policy_dir_name(label_policy)
+        trace_snapshots = _snapshot_policy_trace_files(policy_dir)
         _remove_path(policy_dir)
         policy_dir, policy_summary = _materialize_policy_outputs(
             experiment_dir,
@@ -466,6 +673,7 @@ def backfill_policy_views(
             label_policy=label_policy,
             raw_runs=raw_runs,
         )
+        _restore_missing_policy_trace_files(policy_dir, trace_snapshots)
         notebook_info = write_policy_eda_notebook(
             policy_dir,
             execute=execute_policy_notebooks,

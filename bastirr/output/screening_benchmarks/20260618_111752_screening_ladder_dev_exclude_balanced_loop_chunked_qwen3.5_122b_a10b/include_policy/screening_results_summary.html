@@ -479,8 +479,8 @@
           <div class="badge-row">
             <span class="badge">5 reviews</span>
             <span class="badge">5 attempted runs</span>
-            <span class="badge">4 scored runs</span>
-            <span class="badge">1 incomplete run</span>
+            <span class="badge">5 scored runs</span>
+            <span class="badge">0 incomplete runs</span>
           </div>
           <div class="link-row">
             <a href="./summary.csv">summary.csv</a>
@@ -500,7 +500,7 @@
           <h2>Run health and aggregate metrics</h2>
         </div>
         <p>
-          The bundle scored 4 of 5 attempted runs under this policy. 1 run was excluded from scoring due to incomplete screening output. The strongest pooled macro metrics are precision and specificity, while recall is the lowest of the scored-run means.
+          All 5 attempted runs were scored under this policy. The strongest pooled macro metrics are precision and specificity, while recall is the lowest of the scored-run means.
         </p>
       </div>
       <div class="grid-2">
@@ -523,7 +523,7 @@
           <h2>Performance by review</h2>
         </div>
         <p>
-          Review difficulty varies across the bundle. endometrial progestagens 10 has the strongest mean F1, while desmopressin transfusion 100 is the hardest case under this policy.
+          Review difficulty varies across the bundle. endometrial progestagens 10 has the strongest mean F1, while tricyclic depression children 25 is the hardest case under this policy.
         </p>
       </div>
       <div class="grid-2">
@@ -564,7 +564,7 @@
           <h2>Run variability</h2>
         </div>
         <p>
-          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in endometrial progestagens 10. The bundle also contains 1 incomplete run.
+          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in endometrial progestagens 10.
         </p>
       </div>
       <div class="grid-2">
@@ -598,7 +598,7 @@
           <h2>Recurring study-level mistakes</h2>
         </div>
         <p>
-          These titles were misclassified repeatedly across scored runs. Most recurring mistakes are false negatives, concentrated in prom feedback 194, adhesive capsulitis 50.
+          These titles were misclassified repeatedly across scored runs. Most recurring mistakes are false negatives, concentrated in desmopressin transfusion 100, adhesive capsulitis 50.
         </p>
       </div>
       <div class="study-list" id="study-list"></div>
@@ -612,31 +612,31 @@
     const benchmark = {
   "overall": {
     "runsTotal": 5,
-    "runsScored": 4,
-    "runsCompleted": 4,
-    "runsIncomplete": 1,
-    "parseSuccessRate": 0.8,
+    "runsScored": 5,
+    "runsCompleted": 5,
+    "runsIncomplete": 0,
+    "parseSuccessRate": 1.0,
     "decisionCoverage": 1.0,
-    "macroAccuracy": 0.9048969072164949,
-    "macroPrecision": 0.9917355371900827,
-    "macroRecall": 0.8648394362104039,
-    "macroSpecificity": 0.9782608695652174,
-    "macroF1": 0.9206772471642359,
-    "meanDurationSeconds": 1464.0434480499475,
-    "durationStdSeconds": 1463.5500919009587,
+    "macroAccuracy": 0.8959175257731958,
+    "macroPrecision": 0.9933884297520661,
+    "macroRecall": 0.8529826600794342,
+    "macroSpecificity": 0.9826086956521738,
+    "macroF1": 0.9150033361929273,
+    "meanDurationSeconds": 1710.2230513833813,
+    "durationStdSeconds": 1500.9976487178337,
     "confusion": {
-      "tp": 162,
+      "tp": 220,
       "fp": 4,
-      "tn": 76,
-      "fn": 37
+      "tn": 104,
+      "fn": 51
     },
     "dispersion": {
-      "accuracy": 0.07676299666871995,
-      "precision": 0.01431446948404031,
-      "recall": 0.10732333758062733,
-      "specificity": 0.0376532784254104,
-      "f1": 0.06430467015458066,
-      "duration": 1463.5500919009587
+      "accuracy": 0.07096874868888824,
+      "precision": 0.013223140495867768,
+      "recall": 0.09887856993522896,
+      "specificity": 0.034782608695652195,
+      "f1": 0.05862461552788968,
+      "duration": 1500.9976487178337
     }
   },
   "reviews": [
@@ -681,12 +681,12 @@
       "label": "desmopressin transfusion 100",
       "studies": 100,
       "goldInclude": 72,
-      "accuracy": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "specificity": 0.0,
-      "f1": 0.0,
-      "duration": 1948.216922165826
+      "accuracy": 0.86,
+      "precision": 1.0,
+      "recall": 0.8055555555555556,
+      "specificity": 1.0,
+      "f1": 0.8923076923076924,
+      "duration": 3179.114938832994
     },
     {
       "key": "prom_feedback_194",
@@ -717,6 +717,14 @@
       "precision": 0.9669421487603306,
       "recall": 0.7905405405405406,
       "f1": 0.8698884758364314
+    },
+    {
+      "run": "desmopressin transfusion 100 run 1",
+      "review": "desmopressin transfusion 100",
+      "accuracy": 0.86,
+      "precision": 1.0,
+      "recall": 0.8055555555555556,
+      "f1": 0.8923076923076924
     },
     {
       "run": "adhesive capsulitis 50 run 1",
@@ -755,76 +763,76 @@
       "review_key": "adhesive_capsulitis_50"
     },
     {
-      "ref": "prom feedback 194 #10",
-      "title": "Curbing the DUI offender's self-efficacy to drink and drive: a laboratory study",
-      "mistakes": 1,
-      "error": "false_negative",
-      "gold": "0.5",
-      "outcome": "excluded_after_full_text",
-      "review_key": "prom_feedback_194"
-    },
-    {
-      "ref": "prom feedback 194 #116",
-      "title": "Randomized trial of a patient-centered decision aid for promoting informed decisions about lung cancer screening: Implementation of a PCORI study protocol and lessons learned",
-      "mistakes": 1,
-      "error": "false_negative",
-      "gold": "0.5",
-      "outcome": "excluded_after_full_text",
-      "review_key": "prom_feedback_194"
-    },
-    {
-      "ref": "prom feedback 194 #117",
-      "title": "Rapid emergency department intervention for older people reduces risk of functional decline: results of a multicenter randomized trial",
+      "ref": "desmopressin transfusion 100 #11",
+      "title": "Desmopressin has no beneficial effect on excessive postoperative bleeding or blood product requirements associated with cardiopulmonary bypass",
       "mistakes": 1,
       "error": "false_negative",
       "gold": "1.0",
       "outcome": "included_in_review",
-      "review_key": "prom_feedback_194"
+      "review_key": "desmopressin_transfusion_100"
     },
     {
-      "ref": "prom feedback 194 #130",
-      "title": "Comparing hospital and telephone follow-up for women treated for endometrial cancer (ENDCAT trial)",
+      "ref": "desmopressin transfusion 100 #13",
+      "title": "Intranasal desmopressin versus blood transfusion in cirrhotic patients with coagulopathy undergoing dental extraction: a randomized controlled trial",
       "mistakes": 1,
       "error": "false_negative",
       "gold": "0.5",
       "outcome": "excluded_after_full_text",
-      "review_key": "prom_feedback_194"
+      "review_key": "desmopressin_transfusion_100"
     },
     {
-      "ref": "prom feedback 194 #134",
-      "title": "Virtual rehabilitation via Nintendo Wii and conventional physical therapy effectively treat post-stroke hemiparetic patients",
+      "ref": "desmopressin transfusion 100 #29",
+      "title": "Desmopressin (DDAVP) in lumbar puncture",
       "mistakes": 1,
       "error": "false_negative",
       "gold": "0.5",
       "outcome": "excluded_after_full_text",
-      "review_key": "prom_feedback_194"
+      "review_key": "desmopressin_transfusion_100"
     },
     {
-      "ref": "prom feedback 194 #146",
-      "title": "Stellate ganglion block for the treatment of Posttraumatic Stress Disorder: a randomized, double-blind, controlled trial",
+      "ref": "desmopressin transfusion 100 #33",
+      "title": "Venous thrombosis following diagnostic transvenous catheterization by percutaneous catheter insertion: an evaluation of desmopressin as a thromboprophylactic agent",
       "mistakes": 1,
       "error": "false_negative",
       "gold": "0.5",
       "outcome": "excluded_after_full_text",
-      "review_key": "prom_feedback_194"
+      "review_key": "desmopressin_transfusion_100"
     },
     {
-      "ref": "prom feedback 194 #158",
-      "title": "Testing the efficacy of web-based cognitive behavioural therapy for adult patients with chronic fatigue syndrome (CBIT): study protocol for a randomized controlled trial",
+      "ref": "desmopressin transfusion 100 #52",
+      "title": "L‐Deamino (8‐D‐arginine) vasopressin infusion partially corrects platelet deposition on subendothelium in Bernard‐Soulier syndrome: the role of factor VIII",
       "mistakes": 1,
       "error": "false_negative",
       "gold": "0.5",
       "outcome": "excluded_after_full_text",
-      "review_key": "prom_feedback_194"
+      "review_key": "desmopressin_transfusion_100"
     },
     {
-      "ref": "prom feedback 194 #16",
-      "title": "A multimodal supportive care intervention in men and their partners/carers affected by metastatic prostate cancer: a randomised controlled feasibility study",
+      "ref": "desmopressin transfusion 100 #54",
+      "title": "Effects of aspirin and desmopressin on platelet reactivity in patients undergoing cardiac surgery with extracorporeal circulation",
       "mistakes": 1,
       "error": "false_negative",
       "gold": "0.5",
       "outcome": "excluded_after_full_text",
-      "review_key": "prom_feedback_194"
+      "review_key": "desmopressin_transfusion_100"
+    },
+    {
+      "ref": "desmopressin transfusion 100 #56",
+      "title": "A stratified metaanalysis of desmopressin (DDAVP) for minimising perioperative allogeneic blood transfusion",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "desmopressin_transfusion_100"
+    },
+    {
+      "ref": "desmopressin transfusion 100 #60",
+      "title": "Desmopressin improves platelet function in uremic patients taking antiplatelet agents who require emergent invasive procedures",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "desmopressin_transfusion_100"
     }
   ]
 };

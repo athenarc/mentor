@@ -14,5 +14,6 @@
 | 5 | batch_orchestrator_v1 | kimi-k2.6 [Kimi K2.6] | 1 | 1 | 0.842 | 0.786 | 0.906 | 0.851 | 0.917 |
 | 6 | batch_orchestrator_v1 | openai-gpt-5--xhigh [OpenAI GPT5] | 1 | 1 | 0.819 | 0.806 | 0.832 | 0.820 | 0.833 |
 | 7 | batch_orchestrator_v1 | qwen3.5-122b-a10b [Qwen 3.5 122B A10B] | 1 | 1 | 0.805 | 0.949 | 0.699 | 0.768 | 0.583 |
-| 8 | batch_orchestrator_v1 | gpt-oss-120b [OpenAI GPT-OSS 120B] | 1 | 1 | 0.579 | 0.633 | 0.534 | 0.536 | 0.438 |
+| 8 | batch_orchestrator_v1 | nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B] | 1 | 1 | 0.630 | 0.592 | 0.674 | 0.649 | 0.708 |
+| 9 | batch_orchestrator_v1 | gpt-oss-120b [OpenAI GPT-OSS 120B] | 1 | 1 | 0.579 | 0.633 | 0.534 | 0.536 | 0.438 |
 

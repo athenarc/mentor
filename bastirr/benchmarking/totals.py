@@ -388,6 +388,7 @@ def _write_canonical_manifest(path: Path, payload: dict) -> dict:
     payload.pop("canonical_sources_audit_md_path", None)
     payload.pop("_transient_merge_stats", None)
     payload["generated_at"] = datetime.now().isoformat()
+    payload["canonical_sources_path"] = _repo_relative_path(path)
     payload["sources"] = sorted(
         payload.get("sources", []),
         key=lambda entry: (
@@ -400,6 +401,7 @@ def _write_canonical_manifest(path: Path, payload: dict) -> dict:
             entry.get("orchestrator_preset", ""),
         ),
     )
+    payload["n_sources"] = len(payload["sources"])
     _write_json(path, payload)
     return payload
 

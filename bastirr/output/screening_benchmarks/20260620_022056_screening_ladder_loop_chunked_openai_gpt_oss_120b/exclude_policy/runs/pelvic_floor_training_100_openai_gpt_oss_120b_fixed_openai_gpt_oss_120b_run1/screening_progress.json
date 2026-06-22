@@ -1,0 +1,809 @@
+{
+  "expected_n_studies": 100,
+  "completed_count": 100,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PFMT vs no‑exercise control",
+      "confidence": ""
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PFMT via app vs postponed‑treatment (no‑treatment)",
+      "confidence": ""
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PFME vs control (no intervention)",
+      "confidence": ""
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not pure PFMT; active drug comparator",
+      "confidence": ""
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Pelvic muscle exercise vs no treatment",
+      "confidence": ""
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PFMT arm vs no‑treatment control",
+      "confidence": ""
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Perineal PFMT vs control",
+      "confidence": ""
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PFMT vs no active treatment",
+      "confidence": ""
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PFMT vs no‑treatment control",
+      "confidence": ""
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Behavioural program, not PFMT",
+      "confidence": ""
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "No clear randomised no‑treatment comparator",
+      "confidence": ""
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Multidimensional programme includes PFMT; control receives no intervention",
+      "confidence": ""
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Exercise (includes PFMT) vs education‑only control",
+      "confidence": ""
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Multidimensional (includes PFMT) vs no active treatment",
+      "confidence": ""
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Physiotherapy programme contains PFMT; advice‑only control",
+      "confidence": ""
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Supervised PFMT vs no‑treatment",
+      "confidence": ""
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PFMT‑based technique vs wait‑list control",
+      "confidence": ""
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PFMT (individual & group) vs no‑treatment",
+      "confidence": ""
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PFMT arm vs waiting‑list control",
+      "confidence": ""
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Active education comparator; PT not solely PFMT",
+      "confidence": ""
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "No inactive control; compares two active interventions",
+      "confidence": ""
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Interventions not PFMT vs inactive control",
+      "confidence": ""
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PFMT programme vs pamphlet‑only (inactive)",
+      "confidence": ""
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PFMT arm vs no treatment",
+      "confidence": ""
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PFMT vs no therapy control",
+      "confidence": ""
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised trial comparing PFMT with an untreated control (no contact). Meets population (women with stress/mixed UI), intervention (PFMT), and comparator (inactive) criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is involvement of a nurse specialist, not PFMT. No PFMT arm.",
+      "confidence": ""
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Satisfaction study of nurse‑specialist care; no PFMT component.",
+      "confidence": ""
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Behavioural training incorporates PFMT (with/without biofeedback) versus a self‑help booklet (inactive control). Meets PFMT vs inactive criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Adapted pelvic floor fitness (PFMT) program; control group receives education‑only (inactive).",
+      "confidence": ""
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Both arms receive PFMT (supervised vs unsupervised); no inactive/no‑treatment comparator.",
+      "confidence": ""
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Experimental arm receives PFMT‑focused stabilization exercises plus routine physiotherapy; control receives routine physiotherapy only (inactive for PFMT).",
+      "confidence": ""
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Behavioural training includes PFMT; third arm is a self‑help booklet (inactive).",
+      "confidence": ""
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Training includes Kegel (PFMT) plus other strength work; control receives no training (inactive).",
+      "confidence": ""
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Described as behavioural therapy without explicit PFMT component.",
+      "confidence": ""
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Both arms deliver PFMT (Internet vs postal); no inactive comparator.",
+      "confidence": ""
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Both groups receive PFMT; lacks no‑treatment control.",
+      "confidence": ""
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Same as 36‑37; no inactive control.",
+      "confidence": ""
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Intervention combines PFMT with transverse abdominal co‑contraction; control receives no treatment (inactive).",
+      "confidence": ""
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention mixes behavioural UI strategies with general exercise; PFMT not defined.",
+      "confidence": ""
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Structured PFMT program vs usual care (inactive).",
+      "confidence": ""
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Questionnaire development; not a PFMT trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review, not a primary trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review, not a primary trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper, not a PFMT trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational discussion; no randomised PFMT intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Psychometric validation; not a PFMT trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Instrument reproducibility study; no intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Imaging study; not a PFMT trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Narrative review; no primary trial data.",
+      "confidence": ""
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Consensus terminology report on conservative management of female pelvic floor dysfunction; not a randomised trial of PFMT versus an inactive control.",
+      "confidence": ""
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross‑sectional secondary analysis of an internet survey; no intervention, no PFMT arm, and not a randomised trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Narrative review of lower urinary tract pharmacology; no primary trial data, no PFMT comparison.",
+      "confidence": ""
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review discussing optimal PFMT regimens; does not present original RCT data with a PFMT vs inactive control comparison.",
+      "confidence": ""
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study of functional electrical stimulation for bladder inhibition; intervention is not PFMT and no appropriate inactive control arm.",
+      "confidence": ""
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Secondary analysis of pelvic muscle resting pressures in healthy women; not a PFMT trial with a no‑treatment control.",
+      "confidence": ""
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "GRADE guideline for preparing Summary of Findings tables; no primary clinical trial data.",
+      "confidence": ""
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "GRADE guideline on continuous outcomes; no primary trial data.",
+      "confidence": ""
+    },
+    {
+      "study_index": 59,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Epidemiological prevalence survey of urinary incontinence; no intervention arm.",
+      "confidence": ""
+    },
+    {
+      "study_index": 60,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duplicate terminology report (same content as study 51); not a PFMT trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 61,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological commentary on quality of interventions; does not present an RCT of PFMT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 62,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational quality‑of‑life study in women with urinary incontinence; no PFMT intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 63,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and economic modelling of non‑surgical treatments (including PFMT); itself is a review, not a primary RCT meeting the criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 64,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Development and validation of a questionnaire; no PFMT trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 65,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Willingness‑to‑pay study for symptom reduction; no PFMT arm.",
+      "confidence": ""
+    },
+    {
+      "study_index": 66,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross‑sectional analysis of UI and self‑rated health; observational, no PFMT trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 67,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Validation of a condition‑specific quality‑of‑life questionnaire; not an RCT of PFMT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 68,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Development and validation of the York Incontinence Perceptions Scale; no PFMT intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 69,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Content‑validity assessment of the King's Health Questionnaire; not a PFMT trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 70,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta‑analysis investigating trial quality effects; secondary analysis, not a primary PFMT RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 71,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "CONSORT statement on reporting standards; no primary trial data.",
+      "confidence": ""
+    },
+    {
+      "study_index": 72,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Survey of bothersomeness and QoL across European countries; observational, no PFMT arm.",
+      "confidence": ""
+    },
+    {
+      "study_index": 73,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Physiological study of pelvic muscle activity in nulliparous volunteers; not a PFMT RCT with inactive control.",
+      "confidence": ""
+    },
+    {
+      "study_index": 74,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Development and validation of a severity index for epidemiological surveys; no PFMT intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 75,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study of urinary incontinence impact on sexual function; no PFMT trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 76,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective cohort validation of a questionnaire; not a randomised or quasi‑randomised trial and contains no pelvic floor muscle training intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 77,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Instrument development paper; no trial, no PFMT arm, and no comparator.",
+      "confidence": ""
+    },
+    {
+      "study_index": 78,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Another instrument development study; not a trial and no PFMT component.",
+      "confidence": ""
+    },
+    {
+      "study_index": 79,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Validation study of a QoL scale for psoriasis; unrelated to urinary incontinence or PFMT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 80,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Secondary analysis of duloxetine placebo‑controlled trials; intervention is a drug, not PFMT, and there is no inactive control arm for PFMT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 81,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about a psychological scale; no trial of PFMT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 82,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised controlled trial in women with stress urinary incontinence comparing a PFMT programme to a control group receiving no active treatment. Meets population, intervention, comparator, and design criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 83,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Three‑arm randomised study with PFMT alone, PFMT + electrotherapy, and a control group receiving no active treatment. Satisfies all inclusion criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 84,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is acupressure; no PFMT arm present, so it does not meet the intervention requirement.",
+      "confidence": ""
+    },
+    {
+      "study_index": 85,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Both arms involve pelvic floor exercise (home‑based vs supervised); comparator is an active PFMT programme, not an inactive control, thus does not meet the comparator criterion.",
+      "confidence": ""
+    },
+    {
+      "study_index": 86,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Four‑arm RCT including a PFMT‑only arm versus a ‘no active treatment’ arm. Directly matches the required population, intervention, and inactive comparator.",
+      "confidence": ""
+    },
+    {
+      "study_index": 87,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Qualitative interview study of two PFMT delivery modes; there is no inactive control group.",
+      "confidence": ""
+    },
+    {
+      "study_index": 88,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "All participants received PFMT (internet or brochure); no inactive comparator, thus does not satisfy the selection criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 89,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review article, not a primary trial; also compares PFMT added to another active treatment, not to an inactive control.",
+      "confidence": ""
+    },
+    {
+      "study_index": 90,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Narrative review of exercise physiology; no primary trial meeting criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 91,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Physiological review article; no trial or PFMT component.",
+      "confidence": ""
+    },
+    {
+      "study_index": 92,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Psychometric inventory paper; unrelated to urinary incontinence trials.",
+      "confidence": ""
+    },
+    {
+      "study_index": 93,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Book chapter summarising conservative treatments; not a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 94,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodology commentary; no trial data on PFMT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 95,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review; does not constitute a primary trial with an inactive comparator.",
+      "confidence": ""
+    },
+    {
+      "study_index": 96,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological overview; no trial involving PFMT versus inactive control.",
+      "confidence": ""
+    },
+    {
+      "study_index": 97,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational MRI study; no intervention trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 98,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Randomised trial of conservative treatment vs urodynamic‑guided treatment; the conservative arm includes physiotherapy but does not isolate PFMT versus an inactive control.",
+      "confidence": ""
+    },
+    {
+      "study_index": 99,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Descriptive epidemiological study; no PFMT intervention.",
+      "confidence": ""
+    },
+    {
+      "study_index": 100,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article; not a primary randomised trial with an inactive comparator.",
+      "confidence": ""
+    }
+  ]
+}

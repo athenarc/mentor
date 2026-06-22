@@ -134,6 +134,15 @@ def main() -> None:
         help="Optional maximum studies per chunk when --loop-mode=chunked",
     )
     parser.add_argument(
+        "--orchestrator-max-steps",
+        type=int,
+        default=None,
+        help=(
+            "Maximum smolagents CodeAgent steps for each loop Orchestrator call. "
+            "Defaults to 20 for both single-study and chunked loop modes."
+        ),
+    )
+    parser.add_argument(
         "--rerun-in-experiment",
         default=None,
         help=(
@@ -180,6 +189,7 @@ def main() -> None:
             review_keys=args.reviews,
             include_subagent_steps=args.include_subagent_steps,
             execute_policy_notebooks=not args.skip_policy_notebook_execution,
+            orchestrator_max_steps=args.orchestrator_max_steps,
         )
     else:
         experiment_dir, _summary = run_screening_loop_benchmark(
@@ -194,6 +204,7 @@ def main() -> None:
             loop_mode=args.loop_mode,
             chunk_count=args.chunk_count,
             chunk_size=args.chunk_size,
+            orchestrator_max_steps=args.orchestrator_max_steps,
             canonical_mode=args.canonical,
         )
     canonical_info = register_canonical_sources_from_experiment(

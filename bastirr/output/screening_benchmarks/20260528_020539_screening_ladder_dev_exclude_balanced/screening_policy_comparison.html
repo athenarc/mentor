@@ -644,6 +644,7 @@
       "story": "Treats label 0.5 as screen-positive, which is closer to permissive title/abstract screening.",
       "overall": {
         "gold_label_policy": "include_label_0_5",
+        "benchmark_architecture": "batch_orchestrator_v1",
         "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
         "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
         "gatekeeper_backend": "openai",
@@ -654,25 +655,38 @@
         "orchestrator_backend": "openai",
         "orchestrator_api_base": "https://openrouter.ai/api/v1",
         "n_runs": 5,
-        "n_scored_runs": 2,
-        "n_completed_runs": 2,
-        "n_incomplete_runs": 3,
+        "n_scored_runs": 5,
+        "n_completed_runs": 5,
+        "n_incomplete_runs": 0,
         "n_error_runs": 0,
         "n_unique_reviews": 5,
-        "parse_success_rate": 0.4,
-        "mean_decision_coverage": 0.4,
-        "mean_accuracy": 0.94,
-        "mean_precision": 1.0,
-        "mean_recall": 0.9,
-        "mean_specificity": 1.0,
-        "mean_f1": 0.9444444444444444,
-        "mean_duration_seconds": 1145.6813102831948
+        "parse_success_rate": 1.0,
+        "mean_decision_coverage": 1.0,
+        "mean_accuracy": 0.7738969072164948,
+        "mean_precision": 0.9383936261843239,
+        "mean_recall": 0.717771481158578,
+        "mean_specificity": 0.90913697286695,
+        "mean_f1": 0.8032788093132922,
+        "mean_duration_seconds": 658.3686115249991,
+        "mean_duration_per_study_seconds": 6.159865880503507,
+        "mean_total_input_tokens": 964088.3333333334,
+        "mean_total_output_tokens": 52589.333333333336,
+        "mean_total_tokens": 1016677.6666666666,
+        "mean_total_steps": 22.333333333333332,
+        "mean_orchestrator_steps": 11.666666666666666,
+        "mean_gatekeeper_steps": 10.666666666666666,
+        "mean_error_steps": 6.333333333333333,
+        "mean_retry_count": 0.0,
+        "mean_resume_count": 0.0,
+        "mean_empty_rationale_count": 0.0,
+        "mean_duplicate_rationale_count": 63.4,
+        "mean_rationale_reuse_rate": 0.5554432989690722
       },
       "micro": {
-        "tp": 17,
-        "fp": 0,
-        "tn": 15,
-        "fn": 3
+        "tp": 158,
+        "fp": 12,
+        "tn": 96,
+        "fn": 113
       },
       "reviews": [
         {
@@ -697,8 +711,8 @@
           "key": "adhesive_capsulitis_50",
           "label": "adhesive capsulitis 50",
           "studies": 50,
-          "f1": 0.0,
-          "recall": 0.0,
+          "f1": 0.7931034482758621,
+          "recall": 0.7419354838709677,
           "review_title": "Manual therapy and exercise for adhesive capsulitis (frozen shoulder)",
           "gold_pass_count": 31
         },
@@ -706,8 +720,8 @@
           "key": "desmopressin_transfusion_100",
           "label": "desmopressin transfusion 100",
           "studies": 100,
-          "f1": 0.0,
-          "recall": 0.0,
+          "f1": 0.625,
+          "recall": 0.4861111111111111,
           "review_title": "Desmopressin use for minimising perioperative blood transfusion",
           "gold_pass_count": 72
         },
@@ -715,22 +729,27 @@
           "key": "prom_feedback_194",
           "label": "prom feedback 194",
           "studies": 194,
-          "f1": 0.0,
-          "recall": 0.0,
+          "f1": 0.7094017094017095,
+          "recall": 0.5608108108108109,
           "review_title": "Routine provision of feedback from patient‐reported outcome measurements to healthcare providers and patients in clinical practice",
           "gold_pass_count": 148
         }
       ],
       "errorBreakdown": [
         {
-          "label": "0.5 → excluded after full text",
-          "errors": 2,
+          "label": "1.0 → included in review",
+          "errors": 67,
           "color": "var(--include)"
         },
         {
-          "label": "1.0 → included in review",
-          "errors": 1,
+          "label": "0.5 → excluded after full text",
+          "errors": 46,
           "color": "#223a5e"
+        },
+        {
+          "label": "0.0 → excluded at screening",
+          "errors": 12,
+          "color": "#d4a53a"
         }
       ]
     },
@@ -741,6 +760,7 @@
       "story": "Treats label 0.5 as screen-negative, which is closer to a stricter downstream inclusion proxy.",
       "overall": {
         "gold_label_policy": "exclude_label_0_5",
+        "benchmark_architecture": "batch_orchestrator_v1",
         "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
         "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
         "gatekeeper_backend": "openai",
@@ -751,25 +771,38 @@
         "orchestrator_backend": "openai",
         "orchestrator_api_base": "https://openrouter.ai/api/v1",
         "n_runs": 5,
-        "n_scored_runs": 2,
-        "n_completed_runs": 2,
-        "n_incomplete_runs": 3,
+        "n_scored_runs": 5,
+        "n_completed_runs": 5,
+        "n_incomplete_runs": 0,
         "n_error_runs": 0,
         "n_unique_reviews": 5,
-        "parse_success_rate": 0.4,
-        "mean_decision_coverage": 0.4,
-        "mean_accuracy": 0.96,
-        "mean_precision": 0.9583333333333333,
-        "mean_recall": 0.9583333333333333,
-        "mean_specificity": 0.9615384615384616,
-        "mean_f1": 0.9583333333333333,
-        "mean_duration_seconds": 1145.6813102831948
+        "parse_success_rate": 1.0,
+        "mean_decision_coverage": 1.0,
+        "mean_accuracy": 0.8098969072164948,
+        "mean_precision": 0.831365202411714,
+        "mean_recall": 0.783922902494331,
+        "mean_specificity": 0.8398472686733557,
+        "mean_f1": 0.8036919756161198,
+        "mean_duration_seconds": 658.3686115249991,
+        "mean_duration_per_study_seconds": 6.159865880503507,
+        "mean_total_input_tokens": 964088.3333333334,
+        "mean_total_output_tokens": 52589.333333333336,
+        "mean_total_tokens": 1016677.6666666666,
+        "mean_total_steps": 22.333333333333332,
+        "mean_orchestrator_steps": 11.666666666666666,
+        "mean_gatekeeper_steps": 10.666666666666666,
+        "mean_error_steps": 6.333333333333333,
+        "mean_retry_count": 0.0,
+        "mean_resume_count": 0.0,
+        "mean_empty_rationale_count": 0.0,
+        "mean_duplicate_rationale_count": 63.4,
+        "mean_rationale_reuse_rate": 0.5554432989690722
       },
       "micro": {
-        "tp": 16,
-        "fp": 1,
-        "tn": 17,
-        "fn": 1
+        "tp": 127,
+        "fp": 43,
+        "tn": 142,
+        "fn": 67
       },
       "reviews": [
         {
@@ -794,8 +827,8 @@
           "key": "adhesive_capsulitis_50",
           "label": "adhesive capsulitis 50",
           "studies": 50,
-          "f1": 0.0,
-          "recall": 0.0,
+          "f1": 0.7692307692307692,
+          "recall": 0.8,
           "review_title": "Manual therapy and exercise for adhesive capsulitis (frozen shoulder)",
           "gold_pass_count": 25
         },
@@ -803,8 +836,8 @@
           "key": "desmopressin_transfusion_100",
           "label": "desmopressin transfusion 100",
           "studies": 100,
-          "f1": 0.0,
-          "recall": 0.0,
+          "f1": 0.7021276595744681,
+          "recall": 0.6111111111111112,
           "review_title": "Desmopressin use for minimising perioperative blood transfusion",
           "gold_pass_count": 54
         },
@@ -812,8 +845,8 @@
           "key": "prom_feedback_194",
           "label": "prom feedback 194",
           "studies": 194,
-          "f1": 0.0,
-          "recall": 0.0,
+          "f1": 0.6304347826086958,
+          "recall": 0.5918367346938775,
           "review_title": "Routine provision of feedback from patient‐reported outcome measurements to healthcare providers and patients in clinical practice",
           "gold_pass_count": 98
         }
@@ -821,13 +854,18 @@
       "errorBreakdown": [
         {
           "label": "1.0 → included in review",
-          "errors": 1,
+          "errors": 67,
           "color": "var(--exclude)"
         },
         {
           "label": "0.5 → excluded after full text",
-          "errors": 1,
+          "errors": 31,
           "color": "#223a5e"
+        },
+        {
+          "label": "0.0 → excluded at screening",
+          "errors": 12,
+          "color": "#d4a53a"
         }
       ]
     }
@@ -842,45 +880,45 @@
       "metrics": [
         [
           "Macro F1",
-          0.9444444444444444
+          0.8032788093132922
         ],
         [
           "Macro recall",
-          0.9
+          0.717771481158578
         ],
         [
           "Macro precision",
-          1.0
+          0.9383936261843239
         ],
         [
           "Macro accuracy",
-          0.94
+          0.7738969072164948
         ]
       ],
       "micro_cells": [
         {
           "label": "True positive",
-          "value": 17,
-          "note": 0.4857142857142857,
+          "value": 158,
+          "note": 0.41688654353562005,
           "bg": "var(--include)"
         },
         {
           "label": "False negative",
-          "value": 3,
-          "note": 0.08571428571428572,
+          "value": 113,
+          "note": 0.29815303430079154,
           "bg": "var(--rose)"
         },
         {
           "label": "False positive",
-          "value": 0,
-          "note": 0.0,
+          "value": 12,
+          "note": 0.0316622691292876,
           "bg": "var(--gold)",
           "light": true
         },
         {
           "label": "True negative",
-          "value": 15,
-          "note": 0.42857142857142855,
+          "value": 96,
+          "note": 0.2532981530343008,
           "bg": "var(--navy)"
         }
       ]
@@ -894,45 +932,45 @@
       "metrics": [
         [
           "Macro F1",
-          0.9583333333333333
+          0.8036919756161198
         ],
         [
           "Macro recall",
-          0.9583333333333333
+          0.783922902494331
         ],
         [
           "Macro precision",
-          0.9583333333333333
+          0.831365202411714
         ],
         [
           "Macro accuracy",
-          0.96
+          0.8098969072164948
         ]
       ],
       "micro_cells": [
         {
           "label": "True positive",
-          "value": 16,
-          "note": 0.45714285714285713,
+          "value": 127,
+          "note": 0.33509234828496043,
           "bg": "var(--navy)"
         },
         {
           "label": "False negative",
-          "value": 1,
-          "note": 0.02857142857142857,
+          "value": 67,
+          "note": 0.17678100263852242,
           "bg": "var(--rose)"
         },
         {
           "label": "False positive",
-          "value": 1,
-          "note": 0.02857142857142857,
+          "value": 43,
+          "note": 0.11345646437994723,
           "bg": "var(--gold)",
           "light": true
         },
         {
           "label": "True negative",
-          "value": 17,
-          "note": 0.4857142857142857,
+          "value": 142,
+          "note": 0.37467018469656993,
           "bg": "var(--include)"
         }
       ]
@@ -961,44 +999,44 @@
       "key": "adhesive_capsulitis_50",
       "label": "adhesive capsulitis 50",
       "studies": 50,
-      "include_f1": 0.0,
-      "include_recall": 0.0,
-      "exclude_f1": 0.0,
-      "exclude_recall": 0.0
+      "include_f1": 0.7931034482758621,
+      "include_recall": 0.7419354838709677,
+      "exclude_f1": 0.7692307692307692,
+      "exclude_recall": 0.8
     },
     {
       "key": "desmopressin_transfusion_100",
       "label": "desmopressin transfusion 100",
       "studies": 100,
-      "include_f1": 0.0,
-      "include_recall": 0.0,
-      "exclude_f1": 0.0,
-      "exclude_recall": 0.0
+      "include_f1": 0.625,
+      "include_recall": 0.4861111111111111,
+      "exclude_f1": 0.7021276595744681,
+      "exclude_recall": 0.6111111111111112
     },
     {
       "key": "prom_feedback_194",
       "label": "prom feedback 194",
       "studies": 194,
-      "include_f1": 0.0,
-      "include_recall": 0.0,
-      "exclude_f1": 0.0,
-      "exclude_recall": 0.0
+      "include_f1": 0.7094017094017095,
+      "include_recall": 0.5608108108108109,
+      "exclude_f1": 0.6304347826086958,
+      "exclude_recall": 0.5918367346938775
     }
   ],
   "heroStats": [
     {
       "label": "Macro recall swing",
-      "value": "6 pts",
+      "value": "7 pts",
       "note": "Change in macro recall when label 0.5 is scored as EXCLUDE instead of INCLUDE."
     },
     {
       "label": "Macro F1 swing",
-      "value": "1 pts",
+      "value": "0 pts",
       "note": "Change in macro F1 across the same raw screening runs."
     },
     {
       "label": "Largest review recall delta",
-      "value": "tricyclic depression children 25 (12 pts)",
+      "value": "desmopressin transfusion 100 (13 pts)",
       "note": "Review with the biggest policy-driven movement in mean recall."
     },
     {

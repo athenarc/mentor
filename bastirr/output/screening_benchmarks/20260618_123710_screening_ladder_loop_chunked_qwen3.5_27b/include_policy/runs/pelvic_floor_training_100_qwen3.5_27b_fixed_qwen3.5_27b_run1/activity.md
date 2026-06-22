@@ -1,9 +1,9 @@
 # Pipeline Activity Log
 
 > **Review:** Pelvic floor muscle training versus no treatment, or inactive control treatments, for urinary incontinence in women  
-> **Date:** 2026-06-18 12:57  
-> **Duration:** 53m 43s  
-> **Total tokens:** 1,671,962 (input: 1,479,557 / output: 192,405)
+> **Date:** 2026-06-19 17:33  
+> **Duration:** 29m 30s  
+> **Total tokens:** 933,381 (input: 827,425 / output: 105,956)
 
 > **Benchmark suite:** screening_ladder  
 > **Benchmark architecture:** loop_chunk_orchestrator_v1  
@@ -25,9 +25,9 @@
 
 | Agent | Steps | Time | Tokens (in / out) |
 |-------|-------|------|-------------------|
-| Orchestrator | 32 | 53m 43s | 175,018 / 11,177 |
-| Gatekeeper | 37 | 46m 31s | 1,304,539 / 181,228 |
-| **Total** | **69** | **53m 43s** | **1,479,557 / 192,405** |
+| Orchestrator | 22 | 29m 30s | 109,692 / 6,224 |
+| Gatekeeper | 25 | 27m 17s | 717,733 / 99,732 |
+| **Total** | **47** | **29m 30s** | **827,425 / 105,956** |
 
 ---
 
@@ -35,113 +35,23 @@
 
 ### 1. Orchestrator (python_interpreter)
 
-*12:57:30 — 7s — 4,114 tokens*
-
-The orchestrator executed step 1. Used tools: python_interpreter. Encountered an error.
-
-> ⚠️ **Error:** Code execution failed at line 'print(f"Retrieved chunk with {len(json.loads(chunk_study_indices))} studies")' due to: TypeError: the JSON object must be str, bytes or bytearray, not list
-
----
-
-### 2. Orchestrator (python_interpreter)
-
-*12:57:38 — 8s — 4,461 tokens*
-
-The orchestrator executed step 2. Used tools: python_interpreter.
-
----
-
-### 3. Orchestrator → Gatekeeper
-
-*13:03:39 — 6m 01s — 213,489 tokens*
-
-The orchestrator executed step 3. Used tools: python_interpreter.
-
----
-
-### 4. Orchestrator (python_interpreter)
-
-*13:03:46 — 7s — 5,848 tokens*
-
-The orchestrator executed step 4. Used tools: python_interpreter. Encountered an error.
-
-> ⚠️ **Error:** Code execution failed at line 'append_result = append_screening_chunk_decisions_json(
-    screening_response=gatekeeper_response,
-    output_dir=output_dir,
-    expected_study_indices_json=chunk_study_indices_json,
-    expected_n_studies=expected_n_studies
-)' due to: ValueError: Chunk response did n
-
----
-
-### 5. Orchestrator → Gatekeeper
-
-*13:07:09 — 3m 22s — 97,400 tokens*
-
-The orchestrator executed step 5. Used tools: python_interpreter.
-
----
-
-### 6. Orchestrator (python_interpreter)
-
-*13:07:14 — 5s — 6,829 tokens*
-
-The orchestrator executed step 6. Used tools: python_interpreter. Encountered an error.
-
-> ⚠️ **Error:** Code execution failed at line 'append_result = append_screening_chunk_decisions_json(
-    screening_response=gatekeeper_response,
-    output_dir=output_dir,
-    expected_study_indices_json=chunk_study_indices_json,
-    expected_n_studies=expected_n_studies
-)' due to: ValueError: Chunk response did n
-
----
-
-### 7. Orchestrator (python_interpreter)
-
-*13:07:20 — 6s — 7,495 tokens*
-
-The orchestrator executed step 7. Used tools: python_interpreter.
-
----
-
-### 8. Orchestrator → Gatekeeper
-
-*13:12:59 — 5m 38s — 188,920 tokens*
-
-The orchestrator executed step 8. Used tools: python_interpreter.
-
----
-
-### 9. Orchestrator — Step 9
-
-*13:13:18 — 19s — 6,678 tokens*
-
-The orchestrator executed step 9. Encountered an error.
-
-> ⚠️ **Error:** Reached max steps.
-
----
-
-### 10. Orchestrator (python_interpreter)
-
-*13:13:28 — 10s — 4,311 tokens*
+*17:34:07 — 9s — 4,261 tokens*
 
 The orchestrator executed step 1. Used tools: python_interpreter.
 
 ---
 
-### 11. Orchestrator → Gatekeeper
+### 2. Orchestrator → Gatekeeper
 
-*13:18:42 — 5m 14s — 139,338 tokens*
+*17:35:43 — 1m 36s — 45,190 tokens*
 
 The orchestrator executed step 2. Used tools: python_interpreter.
 
 ---
 
-### 12. Orchestrator (python_interpreter)
+### 3. Orchestrator (python_interpreter)
 
-*13:18:49 — 7s — 5,510 tokens*
+*17:35:46 — 3s — 4,985 tokens*
 
 The orchestrator executed step 3. Used tools: python_interpreter. Encountered an error.
 
@@ -149,118 +59,54 @@ The orchestrator executed step 3. Used tools: python_interpreter. Encountered an
     screening_response=gatekeeper_response,
     output_dir=output_dir,
     expected_study_indices_json=chunk_study_indices_json,
-    expected_n_studies=expected_n_studies
-)' due to: ValueError: Chunk response did n
+    expected_n_studies=100
+)' due to: ValueError: Chunk response did not match expect
 
 ---
 
-### 13. Orchestrator → Gatekeeper
+### 4. Orchestrator → Gatekeeper
 
-*13:23:16 — 4m 26s — 176,614 tokens*
+*17:39:14 — 3m 27s — 175,002 tokens*
 
 The orchestrator executed step 4. Used tools: python_interpreter.
 
 ---
 
-### 14. Orchestrator (python_interpreter)
+### 5. Orchestrator (python_interpreter)
 
-*13:23:21 — 5s — 6,670 tokens*
+*17:39:19 — 5s — 6,111 tokens*
 
 The orchestrator executed step 5. Used tools: python_interpreter.
 
 ---
 
-### 15. Final Output (Orchestrator)
+### 6. Final Output (Orchestrator)
 
-*13:23:25 — 4s — 6,944 tokens*
+*17:39:22 — 3s — 6,295 tokens*
 
 The orchestrator executed step 6. Used tools: python_interpreter. Produced the final output.
 
 ---
 
-### 16. Orchestrator (python_interpreter)
+### 7. Orchestrator (python_interpreter)
 
-*13:23:33 — 8s — 4,148 tokens*
-
-The orchestrator executed step 1. Used tools: python_interpreter.
-
----
-
-### 17. Orchestrator → Gatekeeper
-
-*13:25:36 — 2m 02s — 74,676 tokens*
-
-The orchestrator executed step 2. Used tools: python_interpreter.
-
----
-
-### 18. Orchestrator (python_interpreter)
-
-*13:25:41 — 5s — 4,787 tokens*
-
-The orchestrator executed step 3. Used tools: python_interpreter.
-
----
-
-### 19. Final Output (Orchestrator)
-
-*13:25:46 — 6s — 5,196 tokens*
-
-The orchestrator executed step 4. Used tools: python_interpreter. Produced the final output.
-
----
-
-### 20. Orchestrator (python_interpreter)
-
-*13:25:52 — 6s — 4,134 tokens*
+*17:39:30 — 8s — 4,155 tokens*
 
 The orchestrator executed step 1. Used tools: python_interpreter.
 
 ---
 
-### 21. Orchestrator → Gatekeeper
+### 8. Orchestrator → Gatekeeper
 
-*13:31:10 — 5m 17s — 182,457 tokens*
-
-The orchestrator executed step 2. Used tools: python_interpreter.
-
----
-
-### 22. Orchestrator (python_interpreter)
-
-*13:31:16 — 6s — 4,972 tokens*
-
-The orchestrator executed step 3. Used tools: python_interpreter.
-
----
-
-### 23. Final Output (Orchestrator)
-
-*13:31:19 — 3s — 5,235 tokens*
-
-The orchestrator executed step 4. Used tools: python_interpreter. Produced the final output.
-
----
-
-### 24. Orchestrator (python_interpreter)
-
-*13:31:29 — 10s — 4,379 tokens*
-
-The orchestrator executed step 1. Used tools: python_interpreter.
-
----
-
-### 25. Orchestrator → Gatekeeper
-
-*13:36:41 — 5m 11s — 137,207 tokens*
+*17:45:02 — 5m 32s — 82,001 tokens*
 
 The orchestrator executed step 2. Used tools: python_interpreter.
 
 ---
 
-### 26. Orchestrator (python_interpreter)
+### 9. Orchestrator (python_interpreter)
 
-*13:36:46 — 6s — 5,126 tokens*
+*17:45:08 — 6s — 4,989 tokens*
 
 The orchestrator executed step 3. Used tools: python_interpreter. Encountered an error.
 
@@ -273,19 +119,51 @@ The orchestrator executed step 3. Used tools: python_interpreter. Encountered an
 
 ---
 
-### 27. Orchestrator → Gatekeeper
+### 10. Orchestrator → Gatekeeper
 
-*13:41:49 — 5m 03s — 126,269 tokens*
+*17:50:20 — 5m 12s — 139,027 tokens*
 
 The orchestrator executed step 4. Used tools: python_interpreter.
 
 ---
 
-### 28. Orchestrator (python_interpreter)
+### 11. Orchestrator (python_interpreter)
 
-*13:41:55 — 6s — 6,600 tokens*
+*17:50:26 — 5s — 6,421 tokens*
 
-The orchestrator executed step 5. Used tools: python_interpreter. Encountered an error.
+The orchestrator executed step 5. Used tools: python_interpreter.
+
+---
+
+### 12. Final Output (Orchestrator)
+
+*17:50:30 — 4s — 6,819 tokens*
+
+The orchestrator executed step 6. Used tools: python_interpreter. Produced the final output.
+
+---
+
+### 13. Orchestrator (python_interpreter)
+
+*17:50:40 — 10s — 4,242 tokens*
+
+The orchestrator executed step 1. Used tools: python_interpreter.
+
+---
+
+### 14. Orchestrator → Gatekeeper
+
+*17:55:36 — 4m 55s — 174,482 tokens*
+
+The orchestrator executed step 2. Used tools: python_interpreter.
+
+---
+
+### 15. Orchestrator (python_interpreter)
+
+*17:55:40 — 5s — 5,053 tokens*
+
+The orchestrator executed step 3. Used tools: python_interpreter. Encountered an error.
 
 > ⚠️ **Error:** Code execution failed at line 'append_result = append_screening_chunk_decisions_json(
     screening_response=gatekeeper_response,
@@ -296,36 +174,58 @@ The orchestrator executed step 5. Used tools: python_interpreter. Encountered an
 
 ---
 
-### 29. Orchestrator (python_interpreter)
+### 16. Orchestrator → Gatekeeper
 
-*13:45:14 — 3m 18s — 7,078 tokens*
+*18:00:05 — 4m 24s — 156,140 tokens*
 
-The orchestrator executed step 6. Used tools: python_interpreter.
-
----
-
-### 30. Orchestrator → Gatekeeper
-
-*13:50:41 — 5m 26s — 208,230 tokens*
-
-The orchestrator executed step 7. Used tools: python_interpreter.
+The orchestrator executed step 4. Used tools: python_interpreter.
 
 ---
 
-### 31. Orchestrator (python_interpreter)
+### 17. Orchestrator (python_interpreter)
 
-*13:50:47 — 7s — 8,792 tokens*
+*18:00:12 — 6s — 5,944 tokens*
 
-The orchestrator executed step 8. Used tools: python_interpreter.
+The orchestrator executed step 5. Used tools: python_interpreter.
 
 ---
 
-### 32. Orchestrator — Step 9
+### 18. Final Output (Orchestrator)
 
-*13:51:06 — 19s — 8,055 tokens*
+*18:00:15 — 3s — 6,164 tokens*
 
-The orchestrator executed step 9. Encountered an error.
+The orchestrator executed step 6. Used tools: python_interpreter. Produced the final output.
 
-> ⚠️ **Error:** Reached max steps.
+---
+
+### 19. Orchestrator (python_interpreter)
+
+*18:00:21 — 7s — 4,113 tokens*
+
+The orchestrator executed step 1. Used tools: python_interpreter.
+
+---
+
+### 20. Orchestrator → Gatekeeper
+
+*18:03:16 — 2m 54s — 81,089 tokens*
+
+The orchestrator executed step 2. Used tools: python_interpreter.
+
+---
+
+### 21. Orchestrator (python_interpreter)
+
+*18:03:25 — 10s — 5,349 tokens*
+
+The orchestrator executed step 3. Used tools: python_interpreter.
+
+---
+
+### 22. Final Output (Orchestrator)
+
+*18:03:28 — 3s — 5,549 tokens*
+
+The orchestrator executed step 4. Used tools: python_interpreter. Produced the final output.
 
 ---

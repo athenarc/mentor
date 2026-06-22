@@ -525,8 +525,8 @@
             These two benchmark views use the same review set and the same screening decisions, but they score label 0.5 differently. The comparison below shows how that single evaluation choice changes the apparent strengths and weaknesses of the screener.
           </p>
           <div class="badge-row">
-            <span class="badge">4 reviews</span>
-            <span class="badge">4 attempted runs per policy</span>
+            <span class="badge">5 reviews</span>
+            <span class="badge">5 attempted runs per policy</span>
             <span class="badge">same saved screening decisions</span>
           </div>
           <div class="source-row">
@@ -654,20 +654,20 @@
         "orchestrator_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
         "orchestrator_backend": "openai",
         "orchestrator_api_base": "https://openrouter.ai/api/v1",
-        "n_runs": 4,
-        "n_scored_runs": 4,
-        "n_completed_runs": 4,
+        "n_runs": 5,
+        "n_scored_runs": 5,
+        "n_completed_runs": 5,
         "n_incomplete_runs": 0,
         "n_error_runs": 0,
-        "n_unique_reviews": 4,
+        "n_unique_reviews": 5,
         "parse_success_rate": 1.0,
         "mean_decision_coverage": 1.0,
-        "mean_accuracy": 0.925,
-        "mean_precision": 1.0,
-        "mean_recall": 0.8841397849462366,
-        "mean_specificity": 1.0,
-        "mean_f1": 0.9367830850881698,
-        "mean_duration_seconds": 1202.3517551566474,
+        "mean_accuracy": 0.8936082474226804,
+        "mean_precision": 0.9927927927927929,
+        "mean_recall": 0.8519064225515839,
+        "mean_specificity": 0.9826086956521738,
+        "mean_f1": 0.9146774333215012,
+        "mean_duration_seconds": 961.8814041253179,
         "mean_duration_per_study_seconds": 20.76407684596721,
         "mean_total_input_tokens": 552240.0,
         "mean_total_output_tokens": 70988.5,
@@ -679,14 +679,14 @@
         "mean_retry_count": 0.5,
         "mean_resume_count": 0.5,
         "mean_empty_rationale_count": 0.0,
-        "mean_duplicate_rationale_count": 0.0,
-        "mean_rationale_reuse_rate": 0.0
+        "mean_duplicate_rationale_count": 0.2,
+        "mean_rationale_reuse_rate": 0.0010309278350515464
       },
       "micro": {
-        "tp": 105,
-        "fp": 0,
-        "tn": 62,
-        "fn": 18
+        "tp": 212,
+        "fp": 4,
+        "tn": 104,
+        "fn": 59
       },
       "reviews": [
         {
@@ -724,18 +724,32 @@
           "recall": 0.8333333333333334,
           "review_title": "Desmopressin use for minimising perioperative blood transfusion",
           "gold_pass_count": 72
+        },
+        {
+          "key": "prom_feedback_194",
+          "label": "prom feedback 194",
+          "studies": 194,
+          "f1": 0.8262548262548263,
+          "recall": 0.722972972972973,
+          "review_title": "Routine provision of feedback from patient‐reported outcome measurements to healthcare providers and patients in clinical practice",
+          "gold_pass_count": 148
         }
       ],
       "errorBreakdown": [
         {
           "label": "0.5 → excluded after full text",
-          "errors": 16,
+          "errors": 47,
           "color": "var(--include)"
         },
         {
           "label": "1.0 → included in review",
-          "errors": 2,
+          "errors": 12,
           "color": "#223a5e"
+        },
+        {
+          "label": "0.0 → excluded at screening",
+          "errors": 4,
+          "color": "#d4a53a"
         }
       ]
     },
@@ -756,20 +770,20 @@
         "orchestrator_model_label": "qwen3.5-27b [Qwen 3.5 27B]",
         "orchestrator_backend": "openai",
         "orchestrator_api_base": "https://openrouter.ai/api/v1",
-        "n_runs": 4,
-        "n_scored_runs": 4,
-        "n_completed_runs": 4,
+        "n_runs": 5,
+        "n_scored_runs": 5,
+        "n_completed_runs": 5,
         "n_incomplete_runs": 0,
         "n_error_runs": 0,
-        "n_unique_reviews": 4,
+        "n_unique_reviews": 5,
         "parse_success_rate": 1.0,
         "mean_decision_coverage": 1.0,
-        "mean_accuracy": 0.9450000000000001,
-        "mean_precision": 0.9232142857142858,
-        "mean_recall": 0.974537037037037,
-        "mean_specificity": 0.9127257525083612,
-        "mean_f1": 0.9474718636213175,
-        "mean_duration_seconds": 1202.3517551566474,
+        "mean_accuracy": 0.9219793814432989,
+        "mean_precision": 0.8971299871299871,
+        "mean_recall": 0.9592214663643235,
+        "mean_specificity": 0.8822639353400223,
+        "mean_f1": 0.9263985435286329,
+        "mean_duration_seconds": 961.8814041253179,
         "mean_duration_per_study_seconds": 20.76407684596721,
         "mean_total_input_tokens": 552240.0,
         "mean_total_output_tokens": 70988.5,
@@ -781,14 +795,14 @@
         "mean_retry_count": 0.5,
         "mean_resume_count": 0.5,
         "mean_empty_rationale_count": 0.0,
-        "mean_duplicate_rationale_count": 0.0,
-        "mean_rationale_reuse_rate": 0.0
+        "mean_duplicate_rationale_count": 0.2,
+        "mean_rationale_reuse_rate": 0.0010309278350515464
       },
       "micro": {
-        "tp": 94,
-        "fp": 11,
-        "tn": 78,
-        "fn": 2
+        "tp": 182,
+        "fp": 34,
+        "tn": 151,
+        "fn": 12
       },
       "reviews": [
         {
@@ -826,18 +840,32 @@
           "recall": 0.9814814814814815,
           "review_title": "Desmopressin use for minimising perioperative blood transfusion",
           "gold_pass_count": 54
+        },
+        {
+          "key": "prom_feedback_194",
+          "label": "prom feedback 194",
+          "studies": 194,
+          "f1": 0.8421052631578948,
+          "recall": 0.8979591836734694,
+          "review_title": "Routine provision of feedback from patient‐reported outcome measurements to healthcare providers and patients in clinical practice",
+          "gold_pass_count": 98
         }
       ],
       "errorBreakdown": [
         {
           "label": "0.5 → excluded after full text",
-          "errors": 11,
+          "errors": 30,
           "color": "var(--exclude)"
         },
         {
           "label": "1.0 → included in review",
-          "errors": 2,
+          "errors": 12,
           "color": "#223a5e"
+        },
+        {
+          "label": "0.0 → excluded at screening",
+          "errors": 4,
+          "color": "#d4a53a"
         }
       ]
     }
@@ -852,45 +880,45 @@
       "metrics": [
         [
           "Macro F1",
-          0.9367830850881698
+          0.9146774333215012
         ],
         [
           "Macro recall",
-          0.8841397849462366
+          0.8519064225515839
         ],
         [
           "Macro precision",
-          1.0
+          0.9927927927927929
         ],
         [
           "Macro accuracy",
-          0.925
+          0.8936082474226804
         ]
       ],
       "micro_cells": [
         {
           "label": "True positive",
-          "value": 105,
-          "note": 0.5675675675675675,
+          "value": 212,
+          "note": 0.5593667546174143,
           "bg": "var(--include)"
         },
         {
           "label": "False negative",
-          "value": 18,
-          "note": 0.0972972972972973,
+          "value": 59,
+          "note": 0.15567282321899736,
           "bg": "var(--rose)"
         },
         {
           "label": "False positive",
-          "value": 0,
-          "note": 0.0,
+          "value": 4,
+          "note": 0.010554089709762533,
           "bg": "var(--gold)",
           "light": true
         },
         {
           "label": "True negative",
-          "value": 62,
-          "note": 0.33513513513513515,
+          "value": 104,
+          "note": 0.27440633245382584,
           "bg": "var(--navy)"
         }
       ]
@@ -904,45 +932,45 @@
       "metrics": [
         [
           "Macro F1",
-          0.9474718636213175
+          0.9263985435286329
         ],
         [
           "Macro recall",
-          0.974537037037037
+          0.9592214663643235
         ],
         [
           "Macro precision",
-          0.9232142857142858
+          0.8971299871299871
         ],
         [
           "Macro accuracy",
-          0.9450000000000001
+          0.9219793814432989
         ]
       ],
       "micro_cells": [
         {
           "label": "True positive",
-          "value": 94,
-          "note": 0.5081081081081081,
+          "value": 182,
+          "note": 0.48021108179419525,
           "bg": "var(--navy)"
         },
         {
           "label": "False negative",
-          "value": 2,
-          "note": 0.010810810810810811,
+          "value": 12,
+          "note": 0.0316622691292876,
           "bg": "var(--rose)"
         },
         {
           "label": "False positive",
-          "value": 11,
-          "note": 0.05945945945945946,
+          "value": 34,
+          "note": 0.08970976253298153,
           "bg": "var(--gold)",
           "light": true
         },
         {
           "label": "True negative",
-          "value": 78,
-          "note": 0.42162162162162165,
+          "value": 151,
+          "note": 0.39841688654353563,
           "bg": "var(--include)"
         }
       ]
@@ -984,12 +1012,21 @@
       "include_recall": 0.8333333333333334,
       "exclude_f1": 0.9298245614035088,
       "exclude_recall": 0.9814814814814815
+    },
+    {
+      "key": "prom_feedback_194",
+      "label": "prom feedback 194",
+      "studies": 194,
+      "include_f1": 0.8262548262548263,
+      "include_recall": 0.722972972972973,
+      "exclude_f1": 0.8421052631578948,
+      "exclude_recall": 0.8979591836734694
     }
   ],
   "heroStats": [
     {
       "label": "Macro recall swing",
-      "value": "9 pts",
+      "value": "11 pts",
       "note": "Change in macro recall when label 0.5 is scored as EXCLUDE instead of INCLUDE."
     },
     {
@@ -999,12 +1036,12 @@
     },
     {
       "label": "Largest review recall delta",
-      "value": "desmopressin transfusion 100 (15 pts)",
+      "value": "prom feedback 194 (17 pts)",
       "note": "Review with the biggest policy-driven movement in mean recall."
     },
     {
       "label": "Shared raw run bundle",
-      "value": "4 runs",
+      "value": "5 runs",
       "note": "Both policy views are scored from the same saved screening decisions."
     }
   ]

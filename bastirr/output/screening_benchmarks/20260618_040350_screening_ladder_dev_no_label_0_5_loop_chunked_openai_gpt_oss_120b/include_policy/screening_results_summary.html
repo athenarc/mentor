@@ -478,9 +478,9 @@
           </p>
           <div class="badge-row">
             <span class="badge">5 reviews</span>
-            <span class="badge">4 attempted runs</span>
-            <span class="badge">3 scored runs</span>
-            <span class="badge">1 incomplete run</span>
+            <span class="badge">5 attempted runs</span>
+            <span class="badge">5 scored runs</span>
+            <span class="badge">0 incomplete runs</span>
           </div>
           <div class="link-row">
             <a href="./summary.csv">summary.csv</a>
@@ -500,7 +500,7 @@
           <h2>Run health and aggregate metrics</h2>
         </div>
         <p>
-          The bundle scored 3 of 4 attempted runs under this policy. 1 run was excluded from scoring due to incomplete screening output. The strongest pooled macro metrics are precision and specificity, while recall is the lowest of the scored-run means.
+          All 5 attempted runs were scored under this policy. The strongest pooled macro metrics are precision and specificity, while recall is the lowest of the scored-run means.
         </p>
       </div>
       <div class="grid-2">
@@ -523,7 +523,7 @@
           <h2>Performance by review</h2>
         </div>
         <p>
-          Review difficulty varies across the bundle. chlamydia poc test 50 has the strongest mean F1, while ovarian cancer diagnosis 92 is the hardest case under this policy.
+          Review difficulty varies across the bundle. chlamydia poc test 50 has the strongest mean F1, while home based rehabilitation 183 is the hardest case under this policy.
         </p>
       </div>
       <div class="grid-2">
@@ -564,7 +564,7 @@
           <h2>Run variability</h2>
         </div>
         <p>
-          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in surgical termination 10. The bundle also contains 1 incomplete run.
+          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in surgical termination 10.
         </p>
       </div>
       <div class="grid-2">
@@ -598,7 +598,7 @@
           <h2>Recurring study-level mistakes</h2>
         </div>
         <p>
-          These titles were misclassified repeatedly across scored runs. Most recurring mistakes are false negatives, concentrated in advanced endometrial carcinoma 24, chlamydia poc test 50, surgical termination 10.
+          These titles were misclassified repeatedly across scored runs. Most recurring mistakes are false negatives, concentrated in home based rehabilitation 183, advanced endometrial carcinoma 24, chlamydia poc test 50.
         </p>
       </div>
       <div class="study-list" id="study-list"></div>
@@ -611,32 +611,32 @@
   <script>
     const benchmark = {
   "overall": {
-    "runsTotal": 4,
-    "runsScored": 3,
-    "runsCompleted": 3,
-    "runsIncomplete": 1,
-    "parseSuccessRate": 0.75,
+    "runsTotal": 5,
+    "runsScored": 5,
+    "runsCompleted": 5,
+    "runsIncomplete": 0,
+    "parseSuccessRate": 1.0,
     "decisionCoverage": 1.0,
-    "macroAccuracy": 0.9461111111111111,
-    "macroPrecision": 1.0,
-    "macroRecall": 0.9070593149540517,
-    "macroSpecificity": 1.0,
-    "macroF1": 0.950857211726777,
-    "meanDurationSeconds": 5958.156747261062,
-    "durationStdSeconds": 1078.6576223407428,
+    "macroAccuracy": 0.9098382038488951,
+    "macroPrecision": 0.9699027274461187,
+    "macroRecall": 0.8860713377647016,
+    "macroSpecificity": 0.9611347517730497,
+    "macroF1": 0.9232889688076684,
+    "meanDurationSeconds": 2608.680192700296,
+    "durationStdSeconds": 1690.3499628950851,
     "confusion": {
-      "tp": 35,
-      "fp": 0,
-      "tn": 46,
-      "fn": 3
+      "tp": 182,
+      "fp": 9,
+      "tn": 129,
+      "fn": 39
     },
     "dispersion": {
-      "accuracy": 0.03378399065669059,
-      "precision": 0.0,
-      "recall": 0.03745565378690388,
-      "specificity": 0.0,
-      "f1": 0.020760043382057614,
-      "duration": 1078.6576223407428
+      "accuracy": 0.06313619403511579,
+      "precision": 0.04743546854963033,
+      "recall": 0.07470051184820727,
+      "specificity": 0.05135927141053437,
+      "f1": 0.042814314648353974,
+      "duration": 1690.3499628950851
     }
   },
   "reviews": [
@@ -681,15 +681,43 @@
       "label": "ovarian cancer diagnosis 92",
       "studies": 92,
       "goldInclude": 45,
-      "accuracy": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "specificity": 0.0,
-      "f1": 0.0,
-      "duration": 12479.123210584745
+      "accuracy": 0.9130434782608695,
+      "precision": 0.8775510204081632,
+      "recall": 0.9555555555555556,
+      "specificity": 0.8723404255319149,
+      "f1": 0.9148936170212767,
+      "duration": 383.0263434579829
+    },
+    {
+      "key": "home_based_rehabilitation_183",
+      "label": "home based rehabilitation 183",
+      "studies": 183,
+      "goldInclude": 138,
+      "accuracy": 0.7978142076502732,
+      "precision": 0.9719626168224299,
+      "recall": 0.7536231884057971,
+      "specificity": 0.9333333333333333,
+      "f1": 0.8489795918367347,
+      "duration": 1306.8708415839938
     }
   ],
   "worstRuns": [
+    {
+      "run": "home based rehabilitation 183 run 1",
+      "review": "home based rehabilitation 183",
+      "accuracy": 0.7978142076502732,
+      "precision": 0.9719626168224299,
+      "recall": 0.7536231884057971,
+      "f1": 0.8489795918367347
+    },
+    {
+      "run": "ovarian cancer diagnosis 92 run 1",
+      "review": "ovarian cancer diagnosis 92",
+      "accuracy": 0.9130434782608695,
+      "precision": 0.8775510204081632,
+      "recall": 0.9555555555555556,
+      "f1": 0.9148936170212767
+    },
     {
       "run": "surgical termination 10 run 1",
       "review": "surgical termination 10",
@@ -735,13 +763,76 @@
       "review_key": "chlamydia_poc_test_50"
     },
     {
-      "ref": "surgical termination 10 #8",
-      "title": "Abortion by means of suction curettage compared to conventional metal curette",
+      "ref": "home based rehabilitation 183 #108",
+      "title": "Exploring the specific needs of persons with multiple sclerosis for mHealth solutions for physical activity: mixed-methods study",
       "mistakes": 1,
       "error": "false_negative",
       "gold": "1.0",
       "outcome": "included_in_review",
-      "review_key": "surgical_termination_10"
+      "review_key": "home_based_rehabilitation_183"
+    },
+    {
+      "ref": "home based rehabilitation 183 #110",
+      "title": "Ethical dilemmas encountered by community-based occupational therapists in home care settings",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "home_based_rehabilitation_183"
+    },
+    {
+      "ref": "home based rehabilitation 183 #111",
+      "title": "Evaluation of a community of practice for speech-language pathologists in aphasia rehabilitation: a logic analysis.  2019;19(1):1-14.",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "home_based_rehabilitation_183"
+    },
+    {
+      "ref": "home based rehabilitation 183 #112",
+      "title": "Needs of caregivers in heart failure management: A qualitative study",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "home_based_rehabilitation_183"
+    },
+    {
+      "ref": "home based rehabilitation 183 #114",
+      "title": "What is the acceptability of real time 1: 1 videoconferencing between clinicians and patients for a follow-up consultation for multi-directional shoulder instability?",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "home_based_rehabilitation_183"
+    },
+    {
+      "ref": "home based rehabilitation 183 #116",
+      "title": "How to improve eRehabilitation programs in stroke care? A focus group study to identify requirements of end-users",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "home_based_rehabilitation_183"
+    },
+    {
+      "ref": "home based rehabilitation 183 #12",
+      "title": "Investigating the international classification of functioning, disability, and health (ICF) framework to capture user needs in the concept stage of rehabilitation technology development",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "home_based_rehabilitation_183"
+    },
+    {
+      "ref": "home based rehabilitation 183 #122",
+      "title": "Transitioning a home telehealth project into a sustainable, large-scale service: a qualitative study",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "home_based_rehabilitation_183"
     }
   ]
 };

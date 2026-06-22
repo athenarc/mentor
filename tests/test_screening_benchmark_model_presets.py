@@ -1,7 +1,9 @@
 import unittest
+from unittest.mock import patch
 
 import bastirr.benchmarking.model_presets as model_presets
-from bastirr.benchmarking.model_presets import get_model_preset
+from bastirr.config import MODEL_REQUEST_TIMEOUT_SECONDS
+from bastirr.benchmarking.model_presets import ResolvedModelPreset, get_model_preset
 
 
 class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
@@ -83,3 +85,39 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
                 }
             },
         )
+
+    def test_openai_model_creation_sets_client_timeout(self):
+        preset = ResolvedModelPreset(
+            key="test_openai",
+            description="",
+            display_name="test",
+            backend="openai",
+            model_id="provider/model",
+            api_base="https://example.test/v1",
+            api_key="test-key",
+            api_key_source="TEST_KEY",
+        )
+
+        with patch("bastirr.benchmarking.model_presets.OpenAIServerModel") as model_cls:
+            preset.create_model()
+
+        kwargs = model_cls.call_args.kwargs
+        self.assertEqual(kwargs["client_kwargs"]["timeout"], MODEL_REQUEST_TIMEOUT_SECONDS)
+
+    def test_litellm_model_creation_sets_completion_timeout(self):
+        preset = ResolvedModelPreset(
+            key="test_litellm",
+            description="",
+            display_name="test",
+            backend="litellm",
+            model_id="provider/model",
+            api_base="https://example.test/v1",
+            api_key="test-key",
+            api_key_source="TEST_KEY",
+        )
+
+        with patch("bastirr.benchmarking.model_presets.LiteLLMModel") as model_cls:
+            preset.create_model()
+
+        kwargs = model_cls.call_args.kwargs
+        self.assertEqual(kwargs["timeout"], MODEL_REQUEST_TIMEOUT_SECONDS)

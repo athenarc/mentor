@@ -13,15 +13,15 @@
     "n_studies": 194,
     "gold_pass_count": 98,
     "gold_exclude_count": 96,
-    "predicted_pass_count": 0,
-    "predicted_exclude_count": 194,
-    "tp": 0,
-    "fp": 0,
-    "tn": 96,
-    "fn": 98,
-    "match_count": 0,
-    "mismatch_count": 0,
-    "missing_decision_count": 194,
+    "predicted_pass_count": 86,
+    "predicted_exclude_count": 108,
+    "tp": 58,
+    "fp": 28,
+    "tn": 68,
+    "fn": 40,
+    "match_count": 126,
+    "mismatch_count": 68,
+    "missing_decision_count": 0,
     "duplicate_decision_count": 0,
     "invalid_decision_count": 0
   },
@@ -32,10 +32,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve PROMs feedback to healthcare professionals and/or patients",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 2,
@@ -43,10 +43,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 3,
@@ -54,10 +54,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 4,
@@ -65,10 +65,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 5,
@@ -76,10 +76,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 6,
@@ -87,10 +87,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 7,
@@ -98,10 +98,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 8,
@@ -109,10 +109,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 9,
@@ -120,10 +120,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 10,
@@ -131,10 +131,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 11,
@@ -142,10 +142,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 12,
@@ -153,10 +153,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 13,
@@ -164,10 +164,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 14,
@@ -175,10 +175,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 15,
@@ -186,10 +186,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 16,
@@ -197,10 +197,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 17,
@@ -208,10 +208,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 18,
@@ -219,10 +219,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 19,
@@ -230,10 +230,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 20,
@@ -241,10 +241,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 21,
@@ -252,10 +252,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 22,
@@ -263,10 +263,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 23,
@@ -274,10 +274,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 24,
@@ -285,10 +285,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 25,
@@ -296,10 +296,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 26,
@@ -307,10 +307,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 27,
@@ -318,10 +318,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 28,
@@ -329,10 +329,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve PROMs feedback to healthcare professionals and/or patients",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 29,
@@ -340,10 +340,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve PROMs feedback to healthcare professionals and/or patients",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 30,
@@ -351,10 +351,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 31,
@@ -362,10 +362,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 32,
@@ -373,10 +373,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 33,
@@ -384,10 +384,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 34,
@@ -395,10 +395,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 35,
@@ -406,10 +406,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 36,
@@ -417,10 +417,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 37,
@@ -428,10 +428,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 38,
@@ -439,10 +439,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 39,
@@ -450,10 +450,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 40,
@@ -461,10 +461,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 41,
@@ -472,10 +472,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 42,
@@ -483,10 +483,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 43,
@@ -494,10 +494,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 44,
@@ -505,10 +505,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 45,
@@ -516,10 +516,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 46,
@@ -527,10 +527,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 47,
@@ -538,10 +538,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 48,
@@ -549,10 +549,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 49,
@@ -560,10 +560,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 50,
@@ -571,10 +571,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 51,
@@ -582,10 +582,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 52,
@@ -593,10 +593,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 53,
@@ -604,10 +604,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 54,
@@ -615,10 +615,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 55,
@@ -626,10 +626,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 56,
@@ -637,10 +637,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 57,
@@ -648,10 +648,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 58,
@@ -659,10 +659,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 59,
@@ -670,10 +670,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 60,
@@ -681,10 +681,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 61,
@@ -692,10 +692,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 62,
@@ -703,10 +703,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 63,
@@ -714,10 +714,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 64,
@@ -725,10 +725,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 65,
@@ -736,10 +736,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 66,
@@ -747,10 +747,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 67,
@@ -758,10 +758,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 68,
@@ -769,10 +769,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 69,
@@ -780,10 +780,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 70,
@@ -791,10 +791,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 71,
@@ -802,10 +802,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 72,
@@ -813,10 +813,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 73,
@@ -824,10 +824,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve PROMs feedback to healthcare professionals and/or patients",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 74,
@@ -835,10 +835,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 75,
@@ -846,10 +846,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 76,
@@ -857,10 +857,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "All intervention groups receive some form of feedback; no true no-feedback control group.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 77,
@@ -868,10 +868,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study focuses on prompting discussions via questionnaires, not on PROMs feedback effects.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 78,
@@ -879,10 +879,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 79,
@@ -890,10 +890,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 80,
@@ -901,10 +901,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study develops a classification system, not testing PROMs feedback effects.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 81,
@@ -912,10 +912,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 82,
@@ -923,10 +923,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study appears to be a review protocol or proposal, not an RCT with results.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 83,
@@ -934,10 +934,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 84,
@@ -945,10 +945,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study tests a communication tool, not specifically PROMs feedback effects.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 85,
@@ -956,10 +956,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 86,
@@ -967,10 +967,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 87,
@@ -978,10 +978,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 88,
@@ -989,10 +989,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 89,
@@ -1000,10 +1000,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 90,
@@ -1011,10 +1011,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 91,
@@ -1022,10 +1022,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study is guidance/framework document, not an RCT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 92,
@@ -1033,10 +1033,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 93,
@@ -1044,10 +1044,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study describes a protocol for an RCT, not reporting actual trial results.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 94,
@@ -1055,10 +1055,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 95,
@@ -1066,10 +1066,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study compares enhanced feedback vs standard feedback, not feedback vs no feedback.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 96,
@@ -1077,10 +1077,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study is a realist synthesis review, not a randomized trial.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 97,
@@ -1088,10 +1088,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 98,
@@ -1099,10 +1099,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 99,
@@ -1110,10 +1110,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 100,
@@ -1121,10 +1121,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 101,
@@ -1132,10 +1132,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study develops a questionnaire, not testing PROMs feedback effects.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 102,
@@ -1143,10 +1143,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 103,
@@ -1154,10 +1154,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 104,
@@ -1165,10 +1165,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 105,
@@ -1176,10 +1176,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study examines physician-patient agreement, not testing PROMs feedback intervention effects.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 106,
@@ -1187,10 +1187,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study is a Cochrane review protocol, not an RCT with results.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 107,
@@ -1198,10 +1198,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study appears to be a qualitative study or intervention description, not an RCT testing PROMs feedback.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 108,
@@ -1209,10 +1209,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 109,
@@ -1220,10 +1220,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 110,
@@ -1231,10 +1231,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 111,
@@ -1242,10 +1242,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 112,
@@ -1253,10 +1253,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 113,
@@ -1264,10 +1264,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 114,
@@ -1275,10 +1275,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 115,
@@ -1286,10 +1286,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 116,
@@ -1297,10 +1297,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 117,
@@ -1308,10 +1308,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 118,
@@ -1319,10 +1319,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomized trial comparing PROMs feedback to healthcare professionals and/or patients with a control group receiving no such information.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 119,
@@ -1330,10 +1330,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 120,
@@ -1341,10 +1341,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 121,
@@ -1352,10 +1352,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 122,
@@ -1363,10 +1363,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 123,
@@ -1374,10 +1374,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 124,
@@ -1385,10 +1385,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 125,
@@ -1396,10 +1396,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 126,
@@ -1407,10 +1407,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 127,
@@ -1418,10 +1418,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 128,
@@ -1429,10 +1429,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 129,
@@ -1440,10 +1440,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 130,
@@ -1451,10 +1451,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 131,
@@ -1462,10 +1462,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 132,
@@ -1473,10 +1473,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 133,
@@ -1484,10 +1484,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 134,
@@ -1495,10 +1495,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 135,
@@ -1506,10 +1506,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 136,
@@ -1517,10 +1517,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 137,
@@ -1528,10 +1528,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 138,
@@ -1539,10 +1539,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 139,
@@ -1550,10 +1550,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 140,
@@ -1561,10 +1561,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 141,
@@ -1572,10 +1572,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 142,
@@ -1583,10 +1583,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 143,
@@ -1594,10 +1594,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 144,
@@ -1605,10 +1605,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 145,
@@ -1616,10 +1616,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 146,
@@ -1627,10 +1627,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 147,
@@ -1638,10 +1638,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 148,
@@ -1649,10 +1649,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 149,
@@ -1660,10 +1660,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 150,
@@ -1671,10 +1671,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 151,
@@ -1682,10 +1682,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 152,
@@ -1693,10 +1693,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 153,
@@ -1704,10 +1704,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 154,
@@ -1715,10 +1715,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 155,
@@ -1726,10 +1726,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 156,
@@ -1737,10 +1737,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 157,
@@ -1748,10 +1748,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 158,
@@ -1759,10 +1759,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 159,
@@ -1770,10 +1770,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 160,
@@ -1781,10 +1781,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 161,
@@ -1792,10 +1792,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 162,
@@ -1803,10 +1803,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 163,
@@ -1814,10 +1814,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 164,
@@ -1825,10 +1825,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 165,
@@ -1836,10 +1836,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve PROMs feedback to healthcare professionals and/or patients",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 166,
@@ -1847,10 +1847,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 167,
@@ -1858,10 +1858,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 168,
@@ -1869,10 +1869,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 169,
@@ -1880,10 +1880,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 170,
@@ -1891,10 +1891,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 171,
@@ -1902,10 +1902,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 172,
@@ -1913,10 +1913,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 173,
@@ -1924,10 +1924,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 174,
@@ -1935,10 +1935,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 175,
@@ -1946,10 +1946,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 176,
@@ -1957,10 +1957,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 177,
@@ -1968,10 +1968,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 178,
@@ -1979,10 +1979,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 179,
@@ -1990,10 +1990,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve PROMs feedback to healthcare professionals and/or patients",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 180,
@@ -2001,10 +2001,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 181,
@@ -2012,10 +2012,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 182,
@@ -2023,10 +2023,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 183,
@@ -2034,10 +2034,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 184,
@@ -2045,10 +2045,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 185,
@@ -2056,10 +2056,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 186,
@@ -2067,10 +2067,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 187,
@@ -2078,10 +2078,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 188,
@@ -2089,10 +2089,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 189,
@@ -2100,10 +2100,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 190,
@@ -2111,10 +2111,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 191,
@@ -2122,10 +2122,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meets all criteria: RCT comparing PROMs feedback to HCPs/patients with no-feedback control",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 192,
@@ -2133,10 +2133,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No control group receiving no such information (feedback/comparison not properly specified)",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 193,
@@ -2144,10 +2144,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve PROMs feedback to healthcare professionals and/or patients",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 194,
@@ -2155,10 +2155,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomized controlled trial",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     }
   ]
 }

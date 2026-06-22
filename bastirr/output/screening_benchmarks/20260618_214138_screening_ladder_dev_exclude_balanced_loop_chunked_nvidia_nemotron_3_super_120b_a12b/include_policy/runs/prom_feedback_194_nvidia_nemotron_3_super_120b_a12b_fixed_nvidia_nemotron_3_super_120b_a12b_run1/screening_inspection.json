@@ -13,15 +13,15 @@
     "n_studies": 194,
     "gold_pass_count": 148,
     "gold_exclude_count": 46,
-    "predicted_pass_count": 97,
-    "predicted_exclude_count": 97,
-    "tp": 84,
+    "predicted_pass_count": 90,
+    "predicted_exclude_count": 104,
+    "tp": 77,
     "fp": 13,
     "tn": 33,
-    "fn": 64,
-    "match_count": 112,
-    "mismatch_count": 66,
-    "missing_decision_count": 16,
+    "fn": 71,
+    "match_count": 110,
+    "mismatch_count": 84,
+    "missing_decision_count": 0,
     "duplicate_decision_count": 0,
     "invalid_decision_count": 0
   },
@@ -32,10 +32,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial comparing surgeon feedback of patient preference reports (patient-reported goals/preferences) to usual care, with additional comparison of decision aids. This constitutes feedback of patient-reported information to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 2,
@@ -43,10 +43,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial where dentists received feedback of patients' dental anxiety scores (PROM) versus no feedback, measuring impact on patient state anxiety. Directly matches PROMs feedback to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 3,
@@ -54,10 +54,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial comparing session-by-session progress feedback (using Outcome Rating Scale, a PROM) to therapists versus no feedback, assessing therapeutic outcomes. Clear PROMs feedback to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 4,
@@ -65,10 +65,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Stepped wedge randomized trial providing continuous feedback on patient progress (likely measured via PROMs) to therapists and supervisors versus therapists only. Involves feedback of patient-reported outcomes to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 5,
@@ -77,7 +77,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial where intervention group received access to Oncokompas, which monitors HRQOL and symptoms and provides tailored feedback to patients. This is PROMs feedback to patients.",
+      "predicted_reason": "Randomised trial comparing PROMs feedback to healthcare professionals and/or patients with a control group not receiving such feedback.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -88,7 +88,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Integrated literature review, not a randomized trial comparing PROMs feedback to no feedback. Does not meet study design criterion.",
+      "predicted_reason": "Not a randomised trial",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -99,7 +99,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial of mobile telehealth intervention including graphical and nurse-initiated feedback based on patient-reported data (symptoms, self-monitoring) versus standard care. Involves PROMs feedback to patients and/or healthcare professionals.",
+      "predicted_reason": "Randomised trial comparing PROMs feedback to healthcare professionals and/or patients with a control group not receiving such feedback.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -109,10 +109,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial where intervention group received regular completion of EORTC QLQ-C30 and HADS (PROMs) with feedback of results to physicians, versus control with no HRQL measurement. Direct PROMs feedback to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 9,
@@ -120,10 +120,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial where identified depressed patients were either informed to their physician (feedback of depression screening results, a PROM) or not. Compares feedback versus no feedback of PROMs to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 10,
@@ -132,7 +132,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Laboratory study focusing on performance feedback of objective driving ability, not patient-reported outcomes. No PROMs feedback component.",
+      "predicted_reason": "Not a randomised trial",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -142,10 +142,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Cluster randomized trial where physicians received feedback of patients' anxiety symptom levels (PROM) via a reporting system, versus control arm. Involves PROMs feedback to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 12,
@@ -154,7 +154,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Validation and reliability study of SF-36 via postal questionnaire, not a randomized trial comparing PROMs feedback to no feedback. No intervention.",
+      "predicted_reason": "Not a randomised trial",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -164,10 +164,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial of internet-based intervention (Featback) including automated monitoring and feedback system based on self-reported eating disorder symptoms (PROMs) to patients, versus waiting list. PROMs feedback to patients.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 14,
@@ -175,10 +175,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial where physicians received reports summarizing patients' functional disability questionnaire responses (PROM), versus control group receiving no report. Direct PROMs feedback to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 15,
@@ -187,7 +187,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Intervention includes feedback on physiological measurements (peak flow, signal detection) rather than patient-reported outcomes. While some components involve symptom monitoring, feedback is not explicitly on PROMs.",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -198,7 +198,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Feasibility study of a multimodal supportive care intervention; abstract does not mention PROMs feedback or comparison of feedback versus no feedback. Unclear if PROMs feedback is involved.",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -208,10 +208,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Structured review (literature review), not a randomized trial. Does not meet study design criterion.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomised trial comparing PROMs feedback to healthcare professionals and/or patients with a control group not receiving such feedback.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 18,
@@ -220,7 +220,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Observational study using statistical records to examine VTE risk; not a randomized trial of PROMs feedback.",
+      "predicted_reason": "Not a randomised trial",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -230,10 +230,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial where case coordinators integrated pain assessment (PROM) and depression scale into routine coordination and sent summaries to physicians (feedback), versus usual care. Involves PROMs feedback to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomised trial",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 20,
@@ -242,7 +242,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Feasibility study developing and validating a psychometric tool for self-care activities; not a randomized trial comparing PROMs feedback to no feedback.",
+      "predicted_reason": "Not a randomised trial",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -252,10 +252,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial where intervention group used Work Stress Questionnaire (PROM) with physician feedback, versus treatment as usual. Involves PROMs feedback to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 22,
@@ -263,10 +263,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial where intervention arm received monthly telephone monitoring using HADS and EORTC QLQ-C30 (PROMs) with feedback to oncology nurses for referral, versus educational materials alone. Involves PROMs feedback to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 23,
@@ -274,10 +274,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Multisite randomized clinical trial comparing feedback of Outcome Questionnaire-45.2 (PROM) results to therapists versus no feedback. Direct PROMs feedback to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 24,
@@ -285,10 +285,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Pilot randomized trial where intervention group received an app providing weekly symptom reporting (via ESAS, a PROM) and tailored feedback/information cards. Involves PROMs feedback to patients.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 25,
@@ -297,7 +297,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Cross-sectional mixed-methods study evaluating interpretability of PRO data presentation formats; not a randomized trial comparing PROMs feedback to no feedback.",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -308,7 +308,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Randomized clinical trial where intervention group received feedback based on a knowledge test (educational), not on patient-reported outcomes. No PROMs feedback component.",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -319,7 +319,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Qualitative interview study exploring GPs' opinions; not a randomized trial of PROMs feedback.",
+      "predicted_reason": "Not a randomised trial",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -330,7 +330,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Feasibility cluster-randomized trial of a self-management programme; abstract does not describe feedback of PROMs to healthcare professionals or patients as the primary intervention.",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -340,10 +340,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial comparing groups where patient and/or physician were told PRIME-MD results (psychiatric screening, a PROM) versus neither told. Involves feedback of PROMs to healthcare professionals and/or patients.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 30,
@@ -351,10 +351,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Pragmatic cluster randomized trial where intervention arm received automated interactive voice response tool providing physicians with real-time patient-reported data (side effects, satisfaction) about new medications. Involves PROMs feedback to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 31,
@@ -362,10 +362,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial comparing usual care, HRQL assessment, and HRQL assessment followed by structured interview and discussion (feedback of HRQL results, a PROM) to patients and nurses. Involves PROMs feedback.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 32,
@@ -373,10 +373,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial where intervention arm made patient-reported cancer needs, QOL, and psychosocial information (PROMs) available to the health care team for coordinated interventions, versus standard care. Involves PROMs feedback to healthcare professionals.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 33,
@@ -384,10 +384,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Protocol for a pragmatic multi-site randomized controlled trial investigating self-monitoring and personalized feedback based on ESM self-reports (PROMs) of affect and thinking patterns. Involves PROMs feedback to patients.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not appear to involve PROMs feedback",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 34,
@@ -396,7 +396,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: randomised trial comparing PROMs feedback to healthcare professionals/patients versus no feedback, with measurement of patient-reported health outcomes and/or processes of care.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -407,7 +407,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: randomised trial, PROMs feedback intervention, control group without PROMs feedback. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: randomised trial, PROMs feedback, comparison to no feedback, relevant outcomes. Being conservative, we include.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -418,7 +418,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: randomised trial comparing PROMs feedback to healthcare professionals/patients versus no feedback, with measurement of patient-reported health outcomes and/or processes of care.",
+      "predicted_reason": "Meets all inclusion criteria: randomised trial, PROMs feedback to healthcare professionals and/or patients, comparison to no feedback, and measures patient-reported health outcomes and/or processes of care.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -428,10 +428,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: randomised trial, PROMs feedback intervention, control group without PROMs feedback, relevant outcomes. Included conservatively due to uncertainty.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet inclusion criteria: missing randomised trial, PROMs feedback, comparison to no feedback, relevant outcomes.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 38,
@@ -440,7 +440,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: randomised trial comparing PROMs feedback to healthcare professionals/patients versus no feedback, with measurement of patient-reported health outcomes and/or processes of care.",
+      "predicted_reason": "Meets all inclusion criteria: randomised trial, PROMs feedback to healthcare professionals and/or patients, comparison to no feedback, and measures patient-reported health outcomes and/or processes of care.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -450,10 +450,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: control group without PROMs feedback, relevant outcomes. Included conservatively due to uncertainty.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet inclusion criteria: missing comparison to no feedback, relevant outcomes.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 40,
@@ -462,7 +462,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: randomised trial, PROMs feedback intervention, control group without PROMs feedback. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: randomised trial, PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -473,7 +473,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: randomised trial, relevant outcomes. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: randomised trial, PROMs feedback, comparison to no feedback, relevant outcomes. Being conservative, we include.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -484,7 +484,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: PROMs feedback intervention, relevant outcomes. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -495,7 +495,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: PROMs feedback intervention, relevant outcomes. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback, relevant outcomes. Being conservative, we include.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -506,7 +506,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: randomised trial, PROMs feedback intervention, control group without PROMs feedback. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: randomised trial, PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -517,7 +517,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: PROMs feedback intervention, relevant outcomes. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback, relevant outcomes. Being conservative, we include.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -528,7 +528,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: randomised trial comparing PROMs feedback to healthcare professionals/patients versus no feedback, with measurement of patient-reported health outcomes and/or processes of care.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -539,7 +539,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: randomised trial comparing PROMs feedback to healthcare professionals/patients versus no feedback, with measurement of patient-reported health outcomes and/or processes of care.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -549,10 +549,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: randomised trial comparing PROMs feedback to healthcare professionals/patients versus no feedback, with measurement of patient-reported health outcomes and/or processes of care.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet inclusion criteria: missing comparison to no feedback.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 49,
@@ -560,10 +560,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: control group without PROMs feedback, relevant outcomes. Included conservatively due to uncertainty.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet inclusion criteria: missing comparison to no feedback, relevant outcomes.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 50,
@@ -572,7 +572,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: PROMs feedback intervention, relevant outcomes. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback, relevant outcomes. Being conservative, we include.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -582,10 +582,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: relevant outcomes. Included conservatively due to uncertainty.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet inclusion criteria: missing relevant outcomes.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 52,
@@ -594,7 +594,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: PROMs feedback intervention. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -605,7 +605,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: randomised trial, PROMs feedback intervention, control group without PROMs feedback. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: randomised trial, PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -615,10 +615,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: relevant outcomes. Included conservatively due to uncertainty.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not meet inclusion criteria: missing comparison to no feedback.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 55,
@@ -627,7 +627,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: randomised trial, PROMs feedback intervention, control group without PROMs feedback. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: randomised trial, PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -638,7 +638,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: PROMs feedback intervention. Included conservatively due to uncertainty.",
+      "predicted_reason": "Meets all inclusion criteria: randomised trial, PROMs feedback to healthcare professionals and/or patients, comparison to no feedback, and measures patient-reported health outcomes and/or processes of care.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -649,7 +649,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: randomised trial comparing PROMs feedback to healthcare professionals/patients versus no feedback, with measurement of patient-reported health outcomes and/or processes of care.",
+      "predicted_reason": "Meets all inclusion criteria: randomised trial, PROMs feedback to healthcare professionals and/or patients, comparison to no feedback, and measures patient-reported health outcomes and/or processes of care.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -660,7 +660,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: randomised trial comparing PROMs feedback to healthcare professionals/patients versus no feedback, with measurement of patient-reported health outcomes and/or processes of care.",
+      "predicted_reason": "Meets all inclusion criteria: randomised trial, PROMs feedback to healthcare professionals and/or patients, comparison to no feedback, and measures patient-reported health outcomes and/or processes of care.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -671,7 +671,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: randomised trial comparing PROMs feedback to healthcare professionals/patients versus no feedback, with measurement of patient-reported health outcomes and/or processes of care.",
+      "predicted_reason": "Meets all inclusion criteria: randomised trial, PROMs feedback to healthcare professionals and/or patients, comparison to no feedback, and measures patient-reported health outcomes and/or processes of care.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -682,7 +682,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: PROMs feedback intervention, relevant outcomes. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -693,7 +693,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: PROMs feedback intervention. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -704,7 +704,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: randomised trial, PROMs feedback intervention, control group without PROMs feedback, relevant outcomes. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: randomised trial, PROMs feedback, comparison to no feedback, relevant outcomes. Being conservative, we include.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -715,7 +715,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: control group without PROMs feedback. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -726,7 +726,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: randomised trial, PROMs feedback intervention, relevant outcomes. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: randomised trial, PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -737,7 +737,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Unclear regarding: relevant outcomes. Included conservatively due to uncertainty.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -748,7 +748,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets all criteria: randomised trial comparing PROMs feedback to healthcare professionals/patients versus no feedback, with measurement of patient-reported health outcomes and/or processes of care.",
+      "predicted_reason": "Uncertain about criteria: PROMs feedback, comparison to no feedback. Being conservative, we include.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -758,10 +758,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial using FLARE-RA questionnaire (a PROM) to guide flare management intervention (nurse-led counseling or expedited visit), providing feedback to patients and healthcare professionals, compared to usual care. Measures flare occurrence and RA disease activity.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomised trial design present; PROMs elements present but no clear feedback of results; No-feedback control group described; Excluded: RCT with control but lacks clear PROMs feedback intervention",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 68,
@@ -770,7 +770,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Abstract describes examples of PROMs use in practice and argues for wider uptake; no mention of randomization, comparison groups, or feedback intervention. Appears to be a commentary or descriptive paper, not an RCT testing PROMs feedback.",
+      "predicted_reason": "No clear randomised trial design; PROMs elements present but no clear feedback of results; No clear no-feedback control group",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -781,7 +781,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Abstract discusses PROs, challenges, framework for implementation; examples of application; not an RCT.",
+      "predicted_reason": "No clear randomised trial design; PROMs elements present but no clear feedback of results; No clear no-feedback control group",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -792,7 +792,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "RCT evaluating short-term life review intervention; intervention is life review therapy, not PROMs feedback. No mention of using PROMs to provide feedback to clinicians or patients.",
+      "predicted_reason": "Randomised trial design present; PROMs elements present but no clear feedback of results; No-feedback control group described; Excluded: RCT with control but lacks clear PROMs feedback intervention",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -803,7 +803,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention group receives communication of depression screening results (PC-SAD and WHOQOL-Bref, both PROMs) and offer of psychiatric evaluation/treatment; control group receives no feedback for 3 months. Measures depression severity and quality of life. Fits: PROMs feedback to patients (and implicitly providers) vs no feedback.",
+      "predicted_reason": "Randomised trial design present; Clear PROMs feedback intervention described; No-feedback control group described",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -814,7 +814,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "RCT of depression care management program; intervention involves depression care manager providing algorithm-based care, but abstract does not specify use of PROMs for feedback; outcomes based on clinical interview and comorbidity index. Unclear if PROMs feedback is central.",
+      "predicted_reason": "Randomised trial design present; PROMs elements present but no clear feedback of results; No-feedback control group described; Excluded: RCT with control but lacks clear PROMs feedback intervention",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -824,10 +824,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention group has AEP scores (PROM for adverse effects of AEDs) made available to treating physicians; control group does not. Measures changes in AEP scores and QOLIE-31 scores. Fits: PROMs feedback to healthcare professionals vs no feedback.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomised trial design present; PROMs elements present but no clear feedback of results; No-feedback control group described; Excluded: RCT with control but lacks clear PROMs feedback intervention",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 74,
@@ -835,10 +835,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention uses PCOMS (PROM for psychotherapy outcomes) with therapists (feedback condition); control is treatment as usual (no-feedback). Measures treatment gains, reliable change, etc. Fits: PROMs feedback to therapists and patients vs no feedback.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "No clear randomised trial design; Feedback mentioned but not clearly about providing results information; No-feedback control group described",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 75,
@@ -846,10 +846,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Cluster RCT where intervention includes 'monitoring and feedback tool' for physical activity (likely a PROM) embedded in SSP; control groups are SSP alone and usual care. Measures physical activity (could be PROM), self-efficacy, quality of life. The feedback tool provides monitoring and feedback.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomised trial design present; Feedback mentioned but not clearly about providing results information; No-feedback control group described; Excluded: RCT with control but lacks clear PROMs feedback intervention",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 76,
@@ -858,7 +858,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention groups receive feedback that they endorsed more or fewer symptoms than average based on PCSQ (PROM); control group receives neutral information. Measures PCSQ symptom self-report (PROM) and neuropsychological performance. Fits: PROMs feedback to patients vs neutral information.",
+      "predicted_reason": "Randomised trial design present; Clear PROMs feedback intervention described; No clear no-feedback control group; Included conservatively: RCT with clear PROMs feedback but control clarity needed",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -868,10 +868,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Cluster RCT where intervention group receives electronic PVQ with YV questions, results delivered to physicians before visit; control group receives PVQ without YV questions. Measures frequency of YV discussions. Fits: PROMs feedback (YV screening results) to healthcare professionals vs no YV feedback.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomised trial design present; PROMs and feedback mentioned but unclear link; No-feedback control group described; Excluded: RCT with control but lacks clear PROMs feedback intervention",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 78,
@@ -880,7 +880,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention arm receives QoL-monitor assessing QoL, distress, care needs; patients and HCPs receive copy of QoL overview and results shown in medical files. Control is usual care. Measures communication score, QoL, etc. Fits: PROMs feedback (QoL-monitor results) to patients and healthcare professionals vs usual care.",
+      "predicted_reason": "Randomised trial design present; Clear PROMs feedback intervention described; No-feedback control group described",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -890,10 +890,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention group has SQ results (screening questionnaire for common mental disorders, a PROM) disclosed to and scored by GPs; control group blinded. Measures GPs' recognition and provision of care, conversation on psychological topics, follow-up rates. Fits: PROMs feedback to healthcare professionals vs no feedback.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomised trial design present; Feedback mentioned but not clearly about providing results information; No-feedback control group described; Excluded: RCT with control but lacks clear PROMs feedback intervention",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 80,
@@ -902,7 +902,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Abstract describes developing a classification system for PRO measures; not an RCT.",
+      "predicted_reason": "No clear randomised trial design; PROMs elements present but no clear feedback of results; No clear no-feedback control group",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -912,10 +912,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Cluster RCT where intervention provides physicians with patients' alcohol screening results (CAGE questionnaire, a PROM for alcohol problems) and recommendations; control is usual care. Measures discussions about alcohol use and alcohol use. Fits: PROMs feedback to healthcare professionals vs usual care.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomised trial design present; PROMs elements present but no clear feedback of results; No-feedback control group described; Excluded: RCT with control but lacks clear PROMs feedback intervention",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 82,
@@ -924,7 +924,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Abstract describes objectives for a systematic review on routine measurement and feedback of PROMs; not an RCT.",
+      "predicted_reason": "No clear randomised trial design; Clear PROMs feedback intervention described; No clear no-feedback control group",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -935,7 +935,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Title suggests feedback intervention, but abstract is truncated and provides no methodological details (no mention of randomization, control group, or PROMs). Insufficient information to confirm it meets criteria.",
+      "predicted_reason": "Intervention is not PROMs feedback; it's general skin cancer prevention advice.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -945,10 +945,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "RCT of web-based communication tool for collaborative care; tool is for communication and coordination, not specifically for PROMs feedback. No mention of using or providing feedback of PROMs.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing a tool that facilitates PROMs-based communication (symptom reporting, care management) vs. usual care, with patient-reported outcomes.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 85,
@@ -957,7 +957,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Cluster RCT where intervention surgeons receive peer benchmarked PROMs feedback and education; control surgeons do not. Measures postoperative OHS, HOOS, EQ-5D, complications. Fits: PROMs feedback to healthcare professionals vs no feedback.",
+      "predicted_reason": "RCT comparing PROMs feedback to surgeons vs. no feedback, with patient-reported outcomes (OHS, HOOS, EQ-5D).",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -968,7 +968,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention groups receive feedback regarding patient progress (likely via PROMs) to therapists; control groups do not. Measures patient outcome and number of sessions attended. Fits: feedback of patient progress (PROMs) to therapists vs control.",
+      "predicted_reason": "RCT comparing progress feedback (implied PROMs-based) to therapists vs. control, with patient outcomes.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -979,7 +979,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention group receives results of self-administered computerized assessment (PROQSY) of common mental disorders for GP; control groups: no additional information, or GHQ results. Measures clinical outcome via GHQ. Fits: PROMs feedback to healthcare professionals vs no feedback or alternative feedback.",
+      "predicted_reason": "RCT comparing PROMs feedback to GPs vs. other info/no info, with patient-reported outcome (GHQ).",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -990,7 +990,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention group discusses HRQOL results (measured by KIDSCREEN-27, a PROM) face to face with physician quarterly; control group receives care as usual. Measures HRQOL dimensions. Fits: PROMs feedback (HRQOL results) to patients and physicians vs usual care.",
+      "predicted_reason": "RCT comparing PROMs feedback intervention (face-to-face discussion) vs. usual care, with patient-reported HRQOL outcomes.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1000,10 +1000,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Cluster RCT where intervention uses STarT Back Tool (patient-reported data, i.e., PROM) to categorize LBP risk and guide treatment; control clinics receive no training. Measures back-related physical function and pain severity. Fits: PROMs feedback (via risk stratification based on patient-reported data) to healthcare professionals vs no such feedback.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "While RCT uses patient-reported tool (STarT Back), the intervention focuses on stratification not feedback provision, and clinicians didn't change treatment based on tool.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 90,
@@ -1012,7 +1012,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention includes recovery-focused pre-diagnostic wellbeing assessment and counselling, diagnostic consultation with written feedback (based on assessments including WHO Wellbeing Index, EUROQOL, which are PROMs); control is treatment as usual. Measures WHO Wellbeing Index (primary) and other outcomes. Fits: feedback based on PROMs assessments to patients vs usual care.",
+      "predicted_reason": "RCT comparing recovery package that includes PROMs feedback (wellbeing assessment/counselling) vs. usual care, with patient-reported outcome.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1023,7 +1023,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Abstract is truncated but clearly about guidance for evaluating complex interventions; not an RCT.",
+      "predicted_reason": "Not an empirical study; appears to be a discussion paper about guidance.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1033,10 +1033,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention groups: in-person counseling (PE) and computer-generated feedback letters (CO); control: assessment only (AO). The computer-generated feedback letters are based on screening (likely PROMs for alcohol use). Measures gram alcohol per week, at-risk alcohol use, etc. Fits: PROMs feedback (via letters) vs no feedback (AO) and vs another intervention.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Intervention is computer-generated feedback letters (based on alcohol screening), not explicitly PROMs feedback. Outcome is alcohol consumption, not clearly a PROM.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 93,
@@ -1045,7 +1045,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Protocol for an RCT investigating acceptability of different PROM administration methods; not a completed trial evaluating PROMs feedback intervention.",
+      "predicted_reason": "Study compares PROM administration methods, not the effects of providing PROMs feedback to healthcare providers/patients.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -1056,7 +1056,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention group patients have SF-36 results (PROM) given to physicians before encounter; control group has results withheld. Measures physicians' responses about usefulness of SF-36, patients' satisfaction. Fits: PROMs feedback to healthcare professionals vs no feedback.",
+      "predicted_reason": "RCT comparing PROMs feedback to physicians vs. no feedback, with patient-reported outcome (SF-36) and process of care measures.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1067,7 +1067,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention group receives electronic screening and personalized feedback with clinician decision support; control group receives standard screening and counseling. Measures counseling receipt and risk behaviors at 3 months. Fits: PROMs feedback (personalized feedback based on screening) vs standard screening/counseling.",
+      "predicted_reason": "RCT comparing PROMs-based feedback to adolescents (patients) vs. usual care, with patient-reported outcomes.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1078,7 +1078,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Realist synthesis reviewing how PROMs support communication and care; not an RCT.",
+      "predicted_reason": "Not an empirical RCT; it's a realist synthesis review.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1089,7 +1089,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention group patients report symptoms and preferences via tablet system, this information is processed and provided to patient and clinician; control group does not receive this. Measures congruence between reported symptoms and those addressed by clinicians. Fits: PROMs feedback (symptoms and preferences) to patients and clinicians vs no feedback.",
+      "predicted_reason": "RCT comparing PROMs feedback system (symptoms/preferences to clinicians) vs. control, with patient-reported outcomes.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1100,7 +1100,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT where intervention group has clinicians receive AEP (PROM for adverse effects of AEDs); control group usual care without AEP. Measures AEP scores, QOLIE-89 scores, AED modifications. Fits: PROMs feedback to healthcare professionals vs no feedback.",
+      "predicted_reason": "RCT comparing PROMs feedback to clinicians vs. usual care, with patient-reported outcomes (AEP, QOLIE).",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1110,10 +1110,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 100,
@@ -1121,10 +1121,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 101,
@@ -1133,7 +1133,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
+      "predicted_reason": "Questionnaire development/validation study without feedback intervention.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1143,10 +1143,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 103,
@@ -1154,10 +1154,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 104,
@@ -1165,10 +1165,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 105,
@@ -1176,10 +1176,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "No clear evidence of randomised design in title/abstract. Lacks clear PROMs feedback component to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 106,
@@ -1187,10 +1187,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "No clear evidence of randomised design in title/abstract. Lacks clear PROMs feedback component to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 107,
@@ -1198,10 +1198,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "No clear evidence of randomised design in title/abstract. Lacks clear PROMs feedback component to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 108,
@@ -1209,10 +1209,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 109,
@@ -1220,10 +1220,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 110,
@@ -1231,10 +1231,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 111,
@@ -1242,10 +1242,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 112,
@@ -1253,10 +1253,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 113,
@@ -1264,10 +1264,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 114,
@@ -1275,10 +1275,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 115,
@@ -1286,10 +1286,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Control group does not appear to be no feedback.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 116,
@@ -1297,10 +1297,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 117,
@@ -1308,10 +1308,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 118,
@@ -1319,10 +1319,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 119,
@@ -1330,10 +1330,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 120,
@@ -1341,10 +1341,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 121,
@@ -1352,10 +1352,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 122,
@@ -1363,10 +1363,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Control group does not appear to be no feedback.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 123,
@@ -1374,10 +1374,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 124,
@@ -1385,10 +1385,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 125,
@@ -1396,10 +1396,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 126,
@@ -1407,10 +1407,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "No clear evidence of randomised design in title/abstract. Lacks clear PROMs feedback component to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 127,
@@ -1419,7 +1419,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
+      "predicted_reason": "Questionnaire development/validation study without feedback intervention.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1429,10 +1429,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Does not appear to involve PROMs feedback to healthcare professionals, patients, or both.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. Study includes a control group not receiving PROMs feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 129,
@@ -1440,10 +1440,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "No clear evidence of randomised design in title/abstract. Study involves feedback of patient-reported outcome measures to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 130,
@@ -1451,10 +1451,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Study is a randomised trial. Lacks clear PROMs feedback component to healthcare providers and/or patients. No clear control group without PROMs feedback described.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 131,
@@ -1463,7 +1463,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial with PROMs feedback to healthcare professionals and/or patients, compared to no feedback/usual care.",
+      "predicted_reason": "Randomized controlled trial comparing physician-targeted feedback (patient-specific treatment recommendations based on patient-reported depression symptoms) to usual care. This involves PROMs feedback to healthcare professionals.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1473,10 +1473,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial where intervention group received feedback of patient-reported symptoms (via ITPA tool) to healthcare professionals, while control group did not receive such feedback. Directly compares PROMs feedback to professionals vs no feedback.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 133,
@@ -1485,7 +1485,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial with PROMs feedback to healthcare professionals and/or patients, compared to no feedback/usual care.",
+      "predicted_reason": "Randomized controlled trial comparing ESM self-monitoring with feedback sessions (to patients) vs without feedback and vs control. The feedback component is patient-reported outcome monitoring feedback to patients. Though the arms differ, the comparison between feedback and no feedback groups (within ESM) addresses the effect of adding feedback to PROMs monitoring.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1495,10 +1495,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial; some evidence of PROMs feedback and/or comparison, but unclear if all criteria fully met.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomized controlled trial comparing Nintendo Wii rehabilitation to conventional physical therapy. No PROMs feedback to healthcare professionals or patients; the feedback is part of the therapeutic intervention, not feedback of patient-reported outcomes to inform care.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 135,
@@ -1506,10 +1506,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial comparing feedback of treatment progress and alliance information (patient-reported outcomes) to both clients and therapists versus treatment as usual (no such feedback). This is PROMs feedback to both patients and healthcare professionals.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 136,
@@ -1518,7 +1518,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
+      "predicted_reason": "Validation study of the COOP Charts for functional status measurement. Not a randomized trial comparing PROMs feedback to no feedback; it assesses reliability and validity of a measurement tool.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1528,10 +1528,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial where intervention group received feedback regarding coping strategies and illness behavior (using PROMIS Pain Interference CAT, a patient-reported outcome measure) to patients, while control group received no feedback. This is PROMs feedback to patients.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 138,
@@ -1540,7 +1540,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
+      "predicted_reason": "Abstract does not clearly describe a randomized trial comparing PROMs feedback to no feedback. It examines feedback regarding client progress and use of clinical support tools, but lacks clear randomization and control group description. Insufficient evidence to meet criteria.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -1550,10 +1550,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial, but insufficient information to confirm PROMs feedback and comparison.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Systematic review of literature, not a randomized trial. Does not compare PROMs feedback to no feedback in a primary study.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 140,
@@ -1562,7 +1562,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial with PROMs feedback to healthcare professionals and/or patients, compared to no feedback/usual care.",
+      "predicted_reason": "Randomised controlled trial where intervention practices received feedback of patients' asthma information (patient-reported morbidity, etc.) to healthcare professionals, while control practices received no feedback. This is PROMs feedback to healthcare professionals.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1573,7 +1573,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
+      "predicted_reason": "Article discussing the use of Patient Reported Outcomes for NHS performance measurement. Not a randomized trial comparing PROMs feedback to no feedback.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1584,7 +1584,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial, but insufficient information to confirm PROMs feedback and comparison.",
+      "predicted_reason": "Randomized controlled trial where report group received PRIME-MD psychiatric diagnosis results (based on patient-reported questionnaire) given to physicians, while no-report group did not receive this feedback. This is PROMs feedback to healthcare professionals.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1595,7 +1595,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
+      "predicted_reason": "Study assessing the utility of the Sickness Impact Profile (SIP) in older patients. Not a randomized trial comparing PROMs feedback to no feedback; it focuses on physician and patient reactions to the SIP as a measurement tool.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -1605,10 +1605,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized trial where intervention physicians used the Dartmouth COOP Charts (a patient-reported functional status measure) during clinical encounters, while control physicians used no health status measure. The use of the Charts implies that patient-reported health status information is available and likely used in the encounter, constituting feedback to healthcare professionals.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 145,
@@ -1616,10 +1616,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial; some evidence of PROMs feedback and/or comparison, but unclear if all criteria fully met.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomized comparative effectiveness trial comparing two mHealth interventions, both of which provide tailored self-management advice (feedback) to patients. The difference is additional feedback to informal caregivers. Since both groups provide feedback to patients, it does not compare PROMs feedback to no feedback.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 146,
@@ -1627,10 +1627,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial; some evidence of PROMs feedback and/or comparison, but unclear if all criteria fully met.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomized controlled trial investigating stellate ganglion block for PTSD. No PROMs feedback component; the intervention is a medical procedure.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 147,
@@ -1639,7 +1639,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial; some evidence of PROMs feedback and/or comparison, but unclear if all criteria fully met.",
+      "predicted_reason": "Feasibility randomised trial where intervention group received PROMs (PHQ-9, Distress Thermometer, PSYCHLOPS) with feedback of scores to patients determined by practitioners, while control group received usual care. This is PROMs feedback to patients.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1650,7 +1650,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial with PROMs feedback to healthcare professionals and/or patients, compared to no feedback/usual care.",
+      "predicted_reason": "Randomized trial where feedback group clinicians received clinical feedback reports (based on patient-reported SCL-90 mental health assessment) at intake and 6 weeks, while control group clinicians received no report. This is PROMs feedback to healthcare professionals.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1661,7 +1661,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial, but insufficient information to confirm PROMs feedback and comparison.",
+      "predicted_reason": "Cluster randomised controlled trial where DIALOG intervention involved immediate feedback of patient-reported quality of life and needs for care to clinicians and patients (discussed in screen displays), while control group received treatment as usual. This is PROMs feedback to both professionals and patients.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1672,7 +1672,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
+      "predicted_reason": "Study examining health-related quality of life in overweight youth; not a randomized trial comparing PROMs feedback to no feedback.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1683,7 +1683,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial, but insufficient information to confirm PROMs feedback and comparison.",
+      "predicted_reason": "Randomized clinical trial where intervention group received feedback of the General Health Questionnaire (a patient-reported outcome measure) results to increase clinician awareness, while control group did not receive such feedback. This is PROMs feedback to healthcare professionals.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1693,10 +1693,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized trial where experimental condition included patient/therapist feedback (treatment progress information) and clinical decision-support tools, compared to treatment-as-usual control. This is PROMs feedback to both patients and therapists.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 153,
@@ -1704,10 +1704,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial where intervention group used a depression self-rating scale (PROM) and GPs used it as basis for discussion, while control group received treatment as usual. This is PROMs feedback to healthcare professionals (via GP use of the scale in discussion).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 154,
@@ -1716,7 +1716,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
+      "predicted_reason": "Systematic review of the impact of feedback on perceived health status to healthcare professionals. Not a randomized trial comparing PROMs feedback to no feedback.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1727,7 +1727,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial with PROMs feedback to healthcare professionals and/or patients, compared to no feedback/usual care.",
+      "predicted_reason": "Randomized controlled trial where intervention group received assessments of physical function with feedback to participant and family physician, while control group received functional assessments alone. The feedback includes patient-reported outcomes (SF-36, preclinical disability) and performance measures, constituting PROMs feedback to patients and professionals.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1738,7 +1738,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
+      "predicted_reason": "Review article discussing options and considerations for implementing PRO assessment in clinical practice. Not a randomized trial comparing PROMs feedback to no feedback.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1749,7 +1749,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
+      "predicted_reason": "Qualitative study investigating GP views on using mental health questionnaires. Not a randomized trial comparing PROMs feedback to no feedback.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1759,10 +1759,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial; some evidence of PROMs feedback and/or comparison, but unclear if all criteria fully met.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study protocol for a randomized controlled trial, not a completed trial with results. Protocols are not eligible for inclusion in a review of study results.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 159,
@@ -1771,7 +1771,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
+      "predicted_reason": "Bibliographic study on the growth and availability of quality of life measures. Not a randomized trial comparing PROMs feedback to no feedback.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1782,7 +1782,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial, but insufficient information to confirm PROMs feedback and comparison.",
+      "predicted_reason": "Randomized controlled trial where intervention group used the eSAID (electronic Survey of Anxiety and Information for Dentists) which produces a report for children to hand to their dentist (feedback of patient-reported anxiety and coping preferences to dental professionals), while control group used a minimal version. This is PROMs feedback to healthcare professionals.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1793,7 +1793,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial, but insufficient information to confirm PROMs feedback and comparison.",
+      "predicted_reason": "Randomized controlled trial where monitoring group received assessment and discussion of psychological well-being (a patient-reported outcome) with a diabetes nurse specialist, in addition to standard care, while control group received standard care only. This is PROMs feedback to patients.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1804,7 +1804,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized trial, or does not involve PROMs feedback, or lacks comparison to no feedback.",
+      "predicted_reason": "Article discussing moving PROs from clinical trials into clinical practice, covering barriers and facilitators. Not a randomized trial comparing PROMs feedback to no feedback.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1815,7 +1815,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "The study is a randomized trial comparing different components of tailored feedback messages (expectancy priming, autonomy support, exemplification) but does not include a control condition that receives no PROMs feedback. The selection criteria require a comparison between PROMs feedback and no such information.",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -1826,7 +1826,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "The study is a qualitative study (interviews and thematic analysis) and not a randomised trial. The selection criteria require randomised trials.",
+      "predicted_reason": "Not a randomised trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1836,10 +1836,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "The study is a randomised trial that compares the provision of PHQ-9 feedback to healthcare providers (intervention) vs. not providing such information (control) on patient-reported outcomes (PHQ-9 scores) and processes of care (active management of depression).",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 166,
@@ -1848,7 +1848,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "The study validates a self-assessment hearing loss screening tool (HSAQ) against audiometric evaluation. It does not involve a randomised trial comparing PROMs feedback to healthcare providers and/or patients vs. no such information.",
+      "predicted_reason": "Not a randomised trial.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -1859,7 +1859,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "The study examines the effect of physiology feedback (heart rate feedback) on self-reported stress and the correspondence between heart rate and self-reported stress. The feedback is not based on a patient-reported outcome measure (PROM) but on a physiological measure. Therefore, it does not meet the criterion of being PROMs feedback.",
+      "predicted_reason": "Not a randomised trial.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -1870,7 +1870,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "The study is a randomised trial that assesses the effect of a discharge readiness assessment (which includes a PROM: the Readiness for Hospital Discharge Scale) feedback to healthcare professionals (nurses) and/or patients (via self-assessment) on 30-day return to hospital. While the outcome (return to hospital) may be considered a process of care (healthcare utilization), the study does not measure any patient-reported health outcomes. The selection criteria require the study to measure patient-reported health outcomes and/or processes of care. Given the absence of patient-reported health outcomes and the uncertainty about whether return to hospital qualifies as a process of care in this context, we exclude. However, note we were initially unsure and considered including with low confidence, but upon reevaluation, we exclude.",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -1880,10 +1880,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "The study is a randomised trial that compares an intervention (including self-tracking of symptoms and quality of life, with feedback to patients and clinicians) vs. control (usual education) on patient-reported health outcomes (depression and psychosocial functioning).",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 170,
@@ -1892,7 +1892,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "The study does not appear to be a randomised trial. It describes the use of a self-administered depression questionnaire to alert residents and then examines the impact on recognition of depression. There is no mention of randomisation or a control group.",
+      "predicted_reason": "Not a randomised trial.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -1902,10 +1902,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "The study is a randomised trial that compares the provision of feedback from the Outcome Questionnaire (OQ-45) and a clinical support tool (ASC) to therapists (intervention) vs. treatment-as-usual (control) on patient-reported outcomes (OQ-45 scores) and patient improvement/deterioration.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 172,
@@ -1914,7 +1914,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "The study is a literature review and not a randomised trial. The selection criteria require randomised trials.",
+      "predicted_reason": "Not a randomised trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1925,7 +1925,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "The study evaluates a mobile phone app-based participatory syndromic surveillance system. It does not involve a randomised trial comparing PROMs feedback vs. no feedback.",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -1935,10 +1935,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "The study is a randomised trial that compares the provision of health-related quality of life (HRQL) feedback to clinicians (intervention) vs. no such feedback (control) on processes of care (number of issues discussed per encounter, management composite score) and patient-reported health outcomes (EQ-5D index).",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 175,
@@ -1946,10 +1946,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "The study is a randomised trial that compares a web-based asthma self-management system (MAP) that includes self-monitoring and feedback from a nurse case manager (thus providing PROMs feedback to patients and healthcare professionals) vs. usual care on asthma-related quality of life (a patient-reported health outcome) and asthma control (a health outcome or process of care).",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 176,
@@ -1957,10 +1957,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "The study is a randomised trial that compares three conditions: minimal screening (distress thermometer only, which provides a PROM measurement but no personalized feedback report), full screening (distress thermometer, problem checklist, and Psychological Screen for Cancer part C, plus a personalized report summarizing concerns and a report on the medical file), and triage (full screening plus optional personalized phone triage). The full screening and triage conditions provide PROMs feedback (personalized report and medical file report) to patients and healthcare professionals, while the minimal screening condition does not. The outcome is distress (a patient-reported health outcome) measured at 3-month follow-up.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomised trial.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 177,
@@ -1969,7 +1969,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "The study is a debate article discussing the challenges of systematically reviewing complex interventions. It is not a randomised trial and does not evaluate PROMs feedback.",
+      "predicted_reason": "Not a randomised trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1980,7 +1980,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "The study is a randomised trial evaluating a communication skills training program for oncologists. It does not involve PROMs feedback to healthcare professionals and/or patients or a comparison with no such information.",
+      "predicted_reason": "Not a randomised trial.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -1990,10 +1990,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 180,
@@ -2001,10 +2001,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomised trial.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 181,
@@ -2012,10 +2012,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 182,
@@ -2023,10 +2023,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomised trial.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 183,
@@ -2034,10 +2034,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 184,
@@ -2045,10 +2045,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 185,
@@ -2056,10 +2056,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 186,
@@ -2067,10 +2067,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 187,
@@ -2078,10 +2078,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomised trial.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 188,
@@ -2089,10 +2089,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomised trial.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 189,
@@ -2100,10 +2100,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 190,
@@ -2111,10 +2111,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 191,
@@ -2122,10 +2122,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomised trial.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 192,
@@ -2133,10 +2133,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomised trial.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 193,
@@ -2144,10 +2144,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Does not involve feedback of patient-reported outcome measures (PROMs).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 194,
@@ -2155,10 +2155,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not a randomised trial.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     }
   ]
 }

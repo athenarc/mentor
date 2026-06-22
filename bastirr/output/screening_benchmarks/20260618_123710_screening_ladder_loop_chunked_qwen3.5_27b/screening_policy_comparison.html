@@ -655,38 +655,38 @@
         "orchestrator_backend": "openai",
         "orchestrator_api_base": "https://openrouter.ai/api/v1",
         "n_runs": 5,
-        "n_scored_runs": 4,
-        "n_completed_runs": 4,
-        "n_incomplete_runs": 1,
+        "n_scored_runs": 5,
+        "n_completed_runs": 5,
+        "n_incomplete_runs": 0,
         "n_error_runs": 0,
         "n_unique_reviews": 5,
-        "parse_success_rate": 0.8,
-        "mean_decision_coverage": 0.95,
-        "mean_accuracy": 0.72,
-        "mean_precision": 0.984375,
-        "mean_recall": 0.5828753399169887,
-        "mean_specificity": 0.96875,
-        "mean_f1": 0.6708125314447153,
-        "mean_duration_seconds": 1488.9092420999993,
-        "mean_duration_per_study_seconds": 16.964481702752032,
-        "mean_total_input_tokens": 705548.8,
-        "mean_total_output_tokens": 91634.2,
-        "mean_total_tokens": 797183.0,
-        "mean_total_steps": 37.0,
-        "mean_orchestrator_steps": 18.0,
-        "mean_gatekeeper_steps": 19.0,
-        "mean_error_steps": 4.6,
-        "mean_retry_count": 0.4,
-        "mean_resume_count": 0.4,
+        "parse_success_rate": 1.0,
+        "mean_decision_coverage": 1.0,
+        "mean_accuracy": 0.742,
+        "mean_precision": 0.9875,
+        "mean_recall": 0.5954669386002577,
+        "mean_specificity": 0.975,
+        "mean_f1": 0.693612050472228,
+        "mean_duration_seconds": 0.0,
+        "mean_duration_per_study_seconds": null,
+        "mean_total_input_tokens": null,
+        "mean_total_output_tokens": null,
+        "mean_total_tokens": null,
+        "mean_total_steps": null,
+        "mean_orchestrator_steps": null,
+        "mean_gatekeeper_steps": null,
+        "mean_error_steps": null,
+        "mean_retry_count": null,
+        "mean_resume_count": null,
         "mean_empty_rationale_count": 0.0,
         "mean_duplicate_rationale_count": 2.2,
-        "mean_rationale_reuse_rate": 0.012666666666666668
+        "mean_rationale_reuse_rate": 0.012
       },
       "micro": {
-        "tp": 70,
+        "tp": 101,
         "fp": 1,
-        "tn": 94,
-        "fn": 120
+        "tn": 146,
+        "fn": 137
       },
       "reviews": [
         {
@@ -720,8 +720,8 @@
           "key": "pelvic_floor_training_100",
           "label": "pelvic floor training 100",
           "studies": 100,
-          "f1": 0.0,
-          "recall": 0.0,
+          "f1": 0.7848101265822784,
+          "recall": 0.6458333333333334,
           "review_title": "Pelvic floor muscle training versus no treatment, or inactive control treatments, for urinary incontinence in women",
           "gold_pass_count": 48
         },
@@ -738,12 +738,12 @@
       "errorBreakdown": [
         {
           "label": "0.5 → excluded after full text",
-          "errors": 119,
+          "errors": 135,
           "color": "var(--include)"
         },
         {
           "label": "1.0 → included in review",
-          "errors": 1,
+          "errors": 2,
           "color": "#223a5e"
         },
         {
@@ -771,38 +771,38 @@
         "orchestrator_backend": "openai",
         "orchestrator_api_base": "https://openrouter.ai/api/v1",
         "n_runs": 5,
-        "n_scored_runs": 4,
-        "n_completed_runs": 4,
-        "n_incomplete_runs": 1,
+        "n_scored_runs": 5,
+        "n_completed_runs": 5,
+        "n_incomplete_runs": 0,
         "n_error_runs": 0,
         "n_unique_reviews": 5,
-        "parse_success_rate": 0.8,
-        "mean_decision_coverage": 0.95,
-        "mean_accuracy": 0.9137500000000001,
-        "mean_precision": 0.7096428571428571,
-        "mean_recall": 0.9807692307692308,
-        "mean_specificity": 0.8690476190476191,
-        "mean_f1": 0.766602809706258,
-        "mean_duration_seconds": 1488.9092420999993,
-        "mean_duration_per_study_seconds": 16.964481702752032,
-        "mean_total_input_tokens": 705548.8,
-        "mean_total_output_tokens": 91634.2,
-        "mean_total_tokens": 797183.0,
-        "mean_total_steps": 37.0,
-        "mean_orchestrator_steps": 18.0,
-        "mean_gatekeeper_steps": 19.0,
-        "mean_error_steps": 4.6,
-        "mean_retry_count": 0.4,
-        "mean_resume_count": 0.4,
+        "parse_success_rate": 1.0,
+        "mean_decision_coverage": 1.0,
+        "mean_accuracy": 0.917,
+        "mean_precision": 0.7290046082949309,
+        "mean_recall": 0.976923076923077,
+        "mean_specificity": 0.8790218790218791,
+        "mean_f1": 0.7887208442562345,
+        "mean_duration_seconds": 0.0,
+        "mean_duration_per_study_seconds": null,
+        "mean_total_input_tokens": null,
+        "mean_total_output_tokens": null,
+        "mean_total_tokens": null,
+        "mean_total_steps": null,
+        "mean_orchestrator_steps": null,
+        "mean_gatekeeper_steps": null,
+        "mean_error_steps": null,
+        "mean_retry_count": null,
+        "mean_resume_count": null,
         "mean_empty_rationale_count": 0.0,
         "mean_duplicate_rationale_count": 2.2,
-        "mean_rationale_reuse_rate": 0.012666666666666668
+        "mean_rationale_reuse_rate": 0.012
       },
       "micro": {
-        "tp": 44,
-        "fp": 27,
-        "tn": 213,
-        "fn": 1
+        "tp": 69,
+        "fp": 33,
+        "tn": 281,
+        "fn": 2
       },
       "reviews": [
         {
@@ -836,8 +836,8 @@
           "key": "pelvic_floor_training_100",
           "label": "pelvic floor training 100",
           "studies": 100,
-          "f1": 0.0,
-          "recall": 0.0,
+          "f1": 0.8771929824561403,
+          "recall": 0.9615384615384616,
           "review_title": "Pelvic floor muscle training versus no treatment, or inactive control treatments, for urinary incontinence in women",
           "gold_pass_count": 26
         },
@@ -854,12 +854,12 @@
       "errorBreakdown": [
         {
           "label": "0.5 → excluded after full text",
-          "errors": 26,
+          "errors": 32,
           "color": "var(--exclude)"
         },
         {
           "label": "1.0 → included in review",
-          "errors": 1,
+          "errors": 2,
           "color": "#223a5e"
         },
         {
@@ -880,45 +880,45 @@
       "metrics": [
         [
           "Macro F1",
-          0.6708125314447153
+          0.693612050472228
         ],
         [
           "Macro recall",
-          0.5828753399169887
+          0.5954669386002577
         ],
         [
           "Macro precision",
-          0.984375
+          0.9875
         ],
         [
           "Macro accuracy",
-          0.72
+          0.742
         ]
       ],
       "micro_cells": [
         {
           "label": "True positive",
-          "value": 70,
-          "note": 0.24561403508771928,
+          "value": 101,
+          "note": 0.2623376623376623,
           "bg": "var(--include)"
         },
         {
           "label": "False negative",
-          "value": 120,
-          "note": 0.42105263157894735,
+          "value": 137,
+          "note": 0.35584415584415585,
           "bg": "var(--rose)"
         },
         {
           "label": "False positive",
           "value": 1,
-          "note": 0.0035087719298245615,
+          "note": 0.0025974025974025974,
           "bg": "var(--gold)",
           "light": true
         },
         {
           "label": "True negative",
-          "value": 94,
-          "note": 0.3298245614035088,
+          "value": 146,
+          "note": 0.37922077922077924,
           "bg": "var(--navy)"
         }
       ]
@@ -932,45 +932,45 @@
       "metrics": [
         [
           "Macro F1",
-          0.766602809706258
+          0.7887208442562345
         ],
         [
           "Macro recall",
-          0.9807692307692308
+          0.976923076923077
         ],
         [
           "Macro precision",
-          0.7096428571428571
+          0.7290046082949309
         ],
         [
           "Macro accuracy",
-          0.9137500000000001
+          0.917
         ]
       ],
       "micro_cells": [
         {
           "label": "True positive",
-          "value": 44,
-          "note": 0.1543859649122807,
+          "value": 69,
+          "note": 0.17922077922077922,
           "bg": "var(--navy)"
         },
         {
           "label": "False negative",
-          "value": 1,
-          "note": 0.0035087719298245615,
+          "value": 2,
+          "note": 0.005194805194805195,
           "bg": "var(--rose)"
         },
         {
           "label": "False positive",
-          "value": 27,
-          "note": 0.09473684210526316,
+          "value": 33,
+          "note": 0.08571428571428572,
           "bg": "var(--gold)",
           "light": true
         },
         {
           "label": "True negative",
-          "value": 213,
-          "note": 0.7473684210526316,
+          "value": 281,
+          "note": 0.7298701298701299,
           "bg": "var(--include)"
         }
       ]
@@ -1008,10 +1008,10 @@
       "key": "pelvic_floor_training_100",
       "label": "pelvic floor training 100",
       "studies": 100,
-      "include_f1": 0.0,
-      "include_recall": 0.0,
-      "exclude_f1": 0.0,
-      "exclude_recall": 0.0
+      "include_f1": 0.7848101265822784,
+      "include_recall": 0.6458333333333334,
+      "exclude_f1": 0.8771929824561403,
+      "exclude_recall": 0.9615384615384616
     },
     {
       "key": "heart_failure_mhealth_200",
@@ -1026,7 +1026,7 @@
   "heroStats": [
     {
       "label": "Macro recall swing",
-      "value": "40 pts",
+      "value": "38 pts",
       "note": "Change in macro recall when label 0.5 is scored as EXCLUDE instead of INCLUDE."
     },
     {

@@ -13,15 +13,15 @@
     "n_studies": 100,
     "gold_pass_count": 72,
     "gold_exclude_count": 28,
-    "predicted_pass_count": 18,
-    "predicted_exclude_count": 82,
-    "tp": 15,
-    "fp": 3,
-    "tn": 25,
-    "fn": 57,
-    "match_count": 27,
-    "mismatch_count": 23,
-    "missing_decision_count": 50,
+    "predicted_pass_count": 63,
+    "predicted_exclude_count": 37,
+    "tp": 53,
+    "fp": 10,
+    "tn": 18,
+    "fn": 19,
+    "match_count": 71,
+    "mismatch_count": 29,
+    "missing_decision_count": 0,
     "duplicate_decision_count": 0,
     "invalid_decision_count": 0
   },
@@ -32,10 +32,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized, double-blind trial comparing DDAVP to placebo in aortic surgery (perioperative setting). No inherited bleeding disorders mentioned.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 2,
@@ -43,10 +43,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized, double-blind, prospective study comparing DDAVP to placebo in hip arthroplasty (surgery).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 3,
@@ -54,10 +54,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Meta-analysis of randomized controlled trials (eligible for inclusion as per Cochrane Handbook guidance on including meta-analyses of RCTs).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 4,
@@ -65,10 +65,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized study comparing DDAVP to active comparator (aprotinin) and placebo in cardiac surgery (perioperative).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 5,
@@ -76,10 +76,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Prospective, randomized, double-blinded, placebo-controlled trial in CABG patients (surgery).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 6,
@@ -87,10 +87,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial comparing DDAVP to no treatment in orthognathic surgery (perioperative).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 7,
@@ -98,10 +98,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Prospective, double-blind, placebo-controlled trial in cardiac surgery patients.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 8,
@@ -109,10 +109,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study focuses on pharmacodynamic effects (von Willebrand factor) not perioperative blood loss or transfusion outcomes. Not a clinical outcome study.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 9,
@@ -120,10 +120,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Guideline summary, not a randomized controlled trial.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 10,
@@ -131,10 +131,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Although titled as a study, the abstract indicates it is a laboratory study measuring biomarker changes (vWF, FVIII) not clinical blood loss/transfusion outcomes.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 11,
@@ -142,10 +142,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Abstract mentions participants had 'overt bleeding and a prolonged bleeding time' suggesting possible inherited bleeding disorder or acquired coagulopathy not typical surgical population.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 12,
@@ -153,10 +153,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study focuses on platelet aggregation (laboratory outcome) not clinical blood loss/transfusion as primary outcome.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 13,
@@ -164,10 +164,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial comparing DDAVP to blood transfusion (active comparator) in dental extraction (surgery).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 14,
@@ -175,10 +175,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Double-blind randomized trial comparing DDAVP to placebo in total joint arthroplasty (surgery).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 15,
@@ -186,10 +186,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Open-label study (not randomized) with small sample size (12 patients).",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 16,
@@ -197,10 +197,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized, clinical trial comparing DDAVP to saline in endoscopic sinus surgery (perioperative).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 17,
@@ -208,10 +208,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Abstract mentions 'normal hemostatic function' but study includes patients with spinal deformity; however, no clear exclusion criteria. Upon re-review, it appears to be an RCT in surgical population. But note: the abstract does not mention comparison to placebo or active comparator? It says 'Seventeen patients were designated to receive 10 micrograms/m2 of desmopressin, and 18, to receive a placebo.' So it is placebo-controlled. Wait, I misread. Actually it is RCT with placebo. However, the population is patients with normal hemostatic function undergoing spinal fusion. This should be INCLUDE. Let me correct: This is an RCT, DDAVP vs placebo, in spinal fusion surgery. No inherited bleeding disorders. So INCLUDE.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 18,
@@ -219,10 +219,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Study population is cardiac surgical patients pretreated with aspirin (antiplatelet therapy) which may alter coagulation; however, not explicitly an inherited bleeding disorder. But the study compares DDAVP to saline placebo and measures blood requirements. This appears to be an RCT. Wait, the abstract says 'In a double-blind, randomized trial'... So it is an RCT. Why did I exclude? Because I thought it mentioned inherited bleeding disorders? It does not. It says 'patients preoperatively treated with platelet-inhibiting drugs' (aspirin). This is not an inherited bleeding disorder. So this should be INCLUDE. Let me re-evaluate: The study is an RCT, DDAVP vs placebo, in cardiac surgery (perioperative), measuring blood requirements. No inherited bleeding disorders. So INCLUDE.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 19,
@@ -230,10 +230,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Double-blind, randomized trial comparing DDAVP to active comparator (aprotinin) and placebo in cardiopulmonary bypass surgery.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 20,
@@ -241,10 +241,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized double-blind trial comparing DDAVP to placebo after CABG (perioperative).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 21,
@@ -252,10 +252,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Double-blind, randomized, prospective trial comparing DDAVP to placebo in CABG patients.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 22,
@@ -263,10 +263,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Double-blind study comparing DDAVP to placebo in spinal fusion surgery (neuromuscular scoliosis).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 23,
@@ -274,10 +274,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized, double-blind trial comparing DDAVP to placebo in routine CABG surgery.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 24,
@@ -285,10 +285,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Systematic review and meta-analysis of transfusion strategies, not a study evaluating DDAVP.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 25,
@@ -296,10 +296,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Methodological study on meta-analysis techniques, not a clinical trial of DDAVP.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 26,
@@ -307,10 +307,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP to placebo in cardiac surgery (CABG) in adults.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 27,
@@ -318,10 +318,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP to placebo in cardiac surgery (CABG) in adults.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 28,
@@ -329,10 +329,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP to placebo in cardiac surgery in adults.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 29,
@@ -340,10 +340,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Not an RCT; letter/comment about lumbar puncture in children, no comparison of DDAVP to placebo.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 30,
@@ -351,10 +351,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP to placebo in cardiac surgery in young children.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 31,
@@ -362,10 +362,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP to placebo in cardiac surgery with extracorporeal circulation in adults.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 32,
@@ -373,10 +373,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Retrospective cohort study, not an RCT; evaluates transfusion refusal, not DDAVP.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 33,
@@ -384,10 +384,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP to control for thrombosis prevention after invasive catheterization procedure.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 34,
@@ -395,10 +395,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP to placebo for bleeding prevention in percutaneous kidney biopsy (invasive procedure).",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 35,
@@ -406,10 +406,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Guideline document, not an RCT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 36,
@@ -417,10 +417,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP to placebo in scoliosis surgery in adults/children.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 37,
@@ -428,10 +428,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP (two doses) to placebo in hip arthroplasty in adults with rheumatoid arthritis.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 38,
@@ -439,10 +439,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Insufficient information to confirm RCT design; abstract truncated, lacks details on randomization and control.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 39,
@@ -450,10 +450,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Review article, not an RCT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 40,
@@ -461,10 +461,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Insufficient information to confirm RCT design; no explicit mention of randomization or control.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 41,
@@ -472,10 +472,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Review article on transfusion reactions, not an RCT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 42,
@@ -483,10 +483,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP to placebo in burn débridement and grafting surgery.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 43,
@@ -494,10 +494,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP to placebo in uncomplicated cardiac surgery in adults.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 44,
@@ -505,10 +505,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Survey of blood utilization, not an RCT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 45,
@@ -516,10 +516,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Observational cohort study, not an RCT; evaluates reoperation for bleeding, not DDAVP.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 46,
@@ -527,10 +527,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Guideline document, not an RCT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 47,
@@ -538,10 +538,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP to placebo in patients with bleeding after cardiac surgery despite tranexamic acid pretreatment.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 48,
@@ -549,10 +549,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Methodological study on bias in meta-analysis, not an RCT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 49,
@@ -560,10 +560,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Review article on cellular mechanisms of DDAVP, not an RCT.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 50,
@@ -571,10 +571,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "RCT comparing DDAVP to placebo in flap reconstruction surgery in spinal cord injury patients.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 51,
@@ -583,7 +583,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled trial comparing DDAVP to placebo in adults undergoing cardiac surgery (CABG).",
+      "predicted_reason": "Randomized controlled trial comparing DDAVP to placebo in adults undergoing CABG, with outcome of blood products transfused, meeting criteria of RCT comparing DDAVP to placebo before/during/after surgery.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -594,7 +594,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial; single patient ex vivo study.",
+      "predicted_reason": "Study focuses on hereditary bleeding disorder (Bernard-Soulier syndrome) and ex vivo perfusion system, not an RCT of DDAVP in surgical or invasive procedure setting for perioperative blood transfusion.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -605,7 +605,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Guideline, not a randomized controlled trial.",
+      "predicted_reason": "Guideline document, not an RCT; does not compare DDAVP to placebo or active comparator in surgical setting.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -616,7 +616,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not a randomized controlled trial; desmopressin assignment based on bleeding tendency.",
+      "predicted_reason": "Observational cohort study (no randomization reported) assessing platelet reactivity; not an RCT comparing DDAVP to placebo or active comparator with perioperative blood transfusion outcome.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -627,7 +627,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Guideline update, not a randomized controlled trial.",
+      "predicted_reason": "Guideline update, not an RCT; no comparison of DDAVP to placebo or active comparator.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -638,7 +638,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Meta-analysis, not a randomized controlled trial.",
+      "predicted_reason": "Meta-analysis of RCTs, not a primary RCT; does not provide primary data for DDAVP comparison in surgery.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -649,7 +649,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Meta-analysis, not a randomized controlled trial.",
+      "predicted_reason": "Meta-analysis, not a primary RCT; does not meet RCT inclusion criterion.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -660,7 +660,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Review article, not a randomized controlled trial.",
+      "predicted_reason": "Review article discussing alternatives to platelet transfusion, not an RCT of DDAVP.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -671,7 +671,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Prospective single-blind study comparing desmopressin to tranexamic acid (active comparator) in patients undergoing total knee replacement; likely randomized.",
+      "predicted_reason": "Prospective single-blind study comparing desmopressin to tranexamic acid (active comparator) in total knee replacement surgery, with outcomes of blood loss and transfusion. Although randomization not explicitly stated, conservative approach (when in doubt, INCLUDE) applied given potential RCT design.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -682,7 +682,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Single-arm study without control group; not a randomized controlled trial comparing DDAVP to placebo or active comparator.",
+      "predicted_reason": "Single-group pre-post study (no comparator) of desmopressin in invasive procedures; not an RCT comparing DDAVP to placebo or active comparator.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -693,7 +693,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Randomized controlled trial but not clearly related to surgery or invasive procedure; outcome is platelet function, not blood loss/transfusion.",
+      "predicted_reason": "Randomized controlled trial in uremic patients not undergoing surgery or invasive procedures; outcome is platelet function, not perioperative blood transfusion.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -704,7 +704,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study of a screening tool leading to desmopressin use; not a randomized controlled trial comparing DDAVP to placebo or active comparator.",
+      "predicted_reason": "Observational study evaluating PFA-100 screening tool and its association with desmopressin use; not an RCT of DDAVP vs placebo/active comparator.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -715,7 +715,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Prospective randomized double-blind trial comparing DDAVP to placebo in children undergoing cardiac surgery.",
+      "predicted_reason": "Randomized, double-blind trial comparing DDAVP to placebo in children undergoing cardiac surgery, with outcome of postoperative blood loss, meeting criteria.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -726,7 +726,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized placebo-controlled study comparing desmopressin to placebo (saline) in adults undergoing total knee replacement.",
+      "predicted_reason": "Randomized, placebo-controlled study with three arms (tranexamic acid, desmopressin, saline) comparing DDAVP to placebo and active comparator (tranexamic acid) in total knee replacement, with transfusion outcomes.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -737,7 +737,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Double-blinded placebo-controlled study comparing DDAVP to placebo in adults undergoing cardiac surgery.",
+      "predicted_reason": "Double-blinded, placebo-controlled RCT comparing DDAVP to placebo in adults undergoing elective cardiac surgery, with blood loss and transfusion outcomes.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -748,7 +748,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Pharmacokinetic study, not a randomized controlled trial in a surgical context.",
+      "predicted_reason": "Pharmacokinetic study, not an RCT; no surgical setting or comparison to placebo/active comparator.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -759,7 +759,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized controlled double-blind study comparing DDAVP to placebo in adults undergoing hepatectomy.",
+      "predicted_reason": "Randomized, controlled, double-blind study comparing DDAVP to normal saline in patients undergoing elective partial hepatectomy, with blood loss and transfusion outcomes.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -770,7 +770,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Similar to study 62; not a randomized controlled trial comparing DDAVP to placebo or active comparator.",
+      "predicted_reason": "Observational study (similar to 62) assessing PFA-100 screening tool and desmopressin use; not an RCT of DDAVP.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -781,7 +781,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Double-blinded randomized study allocating patients to placebo, tranexamic acid, desmopressin, or both; includes a desmopressin vs placebo comparison.",
+      "predicted_reason": "Double-blinded randomized trial allocating patients to placebo, tranexamic acid, desmopressin, or both; compares DDAVP to placebo and active comparator (tranexamic acid) in cardiac surgery with blood loss and transfusion outcomes.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -792,7 +792,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Double-blind prospective randomized trial comparing DDAVP to placebo in patients undergoing cardiac operations requiring cardiopulmonary bypass.",
+      "predicted_reason": "Double-blind, prospective, randomized trial comparing DDAVP to placebo in patients undergoing various cardiac operations requiring cardiopulmonary bypass, with blood loss and transfusion outcomes.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -803,7 +803,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized trial comparing DDAVP to placebo in adult patients after cardiopulmonary bypass.",
+      "predicted_reason": "Randomized trials of DDAVP vs placebo in adult patients after cardiopulmonary bypass, with outcomes of bleeding time, blood loss, and blood component therapy.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -814,7 +814,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Randomized double-blinded study comparing DDAVP to placebo in patients undergoing primary elective coronary artery bypass grafting.",
+      "predicted_reason": "Randomized, double-blinded study comparing DDAVP to placebo in patients undergoing primary elective CABG, assessing postoperative blood loss among other outcomes.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -824,10 +824,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Prospective randomized study comparing desmopressin alone to desmopressin plus tranexamic acid; includes a desmopressin arm and an active comparator arm (though both include desmopressin).",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomized study comparing DDAVP alone vs DDAVP+tranexamic acid; not a comparison of DDAVP to placebo or active comparator alone (active comparator given in addition to DDAVP). Does not meet criterion of DDAVP vs placebo or active comparator.",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 74,
@@ -836,7 +836,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Systematic review and meta-analysis, not a randomized controlled trial.",
+      "predicted_reason": "Systematic review and meta-analysis of tranexamic acid, not an RCT of DDAVP.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -847,7 +847,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Consensus paper based on existing literature, not a randomized controlled trial.",
+      "predicted_reason": "Consensus paper based on literature review, not an RCT; no surgical setting or DDAVP comparison.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -857,10 +857,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not an RCT.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Comparator not clearly placebo or active (e.g., tranexamic acid, aprotinin) Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 77,
@@ -868,10 +868,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not an RCT.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 78,
@@ -879,10 +879,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not an RCT.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Comparator not clearly placebo or active (e.g., tranexamic acid, aprotinin) Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 79,
@@ -890,10 +890,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not an RCT.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention not clearly specified Comparator not clearly placebo or active (e.g., tranexamic acid, aprotinin) Timing not clearly surgery/invasive procedure Population not clearly adults or children",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 80,
@@ -901,10 +901,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not an RCT.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention not clearly specified Comparator not clearly placebo or active (e.g., tranexamic acid, aprotinin) Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 81,
@@ -912,10 +912,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not an RCT.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Comparator not clearly placebo or active (e.g., tranexamic acid, aprotinin) Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 82,
@@ -923,10 +923,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Focuses on inherited bleeding disorders (hemophilia, von Willebrand, etc.).",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomised controlled trial Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 83,
@@ -935,7 +935,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets criteria: RCT, appropriate comparator, appropriate population (adults/children without inherited bleeding disorders), relevant outcome.",
+      "predicted_reason": "Randomised controlled trial Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -945,10 +945,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Focuses on inherited bleeding disorders (hemophilia, von Willebrand, etc.).",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 85,
@@ -957,7 +957,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets criteria: RCT, appropriate comparator, appropriate population (adults/children without inherited bleeding disorders), relevant outcome.",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -967,10 +967,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not an RCT.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 87,
@@ -979,7 +979,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets criteria: RCT, appropriate comparator, appropriate population (adults/children without inherited bleeding disorders), relevant outcome.",
+      "predicted_reason": "Randomised controlled trial Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -989,10 +989,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not an RCT.",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention not clearly specified Comparator not clearly placebo or active (e.g., tranexamic acid, aprotinin) Timing not clearly surgery/invasive procedure Population not clearly adults or children",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 89,
@@ -1000,10 +1000,10 @@
       "gold_label": 0.0,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "No appropriate comparator (placebo, tranexamic acid, aprotinin, or active comparator).",
-      "prediction_matches_gold": true,
-      "match_status": "correct"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention not clearly specified Comparator not clearly placebo or active (e.g., tranexamic acid, aprotinin) Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": false,
+      "match_status": "incorrect"
     },
     {
       "study_index": 90,
@@ -1012,7 +1012,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets criteria: RCT, appropriate comparator, appropriate population (adults/children without inherited bleeding disorders), relevant outcome.",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1022,10 +1022,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not an RCT.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 92,
@@ -1033,10 +1033,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "No appropriate comparator (placebo, tranexamic acid, aprotinin, or active comparator).",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Comparator not clearly placebo or active (e.g., tranexamic acid, aprotinin) Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 93,
@@ -1045,7 +1045,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets criteria: RCT, appropriate comparator, appropriate population (adults/children without inherited bleeding disorders), relevant outcome.",
+      "predicted_reason": "Randomised controlled trial Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -1055,10 +1055,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Focuses on inherited bleeding disorders (hemophilia, von Willebrand, etc.).",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 95,
@@ -1067,7 +1067,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets criteria: RCT, appropriate comparator, appropriate population (adults/children without inherited bleeding disorders), relevant outcome.",
+      "predicted_reason": "Randomised controlled trial Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1077,10 +1077,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Not an RCT.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Comparator not clearly placebo or active (e.g., tranexamic acid, aprotinin) Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 97,
@@ -1088,10 +1088,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Focuses on inherited bleeding disorders (hemophilia, von Willebrand, etc.).",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomised controlled trial Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 98,
@@ -1099,10 +1099,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Focuses on inherited bleeding disorders (hemophilia, von Willebrand, etc.).",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomised controlled trial Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 99,
@@ -1110,10 +1110,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Focuses on inherited bleeding disorders (hemophilia, von Willebrand, etc.).",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomised controlled trial Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 100,
@@ -1122,7 +1122,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "Meets criteria: RCT, appropriate comparator, appropriate population (adults/children without inherited bleeding disorders), relevant outcome.",
+      "predicted_reason": "Not a randomised controlled trial (or unclear) Desmopressin intervention Placebo or active comparator Timing: surgery or invasive procedure Population: adults or children",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     }

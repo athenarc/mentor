@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-19T02:23:14.068084",
+  "generated_at": "2026-06-22T09:44:45.595700",
   "review_key": "desmopressin_transfusion_100",
   "review_title": "Desmopressin use for minimising perioperative blood transfusion",
   "n_studies": 100,
@@ -285,6 +285,41 @@
       "mean_total_tokens": null,
       "mean_total_steps": null,
       "mean_rationale_reuse_rate": null
+    },
+    {
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "gold_label_policy": "exclude_label_0_5",
+      "suite": "screening_ladder_dev_exclude_balanced",
+      "review_key": "desmopressin_transfusion_100",
+      "review_title": "Desmopressin use for minimising perioperative blood transfusion",
+      "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001884.pub3/full",
+      "split": "dev",
+      "n_studies": 100,
+      "size_band": "upper_mid_100",
+      "size_band_label": "66-100",
+      "gold_pass_count": 54,
+      "gold_exclude_count": 46,
+      "gatekeeper_preset": "nvidia_nemotron_3_super_120b_a12b",
+      "gatekeeper_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+      "orchestrator_policy": "fixed",
+      "orchestrator_preset": "nvidia_nemotron_3_super_120b_a12b",
+      "orchestrator_model_label": "nvidia-nemotron-3-super-120b-a12b [NVIDIA Nemotron 3 Super 120B A12B]",
+      "n_runs": 1,
+      "n_scored_runs": 1,
+      "n_completed_runs": 1,
+      "n_incomplete_runs": 0,
+      "n_error_runs": 0,
+      "parse_success_rate": 1.0,
+      "mean_decision_coverage": 1.0,
+      "mean_accuracy": 0.72,
+      "mean_precision": 0.825,
+      "mean_recall": 0.6111111111111112,
+      "mean_specificity": 0.8478260869565217,
+      "mean_f1": 0.7021276595744681,
+      "mean_duration_seconds": 1059.4165325000067,
+      "mean_total_tokens": 1732792.0,
+      "mean_total_steps": 30.0,
+      "mean_rationale_reuse_rate": 0.95
     }
   ]
 }

@@ -13,15 +13,15 @@
     "n_studies": 100,
     "gold_pass_count": 26,
     "gold_exclude_count": 74,
-    "predicted_pass_count": 10,
-    "predicted_exclude_count": 90,
-    "tp": 1,
-    "fp": 9,
-    "tn": 65,
-    "fn": 25,
-    "match_count": 66,
-    "mismatch_count": 9,
-    "missing_decision_count": 25,
+    "predicted_pass_count": 31,
+    "predicted_exclude_count": 69,
+    "tp": 25,
+    "fp": 6,
+    "tn": 68,
+    "fn": 1,
+    "match_count": 93,
+    "mismatch_count": 7,
+    "missing_decision_count": 0,
     "duplicate_decision_count": 0,
     "invalid_decision_count": 0
   },
@@ -32,10 +32,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in women with urinary stress incontinence. Has three arms including PFMT via digital palpation and a control group with no exercises. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 2,
@@ -43,10 +43,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in women with SUI. The mobile app treatment delivers PFMT (98.4% performed PFMT at follow-up). Control group received postponed treatment (inactive control). Meets all criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 3,
@@ -54,10 +54,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in postmenopausal women with SUI. Has PFME (PFMT) alone arm and a control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 4,
@@ -65,10 +65,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Randomized placebo-controlled trial in women with urge/mixed incontinence. However, the intervention is 'biofeedback-assisted behavioral treatment' which is not explicitly PFMT. The abstract does not clearly state that pelvic floor muscle training was the intervention component. Does not meet the PFMT criterion.",
       "prediction_matches_gold": false,
-      "match_status": "missing"
+      "match_status": "incorrect"
     },
     {
       "study_index": 5,
@@ -76,10 +76,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in women with stress incontinence. Has pelvic muscle exercise (PFMT) arm and control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 6,
@@ -87,10 +87,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in women with genuine stress incontinence. Has pelvic floor exercise (PFMT) arm and untreated control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 7,
@@ -98,10 +98,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized trial in women with SUI. Has pelvic floor exercise (perineal exercises) arm and control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 8,
@@ -109,10 +109,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in women with urodynamic stress urinary incontinence. Has pelvic floor muscle training arm and untreated control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 9,
@@ -120,10 +120,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in women with stress and mixed urinary incontinence. Has pelvic floor muscle training arm and control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 10,
@@ -131,10 +131,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in women with UI. The behavioral modification program resulted in improved pelvic muscle strength, suggesting PFMT components. Control group had no treatment. Being conservative, include as PFMT elements may be present.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 11,
@@ -142,10 +142,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized study in women with stress incontinence. Physical therapy for stress incontinence typically includes PFMT. Abstract is brief but mentions 'medical gymnastics' as most successful. Being conservative, include as PFMT likely included.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 12,
@@ -153,10 +153,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in elderly women with SUI. Intervention includes pelvic floor muscle exercises. Has control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 13,
@@ -164,10 +164,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized trial in women with stress, urge and mixed UI. Has exercise only arm (includes PFMT) and education group control. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 14,
@@ -175,10 +175,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in women with stress, urge, and mixed UI. Multidimensional exercise treatment includes PFMT components. Has control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 15,
@@ -186,10 +186,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in women with stress, urge, or mixed UI. Intervention includes PFMT with manual palpation and verbal feedback. Control received advice and educational pamphlet (inactive control). Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 16,
@@ -197,10 +197,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized trial in women with SUI. Has PFMT arm and no treatment control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 17,
@@ -208,10 +208,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized trial in women with SUI. Intervention is 'The Knack' - a pelvic floor muscle precontraction technique (PFMT). Has wait-list control. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 18,
@@ -219,10 +219,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in women with SUI. Has PFMT arms (group and individual) and no treatment control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 19,
@@ -230,10 +230,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized trial in women with MUI. Has PFMT arm and waiting list control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 20,
@@ -241,10 +241,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized controlled trial in women with UI. Physical therapy for UI typically includes PFMT. Control received osteoporosis education (inactive control for UI). Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 21,
@@ -252,10 +252,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized trial in women with UI. Has pelvic muscle exercise (PFMT) arm and control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 22,
@@ -263,10 +263,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized trial in women with SUI. Has kinesitherapy (physical therapy/PFMT) arm and control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 23,
@@ -274,10 +274,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized trial in female athletes with UI. Has PFMRP (pelvic floor muscle rehabilitation program) arm and pamphlet-only control. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 24,
@@ -285,10 +285,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized trial in women with stress incontinence. Has pelvic floor exercises arm and control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 25,
@@ -296,10 +296,10 @@
       "gold_label": 1.0,
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
-      "predicted_decision": "",
-      "predicted_reason": "",
-      "prediction_matches_gold": false,
-      "match_status": "missing"
+      "predicted_decision": "INCLUDE",
+      "predicted_reason": "Randomized trial in women with genuine stress incontinence. Has pelvic floor exercises arm and no therapy control group. Meets all selection criteria.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 26,
@@ -308,7 +308,7 @@
       "gold_screening_decision": "INCLUDE",
       "gold_review_outcome": "included_in_review",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT in women with SUI/MUI comparing PFM training vs untreated control group (no contact during intervention). Meets all selection criteria: RCT design, women with UI, PFMT arm, and inactive control.",
+      "predicted_reason": "RCT in women with stress or mixed UI. One arm received PFM training (3 sets of daily fast and slow contractions). Control arm was untreated with no contact during intervention period. Meets all three selection criteria.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -319,7 +319,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Study protocol for RCT comparing nurse specialist involvement vs usual care. Does not specifically test PFMT - intervention is care pathway modification, not PFMT. Control is usual care, not inactive control.",
+      "predicted_reason": "This is a study protocol for an RCT comparing nurse specialist involvement vs usual care in primary care for UI. The intervention is not PFMT specifically, and there is no comparison of PFMT vs inactive control.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -330,7 +330,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "RCT assessing satisfaction with nurse specialist care vs GP care. Does not test PFMT as intervention - focuses on care delivery model. Control is usual GP care, not inactive control.",
+      "predicted_reason": "RCT assessing consumer satisfaction with nurse specialists vs GPs for UI care. The intervention is not PFMT; this study does not evaluate PFMT as an intervention.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -341,7 +341,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT in women with urge/mixed UI. Behavioral training (with/without biofeedback) includes PFMT components. Self-help booklet serves as inactive control. Meets criteria with PFMT/behavioral intervention vs inactive control.",
+      "predicted_reason": "RCT in women with urge/mixed incontinence. One arm received behavioral training with verbal feedback based on vaginal palpation (a form of PFMT). Control arm received self-help booklet (inactive control). Meets selection criteria.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -352,7 +352,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Feasibility study, not RCT. Although it includes PFMT, study design does not meet RCT criterion for this review.",
+      "predicted_reason": "This is a feasibility study, not a randomised controlled trial. While it involves pelvic fitness, the study design does not meet the RCT requirement.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -363,7 +363,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "RCT comparing two PFMT delivery methods (supervised vs unsupervised). Both arms are active PFMT interventions - no inactive control arm (no treatment/placebo/sham).",
+      "predicted_reason": "RCT comparing supervised PFMT vs unsupervised PFMT. Both arms receive PFMT; there is no inactive control/no treatment arm. Does not meet criterion 3.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -374,7 +374,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "RCT in women with SUI and LBP. Control group received routine physiotherapy modalities and regular exercises - active treatment, not inactive control. Does not meet criteria for inactive control arm.",
+      "predicted_reason": "RCT in women with LBP and stress UI. Training group received stabilization exercises focusing on pelvic floor muscle. Control group received routine physiotherapy modalities and regular exercises (active control, not inactive/no treatment).",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -385,7 +385,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT in women with stress/mixed UI. Behavioral training (includes PFMT) compared to self-help booklet (inactive control). Meets criteria with PFMT/behavioral intervention vs inactive control arm.",
+      "predicted_reason": "RCT in women with stress/mixed incontinence. One arm received behavioral training (includes PFMT components). Control arm received self-help booklet (inactive control). Meets all selection criteria.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -395,10 +395,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT in elderly women with UI. Training group included Kegel's exercises (PFMT). Control group mentioned but details unclear. Includes PFMT component with control comparison - conservative decision to include.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "RCT in elderly women with UI. Training group received Kegel's exercise (PFMT) plus Thera-band training and indoor walking (multicomponent intervention). Control group details not clearly specified as inactive/no treatment. Intervention is not PFMT alone.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 35,
@@ -406,10 +406,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT in women with UI. Behavioral therapy intervention (typically includes PFMT) compared to no therapy (inactive control). Meets criteria for PFMT/behavioral intervention vs inactive control.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "RCT comparing behavioral therapy vs no therapy in women with UI. The abstract does not specify that the behavioral therapy includes PFMT. Cannot confirm criterion 2 is met.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 36,
@@ -418,7 +418,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Economic evaluation alongside RCT comparing two PFMT delivery methods (Internet vs postal). Both arms are active PFMT - no inactive control arm. Focus is on cost-effectiveness, not PFMT vs inactive control.",
+      "predicted_reason": "Economic evaluation alongside an RCT comparing Internet-based PFMT vs postal PFMT. Both arms receive PFMT; there is no inactive control arm. Does not meet criterion 3.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -429,7 +429,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "RCT comparing two PFMT delivery methods (Internet vs postal). Both arms are active PFMT interventions - no inactive control arm. Does not meet criteria for inactive control comparison.",
+      "predicted_reason": "RCT comparing Internet-based PFMT vs postal PFMT. Both arms receive PFMT training; there is no inactive control/no treatment arm. Does not meet criterion 3.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -440,7 +440,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Long-term follow-up of RCT comparing two PFMT delivery methods (Internet vs postal). Both arms are active PFMT - no inactive control arm. Does not meet criteria for inactive control comparison.",
+      "predicted_reason": "Long-term follow-up of the same RCT as study 37. Both arms received PFMT; no inactive control arm. Does not meet criterion 3.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -451,7 +451,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "RCT in women with SUI. Intervention includes PFMT (co-contraction of TA and PFM). Control group present (though details unclear). Includes PFMT component with control - conservative decision to include.",
+      "predicted_reason": "RCT in women with SUI. Intervention arm received TA and PFM co-contraction exercise (includes PFMT). Control group mentioned but details not fully specified. Conservative approach: include for full review.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -461,10 +461,10 @@
       "gold_label": 0.5,
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
-      "predicted_decision": "INCLUDE",
-      "predicted_reason": "Pilot RCT in frail women with UI. Behavioral UI treatments (likely includes PFMT) combined with physical activity. Control group present. Behavioral treatments for UI typically include PFMT - conservative decision to include.",
-      "prediction_matches_gold": false,
-      "match_status": "incorrect"
+      "predicted_decision": "EXCLUDE",
+      "predicted_reason": "Pilot RCT combining behavioral UI treatments with physical activity (walking and strength training). The intervention is a multicomponent program, not PFMT alone. Does not clearly meet criterion 2.",
+      "prediction_matches_gold": true,
+      "match_status": "correct"
     },
     {
       "study_index": 41,
@@ -473,7 +473,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "RCT in gynecological cancer survivors with pelvic floor dysfunction, not specifically UI. Control received usual health care (active treatment, not inactive control). Population and control do not meet criteria.",
+      "predicted_reason": "RCT in gynecological cancer survivors. Intervention was PFMT, but control group received usual health care (active control, not inactive/no treatment). Does not meet criterion 3.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -484,7 +484,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Questionnaire validation study, not RCT. Focuses on psychometric properties of ICIQ instrument. Does not meet RCT criterion.",
+      "predicted_reason": "Psychometric validation study of the ICIQ questionnaire. Not a randomised controlled trial. Does not meet criterion 1.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -495,7 +495,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Systematic review, not primary RCT. Reviews other RCTs but is not itself an RCT. Does not meet RCT criterion.",
+      "predicted_reason": "Systematic review of RCTs on conservative treatment of SUI. Not a primary RCT. Does not meet criterion 1.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -506,7 +506,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Systematic review, not primary RCT. Reviews other RCTs but is not itself an RCT. Does not meet RCT criterion.",
+      "predicted_reason": "Systematic review of RCTs on conservative treatment of UUI. Not a primary RCT. Does not meet criterion 1.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -517,7 +517,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Methodology/guideline paper about CONSORT statement extension, not RCT. Does not meet RCT criterion.",
+      "predicted_reason": "Methodological guidance document (CONSORT extension). Not a randomised controlled trial. Does not meet criterion 1.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -528,7 +528,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Review/opinion paper discussing impact of UI on quality of life, not RCT. Does not meet RCT criterion.",
+      "predicted_reason": "Review/descriptive article on the impact of UI on self-efficacy and QoL. Not a randomised controlled trial. Does not meet criterion 1.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -539,7 +539,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Psychometric validation study of I-QOL questionnaire, not RCT. Focuses on cross-cultural performance of measurement tool. Does not meet RCT criterion.",
+      "predicted_reason": "Psychometric validation study of I-QOL questionnaire across 15 language versions. Not a randomised controlled trial. Does not meet criterion 1.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -550,7 +550,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Instrument validation study testing reproducibility of measurement tools, not RCT. Does not meet RCT criterion.",
+      "predicted_reason": "Instrument development and reproducibility study. Not a randomised controlled trial. Does not meet criterion 1.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -561,7 +561,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Observational imaging study using MRI to assess pelvic floor muscle function, not RCT. Does not meet RCT criterion.",
+      "predicted_reason": "Imaging study (MRI) of pelvic floor muscles. Not a randomised controlled trial. Does not meet criterion 1.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -572,7 +572,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "Discussion/review paper theorizing about mechanisms of PFMT effectiveness, not RCT. Does not meet RCT criterion.",
+      "predicted_reason": "Theoretical review article discussing mechanisms of PFMT effectiveness. Not a randomised controlled trial. Does not meet criterion 1.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -583,7 +583,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a consensus-based terminology report, not a randomised or quasi-randomised controlled trial. It describes development of definitions through expert consensus and review processes, with no intervention arms or randomisation.",
+      "predicted_reason": "This is a consensus/terminology report, not a randomised controlled trial. It describes the development of terminology definitions through expert consensus, not an intervention study.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -594,7 +594,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a cross-sectional Internet survey (EpiLUTS), not a randomised controlled trial. It examines associations between UI and mental health outcomes without any intervention or control arms.",
+      "predicted_reason": "This is a cross-sectional epidemiological survey examining prevalence and burden of UI, not an RCT. No intervention (PFMT) is tested.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -605,7 +605,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a review chapter on pathophysiology and drug therapy targets, not a primary randomised controlled trial. No intervention comparison or randomisation is described.",
+      "predicted_reason": "This is a review chapter on pathophysiology and pharmacology, not a randomised controlled trial. No PFMT intervention is studied.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -616,7 +616,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a review article discussing existing RCTs on PFMT regimens, not a primary randomised controlled trial. The stated aim is to 'review the present evidence' and discuss literature.",
+      "predicted_reason": "This is a review article discussing optimal PFM training regimens and reviewing existing evidence, not a primary RCT testing PFMT vs no treatment.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -627,7 +627,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This describes functional electrical stimulation for bladder dysfunction but is not a randomised controlled trial. No randomisation or control arm is mentioned.",
+      "predicted_reason": "This study is about functional electrical stimulation (FES), not PFMT. No RCT design comparing PFMT to no treatment is described.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -638,7 +638,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a secondary analysis of data from healthy women (N=38), not women with urinary incontinence. It is not a randomised controlled trial with intervention and control arms.",
+      "predicted_reason": "This study involves healthy women (N=38), not women with urinary incontinence. It is not an RCT comparing PFMT to no treatment for UI.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -649,7 +649,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a methodological guidance document on preparing Summary of Findings tables, not a randomised controlled trial. No patient data or interventions are studied.",
+      "predicted_reason": "This is a methodological guideline about preparing summary of findings tables, not a clinical trial. No PFMT intervention is studied.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -660,7 +660,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a methodological guidance document on presenting continuous outcomes in systematic reviews, not a randomised controlled trial.",
+      "predicted_reason": "This is a methodological guideline about presenting continuous outcomes in systematic reviews, not a clinical trial. No PFMT intervention is studied.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -671,7 +671,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a cross-sectional epidemiological survey assessing prevalence of UI in Norway, not a randomised controlled trial. No intervention or control arms exist.",
+      "predicted_reason": "This is a cross-sectional epidemiological survey assessing prevalence of UI, not an RCT. No intervention is tested.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -682,7 +682,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a consensus-based terminology report, not a randomised controlled trial. It describes development of definitions through expert consensus.",
+      "predicted_reason": "This is a consensus/terminology report, not a randomised controlled trial. It describes terminology development through expert consensus.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -693,7 +693,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a methodological paper about systematic reviews, not a primary randomised controlled trial. The abstract is very brief and indicates this is about review methodology.",
+      "predicted_reason": "This is a methodological paper about systematic review methodology, not a clinical trial. No PFMT intervention is studied.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -704,7 +704,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a cross-sectional study using the Sickness Impact Profile questionnaire. Women were randomly selected from a clinic but this is not a randomised controlled trial with intervention arms.",
+      "predicted_reason": "This is a cross-sectional study assessing QoL in women with UI, not an RCT. No intervention (PFMT) is tested against no treatment.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -715,7 +715,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a systematic review and economic modelling study, not a primary randomised controlled trial. It analyses 88 RCTs but is not itself an RCT.",
+      "predicted_reason": "This is a systematic review and economic modelling study, not a primary RCT. While it mentions PFMT, it is a review of other trials, not a primary trial itself.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -726,7 +726,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a questionnaire development and validation study, not a randomised controlled trial. It assesses psychometric properties of a new instrument.",
+      "predicted_reason": "This is a questionnaire development and validation study, not an RCT. No PFMT intervention is tested.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -737,7 +737,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is an economic study measuring willingness to pay, not a randomised controlled trial. It uses a questionnaire with binary willingness-to-pay questions.",
+      "predicted_reason": "This is an economic study using a willingness-to-pay questionnaire, not an RCT. No PFMT intervention is tested.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -748,7 +748,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a cross-sectional analysis using multivariate logistic regression from a national survey, not a randomised controlled trial. No intervention or control arms.",
+      "predicted_reason": "This is a cross-sectional analysis examining associations between UI and self-rated health, not an RCT. No intervention is tested.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -759,7 +759,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a questionnaire development and validation study, not a randomised controlled trial. It tests validity and reliability of a new QoL instrument.",
+      "predicted_reason": "This is a questionnaire development and validation study, not an RCT. No PFMT intervention is tested.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -770,7 +770,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "While participants were from a 25-week longitudinal randomized control study, this paper focuses on validating the YIPS questionnaire, not testing PFMT vs no treatment. The intervention was a 'behavioral/educational intervention' which may not be PFMT, and the primary aim is psychometric validation.",
+      "predicted_reason": "This is a psychometric validation study for the YIPS scale. Although participants were in a randomized control study, this paper focuses on scale validation, not on testing PFMT vs no treatment.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -781,7 +781,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a questionnaire validation study assessing content validity of the KHQ, not a randomised controlled trial. No intervention comparison is made.",
+      "predicted_reason": "This is a questionnaire validation study, not an RCT. No PFMT intervention is tested.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -792,7 +792,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a methodological study examining how trial quality affects meta-analysis results, not a primary randomised controlled trial. It analyses 127 existing RCTs from other meta-analyses.",
+      "predicted_reason": "This is a methodological paper about trial quality assessment in meta-analyses, not a clinical trial. The trials analyzed were on circulatory, digestive, mental health, and pregnancy topics, not UI/PFMT.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -803,7 +803,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a guidelines document for reporting RCTs, not a randomised controlled trial itself. No patient data or interventions are studied.",
+      "predicted_reason": "This is a reporting guideline for RCTs, not a clinical trial itself. No PFMT intervention is studied.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -814,7 +814,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a cross-sectional survey assessing bothersomeness and QoL impact of UI, not a randomised controlled trial. No intervention or control arms.",
+      "predicted_reason": "This is a cross-sectional survey examining bothersomeness and QoL impact of UI, not an RCT. No intervention is tested.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -825,7 +825,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This study involves healthy continent nulliparous women, not women with urinary incontinence. It is not a randomised controlled trial with intervention and control arms.",
+      "predicted_reason": "This is a descriptive study on healthy nulliparous women without urinary incontinence, not an RCT. No intervention comparing PFMT to no treatment is studied.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -836,7 +836,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a methodological study developing and validating a severity index for UI, not a randomised controlled trial. It compares questionnaire-based index with pad-weighing tests.",
+      "predicted_reason": "This is an instrument validation study for a severity index, not an RCT. No PFMT intervention is tested.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -847,7 +847,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a cross-sectional study comparing incontinent women with controls using the FSFI questionnaire, not a randomised controlled trial. No intervention or randomisation is described.",
+      "predicted_reason": "This is a cross-sectional study comparing sexual function between incontinent and continent women, not an RCT. No intervention (PFMT) is tested.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -858,7 +858,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a prospective cohort study, not a randomised controlled trial. The study design does not meet the selection criteria which require RCTs or quasi-RCTs. The study focuses on validating a self-efficacy index rather than testing PFMT intervention.",
+      "predicted_reason": "Prospective cohort study, not a randomised controlled trial. Also includes both men and women (incontinent adults), not specifically women with UI.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -869,7 +869,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is an instrument development/validation study describing short forms of questionnaires. It is not a randomised controlled trial and does not test PFMT intervention.",
+      "predicted_reason": "Instrument development/validation study for IIQ and UDI questionnaires. No intervention trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -880,7 +880,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a psychometric validation study developing a new quality of life measure (I-QOL). It is not a randomised controlled trial testing PFMT intervention.",
+      "predicted_reason": "Psychometric development study for I-QOL measure. Not an intervention trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -891,7 +891,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This study validates a quality of life scale in patients with psoriasis, not urinary incontinence. The population does not match the review criteria (women with SUI/UUI/MUI). It is also not an RCT.",
+      "predicted_reason": "Study concerns psoriasis patients, not urinary incontinence. Wrong population entirely.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -902,7 +902,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a secondary analysis validating global impression questionnaires using data from duloxetine trials. It is not a primary RCT comparing PFMT to inactive control. The intervention is duloxetine, not PFMT.",
+      "predicted_reason": "Validation study of Patient Global Impression questionnaires. Secondary analysis of duloxetine trials, not a PFMT intervention trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -913,7 +913,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a scale development study for anxiety and depression in hospital settings. It does not involve urinary incontinence, PFMT, or RCT design.",
+      "predicted_reason": "Development of anxiety/depression scale for hospital settings. Not related to urinary incontinence treatment.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -924,7 +924,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This is a randomised controlled trial in women with stress urinary incontinence. The intervention group received pelvic floor muscle exercise training. There is a control group (n=27). The study meets all selection criteria: RCT design, women with SUI, PFMT intervention, and control arm.",
+      "predicted_reason": "Randomized controlled trial in perimenopausal women with stress urinary incontinence. Intervention is pelvic floor muscle exercises. Control group mentioned but nature not fully specified. Includes as conservative decision.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -935,7 +935,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This is a randomised study in women with stress urinary incontinence (IUE). Three groups: electrotherapy + exercises, exercises alone, and control (GC, n=22). The exercises group (PFMT) can be compared to the control group. Meets selection criteria: RCT, women with SUI, PFMT arm, and inactive control arm.",
+      "predicted_reason": "Randomized study in women with stress urinary incontinence. Intervention includes pelvic floor exercises. Control group (GC) mentioned. Unclear if control is inactive, but include conservatively.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -946,7 +946,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is an RCT in women with urodynamic stress incontinence, but the intervention is acupressure, not pelvic floor muscle training. The study compares acupressure to sham and usual care. Does not meet criteria as there is no PFMT arm.",
+      "predicted_reason": "RCT but intervention is acupressure, not pelvic floor muscle training. Does not meet PFMT intervention criterion.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -957,7 +957,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This RCT compares supervised pelvic floor exercise program (SEP) to home prescribed exercise program (HEP). Both arms involve active PFMT treatment. There is no no-treatment, placebo, sham or inactive control arm. Does not meet selection criteria.",
+      "predicted_reason": "RCT comparing home-based vs supervised pelvic floor exercises. Both arms are active PFMT interventions; no no-treatment/placebo/sham control arm.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -968,7 +968,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "INCLUDE",
-      "predicted_reason": "This is a randomised controlled trial in women with SUI with 4 arms: combined treatment (PFMT+duloxetine), no active treatment (n=47), PFMT only (n=50), and duloxetine only (n=52). The PFMT-only arm can be compared to the no active treatment arm. Meets all selection criteria: RCT, women with SUI, PFMT arm, and inactive control arm.",
+      "predicted_reason": "Randomized controlled trial in women with SUI. Includes PFMT arm and a 'no active treatment' arm. Meets all selection criteria.",
       "prediction_matches_gold": false,
       "match_status": "incorrect"
     },
@@ -979,7 +979,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a qualitative study using telephone interviews to explore women's experiences. It is not a randomised controlled trial. The study design does not meet selection criteria.",
+      "predicted_reason": "Qualitative study (telephone interviews, grounded theory analysis) exploring women's experiences. Not a randomised controlled trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -990,7 +990,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_after_full_text",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a secondary analysis examining predictors of success from a previous RCT. It uses logistic regression on follow-up data and is not itself a randomised controlled trial. Does not meet selection criteria.",
+      "predicted_reason": "Secondary analysis examining predictors of success from a completed RCT. Not a primary intervention trial comparing PFMT to inactive control.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1001,7 +1001,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a systematic review evaluating the effects of adding PFMT to other active treatments. It is not a primary randomised controlled trial. Does not meet selection criteria.",
+      "predicted_reason": "Systematic review comparing PFMT added to other active treatments. Not a primary randomised controlled trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1012,7 +1012,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a review article providing an overview of exercise science related to PFM strength training. It compiles 16 articles but is not itself a randomised controlled trial. Does not meet selection criteria.",
+      "predicted_reason": "Review/overview article compiling 16 articles about PFM exercises. Not a primary randomised controlled trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1023,7 +1023,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is an anatomical/physiological review article describing urethrovesical structure. It is not a randomised controlled trial testing PFMT intervention. Does not meet selection criteria.",
+      "predicted_reason": "Anatomical/physiological descriptive article about urethrovesical structure. No intervention trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1034,7 +1034,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a scale validation study for psychiatric symptoms (somatization, anxiety, depression). It does not involve urinary incontinence, PFMT, or RCT design. Does not meet selection criteria.",
+      "predicted_reason": "Psychiatric symptom inventory validation study. Not related to urinary incontinence treatment.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1045,7 +1045,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a review chapter covering conservative management approaches for UI/POP. It is not a primary randomised controlled trial. Does not meet selection criteria.",
+      "predicted_reason": "Chapter/overview of conservative management approaches. Not a primary randomised controlled trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1056,7 +1056,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a methodological paper about intention-to-treat principles in clinical trials. It is not an RCT testing PFMT for urinary incontinence. Does not meet selection criteria.",
+      "predicted_reason": "Methodological article about trial analysis principles. Not a primary intervention trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1067,7 +1067,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a systematic review (Cochrane review) comparing PFMT to other active treatments. It is not a primary randomised controlled trial. Does not meet selection criteria.",
+      "predicted_reason": "Systematic review comparing PFMT to other active treatments. Not a primary randomised controlled trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1078,7 +1078,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a consensus/methodological paper offering guidance on outcome measurements. It is not a randomised controlled trial testing PFMT intervention. Does not meet selection criteria.",
+      "predicted_reason": "Communication about outcome measurement reliability. Not an intervention trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1089,7 +1089,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is an observational cohort study using MRI to compare pelvic floor morphology. It is not a randomised controlled trial testing PFMT intervention. Does not meet selection criteria.",
+      "predicted_reason": "Observational cohort study using MRI imaging. Not a randomised controlled trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1100,7 +1100,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is an RCT, but it compares conservative treatment with prior urodynamics vs without prior urodynamics. Both arms receive active treatment (physiotherapy and bladder retraining). There is no no-treatment, placebo, sham or inactive control arm. Does not meet selection criteria.",
+      "predicted_reason": "RCT comparing conservative treatment (physiotherapy + bladder retraining) with vs without prior urodynamics. Both arms receive active treatment; no no-treatment/placebo/sham control arm.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1111,7 +1111,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is an observational cohort study examining the causes of incontinence in institutionalized elderly. It is not a randomised controlled trial testing PFMT intervention. Does not meet selection criteria.",
+      "predicted_reason": "Observational clinical and physiologic study of incontinence causes in institutionalized elderly. Not a randomised controlled trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     },
@@ -1122,7 +1122,7 @@
       "gold_screening_decision": "EXCLUDE",
       "gold_review_outcome": "excluded_at_screening",
       "predicted_decision": "EXCLUDE",
-      "predicted_reason": "This is a systematic review (Cochrane review) on PFMT for antenatal/postnatal women. It is not a primary randomised controlled trial. Does not meet selection criteria.",
+      "predicted_reason": "Systematic review about PFMT in antenatal and postnatal women. Not a primary randomised controlled trial.",
       "prediction_matches_gold": true,
       "match_status": "correct"
     }

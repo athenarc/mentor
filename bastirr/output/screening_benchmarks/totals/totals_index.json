@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-06-19T02:23:14.110835",
+  "generated_at": "2026-06-22T09:44:45.636916",
   "totals_root": "bastirr/output/screening_benchmarks/totals",
   "source_mode": "canonical",
   "groups": [
     {
-      "generated_at": "2026-06-19T02:23:14.045036",
+      "generated_at": "2026-06-22T09:44:45.577179",
       "suite": "screening_ladder",
       "gold_label_policy": "exclude_label_0_5",
       "benchmark_architecture": "batch_orchestrator_v1",
       "n_source_runs": 55,
       "n_aggregated_source_runs": 55,
       "n_excluded_incomplete_model_groups": 0,
-      "n_raw_source_runs": 268,
+      "n_raw_source_runs": 290,
       "source_summary_count": 11,
       "source_mode": "canonical",
       "canonical_gold_label_policies": [
@@ -21,15 +21,15 @@
       "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder/exclude_policy/batch_orchestrator_v1"
     },
     {
-      "generated_at": "2026-06-19T02:23:14.052669",
+      "generated_at": "2026-06-22T09:44:45.583678",
       "suite": "screening_ladder",
       "gold_label_policy": "exclude_label_0_5",
       "benchmark_architecture": "loop_chunk_orchestrator_v1",
-      "n_source_runs": 38,
-      "n_aggregated_source_runs": 30,
-      "n_excluded_incomplete_model_groups": 2,
-      "n_raw_source_runs": 268,
-      "source_summary_count": 8,
+      "n_source_runs": 45,
+      "n_aggregated_source_runs": 45,
+      "n_excluded_incomplete_model_groups": 0,
+      "n_raw_source_runs": 290,
+      "source_summary_count": 9,
       "source_mode": "canonical",
       "canonical_gold_label_policies": [
         "exclude_label_0_5"
@@ -38,14 +38,14 @@
       "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder/exclude_policy/loop_chunk_orchestrator_v1"
     },
     {
-      "generated_at": "2026-06-19T02:23:14.058527",
+      "generated_at": "2026-06-22T09:44:45.589189",
       "suite": "screening_ladder",
       "gold_label_policy": "exclude_label_0_5",
       "benchmark_architecture": "loop_orchestrator_v1",
       "n_source_runs": 5,
       "n_aggregated_source_runs": 5,
       "n_excluded_incomplete_model_groups": 0,
-      "n_raw_source_runs": 268,
+      "n_raw_source_runs": 290,
       "source_summary_count": 1,
       "source_mode": "canonical",
       "canonical_gold_label_policies": [
@@ -55,14 +55,14 @@
       "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder/exclude_policy/loop_orchestrator_v1"
     },
     {
-      "generated_at": "2026-06-19T02:23:14.062410",
+      "generated_at": "2026-06-22T09:44:45.591815",
       "suite": "screening_ladder_dev_exclude_balanced",
       "gold_label_policy": "exclude_label_0_5",
       "benchmark_architecture": "batch_orchestrator_v1",
-      "n_source_runs": 42,
-      "n_aggregated_source_runs": 40,
-      "n_excluded_incomplete_model_groups": 1,
-      "n_raw_source_runs": 268,
+      "n_source_runs": 45,
+      "n_aggregated_source_runs": 45,
+      "n_excluded_incomplete_model_groups": 0,
+      "n_raw_source_runs": 290,
       "source_summary_count": 9,
       "source_mode": "canonical",
       "canonical_gold_label_policies": [
@@ -72,15 +72,15 @@
       "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder_dev_exclude_balanced/exclude_policy/batch_orchestrator_v1"
     },
     {
-      "generated_at": "2026-06-19T02:23:14.071982",
+      "generated_at": "2026-06-22T09:44:45.597601",
       "suite": "screening_ladder_dev_exclude_balanced",
       "gold_label_policy": "exclude_label_0_5",
       "benchmark_architecture": "loop_chunk_orchestrator_v1",
-      "n_source_runs": 36,
-      "n_aggregated_source_runs": 25,
-      "n_excluded_incomplete_model_groups": 3,
-      "n_raw_source_runs": 268,
-      "source_summary_count": 8,
+      "n_source_runs": 45,
+      "n_aggregated_source_runs": 45,
+      "n_excluded_incomplete_model_groups": 0,
+      "n_raw_source_runs": 290,
+      "source_summary_count": 9,
       "source_mode": "canonical",
       "canonical_gold_label_policies": [
         "exclude_label_0_5"
@@ -89,14 +89,14 @@
       "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder_dev_exclude_balanced/exclude_policy/loop_chunk_orchestrator_v1"
     },
     {
-      "generated_at": "2026-06-19T02:23:14.077058",
+      "generated_at": "2026-06-22T09:44:45.603478",
       "suite": "screening_ladder_dev_no_label_0_5",
       "gold_label_policy": "exclude_label_0_5",
       "benchmark_architecture": "batch_orchestrator_v1",
       "n_source_runs": 35,
       "n_aggregated_source_runs": 35,
       "n_excluded_incomplete_model_groups": 0,
-      "n_raw_source_runs": 268,
+      "n_raw_source_runs": 290,
       "source_summary_count": 7,
       "source_mode": "canonical",
       "canonical_gold_label_policies": [
@@ -106,14 +106,14 @@
       "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder_dev_no_label_0_5/exclude_policy/batch_orchestrator_v1"
     },
     {
-      "generated_at": "2026-06-19T02:23:14.083929",
+      "generated_at": "2026-06-22T09:44:45.609487",
       "suite": "screening_ladder_dev_no_label_0_5",
       "gold_label_policy": "exclude_label_0_5",
       "benchmark_architecture": "loop_chunk_orchestrator_v1",
-      "n_source_runs": 42,
-      "n_aggregated_source_runs": 35,
-      "n_excluded_incomplete_model_groups": 2,
-      "n_raw_source_runs": 268,
+      "n_source_runs": 45,
+      "n_aggregated_source_runs": 45,
+      "n_excluded_incomplete_model_groups": 0,
+      "n_raw_source_runs": 290,
       "source_summary_count": 9,
       "source_mode": "canonical",
       "canonical_gold_label_policies": [
@@ -123,14 +123,14 @@
       "directory": "bastirr/output/screening_benchmarks/totals/screening_ladder_dev_no_label_0_5/exclude_policy/loop_chunk_orchestrator_v1"
     },
     {
-      "generated_at": "2026-06-19T02:23:14.090192",
+      "generated_at": "2026-06-22T09:44:45.614758",
       "suite": "screening_ladder_dev_no_label_0_5_v2",
       "gold_label_policy": "exclude_label_0_5",
       "benchmark_architecture": "batch_orchestrator_v1",
       "n_source_runs": 15,
       "n_aggregated_source_runs": 15,
       "n_excluded_incomplete_model_groups": 0,
-      "n_raw_source_runs": 268,
+      "n_raw_source_runs": 290,
       "source_summary_count": 3,
       "source_mode": "canonical",
       "canonical_gold_label_policies": [
@@ -142,11 +142,11 @@
   ],
   "horizontal_comparison_groups": [
     {
-      "generated_at": "2026-06-19T02:23:14.096709",
+      "generated_at": "2026-06-22T09:44:45.620383",
       "gold_label_policy": "exclude_label_0_5",
       "benchmark_architecture": "batch_orchestrator_v1",
-      "n_source_runs": 142,
-      "source_summary_count": 29,
+      "n_source_runs": 147,
+      "source_summary_count": 30,
       "source_suites": [
         "screening_ladder",
         "screening_ladder_dev_exclude_balanced",
@@ -157,11 +157,11 @@
       "directory": "bastirr/output/screening_benchmarks/totals/horizontal_comparison/exclude_policy/batch_orchestrator_v1"
     },
     {
-      "generated_at": "2026-06-19T02:23:14.105284",
+      "generated_at": "2026-06-22T09:44:45.629497",
       "gold_label_policy": "exclude_label_0_5",
       "benchmark_architecture": "loop_chunk_orchestrator_v1",
-      "n_source_runs": 90,
-      "source_summary_count": 18,
+      "n_source_runs": 135,
+      "source_summary_count": 27,
       "source_suites": [
         "screening_ladder",
         "screening_ladder_dev_exclude_balanced",
@@ -171,7 +171,7 @@
       "directory": "bastirr/output/screening_benchmarks/totals/horizontal_comparison/exclude_policy/loop_chunk_orchestrator_v1"
     },
     {
-      "generated_at": "2026-06-19T02:23:14.110009",
+      "generated_at": "2026-06-22T09:44:45.636119",
       "gold_label_policy": "exclude_label_0_5",
       "benchmark_architecture": "loop_orchestrator_v1",
       "n_source_runs": 5,

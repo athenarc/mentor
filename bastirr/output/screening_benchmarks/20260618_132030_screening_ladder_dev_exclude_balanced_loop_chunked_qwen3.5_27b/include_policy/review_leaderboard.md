@@ -51,3 +51,15 @@ Metrics below are averaged only over scored runs with complete per-study decisio
 | Rank | Architecture | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
 |------|--------------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
 | 1 | loop_chunk_orchestrator_v1 | qwen3.5-27b [Qwen 3.5 27B] | fixed | qwen3.5-27b [Qwen 3.5 27B] | 1 | 1 | 0 | 0 | 0.909 | 0.833 | 1.000 | 0.880 | 1.000 | 1.000 | 1.000 |
+
+## prom_feedback_194
+
+**Title:** Routine provision of feedback from patient‐reported outcome measurements to healthcare providers and patients in clinical practice
+**URL:** https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011589.pub2/full
+**Studies:** 194 | **Gold pass:** 148 | **Gold exclude:** 46
+
+Metrics below are averaged only over scored runs with complete per-study decision coverage.
+
+| Rank | Architecture | Gatekeeper Model | Orchestrator Policy | Orchestrator Model | Runs | Scored | Incomplete | Errors | F1 | Recall | Precision | Accuracy | Specificity | Parse Success | Coverage |
+|------|--------------|------------------|---------------------|--------------------|------|--------|------------|--------|----|--------|-----------|----------|-------------|---------------|----------|
+| 1 | loop_chunk_orchestrator_v1 | qwen3.5-27b [Qwen 3.5 27B] | fixed | qwen3.5-27b [Qwen 3.5 27B] | 1 | 1 | 0 | 0 | 0.826 | 0.723 | 0.964 | 0.768 | 0.913 | 1.000 | 1.000 |

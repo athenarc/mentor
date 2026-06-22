@@ -479,8 +479,8 @@
           <div class="badge-row">
             <span class="badge">5 reviews</span>
             <span class="badge">5 attempted runs</span>
-            <span class="badge">4 scored runs</span>
-            <span class="badge">1 incomplete run</span>
+            <span class="badge">5 scored runs</span>
+            <span class="badge">0 incomplete runs</span>
           </div>
           <div class="link-row">
             <a href="./summary.csv">summary.csv</a>
@@ -500,7 +500,7 @@
           <h2>Run health and aggregate metrics</h2>
         </div>
         <p>
-          The bundle scored 4 of 5 attempted runs under this policy. 1 run was excluded from scoring due to incomplete screening output. The strongest pooled macro metrics are recall and F1, while specificity is the lowest of the scored-run means.
+          All 5 attempted runs were scored under this policy. The strongest pooled macro metrics are recall and F1, while specificity is the lowest of the scored-run means.
         </p>
       </div>
       <div class="grid-2">
@@ -523,7 +523,7 @@
           <h2>Performance by review</h2>
         </div>
         <p>
-          Review difficulty varies across the bundle. endometrial progestagens 10 has the strongest mean F1, while desmopressin transfusion 100 is the hardest case under this policy.
+          Review difficulty varies across the bundle. endometrial progestagens 10 has the strongest mean F1, while prom feedback 194 is the hardest case under this policy.
         </p>
       </div>
       <div class="grid-2">
@@ -564,7 +564,7 @@
           <h2>Run variability</h2>
         </div>
         <p>
-          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in endometrial progestagens 10. The bundle also contains 1 incomplete run.
+          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in endometrial progestagens 10.
         </p>
       </div>
       <div class="grid-2">
@@ -598,7 +598,7 @@
           <h2>Recurring study-level mistakes</h2>
         </div>
         <p>
-          These titles were misclassified repeatedly across scored runs. Most recurring mistakes are false positives, concentrated in prom feedback 194, adhesive capsulitis 50.
+          These titles were misclassified repeatedly across scored runs. Most recurring mistakes are false positives, concentrated in desmopressin transfusion 100, adhesive capsulitis 50.
         </p>
       </div>
       <div class="study-list" id="study-list"></div>
@@ -612,31 +612,31 @@
     const benchmark = {
   "overall": {
     "runsTotal": 5,
-    "runsScored": 4,
-    "runsCompleted": 4,
-    "runsIncomplete": 1,
-    "parseSuccessRate": 0.8,
+    "runsScored": 5,
+    "runsCompleted": 5,
+    "runsIncomplete": 0,
+    "parseSuccessRate": 1.0,
     "decisionCoverage": 1.0,
-    "macroAccuracy": 0.902319587628866,
-    "macroPrecision": 0.8808064975776575,
-    "macroRecall": 0.9404761904761905,
-    "macroSpecificity": 0.8626442307692308,
-    "macroF1": 0.9066353429069332,
-    "meanDurationSeconds": 1464.0434480499475,
-    "durationStdSeconds": 1463.5500919009587,
+    "macroAccuracy": 0.9058556701030929,
+    "macroPrecision": 0.8839555428897121,
+    "macroRecall": 0.9449735449735449,
+    "macroSpecificity": 0.8640284280936456,
+    "macroF1": 0.9110225600398323,
+    "meanDurationSeconds": 1710.2230513833813,
+    "durationStdSeconds": 1500.9976487178337,
     "confusion": {
-      "tp": 131,
-      "fp": 35,
-      "tn": 104,
-      "fn": 9
+      "tp": 183,
+      "fp": 41,
+      "tn": 144,
+      "fn": 11
     },
     "dispersion": {
-      "accuracy": 0.06893637598924655,
-      "precision": 0.08934802738090772,
-      "recall": 0.06838765055402414,
-      "specificity": 0.11587383267956607,
-      "f1": 0.06359321807712412,
-      "duration": 1463.5500919009587
+      "accuracy": 0.062062828365155503,
+      "precision": 0.08016309589204401,
+      "recall": 0.06182557228638448,
+      "specificity": 0.10367767401332519,
+      "f1": 0.057552311899771204,
+      "duration": 1500.9976487178337
     }
   },
   "reviews": [
@@ -681,12 +681,12 @@
       "label": "desmopressin transfusion 100",
       "studies": 100,
       "goldInclude": 54,
-      "accuracy": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "specificity": 0.0,
-      "f1": 0.0,
-      "duration": 1948.216922165826
+      "accuracy": 0.92,
+      "precision": 0.896551724137931,
+      "recall": 0.9629629629629629,
+      "specificity": 0.8695652173913043,
+      "f1": 0.9285714285714286,
+      "duration": 3179.114938832994
     },
     {
       "key": "prom_feedback_194",
@@ -725,6 +725,14 @@
       "precision": 0.8620689655172413,
       "recall": 1.0,
       "f1": 0.9259259259259259
+    },
+    {
+      "run": "desmopressin transfusion 100 run 1",
+      "review": "desmopressin transfusion 100",
+      "accuracy": 0.92,
+      "precision": 0.896551724137931,
+      "recall": 0.9629629629629629,
+      "f1": 0.9285714285714286
     },
     {
       "run": "endometrial progestagens 10 run 1",
@@ -773,58 +781,58 @@
       "review_key": "adhesive_capsulitis_50"
     },
     {
-      "ref": "prom feedback 194 #1",
-      "title": "Decision support strategies for hip and knee osteoarthritis: less is more: a randomized comparative effectiveness trial (DECIDE-OA Study)",
-      "mistakes": 1,
-      "error": "false_positive",
-      "gold": "0.5",
-      "outcome": "excluded_after_full_text",
-      "review_key": "prom_feedback_194"
-    },
-    {
-      "ref": "prom feedback 194 #104",
-      "title": "Real-time patient experience surveys of hospitalized medical patients",
-      "mistakes": 1,
-      "error": "false_positive",
-      "gold": "0.5",
-      "outcome": "excluded_after_full_text",
-      "review_key": "prom_feedback_194"
-    },
-    {
-      "ref": "prom feedback 194 #117",
-      "title": "Rapid emergency department intervention for older people reduces risk of functional decline: results of a multicenter randomized trial",
+      "ref": "desmopressin transfusion 100 #11",
+      "title": "Desmopressin has no beneficial effect on excessive postoperative bleeding or blood product requirements associated with cardiopulmonary bypass",
       "mistakes": 1,
       "error": "false_negative",
       "gold": "1.0",
       "outcome": "included_in_review",
-      "review_key": "prom_feedback_194"
+      "review_key": "desmopressin_transfusion_100"
     },
     {
-      "ref": "prom feedback 194 #120",
-      "title": "A noninferiority randomized clinical trial of the use of the smartphone-based health applications IBDsmart and IBDoc in the care of inflammatory bowel disease patients",
+      "ref": "desmopressin transfusion 100 #15",
+      "title": "Use of desmopressin to prevent bleeding complications in patients treated with aspirin",
       "mistakes": 1,
       "error": "false_positive",
       "gold": "0.5",
       "outcome": "excluded_after_full_text",
-      "review_key": "prom_feedback_194"
+      "review_key": "desmopressin_transfusion_100"
     },
     {
-      "ref": "prom feedback 194 #122",
-      "title": "Mobile phone-based ecological momentary intervention to reduce young adults' alcohol use in the event: a three-armed randomized controlled trial",
+      "ref": "desmopressin transfusion 100 #40",
+      "title": "Biopsy: desmopressin reduces risk of bleeding after percutaneous kidney biopsy",
       "mistakes": 1,
       "error": "false_positive",
       "gold": "0.5",
       "outcome": "excluded_after_full_text",
-      "review_key": "prom_feedback_194"
+      "review_key": "desmopressin_transfusion_100"
     },
     {
-      "ref": "prom feedback 194 #125",
-      "title": "Use of a web-based app to improve postoperative outcomes for patients receiving gynecological oncology care: a randomized controlled feasibility trial",
+      "ref": "desmopressin transfusion 100 #42",
+      "title": "Diminishing blood loss during operation for burns",
       "mistakes": 1,
       "error": "false_positive",
       "gold": "0.5",
       "outcome": "excluded_after_full_text",
-      "review_key": "prom_feedback_194"
+      "review_key": "desmopressin_transfusion_100"
+    },
+    {
+      "ref": "desmopressin transfusion 100 #73",
+      "title": "Does tranexamic acid reduce desmopressin‐induced hyperfibrinolysis?",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "desmopressin_transfusion_100"
+    },
+    {
+      "ref": "desmopressin transfusion 100 #77",
+      "title": "The effect of desmopressin on the amount of bleeding in patients undergoing coronary artery bypass graft surgery with a cardiopulmonary bypass pump after taking anti‐platelet medicine",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "desmopressin_transfusion_100"
     }
   ]
 };
