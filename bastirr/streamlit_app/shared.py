@@ -1,7 +1,9 @@
 import argparse
+import logging
 import math
 import os
 import sys
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -9,36 +11,125 @@ import plotly.graph_objects as go
 import streamlit as st
 from plotly.subplots import make_subplots
 
-from loader import DataDirectoryError, find_json_files, get_suites, load_json
+from streamlit_app.constants import (
+    EXPERIMENT_ARCHITECTURE_LABEL_TO_VALUE_INDEX,
+    GOLD_LABEL_POLICY_LABEL_TO_VALUE_INDEX,
+    LOGGING_LEVEL,
+    MODEL_LABEL_TO_VALUE_INDEX,
+)
+from streamlit_app.load import load_data
+from streamlit_app.utils import setup_logger
 
-DEFAULT_BENCHMARK_RESULTS_DIR = "./data"
-ENV_VAR_NAME = "BENCHMARK_RESULTS_DIR"
+# from loader import DataDirectoryError, find_json_files, get_suites, load_json
+
+LOGGER = logging.getLogger(__name__)
+
 SIZE_BAND_ORDER = ['small_10', 'lower_mid_25', 'mid_50', 'upper_mid_100', 'large_100_plus']
 DURATION_STEP = 900  # 15-minute ticks for the duration select_slider
 
 DISPLAY_COLS = [
     'benchmark_architecture', 'gold_label_policy', 'suite', 'review_key',
-    'size_band', 'gatekeeper_preset',
-    'n_runs', 'n_scored_runs', 'n_completed_runs', 'n_incomplete_runs', 'n_error_runs',
-    'n_studies', 'gold_pass_count', 'balance',
-    'mean_accuracy', 'mean_precision', 'mean_recall', 'mean_f1',
-    'mean_total_tokens', 'mean_duration_seconds',
+    'size_band',
+    'gatekeeper_preset',
+    # 'n_runs', 'n_scored_runs', 'n_completed_runs', 'n_incomplete_runs', 'n_error_runs',
+    'n_studies',
+    'gold_pass_count',
+    'balance',
+    # 'mean_accuracy', 'mean_precision', 'mean_recall', 'mean_f1',
+    'accuracy', 'precision', 'recall', 'f1',
+    'total_tokens',
+    'duration_seconds',
 ]
 
 
-def resolve_data_dir() -> str:
+# def resolve_data_dir() -> str:
+#     parser = argparse.ArgumentParser(add_help=False)
+#     parser.add_argument("--benchmark-results-dir", type=str, default=None)
+#     try:
+#         args, _ = parser.parse_known_args(sys.argv[1:])
+#     except SystemExit:
+#         args = argparse.Namespace(benchmark_results_dir=None)
+#     if args.benchmark_results_dir is not None:
+#         return args.benchmark_results_dir
+#     env_value = os.environ.get(ENV_VAR_NAME)
+#     if env_value is not None:
+#         return env_value
+#     return DEFAULT_BENCHMARK_RESULTS_DIR
+
+
+def parse_cli_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(add_help=False)
-    parser.add_argument("--benchmark-results-dir", type=str, default=None)
-    try:
-        args, _ = parser.parse_known_args(sys.argv[1:])
-    except SystemExit:
-        args = argparse.Namespace(benchmark_results_dir=None)
-    if args.benchmark_results_dir is not None:
-        return args.benchmark_results_dir
-    env_value = os.environ.get(ENV_VAR_NAME)
-    if env_value is not None:
-        return env_value
-    return DEFAULT_BENCHMARK_RESULTS_DIR
+    parser.add_argument(
+        'benchmark_results_dir',
+        type=str,
+        help='Must be the first argument passed after `--` — placing it after a `nargs=\'+\'` option '
+             '(e.g. `--models`) would cause it to be swallowed as one of that option\'s values.',
+    )
+    parser.add_argument(
+        '--architectures',
+        choices=list(EXPERIMENT_ARCHITECTURE_LABEL_TO_VALUE_INDEX.keys()),
+        nargs='+',
+    )
+    parser.add_argument(
+        '--gold-label-policies',
+        choices=list(GOLD_LABEL_POLICY_LABEL_TO_VALUE_INDEX.keys()),
+        nargs='+',
+    )
+    parser.add_argument(
+        '--logging-level',
+        choices=list(range(len(LOGGING_LEVEL))),
+        type=int,
+        default=LOGGING_LEVEL.index(logging.INFO),
+    )
+    parser.add_argument(
+        '--models',
+        choices=list(MODEL_LABEL_TO_VALUE_INDEX.keys()),
+        nargs='+',
+        help='Explicit definition of models for which to collect the performed runs results. If used, only runs of '
+             'models defined with this argument will be collected, excluding the runs ran with models potentially '
+             'defined with `--ignore-models`.'
+    )
+    parser.add_argument(
+        '--ignore-models',
+        choices=list(MODEL_LABEL_TO_VALUE_INDEX.keys()),
+        nargs='+',
+        help='Definition of models for which to ignore the respective runs.'
+    )
+    parser.add_argument(
+        '--keep-all',
+        action='store_true',
+        help='Keep runs that were not completed or which may have raised an error. By default these are '
+             'filtered out.'
+    )
+    args = parser.parse_args(sys.argv[1:])
+    return args
+
+
+def get_new_runs() -> pd.DataFrame:
+    """Parse CLI args and return the cached DataFrame from the new `load.load_data` loader."""
+    cli_args = parse_cli_args()
+    setup_logger(LOGGER, LOGGING_LEVEL[cli_args.logging_level])
+
+    architectures = set(
+        EXPERIMENT_ARCHITECTURE_LABEL_TO_VALUE_INDEX[a] for a in cli_args.architectures
+    ) if cli_args.architectures else set()
+    gold_label_policies = set(
+        GOLD_LABEL_POLICY_LABEL_TO_VALUE_INDEX[p] for p in cli_args.gold_label_policies
+    ) if cli_args.gold_label_policies else set()
+
+    explicit_models = set(cli_args.models) if cli_args.models else set(MODEL_LABEL_TO_VALUE_INDEX.keys())
+    ignore_models = set(cli_args.ignore_models) if cli_args.ignore_models else set()
+    models = explicit_models - ignore_models
+
+    benchmark_results_dir = Path(os.path.expandvars(cli_args.benchmark_results_dir)).expanduser().resolve().absolute()
+
+    return load_data(
+        benchmark_results_dir,
+        architectures=architectures,
+        gold_label_policies=gold_label_policies,
+        models=models,
+        keep_completed=not cli_args.keep_all,
+    )
 
 
 def fmt_tokens(n: float) -> str:
@@ -64,25 +155,52 @@ def between_or_nan(series: pd.Series, lo, hi) -> pd.Series:
     return series.isna() | series.between(lo, hi)
 
 
-@st.cache_data
-def load_all_data(files: tuple[str, ...]) -> pd.DataFrame:
-    df = pd.concat([load_json(f) for f in files], ignore_index=True)
-    df['balance'] = df['gold_pass_count'] / df['n_studies']
-    return df
+# @st.cache_data
+# def load_all_data(files: tuple[str, ...]) -> pd.DataFrame:
+#     df = pd.concat([load_json(f) for f in files], ignore_index=True)
+#     df['balance'] = df['gold_pass_count'] / df['n_studies']
+#     return df
 
 
-def get_runs() -> pd.DataFrame:
-    """Resolve data directory, find JSON files, and return the cached DataFrame."""
-    data_dir = resolve_data_dir()
-    json_files = find_json_files(data_dir)
-    return load_all_data(tuple(json_files))
+# def get_runs() -> pd.DataFrame:
+#     """Resolve data directory, find JSON files, and return the cached DataFrame."""
+#     data_dir = resolve_data_dir()
+#     json_files = find_json_files(data_dir)
+#     return load_all_data(tuple(json_files))
+
+
+_HEATMAP_ZERO_COLOR = '#c0392b'
+_HEATMAP_DARK_GREEN = '#0b3d1f'
+_HEATMAP_LIGHT_GREEN = '#c8f0d8'
+
+
+def _lerp_hex(c1: str, c2: str, t: float) -> str:
+    r1, g1, b1 = int(c1[1:3], 16), int(c1[3:5], 16), int(c1[5:7], 16)
+    r2, g2, b2 = int(c2[1:3], 16), int(c2[3:5], 16), int(c2[5:7], 16)
+    r = round(r1 + (r2 - r1) * t)
+    g = round(g1 + (g2 - g1) * t)
+    b = round(b1 + (b2 - b1) * t)
+    return f'#{r:02x}{g:02x}{b:02x}'
 
 
 def make_colorscale(z_max: int) -> list:
-    if z_max > 0:
-        eps = 0.5 / z_max
-        return [[0.0, '#c0392b'], [eps, '#27ae60'], [1.0, '#145a32']]
-    return [[0.0, '#c0392b'], [1.0, '#c0392b']]
+    """Quantized step colorscale for non-negative integer values 0..z_max: 0 is red,
+    1..z_max are greens running from dark (1) to light (z_max)."""
+    if z_max <= 0:
+        return [[0.0, _HEATMAP_ZERO_COLOR], [1.0, _HEATMAP_ZERO_COLOR]]
+
+    greens = [
+        _lerp_hex(_HEATMAP_DARK_GREEN, _HEATMAP_LIGHT_GREEN, i / (z_max - 1) if z_max > 1 else 0.0)
+        for i in range(z_max)
+    ]
+    colors = [_HEATMAP_ZERO_COLOR] + greens
+
+    n_bands = z_max + 1
+    colorscale = []
+    for i, color in enumerate(colors):
+        colorscale.append([i / n_bands, color])
+        colorscale.append([(i + 1) / n_bands, color])
+    return colorscale
 
 
 def render_heatmap(
@@ -98,11 +216,11 @@ def render_heatmap(
         x=pivot.columns.tolist(),
         y=pivot.index.tolist(),
         colorscale=make_colorscale(z_max),
-        zmin=0,
-        zmax=max(1, z_max),
+        zmin=-0.5,
+        zmax=z_max + 0.5,
         text=pivot.values,
         texttemplate="%{text}",
-        textfont=dict(color='white', size=12),
+        textfont=dict(size=12, shadow='auto'),
         showscale=True,
         colorbar=dict(tickmode='linear', tick0=0, dtick=1),
     ))
@@ -131,11 +249,11 @@ def render_heatmap(
 
 DIST_METRICS: list[tuple] = [
     # (field, label, transform, x_max)
-    ('mean_f1',               'Mean F1',        None,              1.0),
-    ('mean_recall',           'Mean Recall',    None,              1.0),
-    ('mean_precision',        'Mean Precision', None,              1.0),
-    ('mean_duration_seconds', 'Runtime',        None,              None),
-    ('mean_total_tokens',     'Tokens (K)',     lambda v: v / 1e3, None),
+    ('f1',               'F1',        None,              1.0),
+    ('recall',           'Recall',    None,              1.0),
+    ('precision',        'Precision', None,              1.0),
+    ('duration_seconds', 'Runtime',        None,              None),
+    ('total_tokens',     'Tokens (K)',     lambda v: v / 1e3, None),
 ]
 
 KDE_PALETTE = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c']
@@ -271,11 +389,11 @@ def render_summary(df: pd.DataFrame, group_col: str, group_label: str, groups: l
         df
         .groupby(group_col, sort=False)
         .agg(
-            mean_f1=('mean_f1', 'mean'),
-            mean_recall=('mean_recall', 'mean'),
-            mean_precision=('mean_precision', 'mean'),
-            mean_duration_seconds=('mean_duration_seconds', 'mean'),
-            mean_total_tokens=('mean_total_tokens', 'mean'),
+            mean_f1=('f1', 'mean'),
+            mean_recall=('recall', 'mean'),
+            mean_precision=('precision', 'mean'),
+            mean_duration_seconds=('duration_seconds', 'mean'),
+            mean_total_tokens=('total_tokens', 'mean'),
         )
         .reindex(groups)
         .reset_index()
