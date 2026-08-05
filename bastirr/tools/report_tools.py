@@ -88,6 +88,7 @@ _KEY_ALIASES: dict[str, list[str]] = {
     "reason":          ["reason", "rationale", "justification", "explanation"],
     "decisions_list":  ["decisions", "screening_decisions",
                         "screening_results"],
+    "decision_confidence": ["confidence"],
 
     # ---- Critic / synthesis fields ----
     "synthesis":       ["synthesis", "narrative_synthesis", "narrative",
@@ -404,6 +405,7 @@ def _normalize_decision(d: dict) -> dict:
         "study_index": _alias_get(d, "study_index", default=0),
         "decision": (_alias_get(d, "decision", default="") or "").upper(),
         "reason": _alias_get(d, "reason", default=""),
+        "confidence": _alias_get(d, "decision_confidence", default="").upper(),
     }
 
 
@@ -485,22 +487,28 @@ def _parse_decisions(gatekeeper_response: str) -> list[dict]:
         r"[\"']?(?:reason|rationale)[\"']?\s*[:=]\s*[\"'](.+?)[\"'](?=\s*[,}])",
         re.IGNORECASE | re.DOTALL,
     )
+    confidence_pat = re.compile(
+        r"[\"']?confidence[\"']?\s*[:=]\s*[\"']?(HIGH|MEDIUM|LOW)[\"']?",
+        re.IGNORECASE,
+    )
     for block in block_pattern.finditer(gatekeeper_response):
         text = block.group()
         m_idx = idx_pat.search(text)
         m_dec = dec_pat.search(text)
         if m_idx and m_dec:
             m_reason = reason_pat.search(text)
+            m_confidence = confidence_pat.search(text)
             decisions.append({
                 "study_index": int(m_idx.group(1)),
                 "decision": m_dec.group(1).upper(),
                 "reason": m_reason.group(1).strip() if m_reason else "",
+                "confidence": m_confidence.group(1).strip().upper() if m_confidence else "",
             })
 
     # Last resort: look for simple patterns like "Study N: INCLUDE/EXCLUDE"
     if not decisions:
         simple = re.compile(
-            r'(?:Study|study)\s*(\d+)\s*[:–—-]\s*(INCLUDE|EXCLUDE)\s*(?:[-–—:]\s*(.+?))?(?:\n|$)',
+            r'(?:Study|study)\s*(\d+)\s*[:–—-]\s*(INCLUDE|EXCLUDE)\s*(?:[-–—:]\s*(.+?))?\s*[:–—-]\s*(HIGH|MEDIUM|LOW)(?:\n|$)',
             re.IGNORECASE,
         )
         for m in simple.finditer(gatekeeper_response):
@@ -508,6 +516,7 @@ def _parse_decisions(gatekeeper_response: str) -> list[dict]:
                 "study_index": int(m.group(1)),
                 "decision": m.group(2).upper(),
                 "reason": (m.group(3) or "").strip(),
+                "confidence": m.group(4).upper()
             })
 
     return decisions
