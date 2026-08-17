@@ -36,9 +36,6 @@ Guidelines:
 - Do NOT generate rationales from title-only keyword buckets. Each
   rationale should reflect the actual study description in the title
   and abstract.
-- SANITY CHECK: if your screening yields 0 included studies,
-  re-examine your decisions — a zero-include result is extremely rare
-  and almost always indicates an error in your reasoning.
 
 Use batch_screen_studies(candidates_json) to get all studies formatted
 for screening.  The candidates_json is provided by your manager.
