@@ -1,0 +1,673 @@
+{
+  "expected_n_studies": 83,
+  "completed_count": 83,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (nadroparin) to placebo in ambulatory cancer patients receiving chemotherapy. Meets all selection criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (dalteparin) to no LMWH in SCLC patients receiving chemotherapy. Meets selection criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing warfarin to no warfarin in SCLC patients receiving chemotherapy. Meets selection criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (enoxaparin) to control in SCLC patients. Meets selection criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but lacks control group - only compared 3 doses of dalteparin without placebo or no-treatment arm.",
+      "confidence": ""
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but in children with ALL, not ambulatory cancer patients receiving chemotherapy.",
+      "confidence": ""
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (certoparin) to placebo in ambulatory cancer patients with metastatic breast or lung cancer.",
+      "confidence": ""
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (dalteparin) to placebo in patients with advanced malignancy.",
+      "confidence": ""
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing dalteparin to observation in ambulatory cancer patients at high risk for VTE.",
+      "confidence": ""
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (nadroparin) to placebo in patients with advanced malignancy.",
+      "confidence": ""
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing two anticoagulants (aspirin vs LMWH enoxaparin) in myeloma patients receiving lenalidomide.",
+      "confidence": ""
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing heparin to no heparin in SCLC patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing bemiparin to no bemiparin in SCLC patients receiving chemoradiotherapy.",
+      "confidence": ""
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing warfarin to placebo in metastatic breast cancer patients receiving chemotherapy.",
+      "confidence": ""
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing apixaban to placebo in cancer patients receiving chemotherapy.",
+      "confidence": ""
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH to no LMWH in lung cancer patients (FRAGMATIC trial).",
+      "confidence": ""
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing dalteparin to no dalteparin in pancreatic cancer patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing warfarin to no warfarin in limited-stage SCLC patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but in children with ALL, not ambulatory cancer patients receiving chemotherapy.",
+      "confidence": ""
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing three anticoagulants (aspirin, warfarin, LMWH) in myeloma patients on thalidomide.",
+      "confidence": ""
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing enoxaparin to no enoxaparin in ambulatory pancreatic cancer patients (CONKO-004).",
+      "confidence": ""
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing dalteparin to placebo in patients with malignant glioma (PRODIGE).",
+      "confidence": ""
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH to standard care in patients with advanced cancer.",
+      "confidence": ""
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing nadroparin to no nadroparin in cancer patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing warfarin to no warfarin in SCLC patients (VA Study 75).",
+      "confidence": ""
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing enoxaparin to observation in cancer patients with elevated TFMP (Microtec).",
+      "confidence": ""
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing semuloparin to placebo in cancer patients receiving chemotherapy.",
+      "confidence": ""
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing apixaban to placebo in ambulatory cancer patients starting chemotherapy (AVERT).",
+      "confidence": ""
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing rivaroxaban to placebo in high-risk ambulatory cancer patients (CASSINI).",
+      "confidence": ""
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Subgroup analysis of FRAGMATIC trial, not a separate RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but in adjuvant setting (resected NSCLC), not primary prophylaxis in ambulatory patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Phase 2 trial with 3 groups - not a proper RCT comparing anticoagulant to no anticoagulant.",
+      "confidence": ""
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not a randomized trial - vena cava filter placement vs conservative therapy.",
+      "confidence": ""
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but in adjuvant setting (resected NSCLC), not primary prophylaxis in ambulatory patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Subgroup analysis of CERTIFY trial, not a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but in postoperative patients, not ambulatory cancer patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study comparing two groups based on practice, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective cohort study, not a randomized trial. Also in children with ALL.",
+      "confidence": ""
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective analysis of three series, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Economic evaluation of a trial, not a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational cohort study, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational cohort study, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about meta-analysis, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Guideline document, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective analysis of two RCTs, not a primary RCT.",
+      "confidence": ""
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Guideline document, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Guideline document, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study developing a risk model, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Consensus statement/guideline, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational cohort study, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 59,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 60,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective study, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 61,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective follow-up study, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 62,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 63,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "About osteoarthritis, not cancer. Not relevant to review topic.",
+      "confidence": ""
+    },
+    {
+      "study_index": 64,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Definition document, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 65,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 66,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 67,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 68,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 69,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but comparing two chemotherapy regimens, not anticoagulant vs no anticoagulant.",
+      "confidence": ""
+    },
+    {
+      "study_index": 70,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Letter/commentary, not a primary study.",
+      "confidence": ""
+    },
+    {
+      "study_index": 71,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but in hospitalized medical patients, not ambulatory cancer patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 72,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "No abstract available - cannot assess whether it meets selection criteria.",
+      "confidence": ""
+    },
+    {
+      "study_index": 73,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but in hospitalized palliative care patients, not ambulatory cancer patients.",
+      "confidence": ""
+    },
+    {
+      "study_index": 74,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Phase II trial of isoquercetin (a flavonoid), not an anticoagulant.",
+      "confidence": ""
+    },
+    {
+      "study_index": 75,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 76,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 77,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 78,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 79,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 80,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 81,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "About osteoarthritis, not cancer. Not relevant to review topic.",
+      "confidence": ""
+    },
+    {
+      "study_index": 82,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study, not a randomized trial.",
+      "confidence": ""
+    },
+    {
+      "study_index": 83,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "About risk assessment score development, not a randomized trial.",
+      "confidence": ""
+    }
+  ]
+}

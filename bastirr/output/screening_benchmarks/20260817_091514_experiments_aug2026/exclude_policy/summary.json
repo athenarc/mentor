@@ -1,0 +1,2826 @@
+{
+  "generated_at": "2026-08-17T10:15:09.274589",
+  "suite": "experiments_aug2026",
+  "repeats": 2,
+  "review_keys": [
+    "14651858_cd008500_pub5",
+    "14651858_cd005460_pub3"
+  ],
+  "model_presets": [
+    "qwen3.5_27b-temp0"
+  ],
+  "orchestrator_policy": "match-gatekeeper",
+  "orchestrator_preset": "match-gatekeeper",
+  "gold_label_policy": "exclude_label_0_5",
+  "runs": [
+    {
+      "gold_label_policy": "exclude_label_0_5",
+      "gold_label_policy_description": "dataset label 1.0 counts as INCLUDE; 0.5 and 0.0 count as EXCLUDE",
+      "n_studies": 83,
+      "gold_pass_count": 31,
+      "gold_exclude_count": 52,
+      "predicted_pass_count": 27,
+      "predicted_exclude_count": 56,
+      "screening_decision_count": 83,
+      "missing_decision_count": 0,
+      "duplicate_decision_count": 0,
+      "invalid_decision_count": 0,
+      "decision_coverage": 1.0,
+      "parse_success": true,
+      "tp": 26,
+      "fp": 1,
+      "tn": 51,
+      "fn": 5,
+      "accuracy": 0.927710843373494,
+      "precision": 0.9629629629629629,
+      "recall": 0.8387096774193549,
+      "specificity": 0.9807692307692307,
+      "f1": 0.896551724137931,
+      "benchmark_run_id": "14651858_cd008500_pub5_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run1",
+      "suite": "experiments_aug2026",
+      "review_key": "14651858_cd008500_pub5",
+      "review_title": "Primary prophylaxis for venous thromboembolism in ambulatory cancer patients receiving chemotherapy",
+      "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008500.pub5/full",
+      "split": "val",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "run_index": 1,
+      "run_status": "completed",
+      "error": "",
+      "screening_completion_status": "complete",
+      "scored_for_aggregate": true,
+      "screening_attempt_count": 1,
+      "rerun_triggered": false,
+      "incomplete_reason": "",
+      "duration_seconds": 2263.6053701010096,
+      "run_dir": "/home/deligianp/Code/python/SR-agents/bastirr/output/screening_benchmarks/20260817_091514_experiments_aug2026/exclude_policy/runs/14651858_cd008500_pub5_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run1",
+      "gatekeeper_preset": "qwen3.5_27b-temp0",
+      "gatekeeper_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "gatekeeper_backend": "openai",
+      "gatekeeper_model_id": "qwen/qwen3.5-27b",
+      "gatekeeper_api_base": "https://openrouter.ai/api/v1",
+      "gatekeeper_api_key_source": "OPENROUTER_API_KEY",
+      "orchestrator_policy": "match-gatekeeper",
+      "orchestrator_preset": "qwen3.5_27b-temp0",
+      "orchestrator_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "orchestrator_backend": "openai",
+      "orchestrator_model_id": "qwen/qwen3.5-27b",
+      "orchestrator_api_base": "https://openrouter.ai/api/v1",
+      "orchestrator_api_key_source": "OPENROUTER_API_KEY",
+      "empty_rationale_count": 0,
+      "duplicate_rationale_count": 2,
+      "unique_rationale_count": 81,
+      "rationale_reuse_rate": 0.024096385542168676,
+      "total_input_tokens": 3164944,
+      "total_output_tokens": 97390,
+      "total_tokens": 3262334,
+      "total_steps": 37,
+      "action_step_count": 37,
+      "planning_step_count": 0,
+      "error_step_count": 5,
+      "retry_count": 0,
+      "resume_count": 0,
+      "duration_per_study_seconds": 27.27235385663867,
+      "agent_step_counts": {
+        "orchestrator": 10,
+        "gatekeeper": 27
+      },
+      "agent_input_tokens": {
+        "orchestrator": 64569,
+        "gatekeeper": 3100375
+      },
+      "agent_output_tokens": {
+        "orchestrator": 2942,
+        "gatekeeper": 94448
+      },
+      "agent_duration_seconds": {
+        "orchestrator": 2263.3090262413025,
+        "gatekeeper": 2196.2137541770935
+      },
+      "orchestrator_step_count": 10,
+      "gatekeeper_step_count": 27,
+      "orchestrator_input_tokens": 64569,
+      "orchestrator_output_tokens": 2942,
+      "gatekeeper_input_tokens": 3100375,
+      "gatekeeper_output_tokens": 94448,
+      "cost": 1.000324805,
+      "additional_metadata": {
+        "routing_metadata": [
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, attempts=2, selected=Novita",
+            "attempt": 2,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            },
+            "attempts": [
+              {
+                "provider": "DeepInfra",
+                "model": "qwen/qwen3.5-27b-20260224",
+                "status": 0
+              },
+              {
+                "provider": "Novita",
+                "model": "qwen/qwen3.5-27b-20260224",
+                "status": 200
+              }
+            ]
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=DeepInfra",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=DeepInfra",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Phala",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Phala",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Phala",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=DeepInfra",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=DeepInfra",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "temperature": 0.0,
+      "screening_inspection_json": "/home/deligianp/Code/python/SR-agents/bastirr/output/screening_benchmarks/20260817_091514_experiments_aug2026/exclude_policy/runs/14651858_cd008500_pub5_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run1/screening_inspection.json",
+      "screening_inspection_markdown": "/home/deligianp/Code/python/SR-agents/bastirr/output/screening_benchmarks/20260817_091514_experiments_aug2026/exclude_policy/runs/14651858_cd008500_pub5_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run1/screening_inspection.md"
+    },
+    {
+      "gold_label_policy": "exclude_label_0_5",
+      "gold_label_policy_description": "dataset label 1.0 counts as INCLUDE; 0.5 and 0.0 count as EXCLUDE",
+      "n_studies": 83,
+      "gold_pass_count": 31,
+      "gold_exclude_count": 52,
+      "predicted_pass_count": 26,
+      "predicted_exclude_count": 57,
+      "screening_decision_count": 83,
+      "missing_decision_count": 0,
+      "duplicate_decision_count": 0,
+      "invalid_decision_count": 0,
+      "decision_coverage": 1.0,
+      "parse_success": true,
+      "tp": 26,
+      "fp": 0,
+      "tn": 52,
+      "fn": 5,
+      "accuracy": 0.9397590361445783,
+      "precision": 1.0,
+      "recall": 0.8387096774193549,
+      "specificity": 1.0,
+      "f1": 0.9122807017543859,
+      "benchmark_run_id": "14651858_cd008500_pub5_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run2",
+      "suite": "experiments_aug2026",
+      "review_key": "14651858_cd008500_pub5",
+      "review_title": "Primary prophylaxis for venous thromboembolism in ambulatory cancer patients receiving chemotherapy",
+      "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008500.pub5/full",
+      "split": "val",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "run_index": 2,
+      "run_status": "completed",
+      "error": "",
+      "screening_completion_status": "complete",
+      "scored_for_aggregate": true,
+      "screening_attempt_count": 1,
+      "rerun_triggered": false,
+      "incomplete_reason": "",
+      "duration_seconds": 345.96868605200143,
+      "run_dir": "/home/deligianp/Code/python/SR-agents/bastirr/output/screening_benchmarks/20260817_091514_experiments_aug2026/exclude_policy/runs/14651858_cd008500_pub5_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run2",
+      "gatekeeper_preset": "qwen3.5_27b-temp0",
+      "gatekeeper_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "gatekeeper_backend": "openai",
+      "gatekeeper_model_id": "qwen/qwen3.5-27b",
+      "gatekeeper_api_base": "https://openrouter.ai/api/v1",
+      "gatekeeper_api_key_source": "OPENROUTER_API_KEY",
+      "orchestrator_policy": "match-gatekeeper",
+      "orchestrator_preset": "qwen3.5_27b-temp0",
+      "orchestrator_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "orchestrator_backend": "openai",
+      "orchestrator_model_id": "qwen/qwen3.5-27b",
+      "orchestrator_api_base": "https://openrouter.ai/api/v1",
+      "orchestrator_api_key_source": "OPENROUTER_API_KEY",
+      "empty_rationale_count": 0,
+      "duplicate_rationale_count": 23,
+      "unique_rationale_count": 60,
+      "rationale_reuse_rate": 0.27710843373493976,
+      "total_input_tokens": 271051,
+      "total_output_tokens": 21672,
+      "total_tokens": 292723,
+      "total_steps": 11,
+      "action_step_count": 11,
+      "planning_step_count": 0,
+      "error_step_count": 2,
+      "retry_count": 0,
+      "resume_count": 0,
+      "duration_per_study_seconds": 4.1682974223132705,
+      "agent_step_counts": {
+        "orchestrator": 7,
+        "gatekeeper": 4
+      },
+      "agent_input_tokens": {
+        "orchestrator": 49234,
+        "gatekeeper": 221817
+      },
+      "agent_output_tokens": {
+        "orchestrator": 2475,
+        "gatekeeper": 19197
+      },
+      "agent_duration_seconds": {
+        "orchestrator": 345.94458508491516,
+        "gatekeeper": 292.0949766635895
+      },
+      "orchestrator_step_count": 7,
+      "gatekeeper_step_count": 4,
+      "orchestrator_input_tokens": 49234,
+      "orchestrator_output_tokens": 2475,
+      "gatekeeper_input_tokens": 221817,
+      "gatekeeper_output_tokens": 19197,
+      "cost": 0.10548924500000001,
+      "additional_metadata": {
+        "routing_metadata": [
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=DeepInfra",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=DeepInfra",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=DeepInfra",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Phala",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "temperature": 0.0,
+      "screening_inspection_json": "/home/deligianp/Code/python/SR-agents/bastirr/output/screening_benchmarks/20260817_091514_experiments_aug2026/exclude_policy/runs/14651858_cd008500_pub5_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run2/screening_inspection.json",
+      "screening_inspection_markdown": "/home/deligianp/Code/python/SR-agents/bastirr/output/screening_benchmarks/20260817_091514_experiments_aug2026/exclude_policy/runs/14651858_cd008500_pub5_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run2/screening_inspection.md"
+    },
+    {
+      "gold_label_policy": "exclude_label_0_5",
+      "gold_label_policy_description": "dataset label 1.0 counts as INCLUDE; 0.5 and 0.0 count as EXCLUDE",
+      "n_studies": 33,
+      "gold_pass_count": 4,
+      "gold_exclude_count": 29,
+      "predicted_pass_count": 4,
+      "predicted_exclude_count": 29,
+      "screening_decision_count": 33,
+      "missing_decision_count": 0,
+      "duplicate_decision_count": 0,
+      "invalid_decision_count": 0,
+      "decision_coverage": 1.0,
+      "parse_success": true,
+      "tp": 3,
+      "fp": 1,
+      "tn": 28,
+      "fn": 1,
+      "accuracy": 0.9393939393939394,
+      "precision": 0.75,
+      "recall": 0.75,
+      "specificity": 0.9655172413793104,
+      "f1": 0.75,
+      "benchmark_run_id": "14651858_cd005460_pub3_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run1",
+      "suite": "experiments_aug2026",
+      "review_key": "14651858_cd005460_pub3",
+      "review_title": "Traditional birth attendant training for improving health behaviours and pregnancy outcomes",
+      "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005460.pub3/full",
+      "split": "dev",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "run_index": 1,
+      "run_status": "completed",
+      "error": "",
+      "screening_completion_status": "complete",
+      "scored_for_aggregate": true,
+      "screening_attempt_count": 1,
+      "rerun_triggered": false,
+      "incomplete_reason": "",
+      "duration_seconds": 651.8681014449976,
+      "run_dir": "/home/deligianp/Code/python/SR-agents/bastirr/output/screening_benchmarks/20260817_091514_experiments_aug2026/exclude_policy/runs/14651858_cd005460_pub3_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run1",
+      "gatekeeper_preset": "qwen3.5_27b-temp0",
+      "gatekeeper_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "gatekeeper_backend": "openai",
+      "gatekeeper_model_id": "qwen/qwen3.5-27b",
+      "gatekeeper_api_base": "https://openrouter.ai/api/v1",
+      "gatekeeper_api_key_source": "OPENROUTER_API_KEY",
+      "orchestrator_policy": "match-gatekeeper",
+      "orchestrator_preset": "qwen3.5_27b-temp0",
+      "orchestrator_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "orchestrator_backend": "openai",
+      "orchestrator_model_id": "qwen/qwen3.5-27b",
+      "orchestrator_api_base": "https://openrouter.ai/api/v1",
+      "orchestrator_api_key_source": "OPENROUTER_API_KEY",
+      "empty_rationale_count": 0,
+      "duplicate_rationale_count": 0,
+      "unique_rationale_count": 33,
+      "rationale_reuse_rate": 0.0,
+      "total_input_tokens": 325214,
+      "total_output_tokens": 20033,
+      "total_tokens": 345247,
+      "total_steps": 10,
+      "action_step_count": 10,
+      "planning_step_count": 0,
+      "error_step_count": 2,
+      "retry_count": 0,
+      "resume_count": 0,
+      "duration_per_study_seconds": 19.753578831666594,
+      "agent_step_counts": {
+        "orchestrator": 4,
+        "gatekeeper": 6
+      },
+      "agent_input_tokens": {
+        "orchestrator": 54917,
+        "gatekeeper": 270297
+      },
+      "agent_output_tokens": {
+        "orchestrator": 1231,
+        "gatekeeper": 18802
+      },
+      "agent_duration_seconds": {
+        "orchestrator": 651.8444499969482,
+        "gatekeeper": 566.2090954780579
+      },
+      "orchestrator_step_count": 4,
+      "gatekeeper_step_count": 6,
+      "orchestrator_input_tokens": 54917,
+      "orchestrator_output_tokens": 1231,
+      "gatekeeper_input_tokens": 270297,
+      "gatekeeper_output_tokens": 18802,
+      "cost": 0.120478705,
+      "additional_metadata": {
+        "routing_metadata": [
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Phala",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Phala",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Novita",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=DeepInfra",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "temperature": 0.0,
+      "screening_inspection_json": "/home/deligianp/Code/python/SR-agents/bastirr/output/screening_benchmarks/20260817_091514_experiments_aug2026/exclude_policy/runs/14651858_cd005460_pub3_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run1/screening_inspection.json",
+      "screening_inspection_markdown": "/home/deligianp/Code/python/SR-agents/bastirr/output/screening_benchmarks/20260817_091514_experiments_aug2026/exclude_policy/runs/14651858_cd005460_pub3_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run1/screening_inspection.md"
+    },
+    {
+      "gold_label_policy": "exclude_label_0_5",
+      "gold_label_policy_description": "dataset label 1.0 counts as INCLUDE; 0.5 and 0.0 count as EXCLUDE",
+      "n_studies": 33,
+      "gold_pass_count": 4,
+      "gold_exclude_count": 29,
+      "predicted_pass_count": 4,
+      "predicted_exclude_count": 29,
+      "screening_decision_count": 33,
+      "missing_decision_count": 0,
+      "duplicate_decision_count": 0,
+      "invalid_decision_count": 0,
+      "decision_coverage": 1.0,
+      "parse_success": true,
+      "tp": 3,
+      "fp": 1,
+      "tn": 28,
+      "fn": 1,
+      "accuracy": 0.9393939393939394,
+      "precision": 0.75,
+      "recall": 0.75,
+      "specificity": 0.9655172413793104,
+      "f1": 0.75,
+      "benchmark_run_id": "14651858_cd005460_pub3_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run2",
+      "suite": "experiments_aug2026",
+      "review_key": "14651858_cd005460_pub3",
+      "review_title": "Traditional birth attendant training for improving health behaviours and pregnancy outcomes",
+      "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005460.pub3/full",
+      "split": "dev",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "run_index": 2,
+      "run_status": "completed",
+      "error": "",
+      "screening_completion_status": "complete",
+      "scored_for_aggregate": true,
+      "screening_attempt_count": 2,
+      "rerun_triggered": true,
+      "incomplete_reason": "",
+      "duration_seconds": 319.73376011000073,
+      "run_dir": "/home/deligianp/Code/python/SR-agents/bastirr/output/screening_benchmarks/20260817_091514_experiments_aug2026/exclude_policy/runs/14651858_cd005460_pub3_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run2",
+      "gatekeeper_preset": "qwen3.5_27b-temp0",
+      "gatekeeper_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "gatekeeper_backend": "openai",
+      "gatekeeper_model_id": "qwen/qwen3.5-27b",
+      "gatekeeper_api_base": "https://openrouter.ai/api/v1",
+      "gatekeeper_api_key_source": "OPENROUTER_API_KEY",
+      "orchestrator_policy": "match-gatekeeper",
+      "orchestrator_preset": "qwen3.5_27b-temp0",
+      "orchestrator_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "orchestrator_backend": "openai",
+      "orchestrator_model_id": "qwen/qwen3.5-27b",
+      "orchestrator_api_base": "https://openrouter.ai/api/v1",
+      "orchestrator_api_key_source": "OPENROUTER_API_KEY",
+      "empty_rationale_count": 0,
+      "duplicate_rationale_count": 1,
+      "unique_rationale_count": 32,
+      "rationale_reuse_rate": 0.030303030303030304,
+      "total_input_tokens": 167005,
+      "total_output_tokens": 9157,
+      "total_tokens": 176162,
+      "total_steps": 13,
+      "action_step_count": 13,
+      "planning_step_count": 0,
+      "error_step_count": 2,
+      "retry_count": 1,
+      "resume_count": 0,
+      "duration_per_study_seconds": 9.688901821515174,
+      "agent_step_counts": {
+        "orchestrator": 9,
+        "gatekeeper": 4
+      },
+      "agent_input_tokens": {
+        "orchestrator": 53880,
+        "gatekeeper": 113125
+      },
+      "agent_output_tokens": {
+        "orchestrator": 2219,
+        "gatekeeper": 6938
+      },
+      "agent_duration_seconds": {
+        "orchestrator": 319.6797528266907,
+        "gatekeeper": 157.28388214111328
+      },
+      "orchestrator_step_count": 9,
+      "gatekeeper_step_count": 4,
+      "orchestrator_input_tokens": 53880,
+      "orchestrator_output_tokens": 2219,
+      "gatekeeper_input_tokens": 113125,
+      "gatekeeper_output_tokens": 6938,
+      "cost": 0.06298784,
+      "additional_metadata": {
+        "routing_metadata": [
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Phala",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Phala",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=DeepInfra",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Phala",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=DeepInfra",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Phala",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=DeepInfra",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Phala",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          },
+          {
+            "requested": "qwen/qwen3.5-27b",
+            "strategy": "direct",
+            "region": "ATH",
+            "summary": "available=4, selected=Alibaba",
+            "attempt": 1,
+            "is_byok": false,
+            "endpoints": {
+              "total": 6,
+              "available": [
+                {
+                  "provider": "Alibaba",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": true
+                },
+                {
+                  "provider": "Phala",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "Novita",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                },
+                {
+                  "provider": "DeepInfra",
+                  "model": "qwen/qwen3.5-27b-20260224",
+                  "selected": false
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "temperature": 0.0,
+      "screening_inspection_json": "/home/deligianp/Code/python/SR-agents/bastirr/output/screening_benchmarks/20260817_091514_experiments_aug2026/exclude_policy/runs/14651858_cd005460_pub3_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run2/screening_inspection.json",
+      "screening_inspection_markdown": "/home/deligianp/Code/python/SR-agents/bastirr/output/screening_benchmarks/20260817_091514_experiments_aug2026/exclude_policy/runs/14651858_cd005460_pub3_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run2/screening_inspection.md"
+    }
+  ],
+  "leaderboard": [
+    {
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "gatekeeper_preset": "qwen3.5_27b-temp0",
+      "gatekeeper_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "gatekeeper_backend": "openai",
+      "gatekeeper_api_base": "https://openrouter.ai/api/v1",
+      "orchestrator_policy": "match-gatekeeper",
+      "orchestrator_preset": "qwen3.5_27b-temp0",
+      "orchestrator_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "orchestrator_backend": "openai",
+      "orchestrator_api_base": "https://openrouter.ai/api/v1",
+      "n_runs": 4,
+      "n_scored_runs": 4,
+      "n_completed_runs": 4,
+      "n_incomplete_runs": 0,
+      "n_error_runs": 0,
+      "n_unique_reviews": 2,
+      "parse_success_rate": 1.0,
+      "mean_decision_coverage": 1.0,
+      "mean_accuracy": 0.9365644395764878,
+      "mean_precision": 0.8657407407407407,
+      "mean_recall": 0.7943548387096775,
+      "mean_specificity": 0.9779509283819628,
+      "mean_f1": 0.8272081064730792,
+      "mean_duration_seconds": 895.2939794270023,
+      "mean_duration_per_study_seconds": 15.220782983033427,
+      "mean_total_input_tokens": 982053.5,
+      "mean_total_output_tokens": 37063.0,
+      "mean_total_tokens": 1019116.5,
+      "mean_total_steps": 17.75,
+      "mean_orchestrator_steps": 7.5,
+      "mean_gatekeeper_steps": 10.25,
+      "mean_error_steps": 2.75,
+      "mean_retry_count": 0.25,
+      "mean_resume_count": 0.0,
+      "mean_empty_rationale_count": 0.0,
+      "mean_duplicate_rationale_count": 6.5,
+      "mean_rationale_reuse_rate": 0.08287696239503468
+    }
+  ],
+  "review_leaderboard": [
+    {
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "review_key": "14651858_cd005460_pub3",
+      "review_title": "Traditional birth attendant training for improving health behaviours and pregnancy outcomes",
+      "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005460.pub3/full",
+      "split": "dev",
+      "n_studies": 33,
+      "gold_pass_count": 4,
+      "gold_exclude_count": 29,
+      "gatekeeper_preset": "qwen3.5_27b-temp0",
+      "gatekeeper_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "gatekeeper_backend": "openai",
+      "gatekeeper_api_base": "https://openrouter.ai/api/v1",
+      "orchestrator_policy": "match-gatekeeper",
+      "orchestrator_preset": "qwen3.5_27b-temp0",
+      "orchestrator_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "orchestrator_backend": "openai",
+      "orchestrator_api_base": "https://openrouter.ai/api/v1",
+      "n_runs": 2,
+      "n_scored_runs": 2,
+      "n_completed_runs": 2,
+      "n_incomplete_runs": 0,
+      "n_error_runs": 0,
+      "parse_success_rate": 1.0,
+      "mean_decision_coverage": 1.0,
+      "mean_accuracy": 0.9393939393939394,
+      "mean_precision": 0.75,
+      "mean_recall": 0.75,
+      "mean_specificity": 0.9655172413793104,
+      "mean_f1": 0.75,
+      "mean_duration_seconds": 485.80093077749916,
+      "mean_duration_per_study_seconds": 14.721240326590884,
+      "mean_total_tokens": 260704.5,
+      "mean_total_steps": 11.5,
+      "mean_error_steps": 2.0,
+      "mean_retry_count": 0.5,
+      "mean_resume_count": 0.0,
+      "mean_empty_rationale_count": 0.0,
+      "mean_duplicate_rationale_count": 0.5,
+      "mean_rationale_reuse_rate": 0.015151515151515152
+    },
+    {
+      "gold_label_policy": "exclude_label_0_5",
+      "benchmark_architecture": "batch_orchestrator_v1",
+      "review_key": "14651858_cd008500_pub5",
+      "review_title": "Primary prophylaxis for venous thromboembolism in ambulatory cancer patients receiving chemotherapy",
+      "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008500.pub5/full",
+      "split": "val",
+      "n_studies": 83,
+      "gold_pass_count": 31,
+      "gold_exclude_count": 52,
+      "gatekeeper_preset": "qwen3.5_27b-temp0",
+      "gatekeeper_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "gatekeeper_backend": "openai",
+      "gatekeeper_api_base": "https://openrouter.ai/api/v1",
+      "orchestrator_policy": "match-gatekeeper",
+      "orchestrator_preset": "qwen3.5_27b-temp0",
+      "orchestrator_model_label": "qwen3.5_27b-temp0 [Qwen 3.5 27B (temperature 0)]",
+      "orchestrator_backend": "openai",
+      "orchestrator_api_base": "https://openrouter.ai/api/v1",
+      "n_runs": 2,
+      "n_scored_runs": 2,
+      "n_completed_runs": 2,
+      "n_incomplete_runs": 0,
+      "n_error_runs": 0,
+      "parse_success_rate": 1.0,
+      "mean_decision_coverage": 1.0,
+      "mean_accuracy": 0.9337349397590362,
+      "mean_precision": 0.9814814814814814,
+      "mean_recall": 0.8387096774193549,
+      "mean_specificity": 0.9903846153846154,
+      "mean_f1": 0.9044162129461585,
+      "mean_duration_seconds": 1304.7870280765055,
+      "mean_duration_per_study_seconds": 15.72032563947597,
+      "mean_total_tokens": 1777528.5,
+      "mean_total_steps": 24.0,
+      "mean_error_steps": 3.5,
+      "mean_retry_count": 0.0,
+      "mean_resume_count": 0.0,
+      "mean_empty_rationale_count": 0.0,
+      "mean_duplicate_rationale_count": 12.5,
+      "mean_rationale_reuse_rate": 0.15060240963855423
+    }
+  ]
+}
