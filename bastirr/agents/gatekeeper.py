@@ -36,6 +36,10 @@ Guidelines:
 - Do NOT generate rationales from title-only keyword buckets. Each
   rationale should reflect the actual study description in the title
   and abstract.
+- If your screening yields 0 included studies, verify that the 
+  eligibility criteria have been applied carefully and consistently. A 
+  zero-include result is possible and should be retained when supported by 
+  the available evidence.
 
 Use batch_screen_studies(candidates_json) to get all studies formatted
 for screening.  The candidates_json is provided by your manager.
