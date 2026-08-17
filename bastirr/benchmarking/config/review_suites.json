@@ -203,6 +203,558 @@
           "expected_n_screen_exclude": 44
         }
       ]
+    },
+    {
+      "name": "experiments_aug2026",
+      "description": "A suite for running experiments to evaluate gatekeeper performance, robustness and operational costs, containing representative samples of reviews between 26-250 (bins:[26,50), [51,100),[101, 250)).",
+      "reviews": [
+        {
+          "key": "14651858_cd001357",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001357/full",
+          "title": "Amisulpride for schizophrenia",
+          "expected_n_studies": 31,
+          "expected_n_screen_pass": 10,
+          "expected_n_screen_exclude": 21
+        },
+        {
+          "key": "14651858_cd005283_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005283.pub2/full",
+          "title": "Biocompatible hemodialysis membranes for acute renal failure",
+          "expected_n_studies": 34,
+          "expected_n_screen_pass": 8,
+          "expected_n_screen_exclude": 26
+        },
+        {
+          "key": "14651858_cd010436_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD010436.pub2/full",
+          "title": "Steroid\u2010eluting sinus stents for improving symptoms in chronic rhinosinusitis patients undergoing functional endoscopic sinus surgery",
+          "expected_n_studies": 37,
+          "expected_n_screen_pass": 21,
+          "expected_n_screen_exclude": 16
+        },
+        {
+          "key": "14651858_cd006269_pub2",
+          "split": "val",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006269.pub2/full",
+          "title": "Concomitant hyperthermia and radiation therapy for treating locally advanced rectal cancer",
+          "expected_n_studies": 46,
+          "expected_n_screen_pass": 5,
+          "expected_n_screen_exclude": 41
+        },
+        {
+          "key": "14651858_cd002217_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD002217.pub3/full",
+          "title": "Phenobarbitone versus phenytoin monotherapy for epilepsy: an individual participant data review",
+          "expected_n_studies": 45,
+          "expected_n_screen_pass": 6,
+          "expected_n_screen_exclude": 39
+        },
+        {
+          "key": "14651858_cd004424_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004424.pub2/full",
+          "title": "Antiepileptic drugs for preventing seizures in people with brain tumors",
+          "expected_n_studies": 33,
+          "expected_n_screen_pass": 5,
+          "expected_n_screen_exclude": 28
+        },
+        {
+          "key": "14651858_cd005460_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005460.pub3/full",
+          "title": "Traditional birth attendant training for improving health behaviours and pregnancy outcomes",
+          "expected_n_studies": 33,
+          "expected_n_screen_pass": 20,
+          "expected_n_screen_exclude": 13
+        },
+        {
+          "key": "14651858_cd006727_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006727.pub3/full",
+          "title": "Continuation and maintenance treatments for depression in older people",
+          "expected_n_studies": 34,
+          "expected_n_screen_pass": 5,
+          "expected_n_screen_exclude": 29
+        },
+        {
+          "key": "14651858_cd007421_pub4",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007421.pub4/full",
+          "title": "Hyaluronic acid in embryo transfer media for assisted reproductive technologies",
+          "expected_n_studies": 37,
+          "expected_n_screen_pass": 7,
+          "expected_n_screen_exclude": 30
+        },
+        {
+          "key": "14651858_cd012082_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012082.pub2/full",
+          "title": "Red blood cell transfusion to treat or prevent complications in sickle cell disease: an overview of Cochrane reviews",
+          "expected_n_studies": 37,
+          "expected_n_screen_pass": 0,
+          "expected_n_screen_exclude": 37
+        },
+        {
+          "key": "14651858_cd015031_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD015031.pub2/full",
+          "title": "Pars plana vitrectomy with internal limiting membrane flap versus pars plana vitrectomy with conventional internal limiting membrane peeling for large macular hole",
+          "expected_n_studies": 50,
+          "expected_n_screen_pass": 3,
+          "expected_n_screen_exclude": 47
+        },
+        {
+          "key": "14651858_cd007362_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007362.pub2/full",
+          "title": "Sugammadex, a selective reversal medication for preventing postoperative residual neuromuscular blockade",
+          "expected_n_studies": 39,
+          "expected_n_screen_pass": 6,
+          "expected_n_screen_exclude": 33
+        },
+        {
+          "key": "14651858_cd009012_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD009012.pub3/full",
+          "title": "Early versus delayed antiretroviral treatment in HIV\u2010positive people with cryptococcal meningitis",
+          "expected_n_studies": 30,
+          "expected_n_screen_pass": 4,
+          "expected_n_screen_exclude": 26
+        },
+        {
+          "key": "14651858_cd010673_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD010673.pub2/full",
+          "title": "Psychological therapies for the treatment of anxiety disorders in chronic obstructive pulmonary disease",
+          "expected_n_studies": 58,
+          "expected_n_screen_pass": 3,
+          "expected_n_screen_exclude": 55
+        },
+        {
+          "key": "14651858_cd008096_pub4",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008096.pub4/full",
+          "title": "Percutaneous endoscopic gastrostomy versus nasogastric tube feeding for adults with swallowing disturbances",
+          "expected_n_studies": 66,
+          "expected_n_screen_pass": 7,
+          "expected_n_screen_exclude": 59
+        },
+        {
+          "key": "14651858_cd008040_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008040.pub3/full",
+          "title": "Paracetamol (acetaminophen) with or without an antiemetic for acute migraine headaches in adults",
+          "expected_n_studies": 61,
+          "expected_n_screen_pass": 8,
+          "expected_n_screen_exclude": 53
+        },
+        {
+          "key": "14651858_cd001992_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001992.pub3/full",
+          "title": "Cyclo\u2010oxygenase (COX) inhibitors for treating preterm labour",
+          "expected_n_studies": 58,
+          "expected_n_screen_pass": 17,
+          "expected_n_screen_exclude": 41
+        },
+        {
+          "key": "14651858_cd008500_pub5",
+          "split": "val",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008500.pub5/full",
+          "title": "Primary prophylaxis for venous thromboembolism in ambulatory cancer patients receiving chemotherapy",
+          "expected_n_studies": 83,
+          "expected_n_screen_pass": 46,
+          "expected_n_screen_exclude": 37
+        },
+        {
+          "key": "14651858_cd008605_pub4",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008605.pub4/full",
+          "title": "Dopamine agonists for preventing ovarian hyperstimulation syndrome",
+          "expected_n_studies": 66,
+          "expected_n_screen_pass": 13,
+          "expected_n_screen_exclude": 53
+        },
+        {
+          "key": "14651858_cd004920_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004920.pub3/full",
+          "title": "Antifungal agents for preventing fungal infections in non\u2010neutropenic critically ill patients",
+          "expected_n_studies": 70,
+          "expected_n_screen_pass": 17,
+          "expected_n_screen_exclude": 53
+        },
+        {
+          "key": "14651858_cd001865_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001865.pub3/full",
+          "title": "Personalised risk communication for informed decision making about taking screening tests",
+          "expected_n_studies": 82,
+          "expected_n_screen_pass": 27,
+          "expected_n_screen_exclude": 55
+        },
+        {
+          "key": "14651858_cd000205_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD000205.pub3/full",
+          "title": "Benzodiazepines for antipsychotic\u2010induced tardive dyskinesia",
+          "expected_n_studies": 54,
+          "expected_n_screen_pass": 2,
+          "expected_n_screen_exclude": 52
+        },
+        {
+          "key": "14651858_cd007934_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007934.pub3/full",
+          "title": "De\u2010escalation of antimicrobial treatment for adults with sepsis, severe sepsis or septic shock",
+          "expected_n_studies": 96,
+          "expected_n_screen_pass": 0,
+          "expected_n_screen_exclude": 96
+        },
+        {
+          "key": "14651858_cd001911_pub4",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001911.pub4/full",
+          "title": "Carbamazepine versus phenytoin monotherapy for epilepsy: an individual participant data review",
+          "expected_n_studies": 57,
+          "expected_n_screen_pass": 8,
+          "expected_n_screen_exclude": 49
+        },
+        {
+          "key": "14651858_cd005050_pub3",
+          "split": "heart_test",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005050.pub3/full",
+          "title": "Influenza vaccines for preventing cardiovascular disease",
+          "expected_n_studies": 56,
+          "expected_n_screen_pass": 5,
+          "expected_n_screen_exclude": 51
+        },
+        {
+          "key": "14651858_cd010813_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD010813.pub2/full",
+          "title": "Combined oral contraceptives: venous thrombosis",
+          "expected_n_studies": 121,
+          "expected_n_screen_pass": 22,
+          "expected_n_screen_exclude": 99
+        },
+        {
+          "key": "14651858_cd007754_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007754.pub3/full",
+          "title": "Community\u2010based intervention packages for reducing maternal and neonatal morbidity and mortality and improving neonatal outcomes",
+          "expected_n_studies": 115,
+          "expected_n_screen_pass": 25,
+          "expected_n_screen_exclude": 90
+        },
+        {
+          "key": "14651858_cd004269_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004269.pub3/full",
+          "title": "Prophylactic platelet transfusion for prevention of bleeding in patients with haematological disorders after chemotherapy and stem cell transplantation",
+          "expected_n_studies": 105,
+          "expected_n_screen_pass": 9,
+          "expected_n_screen_exclude": 96
+        },
+        {
+          "key": "14651858_cd013856_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD013856.pub2/full",
+          "title": "Physical exercise for people with Parkinson\u2019s disease: a systematic review and network meta\u2010analysis",
+          "expected_n_studies": 233,
+          "expected_n_screen_pass": 136,
+          "expected_n_screen_exclude": 97
+        },
+        {
+          "key": "14651858_cd012809_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012809.pub2/full",
+          "title": "Doppler trans\u2010thoracic echocardiography for detection of pulmonary hypertension in adults",
+          "expected_n_studies": 155,
+          "expected_n_screen_pass": 13,
+          "expected_n_screen_exclude": 142
+        }
+      ]
+    },
+    {
+      "name": "test",
+      "description": "This is a test invocation to test that the sampling script works as intended",
+      "reviews": [
+        {
+          "key": "14651858_cd003372_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003372.pub3/full",
+          "title": "Single agent versus combination chemotherapy for metastatic breast cancer",
+          "expected_n_studies": 37,
+          "expected_n_screen_pass": 25,
+          "expected_n_screen_exclude": 12
+        },
+        {
+          "key": "14651858_cd008767_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008767.pub2/full",
+          "title": "Follow\u2010up protocols for women with cervical cancer after primary treatment",
+          "expected_n_studies": 32,
+          "expected_n_screen_pass": 0,
+          "expected_n_screen_exclude": 32
+        },
+        {
+          "key": "14651858_cd001466_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001466.pub3/full",
+          "title": "Surgery for cervical radiculopathy or myelopathy",
+          "expected_n_studies": 40,
+          "expected_n_screen_pass": 2,
+          "expected_n_screen_exclude": 38
+        },
+        {
+          "key": "14651858_cd012059_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012059.pub2/full",
+          "title": "Desmopressin for treating nocturia in men",
+          "expected_n_studies": 45,
+          "expected_n_screen_pass": 12,
+          "expected_n_screen_exclude": 33
+        },
+        {
+          "key": "14651858_cd007948_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007948.pub3/full",
+          "title": "Skin preparation with alcohol versus alcohol followed by any antiseptic for preventing bacteraemia or contamination of blood for transfusion",
+          "expected_n_studies": 32,
+          "expected_n_screen_pass": 0,
+          "expected_n_screen_exclude": 32
+        },
+        {
+          "key": "14651858_cd004764_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004764.pub3/full",
+          "title": "Patching for corneal abrasion",
+          "expected_n_studies": 31,
+          "expected_n_screen_pass": 10,
+          "expected_n_screen_exclude": 21
+        },
+        {
+          "key": "14651858_cd004639_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004639.pub2/full",
+          "title": "Calcium supplementation for the management of primary hypertension in adults",
+          "expected_n_studies": 45,
+          "expected_n_screen_pass": 11,
+          "expected_n_screen_exclude": 34
+        },
+        {
+          "key": "14651858_cd006279_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006279.pub2/full",
+          "title": "Intervention for dysarthria associated with acquired brain injury in children and adolescents",
+          "expected_n_studies": 28,
+          "expected_n_screen_pass": 0,
+          "expected_n_screen_exclude": 28
+        },
+        {
+          "key": "14651858_cd010696_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD010696.pub2/full",
+          "title": "Betahistine for symptoms of vertigo",
+          "expected_n_studies": 36,
+          "expected_n_screen_pass": 4,
+          "expected_n_screen_exclude": 32
+        },
+        {
+          "key": "14651858_cd011014_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011014.pub2/full",
+          "title": "Polyunsaturated fatty acid supplementation for drug\u2010resistant epilepsy",
+          "expected_n_studies": 33,
+          "expected_n_screen_pass": 1,
+          "expected_n_screen_exclude": 32
+        },
+        {
+          "key": "14651858_cd006030_pub4",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006030.pub4/full",
+          "title": "Acupuncture for glaucoma",
+          "expected_n_studies": 30,
+          "expected_n_screen_pass": 1,
+          "expected_n_screen_exclude": 29
+        },
+        {
+          "key": "14651858_cd007148_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007148.pub2/full",
+          "title": "Pre and peri\u2010operative erythropoeitin for reducing allogeneic blood transfusions in colorectal cancer surgery.",
+          "expected_n_studies": 35,
+          "expected_n_screen_pass": 3,
+          "expected_n_screen_exclude": 32
+        },
+        {
+          "key": "14651858_cd003424_pub5",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003424.pub5/full",
+          "title": "Drug therapies for reducing gastric acidity in people with cystic fibrosis",
+          "expected_n_studies": 32,
+          "expected_n_screen_pass": 12,
+          "expected_n_screen_exclude": 20
+        },
+        {
+          "key": "14651858_cd013640_pub2",
+          "split": "random_test",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD013640.pub2/full",
+          "title": "Balanced crystalloid solutions versus 0.9% saline for treating acute diarrhoea and severe dehydration in children",
+          "expected_n_studies": 64,
+          "expected_n_screen_pass": 5,
+          "expected_n_screen_exclude": 59
+        },
+        {
+          "key": "14651858_cd009669_pub4",
+          "split": "heart_test",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD009669.pub4/full",
+          "title": "Inotropic agents and vasodilator strategies for the treatment of cardiogenic shock or low cardiac output syndrome",
+          "expected_n_studies": 78,
+          "expected_n_screen_pass": 14,
+          "expected_n_screen_exclude": 64
+        },
+        {
+          "key": "14651858_cd001989_pub3",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001989.pub3/full",
+          "title": "Interventions for acute non\u2010arteritic central retinal artery occlusion",
+          "expected_n_studies": 65,
+          "expected_n_screen_pass": 6,
+          "expected_n_screen_exclude": 59
+        },
+        {
+          "key": "14651858_cd004148_pub4",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004148.pub4/full",
+          "title": "Effectiveness of brief alcohol interventions in primary care populations",
+          "expected_n_studies": 94,
+          "expected_n_screen_pass": 38,
+          "expected_n_screen_exclude": 56
+        },
+        {
+          "key": "14651858_cd012622_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012622.pub2/full",
+          "title": "Non\u2010pharmacological interventions for chronic pain in multiple sclerosis",
+          "expected_n_studies": 69,
+          "expected_n_screen_pass": 6,
+          "expected_n_screen_exclude": 63
+        },
+        {
+          "key": "14651858_cd005262_pub4",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005262.pub4/full",
+          "title": "Pentoxifylline for intermittent claudication",
+          "expected_n_studies": 66,
+          "expected_n_screen_pass": 18,
+          "expected_n_screen_exclude": 48
+        },
+        {
+          "key": "14651858_cd002982_pub3",
+          "split": "val",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD002982.pub3/full",
+          "title": "Psychological interventions for adults with asthma",
+          "expected_n_studies": 88,
+          "expected_n_screen_pass": 12,
+          "expected_n_screen_exclude": 76
+        },
+        {
+          "key": "14651858_cd007330_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007330.pub2/full",
+          "title": "Tinnitus Retraining Therapy (TRT) for tinnitus",
+          "expected_n_studies": 67,
+          "expected_n_screen_pass": 1,
+          "expected_n_screen_exclude": 66
+        },
+        {
+          "key": "14651858_mr000038_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.MR000038.pub2/full",
+          "title": "Interventions to prevent misconduct and promote integrity in research and publication",
+          "expected_n_studies": 66,
+          "expected_n_screen_pass": 26,
+          "expected_n_screen_exclude": 40
+        },
+        {
+          "key": "14651858_cd011209_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011209.pub2/full",
+          "title": "Nortriptyline for neuropathic pain in adults",
+          "expected_n_studies": 55,
+          "expected_n_screen_pass": 6,
+          "expected_n_screen_exclude": 49
+        },
+        {
+          "key": "14651858_cd014498",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD014498/full",
+          "title": "Interventions affecting the nitric oxide pathway versus placebo or no therapy for fetal growth restriction in pregnancy",
+          "expected_n_studies": 70,
+          "expected_n_screen_pass": 8,
+          "expected_n_screen_exclude": 62
+        },
+        {
+          "key": "14651858_cd004759_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004759.pub2/full",
+          "title": "Polyclonal and monoclonal antibodies for induction therapy in kidney transplant recipients",
+          "expected_n_studies": 81,
+          "expected_n_screen_pass": 63,
+          "expected_n_screen_exclude": 18
+        },
+        {
+          "key": "14651858_cd007654_pub5",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007654.pub5/full",
+          "title": "Long\u2010term effects of weight\u2010reducing drugs in people with hypertension",
+          "expected_n_studies": 134,
+          "expected_n_screen_pass": 3,
+          "expected_n_screen_exclude": 131
+        },
+        {
+          "key": "14651858_cd011368_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011368.pub2/full",
+          "title": "Topical azelaic acid, salicylic acid, nicotinamide, sulphur, zinc and fruit acid (alpha\u2010hydroxy acid) for acne",
+          "expected_n_studies": 111,
+          "expected_n_screen_pass": 24,
+          "expected_n_screen_exclude": 87
+        },
+        {
+          "key": "14651858_cd003087_pub2",
+          "split": "dev",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003087.pub2/full",
+          "title": "Double gloving to reduce surgical cross\u2010infection",
+          "expected_n_studies": 103,
+          "expected_n_screen_pass": 26,
+          "expected_n_screen_exclude": 77
+        },
+        {
+          "key": "14651858_cd013505",
+          "split": "val",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD013505/full",
+          "title": "Metformin for ovulation induction (excluding gonadotrophins) in women with polycystic ovary syndrome",
+          "expected_n_studies": 113,
+          "expected_n_screen_pass": 34,
+          "expected_n_screen_exclude": 79
+        },
+        {
+          "key": "14651858_cd003217_pub5",
+          "split": "random_test",
+          "review_url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003217.pub5/full",
+          "title": "Immunosuppressant and immunomodulatory treatments for multifocal motor neuropathy",
+          "expected_n_studies": 116,
+          "expected_n_screen_pass": 1,
+          "expected_n_screen_exclude": 115
+        }
+      ]
     }
   ]
 }
