@@ -33,6 +33,8 @@ Markdown audit trail.
 
 from __future__ import annotations
 
+from enum import StrEnum
+
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -45,7 +47,6 @@ from smolagents.memory import PlanningStep
 from smolagents.monitoring import AgentLogger, LogLevel
 
 from bastirr.config import OUTPUT_DIR
-
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -64,6 +65,18 @@ _MAX_OBSERVATIONS_CHARS = 2000
 _MAX_PLAN_CHARS = 3000
 _MAX_OUTPUT_CHARS = 2000
 
+class LoggingLevel(StrEnum):
+    DEBUG = 'debug'
+    INFO = 'info'
+    WARNING = 'warning'
+    SILENT = 'silent'
+
+LOGGING_LEVEL_MAP = {
+    LoggingLevel.DEBUG: logging.DEBUG,
+    LoggingLevel.INFO: logging.INFO,
+    LoggingLevel.WARNING: logging.WARNING,
+    LoggingLevel.SILENT: logging.CRITICAL + 1,
+}
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -145,7 +158,7 @@ class FileAgentLogger(AgentLogger):
         if isinstance(level, str):
             level = LogLevel[level.upper()]
         if level <= self.level:
-            self.console.print(*args, **kwargs)      # terminal (Rich)
+            self.console.print(*args, **kwargs)  # terminal (Rich)
             self._file_console.print(*args, **kwargs)  # file (plain text)
 
     # -- Agent tree is printed directly to self.console; mirror it --
@@ -231,10 +244,10 @@ class ActivityLogger:
     """
 
     def __init__(
-        self,
-        run_dir: Path,
-        review_title: str,
-        include_subagent_steps: bool = True,
+            self,
+            run_dir: Path,
+            review_title: str,
+            include_subagent_steps: bool = True,
     ):
         self.run_dir = run_dir
         self.review_title = review_title
@@ -364,8 +377,8 @@ class ActivityLogger:
 
         if step.step_type == "planning":
             context = (
-                "--- Plan ---\n"
-                + _truncate(step.plan_text, _MAX_PLAN_CHARS)
+                    "--- Plan ---\n"
+                    + _truncate(step.plan_text, _MAX_PLAN_CHARS)
             )
             activity = "Planning the next steps"
         else:
@@ -393,9 +406,9 @@ class ActivityLogger:
                 activity = "Producing final output"
             elif step.tool_calls:
                 activity = (
-                    "Tool execution ("
-                    + ", ".join(step.tool_calls)
-                    + ")"
+                        "Tool execution ("
+                        + ", ".join(step.tool_calls)
+                        + ")"
                 )
             else:
                 activity = "Code execution"
@@ -449,8 +462,8 @@ class ActivityLogger:
         if step.error:
             parts.append("Encountered an error.")
         return (
-            f"The {step.agent_name} executed step {step.step_number}. "
-            + " ".join(parts)
+                f"The {step.agent_name} executed step {step.step_number}. "
+                + " ".join(parts)
         )
 
     # -- Markdown generation ------------------------------------------------
@@ -614,8 +627,8 @@ class ActivityLogger:
         sub_agents = sorted(set(s.agent_name for s in subs))
         if sub_agents:
             return (
-                "Orchestrator → "
-                + ", ".join(a.title() for a in sub_agents)
+                    "Orchestrator → "
+                    + ", ".join(a.title() for a in sub_agents)
             )
         if orch.is_final_answer:
             return "Final Output (Orchestrator)"
@@ -644,10 +657,10 @@ class ActivityLogger:
 # ---------------------------------------------------------------------------
 
 def setup_run_logging(
-    review_title: str,
-    include_subagent_steps: bool = True,
-    output_root: Path | None = None,
-    run_name: str | None = None,
+        review_title: str,
+        include_subagent_steps: bool = True,
+        output_root: Path | None = None,
+        run_name: str | None = None,
 ) -> tuple[Path, FileAgentLogger, ActivityLogger]:
     """Set up file-based logging for a pipeline run.
 
@@ -692,6 +705,25 @@ def setup_run_logging(
     return run_dir, agent_logger, activity_logger
 
 
+def setup_tool_logger(logger: logging.Logger, logging_level: int = logging.INFO):
+    if logger.handlers:
+        return logger
+
+    logger.setLevel(logging_level)
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setLevel(logging_level)
+
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    stream_handler.setFormatter(formatter)
+
+    logger.addHandler(stream_handler)
+    logger.propagate = False
+
+    return logger
+
+
 def make_step_callbacks(activity_logger: ActivityLogger) -> dict:
     """Create smolagents ``step_callbacks`` dict for activity logging.
 
@@ -701,12 +733,12 @@ def make_step_callbacks(activity_logger: ActivityLogger) -> dict:
     """
 
     def _action_callback(
-        memory_step: ActionStep, agent=None, **kwargs,
+            memory_step: ActionStep, agent=None, **kwargs,
     ):
         activity_logger.record_action_step(memory_step, agent)
 
     def _planning_callback(
-        memory_step: PlanningStep, agent=None, **kwargs,
+            memory_step: PlanningStep, agent=None, **kwargs,
     ):
         activity_logger.record_planning_step(memory_step, agent)
 
