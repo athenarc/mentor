@@ -54,7 +54,10 @@ def _retrieve_reviews(splits: AbstractSet[str] = None,
         raise ValueError(f'Invalid split specified: {next(iter(invalid_splits))}')
 
     _LOGGER.debug('Determining gold label normalization...')
-    gold_label_normalization = np.floor if gold_label_policy == GoldLabelPolicy.EXCLUDE else np.ceil
+    # This is the correct one but current backend is fixed on validating ALWAYS based on include policy.
+    # This should be re-enabled when validation logic is fixed.
+    # gold_label_normalization = np.floor if gold_label_policy == GoldLabelPolicy.EXCLUDE else np.ceil
+    gold_label_normalization = np.ceil
 
     reviews_dfs = list()
     for split in sorted(splits):
