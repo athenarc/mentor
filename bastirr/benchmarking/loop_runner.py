@@ -23,6 +23,7 @@ from bastirr.benchmarking.model_presets import (
     resolve_model_presets,
 )
 from bastirr.benchmarking.notebooks import write_policy_eda_notebook
+from bastirr.benchmarking.provider_usage import ProviderUsageCollector, attach_usage_collector
 from bastirr.benchmarking.review_suites import (
     ScreeningBenchmarkReview,
     resolve_review_selection,
@@ -276,6 +277,8 @@ def run_screening_loop_review(
         ),
     )
     step_callbacks = make_step_callbacks(activity_logger)
+    usage_collector = ProviderUsageCollector()
+    step_callbacks = attach_usage_collector(step_callbacks, usage_collector)
 
     activity_logger.log_metadata("Benchmark suite", suite_name)
     activity_logger.log_metadata("Benchmark architecture", LOOP_BENCHMARK_ARCHITECTURE)
@@ -395,6 +398,7 @@ def run_screening_loop_review(
             retry_count=max(screening_attempt_count - 1, 0),
             resume_count=resume_count,
         )
+        telemetry.update(usage_collector.summary())
         telemetry["temperature"] = (gatekeeper_model.request_kwargs or {}).get("temperature")
         logger.info("Activity log saved to: %s", activity_path)
         agent_logger.close()
@@ -460,6 +464,8 @@ def run_screening_chunk_loop_review(
         ),
     )
     step_callbacks = make_step_callbacks(activity_logger)
+    usage_collector = ProviderUsageCollector()
+    step_callbacks = attach_usage_collector(step_callbacks, usage_collector)
 
     planned_chunks = _chunk_indices(
         list(range(1, len(review.studies) + 1)),
@@ -603,6 +609,7 @@ def run_screening_chunk_loop_review(
         )
         telemetry["chunk_count"] = len(planned_chunks)
         telemetry["chunk_sizes"] = [len(chunk) for chunk in planned_chunks]
+        telemetry.update(usage_collector.summary())
         telemetry["temperature"] = (gatekeeper_model.request_kwargs or {}).get("temperature")
         logger.info("Activity log saved to: %s", activity_path)
         agent_logger.close()

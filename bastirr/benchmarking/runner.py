@@ -25,6 +25,7 @@ from bastirr.benchmarking.model_presets import (
     resolve_model_presets,
 )
 from bastirr.benchmarking.notebooks import write_policy_eda_notebook
+from bastirr.benchmarking.provider_usage import ProviderUsageCollector, attach_usage_collector
 from bastirr.benchmarking.review_suites import (
     ScreeningBenchmarkReview,
     resolve_review_selection,
@@ -433,6 +434,8 @@ def run_screening_review(
         ),
     )
     step_callbacks = make_step_callbacks(activity_logger)
+    usage_collector = ProviderUsageCollector()
+    step_callbacks = attach_usage_collector(step_callbacks, usage_collector)
 
     activity_logger.log_metadata("Benchmark suite", suite_name)
     activity_logger.log_metadata("Review key", review_case.key)
@@ -534,6 +537,7 @@ def run_screening_review(
             retry_count=max(screening_attempt_count - 1, 0),
             resume_count=0,
         )
+        telemetry.update(usage_collector.summary())
         telemetry["temperature"] = (gatekeeper_model.request_kwargs or {}).get("temperature")
         logger.info("Activity log saved to: %s", activity_path)
         agent_logger.close()
