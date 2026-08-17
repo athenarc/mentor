@@ -395,6 +395,7 @@ def run_screening_loop_review(
             retry_count=max(screening_attempt_count - 1, 0),
             resume_count=resume_count,
         )
+        telemetry["temperature"] = (gatekeeper_model.request_kwargs or {}).get("temperature")
         logger.info("Activity log saved to: %s", activity_path)
         agent_logger.close()
 
@@ -602,6 +603,7 @@ def run_screening_chunk_loop_review(
         )
         telemetry["chunk_count"] = len(planned_chunks)
         telemetry["chunk_sizes"] = [len(chunk) for chunk in planned_chunks]
+        telemetry["temperature"] = (gatekeeper_model.request_kwargs or {}).get("temperature")
         logger.info("Activity log saved to: %s", activity_path)
         agent_logger.close()
 

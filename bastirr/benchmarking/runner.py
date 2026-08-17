@@ -534,6 +534,7 @@ def run_screening_review(
             retry_count=max(screening_attempt_count - 1, 0),
             resume_count=0,
         )
+        telemetry["temperature"] = (gatekeeper_model.request_kwargs or {}).get("temperature")
         logger.info("Activity log saved to: %s", activity_path)
         agent_logger.close()
 
