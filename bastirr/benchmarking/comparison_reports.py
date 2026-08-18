@@ -747,9 +747,19 @@ def _build_comparison_payload(experiment_dir: Path) -> dict:
             "exclude_f1": exclude_review["f1"],
             "exclude_recall": exclude_review["recall"],
         })
+    exclude_recall = exclude["overall"].get("mean_recall", 0.0)
+    include_recall = include["overall"].get("mean_recall", 0.0)
+    if exclude_recall is not None and include_recall is not None:
+        recall_swing = exclude_recall- include_recall
+    else:
+        recall_swing = None
 
-    recall_swing = exclude["overall"].get("mean_recall", 0.0) - include["overall"].get("mean_recall", 0.0)
-    f1_swing = exclude["overall"].get("mean_f1", 0.0) - include["overall"].get("mean_f1", 0.0)
+    exclude_f1 = exclude["overall"].get("mean_f1", 0.0)
+    include_f1 = include["overall"].get("mean_f1", 0.0)
+    if exclude_f1 is not None and include_f1 is not None:
+        f1_swing = exclude_f1 - include_f1
+    else:
+        f1_swing = None
     largest_recall_row = max(
         review_rows,
         key=lambda row: abs(row["exclude_recall"] - row["include_recall"]),
@@ -758,12 +768,12 @@ def _build_comparison_payload(experiment_dir: Path) -> dict:
     hero_stats = [
         {
             "label": "Macro recall swing",
-            "value": f"{round(recall_swing * 100)} pts",
+            "value": f"{round(recall_swing * 100)} pts" if recall_swing else "n/a",
             "note": "Change in macro recall when label 0.5 is scored as EXCLUDE instead of INCLUDE.",
         },
         {
             "label": "Macro F1 swing",
-            "value": f"{round(f1_swing * 100)} pts",
+            "value": f"{round(f1_swing * 100)} pts" if f1_swing else "n/a",
             "note": "Change in macro F1 across the same raw screening runs.",
         },
         {
