@@ -1,0 +1,537 @@
+{
+  "expected_n_studies": 66,
+  "completed_count": 66,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and meta-analysis, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Symposium/review article, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing two different timing strategies for cabergoline administration in women at risk of OHSS undergoing IVF",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing coasting alone, cabergoline alone, and combined interventions for OHSS prevention in high-risk IVF/ICSI patients",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case report, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized, double-blind, placebo-controlled trial of cabergoline for OHSS prevention in high-risk IVF patients",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study on Parkinson's disease patients and cardiac valve regurgitation, wrong population and outcome",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Animal study in rats, not a human RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review on GnRH antagonists, not about dopamine agonists",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional study on hyperprolactinemia patients and cardiac valves, wrong population",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective case-control study comparing IVM vs IVF, not an RCT and not about dopamine agonists",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and network meta-analysis, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case report on pituitary adenomas, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study on cancer patients receiving SU5416, wrong topic and population",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized, double-blind, placebo-controlled trial of quinagolide (dopamine agonist) for OHSS prevention in IVF patients",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized study comparing cabergoline vs no medication for OHSS prevention in high-risk ART patients",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article analyzing efficacy of dopamine agonists, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article on IVF methods, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Animal study in rats, not a human RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case report on gonadotroph adenoma, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing IVF vs ICSI in IVM cycles, not about dopamine agonists for OHSS prevention",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing cabergoline vs no treatment for OHSS prevention in high-risk IVF/ICSI patients",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis on bacterial vaginosis in IVF patients, wrong topic",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review on volume expanders, not about dopamine agonists",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing cabergoline vs intravenous albumin for OHSS prevention in high-risk patients",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and meta-analysis of RCTs, not an RCT itself",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article providing guidance, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing GnRH antagonist rescue plus cabergoline vs cabergoline alone for OHSS prevention",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article on dopamine agonists and hyperprolactinaemia, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short statement/review, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article on VEGF system targeting, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Commentary/review on GnRH agonist triggering, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective, randomized, double-blind study of cabergoline vs placebo for OHSS prevention in oocyte donors",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Nested case-control study on cardiac valve regurgitation, wrong population and design",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Non-randomized clinical trial with historical controls, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case series, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Symposium/review article, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Comparative randomized study of calcium gluconate vs cabergoline for OHSS prevention in high-risk patients",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review protocol, not a completed RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective cohort study, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review on VEGF blocking therapy in cancer, wrong topic",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article on OHSS classifications and preventive measures, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional study on prolactinoma patients, wrong population",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article on cabergoline for OHSS, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review on PCOS treatment, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review on ART complications, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Clinical trial randomly dividing patients into albumin vs cabergoline groups for OHSS prevention",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and meta-analysis, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective controlled study comparing laparoscopic ovarian drilling vs GnRH antagonist plus cabergoline for OHSS prophylaxis",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review on coasting, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review on metformin, not about dopamine agonists",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review on coasting, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review on luteal phase support, not about dopamine agonists",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Animal study in rodents, not a human RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Pilot study randomly dividing women into folic acid vs bromocriptine groups for OHSS assessment",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective pilot study with matched controls, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized study comparing HES alone vs HES plus cabergoline for OHSS prevention",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective study with historical controls, not a proper RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 59,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article on evidence base for OHSS prevention strategies, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 60,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective study, not an RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 61,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Clinical trial comparing cabergoline vs coasting for OHSS prevention in high-risk ART patients",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 62,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Animal study in mice, not a human RCT",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 63,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized controlled study comparing low-dose cabergoline vs no treatment for OHSS prevention",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 64,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized controlled trial of cabergoline vs no medication for OHSS prevention in high-risk ART patients",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 65,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prevalence study on Parkinson's disease patients, wrong population",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 66,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article on OHSS, not an RCT",
+      "confidence": "HIGH"
+    }
+  ]
+}

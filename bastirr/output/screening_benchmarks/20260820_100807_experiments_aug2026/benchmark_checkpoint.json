@@ -1,0 +1,81 @@
+{
+  "generated_at": "2026-08-20T11:04:58.747912",
+  "suite": "experiments_aug2026",
+  "benchmark_architecture": "batch_orchestrator_v1",
+  "repeats": 3,
+  "review_keys": [
+    "14651858_cd004269_pub3"
+  ],
+  "model_presets": [
+    "qwen3.5_27b-temp0"
+  ],
+  "orchestrator_policy": "match-gatekeeper",
+  "orchestrator_preset": "match-gatekeeper",
+  "gold_label_policies": [
+    "include_label_0_5",
+    "exclude_label_0_5"
+  ],
+  "raw_runs_dir": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/_raw_runs",
+  "completed_raw_run_count": 3,
+  "total_expected_raw_runs": 3,
+  "completed_runs": [
+    {
+      "benchmark_run_id": "14651858_cd004269_pub3_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run1",
+      "review_key": "14651858_cd004269_pub3",
+      "gatekeeper_preset": "qwen3.5_27b-temp0",
+      "orchestrator_policy": "match-gatekeeper",
+      "orchestrator_preset": "qwen3.5_27b-temp0",
+      "run_index": 1,
+      "run_status": "completed",
+      "raw_run_dir": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/_raw_runs/20260820_100823_14651858_cd004269_pub3_qwen35_27b-temp0_match-gatekeeper_qwe"
+    },
+    {
+      "benchmark_run_id": "14651858_cd004269_pub3_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run2",
+      "review_key": "14651858_cd004269_pub3",
+      "gatekeeper_preset": "qwen3.5_27b-temp0",
+      "orchestrator_policy": "match-gatekeeper",
+      "orchestrator_preset": "qwen3.5_27b-temp0",
+      "run_index": 2,
+      "run_status": "completed",
+      "raw_run_dir": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/_raw_runs/20260820_101807_14651858_cd004269_pub3_qwen35_27b-temp0_match-gatekeeper_qwe"
+    },
+    {
+      "benchmark_run_id": "14651858_cd004269_pub3_qwen3.5_27b-temp0_match-gatekeeper_qwen3.5_27b-temp0_run3",
+      "review_key": "14651858_cd004269_pub3",
+      "gatekeeper_preset": "qwen3.5_27b-temp0",
+      "orchestrator_policy": "match-gatekeeper",
+      "orchestrator_preset": "qwen3.5_27b-temp0",
+      "run_index": 3,
+      "run_status": "completed",
+      "raw_run_dir": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/_raw_runs/20260820_105810_14651858_cd004269_pub3_qwen35_27b-temp0_match-gatekeeper_qwe"
+    }
+  ],
+  "comparison_html_report": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/screening_policy_comparison.html",
+  "policy_outputs": {
+    "include_label_0_5": {
+      "directory": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/include_policy",
+      "summary_json": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/include_policy/summary.json",
+      "summary_csv": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/include_policy/summary.csv",
+      "leaderboard_markdown": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/include_policy/leaderboard.md",
+      "review_leaderboard_markdown": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/include_policy/review_leaderboard.md",
+      "runs_dir": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/include_policy/runs",
+      "html_report": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/include_policy/screening_results_summary.html",
+      "eda_notebook": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/include_policy/screening_results_analysis.ipynb",
+      "eda_notebook_executed": false,
+      "eda_notebook_execution_error": "jupyter command not available"
+    },
+    "exclude_label_0_5": {
+      "directory": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/exclude_policy",
+      "summary_json": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/exclude_policy/summary.json",
+      "summary_csv": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/exclude_policy/summary.csv",
+      "leaderboard_markdown": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/exclude_policy/leaderboard.md",
+      "review_leaderboard_markdown": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/exclude_policy/review_leaderboard.md",
+      "runs_dir": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/exclude_policy/runs",
+      "html_report": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/exclude_policy/screening_results_summary.html",
+      "eda_notebook": "/mnt/data/dev/SR-agents/bastirr/output/screening_benchmarks/20260820_100807_experiments_aug2026/exclude_policy/screening_results_analysis.ipynb",
+      "eda_notebook_executed": false,
+      "eda_notebook_execution_error": "jupyter command not available"
+    }
+  },
+  "orchestrator_max_steps": 20
+}

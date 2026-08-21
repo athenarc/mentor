@@ -1,0 +1,396 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing LAIV vs placebo, but primary outcomes were influenza efficacy and immunogenicity, not cardiovascular death or events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing vaccine vs placebo, but outcomes were serological and clinical influenza, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing H5N1 vaccine vs placebo, but outcomes were immunogenicity and safety, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "PROBE study (randomized) comparing influenza vaccine vs no treatment in ACS patients. Primary endpoint included combined major cardiovascular events (death, hospitalization from ACS, heart failure, stroke). Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing different H1N1 vaccine formulations, but outcomes were immunogenicity and safety, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing vaccine vs placebo, but primary outcome was influenza frequency and cost-effectiveness, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Substudy focusing on antibody responses in CAD patients, not assessing cardiovascular death or events as primary outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational prospective study, not a randomized controlled trial. Vaccination was not randomly assigned.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing two vaccine formulations, not vaccine vs placebo/no treatment. Outcomes were immunogenicity, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing high-dose vs standard-dose vaccine, not vaccine vs placebo. Outcomes were immunogenicity and influenza efficacy, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing RSV vaccine formulations given with influenza vaccine, not influenza vaccine vs placebo. Outcomes were immunogenicity, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Controlled study assessing warfarin-vaccine interaction, not cardiovascular death or events as primary outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Before-after experimental study with control group, not a randomized controlled trial. Assessed vaccination coverage, not cardiovascular outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case-control study, not a randomized controlled trial. Authors note interventional studies are required.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized single-blind trial comparing influenza vaccine vs controls in MI patients and PCI patients. Primary outcomes included cardiovascular death and composite ischemic events. Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Ecological study comparing vaccination programs at population level, not individual-level randomized trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing vaccine vs placebo, but primary outcomes were immunogenicity and hospital admissions (not specifically cardiovascular).",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT assessing INR and warfarin dose changes after vaccination, not cardiovascular death or events as primary outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing FluMist+TIV vs placebo+TIV, but outcomes were safety/reactogenicity, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methods paper about meta-analysis, not a primary RCT. Abstract describes meta-analysis methodology.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing nasal vaccine vs placebo in healthy adults, but outcomes were immunogenicity and influenza illness, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing one vs two doses of vaccine, not vaccine vs placebo. Outcomes were immunogenicity, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article discussing causal relationship, not a primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing two vaccine formulations, not vaccine vs placebo. Outcomes were influenza infection, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing timing of Tdap+influenza administration, not influenza vaccine vs placebo. Outcomes were immunogenicity, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing two vaccine types, not vaccine vs placebo. Outcomes were immunogenicity, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing LAIV vs placebo in healthy adults, but outcomes were febrile illness and work loss, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing two vaccine types vs placebo, but outcomes were influenza illness, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing two vaccine production methods, not vaccine vs placebo. Outcomes were immunogenicity, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT assessing oculorespiratory syndrome symptoms, not cardiovascular death or events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Crossover RCT assessing safety and immunogenicity after prior pandemic vaccine, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT evaluating PCV13+TIV vs TIV alone, not influenza vaccine vs placebo. Outcomes were immunogenicity, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing H1N1 vaccine doses/formulations vs placebo, but outcomes were immunogenicity, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing timing of Tdap-IPV+influenza, not influenza vaccine vs placebo. Outcomes were immunogenicity, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Guideline document/recommendations, not a primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Guideline document/recommendations, not a primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article summarizing existing evidence, not a primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis pooling data from multiple trials, not a primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Population health projections study, not an RCT of influenza vaccination.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case-control study, not a randomized controlled trial. Authors note prospective data needed for causal inference.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational cohort study using administrative data, not a randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational cohort study pooling HMO data, not a randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article summarizing literature, not a primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Commentary/discussion article about controversies in vaccine effectiveness, not a primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Population-based case-control study, not a randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Self-controlled case series study using database records, not a randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and meta-analysis of RCTs, not a primary RCT itself.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review with meta-analysis, not a primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Time series ecological study, not a randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Self-controlled case series study, not a randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing vaccine vs no vaccination in heart transplant recipients, but primary outcomes were rejection episodes and serology, not cardiovascular death or events.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Abstract describes exercise program for chronic fatigue syndrome, completely unrelated to influenza vaccination or cardiovascular outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing adjuvanted vs non-adjuvanted vaccine, not vaccine vs placebo. Outcomes were immunogenicity, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Non-randomized controlled prospective study, not a randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT comparing two vaccine doses, not vaccine vs placebo/no treatment. Outcomes were immunogenicity, not cardiovascular death or events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Book chapter about systematic review methodology, not a primary research study.",
+      "confidence": "HIGH"
+    }
+  ]
+}
