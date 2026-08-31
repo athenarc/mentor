@@ -1,0 +1,849 @@
+{
+  "expected_n_studies": 105,
+  "completed_count": 105,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a prospective randomized trial comparing WBC-reduced vs standard platelet concentrates in adult acute leukemia patients (haematological disorder). While the primary outcome is alloimmunization prevention, it involves prophylactic platelet transfusions in the target population. The study design meets RCT criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomized trial of ABO-matched vs ABO-mismatched platelet transfusions in patients with untreated acute leukemia (haematological disorder). The study involves prophylactic platelet transfusions in the target population and meets RCT criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review and meta-analysis, not a primary RCT. The selection criteria specifically require RCTs, not reviews of RCTs.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective review of 2942 patients, not an RCT. The study design does not meet the selection criteria requiring randomized controlled trials.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective comparative multicenter study, not a randomized controlled trial. The abstract does not mention randomization, only comparison of two transfusion protocols.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomized trial evaluating different doses of prophylactic platelet transfusions (low, medium, high) in patients undergoing hematopoietic stem-cell transplantation or chemotherapy for hematologic cancers. The primary endpoint was bleeding prevention, directly addressing the review question. Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This appears to be an observational study examining the relationship between platelet count and hemorrhage. The abstract does not indicate randomization or an intervention study design. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational analysis of transfusion practice patterns over 9 months, not an RCT. The study collected data on 1682 transfusion episodes without randomization.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a secondary analysis of the SPRINT trial data, not a primary RCT. While the parent trial was an RCT, this specific publication is a post-hoc analysis examining dose consistency effects, not a primary randomized trial.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article discussing controversies in platelet transfusion therapy, not an RCT. The abstract references historical data and nonrandomized studies.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective analysis of 18,706 patient days in patients with chronic severe aplastic anemia. The study design is observational, not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a prospective randomized study comparing UVB-irradiated vs nonirradiated platelet concentrates in patients with hematologic malignancy (mainly acute myeloid leukemia). While the primary outcome is alloimmunization, it involves prophylactic platelet transfusions in the target haematological population and meets RCT criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective comparative trial where centers chose which trigger to use (10 vs 20 x 109/L), not a randomized controlled trial. The abstract states 'each of the 17 participating centers decided whether they would use' a trigger, indicating no randomization.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study involves patients with ruptured abdominal aortic aneurysm (rAAA), not patients with haematological disorders. The population does not meet the selection criteria. Additionally, this appears to be a before-after study, not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomized study comparing buffy coat-derived vs platelet-rich plasma platelet concentrates in multitransfused hematologic patients. Patients were randomly given BC1 or BC3 alternately. While the primary outcome is adverse reactions, it involves prophylactic platelet transfusions in the target haematological population and meets RCT criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective study, not a randomized controlled trial. The abstract describes a prospective study comparing ABO-identical vs major-mismatched transfusions but does not mention randomization.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomized controlled trial comparing three types of platelet preparations (plasma-removed, whole blood-derived WBC-reduced, apheresis WBC-reduced) in adults with hematologic malignancies. While the primary outcome is acute reactions, it involves prophylactic platelet transfusions in the target haematological population and meets RCT criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a prospective randomized trial comparing leukocyte-depleted platelet concentrates prepared by centrifugation vs filtration in patients with acute leukemia. While the primary outcome is alloimmunization and refractoriness prevention, it involves prophylactic platelet transfusions in the target haematological population and meets RCT criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a controlled, randomized, double-blinded trial comparing photochemically treated (PCT) platelets vs conventional platelets in thrombocytopenic patients requiring repeated platelet transfusions. The study evaluates therapeutic efficacy and safety, including bleeding outcomes. Meets RCT criteria and involves prophylactic platelet transfusions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective cohort study estimating costs of chemotherapy-induced thrombocytopenia, not an RCT. The study design does not meet the selection criteria requiring randomized controlled trials.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not an RCT - study compares BC-PC vs SD-PC but does not mention randomization; appears to be an observational clinical evaluation",
+      "confidence": ""
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized prospective study comparing leukocyte-depleted vs standard platelet transfusions in patients with hematologic malignancies (acute leukemia); meets RCT criteria",
+      "confidence": ""
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review/overview article discussing strategies for platelet transfusions; not an RCT",
+      "confidence": ""
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective analysis comparing two time periods (SP1 vs SP2); not an RCT",
+      "confidence": ""
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Phase II crossover study (a form of RCT) comparing photochemically treated vs reference platelets in thrombocytopenic patients; conservatively included",
+      "confidence": ""
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "National audit study examining compliance with guidelines; not an RCT",
+      "confidence": ""
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized controlled trial comparing low-dose vs standard-dose prophylactic platelet transfusions in patients with acute leukemia and autologous PBPC transplant recipients",
+      "confidence": ""
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological review discussing bleeding as an outcome measure; not an RCT",
+      "confidence": ""
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Quality control surveillance study on bacterial contamination rates; not an RCT",
+      "confidence": ""
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Multicentre randomized non-inferiority trial comparing platelet storage methods (plasma vs PASIII vs PR-PASIII) in patients requiring platelet transfusions",
+      "confidence": ""
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized controlled double-blinded trial comparing amotosalen-treated vs conventional platelets stored 6-7 days; meets RCT criteria",
+      "confidence": ""
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Literature review on optimal platelet dose; not an RCT",
+      "confidence": ""
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized study comparing UVB-irradiated vs control platelets in patients with high-grade haematological malignancy (mainly AML)",
+      "confidence": ""
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Before-after design (not RCT) in neonatal intensive care unit; wrong population (neonates, not haematological disorders)",
+      "confidence": ""
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized study comparing platelets stored 1-5 days vs 6-7 days in allogeneic haematopoietic cell transplant recipients; meets RCT criteria",
+      "confidence": ""
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis of RCTs; not a primary RCT itself",
+      "confidence": ""
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Study comparing platelets from donors treated with thrombopoietin vs placebo transfused to thrombocytopenic patients; likely RCT design, conservatively included",
+      "confidence": ""
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Clinical practice guidelines document from ASCO; not an RCT",
+      "confidence": ""
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article summarizing evidence on platelet transfusions; not an RCT",
+      "confidence": ""
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Double-blind randomized controlled trial (SToP) comparing standard-dose vs low-dose prophylactic platelet transfusions in thrombocytopenic adults",
+      "confidence": ""
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a prospective randomized clinical trial comparing two prophylactic platelet transfusion thresholds (10K vs 20K) in HSCT recipients with haematological disorders. It directly addresses prophylactic platelet transfusion for bleeding prevention in the target population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is NOT an RCT - it is a prospective within-subject study where each patient received multiple doses (medium, high, very high) sequentially. The design uses paired t-tests comparing doses within the same patients rather than randomizing patients to different treatment arms.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is NOT an RCT - it is a prospective observational study with retrospective analysis of reticulated platelet percentages. There is no randomization to different transfusion strategies.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a SYSTEMATIC REVIEW, not a primary RCT. While it includes data from three RCTs, the study itself is a review article and does not present original randomized trial data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is NOT an RCT - it is a prospective observational study evaluating appropriateness of platelet transfusion requests. There is no randomization or intervention comparison.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this IS an RCT (randomised cross-over study), the population consists of patients with GYNAECOLOGICAL MALIGNANCIES (solid tumors), not haematological disorders. The review specifically targets haematological disorders.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is NOT an RCT - it is a single-arm prospective study using a therapeutic transfusion protocol compared to a HISTORICAL CONTROL GROUP. There is no concurrent randomization.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a REVIEW ARTICLE about platelet-endothelial interactions, not an RCT. It does not involve platelet transfusion interventions or clinical trials.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is NOT an RCT - it is a RETROSPECTIVE ANALYSIS of data from phase III trials. Additionally, the population is CARDIAC SURGERY PATIENTS, not patients with haematological disorders.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this IS an RCT, the INTERVENTION is premedication (acetaminophen/diphenhydramine vs placebo), NOT platelet transfusion strategy. The outcome is transfusion reactions, not bleeding prevention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a PROSPECTIVE RANDOMIZED TRIAL comparing ABO-identical vs ABO-unmatched platelet transfusions in patients with haematological diseases. It addresses prophylactic platelet transfusion strategy for bleeding prevention in the target population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This references the Slichter et al. NEJM 2010 RCT comparing different doses of prophylactic platelet transfusions. This is a well-known RCT addressing prophylactic platelet transfusion dosing for bleeding prevention in thrombocytopenic patients with haematological disorders.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this involves randomization (plasma vs cellular components in random order), the OUTCOME is TRANSFUSION REACTIONS, not bleeding prevention. The study focuses on febrile non-hemolytic reactions, not prophylactic transfusion for bleeding prevention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is NOT an RCT - it is a BEFORE-AFTER STUDY comparing baseline period (20K threshold) vs study period (10K threshold). Patients were not randomized; the threshold was changed institutionally over time.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a MATHEMATICAL MODELING STUDY with chart review validation, NOT an RCT. It derives differential equations and validates them retrospectively.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a PROSPECTIVE RANDOMIZED TRIAL comparing HLA-matched vs mismatched platelet transfusions in cancer patients with therapy-induced thrombocytopenia. It addresses prophylactic platelet transfusion strategy in patients with haematological/oncological disorders.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a RANDOMIZED TRIAL comparing ABO-group matched vs major mismatched platelet transfusions in patients with acute leukaemia or Hodgkin's lymphoma. It addresses prophylactic platelet transfusion strategy for bleeding prevention in haematological disorders.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is NOT an RCT about platelet transfusion - it is an OPEN PROSPECTIVE TRIAL about CENTRAL VENOUS CATHETER PLACEMENT safety. The intervention is CVC insertion, not platelet transfusion strategy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 59,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this IS an RCT, the POPULATION is MASSIVE TRANSFUSION PATIENTS (trauma/surgical bleeding), NOT patients with haematological disorders. The context is dilutional thrombocytopenia from massive blood loss, not chemotherapy/stem cell transplant-related thrombocytopenia.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 60,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a TRIAL DESIGN PAPER describing the methodology of the euroSPRITE trial, NOT presenting results of an RCT. It discusses statistical methods and trial design considerations rather than reporting clinical outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 61,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an annotation/review article discussing guidelines and unresolved issues, not an RCT. Does not meet the study design criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 62,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Animal study (rabbits) examining ultrastructural changes of endothelium. Not a human RCT and does not involve prophylactic platelet transfusion intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 63,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is an RCT with chemotherapy-induced thrombocytopenia patients, it evaluates pathogen reduction technology (MIRASOL) rather than comparing prophylactic platelet transfusion strategies. The primary outcome is CCI, not bleeding prevention. Does not address the review objective of determining most effective prophylactic transfusion use.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 64,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing fresh vs stored single donor platelet concentrates in allogeneic bone marrow transplant recipients. Meets all criteria: RCT design, platelet transfusions, prophylactic use, haematological disorder population (BMT).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 65,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study developing a clinical prediction rule (Bleeding Risk Index). Uses derivation/validation sets, not randomization. Also includes solid tumor patients which may fall outside haematological disorders focus.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 66,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study examining platelet kinetics and survival in patients with bone marrow hypoplasia. No intervention or randomization. Does not meet RCT criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 67,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT testing recombinant human thrombopoietin (rhTPO) intervention, not platelet transfusion. Also focuses on solid tumor patients, not haematological disorders. Wrong intervention and population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 68,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized PROBE study comparing high dose vs standard dose prophylactic platelet transfusions in hematologic patients (acute leukemia and autologous HSCT). Meets all criteria: RCT design, platelet transfusions, prophylactic use, haematological disorder population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 69,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Phase II single-arm study evaluating ex vivo expansion of megakaryocyte progenitors. No randomization or control group. Does not meet RCT criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 70,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective observational study comparing buffy-coat vs apheresis platelets. Explicitly stated as observational, not randomized. Does not meet RCT criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 71,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective non-randomized comparative analysis of two time periods with different transfusion policies. Explicitly stated as non-randomized. Does not meet RCT criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 72,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Animal study (rabbits) examining hemostatic function and survival of young vs old platelets. Not a human RCT and does not involve prophylactic platelet transfusion intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 73,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized trial comparing prophylactic platelet transfusion triggers (10 vs 30 x 10^9/L) in allogeneic hematopoietic progenitor cell transplant recipients. Meets all criteria: RCT design, platelet transfusions, prophylactic use, haematological disorder population (HPC transplant).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 74,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study evaluating conservative management in women with gynecological cancers (solid tumors). Not randomized and wrong population (solid tumors, not haematological disorders).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 75,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "National survey/statistical report on blood collection and transfusion in the US. Not an RCT and does not evaluate prophylactic platelet transfusion interventions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 76,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized study comparing three types of platelet concentrates (single donor pheresis, buffy coat, platelet-rich plasma) in patients with haematological malignancy. Meets all criteria: RCT design, platelet transfusions, prophylactic use, haematological disorder population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 77,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article discussing platelet concentrate products and utilization rules. Not an RCT. Does not meet study design criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 78,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Secondary analysis of data from the TRAP trial focusing on transfusion reactions. While the parent trial was an RCT, this analysis examines reaction predictors rather than prophylactic transfusion strategies. Does not directly address the review objective.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 79,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective cohort study evaluating bleeding complications after introducing a stringent transfusion policy. No randomization - compares outcomes before/after policy change. Does not meet RCT criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 80,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized trial comparing prestorage WBC-reduced vs standard platelet concentrates in autologous progenitor cell transplant patients. Meets all criteria: RCT design, platelet transfusions, prophylactic use, haematological disorder population (autologous transplant).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 81,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a critical review article summarizing 87 articles about bleeding severity measurement, not an RCT. It does not involve actual platelet transfusion intervention in patients.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 82,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a guideline/recommendation document from a French health agency, not an RCT. The abstract explicitly states recommendations are based on professional consensus, not randomized studies.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 83,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT comparing two dose levels of prophylactic platelet transfusions (0.03 vs 0.06 units/lb) in thrombocytopenic children with acute leukemia. The study assesses bleeding incidence, meeting all selection criteria: RCT, platelet concentrates, prophylactic transfusion, haematological disorder.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 84,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is an RCT in patients with hematologic malignancy receiving platelet support, the primary outcome is HLA alloimmunization, not bleeding prevention. The study tests bedside filtration to prevent alloimmunization, not prophylactic transfusion for bleeding prevention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 85,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational study of platelet transfusion practices in ICU patients (medical-surgical), not an RCT. The population is not specifically haematological disorders, and the study design does not meet the RCT criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 86,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an RCT in patients with acute leukemia, but the primary outcome is alloimmunization (formation of alloantibodies), not bleeding prevention. The study compares single-donor vs multiple-donor platelets for alloimmunization outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 87,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an RCT in patients with hematologic disease, but the primary outcome is transfusion reactions (febrile reactions), not bleeding prevention. The study compares interventions to prevent reactions, not to prevent bleeding.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 88,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a guideline/recommendation document (appears to be a duplicate of Study 82), not an RCT. The abstract states recommendations are based on professional consensus, not randomized studies.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 89,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an RCT in children, but the primary outcome is febrile nonhemolytic transfusion reactions (FNHTRs), not bleeding prevention. The study compares plasma removal and WBC reduction for reaction prevention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 90,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT randomizing 56 children with acute leukemia to prophylactic vs therapeutic platelet transfusion regimens. The study directly assesses bleeding episodes as the primary outcome, meeting all selection criteria: RCT, platelet concentrates, prophylactic transfusion, haematological disorder.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 91,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an economic analysis of a previously conducted RCT, not a primary clinical trial. The study uses a decision analysis model to estimate costs, not to assess bleeding outcomes directly.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 92,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodology paper developing criteria for assessing therapy-induced toxicity, not an RCT involving platelet transfusions. It does not involve actual patient intervention or bleeding outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 93,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective observational analysis of transfusion practices when changing from a 20,000 to 10,000 threshold. It is not an RCT - there is no randomization, only before-after comparison of practice patterns.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 94,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a before-after comparison study (Group A: 1989-1993 with 20,000 threshold; Group B: 1994-1998 with 10,000 threshold), not an RCT. There is no randomization - patients were assigned based on time period.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 95,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study focuses on preventing HLA alloimmunization, not bleeding. The primary outcome is development of lymphocytotoxic antibodies, not bleeding episodes. While it involves platelet transfusions in leukemia patients, the intervention is not for bleeding prevention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 96,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT (prospective, randomized, double-blind, multiple-crossover) comparing lower-dose vs higher-dose prophylactic platelet transfusions in 46 patients undergoing hematopoietic progenitor cell transplantation. The study assesses platelet count increments and transfusion-free intervals as proxies for bleeding prevention, meeting selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 97,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT randomizing 78 patients with acute leukemia to prophylactic platelet transfusion at ≤10,000 vs ≤20,000/microL threshold. The study directly assesses bleeding episodes as the primary outcome, meeting all selection criteria: RCT, platelet concentrates, prophylactic transfusion, haematological disorder.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 98,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT (SPRINT Trial) randomizing 645 patients with thrombocytopenia to photochemically treated vs conventional platelets. The primary endpoint is WHO grade 2 bleeding, directly assessing bleeding prevention. Meets selection criteria: RCT, platelet concentrates, prophylactic transfusion, haematological disorders.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 99,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a laboratory accuracy study comparing platelet counting methods across different analysers, not an RCT involving patient transfusions. It does not involve actual platelet transfusion intervention or bleeding outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 100,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT (double-blind) randomizing 18 patients with acute leukemia to receive either platelets or platelet-poor plasma as prophylaxis against bleeding. The study directly assesses bleeding frequency, meeting all selection criteria: RCT, platelet concentrates, prophylactic transfusion, haematological disorder.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 101,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Primary objective is preventing transfusion reactions (FNHTR), not bleeding prevention. Population includes many non-haematological conditions (cirrhosis, gastric ulcer, diabetes mellitus). The outcome measured is FNHTR incidence rates, which does not align with the review's focus on bleeding prevention in haematological disorders.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 102,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is an RCT in leukemia patients receiving platelet transfusions, the primary objective is modifying alloimmunization development, NOT preventing bleeding. The primary outcome is lymphocytotoxic antibody (LCTAb) levels as a serologic marker of alloimmunization. Bleeding prevention is not the focus of this trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 103,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized study evaluating prophylactic platelet transfusions in 21 patients treated with intensive chemotherapy for hematologic malignancies. Patients were randomly assigned to receive prophylactic transfusions of PCs prepared in either plasma or PAS-2. Measures clinical responses including corrected count increments (CCIs). Fits selection criteria as it involves prophylactic platelet transfusions in patients with haematological disorders undergoing chemotherapy.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 104,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing prophylactic single-donor apheresis platelets (SDAP) versus pooled platelet concentrates (PPC) in 33 patients with AML/MDS during the first 100 days after allogeneic HSCT. Transfusion threshold was platelet count ≤15 x 10^9/L for prophylactic purposes. Reports hemorrhage episodes (6%) and concludes both products were equally effective in preventing hemorrhage. Directly addresses the review question of prophylactic platelet transfusion for bleeding prevention in haematological disorders after stem cell transplantation.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 105,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a guidelines document summarizing evidence-based recommendations for platelet transfusion practice. It is NOT a randomized controlled trial (RCT) and does not present primary research data. The selection criteria specifically require RCTs, so this study type is ineligible for inclusion.",
+      "confidence": "HIGH"
+    }
+  ]
+}

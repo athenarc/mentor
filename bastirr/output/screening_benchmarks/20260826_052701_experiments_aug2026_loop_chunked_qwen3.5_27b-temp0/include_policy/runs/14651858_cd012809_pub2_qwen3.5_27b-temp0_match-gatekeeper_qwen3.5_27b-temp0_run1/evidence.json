@@ -1,0 +1,1089 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological discussion paper about case-control and two-gate designs in diagnostic accuracy studies, not a primary diagnostic accuracy study evaluating echocardiography for PH detection.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a national registry study describing clinical parameters and prevalence of PAH in France. It does not evaluate diagnostic accuracy of echocardiography compared to RHC.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study only includes patients with known PAH (single-gate/case-only design). It evaluates prediction of hemodynamic parameters rather than diagnostic accuracy for detecting PH in a mixed population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective diagnostic accuracy study comparing Doppler echocardiography (mPAP) with RHC as reference standard. Uses threshold of 25.5 mmHg (close to 25 mmHg). Reports sensitivity (98%) and specificity (100%) from which TP/FP/TN/FN can be derived.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Large retrospective study (792 pairs) comparing echocardiographic PASP with RHC as reference standard. Reports misclassification rates (54.4%) and correlation data. While TP/FP/TN/FN not explicitly stated, data may be extractable from full text.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Study analyzing ESCAPE trial data comparing echocardiography with Swan-Ganz catheter (RHC equivalent) in heart failure patients. Reports sensitivity and specificity calculations. May provide extractable TP/FP/TN/FN data.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective study of 43 patients comparing continuous wave Doppler ultrasound with RHC for pulmonary systolic arterial pressure. Reports good correlation (r=0.90). While TP/FP/TN/FN not explicitly stated in abstract, data may be extractable from full text.",
+      "confidence": "LOW"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Two-gate design: RHC done in 19 patients as pre-lung transplant assessment and 18 to confirm PH suspected on echocardiography. Also evaluates composite echo-HRCT score rather than TDE alone.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study focuses on acute pulmonary embolism diagnosis, not PH detection. Very small sample (n=9). Does not evaluate diagnostic accuracy of TDE for PH detection with RHC reference.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review about biochemical tests and ultrasound for stillbirth and small-for-gestational-age infants in pregnancy. Completely unrelated to PH diagnosis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Retrospective study of 177 unselected patients comparing Doppler echocardiography with RHC. Evaluates factors affecting accuracy. While TP/FP/TN/FN not explicitly stated, data may be extractable from full text.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Uses mPAP > 35 mmHg threshold instead of required 25 mmHg. Study focuses on ruling out significant POPH in liver transplant candidates with different diagnostic criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Uses PASP >= 30 mmHg threshold instead of 25 mmHg. Also appears to be two-gate design: patients selected because clinical assessment raised 'strong suspicion' of PHT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Focuses on estimating pulmonary vascular resistance (PVR) rather than detecting PH. All patients already have PH (case-only design). Does not evaluate diagnostic accuracy for PH detection.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Uses mPAP > 20 mmHg threshold instead of 25 mmHg. Also uses pulsed Doppler of inferior vena cava rather than standard trans-thoracic Doppler echocardiography for PH detection.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a meta-analysis pooling data from six other studies. Systematic reviews/meta-analyses are excluded as they do not provide primary TP/FP/TN/FN data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Epidemiological study examining hospitalizations for PAH in Scotland. Does not evaluate diagnostic accuracy of echocardiography.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article discussing definitions and diagnosis of PH. Does not present primary diagnostic accuracy data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Large study (307 patients with both studies within 5 days) comparing transthoracic echocardiography with RHC. Uses correct mPAP >= 25 mmHg threshold. Reports AUC values (0.97, 0.98) for classifying PH. Data may be extractable from full text.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Abstract contains only section editor names with no study content. Cannot determine eligibility without full text.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study describes a new contactless cardiovascular monitoring technique (DUiFK-P system). Does not evaluate TTE for PH detection with RHC as reference standard. Different topic entirely.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study compares DE estimates to RHC using Bland-Altman analysis and correlation coefficients. Reports bias and limits of agreement but does not provide TP/FP/TN/FN data or sensitivity/specificity for PH diagnosis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a guideline/recommendation document from ASE/EACVI for cardiac chamber quantification. Not a primary diagnostic accuracy study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This appears to be an editorial/commentary discussing another study ('See the article...'). Not a primary diagnostic accuracy study with original data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study compares two TRV measurement techniques ('chin' vs 'beard') using correlation and agreement analysis. Does not provide TP/FP/TN/FN data or diagnostic accuracy metrics for PH detection.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study evaluates TAPSE/RVSP and RVSL for identifying PH (threshold 25 mmHg met). Reports AUC=0.80 but does not provide TP/FP/TN/FN values or sensitivity/specificity to construct 2x2 table.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prognostic study examining association between PASP and mortality in HF patients. Does not use RHC as reference standard for PH diagnosis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study uses exercise Doppler echocardiography with RHC reference, but uses PH threshold of mean PAP >20 mmHg (newer definition) instead of required 25 mmHg threshold.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Study evaluates echo vs RHC in 49 SSc patients. Uses correct PH threshold (mean PA >=25 mmHg). Reports sensitivity 58%, specificity 96%, and states 'Echo classified 38 subjects correctly (14/24 with and 24/25 without PH)' allowing extraction of TP=14, TN=24, FN=10, FP=1.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study compares Doppler methods to RHC in 72 patients with chronic lung disease. Reports correlation coefficients and PPV (84%) for AcT<90ms but does not provide complete TP/FP/TN/FN data or sensitivity/specificity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study compares three formulas for PASP estimation using correlation analysis (r values and SEE). Does not provide TP/FP/TN/FN data or diagnostic accuracy metrics for PH detection.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study evaluates pulmonary venous flow parameters for estimating LVEDP, not for detecting PH. Different outcome measure than required.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study evaluates CWD for PAP estimation in COPD patients with RHC reference, but uses PH threshold of PAPs >=35 mmHg instead of required 25 mmHg threshold.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Study validates TDI parameter (TTP) for PH detection in 60 patients with RHC reference. Uses correct threshold (mean PAP >=25 mmHg). Reports sensitivity ~70%, specificity ~70%, AUC=0.746, allowing extraction of approximate TP/FP/TN/FN values.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective study in 69 CTD-PAH patients comparing echo to RHC for monitoring. Uses RHC as reference. Reports sensitivity 59%, specificity 85%, PPV 63%, NPV 83%, allowing extraction of TP/FP/TN/FN values.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study evaluates algorithm using ECG, NT-proBNP, SO2, and WHO functional class, not primarily TTE for PH detection. Different intervention than specified in review question.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Small study (18 patients, 21 RHCs) in pregnancy comparing echo to RHC. Reports correlation (rho=0.79) but does not provide TP/FP/TN/FN data or diagnostic accuracy metrics.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study evaluates echo for PASP in liver transplant candidates with RHC reference, but uses threshold of PASP >50 mmHg for clinically significant PH instead of required 25 mmHg threshold.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Study evaluates multiple noninvasive techniques including PAP estimation from TR velocity and pulmonary acceleration time in 84 patients with RHC reference. Reports sensitivity 0.85, specificity 0.5 for pulmonary acceleration time, allowing extraction of TP/FP/TN/FN values.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study examining characteristics and predictors of PH in emphysema patients. Compares PH vs non-PH groups for demographics and pulmonary function variables. Not a diagnostic accuracy study evaluating TTE performance.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Study uses RHC as reference standard, reports sensitivity (85%), specificity (67%), PPV (87%), NPV (61%) with prevalence of 57%, allowing derivation of TP/FP/TN/FN. Single-gate design with consecutive lung transplantation candidates.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study only reports correlation coefficient (r=0.93) between Doppler and catheterization values. No sensitivity, specificity, or 2x2 table data provided to derive TP/FP/TN/FN values.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Study uses RHC as reference standard with PH defined as mean PAP ≥25 mmHg. Reports sensitivity (82.2%), specificity (80.2%), PPV (83.1%), NPV (79.2%) allowing derivation of TP/FP/TN/FN. Single-gate design with 1400 consecutive AS patients.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study only reports specificity and PPV for various echocardiographic indices, but does not provide sensitivity or NPV. Cannot derive complete 2x2 table (TP/FP/TN/FN) from available data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Abstract only contains conclusions without methods or results. No diagnostic accuracy data (sensitivity, specificity, or 2x2 table) provided.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study reports Bland-Altman analysis and states 48% of cases were inaccurate, but does not provide sensitivity, specificity, or 2x2 table data to derive TP/FP/TN/FN values.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study reports correlation (r=0.62) and percentage with PASP difference >10 mmHg (51.9%), but does not provide sensitivity, specificity, or 2x2 table data for PH diagnosis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study focuses on predicting pulmonary wedge pressure (PAWP), not pulmonary hypertension detection. Also only reports PPV (94%) and NPV (55%) without sensitivity/specificity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study reports correlation coefficients (r=0.65 for SPAP, r=0.60 for MPAP) and Bland-Altman analysis, but does not provide sensitivity, specificity, or 2x2 table data for PH diagnosis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study uses two-gate design where patients were classified into Group I (PASP <35 mmHg) and Group II (PASP ≥35 mmHg) based on hemodynamic findings. Also only reports correlation (r=0.97) without sensitivity/specificity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study is an observational analysis of PH causes in elderly patients, not a diagnostic accuracy study of echocardiography. No diagnostic test accuracy data provided.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study only reports correlation coefficients between Doppler and catheterization (r=0.93, 0.91, 0.88 depending on RAP method). No sensitivity, specificity, or 2x2 table data provided. Abstract truncated.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study only reports PPV (39%) and NPV (90%) for Doppler echocardiography. Does not provide sensitivity or specificity, making it impossible to derive TP/FP/TN/FN values.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Study uses RHC as reference standard with PH defined as mPAP ≥25mmHg. Reports sensitivity (89%) and specificity (68%) for the whole cohort of 310 patients. Single-gate design with consecutive patients referred for PH assessment.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study focuses on predicting severe PH (PASP ≥61 mmHg) rather than PH detection at the 25 mmHg threshold. The reference standard threshold differs from the required 25 mmHg.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study is a methodological paper describing a hierarchical regression model for meta-analysis of diagnostic test accuracy. Not a primary diagnostic accuracy study of echocardiography for PH.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study appears to be a review or commentary on noninvasive diagnosis of PH. No original diagnostic accuracy data (sensitivity, specificity, or 2x2 table) provided.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Study uses RHC as reference standard with PH defined as mean PAP ≥25 mmHg. Reports sensitivity (84%), specificity (69%), NPV (68%), PPV (84%) for RVSP ≥50 mmHg. Single-gate design with 272 consecutive patients.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 59,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study is a consensus statement on diagnosing diastolic heart failure (HFNEF), not a diagnostic accuracy study of echocardiography for pulmonary hypertension.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 60,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study is a protocol paper describing a proposed screening algorithm for PAH in scleroderma. The actual study (ItinérAIR Sclérodermie) will be conducted in the future. No diagnostic accuracy data from completed study provided.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 61,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 62,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 63,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 64,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 65,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 66,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 67,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 68,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 69,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 70,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 71,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 72,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 73,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 74,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 75,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 76,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 77,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 78,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 79,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 80,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 81,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study reports only correlation coefficients (r = 0.97, 0.87, -0.81, -0.80) between Doppler measurements and cardiac catheterisation. No sensitivity, specificity, or 2x2 table data (TP/FP/TN/FN) is provided. Does not meet the criterion for sufficient diagnostic test accuracy data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 82,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study evaluates echocardiography parameter (pressure increase after peak velocity) to identify increased pulmonary vascular resistance (PVR>3 WU), not PH detection per se. The outcome is PVR, not PH defined by mPAP≥25 mmHg. Thresholds used are PASP>40 mmHg, PVR>3 WU, PCWP>12 mmHg - different from the required 25 mmHg threshold for PH detection.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 83,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article discussing the role of MRI and CT imaging in PH diagnosis and management. It is not a primary diagnostic accuracy study of trans-thoracic Doppler echocardiography. Wrong study type and wrong imaging modality.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 84,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study evaluates RVSP by echocardiography vs RHC in IPF patients. While it reports that 24 of 60 ECHOs accurately reflected PAP, it states 'An optimal RVSP threshold for the screening of PH could not be detected.' No sensitivity, specificity, or 2x2 table data is provided from which TP/FP/TN/FN can be extracted.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 85,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Abstract describes the SWEDEHEART registry for coronary heart disease, not a diagnostic accuracy study of Doppler echocardiography for PH detection. Wrong study type - appears to be a registry description article.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 86,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about the mechanism of action, efficacy, and safety of riociguat for PH treatment. Not a diagnostic accuracy study of echocardiography. Wrong study type.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 87,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study uses a two-gate (case-control) design with a study group (n=31 liver transplant candidates) and a separate control group (n=49 without liver disease). Reports only correlation (R=0.58) without sensitivity, specificity, or 2x2 table data. Excluded due to two-gate design and insufficient diagnostic accuracy data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 88,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective single-gate study of 300 patients with rheumatic mitral stenosis who underwent both TTE and RHC within 24 hours. Reports sensitivity (92.8%) and specificity (86.6%) of sPAP(TRVmax) in detecting PH, and sensitivity (94.1%) and specificity (73.3%) of mPAP(PAAT). TP/FP/TN/FN data can be extracted from these values. RHC is the reference standard. PH threshold not explicitly stated in abstract but diagnostic accuracy data is available.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 89,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study uses MRI myocardial tagging to explore interventricular mechanical asynchrony in PAH patients. Not a diagnostic accuracy study of Doppler echocardiography for PH detection. Wrong imaging modality and wrong study objective.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 90,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study primarily evaluates phase contrast MRI (PC-MRI) for pulmonary flow and pressure estimation, comparing it with RHC and echocardiography. The focus is on MRI, not on diagnostic accuracy of Doppler echocardiography. Reports only correlation coefficients and Bland-Altman limits of agreement, no sensitivity/specificity or 2x2 table data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 91,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Single-gate study of 36 subjects who underwent Doppler echocardiography immediately followed by RHC. Evaluates diagnostic accuracy of noninvasive sPAP to predict invasively assessed mPAP ≥25 mmHg (the required threshold). Reports AUC of 0.92 for this prediction. While only AUC is reported in the abstract, full-text may contain 2x2 table data. Conservative inclusion warranted.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 92,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Single-gate study of 65 patients with advanced lung diseases (IPF, COPD, other ILD) who underwent both echocardiography and cardiac catheterization. PH defined as mPAP ≥25 mmHg by cardiac catheterization (matches required threshold). Reports sensitivity (92.3%) and specificity (81.8%) for RVSP ≥43 mmHg, and additional data for RVOT and TAPSE. TP/FP/TN/FN data can be extracted from these values.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 93,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Single-gate study of 105 portal hypertension patients who underwent 2D-ECHO followed by RHC for definitive diagnosis of PPH. Reports sensitivity (100%), specificity (82%), PPV (18%), and NPV (100%) for the screening test. TP/FP/TN/FN data can be extracted from these values. RHC is the reference standard. PH threshold for RHC not explicitly stated but diagnostic accuracy data is available.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 94,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study uses a two-gate design: Group 1 (n=39) included patients with RVsys ≥50 mmHg who underwent elective RHC, while Group 2 (n=35) included patients with RVsys <50 mmHg who had pressures measured during transplant. This is a classic two-gate (case-control) design. Additionally, the threshold used is MPAP ≥35 mmHg for moderate to severe PH, not the required 25 mmHg threshold.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 95,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Single-gate cross-sectional study of 51 patients undergoing RHC who also had Doppler echocardiography. Reports sensitivity (81%) and specificity (69%) for RVSP >52 mmHg in predicting pulmonary hypertension. TP/FP/TN/FN data can be extracted from these values. RHC is the reference standard. PH threshold not explicitly stated but diagnostic accuracy data is available.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 96,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Registry study examining demographics, epidemiology, and survival of incident PAH patients in the UK and Ireland. Not a diagnostic accuracy study of Doppler echocardiography. Wrong study type.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 97,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Registry study analyzing predictors of 1-year survival in PAH patients from the REVEAL registry. Derives a prognostic equation for survival prediction. Not a diagnostic accuracy study of Doppler echocardiography. Wrong study type.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 98,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study of 30 patients with COLD who underwent echo-Doppler before and during RHC. Reports only correlation coefficients (r = 0.71, 0.85, -0.75, -0.87, multiple r = 0.83, 0.92) between echo-Doppler parameters and mPAP. No sensitivity, specificity, or 2x2 table data is provided. Does not meet the criterion for sufficient diagnostic test accuracy data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 99,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Despite the title suggesting PH screening, the abstract describes a study on mechanical dyssynchrony assessment using tissue Doppler imaging in 131 patients referred for cardiac resynchronization therapy (CRT). The study evaluates predictors of survival after CRT, not diagnostic accuracy of echocardiography for PH detection. Wrong study objective and population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 100,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study evaluates pulmonary artery distensibility and its relationship to Doppler indices in 19 subjects. Reports only correlation coefficients (r = 0.90, 0.87, 0.73, 0.76, 0.91, 0.89) between Doppler parameters and pulmonary artery pressure/distensibility. No sensitivity, specificity, or 2x2 table data is provided. Does not meet the criterion for sufficient diagnostic test accuracy data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 101,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Evaluates echocardiography for PAH detection in IPF patients with RHC as reference standard. Reports AUC (0.72) for echocardiography. While specific TP/FP/TN/FN values are not explicitly stated in abstract, ROC curve data suggests diagnostic accuracy data may be extractable from full text.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 102,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a registry study examining factors associated with delayed PAH diagnosis, not a diagnostic accuracy study of echocardiography. Does not compare echocardiography to RHC for PH detection.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 103,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Evaluates Doppler echocardiography versus RHC for PH detection in IPF patients. Uses correct threshold (mPAP ≥25 mmHg). Reports correlation and Bland-Altman analysis. May have extractable diagnostic accuracy data from full text.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 104,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Examines clinical outcomes and cost-effectiveness of RHC use in ICU patients, not diagnostic accuracy of echocardiography for PH detection. Wrong study type entirely.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 105,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Large study (n=1695) comparing Doppler echocardiography to RHC for PH diagnosis. Reports sensitivity (87%), specificity (79%), PPV (91%), NPV (70%). Uses sPAP cut-off of 36 mmHg which differs from 25 mmHg mPAP threshold, but this appears to be for sPAP not mPAP. Diagnostic accuracy data available.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 106,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Focuses on right ventricular afterload assessment including PAMP and PA pressure waveform, not specifically PH detection. Reports correlation (R=0.85) but does not provide diagnostic accuracy data (TP/FP/TN/FN) for PH detection.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 107,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Evaluates Doppler echocardiography for portopulmonary hypertension screening with RHC as reference. Uses correct threshold (mPAP ≥25 mmHg). Reports sensitivity (100%), specificity (88%), PPV (30%). Clear diagnostic accuracy data available.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 108,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper describing the QUADAS-2 quality assessment tool. Not a primary diagnostic accuracy study of echocardiography for PH detection.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 109,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Focuses on right atrial pressure (RAP) estimation accuracy, not PH detection. While RHC is used as reference, the index test outcome is RAP estimation, not PH diagnosis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 110,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Clinical classification/guideline paper updating PH classification system. Not a diagnostic accuracy study of echocardiography.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 111,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Assesses diagnostic accuracy of PR gradient and PAT for PH detection with RHC as reference. Uses correct threshold (mPAP≥25mmHg). Reports AUC (76.8), sensitivity (60.8%), specificity (82.4%). Diagnostic accuracy data available.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 112,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Large dual-centre study (n=419) evaluating echocardiographic accuracy for PA pressure estimation with RHC as reference. Reports bias, limits of agreement, and notes frequent misclassification. May have extractable diagnostic accuracy data from full text.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 113,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article summarizing current knowledge about Doppler diagnosis of PH. Not a primary diagnostic accuracy study. Authors compare findings from numerous studies with their own data but this is a review format.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 114,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Two-gate/case-control design: only patients with suspected PAH based on echo underwent RHC confirmation. This violates the selection criteria excluding diagnostic case-control studies (two-gate design).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 115,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Very brief abstract describing simultaneous Doppler and invasive study validating peak pulmonary regurgitant velocity for PAP measurement. Unclear if diagnostic accuracy data (TP/FP/TN/FN) is available. Conservative approach to include for full-text review.",
+      "confidence": "LOW"
+    },
+    {
+      "study_index": 116,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Cross-sectional study comparing echocardiography to RHC for PAH prediction in scleroderma patients. Reports sensitivity (100%), specificity (63.6%), AUC (0.841). Clear diagnostic accuracy data available.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 117,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective study in ventilated ICU patients comparing Doppler echocardiography to RHC. Uses correct threshold (mPAP ≥25 mmHg). Reports 100% sensitivity and specificity at sPAP >39 mmHg. Diagnostic accuracy data available.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 118,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Compares echocardiography to RHC for PH detection in emphysema patients. Uses WHO definitions of PH. Reports sensitivity (60%), specificity (74%), PPV (68%), NPV (67%). Clear diagnostic accuracy data available.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 119,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Retrospective analysis comparing echocardiography to RHC in patients with suspected PH. Uses correct threshold (mPAP ≥25 mmHg). Reports correlations but may have extractable diagnostic accuracy data from full text.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 120,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Simultaneous CW Doppler and catheterization study (n=33). Reports strong correlation (r=0.96) between methods. While abstract focuses on correlation/regression, diagnostic accuracy data may be extractable from full text.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 121,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Uses incorrect PH threshold (SPAP > 35 mmHg or mean pressure > 20 mmHg) instead of required mPAP ≥ 25 mmHg. Does not provide explicit TP/FP/TN/FN data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 122,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not about echocardiography - focuses on cardiac magnetic resonance imaging. Appears to be a review article, not a diagnostic accuracy study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 123,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Guideline document, not a primary diagnostic accuracy study. No abstract available.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 124,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review/meta-analysis, not a primary diagnostic accuracy study. Secondary source.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 125,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Reports only correlation coefficients, no explicit TP/FP/TN/FN data. PH threshold not clearly specified.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 126,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Uses incorrect PH thresholds (eco-PASP > 32.5 mmHg and > 35.5 mmHg) instead of mPAP ≥ 25 mmHg.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 127,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Uses RHC as reference standard with correct MPAP > 25 mmHg threshold. Provides sensitivity (89%) and specificity (84%) data. TP/FP/TN/FN can be derived from these metrics.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 128,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Does not provide explicit TP/FP/TN/FN data. Only reports correlation coefficients and PPV at specific thresholds. PH threshold not clearly specified.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 129,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Uses RHC as reference standard. Complete 2x2 table derivable: 17 positive on echo, 10 confirmed (TP=7, FP=7), no false negatives (FN=0). Sufficient diagnostic accuracy data available.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 130,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Uses RHC as reference standard with correct mPAP ≥ 25 mmHg threshold. Reports sensitivity (97%) and specificity (83%). TP/FP/TN/FN can be derived from these metrics with n=115.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 131,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Completely different topic - H. pylori infection, not pulmonary hypertension or echocardiography.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 132,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case-control/two-gate design - only includes patients with TRV ≥ 2.5 m/s who then had RHC. This violates the exclusion criterion for diagnostic case-control studies.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 133,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Reports only AUROC values and mean differences, no explicit TP/FP/TN/FN data. Small sample (n=33).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 134,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Abstract truncated but title suggests relevant diagnostic accuracy study. Mentions mPAP ≥ 25 mmHg threshold. Full text needed to confirm data availability.",
+      "confidence": "LOW"
+    },
+    {
+      "study_index": 135,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Uses sPAP thresholds (30 mmHg, 38 mmHg) instead of required mPAP ≥ 25 mmHg threshold. Different pressure parameter measured.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 136,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Abstract only shows conclusion section. Title suggests relevant comparison between echo and RHC. Full text needed to confirm threshold and data availability.",
+      "confidence": "LOW"
+    },
+    {
+      "study_index": 137,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article about emergency management, not a diagnostic accuracy study of echocardiography.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 138,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Uses incorrect PH threshold (mPAP > 20 mmHg) instead of required ≥ 25 mmHg. Also uses exercise echocardiography rather than standard resting assessment.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 139,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Uses RHC as reference standard with correct mPAP ≥ 25 mmHg threshold. Reports sensitivity (93%), specificity (67%), PPV (91%), NPV (73%). TP/FP/TN/FN can be derived from these metrics with n=64.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 140,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about statistical analysis techniques, not a primary diagnostic accuracy study of echocardiography for PH.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 141,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a meta-analysis pooling results from 9 primary studies, not a primary diagnostic accuracy study. The systematic review requires primary studies from which TP/FP/TN/FN data can be extracted.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 142,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Retrospective study of 147 ESLD patients with both TTE and RHC data within 6 months. Uses mPAP <25 mmHg as threshold for absent PH. While abstract mentions logistic regression, underlying data may allow extraction of TP/FP/TN/FN values. Conservative inclusion pending full-text review.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 143,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review focusing on prognostic factors (hospitalization, mortality) in PH-LHD patients, not a diagnostic accuracy study evaluating TTE for PH detection.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 144,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Proposes composite diagnostic criteria combining clinical findings with either RHC OR Doppler echo as valid alternatives. Does not evaluate TTE diagnostic accuracy against RHC as sole reference standard.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 145,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Uses new PH threshold of mPAP >20 mmHg instead of the required 25 mmHg threshold. Protocol explicitly excludes studies with different reference standard thresholds.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 146,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Abstract is truncated/incomplete. Title suggests diagnostic accuracy study of TTE for PH. Cannot determine eligibility from available information. Conservative inclusion pending full-text review.",
+      "confidence": "LOW"
+    },
+    {
+      "study_index": 147,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Appears to be a narrative review/opinion piece discussing integration of diagnostic tests. No original diagnostic accuracy data or patient cohort described.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 148,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Evaluates pressure-flow (P/Q) relationships during exercise, not PH diagnosis at rest. Uses threshold of >=3 mmHg/L/min for abnormality, not 25 mmHg for PH detection.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 149,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case series of 21 patients ALL with confirmed precapillary PH. No patients without PH enrolled, making it impossible to calculate TN/FP values for diagnostic accuracy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 150,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prevalence study measuring PH occurrence in SSc patients, not a diagnostic accuracy study. Does not report TP/FP/TN/FN data for TTE vs RHC comparison.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 151,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective study of 152 patients with both TTE and RHC. Includes 10 patients (7%) without PH. Reports Bland-Altman analysis and correlation data. May provide sufficient data for TP/FP/TN/FN extraction.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 152,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Large cohort of 1262 patients with TTE within 2 days of RHC. Uses mPAP >=25 mmHg threshold. While focused on missing TRV signal, underlying data should allow extraction of diagnostic accuracy metrics.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 153,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Focuses on estimating pulmonary vascular resistance (PVR), not diagnosing PH. Does not report TP/FP/TN/FN data for PH detection.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 154,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Retrospective study of 310 patients with both TTE and RHC. Uses mPAP 25 mmHg threshold. Reports sensitivity 88%, specificity 83%, accuracy 86%. Should provide sufficient data for TP/FP/TN/FN extraction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 155,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Small study of 41 patients with cardiac defects. Categorizes patients into 3 groups (normal/moderate/high PH) rather than binary PH detection. Insufficient detail on TP/FP/TN/FN data extraction.",
+      "confidence": "MEDIUM"
+    }
+  ]
+}

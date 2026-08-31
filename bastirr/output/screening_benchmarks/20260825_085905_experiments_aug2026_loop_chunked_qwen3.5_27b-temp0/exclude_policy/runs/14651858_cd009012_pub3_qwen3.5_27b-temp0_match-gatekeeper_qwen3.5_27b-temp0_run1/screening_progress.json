@@ -1,0 +1,249 @@
+{
+  "expected_n_studies": 30,
+  "completed_count": 30,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a global burden estimation study using published data, not an RCT. Does not compare early vs delayed ART initiation.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case series of 5 children with cryptococcal meningitis. Not an RCT and does not compare ART timing.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study on amphotericin B toxicity. Not an RCT comparing early vs delayed ART initiation.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and meta-analysis of IRIS incidence across various OIs. Not a primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Letter to editor commenting on safety and methodology issues of another study. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about GRADE system for rating evidence quality. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective observational study of 65 patients on CM-IRIS. Not an RCT comparing ART timing interventions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cohort study of 340 patients in Latin America. Observational design, not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological guidance on GRADE evidence profiles. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Letter/commentary discussing drug interactions. References other studies but is not an RCT itself.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Proposed clinical case definitions for cryptococcal IRIS. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Descriptive study of early ART program outcomes in in-patients. Observational, not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized controlled trial comparing early ART (1-2 weeks) vs deferred ART (5 weeks) in 177 HIV+ adults with cryptococcal meningitis. Meets all selection criteria: RCT design, correct population, appropriate comparison of early vs delayed ART timing.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Updated global burden estimation study. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article on antifungal medicine access in resource-poor countries. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Letter expressing concerns about another randomized study. Not an RCT itself.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional study on AmBd-related toxicities in 846 patients. Observational, not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Descriptive longitudinal observational study of 230 Zambian patients. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is an RCT comparing early vs deferred ART, only 12% of patients had cryptococcal meningitis (most had PCP). The study was not specifically designed for CM patients and does not report CM-specific outcomes. Population does not match selection criteria.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This appears to be a commentary/description of the Bouleware et al. RCT (Study 13), not the original RCT itself. States 'The study by Bouleware and colleagues is a randomised trial...' indicating it describes another study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this study compares early vs deferred ART in HIV+ patients with cryptococcal meningitis, the abstract does not clearly indicate this is a randomized controlled trial. The statement 'A future prospective study should be conducted to confirm this result' suggests this may be an observational study rather than an RCT. Without clear evidence of randomization, this study does not meet the inclusion criteria.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This appears to be a commentary/opinion piece discussing general strategies for HAART provision in Africa, referencing other articles. It is not a primary research study, does not focus specifically on cryptococcal meningitis, and does not report on an RCT comparing early vs delayed ART.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomized treatment-strategy trial conducted in Botswana that explicitly compared ART initiation within 7 days (early) vs after 28 days (delayed) in HIV-infected, ART-naive adults with cryptococcal meningitis. The study meets all inclusion criteria: RCT design, early vs delayed ART comparison, HIV-positive population with cryptococcal meningitis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an RCT (START trial) comparing immediate vs deferred ART initiation, but the population consists of asymptomatic HIV-positive adults with CD4+ count >500 cells/mm³. These patients do not have cryptococcal meningitis, so the study does not meet the population criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational study prospectively identifying patients with symptomatic relapse of CM. It examines fluconazole resistance and IRIS as factors in relapse, but does not compare early vs delayed ART initiation. The study design is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study describes IRIS occurrence in HIV-infected patients with C. neoformans coinfection but does not compare early vs delayed ART initiation. The study design is not described as an RCT, and there is no intervention comparison of ART timing.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article providing general information about cryptococcal meningitis epidemiology, diagnosis, and therapy. It is not a primary research study and does not report on an RCT comparing early vs delayed ART.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective observational multicenter study examining IRIS occurrence in AIDS patients with cryptococcal meningitis who received HAART. It does not compare early vs delayed ART initiation as an intervention, and is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a prospective, open-label, randomized clinical trial conducted in Zimbabwe that compared early ART (within 72 hours after CM diagnosis) vs delayed ART (after 10 weeks of fluconazole treatment) in HIV-positive individuals with cryptococcal meningitis. The study meets all inclusion criteria: RCT design, early vs delayed ART comparison, HIV-positive population with cryptococcal meningitis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a comprehensive review article covering epidemiology, immunology, diagnosis, and therapy of cryptococcal meningitis. It is not a primary research study and does not report on an RCT comparing early vs delayed ART.",
+      "confidence": "HIGH"
+    }
+  ]
+}

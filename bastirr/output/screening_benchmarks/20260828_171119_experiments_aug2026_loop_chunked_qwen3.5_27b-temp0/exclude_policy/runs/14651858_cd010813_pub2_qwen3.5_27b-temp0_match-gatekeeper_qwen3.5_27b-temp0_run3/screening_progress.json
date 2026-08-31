@@ -1,0 +1,977 @@
+{
+  "expected_n_studies": 121,
+  "completed_count": 121,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study assessing VTE risk in women using low-estrogen COCs. Study includes women without predisposing medical conditions (healthy) and examines VT as primary outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Broad population study examining multiple VTE risk factors (cancer, fractures, surgery, etc.) in general population. Not specifically focused on healthy women taking COCs; includes women with various comorbidities. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT measuring coagulation parameters (factor levels), not actual VT events as outcome. Also includes women WITH factor V Leiden mutation (not healthy). Wrong outcome measure and population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Hospital-based case-control study of idiopathic DVT/PE (first episode) in relation to OC use. Focuses on healthy women (idiopathic cases) with VT as outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study of nonpredisposed women under 40 years with suspected VTE. Women with predispositions were excluded, focusing on healthy women. VT is the outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on network meta-analysis techniques. Not an empirical study about COCs and VT. Completely irrelevant to selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article discussing thrombophilias and gynecology topics. Not primary research data. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Historical case-control study examining OC use and thromboembolic disease (DVT/PE). Focuses on married women with VT outcomes. Appears to include healthy women. Meets selection criteria.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Survey/review article evaluating available scientific data and making prescription recommendations. Not primary research with original data. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Literature review compiling VTE incidence estimates from other studies. Not primary research examining COC use and VT. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Nested case-control study using GPRD examining VTE risk with different OC generations. Focuses on healthy women (idiopathic VTE) with VT as outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Matched case-control study of women aged 15-49 with suspected/diagnosed VTE. Compares gestodene-containing OCs vs others. VT is the outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Mortality modeling study estimating relative risk of DEATH from VTE, not VT incidence itself. Outcome is mortality, not VT events. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Database study comparing VTE risk between second and third generation COCs in women aged 18-49. VT is the outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological study examining how design decisions affect VTE study results. Primary purpose is methodological evaluation, not providing evidence on COC-VT relationship. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Cohort and nested case-control study comparing third-generation OCs vs levonorgestrel OCs. Focuses on idiopathic VTE in healthy women. VT is the outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Large Danish registry-based cohort study of non-pregnant women aged 15-49 with no history of thrombotic disease (healthy). Assesses VT risk by progestogen type and estrogen dose. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case-control study of FATAL pulmonary embolism only. Outcome is death from PE, not VT incidence. Does not meet selection criteria for VT as outcome.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Spontaneous reporting study using Committee on Safety of Medicines reports. Abstract states 'no associations of dose...with venous thrombosis'. Passive surveillance data, not primary research on healthy women with VT outcome.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Danish hospital-based study examining VTD (including DVT and PE) in women aged 16-34. Focuses on women with confirmed VTD and compares pill users vs background population. VT is the outcome. Meets selection criteria.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "",
+      "confidence": ""
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Clinical review discussing VTE risk with COC use. While it also covers HRT, it provides relevant evidence on COC-VT association. Conservative approach warrants inclusion.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Primary cohort study of women aged 12-50 using COCs, comparing drospirenone vs other generations. Outcome is venous thrombotic events (DVT/PE). Meets all criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study focuses on lifestyle factors (exercise, smoking, alcohol) and VTE risk. Does not specifically examine COC use as intervention. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Examines VTE incidence across different COC formulations using spontaneous ADR reporting. Directly addresses COC-VT relationship.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review of progestin pharmacology and molecular properties. Does not examine clinical VT outcomes in women using COCs. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective study of hospitalized adolescents with PE. Population is sick/hospitalized patients, not healthy women. Also includes males. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Examines link between hormonal contraceptive use and acute thromboembolic diseases in women. Reports 34 of 72 women with thromboembolic disease were using hormonal contraceptives. Meets criteria.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study focuses on post-thrombotic syndrome (PTS) as outcome, not venous thrombosis itself. Population is patients who already had DVT. Does not examine COC use. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study of women aged 15-44 with documented thromboembolic events, comparing OC users vs non-users. Assesses VT risk with OC use. Meets criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Nested case-control study comparing VTE risk between two COC formulations in women aged 15-44. Idiopathic VTE as outcome. Meets all criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Review examining epidemiologic evidence on DVT risk with third-generation COCs. Provides synthesis of relevant evidence on COC-VT relationship.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study measures hemostasis variables (Factor VII, Protein S, etc.) as surrogate markers, not actual venous thrombosis events. Does not meet outcome criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Study of women who developed venous thrombosis during OC therapy. Includes 13 normal subjects without prothrombotic conditions. Directly addresses OC-induced VT.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study of women with DVT vs healthy controls examining OC use and genetic risk factors. Includes healthy women as controls and assesses OC-VT relationship.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study examining VTE risk factors including oral contraceptive pill use in Thai women. Although OR was not significant, study directly addresses COC-VT relationship.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study focuses on protein C deficiency and venous thromboembolism in blood donors. Abstract does not mention oral contraceptive use. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Methodological study assessing confounding in a cohort of OC initiators with thromboembolism outcomes. While secondary analysis, it relates to COC-VT research.",
+      "confidence": "LOW"
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Analysis of spontaneous reports of thromboembolism by OC formulation, examining estrogen dose and progestin type effects. Directly addresses COC-VT relationship.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 59,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study of women under 50 examining OC use and smoking effects on DVT and PE. Includes venous thrombosis as outcome. Meets criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 60,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Review article on OC and venous thrombosis risk. Provides comprehensive overview of evidence on COC-VT relationship. Conservative approach warrants inclusion.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 61,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study of women aged 15-49 comparing VTE risk between different COC formulations (dienogest, drospirenone vs levonorgestrel). Directly addresses COC use with VTE as outcome.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 62,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Retrospective case-reference study examining VTE incidence in women aged 15-44, specifically analyzing COC users. Reports VTE rates by COC type (third generation vs other COCs).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 63,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Matched case-control study in Germany/UK with 505 women aged 16-44 with VTE and 1877 controls. Compares VTE risk across different COC generations and progestagen types.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 64,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article discussing pharmacological properties of new progestins. No primary data on VTE outcomes; hypothesis about vascular risks needs confirmation in trials.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 65,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Randomized study measuring hemostasis biomarkers (F1+2, PAP, D-dimer, protein S), not actual VTE events. Outcome is coagulation variables, not venous thrombosis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 66,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article on APC resistance mechanisms and etiology. Does not study COC users with VTE outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 67,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study of 185 patients with deep vein thrombosis and 591 controls aged 15-49. Examines OC use and VTE risk, excluding women with inherited clotting defects.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 68,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Editorial/commentary piece with no substantive content related to COC-VTE relationship.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 69,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about bias assessment in non-randomized studies. Not a primary study of COC and VTE.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 70,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Cohort study comparing thromboembolism risk between ethinylestradiol/drospirenone initiators and other OC initiators. Medical record-confirmed VTE cases.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 71,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Nested case-control analysis of UK GP records examining VTE risk across different COC formulations (desogestrel, gestodene vs levonorgestrel).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 72,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study of 155 premenopausal women aged 15-49 with DVT and 169 controls. Examines interaction between OC use and factor V Leiden on VTE risk.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 73,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about funnel plot asymmetry for detecting bias in meta-analyses. Not related to COC-VTE research.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 74,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Study examining multiple vascular outcomes including venous thromboembolism in relation to OC use. Found OC associated with increased VTE risk.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 75,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective cohort study documenting PE cases in relation to current and past OC use. PE is a form of venous thromboembolism.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 76,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Cohort study comparing VTE risk between drospirenone and levonorgestrel COCs, stratified by EE dosage. Large sample (238,683 DRSP users, 193,495 LNG users).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 77,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Descriptive epidemiology of hospitalization rates for cardiovascular/thromboembolic events. No data on OC exposure or comparison groups.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 78,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Older study using term 'anovulants' (oral contraceptives). Found no association with deep-vein thrombosis or embolism. Limited relevance due to age and terminology.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 79,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study of EHPVO (extrahepatic portal vein obstruction), not typical VTE. States OC use was NOT associated with EHPVO risk. Different clinical entity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 80,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Study examining VTE risk with anti-androgen OCs containing cyproterone acetate and ethinyloestradiol. Directly addresses COC-VTE relationship.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 81,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective cohort study of 58,674 healthy women using various COCs (DRSP, LNG, others) with venous thromboembolism as outcome. Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 82,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study examining VT risk in women over 50 using OCs. While age group is atypical for COC use, the study includes OC users with VT as outcome. Conservative decision to include.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 83,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Descriptive article about pill usage statistics and market trends. No primary research data on VT outcomes. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 84,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article discussing pharmacogenetic aspects of OC use and thrombosis risk. No primary research data presented. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 85,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study population consists of women with acne, hirsutism, or PCOS treated with CPA/EE. These are not healthy women but women with specific medical conditions. Does not meet 'healthy women' criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 86,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Population-based case-control study testing oral contraceptives as independent VTE risk factors. Includes healthy women using COCs with VTE as outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 87,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Population-based case-control study comparing DVT risk between different OC types in premenopausal women aged 15-49. Includes healthy women using COCs with DVT as outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 88,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Methodological study examining bias in OC-VTE research, but includes actual VTE cases and OC exposure data from women aged 15-49. Contains relevant data for the review. Conservative decision to include.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 89,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Surveillance study of PE cases reported during COC treatment. Includes COC users with verified VTE outcomes. While based on spontaneous reporting, provides relevant data on COC-VTE association. Conservative decision to include.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 90,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Large prospective cohort study of 17,000 married women aged 25-39 examining first attacks of VTE unassociated with pregnancy. Includes healthy women using COCs with VTE as outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 91,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological overview comparing RCT vs observational study estimates for adverse effects. Not specific to COC-VTE. No primary data on COC-VTE association. Does not meet selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 92,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and meta-analysis summarizing existing evidence. Secondary analysis, not primary research data. Does not meet selection criteria for primary studies.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 93,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prescription event monitoring study of Yasmin (drospirenone-containing COC) with DVT/PE outcomes. Includes COC users with VTE as outcome. Provides relevant data on COC-VTE association. Conservative decision to include.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 94,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "WHO collaborative case-control study of idiopathic VTE in women aged 20-44 using combined OCs across 21 centers. Includes healthy women using COCs with VTE as outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 95,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Historical study examining thromboembolic deaths in women of child-bearing age using oral contraceptives. While focused on mortality, includes COC users with thromboembolic outcomes. Conservative decision to include.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 96,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Population-based cohort and nested case-control study from 143 UK general practices examining VTE risk with different OC preparations. Includes healthy women using COCs with VTE as outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 97,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study examining VTE risk with third generation OCs in presence/absence of thrombophilia. Includes women using COCs with VTE as outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 98,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Multicenter case-control study examining cardiovascular risk including venous thrombosis in oral contraceptive users. Found significant increase in venous thrombosis risk. Includes COC users with VT as outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 99,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Randomized trial measuring hemostatic variables (protein S, APC resistance) as surrogate markers. Does not measure actual VTE clinical outcomes. Does not meet 'VT as outcome' criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 100,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case-control study examining VTE risk factors in pre- and postmenopausal women. Primary focus is on menopausal hormone therapy, not combined oral contraceptives. Does not meet 'COC' criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 101,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study examining VTE risk in women aged 16-44 using third-generation vs second-generation COCs. Population includes healthy women taking COCs with VTE as outcome. Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 102,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Examines pulmonary embolism (a form of VT) in women using low-estrogen oral contraceptives. While focused on fatal events, includes COC users with VT outcome. Conservative decision to include.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 103,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological review about quality assessment tools for observational studies. Does not involve COC users or VT outcomes. Irrelevant to review objective.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 104,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Title suggests relevance but abstract content is completely unrelated (discusses fluorescent dyes and protein tagging). Appears to be a database error with mismatched title/abstract.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 105,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Narrative review summarizing various risks and benefits of COCs. Mentions VTE but does not present original data on healthy women taking COCs with VT as primary outcome.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 106,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short commentary discussing bias hypotheses in OC-VTE research. Not primary research with actual study data on COC users and VT outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 107,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study of fatal VTE in young women examining OC use. While focused on fatal cases, includes COC users and VT outcome. Some cases had prior illness but many were idiopathic. Conservative decision to include.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 108,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Commentary on medical science methodology. No relation to COCs or venous thrombosis. Irrelevant to review objective.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 109,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Case-control study of VTE in women 15-44 years old, examining OC use. Excluded women with previous VTE or AMI, ensuring relatively healthy population. Directly addresses COC-VTE relationship.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 110,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Abstract discusses hepatitis B virus and immune response mechanisms. Completely unrelated to COCs or venous thrombosis. Database error likely.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 111,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "WHO expert group report reviewing existing evidence on cardiovascular disease and hormonal contraceptives. Secondary source, not primary research with original data on COC users and VT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 112,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Explicitly excludes oral contraceptive users; focuses on nonoral contraceptives (injectable DMPA, IUD). Does not meet criterion of studying women taking COCs.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 113,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Diagnostic accuracy study for DVT testing strategies. Does not examine COC use or risk factors for VT. Different research question entirely.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 114,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis of antiplatelet treatments after TIA/stroke. No relation to COCs or venous thrombosis prevention in healthy women.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 115,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Cohort and nested case-control studies investigating VTE risk factors in women using combined oral contraceptives. Directly addresses COC users with VT outcome.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 116,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Reanalysis of Transnational case-control study examining VTE risk in first-time users of second vs third generation COCs. Healthy women taking COCs with VTE as outcome.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 117,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Retrospective case-control study examining thrombosis risk with low-estrogen oral contraceptives. Includes idiopathic cases and controls. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 118,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological simulation study about attrition bias correction methods. No relation to COCs or venous thrombosis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 119,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective study comparing PE frequency between men and women. While mentions OC use in surgical patients, primary focus is not on COC-VTE relationship in healthy women.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 120,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Nested case-control study examining VTE risk in women using drospirenone vs levonorgestrel COCs. Women without major risk factors, first diagnosis of VTE. Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 121,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study does not meet the selection criteria for multiple reasons: (1) POPULATION MISMATCH - The study includes hospitalized patients (both men and women) with various conditions, not specifically healthy women taking COCs; (2) PRIMARY EXPOSURE MISMATCH - The main research question examines cardiovascular diseases (peripheral atherosclerotic disease and cerebrovascular disease) as risk factors for VTE, not COC use; (3) STUDY DESIGN MISMATCH - While 'current estrogen use' is mentioned as one of several independent risk factors in the results section, this is a secondary covariate/finding rather than the primary exposure of interest; (4) OBJECTIVE MISMATCH - The study was not designed to evaluate COC-specific VTE risks or compare different COC formulations, which is the core objective of this systematic review.",
+      "confidence": "HIGH"
+    }
+  ]
+}

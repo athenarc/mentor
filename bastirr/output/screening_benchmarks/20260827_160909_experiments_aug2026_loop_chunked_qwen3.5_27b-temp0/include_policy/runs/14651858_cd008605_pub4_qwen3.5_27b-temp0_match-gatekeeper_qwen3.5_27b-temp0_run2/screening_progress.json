@@ -1,0 +1,537 @@
+{
+  "expected_n_studies": 66,
+  "completed_count": 66,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review and meta-analysis, not an RCT. While it synthesizes evidence on dopamine agonists for OHSS prevention, the selection criteria specify RCTs only.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a symposium/educational article discussing various OHSS prevention strategies. It mentions dopamine agonists only as having 'possible roles' but is not an RCT evaluating dopamine agonists.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT evaluating cabergoline (a dopamine agonist) for OHSS prevention in IVF patients at risk of OHSS. Although it compares two timing strategies rather than DA vs placebo, it provides relevant data on dopamine agonist efficacy for OHSS prevention in ART. Conservative approach warrants inclusion.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT comparing cabergoline (dopamine agonist) alone vs combined with coasting vs coasting alone for OHSS prevention in high-risk IVF/ICSI patients. Meets all selection criteria: RCT design, dopamine agonist intervention, OHSS prevention in ART.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a case report describing treatment of one patient with moderate OHSS using high-dose cabergoline. Not an RCT and focuses on treatment rather than prevention of OHSS.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomized, double-blind, placebo-controlled trial of cabergoline vs placebo for OHSS prevention in high-risk IVF patients. Meets all selection criteria perfectly: RCT design, dopamine agonist vs placebo, OHSS prevention in ART, reports primary outcomes (OHSS incidence, live birth rate).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational nested case-control study examining cardiac valve regurgitation risk in Parkinson's disease patients taking dopamine agonists. Wrong population (not ART), wrong outcome (not OHSS), not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an animal study (rats) investigating VEGF mechanisms in OHSS. Uses SU5416 (VEGF receptor inhibitor), not a dopamine agonist. Not human, not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a Cochrane systematic review comparing GnRH antagonists vs agonists for COH. Does not evaluate dopamine agonists. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a cross-sectional study examining cardiac valve abnormalities in hyperprolactinemia patients treated with cabergoline. Wrong population (not ART), wrong outcome (not OHSS), not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective case-control study comparing IVM vs standard IVF. Does not evaluate dopamine agonists. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review and network meta-analysis of pharmacologic interventions for OHSS prevention. While it includes cabergoline among interventions analyzed, it is not an RCT itself.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a case report of two patients with spontaneous OHSS due to pituitary adenomas. Not ART-related OHSS, not an RCT, focuses on treatment rather than prevention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a cancer trial of SU5416 (VEGF receptor inhibitor) in patients with RCC, melanoma, and sarcoma. Completely unrelated to OHSS prevention in ART. Not a dopamine agonist.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomized, double-blind, placebo-controlled multicentre trial of quinagolide (dopamine agonist) vs placebo for preventing moderate/severe early OHSS in IVF patients. Meets all selection criteria: RCT design, dopamine agonist vs placebo, OHSS prevention in ART, reports primary outcomes (OHSS incidence, live birth rates).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a prospective randomized study comparing cabergoline (dopamine agonist) vs no medication for OHSS prevention in high-risk ART patients. Meets all selection criteria: RCT design, dopamine agonist vs no intervention, OHSS prevention in ART, reports primary outcomes (early OHSS incidence, pregnancy rates).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article analyzing efficacy of different dopamine agonists for OHSS prevention. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article discussing various IVF approaches. Does not evaluate dopamine agonists. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is primarily an animal study (rat model) investigating mechanisms of cabergoline action. While it mentions administering cabergoline to oocyte donors, the main study design is preclinical animal research, not an RCT in humans.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a case report of spontaneous OHSS due to LH-secreting pituitary adenoma. Not ART-related OHSS, not an RCT, does not evaluate dopamine agonists for prevention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT compares IVF vs ICSI fertilization techniques in IVM cycles, not dopamine agonists for OHSS prevention. The intervention does not involve dopamine agonists.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing cabergoline (dopamine agonist) vs no treatment for OHSS prevention in women at high risk undergoing IVF/ICSI. Reports OHSS incidence as primary outcome.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Despite title mentioning cabergoline, the abstract describes a meta-analysis on bacterial vaginosis in IVF patients, not an RCT on dopamine agonists for OHSS prevention. Topic mismatch.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a Cochrane review on volume expanders (albumin, HES, etc.) for OHSS prevention, not an RCT on dopamine agonists.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing cabergoline (dopamine agonist) vs intravenous albumin for OHSS prevention in high-risk women. Reports moderate/severe OHSS outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review and meta-analysis of RCTs, not a primary RCT itself. Does not meet study design criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article providing clinical guidance on OHSS prevention strategies, not an RCT on dopamine agonists.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing GnRH antagonist rescue protocol combined with cabergoline vs cabergoline alone for OHSS prevention. Both groups receive dopamine agonist, comparing additional intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This article discusses dopamine agonists for treating hyperprolactinaemia and their cardiac side effects, not for OHSS prevention in ART. Wrong population and outcome.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This appears to be a brief statement or editorial about OHSS pathophysiology and dopamine agonists mechanism, not an RCT with primary data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a literature review on VEGF pathway in OHSS. While it cites a trial of cabergoline vs placebo, this publication itself is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review/commentary on GnRH agonist triggering mechanism for OHSS prevention. Mentions dopamine agonists only in passing, not an RCT on dopamine agonists.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized double-blind RCT comparing cabergoline vs placebo for OHSS prevention in oocyte donors at high risk. Reports moderate OHSS incidence.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Nested case-control study on cardiac valve regurgitation risk in Parkinson\\'s/hyperprolactinaemia patients, not an RCT on OHSS prevention in ART.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Explicitly states \\'non randomized clinical trial\\' with historical controls. Does not meet RCT design criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case series describing treatment of diagnosed OHSS, not prevention. Not an RCT design.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Symposium presentation/review on OHSS management, not a primary RCT on dopamine agonists.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized comparative study comparing calcium gluconate vs cabergoline (dopamine agonist) for OHSS prevention in high-risk patients. Reports OHSS occurrence rates.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a Cochrane review protocol (Spanish language), not a primary RCT. Describes objectives for a systematic review.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective cohort study measuring follicular fluid hormones, not an RCT. No randomization mentioned.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study is about VEGF blocking therapy for cancer treatment, not about dopamine agonists for OHSS prevention in ART. Wrong population and intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article summarizing OHSS classifications and preventive measures, not an RCT testing dopamine agonists.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a cross-sectional study about dopamine agonists for prolactinoma patients, not about OHSS prevention in ART. Wrong population and study design.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about cabergoline use for OHSS prevention, not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a brief update/review about PCOS treatment, not an RCT testing dopamine agonists for OHSS prevention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about ART complications including OHSS, not an RCT testing dopamine agonists.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT comparing cabergoline (dopamine agonist) vs albumin for OHSS prevention in high-risk infertile women undergoing ART. Meets all selection criteria: RCT design, dopamine agonist intervention, OHSS prevention in ART, reports OHSS incidence and clinical pregnancy rates.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review and meta-analysis of RCTs, not a primary RCT itself. The protocol specifies RCTs for inclusion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is described as a \\'prospective controlled study\\' but does not explicitly state randomization. The comparison is between LOD and GnRH antagonist+cabergoline, where cabergoline is part of a combination intervention rather than being compared to placebo/no intervention. Unclear if it meets RCT criteria.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a Cochrane systematic review about coasting for OHSS prevention, not an RCT testing dopamine agonists.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a Cochrane systematic review about metformin for PCOS in IVF/ICSI, not an RCT testing dopamine agonists for OHSS prevention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review about coasting for OHSS prevention, not an RCT testing dopamine agonists.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a Cochrane review about luteal phase support methods, not an RCT testing dopamine agonists for OHSS prevention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an animal study (rats and mice) about VEGF inhibition, not an RCT testing dopamine agonists for OHSS prevention in humans.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT comparing bromocriptine (dopamine agonist) vs folic acid (placebo-like control) in IVF patients at high risk for OHSS. Reports OHSS incidence as an outcome. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is explicitly described as a retrospective study with matched controls, not an RCT. Does not meet the RCT design requirement.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a prospective randomized study comparing HES alone vs HES+cabergoline for OHSS prevention in IVF patients at risk. Tests dopamine agonist (cabergoline) addition for OHSS prevention in ART. Reports OHSS rates and pregnancy rates.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective study comparing bromocriptine-treated patients to a historical control group, not a randomized controlled trial. Does not meet the RCT design requirement.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 59,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article examining evidence for various OHSS prevention strategies, not an RCT testing dopamine agonists.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 60,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is explicitly described as a retrospective study, not an RCT. Does not meet the RCT design requirement.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 61,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a clinical trial comparing cabergoline (a dopamine agonist) versus coasting (another intervention) for OHSS prevention in 60 women undergoing ART cycles at risk of OHSS. The study meets the selection criteria as it compares a dopamine agonist with another intervention for OHSS prevention in the correct ART population. The abstract is truncated but clearly describes the relevant comparison.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 62,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an animal study conducted in CD1 mice investigating the VEGF/VEGFR-2 pathway in corpora lutea during pregnancy. It does not involve dopamine agonists, does not address OHSS prevention, and is not conducted in humans undergoing ART. Completely outside the scope of the review question.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 63,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is explicitly described as a randomized controlled study evaluating cabergoline (0.25mg dopamine agonist) versus no treatment for OHSS prevention in 200 women at high risk undergoing IVF/ICSI treatment. The primary outcome was reduction in OHSS incidence. This directly meets all selection criteria: RCT design, dopamine agonist intervention, OHSS prevention, ART population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 64,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a prospective randomized controlled trial comparing cabergoline (0.5mg/day for 8 days, a dopamine agonist) versus no medication in 40 infertile women at risk of OHSS undergoing IVF. Outcomes included ascites, moderate OHSS incidence, and ART outcomes. This fully meets the selection criteria: RCT design, dopamine agonist vs no intervention, OHSS prevention, ART population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 65,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an echocardiographic prevalence study examining valvular heart disease in patients taking dopamine agonists for Parkinson's disease treatment. The population is Parkinson's patients, not women undergoing ART. The outcome is valvular regurgitation, not OHSS. This study is completely unrelated to the review question about OHSS prevention in ART.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 66,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article providing an overview/update on OHSS, not a primary research study. The selection criteria specifically require RCTs. Reviews do not provide original comparative data on interventions and cannot be included in this systematic review of RCTs.",
+      "confidence": "HIGH"
+    }
+  ]
+}

@@ -1,0 +1,473 @@
+{
+  "expected_n_studies": 58,
+  "completed_count": 58,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Population recruited for depression (not anxiety disorders). Comparator is 'usual care' not 'no intervention/education only'. Primary focus is depression, not anxiety disorders.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional study using PCA analysis - NOT an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Theoretical/opinion paper - NOT an RCT. Not about COPD population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper - NOT an RCT. Not about COPD or anxiety disorders.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Population includes 'chronic breathing disorders' not specifically COPD. Both groups received pulmonary rehabilitation - no group received co-intervention alone (violates comparator criterion).",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case-control study - NOT an RCT. Population has personality disorder, not COPD.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is acupressure (physical therapy), NOT a psychological therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article - NOT an RCT. Summarizes existing literature rather than conducting original trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional study - NOT an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Interventions are exercise training, activity training, and lectures - NOT psychological therapies.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Guideline document - NOT an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional study - NOT an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Single-blinded open study (not proper RCT). Intervention is fluoxetine (pharmacological), NOT psychological therapy. Focus is depression, not anxiety disorders.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT design. Population: COPD patients. Intervention: Psychotherapy (psychological therapy). Three-group design allows comparison of psychotherapy with PR alone (Group 3). Meets co-intervention criterion. Uncertainty about confirmed anxiety diagnosis warrants inclusion per conservative approach.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper describing questionnaire development - NOT an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational analysis within INSPIRE-II trial - NOT testing psychological therapy intervention. Examines associations, not intervention effects.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on meta-analysis statistics - NOT an RCT. Not about COPD or psychological therapies.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study protocol only - no results reported. Cannot assess intervention effects from protocol alone.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane systematic review - NOT an RCT. Reviews pharmacological (not psychological) interventions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Factorial design observational study - NOT an RCT testing psychological therapy intervention. Examines associations between anxiety and physiological measures.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review and meta-analysis, not a primary RCT. The selection criteria require randomised controlled trials, cluster-randomised trials, or cross-over trials.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a statistical methodology note about units of analysis in clinical research. It does not involve COPD, anxiety, or psychological therapy interventions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a qualitative study using in-depth interviews with 14 patients. It does not test a psychological therapy intervention and is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This reports proceedings of a multidisciplinary workshop. It is not a primary research study or RCT testing psychological therapies.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a cross-sectional observational study examining relationships between functional status and psychopathology. It does not test a psychological therapy intervention and is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article discussing the cognitive model of panic anxiety and CBT utility. It does not report a primary RCT testing psychological therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT testing CBT (psychological therapy) for anxiety and depression in COPD patients. Uses validated measures (Beck Anxiety Inventory, Beck Depression Inventory-II). Compared with enhanced standard care. Conservative decision to include for full-text review to confirm age criteria (>40) and exact nature of control condition.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review examining 25 studies. It is not a primary RCT testing psychological therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review and meta-analysis of longitudinal studies examining associations between depression/anxiety and COPD. It does not test psychological therapy interventions and is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a cross-sectional survey examining the contribution of perceived social support to anxiety in COPD. It does not test a psychological therapy intervention and is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological paper about sample size calculations for cluster-randomised trials. It does not involve COPD, anxiety, or psychological therapy interventions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT testing coping skills training (psychological therapy) vs COPD education (education-only control, which meets criteria). Measures anxiety using validated QoL instruments. Age range 38-81 years. Conservative decision to include for full-text review to confirm age distribution and anxiety measurement details.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a narrative review discussing depression in COPD and treatment approaches. It references RCTs but is not itself a primary RCT testing psychological therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT testing CBT (psychological therapy) vs routine care (no intervention control) for preventing panic attacks and anxiety in COPD patients. Primary outcomes include panic attacks, panic disorder, and anxiety symptoms. Conservative decision to include for full-text review to confirm age criteria (>40) and anxiety measurement methods.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective observational cohort study examining risk factors for rehospitalisation. It does not test a psychological therapy intervention and is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT testing relaxation therapy (psychological therapy) vs control (sit quietly - no intervention). Measures anxiety outcomes. Small sample (n=26). Conservative decision to include for full-text review to confirm age criteria (>40) and whether anxiety was measured with validated scale.",
+      "confidence": "LOW"
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a cohort study examining the relationship between anxiety and health outcomes in COPD. It does not test a psychological therapy intervention and is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a narrative review providing an overview of depression and anxiety in COPD. It discusses interventions but is not a primary RCT testing psychological therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This appears to be an opinion/commentary article discussing anxiety recognition in COPD. It is not a primary research study or RCT testing psychological therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review and meta-analysis of 29 RCTs. It is not a primary RCT testing psychological therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational/correlational study using path analysis, not an RCT. No intervention was tested; it examined associations between variables and functional status.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing CBT group treatment vs COPD education in COPD patients with moderate-to-severe anxiety/depression symptoms assessed using validated scales (BAI, BDI-II). Meets all criteria: RCT design, COPD population with anxiety, psychological therapy intervention, education-only comparator.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT with COPD patients (mean age 60.33, >40) assessing anxiety via BAI. Intervention included psychotherapy plus exercise/physiotherapy; control group received exercise/physiotherapy without psychotherapy. This meets the special rule for co-interventions since the comparison group received the co-intervention alone.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a normative study reporting community norms for anxiety measures, not an RCT. No intervention tested, and population is general community, not COPD patients.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is an RCT with a stress management intervention, the population includes both obstructive AND restrictive pulmonary disease (not COPD-specific). Additionally, anxiety outcomes are not clearly reported as primary outcomes.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article discussing pathophysiologic relationships, not an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a cross-sectional survey study developing and validating a questionnaire (CAF-R), not an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a psychometric validation study of a measurement tool, not an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is an RCT, the intervention is comprehensive pulmonary rehabilitation (primarily exercise training with some psychosocial support), not a psychological therapy. The main focus is physical rehabilitation, not treating anxiety disorders.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a literature review, not an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological study about walking tests, not an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a theoretical/review paper about panic disorder mechanisms, not an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational/correlational study examining associations between emotional functioning and daily activities, not an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a cross-sectional prevalence and validation study, not an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review and meta-analysis, not an RCT. While it reviews relevant interventions, it is not a primary study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a critical review of existing literature, not an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about epidemiology and treatment options, not an RCT. No intervention tested.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Single-blind RCT comparing 2-hour CBT session vs COPD education in elderly COPD patients. Anxiety measured using BAI. Meets all criteria: RCT design, COPD population with anxiety, psychological therapy intervention, education-only comparator.",
+      "confidence": "HIGH"
+    }
+  ]
+}

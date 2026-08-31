@@ -1,0 +1,676 @@
+{
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective observational study, not an RCT. Focuses on impact of inappropriate initial therapy rather than comparing de-escalation strategy vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Open non-comparative study, not an RCT. Population has staphylococcal bone infections, not sepsis/severe sepsis/septic shock.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "RCT but compares dosing regimens (single vs multiple dose gentamicin), not de-escalation vs standard therapy. Population has acute pyelonephritis, not sepsis/septic shock.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study, not an RCT. Focuses on association between regimen changes and hospital costs/length of stay, not de-escalation effectiveness.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Clinical practice guidelines document based on Delphi consensus, not an RCT comparing interventions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional observational study describing antibiotic prescribing patterns, not an RCT comparing de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Population-based epidemiological study describing incidence and costs, not an RCT comparing interventions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Editorial/opinion piece discussing treatment paradigms, not an RCT comparing de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective observational study reviewing de-escalation practices, not an RCT comparing de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional observational study describing antibiotic usage patterns, not an RCT comparing interventions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article discussing sepsis management principles, not an RCT comparing de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Multicentre RCT comparing procalcitonin-guided antibiotic strategy vs standard guidelines in ICU patients with suspected bacterial infections. While the intervention is biomarker-guided rather than culture-based de-escalation, it addresses the core question of reducing unnecessary antibiotic exposure. Mortality was assessed at 28 and 60 days. Include for full-text review to determine if it meets specific de-escalation criteria.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Secondary analysis from the MONARCS trial examining association between adequate empiric therapy and mortality, not an RCT comparing de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective observational study analyzing compliance with antimicrobial guidelines, not an RCT comparing de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article discussing optimization of antimicrobial therapy, not an RCT comparing de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Perspective/review article on antibiotic use in surgical infections, not an RCT comparing de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study comparing biomarker levels, not an RCT comparing de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on meta-analysis statistics, not a clinical study relevant to the review question.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article discussing therapeutic challenges in gram-negative sepsis, not an RCT comparing de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Diagnostic accuracy study in acute pancreatitis patients, not an RCT. Wrong population (pancreatitis, not sepsis/septic shock).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article discussing imipenem as an agent for de-escalation therapy. It is not a randomized controlled trial (RCT) comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about antimicrobial streamlining for lower respiratory tract infections (LRTI). It is not an RCT, and the population is LRTI patients, not specifically adults with sepsis/severe sepsis/septic shock.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article summarizing pharmacokinetic studies and dosing recommendations for antibiotics in patients with acute kidney injury. It is not an RCT comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an RCT but the population is preterm infants (neonates), not adults. Additionally, it compares dosing frequency (once-daily vs twice-daily), not de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about carbapenem patents published from 2004-2008. It is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article providing principles for antimicrobial dosing regimens in severe sepsis and septic shock. It is not an RCT comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an RCT but it compares procalcitonin-guided diagnostics and treatment versus standard care, not de-escalation based on culture results versus standard therapy. The intervention is biomarker-guided therapy adjustment, not specifically de-escalation based on microbial culture results.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective cohort study, not an RCT. It examines the association between delays in antimicrobial therapy and AKI outcomes in septic shock patients.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a descriptive article about the implementation of the Surviving Sepsis Campaign in Brazilian hospitals. It is not an RCT comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a microbiological study characterizing a novel beta-lactamase gene. It is not an RCT and does not involve clinical intervention comparison.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational study with a pharmacist-based intervention to reduce redundant antibiotic combinations. It is not an RCT comparing de-escalation versus standard therapy for sepsis/septic shock.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an RCT but it compares procalcitonin-guided antibiotic discontinuation versus standard 8-day therapy in surgical ICU patients. The intervention is PCT-guided duration of therapy, not de-escalation based on culture results. The population is surgical ICU patients with suspected/confirmed infections, not specifically adults with sepsis/severe sepsis/septic shock.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about urinary tract infections. It is not an RCT comparing de-escalation versus standard therapy for sepsis/septic shock.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective cohort study examining the relationship between initial appropriate antimicrobial treatment and outcomes in P. aeruginosa bloodstream infection. It is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological paper about reporting standards for RCTs. It is not an RCT itself.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective case record study about bacterial meningitis, not sepsis/severe sepsis/septic shock. It is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about empiric antibiotic selection for sepsis and septic shock. It is not an RCT comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a letter/commentary about a meta-analysis of procalcitonin for sepsis diagnosis. It is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a validation study of the APACHE II severity scoring system. It is not an RCT comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a guideline/standard operating procedure document for antibiotic administration in severely injured patients. It is not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an RCT but does not meet selection criteria. The intervention uses Clinical Pulmonary Infection Score (CPIS) for decision-making, NOT microbial culture results. The population is ICU patients with pulmonary infiltrates, not specifically adults with sepsis/severe sepsis/septic shock. The intervention is about short-course therapy duration, not de-escalation based on culture results.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is explicitly stated as a 'retrospective monocentric study' - NOT an RCT. While it addresses de-escalation in severe sepsis/septic shock patients, the study design does not meet the requirement for randomized controlled trials.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review/guideline article discussing general principles of antibiotic therapy. It is not an RCT comparing de-escalation versus standard therapy. No primary research data presented.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article discussing general management principles for septic shock. It mentions de-escalation as a concept but does not present an RCT comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a before-after study (not an RCT) focusing on C. difficile outbreak control in an elderly care unit. The population is not specifically adults with sepsis/severe sepsis/septic shock, and the intervention is a restrictive antibiotic policy, not de-escalation based on culture results.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational study reviewing microbiologic culture results over 5 years. It is not an RCT and does not compare de-escalation versus standard therapy. The focus is on epidemiology of catheter-related bacteremia.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article ('PURPOSE OF REVIEW') summarizing recent data on Pseudomonas aeruginosa infections. It is not an RCT comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective review (before/after implementation of an algorithm), not an RCT. The intervention is an antibiotic algorithm to improve adequacy of empiric therapy, not de-escalation based on culture results.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about antibiotic therapy for bacterial endocarditis. It is not an RCT, and the population (endocarditis patients) is not specifically adults with sepsis/severe sepsis/septic shock.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article discussing management principles for severe skin and soft tissue infections. While it mentions de-escalation as one of four management principles, it is not an RCT comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article discussing sepsis treatment principles. It mentions de-escalation strategy as a key factor but does not present an RCT comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a commentary/article about procalcitonin as a marker in liver transplant patients. It is not an RCT, and the population (liver transplant patients) is not specifically adults with sepsis/severe sepsis/septic shock.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a secondary analysis examining the effect of inappropriate initial antimicrobial therapy on survival. It is NOT comparing de-escalation versus standard therapy. Additionally, the selection criteria explicitly exclude 'Studies including patients initially treated with an empirical but not adequate antimicrobial therapy' - this study specifically analyzes such patients.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about antibiotic use in neonatal intensive care units. The population is neonates/infants, not adults. It is not an RCT comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective observational cohort study (not an RCT). While it mentions antimicrobial treatment adjusted according to procalcitonin level, it does not compare de-escalation versus standard therapy in a randomized design.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an RCT but does not meet selection criteria. The intervention compares bolus dosing versus continuous infusion of piperacillin-tazobactam, NOT de-escalation versus standard therapy. The primary outcomes are pharmacokinetic parameters (plasma and tissue concentrations), not mortality.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article ('PURPOSE OF REVIEW') discussing approaches to reduce multiresistant bacteria. It mentions de-escalation as one approach but is not an RCT comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective observational study (not an RCT) describing epidemiology of severe sepsis in Chinese surgical ICUs. There is no intervention comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 59,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article summarizing new antibacterial agents and their properties. It is not an RCT comparing de-escalation versus standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 60,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This appears to be the Cochrane review protocol itself (references cochranelibrary.com). It is not a primary study to be included in the systematic review - it IS the review protocol.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 61,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review/opinion article about carbapenems for ICU infections, not an RCT. It does not compare de-escalation vs standard therapy and does not focus on sepsis/septic shock specifically.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 62,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational/descriptive study about PCT-guided antibiotic discontinuation, not an RCT. It does not compare de-escalation based on culture results vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 63,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective cohort study, not an RCT. It examines timing of antimicrobial therapy initiation, not de-escalation based on culture results.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 64,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study focuses on neonates (extremely low birth weight infants), not adults. It is also a retrospective study, not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 65,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about invasive fungal infections, not an RCT. It does not compare de-escalation vs standard therapy for sepsis/septic shock.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 66,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational study about community-acquired pneumonia, not sepsis/septic shock. It is not an RCT and does not compare de-escalation based on culture results.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 67,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective observational cohort study, not an RCT. It describes epidemiology of sepsis in European ICUs, not de-escalation intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 68,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational study evaluating the impact of an infectious disease service, not an RCT. It does not compare de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 69,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a point-prevalence observational study, not an RCT. It describes prevalence of ICU-acquired infections, not de-escalation intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 70,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This appears to be a review or opinion piece about de-escalation in ventilator-acquired pneumonia, not an RCT. It does not focus on sepsis/septic shock specifically.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 71,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about urinary tract infections, not an RCT. It does not focus on sepsis/septic shock or de-escalation.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 72,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a conference report/consensus document about sepsis definitions, not an RCT. It does not evaluate de-escalation intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 73,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective observational study, not an RCT. It focuses on ventilator-associated pneumonia, not sepsis/septic shock specifically.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 74,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about sepsis management recommendations, not an RCT. It does not compare de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 75,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This article is about clinical measurements in cardiology, completely unrelated to sepsis or antimicrobial de-escalation.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 76,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study focuses on neonates (NICU patients), not adults. It is also a prospective cohort study, not an RCT. Additionally, it includes patients with inadequate empiric therapy which is an exclusion criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 77,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is an RCT in adults with severe sepsis, the intervention is PCT-guided antibiotic discontinuation, not de-escalation based on culture results. The selection criteria specifically require de-escalation based on culture results.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 78,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an RCT but about selective decontamination of the digestive tract (SDD), which is a prophylactic/prevention strategy, not de-escalation of antimicrobial therapy based on culture results.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 79,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational cross-sectional study about prevalence of severe sepsis, not an RCT. It does not evaluate de-escalation intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 80,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article about antibiotic dosing in MRSA infections with renal failure, not an RCT. It does not focus on sepsis/septic shock or de-escalation.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 81,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a multicenter observational cohort study, not an RCT. It describes incidence and outcomes of sepsis in Brazilian ICUs but does not compare de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 82,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective observational/pharmaco-epidemiological study, not an RCT. It assesses antibiotic use patterns but does not compare de-escalation vs standard therapy in a randomized manner.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 83,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a surveillance study, not an RCT. It categorizes antibiotic use indications but does not test de-escalation strategies.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 84,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is an RCT, it includes CHILDREN (3 months to 15 years), not adults. The review protocol specifies adult patients only. Additionally, it compares narrow vs broad spectrum empirically rather than de-escalation based on culture results.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 85,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review/opinion article, not an RCT. It discusses principles of wound management and antimicrobial use but does not present original research comparing de-escalation strategies.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 86,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is a cluster-randomized trial, the population has lower respiratory tract infections (pneumonia, COPD exacerbation, bronchitis, asthma) not specifically sepsis/severe sepsis/septic shock. The primary outcome is antibiotic use, not mortality. This does not match the review's PICO.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 87,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a study PROTOCOL (not completed results) and focuses on NEONATES AND CHILDREN, not adults. The intervention is about diagnostic markers (cytokines) to guide antibiotic initiation/discontinuation, not de-escalation based on culture results.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 88,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a trend analysis using administrative data, not an RCT. There is no intervention being tested; it simply describes epidemiological trends in sepsis hospitalization and mortality.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 89,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective descriptive study, not an RCT. It evaluates blood culture yield but does not compare de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 90,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective cohort study, not an RCT. While it examines sepsis patients and mortality outcomes, it does not test de-escalation strategies; rather it assesses the impact of adequate vs inadequate empirical therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 91,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article discussing the concept of antibiotic de-escalation. It is not an RCT and does not present original comparative data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 92,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective analysis, not an RCT. While it examines adjustment of therapy based on blood culture results (similar to de-escalation), there is no randomized comparison group.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 93,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review/opinion article, not an RCT. It discusses the importance of de-escalation in VAP but does not present original comparative research data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 94,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective observational study, not an RCT. While it reports on de-escalation practices in VAP patients, there is no randomized comparison of de-escalation vs standard therapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 95,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a review article, not an RCT. It discusses principles of antibiotic therapy optimization including de-escalation but does not present original comparative research.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 96,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a retrospective cohort study, not an RCT. While it examines de-escalation in bacteraemia patients and reports mortality outcomes, there is no randomized comparison of de-escalation vs standard therapy. The study compares patients who received appropriate vs inappropriate initial therapy and those who were de-escalated vs not, but this is observational.",
+      "confidence": "HIGH"
+    }
+  ]
+}

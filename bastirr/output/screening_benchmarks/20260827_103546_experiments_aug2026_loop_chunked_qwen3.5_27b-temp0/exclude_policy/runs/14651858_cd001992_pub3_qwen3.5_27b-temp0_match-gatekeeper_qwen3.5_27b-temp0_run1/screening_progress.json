@@ -1,0 +1,169 @@
+{
+  "expected_n_studies": 58,
+  "completed_count": 20,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "next_study_index": 21,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized trial comparing indomethacin (non-selective COX inhibitor) with terbutaline for tocolysis in women with preterm labor at 26-32 weeks gestation. Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational pharmacokinetic study measuring indomethacin levels in maternal/fetal serum and amniotic fluid. Not a randomized trial of tocolysis; no intervention arm for treating preterm labor.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review about magnesium sulphate for neuroprotection, not a primary randomized trial of COX inhibitors for tocolysis. Wrong intervention and wrong study type.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized double-blind placebo-controlled trial comparing celecoxib (COX-2 selective inhibitor) with indomethacin (non-selective COX inhibitor) for treatment of preterm labor at 24-34 weeks gestation. Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized double-blind trial comparing sulindac (COX inhibitor) with terbutaline for management of preterm labor at approximately 32 weeks gestation. Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review/meta-analysis about progestational agents, not COX inhibitors. Wrong intervention and wrong study type (review, not primary RCT).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about statistical analysis methods for trials with multiple pregnancies. Not a primary clinical trial of any intervention for preterm labor.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized double-blind trial comparing ritodrine+placebo vs ritodrine+indomethacin (COX inhibitor) for threatened preterm labor. Meets selection criteria as it tests COX inhibitor for tocolysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized double-blind double-dummy trial comparing indomethacin (COX inhibitor) with nylidrin for imminent preterm labor at 25-34 weeks gestation. Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Matched cohort study (not randomized) comparing neonatal outcomes in infants whose mothers received indomethacin vs those who did not. Wrong study design - not a randomized trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological/statistical paper about analysis methods for trials with multiple births. Not a primary clinical trial of COX inhibitors for tocolysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is a randomized trial of rofecoxib (COX-2 inhibitor), it was for PROPHYLACTIC/preventive use in women at high risk, not for tocolysis in women IN LABOUR. Treatment started at 16 weeks before labor onset. Does not meet the 'women in labour' criterion.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized double-masked trial of indomethacin (COX inhibitor) vs placebo for tocolysis in women with PPROM at 24-31 weeks gestation. Although PPROM is a specific condition, these women are in preterm labor and receive tocolysis. Meets selection criteria.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized trial comparing two COX inhibitors (indomethacin vs sulindac) for refractory preterm labor at approximately 29-30 weeks gestation. Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Randomized trial but enrolled women with LOW-RISK PREGNANCY and NO SIGNS OF PRETERM LABOR. The study tested effects on fetal movements in healthy pregnancies, not tocolysis in women in preterm labor. Does not meet population criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized double-blind trial comparing indomethacin (COX inhibitor) with placebo for premature labor. Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Prospective randomized trial comparing ketorolac (non-selective COX inhibitor) with magnesium sulfate for arrest of preterm labor at ≤32 weeks gestation. Meets all selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and network meta-analysis, not a primary randomized trial. Wrong study type.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane review about betamimetics, not COX inhibitors. Wrong intervention and wrong study type (review, not primary RCT).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized prospective trial comparing indomethacin (COX inhibitor) with ritodrine for long-term treatment of preterm labor at 23-34 weeks gestation. Meets all selection criteria.",
+      "confidence": "HIGH"
+    }
+  ]
+}

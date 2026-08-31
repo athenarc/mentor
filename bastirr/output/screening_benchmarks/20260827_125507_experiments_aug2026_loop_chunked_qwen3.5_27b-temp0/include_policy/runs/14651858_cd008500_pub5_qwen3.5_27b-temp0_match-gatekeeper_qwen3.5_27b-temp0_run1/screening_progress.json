@@ -1,0 +1,673 @@
+{
+  "expected_n_studies": 83,
+  "completed_count": 83,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (nadroparin) to placebo for VTE prophylaxis in ambulatory cancer patients receiving chemotherapy. Meets all selection criteria: RCT design, anticoagulant vs placebo, ambulatory cancer patients on chemotherapy, primary outcome is VTE events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (dalteparin) to no LMWH in SCLC patients receiving chemotherapy. While primary outcome is survival, the study compares anticoagulant vs no anticoagulant in cancer patients receiving chemotherapy, which is relevant to the review question.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing warfarin to no warfarin in SCLC patients receiving chemotherapy. Meets selection criteria: RCT design, oral anticoagulant vs no anticoagulant, cancer patients receiving chemotherapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (enoxaparin) to no LMWH in SCLC patients receiving standard treatment. VTE incidence was a secondary outcome. Meets selection criteria: RCT design, anticoagulant vs no anticoagulant, cancer patients receiving chemotherapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study randomized patients to 3 different doses of dalteparin but had NO control group (no placebo or no treatment arm). The abstract explicitly states lack of control group precluded any inference. Does not meet selection criteria requiring comparison to no thromboprophylaxis or placebo.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study population is children (age 1-18 years) with acute lymphoblastic leukemia, not ambulatory solid tumor cancer patients receiving chemotherapy. The review focuses on ambulatory cancer patients, and pediatric leukemia patients are typically hospitalized during induction therapy. Wrong population for this review.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (certoparin) to placebo for VTE prophylaxis in ambulatory patients with metastatic breast or lung cancer. Meets all selection criteria: RCT design, anticoagulant vs placebo, ambulatory cancer patients, primary outcome is VTE.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (dalteparin) to placebo in patients with advanced malignancy. While primary outcome is survival, VTE rates were reported. Meets selection criteria: RCT design, anticoagulant vs placebo, cancer patients.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing dalteparin to observation (no thromboprophylaxis) in cancer patients starting new systemic regimen. Meets all selection criteria: RCT design, anticoagulant vs no thromboprophylaxis, cancer patients receiving chemotherapy, primary outcome is VTE.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (nadroparin) to placebo in patients with metastasized or locally advanced solid tumors. While primary outcome is survival, the study compares anticoagulant vs placebo in cancer patients. Meets selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing two different anticoagulants (aspirin vs LMWH enoxaparin) for VTE prophylaxis in multiple myeloma patients receiving lenalidomide. Meets selection criteria: RCT design, comparing two different anticoagulants, cancer patients receiving chemotherapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing subcutaneous heparin to no heparin in SCLC patients receiving chemotherapy. Meets selection criteria: RCT design, anticoagulant vs no anticoagulant, cancer patients receiving chemotherapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH (bemiparin) to no LMWH in SCLC patients receiving chemoradiotherapy. Meets selection criteria: RCT design, anticoagulant vs no anticoagulant, cancer patients receiving chemotherapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing oral anticoagulant (warfarin) to placebo for VTE prophylaxis in metastatic breast cancer patients receiving chemotherapy. Meets all selection criteria: RCT design, oral anticoagulant vs placebo, ambulatory cancer patients on chemotherapy, primary outcome is VTE.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing oral anticoagulant (apixaban) to placebo for VTE prophylaxis in metastatic cancer patients receiving chemotherapy. Meets all selection criteria: RCT design, oral anticoagulant vs placebo, cancer patients receiving chemotherapy, primary outcome includes VTE.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing LMWH to no LMWH in lung cancer patients receiving standard treatment. VTE-free survival was a secondary outcome. Meets selection criteria: RCT design, anticoagulant vs no anticoagulant, cancer patients receiving chemotherapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing dalteparin to no dalteparin in advanced pancreatic cancer patients receiving chemotherapy. Primary endpoint was VTE reduction. Meets all selection criteria: RCT design, anticoagulant vs no anticoagulant, cancer patients receiving chemotherapy, primary outcome is VTE.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing warfarin to no warfarin in SCLC patients receiving chemotherapy and radiation. Meets selection criteria: RCT design, oral anticoagulant vs no anticoagulant, cancer patients receiving chemotherapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study population is children with acute lymphoblastic leukemia receiving L-asparaginase, not ambulatory solid tumor cancer patients receiving chemotherapy. Pediatric leukemia patients are typically hospitalized during treatment. Wrong population for this review.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing three different anticoagulants (aspirin, warfarin, LMWH enoxaparin) for VTE prophylaxis in multiple myeloma patients receiving thalidomide-based regimens. Meets selection criteria: RCT design, comparing different anticoagulants, cancer patients receiving chemotherapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomized controlled trial comparing enoxaparin (LMWH) vs observation in ambulatory patients with advanced pancreatic cancer receiving first-line chemotherapy. The primary outcome was symptomatic VTEs, which directly addresses primary VTE prophylaxis. All selection criteria are met: RCT design, ambulatory cancer patients on chemotherapy, anticoagulant vs no prophylaxis, and VTE as primary outcome.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is an RCT of dalteparin vs placebo for VTE prophylaxis, the population consists of patients with newly diagnosed malignant glioma starting treatment within 4 weeks of surgery. These are post-surgical brain tumor patients, not ambulatory cancer patients receiving chemotherapy as specified in the review protocol. The population does not match the review focus.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT compared LMWH vs standard care/placebo in advanced cancer patients, but the primary endpoint was overall survival, not VTE prophylaxis. The study was designed to assess survival benefit of LMWH, not VTE prevention. VTE rates were reported as secondary outcomes (6% vs 7%). Does not meet the review objective of assessing primary VTE prophylaxis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT compared nadroparin vs no treatment in patients with NSCLC, prostate, or pancreatic cancer. However, the primary outcomes were overall survival and time to progression, not VTE prophylaxis. The study was explicitly designed to confirm survival benefits of LMWH, not to prevent VTE. Does not meet the review objective.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT compared warfarin vs control in small cell lung cancer patients, but the primary outcome was survival (median 50 weeks vs 24 weeks). Warfarin was investigated for potential anti-tumor effects, not for VTE prophylaxis. The study hypothesis was about blood coagulation mechanism involvement in cancer growth/spread, not VTE prevention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomized controlled phase II trial comparing enoxaparin vs observation in advanced cancer patients with elevated TFMP. The primary outcome was cumulative incidence of VTE at 2 months. While it uses a biomarker-enriched population, it still meets the core criteria: RCT design, cancer patients, anticoagulant vs no prophylaxis, and VTE as primary outcome. Conservative approach warrants inclusion.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a double-blind, multicenter RCT comparing semuloparin (ultra-low-molecular-weight heparin) vs placebo in patients with metastatic or locally advanced solid tumors beginning chemotherapy. The primary efficacy outcome was a composite of symptomatic DVT, nonfatal PE, and VTE-related death. All selection criteria are met: RCT, ambulatory cancer patients on chemotherapy, anticoagulant vs placebo, primary VTE prophylaxis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a randomized, placebo-controlled, double-blind RCT of apixaban (oral anticoagulant) vs placebo in ambulatory cancer patients at intermediate-to-high risk (Khorana score ≥2) initiating chemotherapy. The primary efficacy outcome was objectively documented VTE over 180 days. All selection criteria are met: RCT, ambulatory cancer patients on chemotherapy, oral anticoagulant vs placebo, primary VTE prophylaxis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is a double-blind, randomized RCT comparing rivaroxaban (oral anticoagulant) vs placebo in high-risk ambulatory cancer patients (Khorana score ≥2) receiving systemic cancer therapy. The primary efficacy endpoint was a composite of confirmed DVT, PE, and VTE-related death assessed up to day 180. All selection criteria are met: RCT, ambulatory cancer patients, oral anticoagulant vs placebo, primary VTE prophylaxis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "The abstract only contains a figure caption showing survival data for SCLC patients with hazard ratios. There is insufficient information to determine if this is an RCT of VTE prophylaxis. The content suggests focus on survival outcomes rather than VTE prevention. Cannot confirm eligibility from available information.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT compared tinzaparin vs no treatment in patients with completely resected stage I-IIIA NSCLC. The primary outcome was overall survival, not VTE prophylaxis. The study was designed to test anti-tumor/anti-metastatic properties of LMWH in the adjuvant surgical setting, not primary VTE prophylaxis in ambulatory patients receiving chemotherapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is described as a phase 2 clinical trial where aspirin was added to the regimen after initial patients experienced increased VTEs, generating 3 patient groups based on when aspirin was started. This is not a properly randomized controlled trial - patients were not randomly assigned to aspirin vs no aspirin at baseline. The study design does not meet the RCT criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study compares vena cava filter placement vs conservative therapy in cancer patients. The abstract does not clearly indicate randomization. Additionally, the study appears to focus on patients with existing deep venous thrombosis (secondary prevention) rather than primary prophylaxis. The population includes patients undergoing surgery and polychemotherapy, not specifically ambulatory patients.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT compared nadroparin vs control in patients with completely resected NSCLC receiving adjuvant chemotherapy. The primary endpoint was recurrence-free survival, not VTE prophylaxis. The study was designed to test whether LMWH delays metastasis development, not to prevent VTE. The adjuvant surgical setting also differs from the ambulatory chemotherapy population of interest.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a subgroup analysis of the CERTIFY trial comparing certoparin vs UFH in acutely-ill, non-surgical patients aged ≥70 years. The cancer patients (n=274) were a subset of hospitalized acutely ill patients, not ambulatory cancer patients receiving chemotherapy. The population does not match the review focus on ambulatory patients.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT evaluated intermittent pneumatic compression for postoperative DVT prevention. The study included both cancer and non-cancer patients in a postoperative setting. The population is postoperative surgical patients, not ambulatory cancer patients receiving chemotherapy. The setting does not match the review focus.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is explicitly described as an observational study comparing patients who received LMWH prophylaxis vs those who did not. The abstract states 'The aim of our observational study' and patients were grouped based on practice patterns, not randomization. Does not meet the RCT criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is described as a prospective cohort study with a noncontemporaneous control group, not a randomized controlled trial. Additionally, the population is children with acute lymphoblastic leukemia, not adult ambulatory cancer patients receiving chemotherapy. Both the study design and population do not meet the selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This report describes the use of aspirin in three series of MM patients receiving thalidomide or lenalidomide. The abstract describes observational series/case series, not a randomized controlled trial. There is no mention of randomization or control groups. Does not meet the RCT criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an economic evaluation based on a double-blind, randomized trial of very low-dose warfarin vs control in women with metastatic breast cancer receiving chemotherapy. The underlying trial demonstrated reduced VTE incidence without increased bleeding. While this publication is an economic analysis, it references and provides data from an eligible RCT. Conservative approach warrants inclusion pending full-text verification of the primary trial data.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective observational cohort study evaluating a risk prediction model. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Narrative review discussing epidemiology and management. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational cohort study estimating incidence rates. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on meta-analysis techniques. Not a clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Clinical practice guidelines summarizing evidence. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on evidence grading systems. Not a clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on statistical tests for meta-analysis. Not a clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article on VTE epidemiology and risk factors. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on heterogeneity measures. Not a clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective analysis of secondary prophylaxis/treatment outcomes. Not a primary prophylaxis RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Clinical practice guidelines document. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article focusing on bleeding risks. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Clinical practice guideline update. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational study developing a risk prediction model. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article summarizing risk factors and biomarkers. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Consensus statement and review of guidelines. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Prospective observational cohort study on treatment of incidental PE. Not a primary prophylaxis RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article discussing guidelines and emerging data. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 59,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and meta-analysis of a risk prediction score. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 60,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Retrospective chart review evaluating VTE incidence. Not an RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 61,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a prospective observational follow-up study, not a randomized controlled trial. It examines secondary prevention (recurrence) in patients who already have VTE, not primary prophylaxis in patients without prior VTE.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 62,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about meta-analysis statistics (I2 statistic). Not a clinical trial and not related to VTE prophylaxis in cancer patients.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 63,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review about viscosupplementation for knee osteoarthritis. Completely unrelated topic - not about cancer, VTE, or anticoagulation.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 64,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Consensus statement/definition paper from ISTH committee. Not a clinical trial - provides definitions for bleeding outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 65,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about funnel plot methodology in meta-analysis. Not a clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 66,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper comparing statistical methods for exploring heterogeneity in meta-analysis. Not a clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 67,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article describing epidemiology and risk factors for cancer-associated VTE. Not a randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 68,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review/guideline article about incidental/asymptomatic PE in cancer patients. Discusses treatment of established PE, not primary prophylaxis. Not a randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 69,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Phase III randomized trial (HOVON-50/GMMH-HD3) in newly diagnosed multiple myeloma patients receiving chemotherapy (thalidomide/dexamethasone/doxorubicin). Patients in arm B received LMWH nadroparine prophylaxis while arm A did not receive VTE prophylaxis. This is primary prophylaxis in ambulatory cancer patients receiving chemotherapy - matches the review population and intervention criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 70,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Letter to editor discussing thromboprophylaxis in MM patients treated with thalidomide/lenalidomide. References Study II where patients were randomized to aspirin vs no aspirin. While this appears to be commentary, it references randomized data that may be relevant. Conservative approach suggests inclusion for further review.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 71,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Randomized trial comparing LMWH vs unfractionated heparin in general medical patients. While the high-risk group included some patients with malignant disease, the study population is not specifically ambulatory cancer patients receiving chemotherapy. The population does not match the review criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 72,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "No abstract available. Title suggests this may be a trial of apixaban (oral anticoagulant) for thromboprophylaxis in myeloma patients receiving thalidomide/lenalidomide-containing regimens. This could potentially match the review criteria (primary prophylaxis in ambulatory cancer patients receiving chemotherapy). Inclusion warranted due to uncertainty.",
+      "confidence": "LOW"
+    },
+    {
+      "study_index": 73,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Randomized study of nadroparin vs no treatment, but the population is HOSPITALIZED cancer patients in palliative care, not ambulatory patients. The review specifically targets ambulatory cancer patients receiving chemotherapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 74,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Phase II trial with sequential dosing cohorts (not randomized). Tests isoquercetin (a flavonoid/nutritional supplement), not an approved anticoagulant. Does not meet the RCT design criterion or the intervention criterion (anticoagulant/mechanical intervention).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 75,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Literature review summarizing existing evidence on VTE prophylaxis in ambulatory cancer patients. Not a primary randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 76,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "NEJM editorial/guidance article summarizing available data. Not a primary randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 77,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Guideline/article about treatment of incidental (already detected) VTE. Addresses secondary prevention/treatment of established VTE, not primary prophylaxis. Not a randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 78,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review and meta-analysis of cohort studies about VTE risk in cancer patients. Not a primary randomized controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 79,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological article about assessing quality of clinical trials in systematic reviews. Not a clinical trial and not related to VTE prophylaxis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 80,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane systematic review about anticoagulation for thromboprophylaxis in cancer patients WITH CENTRAL VENOUS CATHETERS. This is a different clinical scenario (CVC-related thrombosis prophylaxis) than the review's focus on general primary prophylaxis in ambulatory cancer patients receiving chemotherapy.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 81,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study investigates transcutaneous electrostimulation for pain management in patients with knee osteoarthritis. The population (elderly with osteoarthritis) does not match the review's target population (ambulatory cancer patients receiving chemotherapy). The intervention (electrical nerve stimulation for pain) is not an anticoagulant or mechanical VTE prophylaxis intervention. This study is completely outside the scope of the review.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 82,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an observational cohort study using linked Danish national registries to examine survival outcomes in cancer patients diagnosed with or after VTE episodes. It is not a randomised controlled trial. The study does not test any thromboprophylaxis intervention; instead, it examines prognostic associations between VTE and cancer outcomes. The study design (observational registry-based cohort) does not meet the requirement for randomised controlled trials.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 83,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study describes the development and validation of a modified risk assessment score (Protecht score) for VTE in cancer patients receiving chemotherapy. While it references the Protecht RCT (NCT 00951574) which tested nadroparin prophylaxis, this publication itself is not an RCT—it is a risk score development/validation study. The objective is to describe a predictive tool, not to report results from a randomised comparison of anticoagulant interventions. Therefore, it does not meet the selection criteria requiring randomised controlled trials.",
+      "confidence": "HIGH"
+    }
+  ]
+}

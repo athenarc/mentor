@@ -1,0 +1,665 @@
+{
+  "expected_n_studies": 82,
+  "completed_count": 82,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Theoretical article about Health Belief Model and social learning theory. Not a randomised controlled trial, does not involve screening procedures or personalised risk communication intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Editorial/opinion piece about NHS breast screening programme transparency. Not a randomised controlled trial, no intervention study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised trial with educational intervention about personal cancer risk and genetic testing. Includes personalised risk communication element (family history assessment, risk understanding). Reports cognitive outcomes (knowledge, perceived risk) and behavioral outcomes (intention to obtain genetic testing). Conservative inclusion as genetic testing could be considered screening.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Historical/theoretical article about Health Belief Model development. Not a randomised controlled trial, no intervention or screening procedures.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Overview/review article about risk assessment concepts and methods. Not a randomised controlled trial, no intervention study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised trial comparing individualized breast cancer risk counseling to general health counseling. Has personalised risk communication element (individualized risk counseling). Reports cognitive outcomes (risk comprehension). Conservative inclusion as informed decision measure not explicitly stated but risk comprehension is relevant.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study protocol describing design of BRISC trial. Not a completed trial with results - only describes planned methods. Protocol papers typically excluded from systematic reviews.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Book chapter about assessing risk of bias in studies. Not a randomised controlled trial, no intervention or screening procedures.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised factorial trial of tailored mammography interventions. Has personalised risk communication element (tailored counseling based on Transtheoretical and Health Belief Models). Reports behavioral outcomes (mammography screening status). Conservative inclusion as informed decision measure not explicit but tailored intervention addresses screening decision.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised trial of personalized colon cancer risk counseling for first-degree relatives. Has personalised risk communication element (personalized CCRC sessions). Reports behavioral outcomes (screening adherence). Conservative inclusion as informed decision measure not explicit but risk counseling addresses screening decision.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised trial of tailored mammography intervention for low-income African-American women. Has personalised risk communication element (tailored intervention targeting perceived risk). Reports behavioral outcomes (mammography adoption). Conservative inclusion as informed decision measure not explicit but tailored intervention addresses screening decision.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review about screening uptake determinants and interventions. Not a primary randomised controlled trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised controlled trial of postal questionnaire appraising coronary heart disease risk. Has personalised risk communication element (risk appraisal questionnaire determining individual risk). Reports behavioral outcomes (cholesterol testing rates). Conservative inclusion as informed decision measure not explicit but risk appraisal addresses screening decision.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Opinion/editorial piece about screening information approaches. Not a randomised controlled trial, no intervention study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised trial of tailored print materials for colorectal cancer screening. Has personalised risk communication element (tailored print materials based on baseline information). Reports behavioral outcomes (screening uptake). Conservative inclusion as informed decision measure not explicit but tailored intervention addresses screening decision.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised trial of mail and telephone intervention for breast health behaviors. Has personalised risk communication element (counseling based on genetic risk). Reports behavioral outcomes (mammography uptake) and affective outcomes (quality of life, cancer worry). Conservative inclusion as informed decision measure not explicit but risk-based intervention addresses screening decision.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised controlled trial comparing evidence-based risk information to standard information for colorectal cancer screening. Has personalised risk communication element (evidence-based risk information with interactive modules). PRIMARY OUTCOME is 'informed choice' (knowledge, attitude, uptake). Strong match to all selection criteria including explicit informed decision measure.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Psychometric validation study of decisional conflict scale. Not a randomised controlled trial testing an intervention - only validates a measurement tool.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review/expert opinion article about risk communication formats. Not a randomised controlled trial, no intervention study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised controlled trial of colorectal cancer risk appraisal for fecal occult blood testing. Has personalised risk communication element (Colorectal Cancer Risk Appraisal). Reports behavioral outcomes (compliance rate, intention to get FOB test). Conservative inclusion as informed decision measure not explicit but risk appraisal addresses screening decision.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a protocol for a Cochrane Review, not a primary randomised controlled trial. It describes objectives for a systematic review rather than presenting original RCT data with personalised risk communication intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a news article/editorial discussing concerns about mammography information transparency. It is not a randomised controlled trial and contains no intervention data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is an RCT with a tailored intervention for colorectal cancer screening, it focuses on cost-effectiveness analysis and screening uptake. It does not report measures of informed decisions (knowledge, risk perception accuracy, decisional conflict) which are required by the selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT includes a tailored computer intervention for mammography screening, but only reports screening uptake as the primary outcome. There are no measures of informed decisions (knowledge, risk perception, decisional conflict) or cognitive/affective outcomes related to the screening decision.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study involves women already enrolled in a surveillance program (not deciding whether to undergo screening). While it measures risk perception accuracy and anxiety, the context is surveillance adherence rather than initial screening decision making. The intervention (newsletters) was not specifically personalised risk communication.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a theoretical/conceptual paper exploring strategies for risk communication. It is not a randomised controlled trial and presents no empirical intervention data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT where pregnant women were randomly assigned to receive either standard genetic counseling plus the Ottawa Personal Decision Guide (intervention) or standard counseling alone. The intervention involves a decision aid that helps personalize the decision-making process. Primary outcome was decisional conflict (a measure of informed decision quality), and secondary outcome included self-esteem (affective outcome). Prenatal genetic testing constitutes a screening procedure.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT comparing tailored print materials (TPMs) prepared especially for each individual versus non-tailored print materials for BRCA genetic testing. TPMs represent personalised risk communication. Outcomes included knowledge (cognitive outcome), accuracy of perceived risk (critical component of informed decision making), and anxiety (affective outcome). Both knowledge and risk perception accuracy showed significant improvements with tailored materials.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT with three arms including tailored CRC risk factor feedback (absolute risk group) and absolute plus comparative risk feedback. The intervention provides personalised risk communication. Outcomes included perceived absolute and comparative risks (cognitive), attitudinal ambivalence toward FOBT (affective), screening intentions (behavioural), and FOBT completion (behavioural). All relate to the decision about whether to undergo screening.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT evaluates a shared decision-making program for treatment decisions (prostatectomy, pharmacologic treatment, or watchful waiting) for men who already have diagnosed BPH. This is a treatment decision, not a screening decision about whether to undergo screening. The selection criteria specifically require studies about screening procedures.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT with individually tailored messages designed to alter beliefs or provide provider information related to mammography screening. The intervention represents personalised risk/belief communication. Outcomes included mammography compliance (behavioural outcome) and stage of mammography adoption (reflecting progression in decision-making). While informed decision measures are not explicitly named, the belief-targeted intervention and stage-of-adoption outcomes suggest cognitive engagement with the screening decision.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT with an individualized health education program delivered by lay health educators for cervical cancer screening. The intervention was personalised to participants. Outcomes included knowledge about cervical cancer prevention (cognitive outcome/informed decision component) and Pap smear uptake (behavioural outcome). The knowledge outcome serves as a proxy for informed decision making.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an editorial/commentary discussing framing effects in risk communication. It references other reviews but is not itself a randomised controlled trial with original intervention data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is an RCT evaluating a patient decision aid with quantitative risk information for bowel cancer screening. The decision aid presented personalised risk information about screening outcomes. Primary outcomes included informed choice (adequate knowledge AND consistency between attitudes and screening behaviour), decisional conflict, knowledge scores, and screening participation. Anxiety/worry (affective outcomes) were also measured. This study comprehensively addresses all required outcome domains.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a telephone survey examining how different framings of screening benefits affect acceptance decisions. It is not a randomised controlled trial - there is no intervention arm versus control arm with randomization. The study design does not meet the RCT requirement.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an opinion piece/commentary advocating for better patient education and shared decision making in cancer screening. It is not a randomised controlled trial and presents no empirical intervention data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an RCT comparing individually tailored versus standardized mammography recommendation letters. While the intervention involves personalised communication, the outcomes focused on letter recall/readability and mammography status. There are no measures of informed decisions (knowledge, risk perception accuracy, decisional conflict) or cognitive/affective outcomes related to the screening decision.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an editorial discussing the debate over mammography screening benefits and harms. It is not a randomised controlled trial and presents no original intervention data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review and meta-analysis examining emotional impacts of screening. While it synthesizes RCT data, it is not itself a primary RCT with a personalised risk communication intervention. The review does not test an intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a literature review searching databases for systematic reviews about informed choice and screening. It is not a randomised controlled trial and presents no original intervention data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a meta-analytic review, not a randomised controlled trial. The selection criteria require RCTs. While it discusses tailored interventions, it does not meet the study design requirement.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This appears to be a Cochrane review title/abstract only, not a primary RCT. The abstract is incomplete and describes objectives rather than reporting results of a specific trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "While this is an RCT in a screening context (colorectal cancer FOBT), the intervention is health education vs doctor's letter, which does not constitute personalised risk communication. Additionally, outcomes focus on compliance only, with no measures of informed decisions reported.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study uses the Gail model for breast cancer risk assessment (personalised risk element) in a screening context. However, outcomes measured include adherence to BSE/CBE/mammography and confidence, but do NOT report measures of informed decisions, which is a required criterion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT uses individually tailored messages in a mammography screening context. However, outcomes include belief variables and mammography compliance, but do NOT report measures of informed decisions, which is required by the selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT compares tailored vs nontailored materials, but the context is weight-loss, NOT screening procedures. The selection criteria specifically require studies involving individuals undergoing screening tests.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological paper about the GRADE system for rating evidence quality. It is not an RCT and does not involve screening or personalised risk communication interventions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This paper describes a method/model for calculating individualized breast cancer risk probabilities using case-control data. It is not an RCT testing an intervention, but rather a method development paper.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a literature review discussing outcomes used in risk communication research. It is not an RCT and does not report primary data from an intervention study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT involves genetic risk counseling in a genetic testing context. However, outcomes focus on interest in testing and beliefs about testing, with no clear measures of informed decisions reported. The selection criteria require both informed decision measures AND cognitive/affective/behavioral outcomes.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT uses risk-tailored messages in a mammography screening context. However, outcomes include mammography rates, clinical breast examination, self-examination, and intentions, but do NOT report measures of informed decisions, which is required by the selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT uses tailored interventions in a colorectal cancer screening context. While it reports decisional balance as a mediator, this is not equivalent to measuring informed decisions. The primary outcome is screening adherence, with no explicit informed decision measures reported.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT involves counseling interventions in a mammography screening context. Outcomes include mammography adherence, perceived susceptibility, knowledge, barriers, and benefits. However, there are no measures of informed decisions reported, which is required by the selection criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a theoretical paper about the Elaboration Likelihood Model of persuasion, using political examples. It is not an RCT and has no relevance to screening or personalised risk communication.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This RCT tests a self-administered decision aid (with absolute risk and benefit information) vs government guidelines for colorectal cancer FOBT screening. It explicitly reports measures of informed decisions (20.9% vs 5.8% were 'informed'), values clarity, and knowledge integration with values. This meets all selection criteria: RCT design, personalised risk communication element (detailed absolute risk/benefit information), screening context, and measures of informed decisions plus cognitive outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This cluster RCT tests a decision aid vs pamphlet for prenatal testing of fetal abnormalities (screening context). It explicitly reports measures of informed decisions (76% vs 65% made informed decisions), decisional conflict, knowledge levels, and psychological outcomes (anxiety, depression). This meets all selection criteria: RCT design, decision aid with risk information, screening context, and measures of informed decisions plus cognitive/affective outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This RCT uses tailored message pages in a colorectal cancer screening context. However, outcomes focus on screening rates and predictors of screening, with no measures of informed decisions reported. The selection criteria require both informed decision measures AND cognitive/affective/behavioral outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodology chapter describing meta-analysis techniques. It is not an RCT and has no relevance to screening or personalised risk communication interventions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 59,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This appears to be an opinion/editorial piece discussing the debate around breast cancer screening. It is not an RCT and does not report primary data from an intervention study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 60,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review updating evidence on breast cancer screening effectiveness. It is not an RCT and does not test a personalised risk communication intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 61,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an ethical discussion/opinion article, not a randomised controlled trial. It discusses informed consent principles but does not test an intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 62,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a general hazard management article about nuclear power, food safety, and environmental risks. Not an RCT, not about health screening for individuals.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 63,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a theoretical/conceptual framework paper, not an empirical RCT. It outlines a framework for future research rather than testing an intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 64,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT with individualized breast cancer risk counseling (personalised risk communication) for mammography screening. Reports behavioral outcomes (mammography use). While informed decision measures are not explicitly mentioned in the abstract, the study meets core criteria and should be reviewed further.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 65,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a theoretical review paper describing the transtheoretical model. Not an RCT testing an intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 66,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a pilot study with repeated measures, not an RCT. More importantly, it addresses treatment decisions (medical therapy vs angioplasty vs bypass surgery) for diagnosed heart disease, not screening decisions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 67,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT evaluating education and counseling approaches for BRCA1 genetic testing (screening). Includes personalized discussion of family cancer history. Reports knowledge, perceived risk, benefits, limitations, risks, and testing intentions - covering informed decision measures and cognitive/affective outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 68,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a critical analysis and mathematical modelling paper, not an RCT. It examines policy tensions rather than testing an intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 69,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a systematic review of measures, not an RCT testing an intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 70,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a conceptual/methodological paper discussing how to measure informed choice. Not an RCT testing an intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 71,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a longitudinal before-and-after study, not a randomised controlled trial. No control group was used.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 72,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is an ethical analysis paper, not an RCT. It discusses guideline ethics rather than testing an intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 73,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a methodological paper about literature search strategies, not an RCT testing an intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 74,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT with individually-tailored behavior change information (personalised risk communication). Addresses multiple screening behaviors including mammography and Pap smears. Reports behavioral outcomes. Should be reviewed for informed decision measures.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 75,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT of breast cancer risk counseling intervention (personalised risk communication). Reports perceived risk, anxieties, fears (affective outcomes) and breast screening rates (behavioral outcome). Should be reviewed for informed decision measures.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 76,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a content analysis of pamphlets, not an RCT testing an intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 77,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT comparing tailored vs generic interventions for skin cancer risk reduction. Tailored intervention includes personalized elements. Addresses skin examination/screening behaviors. Reports intentions, benefits, barriers, self-efficacy (cognitive outcomes). Should be reviewed for informed decision measures.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 78,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This is a qualitative study using focus group interviews, not an RCT. It explores GP attitudes rather than testing an intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 79,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT with tailored print material and telephone contacts (personalised risk communication) for prostate cancer early detection/screening. Reports adherence to screening. Should be reviewed for informed decision measures.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 80,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "RCT with personalized telephone counseling and individually tailored materials for skin cancer screening. Reports skin examination behaviors and sunscreen use. Should be reviewed for informed decision measures.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 81,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This study meets most selection criteria: (1) It is a randomised controlled trial with three arms; (2) The intervention is a 'tailored, interactive intervention' which constitutes a personalised risk communication element; (3) The population consists of patients 50-70 years undergoing colorectal cancer screening procedures; (4) The study reports cognitive outcomes (increased knowledge and self-efficacy); (5) The study reports behavioural outcomes (screening completion rates). While the abstract does not explicitly mention 'informed decision' measures, it does report knowledge gains which are a component of informed decision making. Following the conservative principle of including when uncertain, this study is included.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 82,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "This study does not meet the selection criteria for multiple reasons: (1) It is not a randomised controlled trial - it is a psychometric validation study developing and testing the Satisfaction with Decision (SWD) scale; (2) There is no personalised risk communication intervention being tested; (3) The context is postmenopausal hormone-replacement therapy decisions, not screening procedures; (4) The study measures patient satisfaction with decisions rather than informed decision making; (5) The independent study mentioned involves flu shot intentions, but this is secondary and still does not involve a personalised risk communication intervention. This study is clearly outside the scope of the review protocol.",
+      "confidence": "HIGH"
+    }
+  ]
+}
