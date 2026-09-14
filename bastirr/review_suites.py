@@ -6,7 +6,7 @@ import sys
 from collections.abc import Set as AbstractSet
 from datetime import datetime
 from enum import StrEnum
-from typing import Sequence
+from typing import Sequence, Iterable
 
 import numpy as np
 import pandas as pd
@@ -20,6 +20,11 @@ _LOGGER = logging.getLogger(__name__)
 
 class Subcommands(StrEnum):
     SAMPLE = 'sample'
+
+
+class SamplingStrategy(StrEnum):
+    RANDOM = 'random'
+    TOP = 'top'
 
 
 class GoldLabelPolicy(StrEnum):
@@ -193,6 +198,61 @@ def _sample_reviews(reviews_df: pd.DataFrame, sample_sizes: Sequence[int], bin_b
     return pd.concat(bin_samples)
 
 
+def _top_reviews(reviews_df: pd.DataFrame, sample_sizes: Sequence[int], bin_breakpoints: AbstractSet[int] = None,
+                    bin_sampling_policy: BinSamplingPolicy = BinSamplingPolicy.PROPORTIONAL):
+    if bin_breakpoints is None:
+        bin_breakpoints = list()
+    _LOGGER.debug(f'Validating sampling configuration...')
+    if len(sample_sizes) != len(bin_breakpoints) + 1 and len(sample_sizes) != 1:
+        raise ValueError(f'Invalid sample sizes defined ({" ,".join(str(s) for s in sample_sizes)}) for '
+                         f'{len(bin_breakpoints) + 1} bins. Either 1 or {len(bin_breakpoints) + 1} sample sizes should '
+                         f'be specified.')
+
+    _LOGGER.debug(f'Validating sampling sizes\' values...')
+    negative_sample_sizes = [s for s in sample_sizes if s < 0]
+    if negative_sample_sizes:
+        raise ValueError(f'Negative sample size was given: {negative_sample_sizes[0]}. Sample sizes must be positive '
+                         f'or 0')
+
+    _LOGGER.debug(f'Sorting bin breakpoints')
+    sorted_bin_breakpoints = sorted(bin_breakpoints)
+
+    min_studies = reviews_df['expected_n_studies'].min()
+    max_studies = reviews_df['expected_n_studies'].max()
+
+    _LOGGER.debug(f'Composing bin edges')
+    bin_edges = sorted([min_studies, *sorted_bin_breakpoints, max_studies+1])
+
+    _LOGGER.debug(f'Distributing reviews to bins based on number of studies...')
+    reviews_df['bin_interval'] = pd.cut(reviews_df['expected_n_studies'], bin_edges, right=False)
+
+    bin_samples = list()
+    bin_idx = 0
+    for interval, bin in reviews_df.groupby('bin_interval'):
+        _LOGGER.debug(f'Evaluating sampling for bin [{interval.left}, {interval.right})...')
+        _LOGGER.debug(f'Determining sampling size...')
+        if len(sample_sizes) == len(bin_breakpoints) + 1:
+            subsample_size = sample_sizes[bin_idx]
+            _LOGGER.debug(f'Explicit sampling size for bin specified as {subsample_size}.')
+        else:
+            if bin_sampling_policy == BinSamplingPolicy.PROPORTIONAL:
+                subsample_size = int((sample_sizes[0] * bin.shape[0]) / reviews_df.shape[0])
+                _LOGGER.debug(f'Calculated sampling size based on proportional policy as {subsample_size}')
+            else:
+                subsample_size = int(sample_sizes[0] / (len(bin_breakpoints) + 1))
+                _LOGGER.debug(f'Calculated sampling size based on symmetric policy as {subsample_size}')
+        _LOGGER.debug(f'Attempting to retrieve a sample of {subsample_size} reviews from a bin of {bin.shape[0]} '
+                      f'reviews...')
+        bin_sample = bin[:subsample_size]
+        _LOGGER.debug(f'Retrieved {bin_sample.shape[0]} reviews')
+        bin_samples.append(
+            bin_sample
+        )
+        _LOGGER.debug(f'-' * 40)
+        bin_idx += 1
+    _LOGGER.debug(f'Joining and returning bin samples\' data')
+    return pd.concat(bin_samples)
+
 def _append_to_canonical_suites(reviews_df: pd.DataFrame, name: str = None, description: str = ''):
     if name is None:
         _LOGGER.debug(f'Inferring canonical suite name as current local timestamp...')
@@ -230,6 +290,8 @@ def generate_suite(*sample_sizes: int, splits: AbstractSet[str] = None, min_stud
                    bin_breakpoints: AbstractSet[int] = None, name: str = None, description: str = '',
                    bin_sampling_policy: BinSamplingPolicy = BinSamplingPolicy.PROPORTIONAL,
                    gold_label_policy: GoldLabelPolicy = GoldLabelPolicy.EXCLUDE, seed: int = None) -> pd.DataFrame:
+                   gold_label_policy: GoldLabelPolicy = GoldLabelPolicy.EXCLUDE, seed: int = None,
+                   strategy: SamplingStrategy = SamplingStrategy.RANDOM) -> pd.DataFrame:
     _LOGGER.info(f'Loading reviews...')
     retrieved_reviews_df = _retrieve_reviews(splits=splits, gold_label_policy=gold_label_policy)
     _LOGGER.info(f'Loaded {retrieved_reviews_df.shape[0]} reviews.')
@@ -238,9 +300,16 @@ def generate_suite(*sample_sizes: int, splits: AbstractSet[str] = None, min_stud
                                           min_balance=min_balance, max_balance=max_balance)
     _LOGGER.info(f'Retained {filtered_reviews_df.shape[0]} reviews after filtering.')
     _LOGGER.info(f'Sampling reviews...')
-    sampled_reviews_df = _sample_reviews(
-        filtered_reviews_df, sample_sizes, bin_breakpoints=bin_breakpoints, bin_sampling_policy=bin_sampling_policy,
-        seed=seed)
+    match strategy:
+        case SamplingStrategy.RANDOM:
+            sampled_reviews_df = _sample_reviews(
+                sorted_reviews_df, sample_sizes, bin_breakpoints=bin_breakpoints,
+                bin_sampling_policy=bin_sampling_policy, seed=seed)
+        case SamplingStrategy.TOP:
+            sampled_reviews_df = _top_reviews(
+                sorted_reviews_df, sample_sizes, bin_breakpoints=bin_breakpoints,
+                bin_sampling_policy=bin_sampling_policy,
+            )
     _LOGGER.info(f'Sampled {sampled_reviews_df.shape[0]} reviews.')
     _LOGGER.info(f'Appending generated suite to canonical suites JSON...')
     _append_to_canonical_suites(sampled_reviews_df, name=name, description=description)
@@ -338,6 +407,12 @@ if __name__ == '__main__':
         '--seed',
         type=int,
         help='An integer value for fixing sampling randomness, in favor of reproducibility.'
+    )
+    sample_parser.add_argument(
+        '--strategy',
+        type=SamplingStrategy,
+        default=SamplingStrategy.RANDOM,
+        help='Strategy based on which to generate samples.'
     )
 
     parsed_args = vars(parser.parse_args())
