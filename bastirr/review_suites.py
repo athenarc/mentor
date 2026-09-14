@@ -27,6 +27,26 @@ class SamplingStrategy(StrEnum):
     TOP = 'top'
 
 
+class SortingOrder(StrEnum):
+    ASCENDING = 'ASC'
+    DESCENDING = 'DESC'
+
+
+class SortingPolicy:
+
+    def __init__(self, field: str, order: SortingOrder = SortingOrder.DESCENDING):
+        self.field = field
+        self.order = order
+
+    @classmethod
+    def from_descriptor(cls, descriptor: str):
+        parts = descriptor.rsplit(":", 1)
+        field, order = parts if len(parts) == 2 else (parts[0], None)
+        if order and order not in SortingOrder:
+            raise TypeError(f"Invalid sorting order: {order} (Valid choices: {", ".join(SortingOrder)})")
+        return SortingPolicy(*parts)
+
+
 class GoldLabelPolicy(StrEnum):
     INCLUDE = 'include'
     EXCLUDE = 'exclude'
@@ -140,6 +160,21 @@ def _filter_reviews(reviews_df: pd.DataFrame, min_studies: int = None, max_studi
     _LOGGER.debug(f'Filter application resulted in {filtered_reviews_df.shape[0]} rows.')
 
     return filtered_reviews_df
+
+
+def _sort_reviews(reviews_df: pd.DataFrame, *sorting_policies: SortingPolicy) -> pd.DataFrame:
+    fields_list = [p.field for p in sorting_policies]
+    ascending_list = [p.order == SortingOrder.ASCENDING for p in sorting_policies]
+    fields = set(fields_list)
+    dataset_fields = set(reviews_df.columns)
+    if len(missing_fields := fields - dataset_fields) > 0:
+        raise ValueError(f'Field {missing_fields.pop()!r} does not exist in the dataset')
+
+    sorted_reviews_df = reviews_df.sort_values(
+        by=fields_list,
+        ascending=ascending_list
+    )
+    return sorted_reviews_df
 
 
 def _sample_reviews(reviews_df: pd.DataFrame, sample_sizes: Sequence[int], bin_breakpoints: AbstractSet[int] = None,
@@ -289,8 +324,8 @@ def generate_suite(*sample_sizes: int, splits: AbstractSet[str] = None, min_stud
                    max_studies: int = None, min_balance: float = None, max_balance: float = None,
                    bin_breakpoints: AbstractSet[int] = None, name: str = None, description: str = '',
                    bin_sampling_policy: BinSamplingPolicy = BinSamplingPolicy.PROPORTIONAL,
-                   gold_label_policy: GoldLabelPolicy = GoldLabelPolicy.EXCLUDE, seed: int = None) -> pd.DataFrame:
                    gold_label_policy: GoldLabelPolicy = GoldLabelPolicy.EXCLUDE, seed: int = None,
+                   sort_by: Iterable[SortingPolicy] = None,
                    strategy: SamplingStrategy = SamplingStrategy.RANDOM) -> pd.DataFrame:
     _LOGGER.info(f'Loading reviews...')
     retrieved_reviews_df = _retrieve_reviews(splits=splits, gold_label_policy=gold_label_policy)
@@ -299,6 +334,10 @@ def generate_suite(*sample_sizes: int, splits: AbstractSet[str] = None, min_stud
     filtered_reviews_df = _filter_reviews(retrieved_reviews_df, min_studies=min_studies, max_studies=max_studies,
                                           min_balance=min_balance, max_balance=max_balance)
     _LOGGER.info(f'Retained {filtered_reviews_df.shape[0]} reviews after filtering.')
+
+    _LOGGER.info(f'Sorting reviews...')
+    sorted_reviews_df = _sort_reviews(filtered_reviews_df, *sort_by)
+
     _LOGGER.info(f'Sampling reviews...')
     match strategy:
         case SamplingStrategy.RANDOM:
@@ -413,6 +452,12 @@ if __name__ == '__main__':
         type=SamplingStrategy,
         default=SamplingStrategy.RANDOM,
         help='Strategy based on which to generate samples.'
+    )
+    sample_parser.add_argument(
+        '--sort-by',
+        type=SortingPolicy.from_descriptor,
+        nargs='+',
+        help='Sorting policy descriptors in the form of <FIELD>[:(ASC|DESC)]'
     )
 
     parsed_args = vars(parser.parse_args())
