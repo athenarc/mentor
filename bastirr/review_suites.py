@@ -19,7 +19,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class Subcommands(StrEnum):
-    GENERATE = 'generate'
+    SAMPLE = 'sample'
 
 
 class GoldLabelPolicy(StrEnum):
@@ -44,7 +44,6 @@ def _get_id_from_review_url(review_url: str) -> str:
 
 def _retrieve_reviews(splits: AbstractSet[str] = None,
                       gold_label_policy: GoldLabelPolicy = GoldLabelPolicy.EXCLUDE) -> pd.DataFrame:
-
     if splits is None:
         splits = set(DATASET_FILES.keys())
 
@@ -80,7 +79,7 @@ def _retrieve_reviews(splits: AbstractSet[str] = None,
         _LOGGER.debug(f'Annotating reviews with corresponding split value...')
         reviews_df['split'] = split
         reviews_dfs.append(reviews_df)
-        _LOGGER.debug(f'-'*40)
+        _LOGGER.debug(f'-' * 40)
 
     _LOGGER.debug('Joining and returning split reviews\'s data...')
     return pd.concat(reviews_dfs, ignore_index=True)
@@ -96,7 +95,6 @@ def _filter_reviews(reviews_df: pd.DataFrame, min_studies: int = None, max_studi
         raise ValueError('Minimum number of studies must be either 0 or positive.')
     else:
         _LOGGER.debug(f'Minimum studies filter value specified as {min_studies}.')
-
 
     if max_studies is None:
         max_studies = reviews_df['expected_n_studies'].max()
@@ -141,7 +139,6 @@ def _filter_reviews(reviews_df: pd.DataFrame, min_studies: int = None, max_studi
 
 def _sample_reviews(reviews_df: pd.DataFrame, sample_sizes: Sequence[int], bin_breakpoints: AbstractSet[int] = None,
                     bin_sampling_policy: BinSamplingPolicy = BinSamplingPolicy.PROPORTIONAL, seed: int = None):
-
     if bin_breakpoints is None:
         bin_breakpoints = list()
     _LOGGER.debug(f'Validating sampling configuration...')
@@ -190,7 +187,7 @@ def _sample_reviews(reviews_df: pd.DataFrame, sample_sizes: Sequence[int], bin_b
         bin_samples.append(
             bin_sample
         )
-        _LOGGER.debug(f'-'*40)
+        _LOGGER.debug(f'-' * 40)
         bin_idx += 1
     _LOGGER.debug(f'Joining and returning bin samples\' data')
     return pd.concat(bin_samples)
@@ -250,24 +247,23 @@ def generate_suite(*sample_sizes: int, splits: AbstractSet[str] = None, min_stud
     _LOGGER.info(f'Appended generated suite to canonical suites JSON.')
 
 
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Auxiliary script for generating suites of reviews which can be used by the isolated gatekeeper '
                     'benchmarking pipeline.'
     )
     subparsers = parser.add_subparsers(dest='command', required=True)
-    generate_parser = subparsers.add_parser(Subcommands.GENERATE)
-    generate_parser.add_argument(
+    sample_parser = subparsers.add_parser(Subcommands.SAMPLE)
+    sample_parser.add_argument(
         '--name',
         help='Unique name of the generated suite. If not defined, name will be generated using the current date and '
              'time.'
     )
-    generate_parser.add_argument(
+    sample_parser.add_argument(
         '--description',
         help='Optional description of the generated suite.'
     )
-    generate_parser.add_argument(
+    sample_parser.add_argument(
         '-N', '--sample-sizes',
         type=int,
         nargs='+',
@@ -278,33 +274,33 @@ if __name__ == '__main__':
              'then these should map to the bins inferred by the defined breakpoints and correspond to the per-bin '
              'subsample size.'
     )
-    generate_parser.add_argument(
+    sample_parser.add_argument(
         '--splits',
         nargs='+',
         choices=list(DATASET_FILES.keys()),
         help='Names of systematic review split sets to sample from.'
     )
-    generate_parser.add_argument(
+    sample_parser.add_argument(
         '--min-studies',
         type=int,
         help='Minimum number of studies that sampled reviews should have.'
     )
-    generate_parser.add_argument(
+    sample_parser.add_argument(
         '--max-studies',
         type=int,
         help='Maximum number of studies that sampled reviews should have.'
     )
-    generate_parser.add_argument(
+    sample_parser.add_argument(
         '--min-balance',
         type=int,
         help='Minimum balance that evaluated reviews should have.'
     )
-    generate_parser.add_argument(
+    sample_parser.add_argument(
         '--max-balance',
         type=int,
         help='Maximum balance that evaluated reviews should have.'
     )
-    generate_parser.add_argument(
+    sample_parser.add_argument(
         '--bin-breakpoints',
         type=int,
         nargs='+',
@@ -313,14 +309,14 @@ if __name__ == '__main__':
              '`min_studies=10` and `max_studies=40`, given `--bin-breakpoints 15 25 30`, reviews will be distributed, '
              'after filtering, in the following four bins: [10,15), [15, 25), [25,30) and [30, 40).'
     )
-    generate_parser.add_argument(
+    sample_parser.add_argument(
         '--logging-level',
         choices=list(LoggingLevel),
         default=LoggingLevel.INFO,
         type=LoggingLevel,
         help='Logging level of the script.'
     )
-    generate_parser.add_argument(
+    sample_parser.add_argument(
         '--gold-label-policy',
         choices=list(GoldLabelPolicy),
         type=GoldLabelPolicy,
@@ -328,7 +324,7 @@ if __name__ == '__main__':
         help='Gold label policy based on which to calculate the expected included and excluded studies during '
              'screening.'
     )
-    generate_parser.add_argument(
+    sample_parser.add_argument(
         '--bin-sampling-policy',
         type=BinSamplingPolicy,
         choices=list(BinSamplingPolicy),
@@ -338,7 +334,7 @@ if __name__ == '__main__':
              'the number of reviews which will be sampled from each bin will be the same. In both policies the number '
              'of reviews to sample is calculated based on the final calculated sample size, after applying filtering.'
     )
-    generate_parser.add_argument(
+    sample_parser.add_argument(
         '--seed',
         type=int,
         help='An integer value for fixing sampling randomness, in favor of reproducibility.'
@@ -350,7 +346,7 @@ if __name__ == '__main__':
 
     command = parsed_args.pop('command')
 
-    if command == Subcommands.GENERATE:
+    if command == Subcommands.SAMPLE:
         sample_sizes = parsed_args.pop('sample_sizes')
         try:
             generate_suite(*sample_sizes, **parsed_args)
