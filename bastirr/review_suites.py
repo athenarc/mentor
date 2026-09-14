@@ -127,10 +127,10 @@ def _filter_reviews(reviews_df: pd.DataFrame, min_studies: int = None, max_studi
     temp_df['balance'] = temp_df['expected_n_screen_pass'] / temp_df['expected_n_studies']
     _LOGGER.debug(f'Applying filters...')
     filtered_reviews_df = reviews_df[
-        reviews_df['expected_n_studies'].between(min_studies, max_studies, inclusive='left') &
+        reviews_df['expected_n_studies'].between(min_studies, max_studies, inclusive='both') &
         (
                 reviews_df['expected_n_screen_pass'] / reviews_df['expected_n_studies']
-        ).between(min_balance, max_balance, inclusive='left')
+        ).between(min_balance, max_balance, inclusive='both')
         ]
     _LOGGER.debug(f'Filter application resulted in {filtered_reviews_df.shape[0]} rows.')
 
@@ -160,7 +160,7 @@ def _sample_reviews(reviews_df: pd.DataFrame, sample_sizes: Sequence[int], bin_b
     max_studies = reviews_df['expected_n_studies'].max()
 
     _LOGGER.debug(f'Composing bin edges')
-    bin_edges = sorted([min_studies, *sorted_bin_breakpoints, max_studies])
+    bin_edges = sorted([min_studies, *sorted_bin_breakpoints, max_studies+1])
 
     _LOGGER.debug(f'Distributing reviews to bins based on number of studies...')
     reviews_df['bin_interval'] = pd.cut(reviews_df['expected_n_studies'], bin_edges, right=False)
