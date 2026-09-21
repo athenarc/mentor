@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Title and Abstract Screening Benchmark Summary</title>
+  <style>
+
+    :root {
+      --bg: #f6f1e7;
+      --bg-soft: #fcfaf5;
+      --card: rgba(255, 253, 248, 0.84);
+      --ink: #1e2430;
+      --muted: #667084;
+      --line: rgba(30, 36, 48, 0.1);
+      --accent: #245a7a;
+      --accent-soft: #c7deed;
+      --accent-2: #c36b3c;
+      --accent-3: #d8a93e;
+      --good: #167a67;
+      --warn: #ba6a2b;
+      --shadow: 0 18px 42px rgba(55, 45, 28, 0.12);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      line-height: 1.5;
+      background:
+        radial-gradient(circle at top right, rgba(36, 90, 122, 0.12), transparent 26%),
+        radial-gradient(circle at top left, rgba(195, 107, 60, 0.12), transparent 22%),
+        linear-gradient(180deg, #f8f3ea 0%, #f3ede1 52%, #f7f3ec 100%);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: Georgia, "Palatino Linotype", serif;
+      letter-spacing: -0.02em;
+    }
+
+    p { margin: 0; }
+
+    code {
+      padding: 0.15em 0.35em;
+      border-radius: 0.45em;
+      background: rgba(36, 90, 122, 0.08);
+      font-size: 0.92em;
+    }
+
+    .page {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 26px 0 56px;
+    }
+
+    .hero, .section {
+      border-radius: 30px;
+      border: 1px solid rgba(30, 36, 48, 0.08);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      padding: 32px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -60px;
+      bottom: -70px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(36, 90, 122, 0.18), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--muted);
+      font-size: 0.83rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.45rem);
+      line-height: 0.98;
+      margin-bottom: 12px;
+      max-width: 16ch;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+      gap: 26px;
+      align-items: start;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero-copy p {
+      max-width: 68ch;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .hero-model {
+      display: grid;
+      gap: 6px;
+      justify-items: start;
+      align-content: start;
+      min-height: 0;
+      padding: 0;
+    }
+
+    .hero-model .k {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-weight: 700;
+    }
+
+    .hero-model .v {
+      color: var(--ink);
+      font-family: Georgia, "Palatino Linotype", serif;
+      font-size: clamp(1.45rem, 2.4vw, 2.2rem);
+      line-height: 1.02;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+      text-wrap: pretty;
+    }
+
+    .link-row, .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .link-row a, .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid rgba(30, 36, 48, 0.08);
+      background: rgba(255,255,255,0.74);
+      font-size: 0.92rem;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(30, 36, 48, 0.08);
+    }
+
+    .stat .label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat .value {
+      margin-top: 4px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat .note {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .section {
+      margin-top: 26px;
+      padding: 26px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    .section-header p {
+      max-width: 72ch;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(30, 36, 48, 0.08);
+      background: rgba(255,255,255,0.74);
+    }
+
+    .panel h3 {
+      font-size: 1.18rem;
+      margin-bottom: 6px;
+    }
+
+    .panel p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 14px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .chip {
+      padding: 12px;
+      border-radius: 16px;
+      background: var(--bg-soft);
+      border: 1px solid rgba(30, 36, 48, 0.06);
+    }
+
+    .chip .k {
+      color: var(--muted);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .chip .v {
+      margin-top: 3px;
+      font-size: 1.28rem;
+      font-weight: 700;
+    }
+
+    .confusion-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .confusion-cell {
+      min-height: 92px;
+      padding: 14px;
+      border-radius: 18px;
+      color: white;
+      display: grid;
+      gap: 2px;
+      align-content: start;
+    }
+
+    .confusion-cell.light { color: var(--ink); }
+
+    .cell-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.85;
+    }
+
+    .cell-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .cell-note {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .chart {
+      width: 100%;
+      min-height: 320px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.94rem;
+    }
+
+    .compact-table {
+      table-layout: auto;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .compact-table th,
+    .compact-table td {
+      padding: 10px 8px;
+    }
+
+    .numeric {
+      white-space: nowrap;
+    }
+
+    .run-label {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .run-label small {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .study-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .study-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(30, 36, 48, 0.08);
+    }
+
+    .study-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 8px;
+    }
+
+    .study-ref {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .study-count {
+      white-space: nowrap;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--bg-soft);
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .study-title {
+      font-size: 0.96rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(30, 36, 48, 0.08);
+      background: rgba(255,255,255,0.8);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 980px) {
+      .grid-2, .mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        display: grid;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100vw - 18px, 1180px);
+        padding-top: 14px;
+      }
+
+      .hero, .section {
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      .hero-model {
+        min-height: 0;
+      }
+
+      .stat-grid, .confusion-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">Policy-scored benchmark summary • label 0.5 treated as EXCLUDE • <code>exclude_label_0_5</code></div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>Title and Abstract<br>Screening Benchmark<br>Summary</h1>
+          <p>
+            This page summarizes the measured screening performance for the benchmark bundle in
+            <code>20260915_083235_experiments_sep2026_biggest_reviews_loop_chunked_qwen3.5_27b-temp0</code> under the active gold-label
+            policy. It focuses on run health, aggregate metrics, review-level behavior, runtime,
+            repeat stability, and recurring study-level errors across scored runs.
+          </p>
+          <div class="badge-row">
+            <span class="badge">1 reviews</span>
+            <span class="badge">3 attempted runs</span>
+            <span class="badge">1 scored runs</span>
+            <span class="badge">2 incomplete runs</span>
+          </div>
+          <div class="link-row">
+            <a href="./summary.csv">summary.csv</a>
+            <a href="./summary.json">summary.json</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-model"><div class="k">Gatekeeper model</div><div class="v">Qwen 3.5 27B (temperature 0)</div></div>
+          <div class="stat-grid" id="hero-stats"></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Run health and aggregate metrics</h2>
+        </div>
+        <p>
+          The bundle scored 1 of 3 attempted runs under this policy. 2 runs were excluded from scoring due to incomplete screening output. The strongest pooled macro metrics are specificity and accuracy, while precision is the lowest of the scored-run means.
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Macro metrics across scored runs</h3>
+          <p>Mean values are computed from scored runs only.</p>
+          <div class="mini-grid" id="macro-grid"></div>
+        </div>
+        <div class="panel">
+          <h3>Pooled confusion totals</h3>
+          <p>Counts aggregated across all study decisions in scored runs.</p>
+          <div class="confusion-grid" id="confusion-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Performance by review</h2>
+        </div>
+        <p>
+          Review difficulty varies across the bundle. 14651858 cd011834 has the strongest mean F1, while 14651858 cd011834 is the hardest case under this policy.
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>F1 and recall by review</h3>
+          <p>Each review is shown with its mean scored-run F1 and recall.</p>
+          <div id="review-chart" class="chart"></div>
+        </div>
+        <div class="panel">
+          <h3>Mean runtime by review</h3>
+          <p>Runtime is shown as the mean scored-run duration for each review.</p>
+          <div id="runtime-chart" class="chart"></div>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:18px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Review</th>
+              <th>Studies</th>
+              <th>Gold include</th>
+              <th>Accuracy</th>
+              <th>Precision</th>
+              <th>Recall</th>
+              <th>Specificity</th>
+              <th>F1</th>
+              <th>Mean runtime</th>
+            </tr>
+          </thead>
+          <tbody id="review-table"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Run variability</h2>
+        </div>
+        <p>
+          Most reviews are stable across repeats. The largest run-to-run F1 spread appears in 14651858 cd011834. The bundle also contains 2 incomplete runs.
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Metric standard deviation across scored runs</h3>
+          <p>Lower values indicate more repeat-to-repeat stability across the scored runs.</p>
+          <div class="mini-grid" id="dispersion-grid"></div>
+        </div>
+        <div class="panel">
+          <h3>Lowest-F1 scored runs</h3>
+          <p>These runs define the lower tail of the benchmark under this policy.</p>
+          <table class="compact-table">
+            <thead>
+              <tr>
+                <th>Run</th>
+                <th class="numeric">Accuracy</th>
+                <th class="numeric">Precision</th>
+                <th class="numeric">Recall</th>
+                <th class="numeric">F1</th>
+              </tr>
+            </thead>
+            <tbody id="worst-runs"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Recurring study-level mistakes</h2>
+        </div>
+        <p>
+          These titles were misclassified repeatedly across scored runs. Most recurring mistakes are false positives, concentrated in 14651858 cd011834.
+        </p>
+      </div>
+      <div class="study-list" id="study-list"></div>
+      <p class="footer-note">
+        Study-level entries below are ordered by repeated mistake count across scored runs.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const benchmark = {
+  "overall": {
+    "runsTotal": 3,
+    "runsScored": 1,
+    "runsCompleted": 1,
+    "runsIncomplete": 2,
+    "parseSuccessRate": 0.3333333333333333,
+    "decisionCoverage": 1.0,
+    "macroAccuracy": 0.9315403422982885,
+    "macroPrecision": 0.0,
+    "macroRecall": 0.0,
+    "macroSpecificity": 0.9477611940298507,
+    "macroF1": 0.0,
+    "meanDurationSeconds": 8493.01062031587,
+    "durationStdSeconds": 0.0,
+    "confusion": {
+      "tp": 0,
+      "fp": 21,
+      "tn": 381,
+      "fn": 7
+    },
+    "dispersion": {
+      "accuracy": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "specificity": 0.0,
+      "f1": 0.0,
+      "duration": 0.0
+    }
+  },
+  "reviews": [
+    {
+      "key": "14651858_cd011834",
+      "label": "14651858 cd011834",
+      "studies": 409,
+      "goldInclude": 7,
+      "accuracy": 0.9315403422982885,
+      "precision": 0.0,
+      "recall": 0.0,
+      "specificity": 0.9477611940298507,
+      "f1": 0.0,
+      "duration": 8493.01062031587
+    }
+  ],
+  "worstRuns": [
+    {
+      "run": "14651858 cd011834 run 1",
+      "review": "14651858 cd011834",
+      "accuracy": 0.9315403422982885,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  ],
+  "studies": [
+    {
+      "ref": "14651858 cd011834 #1",
+      "title": "The impact for the guidelines for a healthy diet of the Netherlands Nutrition Council on total and high density lipoprotein cholesterol in hypercholesterolemic free living men",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "14651858_cd011834"
+    },
+    {
+      "ref": "14651858 cd011834 #2",
+      "title": "A randomised controlled trial of the effect of low fat diet advice on dietary response in insulin independent diabetic women",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "14651858_cd011834"
+    },
+    {
+      "ref": "14651858 cd011834 #246",
+      "title": "An eight‐month controlled study of a low‐fat high‐fibre diet: effects on blood lipids and blood pressure in healthy young subjects",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "14651858_cd011834"
+    },
+    {
+      "ref": "14651858 cd011834 #3",
+      "title": "Dietary counseling for high blood cholesterol in families at risk of coronary disease",
+      "mistakes": 1,
+      "error": "false_negative",
+      "gold": "1.0",
+      "outcome": "included_in_review",
+      "review_key": "14651858_cd011834"
+    },
+    {
+      "ref": "14651858 cd011834 #307",
+      "title": "Effect of a physician‐delivered nutrition counselling training and an office‐support program on saturated fat intake, weight, and serum lipid measurements in a hyperlipidemic population: Worcester Area Trial for Counseling in Hyperlipidemia",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "14651858_cd011834"
+    },
+    {
+      "ref": "14651858 cd011834 #315",
+      "title": "Feasibility of a randomized trial of a low‐fat diet for the prevention of breast cancer: dietary compliance in the Women's Health Trial Vanguard Study",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "14651858_cd011834"
+    },
+    {
+      "ref": "14651858 cd011834 #316",
+      "title": "Results of a randomized feasibility study of a low‐fat diet",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "14651858_cd011834"
+    },
+    {
+      "ref": "14651858 cd011834 #320",
+      "title": "Weight loss in women participating in a randomised trial of low‐fat diets",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "14651858_cd011834"
+    },
+    {
+      "ref": "14651858 cd011834 #326",
+      "title": "The Canadian Trial of Carbohydrates in Diabetes (CCD), a 1‐y controlled trial of low‐glycemic‐index dietary carbohydrate in type 2 diabetes: no effect on glycated hemoglobin but reduction in C‐reactive protein",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "14651858_cd011834"
+    },
+    {
+      "ref": "14651858 cd011834 #329",
+      "title": "Effects of a general practice‐based intervention on diet, body mass index and blood lipids in patients at cardiovascular risk",
+      "mistakes": 1,
+      "error": "false_positive",
+      "gold": "0.5",
+      "outcome": "excluded_after_full_text",
+      "review_key": "14651858_cd011834"
+    }
+  ]
+};
+
+    const fmtPct = value => `${(value * 100).toFixed(1)}%`;
+    const fmtPctShort = value => `${(value * 100).toFixed(0)}%`;
+    const fmtNum = value => Number(value).toLocaleString();
+    const fmtSec = value => `${Math.round(value)}s`;
+
+    function mountHeroStats() {
+      const stats = [
+        {
+          label: "Macro F1",
+          value: fmtPct(benchmark.overall.macroF1),
+          note: `Mean F1 across the ${benchmark.overall.runsScored} scored runs.`
+        },
+        {
+          label: "Macro recall",
+          value: fmtPct(benchmark.overall.macroRecall),
+          note: "Mean recall across scored runs."
+        },
+        {
+          label: "Decision coverage",
+          value: fmtPct(benchmark.overall.decisionCoverage),
+          note: "Coverage across all scored study decisions."
+        },
+        {
+          label: "Mean runtime",
+          value: fmtSec(benchmark.overall.meanDurationSeconds),
+          note: `Scored-run standard deviation ${fmtSec(benchmark.overall.durationStdSeconds)}.`
+        }
+      ];
+
+      document.getElementById("hero-stats").innerHTML = stats.map(stat => `
+        <div class="stat">
+          <div class="label">${stat.label}</div>
+          <div class="value">${stat.value}</div>
+          <div class="note">${stat.note}</div>
+        </div>
+      `).join("");
+    }
+
+    function mountMacroGrid() {
+      const metrics = [
+        ["Accuracy", benchmark.overall.macroAccuracy],
+        ["Precision", benchmark.overall.macroPrecision],
+        ["Recall", benchmark.overall.macroRecall],
+        ["Specificity", benchmark.overall.macroSpecificity],
+        ["F1", benchmark.overall.macroF1],
+        ["Parse success", benchmark.overall.parseSuccessRate]
+      ];
+      document.getElementById("macro-grid").innerHTML = metrics.map(([k, v]) => `
+        <div class="chip">
+          <div class="k">${k}</div>
+          <div class="v">${fmtPct(v)}</div>
+        </div>
+      `).join("");
+    }
+
+    function mountConfusionGrid() {
+      const total = Object.values(benchmark.overall.confusion).reduce((sum, value) => sum + value, 0);
+      const cells = [
+        { label: "True positive", value: benchmark.overall.confusion.tp, bg: "var(--good)" },
+        { label: "False negative", value: benchmark.overall.confusion.fn, bg: "var(--accent-2)" },
+        { label: "False positive", value: benchmark.overall.confusion.fp, bg: "var(--accent-3)", light: true },
+        { label: "True negative", value: benchmark.overall.confusion.tn, bg: "var(--accent)" }
+      ];
+      document.getElementById("confusion-grid").innerHTML = cells.map(cell => `
+        <div class="confusion-cell ${cell.light ? "light" : ""}" style="background:${cell.bg}">
+          <div class="cell-label">${cell.label}</div>
+          <div class="cell-value">${fmtNum(cell.value)}</div>
+          <div class="cell-note">${fmtPctShort(cell.value / total)} of pooled study decisions</div>
+        </div>
+      `).join("");
+    }
+
+    function renderBarChart(mountId, valueKey, colorA, colorB, labelA, labelB) {
+      const mount = document.getElementById(mountId);
+      const width = mount.clientWidth || 520;
+      const estimateLabelWidth = text => Math.max(56, text.length * 8 + 16);
+      const rightLabelReserve = Math.max(
+        ...benchmark.reviews.flatMap(review => [
+          estimateLabelWidth(fmtPct(review[valueKey])),
+          estimateLabelWidth(fmtPct(review[labelB]))
+        ])
+      );
+      const margin = { top: 24, right: rightLabelReserve, bottom: 42, left: 170 };
+      const rowHeight = 58;
+      const innerWidth = width - margin.left - margin.right;
+      const height = margin.top + margin.bottom + rowHeight * benchmark.reviews.length;
+      const rows = benchmark.reviews.map((review, i) => {
+        const y = margin.top + rowHeight * i + 10;
+        const barWidth = innerWidth * review[valueKey];
+        return `
+          <text x="${margin.left - 12}" y="${y + 16}" text-anchor="end" fill="#667084" font-size="13">${review.label}</text>
+          <rect x="${margin.left}" y="${y}" width="${barWidth}" height="14" rx="7" fill="${colorA}"></rect>
+          <rect x="${margin.left}" y="${y + 20}" width="${innerWidth * review[labelB]}" height="14" rx="7" fill="${colorB}"></rect>
+          <text x="${margin.left + barWidth + 8}" y="${y + 12}" fill="${colorA}" font-size="12" font-weight="700">${fmtPct(review[valueKey])}</text>
+          <text x="${margin.left + innerWidth * review[labelB] + 8}" y="${y + 32}" fill="${colorB}" font-size="12" font-weight="700">${fmtPct(review[labelB])}</text>
+        `;
+      }).join("");
+
+      const ticks = [0, 0.25, 0.5, 0.75, 1.0].map(value => {
+        const x = margin.left + innerWidth * value;
+        return `
+          <line x1="${x}" y1="${margin.top - 8}" x2="${x}" y2="${height - margin.bottom + 8}" stroke="rgba(30,36,48,0.1)" stroke-width="1"></line>
+          <text x="${x}" y="${height - 12}" text-anchor="middle" fill="#667084" font-size="12">${fmtPctShort(value)}</text>
+        `;
+      }).join("");
+
+      mount.innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" width="100%" height="${height}">
+          ${ticks}
+          ${rows}
+          <text x="${margin.left}" y="14" fill="${colorA}" font-size="12" font-weight="700">${labelA}</text>
+          <text x="${margin.left + 92}" y="14" fill="${colorB}" font-size="12" font-weight="700">${labelB}</text>
+        </svg>
+      `;
+    }
+
+    function renderRuntimeChart() {
+      const mount = document.getElementById("runtime-chart");
+      const width = mount.clientWidth || 520;
+      const estimateLabelWidth = text => Math.max(56, text.length * 8 + 16);
+      const rightLabelReserve = Math.max(
+        ...benchmark.reviews.map(review => estimateLabelWidth(fmtSec(review.duration)))
+      );
+      const margin = { top: 24, right: rightLabelReserve, bottom: 42, left: 170 };
+      const innerWidth = width - margin.left - margin.right;
+      const rowHeight = 52;
+      const height = margin.top + margin.bottom + rowHeight * benchmark.reviews.length;
+      const maxDuration = Math.max(...benchmark.reviews.map(r => r.duration), 1);
+
+      const rows = benchmark.reviews.map((review, i) => {
+        const y = margin.top + rowHeight * i + 12;
+        const w = innerWidth * (review.duration / maxDuration);
+        return `
+          <text x="${margin.left - 12}" y="${y + 14}" text-anchor="end" fill="#667084" font-size="13">${review.label}</text>
+          <rect x="${margin.left}" y="${y}" width="${w}" height="16" rx="8" fill="var(--accent)"></rect>
+          <text x="${margin.left + w + 8}" y="${y + 13}" fill="var(--accent)" font-size="12" font-weight="700">${fmtSec(review.duration)}</text>
+        `;
+      }).join("");
+
+      mount.innerHTML = `
+        <svg viewBox="0 0 ${width} ${height}" width="100%" height="${height}">
+          ${rows}
+        </svg>
+      `;
+    }
+
+    function mountReviewTable() {
+      document.getElementById("review-table").innerHTML = benchmark.reviews.map(review => `
+        <tr>
+          <td><strong>${review.label}</strong></td>
+          <td>${review.studies}</td>
+          <td>${review.goldInclude}</td>
+          <td>${fmtPct(review.accuracy)}</td>
+          <td>${fmtPct(review.precision)}</td>
+          <td>${fmtPct(review.recall)}</td>
+          <td>${fmtPct(review.specificity)}</td>
+          <td>${fmtPct(review.f1)}</td>
+          <td>${fmtSec(review.duration)}</td>
+        </tr>
+      `).join("");
+    }
+
+    function mountDispersionGrid() {
+      const items = [
+        ["Accuracy SD", benchmark.overall.dispersion.accuracy],
+        ["Precision SD", benchmark.overall.dispersion.precision],
+        ["Recall SD", benchmark.overall.dispersion.recall],
+        ["Specificity SD", benchmark.overall.dispersion.specificity],
+        ["F1 SD", benchmark.overall.dispersion.f1],
+        ["Runtime SD", benchmark.overall.dispersion.duration, true]
+      ];
+      document.getElementById("dispersion-grid").innerHTML = items.map(([k, value, isDuration]) => `
+        <div class="chip">
+          <div class="k">${k}</div>
+          <div class="v">${isDuration ? fmtSec(value) : fmtPct(value)}</div>
+        </div>
+      `).join("");
+    }
+
+    function mountWorstRuns() {
+      document.getElementById("worst-runs").innerHTML = benchmark.worstRuns.map(run => `
+        <tr>
+          <td class="run-label">${run.run}<small>${run.review}</small></td>
+          <td class="numeric">${fmtPct(run.accuracy)}</td>
+          <td class="numeric">${fmtPct(run.precision)}</td>
+          <td class="numeric">${fmtPct(run.recall)}</td>
+          <td class="numeric">${fmtPct(run.f1)}</td>
+        </tr>
+      `).join("");
+    }
+
+    function mountStudies() {
+      const mount = document.getElementById("study-list");
+      if (!benchmark.studies.length) {
+        mount.innerHTML = `<div class="panel"><p>No recurring study-level mistakes were found in the scored runs for this policy.</p></div>`;
+        return;
+      }
+      mount.innerHTML = benchmark.studies.map(study => `
+        <div class="study-item">
+          <div class="study-head">
+            <div class="study-ref">${study.ref}</div>
+            <div class="study-count">${study.mistakes} repeated mistakes</div>
+          </div>
+          <div class="study-title">${study.title}</div>
+          <div class="pill-row">
+            <span class="pill">${study.error.replaceAll("_", " ")}</span>
+            <span class="pill">gold ${study.gold}</span>
+            <span class="pill">${study.outcome}</span>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    mountHeroStats();
+    mountMacroGrid();
+    mountConfusionGrid();
+    renderBarChart("review-chart", "f1", "var(--accent)", "var(--good)", "F1", "recall");
+    renderRuntimeChart();
+    mountReviewTable();
+    mountDispersionGrid();
+    mountWorstRuns();
+    mountStudies();
+  </script>
+</body>
+</html>
