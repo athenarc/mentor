@@ -341,8 +341,10 @@ def generate_suite(*sample_sizes: int, splits: AbstractSet[str] = None, min_stud
                                           min_balance=min_balance, max_balance=max_balance)
     _LOGGER.info(f'Retained {filtered_reviews_df.shape[0]} reviews after filtering.')
 
-    _LOGGER.info(f'Sorting reviews...')
-    sorted_reviews_df = _sort_reviews(filtered_reviews_df, *sort_by)
+    sorted_reviews_df = filtered_reviews_df
+    if sort_by:
+        _LOGGER.info(f'Sorting reviews...')
+        sorted_reviews_df = _sort_reviews(filtered_reviews_df, *sort_by)
 
     _LOGGER.info(f'Sampling reviews...')
     match strategy:
