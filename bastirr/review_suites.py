@@ -42,9 +42,15 @@ class SortingPolicy:
     def from_descriptor(cls, descriptor: str):
         parts = descriptor.rsplit(":", 1)
         field, order = parts if len(parts) == 2 else (parts[0], None)
-        if order and order not in SortingOrder:
-            raise TypeError(f"Invalid sorting order: {order} (Valid choices: {", ".join(SortingOrder)})")
-        return SortingPolicy(*parts)
+        if order is None:
+            return cls(field)
+        try:
+            return cls(field, SortingOrder(order))
+        except ValueError as exc:
+            valid = ", ".join(SortingOrder)
+            raise argparse.ArgumentTypeError(
+                f"Invalid sorting order: {order} (Valid choices: {valid})"
+            ) from exc
 
 
 class GoldLabelPolicy(StrEnum):
