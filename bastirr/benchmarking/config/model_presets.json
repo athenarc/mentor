@@ -14,6 +14,12 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
+                    "plugins": [
+                        {
+                            "id": "context-compression",
+                            "enabled": false
+                        }
+                    ],
                     "provider": {
                         "order": [
                             "openai/default"
@@ -21,7 +27,9 @@
                         "allow_fallbacks": false,
                         "require_parameters": true
                     },
-                    "reasoning": {"enabled": true}
+                    "reasoning": {
+                        "enabled": true
+                    }
                 }
             }
         },
@@ -39,6 +47,12 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
+                    "plugins": [
+                        {
+                            "id": "context-compression",
+                            "enabled": false
+                        }
+                    ],
                     "reasoning": {
                         "enabled": true,
                         "effort": "xhigh"
@@ -67,7 +81,15 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
-                    "reasoning": {"enabled": true},
+                    "plugins": [
+                        {
+                            "id": "context-compression",
+                            "enabled": false
+                        }
+                    ],
+                    "reasoning": {
+                        "enabled": true
+                    },
                     "provider": {
                         "order": [
                             "deepseek"
@@ -92,6 +114,12 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
+                    "plugins": [
+                        {
+                            "id": "context-compression",
+                            "enabled": false
+                        }
+                    ],
                     "reasoning": {
                         "enabled": true,
                         "effort": "xhigh"
@@ -120,7 +148,15 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
-                    "reasoning": {"enabled": true},
+                    "plugins": [
+                        {
+                            "id": "context-compression",
+                            "enabled": false
+                        }
+                    ],
+                    "reasoning": {
+                        "enabled": true
+                    },
                     "provider": {
                         "order": [
                             "novita/bf16"
@@ -145,7 +181,15 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
-                    "reasoning": {"enabled": true},
+                    "plugins": [
+                        {
+                            "id": "context-compression",
+                            "enabled": false
+                        }
+                    ],
+                    "reasoning": {
+                        "enabled": true
+                    },
                     "provider": {
                         "order": [
                             "novita/bf16"
@@ -170,7 +214,15 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
-                    "reasoning": {"enabled": true},
+                    "plugins": [
+                        {
+                            "id": "context-compression",
+                            "enabled": false
+                        }
+                    ],
+                    "reasoning": {
+                        "enabled": true
+                    },
                     "provider": {
                         "order": [
                             "moonshotai/int4"
@@ -195,6 +247,12 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
+                    "plugins": [
+                        {
+                            "id": "context-compression",
+                            "enabled": false
+                        }
+                    ],
                     "provider": {
                         "order": [
                             "mistral"
@@ -219,6 +277,12 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
+                    "plugins": [
+                        {
+                            "id": "context-compression",
+                            "enabled": false
+                        }
+                    ],
                     "provider": {
                         "order": [
                             "openai"
@@ -243,7 +307,15 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
-                    "reasoning": {"enabled": true},
+                    "plugins": [
+                        {
+                            "id": "context-compression",
+                            "enabled": false
+                        }
+                    ],
+                    "reasoning": {
+                        "enabled": true
+                    },
                     "provider": {
                         "order": [
                             "deepinfra/bf16"
@@ -268,7 +340,15 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "extra_body": {
-                    "reasoning": {"enabled": true},
+                    "plugins": [
+                        {
+                            "id": "context-compression",
+                            "enabled": false
+                        }
+                    ],
+                    "reasoning": {
+                        "enabled": true
+                    },
                     "provider": {
                         "order": [
                             "deepinfra/bf16"
@@ -293,9 +373,19 @@
             "requires_api_key": true,
             "request_kwargs_default": {
                 "temperature": 0.0,
-                "extra_headers": {"X-OpenRouter-Metadata": "enabled"},
+                "extra_headers": {
+                    "X-OpenRouter-Metadata": "enabled"
+                },
                 "extra_body": {
-                    "reasoning": {"enabled": true},
+                    "plugins": [
+                        {
+                            "id": "context-compression",
+                            "enabled": false
+                        }
+                    ],
+                    "reasoning": {
+                        "enabled": true
+                    },
                     "provider": {
                         "require_parameters": true
                     }
