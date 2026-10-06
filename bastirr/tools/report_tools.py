@@ -506,17 +506,30 @@ def _parse_decisions(gatekeeper_response: str) -> list[dict]:
             })
 
     # Last resort: look for simple patterns like "Study N: INCLUDE/EXCLUDE"
+    # Confidence is optional (same as the block parser above).
     if not decisions:
         simple = re.compile(
-            r'(?:Study|study)\s*(\d+)\s*[:–—-]\s*(INCLUDE|EXCLUDE)\s*(?:[-–—:]\s*(.+?))?\s*[:–—-]\s*(HIGH|MEDIUM|LOW)(?:\n|$)',
+            r'(?:Study|study)\s*(\d+)\s*[:–—-]\s*(INCLUDE|EXCLUDE)'
+            r'(?:\s*[-–—:]\s*(.*?))?\s*(?:\n|$)',
+            re.IGNORECASE,
+        )
+        trailing_confidence = re.compile(
+            r'^(.*?)(?:\s*[-–—:]\s*)?(HIGH|MEDIUM|LOW)\s*$',
             re.IGNORECASE,
         )
         for m in simple.finditer(gatekeeper_response):
+            reason = (m.group(3) or "").strip()
+            confidence = ""
+            if reason:
+                conf_m = trailing_confidence.fullmatch(reason)
+                if conf_m:
+                    reason = (conf_m.group(1) or "").strip()
+                    confidence = conf_m.group(2).upper()
             decisions.append({
                 "study_index": int(m.group(1)),
                 "decision": m.group(2).upper(),
-                "reason": (m.group(3) or "").strip(),
-                "confidence": m.group(4).upper()
+                "reason": reason,
+                "confidence": confidence,
             })
 
     return decisions
