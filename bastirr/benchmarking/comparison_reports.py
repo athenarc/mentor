@@ -768,12 +768,12 @@ def _build_comparison_payload(experiment_dir: Path) -> dict:
     hero_stats = [
         {
             "label": "Macro recall swing",
-            "value": f"{round(recall_swing * 100)} pts" if recall_swing else "n/a",
+            "value": f"{round(recall_swing * 100)} pts" if recall_swing is not None else "n/a",
             "note": "Change in macro recall when label 0.5 is scored as EXCLUDE instead of INCLUDE.",
         },
         {
             "label": "Macro F1 swing",
-            "value": f"{round(f1_swing * 100)} pts" if f1_swing else "n/a",
+            "value": f"{round(f1_swing * 100)} pts" if f1_swing is not None else "n/a",
             "note": "Change in macro F1 across the same raw screening runs.",
         },
         {
