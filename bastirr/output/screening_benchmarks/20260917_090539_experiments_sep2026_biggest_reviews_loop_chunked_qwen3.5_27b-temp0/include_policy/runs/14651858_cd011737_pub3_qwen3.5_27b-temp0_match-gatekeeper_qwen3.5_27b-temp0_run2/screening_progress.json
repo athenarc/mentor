@@ -1,0 +1,4473 @@
+{
+  "expected_n_studies": 558,
+  "completed_count": 558,
+  "completed_study_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199,
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219,
+    220,
+    221,
+    222,
+    223,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261,
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278,
+    279,
+    280,
+    281,
+    282,
+    283,
+    284,
+    285,
+    286,
+    287,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    297,
+    298,
+    299,
+    300,
+    301,
+    302,
+    303,
+    304,
+    305,
+    306,
+    307,
+    308,
+    309,
+    310,
+    311,
+    312,
+    313,
+    314,
+    315,
+    316,
+    317,
+    318,
+    319,
+    320,
+    321,
+    322,
+    323,
+    324,
+    325,
+    326,
+    327,
+    328,
+    329,
+    330,
+    331,
+    332,
+    333,
+    334,
+    335,
+    336,
+    337,
+    338,
+    339,
+    340,
+    341,
+    342,
+    343,
+    344,
+    345,
+    346,
+    347,
+    348,
+    349,
+    350,
+    351,
+    352,
+    353,
+    354,
+    355,
+    356,
+    357,
+    358,
+    359,
+    360,
+    361,
+    362,
+    363,
+    364,
+    365,
+    366,
+    367,
+    368,
+    369,
+    370,
+    371,
+    372,
+    373,
+    374,
+    375,
+    376,
+    377,
+    378,
+    379,
+    380,
+    381,
+    382,
+    383,
+    384,
+    385,
+    386,
+    387,
+    388,
+    389,
+    390,
+    391,
+    392,
+    393,
+    394,
+    395,
+    396,
+    397,
+    398,
+    399,
+    400,
+    401,
+    402,
+    403,
+    404,
+    405,
+    406,
+    407,
+    408,
+    409,
+    410,
+    411,
+    412,
+    413,
+    414,
+    415,
+    416,
+    417,
+    418,
+    419,
+    420,
+    421,
+    422,
+    423,
+    424,
+    425,
+    426,
+    427,
+    428,
+    429,
+    430,
+    431,
+    432,
+    433,
+    434,
+    435,
+    436,
+    437,
+    438,
+    439,
+    440,
+    441,
+    442,
+    443,
+    444,
+    445,
+    446,
+    447,
+    448,
+    449,
+    450,
+    451,
+    452,
+    453,
+    454,
+    455,
+    456,
+    457,
+    458,
+    459,
+    460,
+    461,
+    462,
+    463,
+    464,
+    465,
+    466,
+    467,
+    468,
+    469,
+    470,
+    471,
+    472,
+    473,
+    474,
+    475,
+    476,
+    477,
+    478,
+    479,
+    480,
+    481,
+    482,
+    483,
+    484,
+    485,
+    486,
+    487,
+    488,
+    489,
+    490,
+    491,
+    492,
+    493,
+    494,
+    495,
+    496,
+    497,
+    498,
+    499,
+    500,
+    501,
+    502,
+    503,
+    504,
+    505,
+    506,
+    507,
+    508,
+    509,
+    510,
+    511,
+    512,
+    513,
+    514,
+    515,
+    516,
+    517,
+    518,
+    519,
+    520,
+    521,
+    522,
+    523,
+    524,
+    525,
+    526,
+    527,
+    528,
+    529,
+    530,
+    531,
+    532,
+    533,
+    534,
+    535,
+    536,
+    537,
+    538,
+    539,
+    540,
+    541,
+    542,
+    543,
+    544,
+    545,
+    546,
+    547,
+    548,
+    549,
+    550,
+    551,
+    552,
+    553,
+    554,
+    555,
+    556,
+    557,
+    558
+  ],
+  "next_study_index": null,
+  "screening_decisions": [
+    {
+      "study_index": 1,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcome is actinic keratosis incidence, not cardiovascular morbidity or mortality.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 2,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcomes are cardiovascular risk factors (lipids, BP, weight), not clinical cardiovascular events or mortality.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 3,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study assesses dietary counseling effects on fat/cholesterol intake, not cardiovascular morbidity or mortality. Duration unclear.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 4,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 12 months, which is less than the required 24 months. Outcome is breast cancer risk.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 5,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcome is diabetic retinopathy/microangiopathy progression, not cardiovascular morbidity or mortality. Not explicitly randomised.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 6,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is multifactorial (diet, weight loss, smoking cessation, lipid drugs). Primary outcome is carotid IMT, a surrogate marker.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 7,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 12 months (<24 months). Outcomes are dietary scores and blood lipids, not cardiovascular events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 8,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 12 months (<24 months). Outcomes are serum lipid concentrations.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 9,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Lacks a randomised control group. Outcome is angiographic coronary lesion progression, not clinical cardiovascular morbidity or mortality.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 10,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention focuses on care delivery methods (audit, recall systems), not dietary saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 11,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcome is incidence of colorectal adenomas, not cardiovascular morbidity or mortality.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 12,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention duration is 14 months (<24 months). Outcomes are weight and cardiovascular risk factors.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 13,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention duration was 1 year. Outcomes are coronary risk factors, not clinical cardiovascular events or mortality.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 14,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention duration is 74 weeks (~1.4 years, <24 months). Outcomes are glycemia, weight, and plasma lipids.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 15,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not a randomised trial. Intervention duration is 13 months. Outcome is angiographic atherosclerosis change.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 16,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Mixed study design combining drug therapies (bezafibrate, simvastatin) and diet. Not a diet-only trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 17,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 1 year (<24 months). Outcome is mammographic dysplasia and breast cancer incidence.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 18,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 12 months (<24 months). Outcome is serum cholesterol as a marker of dietary change.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 19,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Feasibility study focusing on retention and dropout characteristics. Follow-up is 12 months.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 20,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Feasibility study describing recruitment and compliance for a breast cancer prevention trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 21,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Compliance study assessing dietary adherence over 1 year. No cardiovascular morbidity/mortality outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 22,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention duration is 1 year (<24 months). Outcomes are blood pressure and plasma catecholamines.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 23,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcomes are micronutrient intakes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 24,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcomes are lipoprotein lipid responses.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 25,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 1 year (<24 months). Outcomes are HDL cholesterol subfractions and apoprotein A-1.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 26,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 3 months (<24 months). Outcomes are fat and fiber consumption.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 27,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 26 weeks (~6 months, <24 months). Outcomes are plasma total and HDL cholesterol.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 28,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is diabetic patient education, not dietary saturated fat reduction. Outcomes are metabolic status and knowledge.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 29,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcomes are physiological variables and social variables (work uptake), not cardiovascular morbidity or mortality.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 30,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term crossover study in ileostomates. Outcome is small-bowel cholesterol excretion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 31,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcome is severity of cyclical mastopathy symptoms.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 32,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 1 year (<24 months). Outcomes are body weight and glycemic control.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 33,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Design and baseline characteristics paper for a drug trial (cholestyramine). Not a diet-only intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 34,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 1 year (<24 months). Outcomes are dietary fat intake and body mass in breast cancer patients.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 35,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention involves sucrose polyesters (fat replacer). Outcomes are serum carotenoids and oxidative markers.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 36,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 12 months (<24 months). Outcomes are plasma lipid levels.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 37,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Pre-post design without randomisation. Follow-up is 6 months. Outcomes are serum lipid values.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 38,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is an 8-week program. Outcomes are serum cholesterol and nutrition knowledge.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 39,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term study (42-day phases). Outcomes are platelet function and cold-induced vasoconstriction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 40,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 12 months (<24 months). Outcomes are cholesterol levels and program costs.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 41,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 18 months (<24 months). Outcomes are serum cholesterol levels.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 42,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcomes are body weight and serum lipids.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 43,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcomes are body weight and blood lipids.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 44,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcomes are micronutrient intakes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 45,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 1 year (<24 months). Outcomes are cardiovascular risk biomarkers (lipid ratios).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 46,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is essential fatty acid supplementation, not dietary saturated fat reduction. Outcomes are hormonal/biochemical profiles.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 47,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term study (42-day phases). Outcomes are platelet/plasma fatty acids and thrombogenesis markers.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 48,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention involves 4 monthly counseling visits. Outcomes are serum lipids and weight.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 49,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not randomised. Follow-up is 4.7-11 months. Outcomes are plasma lipid levels.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 50,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Development/evaluation paper for a computer-based system. Short-term studies. Outcomes are plasma cholesterol.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 51,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Crossover trial assessing drug-diet interaction (simvastatin). Outcomes are lipoprotein levels.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 52,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term metabolic ward study (3 weeks). Assesses lovastatin efficacy with diets. Outcomes are lipids.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 53,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention focuses on weight reduction. Follow-up is 12 months. Outcomes are weight and blood pressure.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 54,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention focuses on weight reduction. Follow-up is 6-12 months. Outcomes are weight and blood pressure.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 55,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcomes are total cholesterol and triglycerides.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 56,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 1 year (<24 months). Outcomes are dietary intake measurements.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 57,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention includes diet and/or exercise. Primary outcome is incidence of type 2 diabetes, not cardiovascular morbidity/mortality.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 58,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Secondary analysis assessing spouse support and dietary adherence. No cardiovascular morbidity/mortality outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 59,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 1 year (<24 months). Outcomes are plasma lipoprotein levels.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 60,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Feasibility and design paper for the Dietary Alternatives study. No outcome data reported.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 61,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 8 weeks (<24 months). Outcome is blood pressure.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 62,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is multifactorial (diet, smoking cessation, exercise, BP drugs). Outcome is diabetes incidence.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 63,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcomes are dietary response, weight, and plasma lipids/glucose.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 64,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is multifactorial case-management (smoking, exercise, diet-drug therapy). Follow-up is 1 year.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 65,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention combines diet and exercise. Follow-up is 1 year. Outcomes are lipoprotein levels.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 66,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcomes are patient satisfaction and quality of life. No cardiovascular morbidity/mortality data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 67,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcomes are plasma lipid profiles and cost-effectiveness.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 68,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term study (4-week intervals). Outcomes are serum cholesterol and HDL.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 69,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 12 months (<24 months). Outcomes are lipoprotein lipids.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 70,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is intensive diabetes therapy (insulin), not dietary saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 71,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 12 months (<24 months). Outcomes are sex hormone levels and menstrual cycling.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 72,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Quasi-experimental design focusing on weight control. Outcomes are BMI and glucose levels.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 73,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is Traditional Chinese Medicine (Qianxining) vs Western medicine. Not a dietary fat reduction trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 74,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional observational study. Not a randomised trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 75,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article summarising results from the DIRECT trial. Not a primary trial report.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 76,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Registry study on treatment choice for morbid obesity (bariatric surgery vs lifestyle). Not a diet RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 77,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 2 years, but outcomes are weight loss, lipids, and glycemic control. No cardiovascular morbidity/mortality data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 78,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 2 years, but outcomes are carotid vessel wall volume and intima-media thickness (surrogate markers). No clinical CV events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 79,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational compliance study within a pravastatin drug trial. Outcomes are nutrient intake and lipid levels.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 80,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention combines fish oil supplementation with dietary counseling. Outcomes are endothelial activation markers.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 81,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational cohort study assessing dietary intake associations with carotid IMT. Not randomised.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 82,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention combines dietary counseling with n-3 PUFA supplements. Outcomes are circulating endothelial markers.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 83,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Post hoc observational analysis of inflammatory markers as predictors of CV events. Not an intervention trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 84,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcomes are postprandial coagulation activation markers.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 85,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcomes are insulin resistance and glucose tolerance.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 86,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcomes are weight maintenance and cardiometabolic risk factors.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 87,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcome is 24-h energy expenditure and substrate oxidation.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 88,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months (<24 months). Outcomes are appetite and glucose metabolism.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 89,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention combines dietary advice with lipid-lowering drugs. Follow-up is 19 months (<24 months). Outcome is angiographic progression.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 90,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 2 years, but outcomes are albuminuria and lipid levels. No cardiovascular morbidity/mortality data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 91,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 12 months (<24 months). Outcomes are dietary fat and fiber intake.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 92,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term crossover study. Outcomes are serum lipoproteins.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 93,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term study. Outcomes are plasma lipids and HDL subfractions.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 94,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term crossover study in ileostomists. Outcomes are sterol and nutrient excretion.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 95,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is multifactorial (diet + physical activity). Outcomes are vascular inflammatory markers and insulin resistance.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 96,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcomes are endothelial function and vascular inflammatory markers. No clinical cardiovascular morbidity/mortality data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 97,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is a multidisciplinary prevention programme (lifestyle, drugs). Follow-up is 1 year. Outcomes are risk factor management.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 98,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcomes are risk factor profiles of patients and relatives. No cardiovascular morbidity/mortality data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 99,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention combines healthy-living advice with sulfonylurea drug allocation. Follow-up is 1 year. Outcomes are glycemia and fitness.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 100,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up is 6 months per diet phase (<24 months). Outcomes are blood pressure and antihypertensive medication dosage.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 101,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term metabolic study focusing on lipoprotein concentrations only. No mortality or cardiovascular morbidity outcomes reported. Duration appears to be weeks/months, not meeting 24-month minimum.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 102,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Multifactorial intervention combining diet AND exercise. Criterion 4 excludes multifactorial interventions. Primary outcome is diabetes prevention, not cardiovascular mortality/morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 103,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomised controlled trial with serum-cholesterol-lowering diet (low saturated fat) vs normal hospital diet. Duration 12 years (6+6). Assessed CHD incidence including coronary deaths. Meets all criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 104,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year, does not meet 24-month minimum requirement. Focuses on dietary changes rather than mortality/CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 105,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year, does not meet 24-month minimum requirement. No mortality or cardiovascular morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 106,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year, does not meet 24-month minimum requirement. Outcomes are risk factors, not mortality or cardiovascular morbidity events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 107,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year. Primary focus on weight loss and blood pressure, not specifically saturated fat reduction. No mortality/CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 108,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year. Low-carb/high-fat diet, not focused on reducing saturated fat. No mortality/CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 109,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 9 months. Focus on gallstones, not cardiovascular outcomes. Not primarily about saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 110,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year. Multifactorial (diet + exercise). Cancer survivor population, primary outcomes are lifestyle behaviors not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 111,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 90 days. Does not meet 24-month minimum. Outcomes are risk factors, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 112,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Supplement study, not dietary saturated fat reduction. No mortality/CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 113,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 4 months. Weight loss focus, not specifically saturated fat reduction. No mortality/CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 114,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term metabolic ward study. No indication of 24-month duration. Outcomes are cholesterol levels, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 115,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 8 weeks. Worksite education program, not a controlled dietary intervention. No mortality/CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 116,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Focus on liver fat, not mortality/CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 117,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Cardiac structure/function outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 118,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Weight loss focus, not specifically saturated fat reduction. No mortality/CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 119,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only ~22 days. Very short-term study. Outcome is estradiol levels, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 120,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 30 weeks (~7 months), less than 24 months. Outcomes are lipoproteins and insulin sensitivity, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 121,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Multifactorial (diet + exercise). Outcomes are glucose/insulin parameters, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 122,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Multifactorial (diet + exercise). Quality of life outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 123,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Multifactorial (diet + exercise). Risk factor outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 124,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Multifactorial (diet + exercise). CHD risk estimates, not actual mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 125,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Mail-out intervention, not intensive dietary intervention. No mortality/CVD event outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 126,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Low-intensity mail-out intervention. No mortality/CVD event outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 127,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2 years meets time criterion. However, population is breast cancer patients (not general adult population with/without CVD). Primary outcomes are compliance and nutrient intake, not mortality/CVD events.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 128,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2 years. Breast cancer patient population. Outcomes are food choices, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 129,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2 years. Breast cancer patient population. Outcomes are dietary habits/nutrient intake, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 130,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year. Vascular status/walking distance outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 131,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Cholesterol outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 132,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year. Cholesterol outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 133,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2-3 years. However, this is a community screening/intervention study with minimal impact. Cholesterol outcome, not mortality/CVD events. Authors conclude nonpharmacological interventions have minimal impact.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 134,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months. Weight reduction focus, not specifically saturated fat reduction. Risk factor outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 135,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 weeks. Lipoprotein outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 136,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months. Blood pressure outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 137,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Sequential crossover design, unclear if 24 months. Hemostatic parameter outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 138,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 7 years meets criterion. However, this is a weight reduction program, not specifically saturated fat reduction. Outcomes are weight, cholesterol, BP - not mortality/CVD events.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 139,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 4 weeks. Metabolic study, not mortality/CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 140,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 9 months. Weight loss/exercise focus, not specifically saturated fat reduction. Risk factor outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 141,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 8 months. Supplementation study, not dietary saturated fat reduction. Endothelial function outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 142,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 24 months meets criterion. However, outcomes are cardiac MRI parameters (LV mass, MTG), not mortality/CVD events. Diet comparison (Paleolithic vs Nordic), not specifically saturated fat reduction.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 143,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 24 months. Outcomes are gene expression and LPL activity in adipose tissue, not mortality/CVD events. Paleolithic diet comparison, not specifically saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 144,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 24 months. Outcomes are anthropometric measurements and triglycerides, not mortality/CVD events. Paleolithic vs Nordic diet, not specifically saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 145,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 24 months. Outcomes are liver fat and insulin sensitivity, not mortality/CVD events. Paleolithic vs low-fat diet, not specifically saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 146,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 24 months. Outcomes are gut hormones (GLP-1, GIP, glucagon), not mortality/CVD events. Paleolithic diet comparison, not specifically saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 147,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Unclear duration from abstract. Multifactorial (diet + exercise). Outcomes are ectopic fat and insulin sensitivity, not mortality/CVD events.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 148,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Incomplete abstract. Brain function/volume outcomes, not mortality/CVD events. Multifactorial (diet + exercise).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 149,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 24 months. Outcomes are glucocorticoid metabolism, not mortality/CVD events. Weight loss focus, not specifically saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 150,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 18 months, less than 24 months. Blood pressure outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 151,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2 years. Outcomes are dietary intake changes and sodium excretion, not mortality/CVD events. Hypertension management focus.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 152,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 10-14 weeks. Weight loss focus, not specifically saturated fat reduction. BP and metabolic outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 153,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Appears to be a review/commentary on chocolate feeding studies, not a primary RCT. Discusses stearic acid effects, not mortality/CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 154,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2 years. Linoleic acid enrichment, not specifically saturated fat reduction. Cholesterol outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 155,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 15 months, less than 24 months. Nutrient intake and serum lipid outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 156,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 15 months, less than 24 months. Serum lipid outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 157,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Waist circumference and risk factor outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 158,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months. Carbohydrate content comparison, not specifically saturated fat reduction. Risk factor outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 159,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term metabolic ward study. Cholesterol/lipoprotein outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 160,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 19 months, less than 24 months. Arteriographic outcomes, not mortality/CVD events. Treatment included drugs (cholestyramine, etc.) plus diet.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 161,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Crossover design, unclear if 24 months. Lipoprotein outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 162,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Recruitment phase analysis, not a full intervention trial. 1 month before/after dietary instruction. Cholesterol outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 163,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 7.4 years. However, this is primarily a drug trial (cholestyramine vs placebo). Both groups followed moderate cholesterol-lowering diet, so diet was not the primary intervention being tested. Drug intervention confounds dietary assessment.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 164,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Analysis of LRC-CPPT drug trial. Primarily drug intervention (cholestyramine), not dietary saturated fat reduction trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 165,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Unclear duration. Multifactorial (low sodium + low fat + high fibre). Treated hypertensive patients on medication. Serum lipid outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 166,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 1-6 months. Brief interventions (booklet, salt, prompts). Blood pressure outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 167,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Sequential crossover design, unclear if 24 months. Metabolic outcomes (CE synthesis, CETP), not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 168,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 8 months. Psychological intervention (implementation intentions), not dietary intervention per se. Saturated fat intake outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 169,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Duration 27-46 months meets criterion. Randomised secondary prevention trial comparing Mediterranean alpha-linolenic acid-rich diet (lower saturated fat) vs prudent Western diet. Outcomes include cardiac death and nonfatal MI. Meets all criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 170,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "This is the Lyon Diet Heart Study (same as 169). Duration 27+ months. Randomised secondary prevention trial with Mediterranean diet (lower saturated fat) vs control. Outcomes include major cardiac events. Meets all criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 171,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Lyon Diet Heart Study final report. Duration 46 months mean. Randomised secondary prevention trial with Mediterranean diet (lower saturated fat) vs prudent Western diet. Outcomes include cardiac death, nonfatal MI, stroke, heart failure. Meets all criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 172,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Lyon Diet Heart Study analysis. Duration 27 months. Randomised secondary prevention trial with Mediterranean diet (lower saturated fat) vs control. Outcomes include cardiovascular death, nonfatal MI, unstable angina, stroke, heart failure. Meets all criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 173,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Lyon Diet Heart Study cancer/survival analysis. Duration 4 years. Randomised trial with Mediterranean diet (lower saturated fat) vs control. Outcomes include total death, cardiac death, cancer. Meets all criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 174,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Lyon Diet Heart Study summary. Duration 27 months. Randomised secondary prevention trial with Cretan Mediterranean diet (lower saturated fat) vs prudent diet. Outcomes include recurrent MI, cardiovascular events, cardiac and total death. Meets all criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 175,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Small study (60 patients). Unclear duration and design. Flavonoid-containing diet, not specifically saturated fat reduction. Clinical manifestations and lipid spectrum outcomes, not mortality/CVD events.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 176,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 1 year. Evening primrose oil supplementation, not saturated fat reduction. Breast cyst recurrence outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 177,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2 years. ALA-enriched margarine vs LA margarine. Outcomes are cardiovascular risk factors and estimated IHD risk, not actual mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 178,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 1 year. Weight reduction focus, not specifically saturated fat reduction. Weight, BP, skinfold outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 179,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 1 year. Weight reduction focus. Lipid metabolism outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 180,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 4 weeks. Liquid diet metabolic study. Plasma lipid/lipoprotein outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 181,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 24 weeks (~6 months). High-fat Atkins diet actually INCREASES saturated fat. Outcomes are weight, waist, triglycerides, LDL-C, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 182,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 12 months. High-fat/high-protein vs high-carb diets. Metabolic syndrome features, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 183,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 10 weeks. Prepared meal plan vs self-selected diet. Risk factor outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 184,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration up to 52 weeks (1 year). Prepared meal plan studies. Risk factor outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 185,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2 years. Low-fat high-fibre diet vs normal diet. Colorectal polyp recurrence outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 186,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 18-30 months. Moderate-fat Mediterranean vs low-fat diet. Weight loss outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 187,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 6 months. Estrogen outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 188,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protocol paper, not completed trial. 3 month intervention planned. NALFD population, not general CVD population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 189,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional genetic association study, not an intervention trial. Vitamin E/carotenoid outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 190,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional genetic association study, not an intervention trial. Vitamin E/carotenoid outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 191,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 3 months. Genetic interaction study. Framingham score outcome, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 192,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protocol/baseline characteristics paper, not reporting outcomes. Medi-RIVAGE study design description.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 193,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 3 months. Risk factor outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 194,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Strictly controlled diets, unclear if 24 months. Serum lipid outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 195,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 53 days (17+36 days). Serum lipid outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 196,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 9 weeks (3 weeks x 3 diets). Trans fat vs oleic vs saturated fat. Serum lipid outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 197,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2 years. Community intervention reducing cooking fats and salt. Household consumption outcomes, not individual mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 198,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 1 year. Inflammation/metabolic marker outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 199,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Plant sterol/sitostanol supplementation study, not saturated fat reduction. Serum cholesterol outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 200,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2 years. Multiple sclerosis population, not CVD population. Linoleate vs oleate supplementation. MS relapse outcomes, not mortality/CVD events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 201,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 8 weeks (criterion 6 not met). No mortality or CVD morbidity outcomes reported.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 202,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "No mortality or cardiovascular morbidity data available (criterion 7 not met). Focus on dietary behavior change rather than hard CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 203,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 18 months (criterion 6 not met - requires at least 24 months).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 204,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized trial comparing low saturated fat diet (9% vs 18%) with control. Duration 4.5 years with mean 384 days on diet. Reports myocardial infarctions, sudden deaths, and all-cause mortality. Meets all criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 205,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (criterion 6 not met). No mortality or CVD morbidity outcomes reported.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 206,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "No mortality or cardiovascular morbidity data available (criterion 7 not met). Short-term adherence study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 207,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 4 weeks (criterion 6 not met). No mortality or CVD morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 208,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 3 months (criterion 6 not met). Substudy focused on feasibility of meatless meals.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 209,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protocol/design paper describing DELTA study. No actual trial results or outcomes reported.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 210,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (criterion 6 not met). No mortality or CVD morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 211,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 10 weeks (criterion 6 not met). Energy restriction study, not specifically saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 212,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (criterion 6 not met). No mortality or CVD morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 213,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (criterion 6 not met). No mortality or CVD morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 214,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 8 months (criterion 6 not met). Breast cancer prevention focus, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 215,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 8 months (criterion 6 not met). Breast cancer prevention focus, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 216,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term controlled feeding study. No mortality or CVD morbidity outcomes reported.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 217,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 5 months (criterion 6 not met). No mortality or CVD morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 218,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Pilot/feasibility study with only 3 months follow-up (criterion 6 not met). Breast cancer adjuvant setting.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 219,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (criterion 6 not met). No mortality or CVD morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 220,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (criterion 6 not met). No mortality or CVD morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 221,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Design and baseline findings paper. No intervention results or CVD outcomes reported.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 222,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (criterion 6 not met). Breast cancer family history population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 223,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term study on platelet function. No mortality or CVD morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 224,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (criterion 6 not met). Diet + exercise intervention (potentially multifactorial).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 225,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (criterion 6 not met). Diet + exercise intervention (potentially multifactorial).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 226,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Design and objectives paper. No intervention results or CVD outcomes reported.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 227,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Focus on adipokines, not mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 228,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (criterion 6 not met). Insulin resistance focus, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 229,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (criterion 6 not met). Impaired glucose tolerance population.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 230,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 9 months (criterion 6 not met). Olestra substitution study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 231,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 9 months (criterion 6 not met). Olestra substitution study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 232,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protocol paper for ORIGIN trial. Insulin and omega-3 intervention, not specifically saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 233,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized 5-year diet intervention with 24-year mortality follow-up. Lowers saturated fat. Reports CVD and cancer mortality. Meets all criteria.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 234,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Focus on insulin response to glucose load, not mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 235,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized 5-year trial in high-risk men. Diet intervention to lower lipids plus smoking cessation. Reports MI and sudden death outcomes. Note: potentially multifactorial due to smoking component.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 236,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Same Oslo Study as 235. Randomized 5-year trial with diet and smoking intervention. Reports MI and sudden death. Potentially multifactorial.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 237,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention only 16 weeks (criterion 6 not met). Weight loss focus in NIDDM patients.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 238,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Family-oriented intervention including school children (criterion 5 not met - adults only). Design/baseline paper.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 239,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (criterion 6 not met). POUNDS LOST substudy on energy expenditure.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 240,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Focus on resting energy expenditure, not mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 241,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Focus on body composition changes, not mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 242,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Genetic interaction study on body composition. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 243,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Genetic interaction study on energy expenditure. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 244,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Focus on inflammatory markers (hsCRP), not mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 245,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Genetic interaction study on glucose metabolism. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 246,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Genetic interaction study on insulin resistance. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 247,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Genetic interaction study on metabolic syndrome. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 248,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Primary outcome is weight loss, not mortality or CVD morbidity (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 249,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Adherence conceptualization study. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 250,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Adherence prediction study. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 251,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Genetic interaction study on amino acids. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 252,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Genetic interaction study on lipid profile. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 253,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Genetic interaction study on FTO genotype. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 254,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional assessment, not a randomized trial (criterion 1 not met). PREDIMED baseline data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 255,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 3 months (criterion 6 not met). Transcriptomic study, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 256,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (criterion 6 not met). Kidney function focus, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 257,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (criterion 6 not met). Lipoprotein subfraction focus, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 258,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 3 months (criterion 6 not met). Intermediate risk factor markers, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 259,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized primary prevention trial. Mediterranean diet vs low-fat control. Median follow-up 4.8 years. Primary endpoint: major CVD events (MI, stroke, CV death). However, intervention is Mediterranean diet (high MUFA from olive oil/nuts) rather than specifically reducing saturated fat.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 260,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Baseline cross-sectional assessment of MedDiet adherence. No intervention results or CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 261,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cognitive function outcomes, not mortality or CVD morbidity (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 262,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (criterion 6 not met). Oxidative biomarkers, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 263,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis of trials, not a primary RCT (criterion 1 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 264,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Phytate excretion focus, not mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 265,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Genetic interaction study on body weight. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 266,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Genetic interaction study on IL6 gene. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 267,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Antioxidant capacity focus, not mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 268,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Genetic interaction study on adiponectin. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 269,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "BDNF levels focus, not mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 270,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Depression risk outcomes, not mortality or CVD morbidity (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 271,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Carotid IMT/plaque progression focus, not mortality or clinical CVD events (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 272,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Diabetes incidence outcomes, not mortality or CVD morbidity (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 273,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Diabetes incidence outcomes, not mortality or CVD morbidity (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 274,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (criterion 6 not met). Metabolic syndrome status, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 275,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional assessment of inflammatory markers. Not an intervention trial with CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 276,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional study on alcohol and hydroxytyrosol. Not an intervention trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 277,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Validation study of MEDAS screener. Not an intervention trial with CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 278,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 3 months (criterion 6 not met). Apolipoprotein focus, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 279,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational cohort analysis within PREDIMED. Not a randomized intervention comparison.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 280,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Blood pressure control outcomes, not mortality or CVD morbidity (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 281,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Inflammatory biomarker focus, not mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 282,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Biomarker validation study for wine consumption. Not an intervention trial with CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 283,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Predictors of dietary adherence. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 284,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (criterion 6 not met). Food intake changes, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 285,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (criterion 6 not met). Blood pressure outcomes, not CVD morbidity/mortality.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 286,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 18 months (criterion 6 not met). Blood pressure outcomes, not CVD morbidity/mortality.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 287,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (criterion 6 not met). Weight loss focus, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 288,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (criterion 6 not met). Cardiometabolic variables, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 289,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 18 months (criterion 6 not met). Dietary intake focus, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 290,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protein source analysis. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 291,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Estimated Framingham CHD risk, not actual CVD events or mortality (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 292,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review paper summarizing PREMIER trial. Not a primary trial report.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 293,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Analysis of individual lifestyle components. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 294,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Subgroup analysis of blood pressure by demographics. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 295,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Rationale, design and baseline characteristics paper. No intervention results.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 296,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Health-related quality of life outcomes, not mortality or CVD morbidity (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 297,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (criterion 6 not met). Self-help dietary intervention, no CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 298,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Weight loss formula diet study. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 299,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Weight loss effect on HDL cholesterol. No mortality or CVD morbidity outcomes (criterion 7 not met).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 300,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Fish oil supplementation study on fibrinogen. Not specifically saturated fat reduction. No CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 301,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration not specified (likely <24 months), no mortality or cardiovascular morbidity outcomes reported, focuses on blood pressure and glucose in diabetes patients",
+      "confidence": ""
+    },
+    {
+      "study_index": 302,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2 years meets criterion, but no mortality or cardiovascular morbidity data available - only platelet function and lipids measured",
+      "confidence": ""
+    },
+    {
+      "study_index": 303,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months required), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 304,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration not specified (likely short-term), no mortality or cardiovascular morbidity outcomes, healthy subjects without CVD",
+      "confidence": ""
+    },
+    {
+      "study_index": 305,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Multifactorial intervention - includes diet, drugs for BP, smoking cessation, and exercise - cannot isolate saturated fat effect",
+      "confidence": ""
+    },
+    {
+      "study_index": 306,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Multifactorial intervention - includes diet, drugs, smoking advice, and exercise - cannot isolate saturated fat effect",
+      "confidence": ""
+    },
+    {
+      "study_index": 307,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 3 months (<24 months), no mortality or cardiovascular morbidity outcomes, breast disease not CVD",
+      "confidence": ""
+    },
+    {
+      "study_index": 308,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Abstract describes surgical outcomes for angina patients, not a dietary intervention study - title/abstract mismatch",
+      "confidence": ""
+    },
+    {
+      "study_index": 309,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 310,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 28 weeks (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 311,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 312,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 313,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration approximately 20 weeks (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 314,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 24 weeks (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 315,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Multifactorial - includes drug therapy algorithm, primary outcome is cost-effectiveness not mortality/CVD morbidity",
+      "confidence": ""
+    },
+    {
+      "study_index": 316,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Multifactorial intervention - diet AND exercise combined, cannot isolate saturated fat effect",
+      "confidence": ""
+    },
+    {
+      "study_index": 317,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration not specified (likely short-term), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 318,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 3 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 319,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (<24 months), mortality differences insignificant due to few cases",
+      "confidence": ""
+    },
+    {
+      "study_index": 320,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Acutely ill patients (acute MI), duration only 1 week (<24 months)",
+      "confidence": ""
+    },
+    {
+      "study_index": 321,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Acutely ill patients (acute MI), duration only 6 months (<24 months)",
+      "confidence": ""
+    },
+    {
+      "study_index": 322,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Acutely ill patients (acute MI), duration only 6 weeks (<24 months)",
+      "confidence": ""
+    },
+    {
+      "study_index": 323,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Acutely ill patients (acute MI), duration only 1 year (<24 months)",
+      "confidence": ""
+    },
+    {
+      "study_index": 324,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration not specified (likely short-term), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 325,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Multifactorial - diet AND exercise combined, primary outcome diabetes incidence not CVD mortality/morbidity",
+      "confidence": ""
+    },
+    {
+      "study_index": 326,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer patients, not cardiovascular disease focus, no CVD mortality/morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 327,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 328,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 3 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 329,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 330,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review paper describing scientific activity, not a randomized trial",
+      "confidence": ""
+    },
+    {
+      "study_index": 331,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 332,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 333,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 4 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 334,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 335,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 336,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 337,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 338,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Primary intervention is weight loss, not specifically saturated fat reduction; includes drug therapy",
+      "confidence": ""
+    },
+    {
+      "study_index": 339,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Primary intervention is weight loss, not specifically saturated fat reduction; includes drug therapy",
+      "confidence": ""
+    },
+    {
+      "study_index": 340,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), primary intervention is weight loss not saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 341,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), primary intervention is weight loss not saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 342,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper about dietary estimates, not a randomized trial",
+      "confidence": ""
+    },
+    {
+      "study_index": 343,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), primary intervention is weight loss not saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 344,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), primary intervention is weight loss not saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 345,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 346,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Duration >24 months (46 months median), randomized, low-fat diet with <7% saturated fat vs usual care, CVD event-free survival outcomes available",
+      "confidence": ""
+    },
+    {
+      "study_index": 347,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 18 months (<24 months), primary intervention is sodium reduction not saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 348,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Multiple interventions tested (weight loss, sodium, stress, supplements), not specifically saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 349,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 18 months (<24 months), primary intervention is weight loss not saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 350,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 18 months (<24 months), primary intervention is weight loss/sodium not saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 351,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Baseline characteristics paper, not reporting intervention outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 352,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 18 months (<24 months), primary intervention is weight loss/sodium not saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 353,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Primary intervention is sodium reduction and weight loss, not specifically saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 354,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Recruitment paper, not reporting intervention outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 355,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), multifactorial intervention (diet, exercise, stress management, smoking cessation)",
+      "confidence": ""
+    },
+    {
+      "study_index": 356,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protocol/rationale paper, no intervention outcomes reported",
+      "confidence": ""
+    },
+    {
+      "study_index": 357,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration not specified (likely short-term), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 358,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1.5 years (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 359,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 360,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Primary intervention is glucose control (diet + drugs), not specifically saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 361,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review paper, not a randomized trial",
+      "confidence": ""
+    },
+    {
+      "study_index": 362,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Primary focus is diabetes metabolic control, no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 363,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Primary focus is diabetes control, no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 364,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 365,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional study, not a randomized trial",
+      "confidence": ""
+    },
+    {
+      "study_index": 366,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Primary intervention is walnut supplementation, no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 367,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration not specified, no mortality or cardiovascular morbidity outcomes, dialysis patients",
+      "confidence": ""
+    },
+    {
+      "study_index": 368,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 56 weeks (<24 months), primary intervention is sodium/weight loss not saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 369,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 370,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Primary intervention is weight loss, no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 371,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 372,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 3.5 weeks per period (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 373,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer patients, insomnia outcomes, not cardiovascular disease focus",
+      "confidence": ""
+    },
+    {
+      "study_index": 374,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer patients, vasomotor symptoms outcomes, not cardiovascular disease focus",
+      "confidence": ""
+    },
+    {
+      "study_index": 375,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer patients, breast cancer events outcomes, not cardiovascular disease focus",
+      "confidence": ""
+    },
+    {
+      "study_index": 376,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Baseline dietary comparison, not intervention outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 377,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (<24 months), cost analysis not CVD outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 378,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (<24 months), behavioral analysis not CVD outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 379,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (<24 months), intervention description not CVD outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 380,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer patients, breast cancer events outcomes, not cardiovascular disease focus",
+      "confidence": ""
+    },
+    {
+      "study_index": 381,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protocol paper, no intervention outcomes reported",
+      "confidence": ""
+    },
+    {
+      "study_index": 382,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer patients, breast cancer events outcomes, not cardiovascular disease focus",
+      "confidence": ""
+    },
+    {
+      "study_index": 383,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer patients, breast cancer events outcomes, not cardiovascular disease focus",
+      "confidence": ""
+    },
+    {
+      "study_index": 384,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (<24 months), dietary changes not CVD outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 385,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review paper, not a randomized trial",
+      "confidence": ""
+    },
+    {
+      "study_index": 386,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional study, not a randomized trial",
+      "confidence": ""
+    },
+    {
+      "study_index": 387,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (<24 months), breast cancer patients, not CVD outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 388,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "CAM use disclosure study, not a dietary intervention trial",
+      "confidence": ""
+    },
+    {
+      "study_index": 389,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Primary intervention is drug (clofibrate) not dietary saturated fat reduction",
+      "confidence": ""
+    },
+    {
+      "study_index": 390,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Baseline characteristics paper, no intervention outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 391,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), participation analysis not CVD outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 392,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (<24 months), dietary changes not CVD outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 393,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer patients, breast cancer outcomes, not cardiovascular disease focus",
+      "confidence": ""
+    },
+    {
+      "study_index": 394,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer patients, breast cancer outcomes, not cardiovascular disease focus",
+      "confidence": ""
+    },
+    {
+      "study_index": 395,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 16 months (<24 months), breast cancer patients, not CVD outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 396,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Rationale paper, not a randomized trial",
+      "confidence": ""
+    },
+    {
+      "study_index": 397,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer patients, weight outcomes, not cardiovascular disease focus",
+      "confidence": ""
+    },
+    {
+      "study_index": 398,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Economic analysis paper, not a randomized trial",
+      "confidence": ""
+    },
+    {
+      "study_index": 399,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 400,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (<24 months), no mortality or cardiovascular morbidity outcomes",
+      "confidence": ""
+    },
+    {
+      "study_index": 401,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (<24 months); no mortality or cardiovascular morbidity outcomes reported; focuses on lipoprotein changes only.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 402,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (<24 months); no mortality or cardiovascular morbidity outcomes; focuses on HDL changes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 403,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Multifactorial intervention (diet plus exercise); primary outcome diabetes incidence, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 404,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Population is breast cancer patients (not general adult population); outcomes are breast cancer related, not mortality or cardiovascular morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 405,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Study protocol/design description without reported mortality or CV morbidity outcomes; primary endpoints are subclinical atherosclerosis measures.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 406,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (<24 months); no mortality or cardiovascular morbidity outcomes; focuses on plasma lipids.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 407,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 18 months (<24 months); no mortality or cardiovascular morbidity outcomes reported.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 408,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Primary focus cancer prevention, not cardiovascular outcomes; no mortality or CV morbidity data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 409,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not an intervention trial for CV outcomes; focuses on biomarker validation; short-term controlled feeding trials.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 410,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Drug intervention (simvastatin), not dietary saturated fat reduction; does not meet criterion 2.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 411,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review/meta-analysis, not primary RCT; outcomes are musculoskeletal, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 412,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not primary RCT; no mortality or CV morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 413,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT; outcomes are weight loss, not mortality or CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 414,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Expert panel review/opinion piece, not primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 415,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper, not clinical trial; no relevance to saturated fat intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 416,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-regression analysis, not primary RCT; examines HDL changes, not saturated fat reduction intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 417,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review/meta-analysis, not primary RCT; outcomes are diabetes/glucose metabolism, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 418,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT; duration 3-18 months (<24 months); no mortality/CV morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 419,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT; intervention is calcium supplementation, not saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 420,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological cohort study, not clinical trial; no relevance to saturated fat intervention.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 421,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis of metabolic ward studies; median duration 1 month (<24 months); no mortality/CV morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 422,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT; includes both drug and non-drug treatments.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 423,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT; includes statins and other treatments.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 424,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 425,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review/meta-analysis; explicitly multifactorial interventions (smoking, exercise, diet, drugs).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 426,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on meta-analysis bias detection, not clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 427,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Clinical practice guidelines, not primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 428,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on evidence grading, not clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 429,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review/meta-analysis, not primary RCT; examines trials from before 1983.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 430,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Personal narrative/commentary, not clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 431,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review, not primary RCT; compares low-carb vs low-fat, not specifically saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 432,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological paper on meta-analysis, not clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 433,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Database/methodology paper, not primary RCT; focuses on PUFA, not specifically saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 434,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational cohort study, not randomized trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 435,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT; outcomes are metabolic parameters, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 436,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational ecological study, not randomized trial; intervention is sodium, not saturated fat.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 437,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Analysis combining cohort studies and trials; not a primary RCT of saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 438,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological review, not clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 439,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Scientific statement/guidelines, not primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 440,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review (Cochrane), not primary RCT; short-term outcomes only; no mortality/CV morbidity data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 441,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT; outcomes are serum lipids, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 442,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT; outcomes are serum lipids, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 443,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Commentary/post-mortem analysis, not primary RCT report.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 444,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review/meta-analysis, not primary RCT; though relevant topic, this is a review of 8 trials.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 445,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not primary RCT; focuses on fruit/vegetables, not saturated fat.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 446,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Commentary/analysis, not primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 447,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review, not primary RCT; intervention is alcohol, not saturated fat.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 448,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Observational epidemiological study, not randomized trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 449,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT; includes various lipid-modifying therapies including drugs.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 450,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review article, not primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 451,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-epidemiological study, not clinical trial; methodological focus.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 452,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological study on dietary assessment tools, not clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 453,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodological study on trial quality, not clinical trial of saturated fat.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 454,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT; outcomes are blood pressure, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 455,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Debate/article on methodology, not clinical trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 456,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis of observational studies, not primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 457,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review, not primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 458,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT; intervention is dietary cholesterol/eggs, not saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 459,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-epidemiological study, not clinical trial; methodological focus.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 460,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Invited commentary, not primary RCT.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 461,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Meta-analysis, not primary RCT; outcomes are risk factors, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 462,
+      "title": "",
+      "decision": "INCLUDE",
+      "reason": "Randomized trial of low-fat diet vs normal diet in post-MI men; 4-year duration (>24 months); relapse rates reported (CV morbidity proxy). However, limited detail in abstract - may need full text verification.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 463,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Preliminary investigation; no clear duration stated but appears short-term; no mortality/CV morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 464,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Feasibility study, not efficacy trial; breast dysplasia population; no mortality/CV morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 465,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Discussion/review article, not clinical trial; focuses on breast cancer, not CV outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 466,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up study of pilot studies; no mortality/CV morbidity outcomes; focuses on nutrient intake and breast density.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 467,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Population is acutely ill (acute myocardial infarction) - violates criterion 5; also abstract suggests short-term study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 468,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (<24 months); no mortality/CV morbidity outcomes reported.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 469,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcomes are mammographic breast density, not mortality or cardiovascular morbidity; breast cancer risk factor, not CV.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 470,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months); outcomes are body weight and blood lipids, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 471,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (<24 months); outcomes are plasma lipids, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 472,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is rice-fruit diet for hypertension, not specifically saturated fat reduction; unclear if randomized; no mortality/CV morbidity outcomes mentioned.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 473,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2 years meets criterion; however, outcomes are lipoprotein levels, not mortality or cardiovascular morbidity events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 474,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 8 weeks (<24 months); outcomes are blood pressure, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 475,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2 years meets criterion; however, primary outcomes are weight loss and metabolic parameters, not mortality or cardiovascular morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 476,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcomes are biomarkers (MMP-9, PAPP-A), not mortality or cardiovascular morbidity events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 477,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcomes are carotid intima-media thickness and pulse wave propagation (subclinical markers), not mortality or cardiovascular morbidity events.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 478,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months); outcomes are coagulation factors, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 479,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 19 months (<24 months); outcomes are angiographic progression, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 480,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months); outcomes are knowledge and risk factors, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 481,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 21 days (<24 months); outcomes are plasma lipids, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 482,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term feeding study; outcomes are serum lipids, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 483,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Very small study (3 subjects); short duration; outcomes are serum cholesterol, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 484,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 1-4 weeks (<24 months); outcomes are serum cholesterol, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 485,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Letter/correspondence; short-term study; outcomes are serum cholesterol, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 486,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (<24 months); outcomes are serum cholesterol, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 487,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Title indicates hypertension focus; likely multifactorial lifestyle intervention; insufficient information but appears to be about BP management rather than saturated fat reduction specifically.",
+      "confidence": "MEDIUM"
+    },
+    {
+      "study_index": 488,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Intervention is rice diet for hypertension, not specifically saturated fat reduction; historical study; no mortality/CV morbidity outcomes mentioned.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 489,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term feeding study (fortnightly changes); outcomes are serum cholesterol, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 490,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term feeding study; outcomes are serum cholesterol, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 491,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term feeding study (~2 weeks per period); outcomes are plasma cholesterol, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 492,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcomes are sleep apnea index and daytime sleepiness, not mortality or cardiovascular morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 493,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcomes are incretin hormones (GLP-1, GIP), not mortality or cardiovascular morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 494,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 weeks (<24 months); outcomes are metabolic parameters, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 495,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (<24 months); feasibility study; breast cancer population; no mortality/CV morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 496,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term feeding study; outcomes are bile acid secretion and serum cholesterol, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 497,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration 2-7 weeks (<24 months); outcomes are serum cholesterol, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 498,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 5 days (<24 months); outcomes are serum lipids, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 499,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (<24 months); outcomes are hormonal endpoints and weight, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 500,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 6 months (<24 months); outcomes are hormone levels, not mortality/CV morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 501,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Not randomized; duration only 2 weeks (far below 24 months); no mortality or CVD morbidity outcomes reported.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 502,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 24 weeks (below 24 months); no mortality or CVD morbidity outcomes - only intermediate risk factors measured.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 503,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Abstract too brief to confirm randomization; focuses on nutrient adequacy not CVD outcomes; no mortality/morbidity data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 504,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Editorial/commentary piece, not a randomized trial; no intervention data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 505,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 21 days (far below 24 months); no mortality or CVD morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 506,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (below 24 months); does not specifically target saturated fat reduction.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 507,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protocol paper describing study design, not reporting results; no outcome data available.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 508,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Drug trial (TRO40303) for STEMI reperfusion injury, not a dietary intervention study.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 509,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Multifactorial intervention (diet AND smoking cessation); cannot isolate effect of saturated fat reduction alone.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 510,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "About blood groups and rheumatic fever, not a dietary intervention for CVD.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 511,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Polyp Prevention Trial - primary outcome is colorectal polyp recurrence, not CVD mortality/morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 512,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Polyp Prevention Trial - primary outcome is colorectal polyp recurrence, not CVD mortality/morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 513,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Focuses on food cravings during weight loss, not CVD outcomes; no mortality/morbidity data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 514,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "About computerized tracking system for weight loss, not CVD outcomes; no mortality/morbidity data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 515,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcomes are bone markers (osteocalcin), not CVD mortality/morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 516,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcome is hyperuricemia, not CVD mortality/morbidity; cross-sectional analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 517,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Outcome is cognitive function, not CVD mortality/morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 518,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cross-sectional analysis of baseline characteristics, not a longitudinal intervention with CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 519,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Commentary on biomarker study, not a primary trial; no CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 520,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 12 months (below 24 months); multifactorial (diet AND exercise).",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 521,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 26 weeks (below 24 months); no mortality or CVD morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 522,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (below 24 months); no mortality or CVD morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 523,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Small study (12 men); no duration specified; no mortality or CVD morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 524,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Focuses on trans fatty acids, not saturated fat reduction; crossover design; no mortality/CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 525,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (below 24 months); outcome is body weight, not CVD mortality/morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 526,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Compliance assessment paper, not reporting CVD outcomes; no mortality/morbidity data.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 527,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Protocol paper for brain aging study; primary outcomes are cognitive/retinal, not CVD.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 528,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Duration only 1 year (below 24 months); outcomes are blood lipids, not CVD mortality/morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 529,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Sodium intervention study, not saturated fat reduction; no CVD mortality/morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 530,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Short-term feeding study; no duration specified meeting 24 months; no mortality/CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 531,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer study focusing on energy reporting, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 532,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer survivor study on physical activity, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 533,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer study on tamoxifen efficacy, not dietary intervention for CVD.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 534,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer study on carotenoids, not CVD mortality/morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 535,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer-free survival outcome, not CVD mortality/morbidity.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 536,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Breast cancer weight gain study, not CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 537,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Mental health outcomes, not CVD mortality/morbidity; duration unclear.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 538,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Follow-up survey on diet maintenance, not reporting CVD mortality/morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 539,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Multiple sclerosis patients; unclear duration; no CVD mortality/morbidity outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 540,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane systematic review, not a primary randomized trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 541,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Clinical practice guideline document, not a primary trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 542,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Clinical practice guideline document, not a primary trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 543,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review/meta-analysis on cancer outcomes, not a primary trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 544,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Methodology paper on cluster randomization, not a primary trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 545,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Metabolic ward study with 4-week diet periods; far below 24 months; no CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 546,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane systematic review, not a primary randomized trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 547,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Letter/commentary citing other studies, not a primary trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 548,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Case series (2 men), not randomized; short duration (~5 weeks); no CVD outcomes.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 549,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Commentary on dietary assessment methods, not a primary trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 550,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Clinical practice guideline document, not a primary trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 551,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Review/meta-analysis of angiographic trials, not a primary trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 552,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Clinical practice guideline document, not a primary trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 553,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Cochrane systematic review, not a primary randomized trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 554,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Epidemiological/observational study, not a randomized trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 555,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Letter/commentary on meta-analysis methodology, not a primary trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 556,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Systematic review, not a primary randomized trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 557,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Summary/review article, not a primary randomized trial.",
+      "confidence": "HIGH"
+    },
+    {
+      "study_index": 558,
+      "title": "",
+      "decision": "EXCLUDE",
+      "reason": "Commentary on diet-heart relationship, not a primary trial.",
+      "confidence": "HIGH"
+    }
+  ]
+}
