@@ -61,6 +61,9 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
             preset.request_kwargs,
             {
                 "extra_body": {
+                    "plugins": [
+                        {"id": "context-compression", "enabled": False},
+                    ],
                     "provider": {
                         "order": ["openai/default"],
                         "allow_fallbacks": False,
@@ -76,6 +79,9 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
             deepseek_preset.request_kwargs,
             {
                 "extra_body": {
+                    "plugins": [
+                        {"id": "context-compression", "enabled": False},
+                    ],
                     "reasoning": {"enabled": True},
                     "provider": {
                         "order": ["deepseek"],
