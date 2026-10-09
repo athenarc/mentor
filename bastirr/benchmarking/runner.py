@@ -301,6 +301,23 @@ def _read_screening_decisions(evidence_path: Path) -> list[dict]:
     return decisions if isinstance(decisions, list) else []
 
 
+def _context_overflow_run_status(
+    *,
+    decision_count: int,
+    error: str = "",
+    last_attempt_error: str = "",
+) -> tuple[str, str]:
+    """Map a context-overflow abort to (run_status, error)."""
+    run_status = "incomplete" if decision_count > 0 else "error"
+    return run_status, error or last_attempt_error
+
+
+def _attach_context_overflow_telemetry(telemetry: dict, *, error_type: str) -> None:
+    overflow = error_type == "context_overflow"
+    telemetry["context_overflow"] = overflow
+    telemetry["context_overflow_count"] = int(overflow)
+
+
 def _build_run_metrics(
     *,
     review_case: ScreeningBenchmarkReview,
@@ -540,21 +557,11 @@ def run_screening_review(
 
         if error_type == "context_overflow":
             decisions = _read_screening_decisions(evidence_path)
-            if decisions:
-                run_status = "incomplete"
-            else:
-                run_status = "error"
-            if not error:
-                error = last_attempt_error
-    except ContextOverflowError as overflow_exc:
-        run_status = "error"
-        error_type = "context_overflow"
-        error = f"{type(overflow_exc).__name__}: {overflow_exc}"
-        logger.error(
-            "Context overflow during screening: review=%s gatekeeper=%s",
-            review_case.key,
-            gatekeeper_model.key,
-        )
+            run_status, error = _context_overflow_run_status(
+                decision_count=len(decisions),
+                error=error,
+                last_attempt_error=last_attempt_error,
+            )
     except Exception as exc:
         run_status = "error"
         error = f"{type(exc).__name__}: {exc}"
@@ -573,12 +580,7 @@ def run_screening_review(
             retry_count=max(screening_attempt_count - 1, 0),
             resume_count=0,
         )
-        if error_type == "context_overflow":
-            telemetry["context_overflow"] = True
-            telemetry["context_overflow_count"] = 1
-        else:
-            telemetry["context_overflow"] = False
-            telemetry["context_overflow_count"] = 0
+        _attach_context_overflow_telemetry(telemetry, error_type=error_type)
         telemetry.update(usage_collector.summary())
         telemetry["temperature"] = (gatekeeper_model.request_kwargs or {}).get("temperature")
         logger.info("Activity log saved to: %s", activity_path)

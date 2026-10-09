@@ -29,7 +29,9 @@ from bastirr.benchmarking.review_suites import (
     resolve_review_selection,
 )
 from bastirr.benchmarking.runner import (
+    _attach_context_overflow_telemetry,
     _checkpoint_policy_outputs,
+    _context_overflow_run_status,
     _policy_output_record,
     _raw_runs_checkpoint_root,
     _read_screening_decisions,
@@ -398,12 +400,11 @@ def run_screening_loop_review(
             label_policy=label_policy,
         )
         if error_type == "context_overflow":
-            if final_metrics["screening_decision_count"] > 0:
-                run_status = "incomplete"
-            else:
-                run_status = "error"
-            if not error:
-                error = last_attempt_error
+            run_status, error = _context_overflow_run_status(
+                decision_count=final_metrics["screening_decision_count"],
+                error=error,
+                last_attempt_error=last_attempt_error,
+            )
         elif final_metrics["parse_success"]:
             run_status = "completed"
         elif last_attempt_error and final_metrics["screening_decision_count"] == 0:
@@ -422,12 +423,7 @@ def run_screening_loop_review(
             retry_count=max(screening_attempt_count - 1, 0),
             resume_count=resume_count,
         )
-        if error_type == "context_overflow":
-            telemetry["context_overflow"] = True
-            telemetry["context_overflow_count"] = 1
-        else:
-            telemetry["context_overflow"] = False
-            telemetry["context_overflow_count"] = 0
+        _attach_context_overflow_telemetry(telemetry, error_type=error_type)
         telemetry.update(usage_collector.summary())
         telemetry["temperature"] = (gatekeeper_model.request_kwargs or {}).get("temperature")
         logger.info("Activity log saved to: %s", activity_path)
@@ -637,12 +633,11 @@ def run_screening_chunk_loop_review(
             label_policy=label_policy,
         )
         if error_type == "context_overflow":
-            if final_metrics["screening_decision_count"] > 0:
-                run_status = "incomplete"
-            else:
-                run_status = "error"
-            if not error:
-                error = last_attempt_error
+            run_status, error = _context_overflow_run_status(
+                decision_count=final_metrics["screening_decision_count"],
+                error=error,
+                last_attempt_error=last_attempt_error,
+            )
         elif final_metrics["parse_success"]:
             run_status = "completed"
         elif last_attempt_error and final_metrics["screening_decision_count"] == 0:
@@ -663,12 +658,7 @@ def run_screening_chunk_loop_review(
         )
         telemetry["chunk_count"] = len(planned_chunks)
         telemetry["chunk_sizes"] = [len(chunk) for chunk in planned_chunks]
-        if error_type == "context_overflow":
-            telemetry["context_overflow"] = True
-            telemetry["context_overflow_count"] = 1
-        else:
-            telemetry["context_overflow"] = False
-            telemetry["context_overflow_count"] = 0
+        _attach_context_overflow_telemetry(telemetry, error_type=error_type)
         telemetry.update(usage_collector.summary())
         telemetry["temperature"] = (gatekeeper_model.request_kwargs or {}).get("temperature")
         logger.info("Activity log saved to: %s", activity_path)
