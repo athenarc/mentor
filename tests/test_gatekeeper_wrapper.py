@@ -13,10 +13,8 @@ from smolagents import ActionStep
 from bastirr.agents.wrappers import (
     GATEKEEPER_BATCH_TASK,
     GATEKEEPER_CHUNK_TASK,
+    GATEKEEPER_PAYLOAD_KEY,
     GATEKEEPER_SINGLE_STUDY_TASK,
-    PAYLOAD_KEY_CANDIDATES_JSON,
-    PAYLOAD_KEY_CANDIDATE_STUDY,
-    PAYLOAD_KEY_CHUNK_DATA,
     wrap_gatekeeper,
 )
 from bastirr.agents.wrappers.gatekeeper import _StrictGatekeeperWrapper
@@ -96,20 +94,19 @@ class GatekeeperWrapperTests(unittest.TestCase):
 
         wrapped = wrap_gatekeeper(
             FakeAgent(),
-            payload_key=PAYLOAD_KEY_CANDIDATES_JSON,
             fixed_task=GATEKEEPER_BATCH_TASK,
         )
         payload = {"studies": [_study_payload()]}
         result = wrapped(
             "LLM wrote a huge task with study JSON here",
-            additional_args={PAYLOAD_KEY_CANDIDATES_JSON: payload},
+            additional_args={GATEKEEPER_PAYLOAD_KEY: payload},
         )
 
         self.assertEqual(result, "ok")
         self.assertEqual(len(calls), 1)
         self.assertEqual(calls[0]["task"], GATEKEEPER_BATCH_TASK)
         self.assertEqual(
-            calls[0]["additional_args"][PAYLOAD_KEY_CANDIDATES_JSON],
+            calls[0]["additional_args"][GATEKEEPER_PAYLOAD_KEY],
             payload,
         )
         self.assertNotIn("study JSON", calls[0]["task"])
@@ -126,7 +123,6 @@ class GatekeeperWrapperTests(unittest.TestCase):
 
         wrapped = wrap_gatekeeper(
             FakeAgent(),
-            payload_key=PAYLOAD_KEY_CANDIDATE_STUDY,
             fixed_task=GATEKEEPER_SINGLE_STUDY_TASK,
         )
         with self.assertRaises(ValueError):
@@ -145,14 +141,13 @@ class GatekeeperWrapperTests(unittest.TestCase):
 
         wrapped = wrap_gatekeeper(
             FakeAgent(),
-            payload_key=PAYLOAD_KEY_CHUNK_DATA,
             fixed_task=GATEKEEPER_CHUNK_TASK,
         )
         with self.assertRaises(ValueError):
             wrapped(
                 "screen",
                 additional_args={
-                    PAYLOAD_KEY_CHUNK_DATA: {"chunk_study_indices": [1, 2, 3]},
+                    GATEKEEPER_PAYLOAD_KEY: {"study_indices": [1, 2, 3]},
                 },
             )
         self.assertEqual(calls, [])
@@ -170,14 +165,13 @@ class GatekeeperWrapperTests(unittest.TestCase):
 
         wrapped = wrap_gatekeeper(
             OverflowAgent(),
-            payload_key=PAYLOAD_KEY_CANDIDATES_JSON,
             fixed_task=GATEKEEPER_BATCH_TASK,
         )
         with self.assertRaises(ContextOverflowError):
             wrapped(
                 "ignored",
                 additional_args={
-                    PAYLOAD_KEY_CANDIDATES_JSON: {"studies": [_study_payload()]},
+                    GATEKEEPER_PAYLOAD_KEY: {"studies": [_study_payload()]},
                 },
             )
 
@@ -356,7 +350,7 @@ class RunnerOverflowMappingTests(unittest.TestCase):
         self.assertEqual(result["error_type"], "context_overflow")
         self.assertEqual(result["run_status"], "error")
         self.assertTrue(result["telemetry"]["context_overflow"])
-        self.assertEqual(result["telemetry"]["context_overflow_count"], 1)
+        self.assertNotIn("context_overflow_count", result["telemetry"])
 
     def test_loop_runner_stops_resume_on_overflow(self):
         review = _make_review()

@@ -198,14 +198,14 @@ def _build_loop_screening_task(
         "Execute the looped screening workflow:\n"
         "1. Parse the study index JSON array from this task.\n"
         "2. For each listed index, call get_candidate_study_json(index).\n"
-        "3. Call gatekeeper(task=\"\", additional_args={\"candidate_study\": <study json>}); "
+        "3. Call gatekeeper(task=\"\", additional_args={\"screening_payload\": <study json>}); "
         "task text is ignored by the gatekeeper wrapper.\n"
         "4. Immediately call append_screening_decision_json with the raw Gatekeeper "
         "response, output_dir, expected_study_index=index, and expected_n_studies.\n"
         "5. Keep observations short; do not print study JSON or Gatekeeper responses.\n"
         "6. Return format_screening_progress_summary(review_title, output_dir) as final_answer.\n"
         "Do not classify studies in Orchestrator code and do not fabricate fallback decisions.\n"
-        "On Gatekeeper failure (including context overflow), do not invent recovery strategies.\n"
+        "On Gatekeeper failure (including context overflow), let the error surface.\n"
     )
 
 
@@ -236,15 +236,14 @@ def _build_chunk_loop_screening_task(
         "Execute the mini-batch loop screening workflow:\n"
         "1. Parse the chunk study index JSON array from this task.\n"
         "2. Call get_candidate_studies_chunk_json with that JSON array string.\n"
-        "3. Call gatekeeper(task=\"\", additional_args={\"chunk_data\": <chunk json>}); "
+        "3. Call gatekeeper(task=\"\", additional_args={\"screening_payload\": <chunk json>}); "
         "task text is ignored by the gatekeeper wrapper.\n"
         "4. Immediately call append_screening_chunk_decisions_json with the raw "
         "Gatekeeper response, output_dir, expected_study_indices_json, and expected_n_studies.\n"
         "5. Keep observations short; do not print study JSON or Gatekeeper responses.\n"
         "6. Return format_screening_progress_summary(review_title, output_dir) as final_answer.\n"
         "Do not classify studies in Orchestrator code and do not fabricate fallback decisions.\n"
-        "On Gatekeeper failure (including context overflow), do not invent recovery strategies "
-        "such as indices-only handoffs or splitting into sub-chunks.\n"
+        "On Gatekeeper failure (including context overflow), let the error surface.\n"
     )
 
 

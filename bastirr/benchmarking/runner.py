@@ -211,14 +211,14 @@ def _build_screening_task_with_retry_note(
         f"{retry_block}"
         "Execute the screening-only pipeline:\n"
         "1. Use get_candidates_json() to retrieve the preloaded candidate studies.\n"
-        "2. Call gatekeeper(task=\"\", additional_args={\"candidates_json\": candidates_json}); "
+        "2. Call gatekeeper(task=\"\", additional_args={\"screening_payload\": candidates_json}); "
         "task text is ignored by the gatekeeper wrapper.\n"
         "3. Use save_screening_evidence_json() to save evidence.json in the output directory, "
         "passing expected_n_studies exactly.\n"
         "4. Use format_screening_summary() and return the summary as the final answer.\n"
         "Do not construct screening decisions inside orchestrator code. If the Gatekeeper output "
         "is incomplete or invalid, rerun the Gatekeeper instead of creating a fallback list.\n"
-        "On Gatekeeper failure (including context overflow), do not invent recovery strategies.\n"
+        "On Gatekeeper failure (including context overflow), let the error surface.\n"
     )
 
 
@@ -313,9 +313,7 @@ def _context_overflow_run_status(
 
 
 def _attach_context_overflow_telemetry(telemetry: dict, *, error_type: str) -> None:
-    overflow = error_type == "context_overflow"
-    telemetry["context_overflow"] = overflow
-    telemetry["context_overflow_count"] = int(overflow)
+    telemetry["context_overflow"] = error_type == "context_overflow"
 
 
 def _build_run_metrics(

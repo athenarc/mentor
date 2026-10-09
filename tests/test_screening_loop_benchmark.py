@@ -127,7 +127,7 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
 
         self.assertEqual(payload["title"], "Review")
         self.assertEqual(payload["n_total"], 3)
-        self.assertEqual(payload["chunk_study_indices"], [2, 3])
+        self.assertNotIn("chunk_study_indices", payload)
         self.assertEqual([study["study_index"] for study in payload["studies"]], [2, 3])
         self.assertEqual([study["title"] for study in payload["studies"]], ["B", "C"])
         self.assertNotIn("label", payload["studies"][0])

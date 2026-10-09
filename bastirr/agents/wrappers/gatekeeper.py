@@ -3,7 +3,7 @@ Strict call wrapper for Gatekeeper managed-agent invocations.
 
 Keeps gatekeeper as a managed agent, but enforces:
 - a fixed short task template (no study JSON in task=)
-- study/chunk/candidates payload only via additional_args
+- study/chunk/candidates payload only via additional_args['screening_payload']
 - hard fail on classified provider errors (e.g. ContextOverflowError)
 """
 
@@ -15,26 +15,24 @@ from typing import Any
 from bastirr.errors import ContextOverflowError, classify_error
 
 
-# additional_args keys expected by wrap_gatekeeper / orchestrator prompts.
-PAYLOAD_KEY_CANDIDATES_JSON = "candidates_json"
-PAYLOAD_KEY_CANDIDATE_STUDY = "candidate_study"
-PAYLOAD_KEY_CHUNK_DATA = "chunk_data"
+# Single additional_args key for all screening architectures.
+GATEKEEPER_PAYLOAD_KEY = "screening_payload"
 
 # Fixed short tasks — no study payloads.
 GATEKEEPER_BATCH_TASK = (
-    f"Title/abstract screen the studies in additional_args['{PAYLOAD_KEY_CANDIDATES_JSON}'] "
+    f"Title/abstract screen the studies in additional_args['{GATEKEEPER_PAYLOAD_KEY}'] "
     "against that payload's review protocol. Return one INCLUDE/EXCLUDE "
     "decision per study as JSON."
 )
 
 GATEKEEPER_SINGLE_STUDY_TASK = (
-    f"Title/abstract screen the study in additional_args['{PAYLOAD_KEY_CANDIDATE_STUDY}'] "
+    f"Title/abstract screen the study in additional_args['{GATEKEEPER_PAYLOAD_KEY}'] "
     "against that payload's review protocol. Return exactly one INCLUDE/EXCLUDE "
     "decision as JSON."
 )
 
 GATEKEEPER_CHUNK_TASK = (
-    f"Title/abstract screen the chunk in additional_args['{PAYLOAD_KEY_CHUNK_DATA}'] "
+    f"Title/abstract screen the chunk in additional_args['{GATEKEEPER_PAYLOAD_KEY}'] "
     "against that payload's review protocol. Return one INCLUDE/EXCLUDE "
     "decision per chunk study as JSON."
 )
@@ -57,39 +55,38 @@ def _payload_looks_like_studies(value: Any) -> bool:
     - batch / chunk: ``{"studies": [{"study_index", "title", "abstract"}, ...], ...}``
     - single-study: ``{"study": {"study_index", "title", "abstract"}, ...}``
 
-    Indices-only objects (e.g. ``{"chunk_study_indices": [...]}``) fail.
+    Indices-only objects (e.g. ``{"study_indices": [...]}``) fail.
     """
     if isinstance(value, str):
         try:
             value = json.loads(value)
         except json.JSONDecodeError:
             return False
-    if isinstance(value, dict):
-        studies = value.get("studies")
-        if isinstance(studies, list) and any(_is_study_record(item) for item in studies):
-            return True
-        return _is_study_record(value.get("study"))
-    if isinstance(value, list):
-        return any(_is_study_record(item) for item in value)
-    return False
+    if not isinstance(value, dict):
+        return False
+    studies = value.get("studies")
+    if isinstance(studies, list) and any(_is_study_record(item) for item in studies):
+        return True
+    return _is_study_record(value.get("study"))
 
 
-def _validate_additional_args(additional_args: dict | None, *, payload_key: str) -> dict:
+def _validate_additional_args(additional_args: dict | None) -> dict:
     if not isinstance(additional_args, dict) or not additional_args:
         raise ValueError(
-            f"gatekeeper requires additional_args with payload key '{payload_key}'."
+            f"gatekeeper requires additional_args with payload key "
+            f"'{GATEKEEPER_PAYLOAD_KEY}'."
         )
-    if payload_key not in additional_args:
+    if GATEKEEPER_PAYLOAD_KEY not in additional_args:
         raise ValueError(
-            f"gatekeeper additional_args must include '{payload_key}' "
+            f"gatekeeper additional_args must include '{GATEKEEPER_PAYLOAD_KEY}' "
             f"(got keys: {sorted(additional_args.keys())})."
         )
-    payload = additional_args[payload_key]
+    payload = additional_args[GATEKEEPER_PAYLOAD_KEY]
     if not _payload_looks_like_studies(payload):
         raise ValueError(
-            f"gatekeeper additional_args['{payload_key}'] must be getter-tool "
-            "JSON with a study record (study_index, title, abstract) or a "
-            "non-empty studies list — not indices-only data."
+            f"gatekeeper additional_args['{GATEKEEPER_PAYLOAD_KEY}'] must be "
+            "getter-tool JSON with a study record (study_index, title, abstract) "
+            "or a non-empty studies list — not indices-only data."
         )
     return additional_args
 
@@ -105,9 +102,8 @@ class _StrictGatekeeperWrapper:
     is what smolagents registers as the managed agent.
     """
 
-    def __init__(self, agent: Any, *, payload_key: str, fixed_task: str) -> None:
+    def __init__(self, agent: Any, *, fixed_task: str) -> None:
         self._agent = agent
-        self._payload_key = payload_key
         self._fixed_task = fixed_task
 
     def __call__(
@@ -117,10 +113,7 @@ class _StrictGatekeeperWrapper:
         **kwargs: Any,
     ) -> Any:
         _ = task
-        validated_args = _validate_additional_args(
-            additional_args,
-            payload_key=self._payload_key,
-        )
+        validated_args = _validate_additional_args(additional_args)
         try:
             return self._agent(
                 self._fixed_task,
@@ -134,7 +127,7 @@ class _StrictGatekeeperWrapper:
             if classifier is not None:
                 raise classifier.exception_type(
                     f"Gatekeeper {classifier.name} while screening "
-                    f"(payload_key={self._payload_key}): {exc}"
+                    f"(payload_key={GATEKEEPER_PAYLOAD_KEY}): {exc}"
                 ) from exc
             raise
 
@@ -145,12 +138,11 @@ class _StrictGatekeeperWrapper:
 def wrap_gatekeeper(
     agent: Any,
     *,
-    payload_key: str,
     fixed_task: str,
 ) -> Any:
     """
     Wrap a gatekeeper CodeAgent so managed calls use a fixed short task and
-    require study payload only in ``additional_args[payload_key]``.
+    require study payload only in ``additional_args['screening_payload']``.
 
     On classified hard failures (e.g. context overflow), raises the matching
     bastirr exception instead of returning a soft error string the
@@ -161,8 +153,4 @@ def wrap_gatekeeper(
     """
     if isinstance(agent, _StrictGatekeeperWrapper):
         return agent
-    return _StrictGatekeeperWrapper(
-        agent,
-        payload_key=payload_key,
-        fixed_task=fixed_task,
-    )
+    return _StrictGatekeeperWrapper(agent, fixed_task=fixed_task)

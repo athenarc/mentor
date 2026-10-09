@@ -15,8 +15,6 @@ from bastirr.agents.gatekeeper import (
 from bastirr.agents.wrappers import (
     GATEKEEPER_CHUNK_TASK,
     GATEKEEPER_SINGLE_STUDY_TASK,
-    PAYLOAD_KEY_CANDIDATE_STUDY,
-    PAYLOAD_KEY_CHUNK_DATA,
     wrap_gatekeeper,
 )
 from bastirr.errors import with_error_abort_callback
@@ -54,7 +52,7 @@ CRITICAL RULES
 2. Never place raw study data in your final answer.
 3. Process only the study indices listed in the task.
 4. For each study index, call get_candidate_study_json(index), then call
-   gatekeeper(task="", additional_args={"candidate_study": <study json>}), then
+   gatekeeper(task="", additional_args={"screening_payload": <study json>}), then
    immediately call append_screening_decision_json(..., expected_study_index=index).
 5. The gatekeeper task argument is ignored by the gatekeeper wrapper; pass study
    data ONLY via additional_args. Never paste study JSON into task=.
@@ -64,9 +62,8 @@ CRITICAL RULES
 9. Do not print candidate JSON or Gatekeeper responses; keep observations short.
 10. If append_screening_decision_json rejects a decision, call Gatekeeper again
    for that same study rather than editing the decision in Orchestrator code.
-11. On Gatekeeper failure (including context overflow), do NOT invent recovery
-   strategies such as indices-only handoffs, splitting the work, or truncating
-   abstracts. Let the error surface.
+11. On Gatekeeper failure (including context overflow), let the error surface;
+   do not invent recovery strategies.
 12. Return only format_screening_progress_summary(...) as the final answer.
 
 WORKFLOW
@@ -101,7 +98,7 @@ CRITICAL RULES
 2. Never place raw study data in your final answer.
 3. Process only the chunk study indices listed in the task.
 4. Call get_candidate_studies_chunk_json once for the listed chunk, then call
-   gatekeeper(task="", additional_args={"chunk_data": <chunk json>}), then
+   gatekeeper(task="", additional_args={"screening_payload": <chunk json>}), then
    immediately call append_screening_chunk_decisions_json with the raw Gatekeeper
    response.
 5. The gatekeeper task argument is ignored by the gatekeeper wrapper; pass chunk
@@ -112,9 +109,8 @@ CRITICAL RULES
 9. Do not print candidate JSON or Gatekeeper responses; keep observations short.
 10. If append_screening_chunk_decisions_json rejects the chunk, call Gatekeeper
    again for the same chunk rather than editing decisions in Orchestrator code.
-11. On Gatekeeper failure (including context overflow), do NOT invent recovery
-   strategies such as indices-only handoffs, splitting into sub-chunks, or
-   truncating abstracts. Let the error surface.
+11. On Gatekeeper failure (including context overflow), let the error surface;
+   do not invent recovery strategies.
 12. Return only format_screening_progress_summary(...) as the final answer.
 
 WORKFLOW
@@ -142,7 +138,6 @@ def create_screening_loop_orchestrator_agent(
             step_callbacks=step_callbacks,
             logger=logger,
         ),
-        payload_key=PAYLOAD_KEY_CANDIDATE_STUDY,
         fixed_task=GATEKEEPER_SINGLE_STUDY_TASK,
     )
 
@@ -182,7 +177,6 @@ def create_screening_chunk_loop_orchestrator_agent(
             step_callbacks=step_callbacks,
             logger=logger,
         ),
-        payload_key=PAYLOAD_KEY_CHUNK_DATA,
         fixed_task=GATEKEEPER_CHUNK_TASK,
     )
 

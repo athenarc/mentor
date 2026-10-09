@@ -11,11 +11,7 @@ This orchestrator mirrors the live handoff boundary:
 from smolagents import CodeAgent
 
 from bastirr.agents.gatekeeper import create_gatekeeper_agent
-from bastirr.agents.wrappers import (
-    GATEKEEPER_BATCH_TASK,
-    PAYLOAD_KEY_CANDIDATES_JSON,
-    wrap_gatekeeper,
-)
+from bastirr.agents.wrappers import GATEKEEPER_BATCH_TASK, wrap_gatekeeper
 from bastirr.errors import with_error_abort_callback
 from bastirr.config import EXECUTOR_TIMEOUT_SECONDS
 from bastirr.tools.screening_benchmark_tools import (
@@ -53,12 +49,11 @@ CRITICAL RULES
 9. Do NOT use keyword-matching heuristics to generate screening decisions or rationales.
 10. If the Gatekeeper response cannot be saved as a complete per-study decision set,
     fail closed and rerun the Gatekeeper; do not create a manager-side fallback list.
-11. Call gatekeeper(task="", additional_args={"candidates_json": candidates_json}).
+11. Call gatekeeper(task="", additional_args={"screening_payload": candidates_json}).
     The task argument is ignored by the gatekeeper wrapper; pass study data ONLY via
     additional_args. Never paste study JSON into task=.
-12. On Gatekeeper failure (including context overflow), do NOT invent recovery
-    strategies such as indices-only handoffs, splitting candidates, or truncating
-    abstracts. Let the error surface.
+12. On Gatekeeper failure (including context overflow), let the error surface;
+    do not invent recovery strategies.
 
 WORKFLOW
 Code block 1:
@@ -67,7 +62,7 @@ Code block 1:
   - Print how many candidates were loaded.
 
 Code block 2:
-  - Call gatekeeper(task="", additional_args={"candidates_json": ...}).
+  - Call gatekeeper(task="", additional_args={"screening_payload": ...}).
   - Ensure the gatekeeper response contains one decision per study; do not accept
     outputs that summarize excluded studies without individual decisions.
   - Call save_screening_evidence_json(screening_response=gatekeeper_response, output_dir=output_dir, expected_n_studies=expected_n_studies).
@@ -103,7 +98,6 @@ def create_screening_orchestrator_agent(
             step_callbacks=step_callbacks,
             logger=logger,
         ),
-        payload_key=PAYLOAD_KEY_CANDIDATES_JSON,
         fixed_task=GATEKEEPER_BATCH_TASK,
     )
 

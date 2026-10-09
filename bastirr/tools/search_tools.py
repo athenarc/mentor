@@ -29,7 +29,8 @@ def load_review_data(review_data_json: str) -> None:
 
     Args:
         review_data_json: Full JSON string with keys ``title``, ``objective``,
-            ``background``, ``selection_criteria``, and ``studies``.
+            ``background``, ``selection_criteria``, ``studies``, and optionally
+            ``n_total``.
     """
     global _review_data
     _review_data = json.loads(review_data_json)
@@ -113,14 +114,18 @@ def get_candidates_json() -> str:
     obtain a structured candidate list for the gatekeeper.
 
     The returned JSON has the same schema used by the screening and
-    report tools: ``{"title": ..., "selection_criteria": ..., "studies": [...]}``.
+    report tools: ``{"title": ..., "selection_criteria": ..., "n_total": N,
+    "studies": [...]}``.
 
     Returns:
         A JSON string with the candidate studies and review metadata.
     """
     if _review_data is None:
         return "{}"
-    return json.dumps(_review_data, ensure_ascii=False)
+    payload = dict(_review_data)
+    studies = payload.get("studies") or []
+    payload["n_total"] = len(studies) if isinstance(studies, list) else 0
+    return json.dumps(payload, ensure_ascii=False)
 
 
 @tool
@@ -184,8 +189,8 @@ def get_candidate_studies_chunk_json(study_indices_json: str) -> str:
         study_indices_json: JSON array string of one-based study indices.
 
     Returns:
-        A JSON string with review protocol fields, ``n_total``,
-        ``chunk_study_indices``, and a ``studies`` list.
+        A JSON string with review protocol fields, ``n_total``, and a
+        ``studies`` list for the requested chunk only.
     """
     if _review_data is None:
         raise ValueError("No review data loaded. The runner must call load_review_data() first.")
@@ -227,7 +232,6 @@ def get_candidate_studies_chunk_json(study_indices_json: str) -> str:
         "background": _review_data.get("background", ""),
         "selection_criteria": _review_data.get("selection_criteria", ""),
         "n_total": len(studies),
-        "chunk_study_indices": indices,
         "studies": payload_studies,
     }
     return json.dumps(payload, ensure_ascii=False)

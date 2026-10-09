@@ -44,19 +44,21 @@ DEFAULT_SPLIT = "HIV_test"
 
 def review_to_json(review) -> str:
     """Convert a SystematicReview dataclass to a full JSON string (for the study store)."""
+    studies = [
+        {
+            "study_index": i + 1,
+            "title": s.title,
+            "abstract": s.abstract,
+        }
+        for i, s in enumerate(review.studies)
+    ]
     data = {
         "title": review.title,
         "objective": review.objective,
         "background": review.background,
         "selection_criteria": review.selection_criteria,
-        "studies": [
-            {
-                "study_index": i + 1,
-                "title": s.title,
-                "abstract": s.abstract,
-            }
-            for i, s in enumerate(review.studies)
-        ],
+        "n_total": len(studies),
+        "studies": studies,
     }
     return json.dumps(data, ensure_ascii=False)
 
