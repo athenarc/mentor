@@ -62,9 +62,7 @@ CRITICAL RULES
 9. Do not print candidate JSON or Gatekeeper responses; keep observations short.
 10. If append_screening_decision_json rejects a decision, call Gatekeeper again
    for that same study rather than editing the decision in Orchestrator code.
-11. On Gatekeeper failure (including context overflow), let the error surface;
-   do not invent recovery strategies.
-12. Return only format_screening_progress_summary(...) as the final answer.
+11. Return only format_screening_progress_summary(...) as the final answer.
 
 WORKFLOW
 - Use a compact Python loop over the provided study indices.
@@ -109,9 +107,7 @@ CRITICAL RULES
 9. Do not print candidate JSON or Gatekeeper responses; keep observations short.
 10. If append_screening_chunk_decisions_json rejects the chunk, call Gatekeeper
    again for the same chunk rather than editing decisions in Orchestrator code.
-11. On Gatekeeper failure (including context overflow), let the error surface;
-   do not invent recovery strategies.
-12. Return only format_screening_progress_summary(...) as the final answer.
+11. Return only format_screening_progress_summary(...) as the final answer.
 
 WORKFLOW
 - Parse the JSON array of chunk study indices from the task.

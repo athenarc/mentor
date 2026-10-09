@@ -26,7 +26,7 @@ GATEKEEPER_BATCH_TASK = (
 )
 
 GATEKEEPER_SINGLE_STUDY_TASK = (
-    f"Title/abstract screen the study in additional_args['{GATEKEEPER_PAYLOAD_KEY}'] "
+    f"Title/abstract screen the studies in additional_args['{GATEKEEPER_PAYLOAD_KEY}'] "
     "against that payload's review protocol. Return exactly one INCLUDE/EXCLUDE "
     "decision as JSON."
 )
@@ -52,8 +52,7 @@ def _payload_looks_like_studies(value: Any) -> bool:
     """
     Accept getter-tool payloads (JSON str or already-parsed object):
 
-    - batch / chunk: ``{"studies": [{"study_index", "title", "abstract"}, ...], ...}``
-    - single-study: ``{"study": {"study_index", "title", "abstract"}, ...}``
+    ``{"studies": [{"study_index", "title", "abstract"}, ...], ...}``
 
     Indices-only objects (e.g. ``{"study_indices": [...]}``) fail.
     """
@@ -65,11 +64,11 @@ def _payload_looks_like_studies(value: Any) -> bool:
     if not isinstance(value, dict):
         return False
     studies = value.get("studies")
-    if isinstance(studies, list) and studies and all(
-        _is_study_record(item) for item in studies
-    ):
-        return True
-    return _is_study_record(value.get("study"))
+    return bool(
+        isinstance(studies, list)
+        and studies
+        and all(_is_study_record(item) for item in studies)
+    )
 
 
 def _validate_additional_args(additional_args: dict | None) -> dict:
@@ -87,8 +86,8 @@ def _validate_additional_args(additional_args: dict | None) -> dict:
     if not _payload_looks_like_studies(payload):
         raise ValueError(
             f"gatekeeper additional_args['{GATEKEEPER_PAYLOAD_KEY}'] must be "
-            "getter-tool JSON with a study record (study_index, title, abstract) "
-            "or a non-empty studies list — not indices-only data."
+            "getter-tool JSON with a non-empty studies list of records "
+            "(study_index, title, abstract) — not indices-only data."
         )
     return additional_args
 

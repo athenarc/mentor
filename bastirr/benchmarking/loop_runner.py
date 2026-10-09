@@ -205,7 +205,6 @@ def _build_loop_screening_task(
         "5. Keep observations short; do not print study JSON or Gatekeeper responses.\n"
         "6. Return format_screening_progress_summary(review_title, output_dir) as final_answer.\n"
         "Do not classify studies in Orchestrator code and do not fabricate fallback decisions.\n"
-        "On Gatekeeper failure (including context overflow), let the error surface.\n"
     )
 
 
@@ -243,7 +242,6 @@ def _build_chunk_loop_screening_task(
         "5. Keep observations short; do not print study JSON or Gatekeeper responses.\n"
         "6. Return format_screening_progress_summary(review_title, output_dir) as final_answer.\n"
         "Do not classify studies in Orchestrator code and do not fabricate fallback decisions.\n"
-        "On Gatekeeper failure (including context overflow), let the error surface.\n"
     )
 
 

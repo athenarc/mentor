@@ -142,8 +142,8 @@ def get_candidate_study_json(study_index: int) -> str:
         study_index: One-based study index to retrieve.
 
     Returns:
-        A JSON string with review protocol fields, ``n_total``, and one
-        ``study`` object.
+        A JSON string with review protocol fields, ``n_total``, and a
+        one-item ``studies`` list (same shape as batch/chunk getters).
     """
     if _review_data is None:
         raise ValueError("No review data loaded. The runner must call load_review_data() first.")
@@ -166,11 +166,13 @@ def get_candidate_study_json(study_index: int) -> str:
         "background": _review_data.get("background", ""),
         "selection_criteria": _review_data.get("selection_criteria", ""),
         "n_total": len(studies),
-        "study": {
-            "study_index": index,
-            "title": study.get("title", ""),
-            "abstract": study.get("abstract", ""),
-        },
+        "studies": [
+            {
+                "study_index": index,
+                "title": study.get("title", ""),
+                "abstract": study.get("abstract", ""),
+            }
+        ],
     }
     return json.dumps(payload, ensure_ascii=False)
 

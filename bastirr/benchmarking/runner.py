@@ -218,7 +218,6 @@ def _build_screening_task_with_retry_note(
         "4. Use format_screening_summary() and return the summary as the final answer.\n"
         "Do not construct screening decisions inside orchestrator code. If the Gatekeeper output "
         "is incomplete or invalid, rerun the Gatekeeper instead of creating a fallback list.\n"
-        "On Gatekeeper failure (including context overflow), let the error surface.\n"
     )
 
 

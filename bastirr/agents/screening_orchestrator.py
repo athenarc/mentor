@@ -52,8 +52,6 @@ CRITICAL RULES
 11. Call gatekeeper(task="", additional_args={"screening_payload": candidates_json}).
     The task argument is ignored by the gatekeeper wrapper; pass study data ONLY via
     additional_args. Never paste study JSON into task=.
-12. On Gatekeeper failure (including context overflow), let the error surface;
-    do not invent recovery strategies.
 
 WORKFLOW
 Code block 1:
