@@ -152,6 +152,31 @@ class GatekeeperWrapperTests(unittest.TestCase):
             )
         self.assertEqual(calls, [])
 
+    def test_rejects_mixed_studies_list(self):
+        calls = []
+
+        class FakeAgent:
+            name = "gatekeeper"
+
+            def __call__(self, *args, **kwargs):
+                calls.append((args, kwargs))
+                return "ok"
+
+        wrapped = wrap_gatekeeper(FakeAgent(), fixed_task=GATEKEEPER_BATCH_TASK)
+        with self.assertRaises(ValueError):
+            wrapped(
+                "screen",
+                additional_args={
+                    GATEKEEPER_PAYLOAD_KEY: {
+                        "studies": [
+                            _study_payload(),
+                            {"study_index": 2, "title": "missing abstract"},
+                        ],
+                    },
+                },
+            )
+        self.assertEqual(calls, [])
+
     def test_overflow_exception_becomes_context_overflow_error(self):
         class OverflowAgent:
             name = "gatekeeper"

@@ -65,7 +65,9 @@ def _payload_looks_like_studies(value: Any) -> bool:
     if not isinstance(value, dict):
         return False
     studies = value.get("studies")
-    if isinstance(studies, list) and any(_is_study_record(item) for item in studies):
+    if isinstance(studies, list) and studies and all(
+        _is_study_record(item) for item in studies
+    ):
         return True
     return _is_study_record(value.get("study"))
 
