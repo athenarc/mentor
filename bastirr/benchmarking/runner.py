@@ -37,6 +37,7 @@ from bastirr.benchmarking.telemetry import (
 from bastirr.benchmarking.totals import register_canonical_sources_from_experiment
 from bastirr.config import OUTPUT_DIR
 from bastirr.data import load_review
+from bastirr.errors import ContextOverflowError
 from bastirr.logging_utils import make_step_callbacks, setup_run_logging
 from bastirr.run_demo import review_to_json
 from bastirr.tools.search_tools import load_review_data
@@ -64,6 +65,7 @@ _SUMMARY_CSV_PRIORITY_FIELDS = [
     "benchmark_architecture",
     "run_index",
     "run_status",
+    "error_type",
     "screening_completion_status",
     "scored_for_aggregate",
     "screening_attempt_count",
@@ -209,12 +211,14 @@ def _build_screening_task_with_retry_note(
         f"{retry_block}"
         "Execute the screening-only pipeline:\n"
         "1. Use get_candidates_json() to retrieve the preloaded candidate studies.\n"
-        "2. Use the gatekeeper to screen all studies using the selection criteria verbatim.\n"
+        "2. Call gatekeeper(task=\"\", additional_args={\"candidates_json\": candidates_json}); "
+        "task text is ignored by the gatekeeper wrapper.\n"
         "3. Use save_screening_evidence_json() to save evidence.json in the output directory, "
         "passing expected_n_studies exactly.\n"
         "4. Use format_screening_summary() and return the summary as the final answer.\n"
         "Do not construct screening decisions inside orchestrator code. If the Gatekeeper output "
         "is incomplete or invalid, rerun the Gatekeeper instead of creating a fallback list.\n"
+        "On Gatekeeper failure (including context overflow), do not invent recovery strategies.\n"
     )
 
 
@@ -316,6 +320,7 @@ def _build_run_metrics(
     benchmark_architecture: str = "batch_orchestrator_v1",
     telemetry: dict | None = None,
     error: str = "",
+    error_type: str = "",
 ) -> dict:
     metrics = compute_screening_metrics(
         review,
@@ -346,6 +351,7 @@ def _build_run_metrics(
         "run_index": run_index,
         "run_status": run_status,
         "error": error,
+        "error_type": error_type,
         "screening_completion_status": completion_status,
         "scored_for_aggregate": scored_for_aggregate,
         "screening_attempt_count": screening_attempt_count,
@@ -451,6 +457,7 @@ def run_screening_review(
 
     run_status = "completed"
     error = ""
+    error_type = ""
     evidence_path = run_dir / "evidence.json"
     screening_attempt_count = 0
     rerun_triggered = False
@@ -494,6 +501,17 @@ def run_screening_review(
                         retry_note=retry_note,
                     )
                 )
+            except ContextOverflowError as overflow_exc:
+                last_attempt_error = f"{type(overflow_exc).__name__}: {overflow_exc}"
+                error_type = "context_overflow"
+                error = last_attempt_error
+                logger.error(
+                    "Context overflow during screening: review=%s gatekeeper=%s error=%s",
+                    review_case.key,
+                    gatekeeper_model.key,
+                    last_attempt_error,
+                )
+                break
             except Exception as attempt_exc:
                 last_attempt_error = f"{type(attempt_exc).__name__}: {attempt_exc}"
                 if attempt_index == _MAX_SCREENING_ATTEMPTS:
@@ -519,6 +537,24 @@ def run_screening_review(
             run_status = "incomplete"
             if last_attempt_error and not error:
                 error = last_attempt_error
+
+        if error_type == "context_overflow":
+            decisions = _read_screening_decisions(evidence_path)
+            if decisions:
+                run_status = "incomplete"
+            else:
+                run_status = "error"
+            if not error:
+                error = last_attempt_error
+    except ContextOverflowError as overflow_exc:
+        run_status = "error"
+        error_type = "context_overflow"
+        error = f"{type(overflow_exc).__name__}: {overflow_exc}"
+        logger.error(
+            "Context overflow during screening: review=%s gatekeeper=%s",
+            review_case.key,
+            gatekeeper_model.key,
+        )
     except Exception as exc:
         run_status = "error"
         error = f"{type(exc).__name__}: {exc}"
@@ -537,6 +573,12 @@ def run_screening_review(
             retry_count=max(screening_attempt_count - 1, 0),
             resume_count=0,
         )
+        if error_type == "context_overflow":
+            telemetry["context_overflow"] = True
+            telemetry["context_overflow_count"] = 1
+        else:
+            telemetry["context_overflow"] = False
+            telemetry["context_overflow_count"] = 0
         telemetry.update(usage_collector.summary())
         telemetry["temperature"] = (gatekeeper_model.request_kwargs or {}).get("temperature")
         logger.info("Activity log saved to: %s", activity_path)
@@ -556,6 +598,7 @@ def run_screening_review(
         "raw_run_dir": run_dir,
         "run_status": run_status,
         "error": error,
+        "error_type": error_type,
         "screening_attempt_count": screening_attempt_count,
         "rerun_triggered": rerun_triggered,
         "benchmark_architecture": "batch_orchestrator_v1",
@@ -587,6 +630,7 @@ def _build_policy_run_metrics(
         benchmark_architecture=raw_run.get("benchmark_architecture", "batch_orchestrator_v1"),
         telemetry=raw_run.get("telemetry"),
         error=raw_run["error"],
+        error_type=raw_run.get("error_type", ""),
     )
     metrics.update(
         write_screening_inspection_artifacts(

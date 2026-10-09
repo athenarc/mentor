@@ -12,6 +12,14 @@ from bastirr.agents.gatekeeper import (
     create_chunk_gatekeeper_agent,
     create_single_study_gatekeeper_agent,
 )
+from bastirr.agents.wrappers import (
+    GATEKEEPER_CHUNK_TASK,
+    GATEKEEPER_SINGLE_STUDY_TASK,
+    PAYLOAD_KEY_CANDIDATE_STUDY,
+    PAYLOAD_KEY_CHUNK_DATA,
+    wrap_gatekeeper,
+)
+from bastirr.errors import with_error_abort_callback
 from bastirr.config import EXECUTOR_TIMEOUT_SECONDS
 from bastirr.tools.screening_benchmark_tools import (
     append_screening_chunk_decisions_json,
@@ -46,15 +54,20 @@ CRITICAL RULES
 2. Never place raw study data in your final answer.
 3. Process only the study indices listed in the task.
 4. For each study index, call get_candidate_study_json(index), then call
-   gatekeeper for that single study, then immediately call
-   append_screening_decision_json(..., expected_study_index=index).
-5. Do not classify studies yourself in Orchestrator code.
-6. Do not create fallback decisions or rationales.
-7. Do not hard-code include/exclude labels.
-8. Do not print candidate JSON or Gatekeeper responses; keep observations short.
-9. If append_screening_decision_json rejects a decision, call Gatekeeper again
+   gatekeeper(task="", additional_args={"candidate_study": <study json>}), then
+   immediately call append_screening_decision_json(..., expected_study_index=index).
+5. The gatekeeper task argument is ignored by the gatekeeper wrapper; pass study
+   data ONLY via additional_args. Never paste study JSON into task=.
+6. Do not classify studies yourself in Orchestrator code.
+7. Do not create fallback decisions or rationales.
+8. Do not hard-code include/exclude labels.
+9. Do not print candidate JSON or Gatekeeper responses; keep observations short.
+10. If append_screening_decision_json rejects a decision, call Gatekeeper again
    for that same study rather than editing the decision in Orchestrator code.
-10. Return only format_screening_progress_summary(...) as the final answer.
+11. On Gatekeeper failure (including context overflow), do NOT invent recovery
+   strategies such as indices-only handoffs, splitting the work, or truncating
+   abstracts. Let the error surface.
+12. Return only format_screening_progress_summary(...) as the final answer.
 
 WORKFLOW
 - Use a compact Python loop over the provided study indices.
@@ -88,15 +101,21 @@ CRITICAL RULES
 2. Never place raw study data in your final answer.
 3. Process only the chunk study indices listed in the task.
 4. Call get_candidate_studies_chunk_json once for the listed chunk, then call
-   gatekeeper once for that chunk, then immediately call
-   append_screening_chunk_decisions_json with the raw Gatekeeper response.
-5. Do not classify studies yourself in Orchestrator code.
-6. Do not create fallback decisions or rationales.
-7. Do not hard-code include/exclude labels.
-8. Do not print candidate JSON or Gatekeeper responses; keep observations short.
-9. If append_screening_chunk_decisions_json rejects the chunk, call Gatekeeper
+   gatekeeper(task="", additional_args={"chunk_data": <chunk json>}), then
+   immediately call append_screening_chunk_decisions_json with the raw Gatekeeper
+   response.
+5. The gatekeeper task argument is ignored by the gatekeeper wrapper; pass chunk
+   data ONLY via additional_args. Never paste chunk/study JSON into task=.
+6. Do not classify studies yourself in Orchestrator code.
+7. Do not create fallback decisions or rationales.
+8. Do not hard-code include/exclude labels.
+9. Do not print candidate JSON or Gatekeeper responses; keep observations short.
+10. If append_screening_chunk_decisions_json rejects the chunk, call Gatekeeper
    again for the same chunk rather than editing decisions in Orchestrator code.
-10. Return only format_screening_progress_summary(...) as the final answer.
+11. On Gatekeeper failure (including context overflow), do NOT invent recovery
+   strategies such as indices-only handoffs, splitting into sub-chunks, or
+   truncating abstracts. Let the error surface.
+12. Return only format_screening_progress_summary(...) as the final answer.
 
 WORKFLOW
 - Parse the JSON array of chunk study indices from the task.
@@ -116,10 +135,15 @@ def create_screening_loop_orchestrator_agent(
     """
     Create the looped screening Orchestrator used by the new benchmark path.
     """
-    gatekeeper = create_single_study_gatekeeper_agent(
-        gatekeeper_model,
-        step_callbacks=step_callbacks,
-        logger=logger,
+    step_callbacks = with_error_abort_callback(step_callbacks)
+    gatekeeper = wrap_gatekeeper(
+        create_single_study_gatekeeper_agent(
+            gatekeeper_model,
+            step_callbacks=step_callbacks,
+            logger=logger,
+        ),
+        payload_key=PAYLOAD_KEY_CANDIDATE_STUDY,
+        fixed_task=GATEKEEPER_SINGLE_STUDY_TASK,
     )
 
     return CodeAgent(
@@ -135,7 +159,7 @@ def create_screening_loop_orchestrator_agent(
         max_steps=max_steps,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
-        step_callbacks=step_callbacks or [],
+        step_callbacks=step_callbacks,
         additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy", "sys", "pickle"],
         logger=logger,
     )
@@ -151,10 +175,15 @@ def create_screening_chunk_loop_orchestrator_agent(
     """
     Create the mini-batch loop screening Orchestrator.
     """
-    gatekeeper = create_chunk_gatekeeper_agent(
-        gatekeeper_model,
-        step_callbacks=step_callbacks,
-        logger=logger,
+    step_callbacks = with_error_abort_callback(step_callbacks)
+    gatekeeper = wrap_gatekeeper(
+        create_chunk_gatekeeper_agent(
+            gatekeeper_model,
+            step_callbacks=step_callbacks,
+            logger=logger,
+        ),
+        payload_key=PAYLOAD_KEY_CHUNK_DATA,
+        fixed_task=GATEKEEPER_CHUNK_TASK,
     )
 
     return CodeAgent(
@@ -170,7 +199,7 @@ def create_screening_chunk_loop_orchestrator_agent(
         max_steps=max_steps,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
-        step_callbacks=step_callbacks or [],
+        step_callbacks=step_callbacks,
         additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy", "sys", "pickle"],
         logger=logger,
     )
