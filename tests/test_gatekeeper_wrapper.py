@@ -41,32 +41,69 @@ def _study_payload(**overrides):
     return base
 
 
+def _openai_bad_request(*, status_code: int = 400, body: dict):
+    import httpx
+    from openai import BadRequestError
+
+    request = httpx.Request("POST", "https://example.test/v1/chat/completions")
+    response = httpx.Response(status_code, request=request)
+    return BadRequestError("Error code: 400", response=response, body=body)
+
+
 class ContextOverflowClassificationTests(unittest.TestCase):
-    def test_detects_openrouter_style_message_with_400(self):
-        self.assertTrue(
+    def test_detects_structured_openai_semantic_code(self):
+        exc = _openai_bad_request(
+            body={
+                "message": "too long",
+                "type": "invalid_request_error",
+                "code": "context_length_exceeded",
+            }
+        )
+        self.assertTrue(is_context_overflow_error(exc))
+
+    def test_detects_structured_openrouter_nested_body(self):
+        exc = _openai_bad_request(
+            body={
+                "error": {
+                    "message": (
+                        "This endpoint's maximum context length is 163840 tokens."
+                    ),
+                    "code": 400,
+                }
+            }
+        )
+        self.assertTrue(is_context_overflow_error(exc))
+
+    def test_detects_structured_overflow_via_exception_cause(self):
+        cause = _openai_bad_request(
+            body={
+                "message": "too long",
+                "code": "context_length_exceeded",
+            }
+        )
+        wrapped = RuntimeError("Error in generating model output")
+        wrapped.__cause__ = cause
+        self.assertTrue(is_context_overflow_error(wrapped))
+
+    def test_ignores_structured_400_without_overflow_markers(self):
+        exc = _openai_bad_request(
+            body={"error": {"message": "bad json", "code": 400}}
+        )
+        self.assertFalse(is_context_overflow_error(exc))
+
+    def test_ignores_flattened_error_strings(self):
+        self.assertFalse(
             is_context_overflow_error(
                 "Error code: 400 - {'error': {'message': "
                 "\"This endpoint's maximum context length is 163840 tokens.\", "
                 "'code': 400}}"
             )
         )
-
-    def test_detects_openai_semantic_code(self):
-        self.assertTrue(
+        self.assertFalse(
             is_context_overflow_error(
                 "Error code: 400 - {'error': {'message': 'too long', "
                 "'code': 'context_length_exceeded'}}"
             )
-        )
-
-    def test_requires_both_message_and_400(self):
-        self.assertFalse(
-            is_context_overflow_error(
-                "This endpoint's maximum context length is 163840 tokens."
-            )
-        )
-        self.assertFalse(
-            is_context_overflow_error("Error code: 400 - {'error': {'message': 'bad json'}}")
         )
 
     def test_detects_context_overflow_error_instance(self):
@@ -182,10 +219,16 @@ class GatekeeperWrapperTests(unittest.TestCase):
             name = "gatekeeper"
 
             def __call__(self, task="", additional_args=None, **kwargs):
-                raise RuntimeError(
-                    "Error code: 400 - {'error': {'message': "
-                    "\"This endpoint's maximum context length is 163840 tokens. "
-                    "However, you requested about 200000 tokens.\", 'code': 400}}"
+                raise _openai_bad_request(
+                    body={
+                        "error": {
+                            "message": (
+                                "This endpoint's maximum context length is "
+                                "163840 tokens."
+                            ),
+                            "code": 400,
+                        }
+                    }
                 )
 
         wrapped = wrap_gatekeeper(
@@ -204,12 +247,26 @@ class GatekeeperWrapperTests(unittest.TestCase):
 class OverflowAbortCallbackTests(unittest.TestCase):
     def test_abort_callback_raises_on_overflow_step_error(self):
         step = ActionStep(step_number=2, timing=SimpleNamespace(start=0, end=0))
+        step.error = _openai_bad_request(
+            body={
+                "error": {
+                    "message": (
+                        "This endpoint's maximum context length is 262144 tokens."
+                    ),
+                    "code": 400,
+                }
+            }
+        )
+        with self.assertRaises(ContextOverflowError):
+            abort_on_classified_error(step, agent=SimpleNamespace(name="orchestrator"))
+
+    def test_abort_callback_ignores_flattened_overflow_strings(self):
+        step = ActionStep(step_number=2, timing=SimpleNamespace(start=0, end=0))
         step.error = (
             "Error code: 400 - {'error': {'message': "
             "\"This endpoint's maximum context length is 262144 tokens.\", 'code': 400}}"
         )
-        with self.assertRaises(ContextOverflowError):
-            abort_on_classified_error(step, agent=SimpleNamespace(name="orchestrator"))
+        abort_on_classified_error(step, agent=SimpleNamespace(name="orchestrator"))
 
     def test_with_error_abort_callback_preserves_dict_shape(self):
         def existing(step, agent=None, **kwargs):
