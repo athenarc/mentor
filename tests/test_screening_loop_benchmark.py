@@ -105,10 +105,11 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
         self.assertEqual(payload["title"], "Review")
         self.assertEqual(payload["selection_criteria"], "Criteria")
         self.assertEqual(payload["n_total"], 2)
-        self.assertEqual(payload["study"]["study_index"], 2)
-        self.assertEqual(payload["study"]["title"], "B")
-        self.assertNotIn("studies", payload)
-        self.assertNotIn("label", payload["study"])
+        self.assertEqual(len(payload["studies"]), 1)
+        self.assertEqual(payload["studies"][0]["study_index"], 2)
+        self.assertEqual(payload["studies"][0]["title"], "B")
+        self.assertNotIn("study", payload)
+        self.assertNotIn("label", payload["studies"][0])
 
     def test_get_candidate_studies_chunk_json_returns_label_free_chunk(self):
         load_review_data(json.dumps({
@@ -127,7 +128,7 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
 
         self.assertEqual(payload["title"], "Review")
         self.assertEqual(payload["n_total"], 3)
-        self.assertEqual(payload["chunk_study_indices"], [2, 3])
+        self.assertNotIn("chunk_study_indices", payload)
         self.assertEqual([study["study_index"] for study in payload["studies"]], [2, 3])
         self.assertEqual([study["title"] for study in payload["studies"]], ["B", "C"])
         self.assertNotIn("label", payload["studies"][0])

@@ -11,6 +11,8 @@ This orchestrator mirrors the live handoff boundary:
 from smolagents import CodeAgent
 
 from bastirr.agents.gatekeeper import create_gatekeeper_agent
+from bastirr.agents.wrappers import GATEKEEPER_BATCH_TASK, wrap_gatekeeper
+from bastirr.errors import with_error_abort_callback
 from bastirr.config import EXECUTOR_TIMEOUT_SECONDS
 from bastirr.tools.screening_benchmark_tools import (
     format_screening_summary,
@@ -47,6 +49,9 @@ CRITICAL RULES
 9. Do NOT use keyword-matching heuristics to generate screening decisions or rationales.
 10. If the Gatekeeper response cannot be saved as a complete per-study decision set,
     fail closed and rerun the Gatekeeper; do not create a manager-side fallback list.
+11. Call gatekeeper(task="", additional_args={"screening_payload": candidates_json}).
+    The task argument is ignored by the gatekeeper wrapper; pass study data ONLY via
+    additional_args. Never paste study JSON into task=.
 
 WORKFLOW
 Code block 1:
@@ -55,7 +60,7 @@ Code block 1:
   - Print how many candidates were loaded.
 
 Code block 2:
-  - Call gatekeeper with the selection criteria verbatim and the candidates_json.
+  - Call gatekeeper(task="", additional_args={"screening_payload": ...}).
   - Ensure the gatekeeper response contains one decision per study; do not accept
     outputs that summarize excluded studies without individual decisions.
   - Call save_screening_evidence_json(screening_response=gatekeeper_response, output_dir=output_dir, expected_n_studies=expected_n_studies).
@@ -84,10 +89,14 @@ def create_screening_orchestrator_agent(
     Returns:
         Configured CodeAgent that manages only candidate retrieval and screening.
     """
-    gatekeeper = create_gatekeeper_agent(
-        gatekeeper_model,
-        step_callbacks=step_callbacks,
-        logger=logger,
+    step_callbacks = with_error_abort_callback(step_callbacks)
+    gatekeeper = wrap_gatekeeper(
+        create_gatekeeper_agent(
+            gatekeeper_model,
+            step_callbacks=step_callbacks,
+            logger=logger,
+        ),
+        fixed_task=GATEKEEPER_BATCH_TASK,
     )
 
     return CodeAgent(
@@ -103,7 +112,7 @@ def create_screening_orchestrator_agent(
         max_steps=max_steps,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
-        step_callbacks=step_callbacks or [],
+        step_callbacks=step_callbacks,
         additional_authorized_imports=["json", "re", "typing", "yaml", "pandas", "numpy", "sys", "pickle"],
         logger=logger,
     )

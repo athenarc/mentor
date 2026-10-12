@@ -29,7 +29,9 @@ from bastirr.benchmarking.review_suites import (
     resolve_review_selection,
 )
 from bastirr.benchmarking.runner import (
+    _attach_context_overflow_telemetry,
     _checkpoint_policy_outputs,
+    _context_overflow_run_status,
     _policy_output_record,
     _raw_runs_checkpoint_root,
     _read_screening_decisions,
@@ -41,6 +43,7 @@ from bastirr.benchmarking.telemetry import collect_activity_telemetry
 from bastirr.benchmarking.totals import register_canonical_sources_from_experiment
 from bastirr.config import OUTPUT_DIR
 from bastirr.data import load_review
+from bastirr.errors import ContextOverflowError
 from bastirr.logging_utils import make_step_callbacks, setup_run_logging
 from bastirr.run_demo import review_to_json
 from bastirr.tools.screening_benchmark_tools import _write_screening_artifacts
@@ -195,7 +198,8 @@ def _build_loop_screening_task(
         "Execute the looped screening workflow:\n"
         "1. Parse the study index JSON array from this task.\n"
         "2. For each listed index, call get_candidate_study_json(index).\n"
-        "3. Call the gatekeeper managed agent with that one-study JSON payload only.\n"
+        "3. Call gatekeeper(task=\"\", additional_args={\"screening_payload\": <study json>}); "
+        "task text is ignored by the gatekeeper wrapper.\n"
         "4. Immediately call append_screening_decision_json with the raw Gatekeeper "
         "response, output_dir, expected_study_index=index, and expected_n_studies.\n"
         "5. Keep observations short; do not print study JSON or Gatekeeper responses.\n"
@@ -231,7 +235,8 @@ def _build_chunk_loop_screening_task(
         "Execute the mini-batch loop screening workflow:\n"
         "1. Parse the chunk study index JSON array from this task.\n"
         "2. Call get_candidate_studies_chunk_json with that JSON array string.\n"
-        "3. Call the gatekeeper managed agent with that one chunk payload only.\n"
+        "3. Call gatekeeper(task=\"\", additional_args={\"screening_payload\": <chunk json>}); "
+        "task text is ignored by the gatekeeper wrapper.\n"
         "4. Immediately call append_screening_chunk_decisions_json with the raw "
         "Gatekeeper response, output_dir, expected_study_indices_json, and expected_n_studies.\n"
         "5. Keep observations short; do not print study JSON or Gatekeeper responses.\n"
@@ -296,6 +301,7 @@ def run_screening_loop_review(
 
     run_status = "completed"
     error = ""
+    error_type = ""
     evidence_path = run_dir / "evidence.json"
     screening_attempt_count = 0
     resume_count = 0
@@ -351,6 +357,16 @@ def run_screening_loop_review(
                         retry_note=retry_note,
                     )
                 )
+            except ContextOverflowError as overflow_exc:
+                last_attempt_error = f"{type(overflow_exc).__name__}: {overflow_exc}"
+                error_type = "context_overflow"
+                error = last_attempt_error
+                logger.error(
+                    "Context overflow during looped screening: review=%s gatekeeper=%s",
+                    review_case.key,
+                    gatekeeper_model.key,
+                )
+                break
             except Exception as attempt_exc:
                 last_attempt_error = f"{type(attempt_exc).__name__}: {attempt_exc}"
                 retry_note = (
@@ -380,7 +396,13 @@ def run_screening_loop_review(
             decisions,
             label_policy=label_policy,
         )
-        if final_metrics["parse_success"]:
+        if error_type == "context_overflow":
+            run_status, error = _context_overflow_run_status(
+                decision_count=final_metrics["screening_decision_count"],
+                error=error,
+                last_attempt_error=last_attempt_error,
+            )
+        elif final_metrics["parse_success"]:
             run_status = "completed"
         elif last_attempt_error and final_metrics["screening_decision_count"] == 0:
             run_status = "error"
@@ -398,6 +420,7 @@ def run_screening_loop_review(
             retry_count=max(screening_attempt_count - 1, 0),
             resume_count=resume_count,
         )
+        _attach_context_overflow_telemetry(telemetry, error_type=error_type)
         telemetry.update(usage_collector.summary())
         telemetry["temperature"] = (gatekeeper_model.request_kwargs or {}).get("temperature")
         logger.info("Activity log saved to: %s", activity_path)
@@ -417,6 +440,7 @@ def run_screening_loop_review(
         "raw_run_dir": run_dir,
         "run_status": run_status,
         "error": error,
+        "error_type": error_type,
         "screening_attempt_count": screening_attempt_count,
         "rerun_triggered": rerun_triggered,
         "benchmark_architecture": LOOP_BENCHMARK_ARCHITECTURE,
@@ -495,6 +519,7 @@ def run_screening_chunk_loop_review(
 
     run_status = "completed"
     error = ""
+    error_type = ""
     evidence_path = run_dir / "evidence.json"
     screening_attempt_count = 0
     resume_count = 0
@@ -538,6 +563,7 @@ def run_screening_chunk_loop_review(
                 chunk_count=chunk_count,
                 chunk_size=chunk_size,
             )
+            overflow_abort = False
             for chunk_number, chunk in enumerate(chunks, start=1):
                 try:
                     chunk_orchestrator = create_screening_chunk_loop_orchestrator_agent(
@@ -564,6 +590,17 @@ def run_screening_chunk_loop_review(
                             retry_note=retry_note,
                         )
                     )
+                except ContextOverflowError as overflow_exc:
+                    last_attempt_error = f"{type(overflow_exc).__name__}: {overflow_exc}"
+                    error_type = "context_overflow"
+                    error = last_attempt_error
+                    overflow_abort = True
+                    logger.error(
+                        "Context overflow during chunked screening: review=%s chunk=%s",
+                        review_case.key,
+                        chunk,
+                    )
+                    break
                 except Exception as attempt_exc:
                     last_attempt_error = f"{type(attempt_exc).__name__}: {attempt_exc}"
                     logger.warning(
@@ -573,6 +610,9 @@ def run_screening_chunk_loop_review(
                         last_attempt_error,
                     )
                     break
+
+            if overflow_abort:
+                break
 
             decisions = _read_screening_decisions(evidence_path)
             attempt_metrics = compute_screening_metrics(
@@ -589,7 +629,13 @@ def run_screening_chunk_loop_review(
             decisions,
             label_policy=label_policy,
         )
-        if final_metrics["parse_success"]:
+        if error_type == "context_overflow":
+            run_status, error = _context_overflow_run_status(
+                decision_count=final_metrics["screening_decision_count"],
+                error=error,
+                last_attempt_error=last_attempt_error,
+            )
+        elif final_metrics["parse_success"]:
             run_status = "completed"
         elif last_attempt_error and final_metrics["screening_decision_count"] == 0:
             run_status = "error"
@@ -609,6 +655,7 @@ def run_screening_chunk_loop_review(
         )
         telemetry["chunk_count"] = len(planned_chunks)
         telemetry["chunk_sizes"] = [len(chunk) for chunk in planned_chunks]
+        _attach_context_overflow_telemetry(telemetry, error_type=error_type)
         telemetry.update(usage_collector.summary())
         telemetry["temperature"] = (gatekeeper_model.request_kwargs or {}).get("temperature")
         logger.info("Activity log saved to: %s", activity_path)
@@ -628,6 +675,7 @@ def run_screening_chunk_loop_review(
         "raw_run_dir": run_dir,
         "run_status": run_status,
         "error": error,
+        "error_type": error_type,
         "screening_attempt_count": screening_attempt_count,
         "rerun_triggered": rerun_triggered,
         "benchmark_architecture": benchmark_architecture,
