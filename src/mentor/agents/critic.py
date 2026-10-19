@@ -7,7 +7,7 @@ citations plus a separate quality/bias pass over included studies.
 
 from smolagents import CodeAgent
 
-from mentor.config import EXECUTOR_TIMEOUT_SECONDS
+from mentor.settings import EXECUTOR_TIMEOUT_SECONDS
 from mentor.agents.prompts import load_prompt
 from mentor.tools.synthesis_tools import assess_evidence_quality, synthesize_evidence
 

@@ -26,7 +26,7 @@ from experiments.harness.runner import (
     _policy_output_record,
     _write_benchmark_checkpoint,
 )
-from mentor.config import OUTPUT_DIR
+from mentor.settings import OUTPUT_DIR
 from mentor.dataset import load_review
 
 _OPTIONAL_TRACE_FILENAMES = ("workflow.log", "activity.md", "screening_progress.json")

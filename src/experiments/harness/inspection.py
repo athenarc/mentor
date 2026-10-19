@@ -12,7 +12,7 @@ from experiments.harness.metrics import (
     gold_label_to_screening_decision,
     gold_screening_policy_mapping,
 )
-from mentor.config import (
+from mentor.dataset.cochrane import (
     LABEL_EXCLUDED_FULLTEXT,
     LABEL_EXCLUDED_SCREENING,
     LABEL_INCLUDED,

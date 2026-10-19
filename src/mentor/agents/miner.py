@@ -7,7 +7,7 @@ is limited to PICO-style fields and key findings surfaced in the abstract text.
 
 from smolagents import CodeAgent
 
-from mentor.config import EXECUTOR_TIMEOUT_SECONDS
+from mentor.settings import EXECUTOR_TIMEOUT_SECONDS
 from mentor.agents.prompts import load_prompt
 from mentor.tools.extraction_tools import (
     batch_extract_evidence,

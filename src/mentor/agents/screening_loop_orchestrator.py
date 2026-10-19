@@ -14,7 +14,7 @@ from mentor.agents.wrappers import (
     GATEKEEPER_SINGLE_STUDY_TASK,
     wrap_gatekeeper,
 )
-from mentor.config import EXECUTOR_TIMEOUT_SECONDS
+from mentor.settings import EXECUTOR_TIMEOUT_SECONDS
 from mentor.errors import with_error_abort_callback
 from mentor.tools.screening_benchmark_tools import (
     append_screening_chunk_decisions_json,

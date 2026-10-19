@@ -18,8 +18,8 @@ from typing import Sequence, Iterable
 import numpy as np
 import pandas as pd
 
-from mentor.config import DATASET_FILES
-from mentor.logging_utils import LoggingLevel, LOGGING_LEVEL_MAP, setup_tool_logger
+from mentor.dataset.cochrane import DATASET_FILES
+from mentor.logging import LoggingLevel, LOGGING_LEVEL_MAP, setup_tool_logger
 
 _DOI_PATTERN = re.compile(r"(?<=^https://www\.cochranelibrary\.com/cdsr/doi/10\.1002/)[\w.]+(?=/full$)")
 _LOGGER = logging.getLogger(__name__)

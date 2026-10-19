@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import patch
 
 import experiments.harness.model_presets as model_presets
-from mentor.config import MODEL_REQUEST_TIMEOUT_SECONDS
+from mentor.settings import MODEL_REQUEST_TIMEOUT_SECONDS
 from experiments.harness.model_presets import ResolvedModelPreset, get_model_preset
 
 

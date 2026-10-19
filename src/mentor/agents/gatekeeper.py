@@ -14,7 +14,7 @@ from typing import Sequence
 
 from smolagents import CodeAgent, Tool
 
-from mentor.config import EXECUTOR_TIMEOUT_SECONDS
+from mentor.settings import EXECUTOR_TIMEOUT_SECONDS
 from mentor.agents.prompts import load_prompt
 from mentor.tools.screening_tools import screen_studies
 

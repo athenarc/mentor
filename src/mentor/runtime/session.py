@@ -21,10 +21,10 @@ from typing import Any
 
 from smolagents import Model
 
-from mentor.config import create_model, resolve_api_key, resolve_backend
+from mentor.runtime.models import create_model, resolve_api_key, resolve_backend
 from mentor.dataset import SystematicReview, load_review
-from mentor.logging_utils import make_step_callbacks, setup_run_logging
-from mentor.model_profiles import (
+from mentor.logging import make_step_callbacks, setup_run_logging
+from mentor.runtime.profile_resolver import (
     get_selected_model_profile,
     resolve_runtime_model_profile,
 )

@@ -1,56 +1,19 @@
-"""
-Mentor run logger.
-
-Captures two log streams for each pipeline run:
-
-  [a] **workflow.log** — complete plain-text mirror of the Rich terminal
-      output produced by smolagents.  Every ``AgentLogger.log()`` call,
-      agent-tree visualisation, planning step, code action, observation,
-      and final answer is written here *without* truncation.
-
-  [b] **activity.md** — human-readable Markdown audit trail.  Each agent
-      step is LLM-summarised into plain-language text so that
-      non-technical readers (e.g. biomedical researchers) can understand
-      what the agents did without seeing code or raw data.  Includes a
-      resource-usage table and a phased timeline that groups sub-agent
-      work under the orchestrator step that triggered it.
-
-Both files are created in ``output/<timestamp>_<review>/`` alongside the
-final ``report.md``.
-
-Implementation
-~~~~~~~~~~~~~~
-``FileAgentLogger`` subclasses ``AgentLogger`` to **dual-write** every
-Rich console call to both the terminal and a plain-text log file, giving
-workflow.log the same content the user sees on screen.
-
-``step_callbacks`` for ``ActionStep`` and ``PlanningStep`` feed an
-``ActivityLogger`` instance which collects structured step data from
-every agent (orchestrator + sub-agents).  At pipeline end,
-``ActivityLogger.finalize()`` LLM-summarises each step and writes the
-Markdown audit trail.
-"""
+"""Activity.md audit trail: step records and LLM-summarised timeline."""
 
 from __future__ import annotations
 
-from enum import StrEnum
-
-import logging
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import IO, Any
 
-from rich.console import Console
 from smolagents import ActionStep
 from smolagents.memory import PlanningStep
-from smolagents.monitoring import AgentLogger, LogLevel
 
-from mentor.config import OUTPUT_DIR
-
-# ---------------------------------------------------------------------------
-# Constants
-# ---------------------------------------------------------------------------
+from mentor.logging.helpers import (
+    format_duration,
+    get_agent_name,
+    truncate,
+)
 
 AGENT_ROLES: dict[str, str] = {
     "orchestrator": "Coordinates the systematic review pipeline, delegating tasks to specialised agents",
@@ -60,141 +23,11 @@ AGENT_ROLES: dict[str, str] = {
     "critic": "Synthesises the extracted evidence and assesses its quality",
 }
 
-_MAX_MODEL_OUTPUT_CHARS = 4000
-_MAX_OBSERVATIONS_CHARS = 2000
-_MAX_PLAN_CHARS = 3000
-_MAX_OUTPUT_CHARS = 2000
+MAX_MODEL_OUTPUT_CHARS = 4000
+MAX_OBSERVATIONS_CHARS = 2000
+MAX_PLAN_CHARS = 3000
+MAX_OUTPUT_CHARS = 2000
 
-class LoggingLevel(StrEnum):
-    DEBUG = 'debug'
-    INFO = 'info'
-    WARNING = 'warning'
-    SILENT = 'silent'
-
-LOGGING_LEVEL_MAP = {
-    LoggingLevel.DEBUG: logging.DEBUG,
-    LoggingLevel.INFO: logging.INFO,
-    LoggingLevel.WARNING: logging.WARNING,
-    LoggingLevel.SILENT: logging.CRITICAL + 1,
-}
-
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
-
-def _make_run_dir(review_title: str, output_root: Path | None = None) -> Path:
-    """Create a timestamped output directory for this run."""
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    safe_title = "".join(
-        c if c.isalnum() or c in " -_" else "" for c in review_title
-    )[:60].strip()
-    root = output_root or OUTPUT_DIR
-    run_dir = root / f"{timestamp}_{safe_title}"
-    run_dir.mkdir(parents=True, exist_ok=True)
-    return run_dir
-
-
-def _get_agent_name(agent) -> str:
-    """Extract a readable name from a smolagents agent object."""
-    if agent and hasattr(agent, "name") and agent.name:
-        return agent.name
-    return "orchestrator"
-
-
-def _truncate(text: str | None, limit: int) -> str:
-    """Return *text* clipped to *limit* characters."""
-    if not text:
-        return ""
-    if len(text) <= limit:
-        return text
-    return text[:limit] + "\n… [truncated]"
-
-
-def _format_duration(seconds: float) -> str:
-    """Human-readable duration from a float of seconds."""
-    if seconds < 60:
-        return f"{seconds:.0f}s"
-    minutes = int(seconds // 60)
-    secs = int(seconds % 60)
-    if minutes < 60:
-        return f"{minutes}m {secs:02d}s"
-    hours = int(minutes // 60)
-    mins = minutes % 60
-    return f"{hours}h {mins:02d}m"
-
-
-# ---------------------------------------------------------------------------
-# FileAgentLogger — dual-write AgentLogger
-# ---------------------------------------------------------------------------
-
-class FileAgentLogger(AgentLogger):
-    """``AgentLogger`` subclass that mirrors *all* output to a log file.
-
-    Every call to ``log()`` (which ``log_markdown``, ``log_code``,
-    ``log_rule``, ``log_task``, ``log_error`` all delegate to) is
-    rendered twice:
-
-    * to the **terminal** via the inherited Rich ``Console`` (with
-      colours / formatting), and
-    * to a **plain-text log file** via a second ``Console`` instance
-      (``no_color=True``, wide columns for readability).
-
-    ``visualize_agent_tree()`` also writes to both outputs.
-    """
-
-    def __init__(self, level: LogLevel, log_file: IO[str]):
-        super().__init__(level=level)
-        self._log_file = log_file
-        self._file_console = Console(
-            file=self._log_file,
-            highlight=True,
-            force_terminal=False,
-            no_color=False,
-            width=120,
-        )
-
-    # -- Override the single choke-point for all structured output --
-    def log(self, *args, level: int | str | LogLevel = LogLevel.INFO, **kwargs):
-        if isinstance(level, str):
-            level = LogLevel[level.upper()]
-        if level <= self.level:
-            self.console.print(*args, **kwargs)  # terminal (Rich)
-            self._file_console.print(*args, **kwargs)  # file (plain text)
-
-    # -- Agent tree is printed directly to self.console; mirror it --
-    def visualize_agent_tree(self, agent):
-        super().visualize_agent_tree(agent)
-        # Re-render the tree to the file console
-        self._render_agent_tree_to_file(agent)
-
-    def _render_agent_tree_to_file(self, agent):
-        """Reproduce a simplified text version of the agent tree."""
-        from rich.tree import Tree
-
-        def _build(parent, agent_obj):
-            if agent_obj.tools:
-                for name in agent_obj.tools:
-                    parent.add(f"[tool] {name}")
-            if agent_obj.managed_agents:
-                for name, ma in agent_obj.managed_agents.items():
-                    branch = parent.add(f"{name} | {ma.__class__.__name__} | {ma.model.model_id}")
-                    branch.add(f"description: {ma.description}")
-                    _build(branch, ma)
-
-        headline = f"{agent.__class__.__name__} | {agent.model.model_id}"
-        tree = Tree(headline)
-        _build(tree, agent)
-        self._file_console.print(tree)
-
-    def close(self):
-        """Flush and close the log file."""
-        self._log_file.flush()
-        self._log_file.close()
-
-
-# ---------------------------------------------------------------------------
-# StepRecord / _Phase — data structures for activity logging
-# ---------------------------------------------------------------------------
 
 @dataclass
 class StepRecord:
@@ -271,7 +104,7 @@ class ActivityLogger:
 
     def record_action_step(self, step: ActionStep, agent=None) -> None:
         """Record an ActionStep from a smolagents callback."""
-        agent_name = _get_agent_name(agent)
+        agent_name = get_agent_name(agent)
         duration = step.timing.duration if step.timing else None
 
         token_in = token_out = None
@@ -309,7 +142,7 @@ class ActivityLogger:
                 str(step.observations) if step.observations else None
             ),
             action_output=(
-                str(step.action_output)[:_MAX_OUTPUT_CHARS]
+                str(step.action_output)[:MAX_OUTPUT_CHARS]
                 if step.action_output else None
             ),
             is_final_answer=step.is_final_answer,
@@ -318,7 +151,7 @@ class ActivityLogger:
 
     def record_planning_step(self, step: PlanningStep, agent=None) -> None:
         """Record a PlanningStep from a smolagents callback."""
-        agent_name = _get_agent_name(agent)
+        agent_name = get_agent_name(agent)
         duration = step.timing.duration if step.timing else None
 
         token_in = token_out = None
@@ -378,7 +211,7 @@ class ActivityLogger:
         if step.step_type == "planning":
             context = (
                     "--- Plan ---\n"
-                    + _truncate(step.plan_text, _MAX_PLAN_CHARS)
+                    + truncate(step.plan_text, MAX_PLAN_CHARS)
             )
             activity = "Planning the next steps"
         else:
@@ -386,19 +219,19 @@ class ActivityLogger:
             if step.model_output:
                 parts.append(
                     "--- Agent reasoning and actions ---\n"
-                    + _truncate(step.model_output, _MAX_MODEL_OUTPUT_CHARS)
+                    + truncate(step.model_output, MAX_MODEL_OUTPUT_CHARS)
                 )
             if step.observations:
                 parts.append(
                     "--- Execution result ---\n"
-                    + _truncate(step.observations, _MAX_OBSERVATIONS_CHARS)
+                    + truncate(step.observations, MAX_OBSERVATIONS_CHARS)
                 )
             if step.error:
                 parts.append(f"--- Error ---\n{str(step.error)[:500]}")
             if step.is_final_answer and step.action_output:
                 parts.append(
                     "--- Final output ---\n"
-                    + _truncate(step.action_output, _MAX_OUTPUT_CHARS)
+                    + truncate(step.action_output, MAX_OUTPUT_CHARS)
                 )
             context = "\n\n".join(parts) or "No detailed context available."
 
@@ -510,7 +343,7 @@ class ActivityLogger:
 
         if self.pipeline_start and self.pipeline_end:
             dur = (self.pipeline_end - self.pipeline_start).total_seconds()
-            lines.append(f"> **Duration:** {_format_duration(dur)}  ")
+            lines.append(f"> **Duration:** {format_duration(dur)}  ")
 
         total_in = sum(s.token_input or 0 for s in self.steps)
         total_out = sum(s.token_output or 0 for s in self.steps)
@@ -533,7 +366,7 @@ class ActivityLogger:
             lines.append("| Agent | Steps | Time | Tokens (in / out) |")
             lines.append("|-------|-------|------|-------------------|")
             for name, s in stats.items():
-                d = _format_duration(s["dur"]) if s["dur"] else "—"
+                d = format_duration(s["dur"]) if s["dur"] else "—"
                 t = (
                     f'{s["in"]:,} / {s["out"]:,}'
                     if s["in"] or s["out"]
@@ -547,7 +380,7 @@ class ActivityLogger:
             else:
                 tot_d = stats.get("orchestrator", {}).get("dur", 0.0)
             lines.append(
-                f"| **Total** | **{tot_n}** | **{_format_duration(tot_d)}** "
+                f"| **Total** | **{tot_n}** | **{format_duration(tot_d)}** "
                 f"| **{total_in:,} / {total_out:,}** |"
             )
             lines.append("")
@@ -582,7 +415,7 @@ class ActivityLogger:
             if orch.timestamp:
                 meta.append(orch.timestamp.strftime("%H:%M:%S"))
             if orch.duration_seconds:
-                meta.append(_format_duration(orch.duration_seconds))
+                meta.append(format_duration(orch.duration_seconds))
             tok_in = (orch.token_input or 0) + sum(
                 s.token_input or 0 for s in subs
             )
@@ -652,98 +485,3 @@ class ActivityLogger:
         return stats
 
 
-# ---------------------------------------------------------------------------
-# Public API
-# ---------------------------------------------------------------------------
-
-def setup_run_logging(
-        review_title: str,
-        include_subagent_steps: bool = True,
-        output_root: Path | None = None,
-        run_name: str | None = None,
-) -> tuple[Path, FileAgentLogger, ActivityLogger]:
-    """Set up file-based logging for a pipeline run.
-
-    Creates a run directory and configures:
-      - A ``FileAgentLogger`` that mirrors terminal output → workflow.log
-      - An ``ActivityLogger`` that collects step data → activity.md
-
-    Args:
-        review_title: Title of the review being processed (used in dir name).
-        include_subagent_steps: If *True* (default), sub-agent steps are
-            shown in the activity timeline.  If *False*, only orchestrator-
-            level phases appear.
-        output_root: Optional directory under which the run directory is created.
-        run_name: Optional name for the run directory. Defaults to review_title.
-
-    Returns:
-        ``(run_dir, agent_logger, activity_logger)``
-    """
-    run_dir = _make_run_dir(run_name or review_title, output_root=output_root)
-
-    # --- Workflow: FileAgentLogger (mirrors terminal → file) ---
-    wf_file = open(run_dir / "workflow.log", "w", encoding="utf-8")
-    agent_logger = FileAgentLogger(level=LogLevel.DEBUG, log_file=wf_file)
-
-    # --- Activity logger (collects step data for activity.md) ---
-    activity_logger = ActivityLogger(
-        run_dir=run_dir,
-        review_title=review_title,
-        include_subagent_steps=include_subagent_steps,
-    )
-
-    # Log run metadata to the terminal/workflow.log
-    agent_logger.log(
-        f"{'=' * 70}\nMENTOR PIPELINE RUN\n"
-        f"Review: {review_title}\n"
-        f"Run directory: {run_dir}\n"
-        f"Started: {datetime.now().isoformat()}\n"
-        f"{'=' * 70}",
-        level=LogLevel.INFO,
-    )
-
-    return run_dir, agent_logger, activity_logger
-
-
-def setup_tool_logger(logger: logging.Logger, logging_level: int = logging.INFO):
-    """Attach a single stream handler to a tool-module logger (idempotent)."""
-    if logger.handlers:
-        return logger
-
-    logger.setLevel(logging_level)
-
-    stream_handler = logging.StreamHandler()
-    stream_handler.setLevel(logging_level)
-
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
-    stream_handler.setFormatter(formatter)
-
-    logger.addHandler(stream_handler)
-    logger.propagate = False
-
-    return logger
-
-
-def make_step_callbacks(activity_logger: ActivityLogger) -> dict:
-    """Create smolagents ``step_callbacks`` dict for activity logging.
-
-    Registers callbacks for **both** ``ActionStep`` (code/tool execution)
-    and ``PlanningStep`` (agent planning output).  The collected data is
-    used by ``ActivityLogger.finalize()`` to produce ``activity.md``.
-    """
-
-    def _action_callback(
-            memory_step: ActionStep, agent=None, **kwargs,
-    ):
-        activity_logger.record_action_step(memory_step, agent)
-
-    def _planning_callback(
-            memory_step: PlanningStep, agent=None, **kwargs,
-    ):
-        activity_logger.record_planning_step(memory_step, agent)
-
-    return {
-        ActionStep: _action_callback,
-        PlanningStep: _planning_callback,
-    }

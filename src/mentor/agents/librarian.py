@@ -2,17 +2,17 @@
 Librarian agent — search and candidate retrieval.
 
 Exposes protocol helpers plus search tools selected by ``SEARCH_SOURCES`` in
-``mentor.config``: local dataset search, BIP MCP, and/or PubMed MCP. The
+``mentor.tools.search.settings``: local dataset search, BIP MCP, and/or PubMed MCP. The
 librarian should publish the final candidate list with ``set_librarian_candidates``
 so downstream getters and the gatekeeper see a consistent study store.
 """
 
 from smolagents import CodeAgent
 
-from mentor.config import (
+from mentor.settings import EXECUTOR_TIMEOUT_SECONDS
+from mentor.tools.search.settings import (
     BIP_MCP_AUTH_TOKEN,
     BIP_MCP_URL,
-    EXECUTOR_TIMEOUT_SECONDS,
     PUBMED_MCP_URL,
     SEARCH_SOURCES,
 )

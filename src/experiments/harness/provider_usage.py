@@ -71,7 +71,7 @@ def attach_usage_collector(step_callbacks: dict, collector: ProviderUsageCollect
     """Return a copy of *step_callbacks* with the collector added for ActionStep.
 
     ``step_callbacks`` is expected to be the dict shape produced by
-    ``mentor.logging_utils.make_step_callbacks`` (one callback per step
+    ``mentor.logging.make_step_callbacks`` (one callback per step
     class). Multiple callbacks per step class is a case smolagents already
     supports (``CodeAgent._setup_step_callbacks`` normalizes a dict value
     into a list), so this just appends rather than replacing.

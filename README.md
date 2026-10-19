@@ -146,10 +146,11 @@ loop CLIs, outputs, helpers, Streamlit, and plots are documented in
 ```
 src/mentor/
 ├── cli.py                   # Production CLI (console script: mentor)
-├── config.py                # Paths, MENTOR_* env, dataset roots
-├── dataset/                 # Review models + pluggable source loaders
+├── settings.py              # Paths, timeouts, shared MENTOR_* env defaults
+├── logging/                 # workflow.log dual-write + activity.md audit trail
+├── dataset/                 # Review models + Cochrane schema + loaders
 │   └── loaders/             # e.g. cochrane_csv.py (+ more sources later)
-├── runtime/                 # RunSession + profiles.json
+├── runtime/                 # RunSession, model factory, profiles.json
 ├── agents/                  # Librarian, Gatekeeper, Miner, Critic, Orchestrator
 │   └── prompts/             # Production agent instruction .md files
 ├── tools/                   # Search, screening, extraction, synthesis, report tools
@@ -547,7 +548,14 @@ Options:
 
 ## Configuration Reference
 
-All configuration lives in [`src/mentor/config.py`](src/mentor/config.py). Key settings:
+Settings are split by domain:
+
+- [`src/mentor/settings.py`](src/mentor/settings.py) — paths, timeouts, shared env defaults
+- [`src/mentor/runtime/models.py`](src/mentor/runtime/models.py) — `create_model` / resolve helpers
+- [`src/mentor/dataset/cochrane.py`](src/mentor/dataset/cochrane.py) — Cochrane CSV paths and labels
+- [`src/mentor/tools/search/settings.py`](src/mentor/tools/search/settings.py) — search sources / MCP
+
+Key env settings:
 
 | Setting | Source | Default | Description |
 |---------|--------|---------|-------------|

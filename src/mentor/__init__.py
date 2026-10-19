@@ -13,6 +13,6 @@ Agent roles:
 - **Critic** — synthesis and quality assessment
 - **Orchestrator** — coordinates the full pipeline via `managed_agents`
 
-Shared configuration is in `mentor.config`; run logging and session setup are
-in `mentor.logging_utils` and `mentor.runtime.session`.
+Shared settings are in `mentor.settings`; model factory in `mentor.runtime.models`;
+run logging and session setup in `mentor.logging` and `mentor.runtime.session`.
 """

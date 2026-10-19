@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from typing import Iterable
 
-from mentor.config import (
+from mentor.dataset.cochrane import (
     LABEL_EXCLUDED_FULLTEXT,
     LABEL_EXCLUDED_SCREENING,
     LABEL_INCLUDED,

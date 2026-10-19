@@ -54,7 +54,7 @@ from experiments.harness.runner import (
 )
 from experiments.harness.telemetry import collect_activity_telemetry
 from experiments.harness.totals import register_canonical_sources_from_experiment
-from mentor.config import OUTPUT_DIR
+from mentor.settings import OUTPUT_DIR
 from mentor.dataset import load_review
 from mentor.errors import ContextOverflowError
 from mentor.runtime.session import prepare_run_session

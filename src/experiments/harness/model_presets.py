@@ -17,7 +17,7 @@ from pathlib import Path
 
 from smolagents import LiteLLMModel, OpenAIServerModel, TransformersModel
 
-from mentor.config import MODEL_REQUEST_TIMEOUT_SECONDS
+from mentor.settings import MODEL_REQUEST_TIMEOUT_SECONDS
 
 
 _CONFIG_DIR = Path(__file__).resolve().parents[1] / "config"

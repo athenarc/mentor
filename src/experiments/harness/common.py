@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from mentor.config import PROJECT_ROOT
+from mentor.settings import PROJECT_ROOT
 
 POLICY_DIR_NAMES = {
     "include_label_0_5": "include_policy",

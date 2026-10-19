@@ -11,7 +11,7 @@ from smolagents import CodeAgent
 
 from mentor.agents.gatekeeper import create_gatekeeper_agent
 from mentor.agents.wrappers import GATEKEEPER_BATCH_TASK, wrap_gatekeeper
-from mentor.config import EXECUTOR_TIMEOUT_SECONDS
+from mentor.settings import EXECUTOR_TIMEOUT_SECONDS
 from mentor.errors import with_error_abort_callback
 from mentor.tools.screening_benchmark_tools import (
     format_screening_summary,

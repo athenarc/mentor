@@ -1,26 +1,24 @@
 """Tests for runtime model profile resolution and API key wiring."""
 
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-import mentor.model_profiles as model_profiles
-from mentor.config import resolve_api_key
-from mentor.model_profiles import resolve_runtime_model_profile
+import mentor.runtime.profile_resolver as profile_resolver
+from mentor.runtime.profile_resolver import resolve_runtime_model_profile
 
 
 class RuntimeModelProfilesTest(unittest.TestCase):
     def tearDown(self) -> None:
-        model_profiles._get_config_path.cache_clear()
-        model_profiles._load_model_profile_config.cache_clear()
-        model_profiles._build_profile_registry.cache_clear()
+        profile_resolver._profile_registry.cache_clear()
 
     def _write_profile_config(self, payload: dict) -> str:
         temp_dir = tempfile.TemporaryDirectory()
         self.addCleanup(temp_dir.cleanup)
-        config_path = Path(temp_dir.name) / "model_profiles.json"
+        config_path = Path(temp_dir.name) / "profiles.json"
         config_path.write_text(json.dumps(payload), encoding="utf-8")
         return str(config_path)
 
@@ -60,7 +58,7 @@ class RuntimeModelProfilesTest(unittest.TestCase):
             profile = resolve_runtime_model_profile("shared_openrouter", strict=True)
 
         assert profile is not None
-        self.assertEqual(set(profile.models), set(model_profiles.MODEL_ROLES))
+        self.assertEqual(set(profile.models), set(profile_resolver.MODEL_ROLES))
         self.assertEqual(profile.models["gatekeeper"].model_id, "openai/gpt-5")
         self.assertEqual(
             profile.models["critic"].request_kwargs,
@@ -116,17 +114,45 @@ class RuntimeModelProfilesTest(unittest.TestCase):
         )
 
 
-class ConfigResolutionTest(unittest.TestCase):
-    def test_mentor_api_key_takes_precedence(self):
+class RelativeConfigPathTest(unittest.TestCase):
+    def tearDown(self) -> None:
+        profile_resolver._profile_registry.cache_clear()
+
+    def test_relative_mentor_model_profiles_config_resolves(self):
+        temp_dir = tempfile.TemporaryDirectory()
+        self.addCleanup(temp_dir.cleanup)
+        config_path = Path(temp_dir.name) / "profiles.json"
+        config_path.write_text(
+            json.dumps(
+                {
+                    "profiles": [
+                        {
+                            "key": "rel_profile",
+                            "agents": {
+                                "shared": {
+                                    "backend": "openai",
+                                    "model_id": "gpt-test",
+                                    "requires_api_key": False,
+                                }
+                            },
+                        }
+                    ]
+                }
+            ),
+            encoding="utf-8",
+        )
+        # Path relative to runtime/ (where profiles.json lives).
+        rel = os.path.relpath(config_path, profile_resolver._DEFAULT_CONFIG_PATH.parent)
+
         with patch.dict(
             "os.environ",
-            {
-                "MENTOR_API_KEY": "generic-key",
-                "OPENAI_API_KEY": "legacy-openai-key",
-            },
+            {"MENTOR_MODEL_PROFILES_CONFIG": rel},
             clear=False,
         ):
-            self.assertEqual(resolve_api_key(), "generic-key")
+            profile = resolve_runtime_model_profile("rel_profile", strict=True)
+
+        assert profile is not None
+        self.assertEqual(profile.models["gatekeeper"].model_id, "gpt-test")
 
 
 if __name__ == "__main__":

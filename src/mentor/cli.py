@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 
 from mentor.agents.orchestrator import create_orchestrator_agent
-from mentor.config import resolve_api_base
+from mentor.runtime.models import resolve_api_base
 from mentor.dataset import list_reviews
 from mentor.runtime.session import prepare_run_session
 

@@ -9,7 +9,7 @@ different model per role; otherwise one shared model is reused.
 
 from smolagents import CodeAgent, Model
 
-from mentor.config import EXECUTOR_TIMEOUT_SECONDS
+from mentor.settings import EXECUTOR_TIMEOUT_SECONDS
 from mentor.agents.librarian import create_librarian_agent
 from mentor.agents.gatekeeper import create_gatekeeper_agent
 from mentor.agents.miner import create_miner_agent

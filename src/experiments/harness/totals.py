@@ -12,7 +12,7 @@ from pathlib import Path
 from statistics import fmean
 from typing import Iterable
 
-from mentor.config import OUTPUT_DIR, PROJECT_ROOT
+from mentor.settings import OUTPUT_DIR, PROJECT_ROOT
 from experiments.harness.common import (
     policy_dir_name as _policy_dir_name,
     rewrite_legacy_benchmark_path,

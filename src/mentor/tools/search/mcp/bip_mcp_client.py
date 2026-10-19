@@ -2,7 +2,7 @@
 BIP MCP client — remote ``paper_search`` exposed as a smolagents tool.
 
 Connects over Streamable HTTP (see ``SEARCH_BIP_MCP_URL`` / token in
-``mentor.config``), maps responses through ``mentor.tools.search.models``, and
+``mentor.tools.search.settings``), maps responses through ``mentor.tools.search.models``, and
 returns the same ``{"meta", "rows"}`` dict shape as ``search_studies``.
 """
 

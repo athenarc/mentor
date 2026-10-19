@@ -1,7 +1,7 @@
 """
 Load Cochrane systematic-review rows from bundled CSV splits.
 
-Each split file (see ``mentor.config.DATASET_FILES``) contains one row per
+Each split file (see ``mentor.dataset.cochrane.DATASET_FILES``) contains one row per
 candidate study; rows sharing a ``Review_URL`` form one ``SystematicReview``.
 Ground-truth ``label`` values support benchmark scoring but are not passed to
 agents during screening runs.
@@ -14,7 +14,7 @@ from typing import List, Optional
 
 import pandas as pd
 
-from mentor.config import DATASET_COLUMNS, DATASET_FILES, LABEL_INCLUDED
+from mentor.dataset.cochrane import DATASET_COLUMNS, DATASET_FILES, LABEL_INCLUDED
 from mentor.dataset.models import Study, SystematicReview
 
 logger = logging.getLogger(__name__)
