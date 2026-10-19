@@ -70,13 +70,13 @@ The benchmark execution path is:
 The batch benchmark remains available through:
 
 ```bash
-uv run python -m experiments.screening
+uv run experiments screening
 ```
 
 The looped benchmark is a separate architecture available through:
 
 ```bash
-uv run python -m experiments.screening_loop
+uv run experiments screening-loop
 ```
 
 The looped path uses the same review suites, model presets, scoring policies,
@@ -107,7 +107,7 @@ For multi-model loop runs, the suffix is bounded as `modelsN`, for example
 To run only one review from a suite, pass the review key with `--reviews`:
 
 ```bash
-uv run python -m experiments.screening_loop \
+uv run experiments screening-loop \
   --suite screening_ladder \
   --reviews heart_failure_mhealth_200 \
   --model-presets deepseek_v4_pro \
@@ -123,7 +123,7 @@ To replace a failed review inside an existing loop experiment, use
 `--rerun-in-experiment` with `--reviews`:
 
 ```bash
-uv run python -m experiments.screening_loop \
+uv run experiments screening-loop \
   --rerun-in-experiment data/output/screening_benchmarks/20260610_023357_screening_ladder_loop_deepseek_v4_pro \
   --reviews heart_failure_mhealth_200 \
   --skip-policy-notebook-execution \
@@ -133,7 +133,7 @@ uv run python -m experiments.screening_loop \
 Batch experiments use the same in-place rerun shape:
 
 ```bash
-uv run python -m experiments.screening \
+uv run experiments screening \
   --rerun-in-experiment data/output/screening_benchmarks/<timestamp>_<suite> \
   --reviews adhesive_capsulitis_50 \
   --skip-policy-notebook-execution \
@@ -162,7 +162,7 @@ For copyable run commands, see `mentor/benchmarking/CHUNKED_LOOP_RUNS.md`.
 The loop CLI also supports a bounded mini-batch mode:
 
 ```bash
-uv run python -m experiments.screening_loop \
+uv run experiments screening-loop \
   --suite screening_ladder \
   --model-presets deepseek_v4_pro \
   --orchestrator-policy fixed \
@@ -348,8 +348,8 @@ The suite definitions live in
 Useful discovery commands:
 
 ```bash
-PYTHONPATH=. uv run python -m experiments.screening --list-suites
-PYTHONPATH=. uv run python -m experiments.screening --list-reviews
+uv run experiments screening --list-suites
+uv run experiments screening --list-reviews
 ```
 
 ## Model Presets
@@ -379,7 +379,7 @@ The persisted benchmark artifacts store both:
 Useful command:
 
 ```bash
-PYTHONPATH=. uv run python -m experiments.screening --list-model-presets
+uv run experiments screening --list-model-presets
 ```
 
 ## Environment Variables
@@ -427,7 +427,7 @@ MENTOR_API_BASE=http://localhost:11434/v1
 Main command:
 
 ```bash
-PYTHONPATH=. uv run python -m experiments.screening [OPTIONS]
+uv run experiments screening [OPTIONS]
 ```
 
 Important options:
@@ -451,7 +451,7 @@ Common examples:
 
 ```bash
 # GPT-5 smoke test on the 10-study review
-PYTHONPATH=. uv run python -m experiments.screening \
+uv run experiments screening \
   --model-presets openai_gpt5 \
   --orchestrator-policy fixed \
   --orchestrator-model openai_gpt5 \
@@ -459,13 +459,13 @@ PYTHONPATH=. uv run python -m experiments.screening \
   --canonical auto
 
 # Run every model in the default screening ladder, 5 times each
-PYTHONPATH=. uv run python -m experiments.screening \
+uv run experiments screening \
   --repeats 5 \
   --canonical none
 
 # Run GPT-5 on the dev-only ladder that stays better balanced under
 # exclude_label_0_5
-PYTHONPATH=. uv run python -m experiments.screening \
+uv run experiments screening \
   --suite screening_ladder_dev_exclude_balanced \
   --model-presets openai_gpt5 \
   --orchestrator-policy fixed \
@@ -474,7 +474,7 @@ PYTHONPATH=. uv run python -m experiments.screening \
   --canonical none
 
 # Run GPT-5 on the dev-only ladder with no 0.5 labels anywhere in the suite
-PYTHONPATH=. uv run python -m experiments.screening \
+uv run experiments screening \
   --suite screening_ladder_dev_no_label_0_5 \
   --model-presets openai_gpt5 \
   --orchestrator-policy fixed \
@@ -483,21 +483,21 @@ PYTHONPATH=. uv run python -m experiments.screening \
   --canonical none
 
 # Match the thin orchestrator model to the Gatekeeper model
-PYTHONPATH=. uv run python -m experiments.screening \
+uv run experiments screening \
   --model-presets openai_gpt5 deepseek_v4_pro \
   --orchestrator-policy match-gatekeeper \
   --repeats 5 \
   --canonical none
 
 # Restrict to a subset of reviews for a quicker sweep
-PYTHONPATH=. uv run python -m experiments.screening \
+uv run experiments screening \
   --reviews stroke_theophylline_10 alopecia_areata_25 \
   --model-presets openai_gpt5 \
   --repeats 5 \
   --canonical none
 
 # Write both policy views from the same raw screening runs
-PYTHONPATH=. uv run python -m experiments.screening \
+uv run experiments screening \
   --model-presets openai_gpt5 \
   --repeats 5 \
   --canonical none
@@ -739,14 +739,14 @@ report because raw `.ipynb` files do not render well in a normal browser.
 You can also regenerate HTML reports manually:
 
 ```bash
-uv run python -m mentor.generate_screening_html_report \
+uv run experiments html-report \
   data/output/screening_benchmarks/20260409_000456_screening_ladder/include_policy
 ```
 
 Or point it at the parent benchmark directory to regenerate all policy reports:
 
 ```bash
-uv run python -m mentor.generate_screening_html_report \
+uv run experiments html-report \
   data/output/screening_benchmarks/20260409_000456_screening_ladder
 ```
 
@@ -846,20 +846,20 @@ data/output/screening_benchmarks/totals/<suite>/<policy>/<architecture>/
 To seed or inspect the canonical manifest without rewriting aggregate totals:
 
 ```bash
-uv run python -m mentor.recompute_screening_totals --build-canonical-only
+uv run experiments recompute-totals --build-canonical-only
 ```
 
 Totals can also be recomputed without running a benchmark. The default source
 mode is `canonical`, so it reads only `canonical_sources.json`:
 
 ```bash
-uv run python -m mentor.recompute_screening_totals
+uv run experiments recompute-totals
 ```
 
 For audits, the older discovery behavior is still available:
 
 ```bash
-uv run python -m mentor.recompute_screening_totals --source-mode discover
+uv run experiments recompute-totals --source-mode discover
 ```
 
 Each architecture-separated totals folder contains:
@@ -897,16 +897,16 @@ Recommended local validation after changing the benchmark harness:
 ```bash
 uv run python -m unittest discover -s tests -v
 uv run python -m compileall mentor tests
-uv run python -m experiments.screening --list-model-presets
-uv run python -m experiments.screening --list-reviews
-uv run python -m experiments.screening_loop --list-reviews
+uv run experiments screening --list-model-presets
+uv run experiments screening --list-reviews
+uv run experiments screening-loop --list-reviews
 ```
 
 If the runtime behavior changed, also run a smoke benchmark on the 10-study
 review with GPT-5:
 
 ```bash
-uv run python -m experiments.screening \
+uv run experiments screening \
   --model-presets openai_gpt5 \
   --orchestrator-policy fixed \
   --orchestrator-model openai_gpt5 \
@@ -928,14 +928,14 @@ Older flat benchmark directories can be restructured into the current
 policy-owned layout without rerunning any models:
 
 ```bash
-uv run python -m mentor.backfill_screening_benchmark \
+uv run experiments backfill \
   data/output/screening_benchmarks/<timestamp>_<suite>
 ```
 
 To backfill the policy folders but leave the notebooks unexecuted:
 
 ```bash
-uv run python -m mentor.backfill_screening_benchmark \
+uv run experiments backfill \
   data/output/screening_benchmarks/<timestamp>_<suite> \
   --skip-policy-notebook-execution
 ```

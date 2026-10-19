@@ -26,6 +26,7 @@ dev = ["pytest>=7,<10"]
 
 [project.scripts]
 mentor = "mentor.cli:main"
+experiments = "experiments.cli:main"
 
 [build-system]
 requires = ["setuptools>=61"]

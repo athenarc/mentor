@@ -370,7 +370,7 @@ def generate_suite(*sample_sizes: int, splits: AbstractSet[str] = None, min_stud
     _LOGGER.info(f'Appended generated suite to canonical suites JSON.')
 
 
-if __name__ == '__main__':
+def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(
         description='Auxiliary script for generating suites of reviews which can be used by the isolated gatekeeper '
                     'benchmarking pipeline.'
@@ -475,7 +475,7 @@ if __name__ == '__main__':
         help='Sorting policy descriptors in the form of <FIELD>[:(ASC|DESC)]'
     )
 
-    parsed_args = vars(parser.parse_args())
+    parsed_args = vars(parser.parse_args(argv))
 
     setup_tool_logger(_LOGGER, LOGGING_LEVEL_MAP[parsed_args.pop('logging_level')])
 
@@ -488,3 +488,7 @@ if __name__ == '__main__':
         except Exception as e:
             _LOGGER.critical(e)
             sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()

@@ -15,7 +15,7 @@ study at a time.
 Use this shape for one model on one suite:
 
 ```bash
-uv run python -m experiments.screening_loop \
+uv run experiments screening-loop \
   --suite screening_ladder_dev_no_label_0_5 \
   --model-presets deepseek_v4_pro \
   --orchestrator-policy fixed \
@@ -33,7 +33,7 @@ uv run python -m experiments.screening_loop \
 Use `--reviews` with the review key:
 
 ```bash
-uv run python -m experiments.screening_loop \
+uv run experiments screening-loop \
   --suite screening_ladder_dev_no_label_0_5 \
   --reviews review_key_here \
   --model-presets deepseek_v4_pro \
@@ -49,7 +49,7 @@ uv run python -m experiments.screening_loop \
 Use this when a previous loop/chunked experiment has one failed or stale review:
 
 ```bash
-uv run python -m experiments.screening_loop \
+uv run experiments screening-loop \
   --rerun-in-experiment data/output/screening_benchmarks/<experiment_dir> \
   --reviews review_key_here \
   --loop-mode chunked \
@@ -90,13 +90,13 @@ Use only one override at a time.
 List suites:
 
 ```bash
-uv run python -m experiments.screening_loop --list-suites
+uv run experiments screening-loop --list-suites
 ```
 
 List reviews in a suite:
 
 ```bash
-uv run python -m experiments.screening_loop \
+uv run experiments screening-loop \
   --suite screening_ladder_dev_no_label_0_5 \
   --list-reviews
 ```
@@ -104,7 +104,7 @@ uv run python -m experiments.screening_loop \
 List model presets:
 
 ```bash
-uv run python -m experiments.screening_loop --list-model-presets
+uv run experiments screening-loop --list-model-presets
 ```
 
 ## Notes
