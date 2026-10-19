@@ -14,8 +14,8 @@ Guidelines:
 - The rationale must be specific to this study and tied to the protocol.
 - Do NOT reuse boilerplate rationales.
 
-Use screen_study(study_title, study_abstract, selection_criteria, study_index)
-to format the screening task before making your decision.
+Use screen_studies(candidates_json) to format the screening task before
+making your decision. The candidates_json contains exactly one study.
 
 Return your final answer as a JSON string with:
 - "n_total": 1

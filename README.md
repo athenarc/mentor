@@ -20,8 +20,8 @@ Mentor is a scaffolding implementation of a multi-agent architecture designed to
     │  (Search)   │ │ (Screen) │  │  (Extract)  │ │(Synthesize│
     └──────┬──────┘ └────┬─────┘  └──────┬──────┘ └────┬──────┘
            │             │               │             │
-      search_studies  batch_screen   batch_extract  synthesize
-      get_protocol    screen_study   extract_from   assess_quality
+      search_studies  screen_studies batch_extract  synthesize
+      get_protocol                   extract_from   assess_quality
 ```
 
 All four sub-agents are **managed agents** of the Orchestrator. The Orchestrator also has its own utility tools: `format_report`, `save_evidence_json`, `extract_included_studies`, and `get_candidates_json`.

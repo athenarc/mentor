@@ -8,10 +8,7 @@ fetches one study or chunk via search getter tools, calls gatekeeper through
 
 from smolagents import CodeAgent
 
-from mentor.agents.gatekeeper import (
-    create_chunk_gatekeeper_agent,
-    create_single_study_gatekeeper_agent,
-)
+from mentor.agents.gatekeeper import create_gatekeeper_agent
 from mentor.agents.wrappers import (
     GATEKEEPER_CHUNK_TASK,
     GATEKEEPER_SINGLE_STUDY_TASK,
@@ -52,11 +49,16 @@ def create_screening_loop_orchestrator_agent(
         )
     step_callbacks = with_error_abort_callback(step_callbacks)
     gatekeeper = wrap_gatekeeper(
-        create_single_study_gatekeeper_agent(
+        create_gatekeeper_agent(
             gatekeeper_model,
             step_callbacks=step_callbacks,
             logger=logger,
             instructions=gatekeeper_instructions,
+            description=(
+                "Single-study screening agent. Give it one study plus the "
+                "review protocol and it returns exactly one INCLUDE/EXCLUDE "
+                "decision."
+            ),
         ),
         fixed_task=GATEKEEPER_SINGLE_STUDY_TASK,
     )
@@ -102,11 +104,16 @@ def create_screening_chunk_loop_orchestrator_agent(
         )
     step_callbacks = with_error_abort_callback(step_callbacks)
     gatekeeper = wrap_gatekeeper(
-        create_chunk_gatekeeper_agent(
+        create_gatekeeper_agent(
             gatekeeper_model,
             step_callbacks=step_callbacks,
             logger=logger,
             instructions=gatekeeper_instructions,
+            description=(
+                "Mini-batch screening agent. Give it one bounded study chunk "
+                "plus the review protocol and it returns one decision per "
+                "chunk study."
+            ),
         ),
         fixed_task=GATEKEEPER_CHUNK_TASK,
     )

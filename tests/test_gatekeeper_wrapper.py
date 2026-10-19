@@ -324,10 +324,7 @@ class OrchestratorManagedAgentTests(unittest.TestCase):
 
     def test_loop_orchestrators_expose_named_gatekeeper(self):
         with patch(
-            "mentor.agents.screening_loop_orchestrator.create_single_study_gatekeeper_agent",
-            return_value=_FakeNamedGatekeeper(),
-        ), patch(
-            "mentor.agents.screening_loop_orchestrator.create_chunk_gatekeeper_agent",
+            "mentor.agents.screening_loop_orchestrator.create_gatekeeper_agent",
             return_value=_FakeNamedGatekeeper(),
         ), patch("mentor.agents.screening_loop_orchestrator.CodeAgent") as code_agent:
             from mentor.agents.screening_loop_orchestrator import (

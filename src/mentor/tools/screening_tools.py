@@ -10,50 +10,16 @@ from smolagents import tool
 
 
 @tool
-def screen_study(
-    study_title: str,
-    study_abstract: str,
-    selection_criteria: str,
-    study_index: int,
-) -> str:
+def screen_studies(candidates_json: str) -> str:
     """
-    Screen a single study against the review's selection criteria.
-    Returns a structured screening decision for one study.
+    Prepare candidate studies for screening (one study or many).
 
-    This tool packages the study information for the Gatekeeper agent
-    to make an inclusion/exclusion decision. The agent itself applies
-    the criteria using LLM reasoning.
+    Returns a formatted list of studies with the selection criteria, ready
+    for the Gatekeeper agent to make decisions on each. Pass a single study
+    in ``studies`` for one-at-a-time screening.
 
     Args:
-        study_title: Title of the candidate study.
-        study_abstract: Abstract text of the candidate study.
-        selection_criteria: The review's inclusion/exclusion criteria.
-        study_index: Numeric index of this study in the candidate list.
-
-    Returns:
-        A formatted string containing the study details and criteria
-        for the agent to evaluate.
-    """
-    return (
-        f"=== SCREENING TASK: Study {study_index} ===\n\n"
-        f"SELECTION CRITERIA:\n{selection_criteria}\n\n"
-        f"STUDY TITLE:\n{study_title}\n\n"
-        f"STUDY ABSTRACT:\n{study_abstract}\n\n"
-        f"INSTRUCTIONS: Based on the selection criteria above, decide whether "
-        f"this study should be INCLUDED or EXCLUDED. Provide a brief rationale "
-        f"tied to specific criteria.\n"
-    )
-
-
-@tool
-def batch_screen_studies(candidates_json: str) -> str:
-    """
-    Prepare all candidate studies for batch screening.
-    Returns a formatted list of all studies with the selection criteria,
-    ready for the Gatekeeper agent to make decisions on each.
-
-    Args:
-        candidates_json: JSON string with candidate studies.  Must contain
+        candidates_json: JSON string with candidate studies. Must contain
             keys 'studies' (list), 'title', and 'selection_criteria'.
 
     Returns:
@@ -66,19 +32,19 @@ def batch_screen_studies(candidates_json: str) -> str:
     studies = review.get("studies", [])
 
     lines = [
-        f"=== BATCH SCREENING TASK ===",
+        "=== SCREENING TASK ===",
         f"Review: {review.get('title', 'N/A')}",
         f"Total studies to screen: {len(studies)}",
-        f"",
-        f"SELECTION CRITERIA:",
+        "",
+        "SELECTION CRITERIA:",
         f"{criteria}",
-        f"",
-        f"INSTRUCTIONS: For each study below, decide INCLUDE or EXCLUDE.",
-        f"Return exactly one decision object per study; do not omit excluded studies, "
-        f"do not summarize exclusions in bulk, and do not return only included studies.",
-        f"Return a JSON list with objects having keys: "
-        f"'study_index', 'decision' (INCLUDE/EXCLUDE), 'rationale'.",
-        f"",
+        "",
+        "INSTRUCTIONS: For each study below, decide INCLUDE or EXCLUDE.",
+        "Return exactly one decision object per study; do not omit excluded studies, "
+        "do not summarize exclusions in bulk, and do not return only included studies.",
+        "Return a JSON list with objects having keys: "
+        "'study_index', 'decision' (INCLUDE/EXCLUDE), 'rationale'.",
+        "",
     ]
 
     for i, study in enumerate(studies):

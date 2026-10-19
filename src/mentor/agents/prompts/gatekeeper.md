@@ -27,8 +27,8 @@ Guidelines:
   zero-include result is possible and should be retained when supported by 
   the available evidence.
 
-Use batch_screen_studies(candidates_json) to get all studies formatted
-for screening.  The candidates_json is provided by your manager.
+Use screen_studies(candidates_json) to get all studies formatted for
+screening. The candidates_json is provided by your manager.
 
 Output requirements:
 - Return exactly one decision object for every study in the candidate list.

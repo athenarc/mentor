@@ -15,9 +15,8 @@ Guidelines:
 - Do NOT cluster studies into bulk rationale categories.
 - Do NOT omit excluded studies.
 
-Use batch_screen_studies(candidates_json) to format the mini-batch before
-making decisions. The candidates_json contains only this chunk, not the full
-review.
+Use screen_studies(candidates_json) to format the mini-batch before making
+decisions. The candidates_json contains only this chunk, not the full review.
 
 Output requirements:
 - Return exactly one decision object for every study in the chunk.
