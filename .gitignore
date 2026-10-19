@@ -21,16 +21,17 @@ env/
 .vscode/
 .idea/
 
+# Runtime artifacts
+data/output/
+
+# Build
+dist/
+*.egg-info/
+.eggs/
+
 # project-specific
-# architecture_docs/
-# vaccine_indicators_demo/
 resources/docs/
-systematic_review_dataset/2024*
-# bastirr/output/*
-# !bastirr/output/.gitkeep
-bastirr/output/_archive/
-bastirr/output/*/_archive/
-bastirr/output/screening_benchmarks
+data/input/systematic_review_dataset/2024*
 /COMPLETED*
 AGENTS.md
 run*.sh

@@ -1,3 +1,5 @@
+"""Tests for bulk screening benchmark runner, backfill, and summary aggregation."""
+
 import json
 import tempfile
 import unittest
@@ -5,15 +7,15 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from bastirr.benchmarking.backfill import (
+from experiments.harness.backfill import (
     _restore_missing_policy_trace_files,
     _snapshot_policy_trace_files,
     backfill_policy_views,
     _load_checkpoint_raw_runs,
 )
-from bastirr.benchmarking.model_presets import ResolvedModelPreset
-from bastirr.benchmarking.review_suites import ScreeningBenchmarkReview
-from bastirr.benchmarking.runner import (
+from experiments.harness.model_presets import ResolvedModelPreset
+from experiments.harness.review_suites import ScreeningBenchmarkReview
+from experiments.harness.runner import (
     _aggregate_runs,
     _link_or_copy,
     _write_summary_csv,
@@ -124,38 +126,38 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                 }
 
             with patch(
-                "bastirr.benchmarking.runner._experiment_root",
+                "experiments.harness.runner._experiment_root",
                 return_value=experiment_dir,
             ), patch(
-                "bastirr.benchmarking.runner.resolve_review_selection",
+                "experiments.harness.runner.resolve_review_selection",
                 return_value=[review_case],
             ), patch(
-                "bastirr.benchmarking.runner.resolve_model_presets",
+                "experiments.harness.runner.resolve_model_presets",
                 return_value=[gatekeeper_model],
             ), patch(
-                "bastirr.benchmarking.runner.get_model_preset",
+                "experiments.harness.runner.get_model_preset",
                 return_value=_ResolvedPresetWrapper(orchestrator_model),
             ), patch(
-                "bastirr.benchmarking.runner.run_screening_review",
+                "experiments.harness.runner.run_screening_review",
                 return_value=synthetic_raw_run,
             ), patch(
-                "bastirr.benchmarking.runner._materialize_policy_outputs",
+                "experiments.harness.runner._materialize_policy_outputs",
                 side_effect=_fake_materialize_policy_outputs,
             ), patch(
-                "bastirr.benchmarking.runner.write_policy_eda_notebook",
+                "experiments.harness.runner.write_policy_eda_notebook",
                 return_value={
                     "notebook_path": "screening_results_analysis.ipynb",
                     "executed": False,
                     "execution_error": "",
                 },
             ), patch(
-                "bastirr.benchmarking.runner.write_policy_html_report",
+                "experiments.harness.runner.write_policy_html_report",
                 return_value={
                     "report_path": "screening_results_summary.html",
                     "title": "Title and Abstract Screening Benchmark Summary",
                 },
             ), patch(
-                "bastirr.benchmarking.runner.write_policy_comparison_report",
+                "experiments.harness.runner.write_policy_comparison_report",
                 return_value={
                     "report_path": str(experiment_dir / "screening_policy_comparison.html"),
                     "title": "Screening Benchmark Policy Comparison",
@@ -327,10 +329,10 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                 return [review for review in reviews if review.key in selected]
 
             with patch(
-                "bastirr.benchmarking.runner.resolve_review_selection",
+                "experiments.harness.runner.resolve_review_selection",
                 side_effect=_fake_resolve_review_selection,
             ), patch(
-                "bastirr.benchmarking.runner.load_review",
+                "experiments.harness.runner.load_review",
                 return_value=SimpleNamespace(
                     title="Synthetic review",
                     review_url="https://example.test/review",
@@ -338,22 +340,22 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                     studies=[],
                 ),
             ), patch(
-                "bastirr.benchmarking.runner.get_model_preset",
+                "experiments.harness.runner.get_model_preset",
                 return_value=_ResolvedPresetWrapper(model),
             ), patch(
-                "bastirr.benchmarking.runner.run_screening_review",
+                "experiments.harness.runner.run_screening_review",
                 side_effect=_fake_run_screening_review,
             ), patch(
-                "bastirr.benchmarking.runner._checkpoint_policy_outputs",
+                "experiments.harness.runner._checkpoint_policy_outputs",
                 side_effect=_fake_checkpoint_policy_outputs,
             ), patch(
-                "bastirr.benchmarking.runner.write_policy_eda_notebook",
+                "experiments.harness.runner.write_policy_eda_notebook",
                 return_value={"notebook_path": "", "executed": False, "execution_error": ""},
             ), patch(
-                "bastirr.benchmarking.runner.write_policy_html_report",
+                "experiments.harness.runner.write_policy_html_report",
                 return_value={"report_path": "", "title": ""},
             ), patch(
-                "bastirr.benchmarking.runner.write_policy_comparison_report",
+                "experiments.harness.runner.write_policy_comparison_report",
                 return_value={
                     "report_path": str(experiment_dir / "screening_policy_comparison.html"),
                     "title": "Screening Benchmark Policy Comparison",
@@ -531,32 +533,32 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                 return policy_dir, {"gold_label_policy": label_policy}
 
             with patch(
-                "bastirr.benchmarking.backfill.resolve_review_selection",
+                "experiments.harness.backfill.resolve_review_selection",
                 return_value=[review_case],
             ), patch(
-                "bastirr.benchmarking.backfill.load_review",
+                "experiments.harness.backfill.load_review",
                 return_value=SimpleNamespace(title=review_case.title, review_url=review_case.review_url),
             ), patch(
-                "bastirr.benchmarking.backfill.get_model_preset",
+                "experiments.harness.backfill.get_model_preset",
                 return_value=_ResolvedPresetWrapper(gatekeeper_model),
             ), patch(
-                "bastirr.benchmarking.backfill._materialize_policy_outputs",
+                "experiments.harness.backfill._materialize_policy_outputs",
                 side_effect=_fake_materialize_policy_outputs,
             ), patch(
-                "bastirr.benchmarking.backfill.write_policy_eda_notebook",
+                "experiments.harness.backfill.write_policy_eda_notebook",
                 return_value={
                     "notebook_path": str(experiment_dir / "include_policy" / "screening_results_analysis.ipynb"),
                     "executed": False,
                     "execution_error": "",
                 },
             ), patch(
-                "bastirr.benchmarking.backfill.write_policy_html_report",
+                "experiments.harness.backfill.write_policy_html_report",
                 return_value={
                     "report_path": str(experiment_dir / "include_policy" / "screening_results_summary.html"),
                     "title": "Title and Abstract Screening Benchmark Summary",
                 },
             ), patch(
-                "bastirr.benchmarking.backfill.write_policy_comparison_report",
+                "experiments.harness.backfill.write_policy_comparison_report",
                 return_value={
                     "report_path": str(experiment_dir / "screening_policy_comparison.html"),
                     "title": "Screening Benchmark Policy Comparison",
@@ -673,10 +675,10 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
             }), encoding="utf-8")
 
             with patch(
-                "bastirr.benchmarking.backfill.resolve_review_selection",
+                "experiments.harness.backfill.resolve_review_selection",
                 return_value=[review_case],
             ), patch(
-                "bastirr.benchmarking.backfill.load_review",
+                "experiments.harness.backfill.load_review",
                 return_value=SimpleNamespace(
                     title=review_case.title,
                     review_url=review_case.review_url,
@@ -687,23 +689,23 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                     ],
                 ),
             ), patch(
-                "bastirr.benchmarking.backfill.get_model_preset",
+                "experiments.harness.backfill.get_model_preset",
                 return_value=_ResolvedPresetWrapper(gatekeeper_model),
             ), patch(
-                "bastirr.benchmarking.backfill.write_policy_eda_notebook",
+                "experiments.harness.backfill.write_policy_eda_notebook",
                 return_value={
                     "notebook_path": str(experiment_dir / "include_policy" / "screening_results_analysis.ipynb"),
                     "executed": False,
                     "execution_error": "",
                 },
             ), patch(
-                "bastirr.benchmarking.backfill.write_policy_html_report",
+                "experiments.harness.backfill.write_policy_html_report",
                 return_value={
                     "report_path": str(experiment_dir / "include_policy" / "screening_results_summary.html"),
                     "title": "Title and Abstract Screening Benchmark Summary",
                 },
             ), patch(
-                "bastirr.benchmarking.backfill.write_policy_comparison_report",
+                "experiments.harness.backfill.write_policy_comparison_report",
                 return_value={
                     "report_path": str(experiment_dir / "screening_policy_comparison.html"),
                     "title": "Screening Benchmark Policy Comparison",
@@ -785,10 +787,10 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
             }
 
             with patch(
-                "bastirr.benchmarking.backfill.resolve_review_selection",
+                "experiments.harness.backfill.resolve_review_selection",
                 return_value=[review_case],
             ), patch(
-                "bastirr.benchmarking.backfill.load_review",
+                "experiments.harness.backfill.load_review",
                 return_value=SimpleNamespace(
                     title=review_case.title,
                     review_url=review_case.review_url,
@@ -799,7 +801,7 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                     ],
                 ),
             ), patch(
-                "bastirr.benchmarking.backfill.get_model_preset",
+                "experiments.harness.backfill.get_model_preset",
                 return_value=_ResolvedPresetWrapper(model),
             ):
                 raw_runs = _load_checkpoint_raw_runs(

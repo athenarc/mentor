@@ -1,11 +1,13 @@
+"""Tests for gold-label policy mapping and screening metric computation."""
+
 import unittest
 
-from bastirr.benchmarking.metrics import (
+from experiments.harness.metrics import (
     compute_screening_metrics,
     describe_screening_label_policy,
     gold_label_to_screening_decision,
 )
-from bastirr.data import Study, SystematicReview
+from mentor.dataset import Study, SystematicReview
 
 
 class ScreeningBenchmarkMetricsTests(unittest.TestCase):

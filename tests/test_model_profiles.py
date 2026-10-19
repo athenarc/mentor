@@ -1,12 +1,14 @@
+"""Tests for runtime model profile resolution and API key wiring."""
+
 import json
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-import bastirr.model_profiles as model_profiles
-from bastirr.config import resolve_api_key
-from bastirr.model_profiles import resolve_runtime_model_profile
+import mentor.model_profiles as model_profiles
+from mentor.config import resolve_api_key
+from mentor.model_profiles import resolve_runtime_model_profile
 
 
 class RuntimeModelProfilesTest(unittest.TestCase):
@@ -33,7 +35,7 @@ class RuntimeModelProfilesTest(unittest.TestCase):
                                 "backend": "openai",
                                 "model_id": "openai/gpt-5",
                                 "api_base": "https://openrouter.ai/api/v1",
-                                "api_key_env_vars": ["BASTIRR_API_KEY"],
+                                "api_key_env_vars": ["MENTOR_API_KEY"],
                                 "requires_api_key": True,
                                 "request_kwargs": {
                                     "extra_body": {
@@ -50,8 +52,8 @@ class RuntimeModelProfilesTest(unittest.TestCase):
         with patch.dict(
             "os.environ",
             {
-                "BASTIRR_MODEL_PROFILES_CONFIG": config_path,
-                "BASTIRR_API_KEY": "test-key",
+                "MENTOR_MODEL_PROFILES_CONFIG": config_path,
+                "MENTOR_API_KEY": "test-key",
             },
             clear=False,
         ):
@@ -75,13 +77,13 @@ class RuntimeModelProfilesTest(unittest.TestCase):
                             "shared": {
                                 "backend": "openai",
                                 "model_id": "openai/gpt-5",
-                                "api_key_env_vars": ["BASTIRR_API_KEY"],
+                                "api_key_env_vars": ["MENTOR_API_KEY"],
                                 "requires_api_key": True,
                             },
                             "gatekeeper": {
                                 "backend": "openai",
                                 "model_id": "deepseek/deepseek-v4-pro",
-                                "api_key_env_vars": ["BASTIRR_API_KEY"],
+                                "api_key_env_vars": ["MENTOR_API_KEY"],
                                 "requires_api_key": True,
                                 "request_kwargs": {
                                     "extra_body": {
@@ -98,8 +100,8 @@ class RuntimeModelProfilesTest(unittest.TestCase):
         with patch.dict(
             "os.environ",
             {
-                "BASTIRR_MODEL_PROFILES_CONFIG": config_path,
-                "BASTIRR_API_KEY": "test-key",
+                "MENTOR_MODEL_PROFILES_CONFIG": config_path,
+                "MENTOR_API_KEY": "test-key",
             },
             clear=False,
         ):
@@ -115,11 +117,11 @@ class RuntimeModelProfilesTest(unittest.TestCase):
 
 
 class ConfigResolutionTest(unittest.TestCase):
-    def test_bastirr_api_key_takes_precedence(self):
+    def test_mentor_api_key_takes_precedence(self):
         with patch.dict(
             "os.environ",
             {
-                "BASTIRR_API_KEY": "generic-key",
+                "MENTOR_API_KEY": "generic-key",
                 "OPENAI_API_KEY": "legacy-openai-key",
             },
             clear=False,

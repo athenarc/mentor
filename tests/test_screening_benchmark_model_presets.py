@@ -1,9 +1,11 @@
+"""Tests for benchmark harness model preset resolution."""
+
 import unittest
 from unittest.mock import patch
 
-import bastirr.benchmarking.model_presets as model_presets
-from bastirr.config import MODEL_REQUEST_TIMEOUT_SECONDS
-from bastirr.benchmarking.model_presets import ResolvedModelPreset, get_model_preset
+import experiments.harness.model_presets as model_presets
+from mentor.config import MODEL_REQUEST_TIMEOUT_SECONDS
+from experiments.harness.model_presets import ResolvedModelPreset, get_model_preset
 
 
 class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
@@ -104,7 +106,7 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
             api_key_source="TEST_KEY",
         )
 
-        with patch("bastirr.benchmarking.model_presets.OpenAIServerModel") as model_cls:
+        with patch("experiments.harness.model_presets.OpenAIServerModel") as model_cls:
             preset.create_model()
 
         kwargs = model_cls.call_args.kwargs
@@ -122,7 +124,7 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
             api_key_source="TEST_KEY",
         )
 
-        with patch("bastirr.benchmarking.model_presets.LiteLLMModel") as model_cls:
+        with patch("experiments.harness.model_presets.LiteLLMModel") as model_cls:
             preset.create_model()
 
         kwargs = model_cls.call_args.kwargs

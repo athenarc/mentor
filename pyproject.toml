@@ -1,0 +1,50 @@
+[project]
+name = "mentor"
+version = "0.1.0"
+description = "Multi-agent systematic review assistant"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "smolagents>=1.26,<2",
+  "openai>=2.0,<3",
+  "pandas>=2.2,<4",
+  "python-dotenv>=1.0,<2",
+  "pygments>=2.16,<3",
+  "mcp[cli]>=1.0,<3",
+  "httpx-sse>=0.4,<1",
+]
+
+[project.optional-dependencies]
+# Screening dashboards, Plotly charts, and matplotlib leaderboard plots.
+experiments = [
+  "streamlit==1.58.0",
+  "plotly==6.8.0",
+  "matplotlib>=3.8,<4",
+]
+litellm = ["litellm>=1.40,<2"]
+dev = ["pytest>=7,<10"]
+
+[project.scripts]
+mentor = "mentor.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["mentor*", "experiments*"]
+
+[tool.setuptools.package-data]
+"mentor" = [
+  "agents/prompts/*.md",
+  "runtime/*.json",
+]
+"experiments" = [
+  "prompts/*.md",
+  "config/*.json",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

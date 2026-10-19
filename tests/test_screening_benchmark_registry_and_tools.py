@@ -1,10 +1,12 @@
+"""Tests for review suite registry and screening evidence export tools."""
+
 import json
 import os
 import tempfile
 import unittest
 
-from bastirr.benchmarking.review_suites import get_review_suite, resolve_review_selection
-from bastirr.tools.screening_benchmark_tools import save_screening_evidence_json
+from experiments.harness.review_suites import get_review_suite, resolve_review_selection
+from mentor.tools.screening_benchmark_tools import save_screening_evidence_json
 
 
 class ScreeningBenchmarkRegistryAndToolsTests(unittest.TestCase):

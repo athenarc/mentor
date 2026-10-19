@@ -10,18 +10,18 @@ from unittest.mock import MagicMock, patch
 
 from smolagents import ActionStep
 
-from bastirr.agents.wrappers import (
+from mentor.agents.wrappers import (
     GATEKEEPER_BATCH_TASK,
     GATEKEEPER_CHUNK_TASK,
     GATEKEEPER_PAYLOAD_KEY,
     GATEKEEPER_SINGLE_STUDY_TASK,
     wrap_gatekeeper,
 )
-from bastirr.agents.wrappers.gatekeeper import _StrictGatekeeperWrapper
-from bastirr.benchmarking.model_presets import ResolvedModelPreset
-from bastirr.benchmarking.review_suites import ScreeningBenchmarkReview
-from bastirr.data import Study, SystematicReview
-from bastirr.errors import (
+from mentor.agents.wrappers.gatekeeper import _StrictGatekeeperWrapper
+from experiments.harness.model_presets import ResolvedModelPreset
+from experiments.harness.review_suites import ScreeningBenchmarkReview
+from mentor.dataset import Study, SystematicReview
+from mentor.errors import (
     ContextOverflowError,
     ErrorClassifier,
     abort_on_classified_error,
@@ -305,14 +305,18 @@ class _FakeNamedGatekeeper:
 class OrchestratorManagedAgentTests(unittest.TestCase):
     def test_batch_orchestrator_exposes_named_gatekeeper(self):
         with patch(
-            "bastirr.agents.screening_orchestrator.create_gatekeeper_agent",
+            "mentor.agents.screening_orchestrator.create_gatekeeper_agent",
             return_value=_FakeNamedGatekeeper(),
-        ), patch("bastirr.agents.screening_orchestrator.CodeAgent") as code_agent:
-            from bastirr.agents.screening_orchestrator import (
+        ), patch("mentor.agents.screening_orchestrator.CodeAgent") as code_agent:
+            from mentor.agents.screening_orchestrator import (
                 create_screening_orchestrator_agent,
             )
 
-            create_screening_orchestrator_agent(MagicMock(), MagicMock())
+            create_screening_orchestrator_agent(
+                MagicMock(),
+                MagicMock(),
+                instructions="test screening orchestrator",
+            )
             kwargs = code_agent.call_args.kwargs
             self.assertEqual(len(kwargs["managed_agents"]), 1)
             self.assertEqual(kwargs["managed_agents"][0].name, "gatekeeper")
@@ -320,19 +324,29 @@ class OrchestratorManagedAgentTests(unittest.TestCase):
 
     def test_loop_orchestrators_expose_named_gatekeeper(self):
         with patch(
-            "bastirr.agents.screening_loop_orchestrator.create_single_study_gatekeeper_agent",
+            "mentor.agents.screening_loop_orchestrator.create_single_study_gatekeeper_agent",
             return_value=_FakeNamedGatekeeper(),
         ), patch(
-            "bastirr.agents.screening_loop_orchestrator.create_chunk_gatekeeper_agent",
+            "mentor.agents.screening_loop_orchestrator.create_chunk_gatekeeper_agent",
             return_value=_FakeNamedGatekeeper(),
-        ), patch("bastirr.agents.screening_loop_orchestrator.CodeAgent") as code_agent:
-            from bastirr.agents.screening_loop_orchestrator import (
+        ), patch("mentor.agents.screening_loop_orchestrator.CodeAgent") as code_agent:
+            from mentor.agents.screening_loop_orchestrator import (
                 create_screening_chunk_loop_orchestrator_agent,
                 create_screening_loop_orchestrator_agent,
             )
 
-            create_screening_loop_orchestrator_agent(MagicMock(), MagicMock())
-            create_screening_chunk_loop_orchestrator_agent(MagicMock(), MagicMock())
+            create_screening_loop_orchestrator_agent(
+                MagicMock(),
+                MagicMock(),
+                instructions="loop orch",
+                gatekeeper_instructions="gk single",
+            )
+            create_screening_chunk_loop_orchestrator_agent(
+                MagicMock(),
+                MagicMock(),
+                instructions="chunk orch",
+                gatekeeper_instructions="gk chunk",
+            )
             for call in code_agent.call_args_list:
                 managed = call.kwargs["managed_agents"]
                 self.assertEqual(managed[0].name, "gatekeeper")
@@ -404,18 +418,29 @@ class RunnerOverflowMappingTests(unittest.TestCase):
 
         with tempfile.TemporaryDirectory(dir=Path.cwd()) as tmpdir:
             output_root = Path(tmpdir)
+            fake_session = MagicMock()
+            fake_session.review = review
+            fake_session.run_dir = output_root / "run"
+            fake_session.run_dir.mkdir(parents=True, exist_ok=True)
+            fake_session.loggers.agent_logger = MagicMock()
+            fake_session.loggers.activity_logger = MagicMock()
+            fake_session.step_cbs = {}
             with patch(
-                "bastirr.benchmarking.runner.load_review",
+                "experiments.harness.runner.load_review",
                 return_value=review,
             ), patch(
-                "bastirr.benchmarking.runner._validate_review_case",
+                "experiments.harness.runner._validate_review_case",
             ), patch(
-                "bastirr.benchmarking.runner.load_review_data",
+                "experiments.harness.runner.prepare_run_session",
+                return_value=fake_session,
             ), patch(
-                "bastirr.benchmarking.runner.create_screening_orchestrator_agent",
+                "experiments.harness.runner.create_screening_orchestrator_agent",
                 return_value=fake_orch,
+            ), patch(
+                "experiments.harness.runner.load_exp_prompt",
+                return_value="prompt",
             ):
-                from bastirr.benchmarking.runner import run_screening_review
+                from experiments.harness.runner import run_screening_review
 
                 result = run_screening_review(
                     suite_name="test",
@@ -451,18 +476,29 @@ class RunnerOverflowMappingTests(unittest.TestCase):
 
         with tempfile.TemporaryDirectory(dir=Path.cwd()) as tmpdir:
             output_root = Path(tmpdir)
+            fake_session = MagicMock()
+            fake_session.review = review
+            fake_session.run_dir = output_root / "run"
+            fake_session.run_dir.mkdir(parents=True, exist_ok=True)
+            fake_session.loggers.agent_logger = MagicMock()
+            fake_session.loggers.activity_logger = MagicMock()
+            fake_session.step_cbs = {}
             with patch(
-                "bastirr.benchmarking.loop_runner.load_review",
+                "experiments.harness.loop_runner.load_review",
                 return_value=review,
             ), patch(
-                "bastirr.benchmarking.loop_runner._validate_review_case",
+                "experiments.harness.loop_runner._validate_review_case",
             ), patch(
-                "bastirr.benchmarking.loop_runner.load_review_data",
+                "experiments.harness.loop_runner.prepare_run_session",
+                return_value=fake_session,
             ), patch(
-                "bastirr.benchmarking.loop_runner.create_screening_loop_orchestrator_agent",
+                "experiments.harness.loop_runner.create_screening_loop_orchestrator_agent",
                 return_value=fake_orch,
+            ), patch(
+                "experiments.harness.loop_runner.load_exp_prompt",
+                return_value="prompt",
             ):
-                from bastirr.benchmarking.loop_runner import run_screening_loop_review
+                from experiments.harness.loop_runner import run_screening_loop_review
 
                 result = run_screening_loop_review(
                     suite_name="test",

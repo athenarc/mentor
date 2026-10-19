@@ -1,14 +1,16 @@
+"""Tests for screening inspection JSON/markdown artifact generation."""
+
 import json
 import tempfile
 import unittest
 from pathlib import Path
 
-from bastirr.benchmarking.inspection import (
+from experiments.harness.inspection import (
     build_screening_inspection_payload,
     write_screening_inspection_artifacts,
 )
-from bastirr.benchmarking.metrics import compute_screening_metrics
-from bastirr.data import Study, SystematicReview
+from experiments.harness.metrics import compute_screening_metrics
+from mentor.dataset import Study, SystematicReview
 
 
 class ScreeningBenchmarkInspectionTests(unittest.TestCase):

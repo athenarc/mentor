@@ -1,14 +1,16 @@
+"""Tests for screening benchmark HTML report writers."""
+
 import json
 import tempfile
 import unittest
 from pathlib import Path
 
-from bastirr.benchmarking.html_reports import (
+from experiments.harness.html_reports import (
     HTML_REPORT_FILENAME,
     write_html_reports,
     write_policy_html_report,
 )
-from bastirr.benchmarking.comparison_reports import (
+from experiments.harness.comparison_reports import (
     COMPARISON_REPORT_FILENAME,
     write_policy_comparison_report,
 )

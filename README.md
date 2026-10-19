@@ -1,6 +1,10 @@
-# Bastirr — Multi-Agent Systematic Review Assistant
+# Mentor — Multi-Agent Systematic Review Assistant
 
-Bastirr is a scaffolding implementation of a multi-agent architecture designed to automate systematic reviews. Built using the  [smolagents](https://huggingface.co/docs/smolagents/) framework, it orchestrates specialized agents to process research from the Cochrane dataset. The core agent code lives in the `bastirr/` package.
+Mentor is a scaffolding implementation of a multi-agent architecture designed to automate systematic reviews. Built using the [smolagents](https://huggingface.co/docs/smolagents/) framework, it orchestrates specialized agents to process research from the Cochrane dataset.
+
+- Production package: `src/mentor/`
+- Screening benchmarks and related CLIs: `src/experiments/`
+- Run outputs: `data/output/` (gitignored)
 
 ## Architecture
 
@@ -32,72 +36,300 @@ All four sub-agents are **managed agents** of the Orchestrator. The Orchestrator
 
 > **Key design decision:** The Orchestrator's task text contains *only* the review protocol (title, objective, background, selection criteria) — never the candidate studies. Studies are loaded into a module-level store before the pipeline starts and accessed by the Librarian's tools. This prevents the Orchestrator from pre-screening studies during its planning phase and future-proofs the architecture for real database search.
 
-## Quick Start
+## Setup
+
+Prerequisites: Python 3.10+, [uv](https://docs.astral.sh/uv/), and the Cochrane dataset checkout.
 
 ```bash
-# 1. Install dependencies (installs Bastirr agent requirements)
-pip install -r requirements.txt
+# 1. Install the package (editable) and lockfile deps
+uv sync
 
-# For LiteLLM support (Anthropic, Ollama, local models):
-pip install 'smolagents[litellm]'
+# Optional extras
+uv sync --extra experiments           # Streamlit dashboard + Plotly/matplotlib plots
+uv sync --extra litellm               # only if MENTOR_MODEL_BACKEND=litellm / --backend litellm
+uv sync --extra dev                   # pytest
+uv sync --extra experiments --extra litellm --extra dev   # everything
 
-# Optional: Install dataset analysis dependencies (for EDA notebooks)
-# pip install -r systematic_review_dataset/requirements.txt
-
-# 2. Set up API access
-#    Copy the template and add your API key
+# 2. Configure credentials
 cp .env.example .env
-#    Then edit .env and set: BASTIRR_API_KEY=...
+# Edit .env — use MENTOR_* keys (formerly BASTIRR_* / SR_AGENTS_*).
+# For OpenRouter-backed experiment presets you also need OPENROUTER_API_KEY.
 
-# 3. Ensure the dataset is downloaded
-cd systematic_review_dataset && ./download_dataset.sh && cd ..
-
-# 4. List available reviews
-python3 -m bastirr.run_demo --list-reviews --split HIV_test
-
-# 5. Run the demo (uses default HIV Cotrimoxazole review with OpenAI)
-python3 -m bastirr.run_demo
+# 3. Download the Cochrane dataset (required for workflow + experiments)
+cd data/input/systematic_review_dataset && ./download_dataset.sh && cd ../../..
 ```
+
+All commands below assume you are at the repository root. Prefer `uv run …` so the project environment is used automatically.
+
+---
+
+## Running the full workflow
+
+The production CLI runs the end-to-end 5-agent pipeline (Librarian → Gatekeeper → Miner → Critic) for a single Cochrane review.
+
+### Default demo
+
+```bash
+# List reviews in a split
+uv run mentor --list-reviews --split HIV_test
+
+# Run the default demo (HIV Cotrimoxazole review on HIV_test)
+uv run mentor
+```
+
+Equivalent module form:
+
+```bash
+uv run python -m mentor.cli
+```
+
+### Choose a review
+
+```bash
+# Pick a review URL + dataset split
+uv run mentor \
+  --split random_test \
+  --review-url "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004413.pub2/full"
+```
+
+Splits: `dev`, `val`, `random_test`, `heart_test`, `HIV_test`.
+
+### Model / backend options
+
+```bash
+# Explicit model + backend (OpenAI-compatible)
+uv run mentor --model gpt-5 --backend openai
+
+# OpenRouter-style model id + base URL
+uv run mentor \
+  --model openai/gpt-5 \
+  --backend openai \
+  --api-base https://openrouter.ai/api/v1
+
+# Named runtime profile from src/mentor/runtime/profiles.json
+uv run mentor --model-profile openrouter_gpt5
+
+# Quieter activity.md (hide nested sub-agent steps)
+uv run mentor --hide-subagent-steps
+```
+
+You can also set defaults in `.env` (`MENTOR_MODEL`, `MENTOR_MODEL_BACKEND`, `MENTOR_API_BASE`, `MENTOR_API_KEY`, `MENTOR_MODEL_PROFILE`, …). CLI flags override env for that run.
+
+### Outputs
+
+Each run writes under:
+
+```text
+data/output/<YYYYMMDD_HHMMSS>_<review-title>/
+  report.md          # final narrative report
+  evidence.json      # machine-readable screening/extraction evidence
+  activity.md        # human-readable phase summary
+  workflow.log       # full chronological agent trace
+```
+
+### Presentation HTML from a completed run
+
+```bash
+uv run python scripts/render_workflow_presentation.py \
+  --workflow "data/output/<timestamp>_<review-title>/workflow.log"
+```
+
+See [Workflow Presentation Exporter](#workflow-presentation-exporter) for annotations and extra flags.
+
+---
+
+## Running experiments
+
+Screening benchmarks live in `src/experiments/`. They evaluate Gatekeeper title/abstract screening without running Miner/Critic. Experiment-only prompts under `src/experiments/prompts/` are passed into Mentor agent factories at runtime; `mentor` never imports `experiments`.
+
+Suite and model-preset registries (edit without touching Python):
+
+- `src/experiments/config/suites.json`
+- `src/experiments/config/models.json`
+
+More harness internals: [`src/experiments/README.md`](src/experiments/README.md) and [`src/experiments/harness/README.md`](src/experiments/harness/README.md).
+
+### Credentials for presets
+
+Most presets use OpenRouter. Set in `.env`:
+
+```bash
+OPENROUTER_API_KEY=sk-or-v1-...
+OPENROUTER_API_BASE=https://openrouter.ai/api/v1
+```
+
+### Discover suites, presets, and reviews
+
+```bash
+uv run python -m experiments.screening --list-suites
+uv run python -m experiments.screening --list-model-presets
+uv run python -m experiments.screening --suite screening_ladder --list-reviews
+```
+
+Current suites include `screening_ladder`, `screening_ladder_dev_*`, `experiments_aug2026`, and `experiments_sep2026_biggest_reviews`. Presets include e.g. `openai_gpt5`, `deepseek_v4_pro`, `kimi_k2.6`, …
+
+### Batch screening benchmark
+
+One Orchestrator call screens the full candidate list (thin orchestrator + real Gatekeeper).
+
+```bash
+# Full default suite, all model presets (expensive)
+uv run python -m experiments.screening --suite screening_ladder
+
+# Recommended smoke / iterative shape: one suite × one model × one review
+uv run python -m experiments.screening \
+  --suite screening_ladder \
+  --reviews stroke_theophylline_10 \
+  --model-presets openai_gpt5 \
+  --orchestrator-policy fixed \
+  --orchestrator-model openai_gpt5 \
+  --repeats 1
+
+# Several models
+uv run python -m experiments.screening \
+  --suite screening_ladder \
+  --model-presets openai_gpt5 deepseek_v4_pro \
+  --repeats 1
+```
+
+Useful flags:
+
+| Flag | Meaning |
+|------|---------|
+| `--suite` | Review suite key (default `screening_ladder`) |
+| `--reviews …` | Subset of review keys inside the suite |
+| `--model-presets …` | Gatekeeper presets (`all` by default) |
+| `--repeats N` | Repeated runs per model/review pair |
+| `--orchestrator-policy fixed\|match-gatekeeper` | Thin orchestrator model selection |
+| `--orchestrator-model` | Preset when policy is `fixed` (default `openai_gpt5`) |
+| `--orchestrator-max-steps` | Max CodeAgent steps for the batch orchestrator |
+| `--canonical auto\|none\|force` | Register completed repeat=1 runs into totals |
+| `--skip-totals-aggregation` | Skip refreshing aggregate totals |
+| `--skip-policy-notebook-execution` | Write notebooks without executing them |
+| `--rerun-in-experiment DIR` | Re-run selected `--reviews` inside an existing experiment |
+
+Rerun a failed review in place:
+
+```bash
+uv run python -m experiments.screening \
+  --rerun-in-experiment data/output/screening_benchmarks/<timestamp>_screening_ladder \
+  --reviews heart_failure_mhealth_200 \
+  --skip-policy-notebook-execution \
+  --canonical auto
+```
+
+### Looped screening benchmark
+
+Same suites/presets/scoring, but different topology:
+
+- `single-study` — one Gatekeeper call per study
+- `chunked` — bounded mini-batches through the Orchestrator
+
+```bash
+# Single-study loop
+uv run python -m experiments.screening_loop \
+  --suite screening_ladder \
+  --reviews stroke_theophylline_10 \
+  --model-presets openai_gpt5 \
+  --loop-mode single-study \
+  --orchestrator-policy fixed \
+  --orchestrator-model openai_gpt5
+
+# Chunked loop (optional --chunk-size / --chunk-count)
+uv run python -m experiments.screening_loop \
+  --suite screening_ladder \
+  --model-presets deepseek_v4_pro \
+  --loop-mode chunked \
+  --chunk-size 10 \
+  --orchestrator-policy fixed \
+  --orchestrator-model deepseek_v4_pro \
+  --repeats 1 \
+  --canonical auto
+```
+
+Chunked runbook details: [`src/experiments/harness/CHUNKED_LOOP_RUNS.md`](src/experiments/harness/CHUNKED_LOOP_RUNS.md).
+
+### Experiment outputs
+
+```text
+data/output/screening_benchmarks/<timestamp>_<suite>/                 # batch
+data/output/screening_benchmarks/<timestamp>_<suite>_loop_<model>/    # loop (shape varies)
+  include_policy/ / exclude_policy/   # gold-label policy views
+    runs/<review>_<preset>_…/         # evidence.json, metrics.json, workflow.log, …
+    summary.json / summary.csv
+    leaderboard.md / review_leaderboard.md
+    screening_results_summary.html
+  … checkpoints, comparison HTML when both policies exist …
+
+data/output/screening_benchmarks/totals/   # aggregate leaderboards across experiments
+```
+
+Two gold-label policies are always materialised: treat Cochrane label `0.5` as include vs exclude (`include_policy` / `exclude_policy`).
+
+### Helper experiment CLIs
+
+```bash
+# Regenerate aggregate totals
+uv run python -m experiments.recompute_totals
+
+# Backfill policy views for an older experiment directory
+uv run python -m experiments.backfill data/output/screening_benchmarks/<experiment_dir>
+
+# HTML summary for one experiment or policy folder
+uv run python -m experiments.html_report data/output/screening_benchmarks/<experiment_dir>
+
+# Sample new review suites from the dataset (writes suite JSON; separate from the harness registry)
+uv run python -m experiments.sample_review_suites sample --help
+```
+
+### Tests
+
+```bash
+uv run pytest
+```
+
+---
 
 ## Project Structure
 
 ```
-bastirr/
-├── __init__.py              # Package docstring
-├── config.py                # Configuration, paths, API keys
-├── logging_utils.py         # Run logging (workflow + decision summary)
-├── run_demo.py              # CLI entry point & end-to-end runner
-├── requirements.txt         # Python dependencies
-├── scripts/
-│   ├── __init__.py          # Bastirr-specific utility scripts
-│   └── render_workflow_presentation.py  # Presentation HTML exporter for completed runs
-├── data/
-│   └── __init__.py          # Dataset loader (SystematicReview dataclass)
-├── agents/
-│   ├── __init__.py          # Agent factory exports
-│   ├── librarian.py         # Search & retrieval agent
-│   ├── gatekeeper.py        # Screening agent
-│   ├── miner.py             # Evidence extraction agent
-│   ├── critic.py            # Synthesis & quality agent
-│   └── orchestrator.py      # Manager agent (wires all sub-agents)
-├── tools/
-│   ├── __init__.py          # Tools package
-│   ├── search_tools.py      # Librarian's @tool functions + module-level data store
-│   ├── screening_tools.py   # Gatekeeper's @tool functions
-│   ├── extraction_tools.py  # Miner's @tool functions
-│   ├── synthesis_tools.py   # Critic's @tool functions
-│   └── report_tools.py     # Orchestrator's @tool functions (report, evidence JSON, parsing)
-└── output/                  # Run outputs (report + logs)
+src/mentor/
+├── cli.py                   # Production CLI (console script: mentor)
+├── config.py                # Paths, MENTOR_* env, dataset roots
+├── dataset/                 # Review models + pluggable source loaders
+│   └── loaders/             # e.g. cochrane_csv.py (+ more sources later)
+├── runtime/                 # RunSession + profiles.json
+├── agents/                  # Librarian, Gatekeeper, Miner, Critic, Orchestrator
+│   └── prompts/             # Production agent instruction .md files
+├── tools/                   # Search, screening, extraction, synthesis, report tools
+
+src/experiments/
+├── screening.py             # Batch Gatekeeper benchmark CLI
+├── screening_loop.py        # Looped / chunked benchmark CLI
+├── config/                  # suites.json + models.json registries
+├── harness/                 # Runners, metrics, checkpoints
+├── prompts/                 # Experiment-only agent instructions
+├── streamlit_app/           # Screening benchmark dashboard pages
+├── benchmark_runs_ui.py     # Streamlit entry for the dashboard
+├── plot_screening_leaderboards.py  # Leaderboard chart CLI
+└── sample_review_suites.py  # Dataset sampling helper
+
+data/output/                 # All run artifacts (gitignored)
+
+scripts/                     # Standalone helper CLIs (presentation export, etc.)
 ```
 
 ## Repository Structure
 
 | Directory | Description |
 |-----------|-------------|
-| `bastirr/` | Core agent package — agents, tools, config, data loader, CLI runner, and Bastirr-specific utility scripts. |
-| `systematic_review_dataset/` | Cochrane dataset (8,608 reviews, 544K studies) used as the input source for the demo. |
-| `resources/architecture_docs/` | Design specs defining the 5-agent architecture, MCP integration, and Expert-in-the-Loop approach. |
-| `resources/vaccine_indicators_demo/` | Separate LLM pipeline for medical evidence extraction (PDF → OCR → extraction → synthesis). |
+| `src/mentor/` | Core agent package — agents, tools, config, dataset loaders, CLI. |
+| `src/experiments/` | Screening benchmarks and evaluation CLIs. |
+| `data/input/systematic_review_dataset/` | Cochrane dataset used as the input source. |
+| `data/output/` | Run and benchmark artifacts (gitignored). |
+| `resources/architecture/` | Design spec for the multi-agent architecture (includes MCP strategy). |
+| `resources/vaccine_indicators_demo/` | Separate LLM pipeline for medical evidence extraction. |
+| `tests/` | Pytest suite for mentor + experiment harness. |
 
 ## Current Status: Scaffolding (End-to-End Functional)
 
@@ -112,9 +344,9 @@ The pipeline has been validated on the Cotrimoxazole/HIV review (10 candidates, 
 
 ## Workflow Presentation Exporter
 
-Bastirr includes a presentation-oriented exporter for completed runs:
+Mentor includes a presentation-oriented exporter for completed runs:
 
-- **Script**: `bastirr/scripts/render_workflow_presentation.py`
+- **Script**: `scripts/render_workflow_presentation.py`
 - **Primary input**: `workflow.log`
 - **Optional enrichment**: sibling `activity.md`
 - **Output**: self-contained `workflow_presentation.html`
@@ -127,46 +359,42 @@ The exporter is designed for demos, reviews, and handovers. It preserves the chr
 - optional presenter annotations
 - phase and inline-step navigation
 
-It uses the standard project dependencies from `requirements.txt`, including `pygments` for syntax highlighting in rendered code blocks.
-
 ### Basic usage
 
-Generate a presentation HTML file beside a completed run:
-
 ```bash
-python3 -m bastirr.scripts.render_workflow_presentation \
-  --workflow "bastirr/output/<timestamp>_<review-title>/workflow.log"
+uv run python scripts/render_workflow_presentation.py \
+  --workflow "data/output/<timestamp>_<review-title>/workflow.log"
 ```
 
 Disable annotations entirely:
 
 ```bash
-python3 -m bastirr.scripts.render_workflow_presentation \
-  --workflow "bastirr/output/<timestamp>_<review-title>/workflow.log" \
+uv run python scripts/render_workflow_presentation.py \
+  --workflow "data/output/<timestamp>_<review-title>/workflow.log" \
   --disable-annotations
 ```
 
 Use a specific annotations file and output path:
 
 ```bash
-python3 -m bastirr.scripts.render_workflow_presentation \
-  --workflow "bastirr/output/<timestamp>_<review-title>/workflow.log" \
-  --annotations "bastirr/output/<timestamp>_<review-title>/workflow_presentation_annotations.json" \
-  --output "bastirr/output/<timestamp>_<review-title>/presentation.html"
+uv run python scripts/render_workflow_presentation.py \
+  --workflow "data/output/<timestamp>_<review-title>/workflow.log" \
+  --annotations "data/output/<timestamp>_<review-title>/workflow_presentation_annotations.json" \
+  --output "data/output/<timestamp>_<review-title>/presentation.html"
 ```
 
 Workflow-only mode without `activity.md` enrichment:
 
 ```bash
-python3 -m bastirr.scripts.render_workflow_presentation \
-  --workflow "bastirr/output/<timestamp>_<review-title>/workflow.log" \
+uv run python scripts/render_workflow_presentation.py \
+  --workflow "data/output/<timestamp>_<review-title>/workflow.log" \
   --activity none
 ```
 
 ### CLI options
 
 ```text
-PYTHONPATH=. python3 -m bastirr.scripts.render_workflow_presentation [OPTIONS]
+uv run python scripts/render_workflow_presentation.py [OPTIONS]
 
 Options:
   --workflow PATH                  Path to workflow.log (required)
@@ -209,7 +437,7 @@ Navigation in the exported HTML follows the run structure:
 - phase sections (`PHASE-1`, `PHASE-2`, ...)
 - inline `Workflow Output` step markers inside each phase (`PHASE-2 · Step 1`, `PHASE-2 · Step 2`, ...)
 
-This makes the file suitable both for presentation and for structured walkthroughs of a Bastirr run.
+This makes the file suitable both for presentation and for structured walkthroughs of a Mentor run.
 
 ### Next Steps
 
@@ -231,7 +459,7 @@ The default demo uses a small HIV review:
 
 ## Model Configuration
 
-Bastirr supports **multiple model backends** via smolagents:
+Mentor supports **multiple model backends** via smolagents:
 
 ### OpenAI-Compatible (default)
 
@@ -240,29 +468,29 @@ This covers direct OpenAI and OpenRouter.
 
 ```bash
 # Via .env: direct OpenAI
-BASTIRR_MODEL_BACKEND=openai
-BASTIRR_MODEL=gpt-5
-BASTIRR_API_KEY=sk-...
+MENTOR_MODEL_BACKEND=openai
+MENTOR_MODEL=gpt-5
+MENTOR_API_KEY=sk-...
 
 # Or via CLI
-python3 -m bastirr.run_demo --model gpt-5
+uv run mentor --model gpt-5
 ```
 
 ```bash
 # Via .env: OpenRouter
-BASTIRR_MODEL_BACKEND=openai
-BASTIRR_MODEL=openai/gpt-5
-BASTIRR_API_BASE=https://openrouter.ai/api/v1
-BASTIRR_API_KEY=sk-or-v1-...
+MENTOR_MODEL_BACKEND=openai
+MENTOR_MODEL=openai/gpt-5
+MENTOR_API_BASE=https://openrouter.ai/api/v1
+MENTOR_API_KEY=sk-or-v1-...
 ```
 
 ### Runtime Model Profiles
 
-For reusable runtime setups, Bastirr supports JSON-backed model profiles.
+For reusable runtime setups, Mentor supports JSON-backed model profiles.
 
-- Default profile file: `bastirr/runtime_config/model_profiles.json`
-- Select a profile with `BASTIRR_MODEL_PROFILE=<profile-key>` or `--model-profile <profile-key>`
-- Override the profile file with `BASTIRR_MODEL_PROFILES_CONFIG=/absolute/path/to/model_profiles.json`
+- Default profile file: `src/mentor/runtime/profiles.json`
+- Select a profile with `MENTOR_MODEL_PROFILE=<profile-key>` or `--model-profile <profile-key>`
+- Override the profile file with `MENTOR_MODEL_PROFILES_CONFIG=/absolute/path/to/profiles.json`
 
 Profiles can define:
 
@@ -279,10 +507,10 @@ Recommended split of responsibility:
 Shared-profile example:
 
 ```bash
-BASTIRR_MODEL_PROFILE=openrouter_gpt5
-BASTIRR_API_KEY=sk-or-v1-...
-BASTIRR_API_BASE=https://openrouter.ai/api/v1
-python3 -m bastirr.run_demo
+MENTOR_MODEL_PROFILE=openrouter_gpt5
+MENTOR_API_KEY=sk-or-v1-...
+MENTOR_API_BASE=https://openrouter.ai/api/v1
+uv run mentor
 ```
 
 Non-shared profiles use explicit agent-role keys instead of `shared`.
@@ -314,7 +542,7 @@ Minimal non-shared example:
           "backend": "openai",
           "model_id": "openai/gpt-5",
           "api_base": "https://openrouter.ai/api/v1",
-          "api_key_env_vars": ["BASTIRR_API_KEY"],
+          "api_key_env_vars": ["MENTOR_API_KEY"],
           "requires_api_key": true,
           "request_kwargs": {
             "extra_body": {
@@ -333,7 +561,7 @@ Minimal non-shared example:
           "backend": "openai",
           "model_id": "deepseek/deepseek-v4-pro",
           "api_base": "https://openrouter.ai/api/v1",
-          "api_key_env_vars": ["BASTIRR_API_KEY"],
+          "api_key_env_vars": ["MENTOR_API_KEY"],
           "requires_api_key": true,
           "request_kwargs": {
             "extra_body": {
@@ -359,15 +587,15 @@ In that example:
 
 - `orchestrator`, `librarian`, `miner`, and `critic` inherit the `shared` GPT-5 config
 - `gatekeeper` overrides only its own model and request configuration
-- the OpenRouter base URL is owned by the profile, while the API key still comes from `BASTIRR_API_KEY`
+- the OpenRouter base URL is owned by the profile, while the API key still comes from `MENTOR_API_KEY`
 
 To use a custom profile file:
 
 ```bash
-BASTIRR_MODEL_PROFILES_CONFIG=/absolute/path/to/model_profiles.json
-BASTIRR_MODEL_PROFILE=multimodel_openrouter
-BASTIRR_API_KEY=sk-or-v1-...
-python3 -m bastirr.run_demo
+MENTOR_MODEL_PROFILES_CONFIG=/absolute/path/to/profiles.json
+MENTOR_MODEL_PROFILE=multimodel_openrouter
+MENTOR_API_KEY=sk-or-v1-...
+uv run mentor
 ```
 
 Useful profile fields:
@@ -379,7 +607,7 @@ Useful profile fields:
 - `api_base`: default API base
 - `api_base_env_var`: optional env var name that overrides `api_base`
 - `api_key_env_vars`: ordered list of env vars to try for the API key
-- `requires_api_key`: whether Bastirr should fail early if no key resolves
+- `requires_api_key`: whether Mentor should fail early if no key resolves
 - `request_kwargs`: extra kwargs forwarded to the underlying `smolagents` model constructor
 
 For OpenRouter with the OpenAI SDK compatibility path, provider routing and reasoning controls belong under `request_kwargs.extra_body`.
@@ -388,12 +616,12 @@ For OpenRouter with the OpenAI SDK compatibility path, provider routing and reas
 
 ```bash
 # Via .env
-BASTIRR_MODEL_BACKEND=litellm
-BASTIRR_MODEL=anthropic/claude-3-5-sonnet-latest
-BASTIRR_API_KEY=sk-ant-...
+MENTOR_MODEL_BACKEND=litellm
+MENTOR_MODEL=anthropic/claude-3-5-sonnet-latest
+MENTOR_API_KEY=sk-ant-...
 
 # Or via CLI
-python3 -m bastirr.run_demo --backend litellm --model anthropic/claude-3-5-sonnet-latest
+uv run mentor --backend litellm --model anthropic/claude-3-5-sonnet-latest
 ```
 
 ### Local Models (Ollama)
@@ -403,12 +631,12 @@ python3 -m bastirr.run_demo --backend litellm --model anthropic/claude-3-5-sonne
 # Pull model: ollama pull llama3.2
 
 # Via .env
-BASTIRR_MODEL_BACKEND=litellm
-BASTIRR_MODEL=ollama_chat/llama3.2
-BASTIRR_API_BASE=http://localhost:11434
+MENTOR_MODEL_BACKEND=litellm
+MENTOR_MODEL=ollama_chat/llama3.2
+MENTOR_API_BASE=http://localhost:11434
 
 # Or via CLI
-python3 -m bastirr.run_demo \
+uv run mentor \
   --backend litellm \
   --model ollama_chat/llama3.2 \
   --api-base http://localhost:11434
@@ -421,7 +649,7 @@ LiteLLM supports 100+ providers. See [LiteLLM docs](https://docs.litellm.ai/) fo
 - **Azure OpenAI**: `azure/<DEPLOYMENT_NAME>`
 - **AWS Bedrock**: `bedrock/anthropic.claude-3-sonnet-20240229-v1:0`
 - **Google Vertex**: `vertex_ai/gemini-pro`
-- **vLLM**: Set `BASTIRR_API_BASE` to your vLLM server URL
+- **vLLM**: Set `MENTOR_API_BASE` to your vLLM server URL
 
 ## MCP paper search (BIP + PubMed)
 
@@ -449,37 +677,39 @@ When enabled, the Librarian gets MCP search tools (for BIP and/or PubMed):
 The candidate list used by the pipeline is what the Librarian publishes via
 `set_librarian_candidates(...)`.
 
-## CLI Arguments
+## CLI Arguments (full workflow)
 
 ```bash
-python3 -m bastirr.run_demo [OPTIONS]
+uv run mentor [OPTIONS]
 
 Options:
   --review-url URL     Cochrane review URL to process
   --split SPLIT        Dataset split: dev, val, random_test, heart_test, HIV_test
   --model MODEL_ID     Model identifier (e.g. gpt-5, anthropic/claude-3-5-sonnet-latest)
-  --backend BACKEND    Model backend: openai (default) or litellm or hf-hub (local inference)
+  --backend BACKEND    Model backend: openai (default) or litellm
   --api-base URL       API base URL for local servers (e.g. http://localhost:11434)
-  --model-profile KEY  Runtime model profile key from bastirr/runtime_config/model_profiles.json
+  --model-profile KEY  Runtime model profile key from src/mentor/runtime/profiles.json
   --list-reviews       List available reviews and exit
+  --hide-subagent-steps
+                       Hide sub-agent step details in activity.md
 ```
 
 ## Configuration Reference
 
-All configuration lives in [`bastirr/config.py`](bastirr/config.py). Key settings:
+All configuration lives in [`src/mentor/config.py`](src/mentor/config.py). Key settings:
 
 | Setting | Source | Default | Description |
 |---------|--------|---------|-------------|
-| `BASTIRR_API_KEY` | `.env` | — | Preferred API key for OpenAI-compatible backends |
-| `OPENAI_API_KEY` | `.env` | — | Legacy fallback for direct OpenAI if `BASTIRR_API_KEY` is unset |
-| `BASTIRR_MODEL_BACKEND` | `.env` | `openai` | Model backend: `openai` or `litellm` |
-| `BASTIRR_MODEL` | `.env` | `gpt-5` | Model identifier (provider-prefixed for LiteLLM) |
-| `BASTIRR_API_BASE` | `.env` | — | API base URL for OpenAI-compatible or local servers |
-| `BASTIRR_MODEL_PROFILE` | `.env` | — | Runtime model profile key |
-| `BASTIRR_MODEL_PROFILES_CONFIG` | `.env` | `bastirr/runtime_config/model_profiles.json` | Alternate runtime model-profile file |
-| `BASTIRR_EXECUTOR_TIMEOUT` | `.env` | `500` | Max seconds per code-execution step |
+| `MENTOR_API_KEY` | `.env` | — | Preferred API key for OpenAI-compatible backends |
+| `OPENAI_API_KEY` | `.env` | — | Legacy fallback for direct OpenAI if `MENTOR_API_KEY` is unset |
+| `MENTOR_MODEL_BACKEND` | `.env` | `openai` | Model backend: `openai` or `litellm` |
+| `MENTOR_MODEL` | `.env` | `gpt-5` | Model identifier (provider-prefixed for LiteLLM) |
+| `MENTOR_API_BASE` | `.env` | — | API base URL for OpenAI-compatible or local servers |
+| `MENTOR_MODEL_PROFILE` | `.env` | — | Runtime model profile key |
+| `MENTOR_MODEL_PROFILES_CONFIG` | `.env` | `src/mentor/runtime/profiles.json` | Alternate runtime model-profile file |
+| `MENTOR_EXECUTOR_TIMEOUT` | `.env` | `500` | Max seconds per code-execution step |
 | `SEARCH_SOURCES` | `.env` | `local` | Comma-separated search sources: `local`, `bip`, `pubmed` |
 | `SEARCH_BIP_MCP_URL` | `.env` | `https://bip-mcp.imsi.athenarc.gr/mcp` | BIP MCP endpoint (used when `bip` in `SEARCH_SOURCES`) |
 | `SEARCH_BIP_AUTH_TOKEN` | `.env` | — | Bearer token for BIP MCP search endpoint (required for auth) |
 | `SEARCH_PUBMED_MCP_URL` | `.env` | `https://pubmed-mcp.imsi.athenarc.gr/mcp` | PubMed MCP endpoint (used when `pubmed` in `SEARCH_SOURCES`) |
-| `DATASET_DIR` | auto | `systematic_review_dataset/...` | Cochrane dataset directory |
+| `DATASET_DIR` | auto | `data/input/systematic_review_dataset/...` | Cochrane dataset directory |

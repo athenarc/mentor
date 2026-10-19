@@ -1,9 +1,11 @@
+"""Tests for policy-level EDA notebook generation in the benchmark harness."""
+
 import json
 import tempfile
 import unittest
 from pathlib import Path
 
-from bastirr.benchmarking.notebooks import NOTEBOOK_FILENAME, write_policy_eda_notebook
+from experiments.harness.notebooks import NOTEBOOK_FILENAME, write_policy_eda_notebook
 
 
 class ScreeningBenchmarkNotebookTests(unittest.TestCase):
@@ -44,8 +46,8 @@ class ScreeningBenchmarkNotebookTests(unittest.TestCase):
             intro_source = "".join(notebook_payload["cells"][0]["source"])
             load_source = "".join(notebook_payload["cells"][1]["source"])
             self.assertIn("exclude_label_0_5", intro_source)
-            self.assertIn("/SR-agents/", intro_source)
-            self.assertIn('POLICY_DISPLAY_PATH = Path("/SR-agents") / POLICY_RELATIVE_PATH', load_source)
+            self.assertIn("/Mentor/", intro_source)
+            self.assertIn('POLICY_DISPLAY_PATH = Path("/Mentor") / POLICY_RELATIVE_PATH', load_source)
             self.assertNotIn(str(policy_dir.resolve()), intro_source)
             self.assertNotIn(str(policy_dir.resolve()), load_source)
             self.assertIn("summary.csv", load_source)

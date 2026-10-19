@@ -1,3 +1,5 @@
+"""Integration tests for loop and loop-chunk screening benchmark runners."""
+
 import ast
 import json
 import tempfile
@@ -6,7 +8,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from bastirr.benchmarking.loop_runner import (
+from experiments.harness.loop_runner import (
     LOOP_CHUNK_BENCHMARK_ARCHITECTURE,
     LOOP_BENCHMARK_ARCHITECTURE,
     _chunk_indices,
@@ -15,24 +17,24 @@ from bastirr.benchmarking.loop_runner import (
     rerun_screening_loop_reviews_in_experiment,
     run_screening_loop_benchmark,
 )
-from bastirr.benchmarking.model_presets import ResolvedModelPreset
-from bastirr.benchmarking.review_suites import ScreeningBenchmarkReview
-from bastirr.benchmarking.telemetry import (
+from experiments.harness.model_presets import ResolvedModelPreset
+from experiments.harness.review_suites import ScreeningBenchmarkReview
+from experiments.harness.telemetry import (
     collect_activity_telemetry,
     compute_rationale_metrics,
 )
-from bastirr.benchmarking.totals import (
+from experiments.harness.totals import (
     merge_canonical_sources,
     register_canonical_sources_from_experiment,
     size_band_for,
     write_canonical_sources,
     write_screening_totals,
 )
-from bastirr.tools.screening_benchmark_tools import (
+from mentor.tools.screening_benchmark_tools import (
     append_screening_chunk_decisions_json,
     append_screening_decision_json,
 )
-from bastirr.tools.search_tools import (
+from mentor.tools.search import (
     get_candidate_studies_chunk_json,
     get_candidate_study_json,
     load_review_data,
@@ -49,7 +51,7 @@ class _ResolvedPresetWrapper:
 
 class AgentFactoryStructureTests(unittest.TestCase):
     def test_agent_factories_have_reachable_top_level_returns(self):
-        agents_dir = Path(__file__).resolve().parents[1] / "bastirr" / "agents"
+        agents_dir = Path(__file__).resolve().parents[1] / "mentor" / "agents"
 
         for path in sorted(agents_dir.glob("*.py")):
             tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
@@ -362,38 +364,38 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
                 }
 
             with patch(
-                "bastirr.benchmarking.loop_runner._loop_experiment_root_for_mode",
+                "experiments.harness.loop_runner._loop_experiment_root_for_mode",
                 return_value=experiment_dir,
             ), patch(
-                "bastirr.benchmarking.loop_runner.resolve_review_selection",
+                "experiments.harness.loop_runner.resolve_review_selection",
                 return_value=[review_case],
             ), patch(
-                "bastirr.benchmarking.loop_runner.resolve_model_presets",
+                "experiments.harness.loop_runner.resolve_model_presets",
                 return_value=[gatekeeper_model],
             ), patch(
-                "bastirr.benchmarking.loop_runner.get_model_preset",
+                "experiments.harness.loop_runner.get_model_preset",
                 return_value=_ResolvedPresetWrapper(gatekeeper_model),
             ), patch(
-                "bastirr.benchmarking.loop_runner.run_screening_loop_review",
+                "experiments.harness.loop_runner.run_screening_loop_review",
                 return_value=synthetic_raw_run,
             ), patch(
-                "bastirr.benchmarking.loop_runner._checkpoint_policy_outputs",
+                "experiments.harness.loop_runner._checkpoint_policy_outputs",
                 side_effect=_fake_materialize_policy_outputs,
             ), patch(
-                "bastirr.benchmarking.loop_runner.write_policy_eda_notebook",
+                "experiments.harness.loop_runner.write_policy_eda_notebook",
                 return_value={
                     "notebook_path": str(policy_dir / "screening_results_analysis.ipynb"),
                     "executed": False,
                     "execution_error": "",
                 },
             ), patch(
-                "bastirr.benchmarking.loop_runner.write_policy_html_report",
+                "experiments.harness.loop_runner.write_policy_html_report",
                 return_value={
                     "report_path": str(policy_dir / "screening_results_summary.html"),
                     "title": "Title and Abstract Screening Benchmark Summary",
                 },
             ), patch(
-                "bastirr.benchmarking.loop_runner.write_policy_comparison_report",
+                "experiments.harness.loop_runner.write_policy_comparison_report",
                 return_value={
                     "report_path": str(experiment_dir / "screening_policy_comparison.html"),
                     "title": "Screening Benchmark Policy Comparison",
@@ -505,32 +507,32 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
                 }
 
             with patch(
-                "bastirr.benchmarking.loop_runner._loop_experiment_root_for_mode",
+                "experiments.harness.loop_runner._loop_experiment_root_for_mode",
                 return_value=experiment_dir,
             ), patch(
-                "bastirr.benchmarking.loop_runner.resolve_review_selection",
+                "experiments.harness.loop_runner.resolve_review_selection",
                 return_value=review_cases,
             ), patch(
-                "bastirr.benchmarking.loop_runner.resolve_model_presets",
+                "experiments.harness.loop_runner.resolve_model_presets",
                 return_value=[gatekeeper_model],
             ), patch(
-                "bastirr.benchmarking.loop_runner.get_model_preset",
+                "experiments.harness.loop_runner.get_model_preset",
                 return_value=_ResolvedPresetWrapper(gatekeeper_model),
             ), patch(
-                "bastirr.benchmarking.loop_runner.run_screening_loop_review",
+                "experiments.harness.loop_runner.run_screening_loop_review",
                 side_effect=_fake_run_screening_loop_review,
             ), patch(
-                "bastirr.benchmarking.loop_runner._checkpoint_policy_outputs",
+                "experiments.harness.loop_runner._checkpoint_policy_outputs",
                 side_effect=_fake_checkpoint_policy_outputs,
             ), patch(
-                "bastirr.benchmarking.loop_runner.write_policy_eda_notebook",
+                "experiments.harness.loop_runner.write_policy_eda_notebook",
                 return_value={
                     "notebook_path": str(policy_dir / "screening_results_analysis.ipynb"),
                     "executed": False,
                     "execution_error": "",
                 },
             ), patch(
-                "bastirr.benchmarking.loop_runner.write_policy_html_report",
+                "experiments.harness.loop_runner.write_policy_html_report",
                 return_value={
                     "report_path": str(policy_dir / "screening_results_summary.html"),
                     "title": "Title and Abstract Screening Benchmark Summary",
@@ -631,32 +633,32 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
                 }
 
             with patch(
-                "bastirr.benchmarking.loop_runner._loop_experiment_root_for_mode",
+                "experiments.harness.loop_runner._loop_experiment_root_for_mode",
                 return_value=experiment_dir,
             ), patch(
-                "bastirr.benchmarking.loop_runner.resolve_review_selection",
+                "experiments.harness.loop_runner.resolve_review_selection",
                 return_value=[review_case],
             ), patch(
-                "bastirr.benchmarking.loop_runner.resolve_model_presets",
+                "experiments.harness.loop_runner.resolve_model_presets",
                 return_value=[gatekeeper_model],
             ), patch(
-                "bastirr.benchmarking.loop_runner.get_model_preset",
+                "experiments.harness.loop_runner.get_model_preset",
                 return_value=_ResolvedPresetWrapper(gatekeeper_model),
             ), patch(
-                "bastirr.benchmarking.loop_runner.run_screening_chunk_loop_review",
+                "experiments.harness.loop_runner.run_screening_chunk_loop_review",
                 side_effect=_fake_chunk_runner,
             ), patch(
-                "bastirr.benchmarking.loop_runner._checkpoint_policy_outputs",
+                "experiments.harness.loop_runner._checkpoint_policy_outputs",
                 side_effect=_fake_checkpoint_policy_outputs,
             ), patch(
-                "bastirr.benchmarking.loop_runner.write_policy_eda_notebook",
+                "experiments.harness.loop_runner.write_policy_eda_notebook",
                 return_value={
                     "notebook_path": str(policy_dir / "screening_results_analysis.ipynb"),
                     "executed": False,
                     "execution_error": "",
                 },
             ), patch(
-                "bastirr.benchmarking.loop_runner.write_policy_html_report",
+                "experiments.harness.loop_runner.write_policy_html_report",
                 return_value={
                     "report_path": str(policy_dir / "screening_results_summary.html"),
                     "title": "Title",
@@ -849,33 +851,33 @@ class ScreeningLoopBenchmarkTests(unittest.TestCase):
                 }
 
             with patch(
-                "bastirr.benchmarking.loop_runner.resolve_review_selection",
+                "experiments.harness.loop_runner.resolve_review_selection",
                 side_effect=_fake_resolve_review_selection,
             ), patch(
-                "bastirr.benchmarking.loop_runner.load_review",
+                "experiments.harness.loop_runner.load_review",
                 side_effect=lambda review_url, _split: SimpleNamespace(
                     title=review_url,
                     review_url=review_url,
                     studies=[object()],
                 ),
             ), patch(
-                "bastirr.benchmarking.loop_runner.get_model_preset",
+                "experiments.harness.loop_runner.get_model_preset",
                 return_value=_ResolvedPresetWrapper(model),
             ), patch(
-                "bastirr.benchmarking.loop_runner.run_screening_loop_review",
+                "experiments.harness.loop_runner.run_screening_loop_review",
                 side_effect=_fake_run_screening_loop_review,
             ), patch(
-                "bastirr.benchmarking.loop_runner._checkpoint_policy_outputs",
+                "experiments.harness.loop_runner._checkpoint_policy_outputs",
                 side_effect=_fake_checkpoint_policy_outputs,
             ), patch(
-                "bastirr.benchmarking.loop_runner.write_policy_eda_notebook",
+                "experiments.harness.loop_runner.write_policy_eda_notebook",
                 return_value={
                     "notebook_path": str(include_policy_dir / "screening_results_analysis.ipynb"),
                     "executed": False,
                     "execution_error": "",
                 },
             ), patch(
-                "bastirr.benchmarking.loop_runner.write_policy_html_report",
+                "experiments.harness.loop_runner.write_policy_html_report",
                 return_value={
                     "report_path": str(include_policy_dir / "screening_results_summary.html"),
                     "title": "Title",
