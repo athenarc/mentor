@@ -18,7 +18,7 @@ from bastirr.tools.report_tools import (
     save_evidence_json,
     extract_included_studies,
 )
-from bastirr.tools.search_tools import get_candidates_json
+from bastirr.tools.search import get_candidates_json
 
 
 ORCHESTRATOR_INSTRUCTIONS = """\

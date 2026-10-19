@@ -47,6 +47,44 @@ API_BASE = os.getenv("BASTIRR_API_BASE", "")  # e.g. http://localhost:11434
 API_KEY = os.getenv("BASTIRR_API_KEY", "")
 
 # ---------------------------------------------------------------------------
+# Search source selection for the Librarian
+# ---------------------------------------------------------------------------
+# Controls which search tools the Librarian exposes.
+# Comma-separated values from: { local, bip, pubmed }
+_SEARCH_SOURCE_TOKENS = {
+    t.strip().lower()
+    for t in os.getenv("SEARCH_SOURCES", "local").split(",")
+    if t.strip()
+}
+_VALID_SEARCH_SOURCES = {"local", "bip", "pubmed"}
+_INVALID_SEARCH_SOURCES = sorted(_SEARCH_SOURCE_TOKENS - _VALID_SEARCH_SOURCES)
+if _INVALID_SEARCH_SOURCES:
+    raise ValueError(
+        "Invalid SEARCH_SOURCES value(s): "
+        f"{', '.join(_INVALID_SEARCH_SOURCES)}. "
+        "Allowed values: local, bip, pubmed."
+    )
+SEARCH_SOURCES = _SEARCH_SOURCE_TOKENS
+
+# ---------------------------------------------------------------------------
+# Search MCP: BIP endpoint (optional)
+# ---------------------------------------------------------------------------
+# These settings configure the external paper search MCP endpoint for BIP.
+# Other search MCP endpoints will be added alongside this in future.
+#
+# Env vars:
+#   SEARCH_BIP_MCP_URL    - BIP MCP server URL (Streamable HTTP endpoint)
+#   SEARCH_BIP_AUTH_TOKEN - Bearer token for BIP MCP server
+#
+BIP_MCP_URL = os.getenv("SEARCH_BIP_MCP_URL", "")
+
+# Bearer token for the BIP MCP server (required for auth).
+BIP_MCP_AUTH_TOKEN = os.getenv("SEARCH_BIP_AUTH_TOKEN", "")
+
+# PubMed MCP endpoint (no auth token required)
+PUBMED_MCP_URL = os.getenv("SEARCH_PUBMED_MCP_URL", "")
+
+# ---------------------------------------------------------------------------
 # Dataset files
 # ---------------------------------------------------------------------------
 DATASET_FILES = {
