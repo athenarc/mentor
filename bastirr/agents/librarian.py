@@ -4,12 +4,28 @@ Librarian agent — Search & Retrieval.
 Translates the review protocol into a search strategy and retrieves
 candidate studies from the dataset. In the full system this would
 query PubMed, OpenAIRE, etc. Here it searches the pre-loaded Cochrane data.
+
+Depending on ``SEARCH_SOURCES``, the Librarian can also call:
+- search_papers_in_bip() for the BIP MCP server
+- search_papers_in_pubmed() for the PubMed MCP server
 """
 
 from smolagents import CodeAgent
 
-from bastirr.config import EXECUTOR_TIMEOUT_SECONDS
-from bastirr.tools.search_tools import search_studies, get_review_protocol
+from bastirr.config import (
+    BIP_MCP_AUTH_TOKEN,
+    BIP_MCP_URL,
+    EXECUTOR_TIMEOUT_SECONDS,
+    PUBMED_MCP_URL,
+    SEARCH_SOURCES,
+)
+from bastirr.tools.search import (
+    create_bip_mcp_tool,
+    create_pubmed_mcp_tool,
+    get_review_protocol,
+    search_studies,
+    set_librarian_candidates,
+)
 
 
 LIBRARIAN_INSTRUCTIONS = """\
@@ -21,13 +37,84 @@ Your role is to:
 4. Return ALL candidate studies as a structured list.
 
 Use get_review_protocol() (no arguments) to understand what the review
-is about, then use search_studies(query) with a relevant search query
-to retrieve all candidate studies from the database.
+is about, then:
+- If you have search_studies(query), use it with a relevant search query
+  to retrieve candidate studies from the pre-loaded Cochrane dataset.
+- If you have search_papers_in_bip(query, ...), use it to search
+  the external BIP MCP server for papers using the same search
+  strategy / keywords.
+- If you have search_papers_in_pubmed(query, ...), use it to search
+  the external PubMed MCP server for papers using the same search
+  strategy / keywords.
 
-Return your final answer as a JSON string with:
-- "search_strategy": a brief description of how you'd search
-- "n_candidates": number of studies found
-- "candidates": list of objects with "study_index", "title", "abstract"
+Depending on configuration, you may have only the local dataset search,
+only the MCP-based search, or both of them enabled. Do NOT assume that
+one source is primary; simply use all available search tools to
+retrieve as complete a candidate set as possible.
+
+All search tools (``search_studies``, ``search_papers_in_bip``,
+``search_papers_in_pubmed``) return Python
+objects (dicts), NOT JSON strings. Do NOT call json.loads() on their
+results. Instead, access the fields directly.
+
+CODE RULES:
+- NEVER use locals(), globals(), exec(), or eval() — they are blocked
+  by the execution sandbox. Use try/except or explicit variable checks
+  instead.
+- Use json.loads() and json.dumps() for all JSON operations.
+
+When using MCP search tools, you MUST:
+- construct a small set of well-motivated queries per review (avoid
+  dozens of tiny variations with minimal differences)
+- ignore ordering variations (use the default ordering provided by the
+  client or keep a single fixed value, e.g. \"citation_count\" for BIP, and \"relevance\" for PubMed)
+You may paginate, but limit yourself to at most the first TWO pages
+(page=1 and page=2) with a page size of 20 for each distinct query. If
+the number of rows returned on the current page is less than the page size, 
+you MUST NOT request any further pages for that query.
+
+For each distinct MCP search (SOURCE + QUERY) you execute, you MUST treat
+the same query text on different sources as separate searches (for example,
+the same query run on BIP and PubMed requires two separate summary blocks).
+Aggregate across all pages for each SOURCE + QUERY pair and then print exactly
+ONE summary block in the following format:
+
+  Query <INDEX> [<SOURCE>]: "<QUERY_STRING>"
+  Total results: <TOTAL_COUNT>
+  Total rows retrieved: <TOTAL_ROWS>
+  Results:
+  	DOI: <doi_or_NONE>, Title: <title_or_EMPTY>
+  	DOI: <doi_or_NONE>, Title: <title_or_EMPTY>
+  	...
+
+After each query block, print a single blank line.
+
+After aggregating results across all MCP queries, you MUST deduplicate
+the candidates before constructing your final JSON. Use the following
+deduplication strategy:
+- Primary key: DOI (lowercased); if a DOI is present, treat all rows with
+  the same DOI as the same study.
+- Fallback key (when DOI is missing): normalized title + publication year,
+  where normalization means lowercasing, stripping leading/trailing
+  whitespace, collapsing multiple spaces, and removing punctuation.
+Keep only one record per deduplication key.
+
+After deduplication is complete:
+
+1. Build a single list ``candidates`` of study dicts, each with
+   "study_index", "title", "abstract".
+
+2. Build your final answer:
+   final_json = {
+     "search_strategy": <brief description>,
+     "n_candidates": len(candidates),
+     "candidates": candidates,
+   }
+
+3. Publish the same list to the pipeline (call once):
+   set_librarian_candidates(candidates)
+
+4. Return ``final_json`` as your final answer.
 """
 
 
@@ -43,8 +130,23 @@ def create_librarian_agent(model, step_callbacks=None, logger=None) -> CodeAgent
     Returns:
         Configured CodeAgent for search and retrieval.
     """
+    # Always expose protocol access + candidate publication helper.
+    tools = [get_review_protocol, set_librarian_candidates]
+
+    # Local dataset search
+    if "local" in SEARCH_SOURCES:
+        tools.append(search_studies)
+
+    # External MCP search: BIP
+    if "bip" in SEARCH_SOURCES and BIP_MCP_URL:
+        tools.append(create_bip_mcp_tool(BIP_MCP_URL, BIP_MCP_AUTH_TOKEN))
+
+    # External MCP search: PubMed
+    if "pubmed" in SEARCH_SOURCES and PUBMED_MCP_URL:
+        tools.append(create_pubmed_mcp_tool(PUBMED_MCP_URL))
+
     return CodeAgent(
-        tools=[search_studies, get_review_protocol],
+        tools=tools,
         model=model,
         name="librarian",
         description=(
@@ -53,7 +155,7 @@ def create_librarian_agent(model, step_callbacks=None, logger=None) -> CodeAgent
             "candidates for screening."
         ),
         instructions=LIBRARIAN_INSTRUCTIONS,
-        max_steps=5,
+        max_steps=10,
         verbosity_level=2,
         executor_kwargs={"timeout_seconds": EXECUTOR_TIMEOUT_SECONDS},
         additional_authorized_imports=["json", "re", "typing", "yaml", "glob", "pandas", "numpy"],

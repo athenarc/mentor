@@ -66,6 +66,44 @@ QWEN_OLLAMA_MODEL_ID = os.getenv(
 OLLAMA_API_BASE = os.getenv("BASTIRR_OLLAMA_API_BASE", "http://localhost:11434/v1")
 
 # ---------------------------------------------------------------------------
+# Search source selection for the Librarian
+# ---------------------------------------------------------------------------
+# Controls which search tools the Librarian exposes.
+# Comma-separated values from: { local, bip, pubmed }
+_SEARCH_SOURCE_TOKENS = {
+    t.strip().lower()
+    for t in os.getenv("SEARCH_SOURCES", "local").split(",")
+    if t.strip()
+}
+_VALID_SEARCH_SOURCES = {"local", "bip", "pubmed"}
+_INVALID_SEARCH_SOURCES = sorted(_SEARCH_SOURCE_TOKENS - _VALID_SEARCH_SOURCES)
+if _INVALID_SEARCH_SOURCES:
+    raise ValueError(
+        "Invalid SEARCH_SOURCES value(s): "
+        f"{', '.join(_INVALID_SEARCH_SOURCES)}. "
+        "Allowed values: local, bip, pubmed."
+    )
+SEARCH_SOURCES = _SEARCH_SOURCE_TOKENS
+
+# ---------------------------------------------------------------------------
+# Search MCP: BIP endpoint (optional)
+# ---------------------------------------------------------------------------
+# These settings configure the external paper search MCP endpoint for BIP.
+# Other search MCP endpoints will be added alongside this in future.
+#
+# Env vars:
+#   SEARCH_BIP_MCP_URL    - BIP MCP server URL (Streamable HTTP endpoint)
+#   SEARCH_BIP_AUTH_TOKEN - Bearer token for BIP MCP server
+#
+BIP_MCP_URL = os.getenv("SEARCH_BIP_MCP_URL", "")
+
+# Bearer token for the BIP MCP server (required for auth).
+BIP_MCP_AUTH_TOKEN = os.getenv("SEARCH_BIP_AUTH_TOKEN", "")
+
+# PubMed MCP endpoint (no auth token required)
+PUBMED_MCP_URL = os.getenv("SEARCH_PUBMED_MCP_URL", "")
+
+# ---------------------------------------------------------------------------
 # Dataset files
 # ---------------------------------------------------------------------------
 DATASET_FILES = {
@@ -100,6 +138,30 @@ LABEL_EXCLUDED_SCREENING = 0.0
 # Model factory
 # ---------------------------------------------------------------------------
 
+
+def resolve_backend(backend: str | None = None) -> str:
+    """Resolve the effective model backend."""
+    return (backend or os.getenv("BASTIRR_MODEL_BACKEND", MODEL_BACKEND)).lower()
+
+
+def resolve_model_id(model_id: str | None = None) -> str:
+    """Resolve the effective model identifier."""
+    return model_id or os.getenv("BASTIRR_MODEL", DEFAULT_MODEL_ID)
+
+
+def resolve_api_key(api_key: str | None = None) -> str:
+    """Resolve the effective API key for OpenAI-compatible backends."""
+    return (
+        api_key
+        or os.getenv("BASTIRR_API_KEY", "").strip()
+        or os.getenv("OPENAI_API_KEY", OPENAI_API_KEY).strip()
+    )
+
+
+def resolve_api_base(api_base: str | None = None) -> str | None:
+    """Resolve the effective API base URL."""
+    return (api_base or os.getenv("BASTIRR_API_BASE", API_BASE).strip() or None)
+
 def create_model(
     model_id: str | None = None,
     backend: str | None = None,
@@ -123,10 +185,10 @@ def create_model(
     Returns:
         A smolagents ``Model`` instance (``OpenAIServerModel`` or ``LiteLLMModel``).
     """
-    _backend = (backend or MODEL_BACKEND).lower()
-    _model_id = model_id or DEFAULT_MODEL_ID
-    _api_key = api_key or API_KEY or OPENAI_API_KEY
-    _api_base = api_base or API_BASE or None
+    _backend = resolve_backend(backend)
+    _model_id = resolve_model_id(model_id)
+    _api_key = resolve_api_key(api_key)
+    _api_base = resolve_api_base(api_base)
 
     if _backend == "litellm":
         from smolagents import LiteLLMModel

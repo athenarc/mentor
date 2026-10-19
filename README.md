@@ -44,10 +44,10 @@ pip install 'smolagents[litellm]'
 # Optional: Install dataset analysis dependencies (for EDA notebooks)
 # pip install -r systematic_review_dataset/requirements.txt
 
-# 2. Set up API key
-#    Copy the template and add your OpenAI API key
+# 2. Set up API access
+#    Copy the template and add your API key
 cp .env.example .env
-#    Then edit .env and set: OPENAI_API_KEY=sk-...
+#    Then edit .env and set: BASTIRR_API_KEY=...
 
 # 3. Ensure the dataset is downloaded
 cd systematic_review_dataset && ./download_dataset.sh && cd ..
@@ -233,19 +233,156 @@ The default demo uses a small HIV review:
 
 Bastirr supports **multiple model backends** via smolagents:
 
-### OpenAI (default)
+### OpenAI-Compatible (default)
 
-Use OpenAI models like GPT-5, GPT-5.2, etc.
+Use OpenAI-compatible endpoints with `OpenAIServerModel`.
+This covers direct OpenAI and OpenRouter.
 
 ```bash
-# Via .env
+# Via .env: direct OpenAI
 BASTIRR_MODEL_BACKEND=openai
 BASTIRR_MODEL=gpt-5
-OPENAI_API_KEY=sk-...
+BASTIRR_API_KEY=sk-...
 
 # Or via CLI
 python3 -m bastirr.run_demo --model gpt-5
 ```
+
+```bash
+# Via .env: OpenRouter
+BASTIRR_MODEL_BACKEND=openai
+BASTIRR_MODEL=openai/gpt-5
+BASTIRR_API_BASE=https://openrouter.ai/api/v1
+BASTIRR_API_KEY=sk-or-v1-...
+```
+
+### Runtime Model Profiles
+
+For reusable runtime setups, Bastirr supports JSON-backed model profiles.
+
+- Default profile file: `bastirr/runtime_config/model_profiles.json`
+- Select a profile with `BASTIRR_MODEL_PROFILE=<profile-key>` or `--model-profile <profile-key>`
+- Override the profile file with `BASTIRR_MODEL_PROFILES_CONFIG=/absolute/path/to/model_profiles.json`
+
+Profiles can define:
+
+- a single shared model for all agents
+- different models by role (`orchestrator`, `librarian`, `gatekeeper`, `miner`, `critic`)
+- OpenRouter `extra_body` request configuration such as provider pinning and reasoning settings
+
+Recommended split of responsibility:
+
+- the profile owns non-secret runtime configuration such as `backend`, `model_id`, `api_base`, and `request_kwargs`
+- environment variables provide secrets such as API keys
+- env-based overrides like `api_base_env_var` or `model_id_env_var` should only be used when you intentionally want to make a profile mutable at runtime
+
+Shared-profile example:
+
+```bash
+BASTIRR_MODEL_PROFILE=openrouter_gpt5
+BASTIRR_API_KEY=sk-or-v1-...
+BASTIRR_API_BASE=https://openrouter.ai/api/v1
+python3 -m bastirr.run_demo
+```
+
+Non-shared profiles use explicit agent-role keys instead of `shared`.
+The supported role keys are:
+
+- `orchestrator`
+- `librarian`
+- `gatekeeper`
+- `miner`
+- `critic`
+
+Resolution rules:
+
+- if `shared` is present, it is used as the default for every role
+- any explicit role entry overrides `shared` for that role
+- if `shared` is absent, all five role entries must be provided
+- `api_key_env_vars` is checked in order, and the first non-empty env var wins
+
+Minimal non-shared example:
+
+```json
+{
+  "profiles": [
+    {
+      "key": "multimodel_openrouter",
+      "description": "GPT-5 for coordination, DeepSeek for screening.",
+      "agents": {
+        "shared": {
+          "backend": "openai",
+          "model_id": "openai/gpt-5",
+          "api_base": "https://openrouter.ai/api/v1",
+          "api_key_env_vars": ["BASTIRR_API_KEY"],
+          "requires_api_key": true,
+          "request_kwargs": {
+            "extra_body": {
+              "provider": {
+                "order": ["openai/default"],
+                "allow_fallbacks": false,
+                "require_parameters": true
+              },
+              "reasoning": {
+                "effort": "high"
+              }
+            }
+          }
+        },
+        "gatekeeper": {
+          "backend": "openai",
+          "model_id": "deepseek/deepseek-v4-pro",
+          "api_base": "https://openrouter.ai/api/v1",
+          "api_key_env_vars": ["BASTIRR_API_KEY"],
+          "requires_api_key": true,
+          "request_kwargs": {
+            "extra_body": {
+              "provider": {
+                "order": ["deepseek"],
+                "allow_fallbacks": false,
+                "require_parameters": true
+              },
+              "reasoning": {
+                "enabled": true,
+                "effort": "high"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+In that example:
+
+- `orchestrator`, `librarian`, `miner`, and `critic` inherit the `shared` GPT-5 config
+- `gatekeeper` overrides only its own model and request configuration
+- the OpenRouter base URL is owned by the profile, while the API key still comes from `BASTIRR_API_KEY`
+
+To use a custom profile file:
+
+```bash
+BASTIRR_MODEL_PROFILES_CONFIG=/absolute/path/to/model_profiles.json
+BASTIRR_MODEL_PROFILE=multimodel_openrouter
+BASTIRR_API_KEY=sk-or-v1-...
+python3 -m bastirr.run_demo
+```
+
+Useful profile fields:
+
+- `backend`: `openai`, `litellm`, or `hf-hub`
+- `backend_env_var`: optional env var name that overrides `backend`
+- `model_id`: default model identifier
+- `model_id_env_var`: optional env var name that overrides `model_id`
+- `api_base`: default API base
+- `api_base_env_var`: optional env var name that overrides `api_base`
+- `api_key_env_vars`: ordered list of env vars to try for the API key
+- `requires_api_key`: whether Bastirr should fail early if no key resolves
+- `request_kwargs`: extra kwargs forwarded to the underlying `smolagents` model constructor
+
+For OpenRouter with the OpenAI SDK compatibility path, provider routing and reasoning controls belong under `request_kwargs.extra_body`.
 
 ### Anthropic (via LiteLLM)
 
@@ -286,6 +423,32 @@ LiteLLM supports 100+ providers. See [LiteLLM docs](https://docs.litellm.ai/) fo
 - **Google Vertex**: `vertex_ai/gemini-pro`
 - **vLLM**: Set `BASTIRR_API_BASE` to your vLLM server URL
 
+## MCP paper search (BIP + PubMed)
+
+The Librarian can optionally call external MCP servers for additional paper
+search alongside the pre-loaded Cochrane dataset:
+- BIP MCP: `https://bip-mcp.imsi.athenarc.gr/mcp`
+- PubMed MCP: `https://pubmed-mcp.imsi.athenarc.gr/mcp`
+
+**Setup:**
+
+1. Configure endpoints in `.env`:
+   ```bash
+   SEARCH_SOURCES=local,bip,pubmed
+   SEARCH_BIP_MCP_URL=https://bip-mcp.imsi.athenarc.gr/mcp
+   SEARCH_PUBMED_MCP_URL=https://pubmed-mcp.imsi.athenarc.gr/mcp
+   ```
+2. Set your BIP auth token (required by BIP server):
+   ```bash
+   SEARCH_BIP_AUTH_TOKEN=your_bip_token_here
+   ```
+When enabled, the Librarian gets MCP search tools (for BIP and/or PubMed):
+- `search_papers_in_bip(query, page=1, page_size=20, ordering="popularity", ...)`
+- `search_papers_in_pubmed(query, offset=0, limit=20, sort="relevance")`
+
+The candidate list used by the pipeline is what the Librarian publishes via
+`set_librarian_candidates(...)`.
+
 ## CLI Arguments
 
 ```bash
@@ -297,6 +460,7 @@ Options:
   --model MODEL_ID     Model identifier (e.g. gpt-5, anthropic/claude-3-5-sonnet-latest)
   --backend BACKEND    Model backend: openai (default) or litellm or hf-hub (local inference)
   --api-base URL       API base URL for local servers (e.g. http://localhost:11434)
+  --model-profile KEY  Runtime model profile key from bastirr/runtime_config/model_profiles.json
   --list-reviews       List available reviews and exit
 ```
 
@@ -306,10 +470,16 @@ All configuration lives in [`bastirr/config.py`](bastirr/config.py). Key setting
 
 | Setting | Source | Default | Description |
 |---------|--------|---------|-------------|
-| `OPENAI_API_KEY` | `.env` | (required for OpenAI) | OpenAI API key |
+| `BASTIRR_API_KEY` | `.env` | — | Preferred API key for OpenAI-compatible backends |
+| `OPENAI_API_KEY` | `.env` | — | Legacy fallback for direct OpenAI if `BASTIRR_API_KEY` is unset |
 | `BASTIRR_MODEL_BACKEND` | `.env` | `openai` | Model backend: `openai` or `litellm` |
 | `BASTIRR_MODEL` | `.env` | `gpt-5` | Model identifier (provider-prefixed for LiteLLM) |
-| `BASTIRR_API_BASE` | `.env` | — | API base URL for local servers |
-| `BASTIRR_API_KEY` | `.env` | — | Generic API key for non-OpenAI providers |
+| `BASTIRR_API_BASE` | `.env` | — | API base URL for OpenAI-compatible or local servers |
+| `BASTIRR_MODEL_PROFILE` | `.env` | — | Runtime model profile key |
+| `BASTIRR_MODEL_PROFILES_CONFIG` | `.env` | `bastirr/runtime_config/model_profiles.json` | Alternate runtime model-profile file |
 | `BASTIRR_EXECUTOR_TIMEOUT` | `.env` | `500` | Max seconds per code-execution step |
+| `SEARCH_SOURCES` | `.env` | `local` | Comma-separated search sources: `local`, `bip`, `pubmed` |
+| `SEARCH_BIP_MCP_URL` | `.env` | `https://bip-mcp.imsi.athenarc.gr/mcp` | BIP MCP endpoint (used when `bip` in `SEARCH_SOURCES`) |
+| `SEARCH_BIP_AUTH_TOKEN` | `.env` | — | Bearer token for BIP MCP search endpoint (required for auth) |
+| `SEARCH_PUBMED_MCP_URL` | `.env` | `https://pubmed-mcp.imsi.athenarc.gr/mcp` | PubMed MCP endpoint (used when `pubmed` in `SEARCH_SOURCES`) |
 | `DATASET_DIR` | auto | `systematic_review_dataset/...` | Cochrane dataset directory |

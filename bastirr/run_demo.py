@@ -19,13 +19,18 @@ import argparse
 import json
 import logging
 import sys
-from datetime import datetime
 from pathlib import Path
 
-from bastirr.config import OUTPUT_DIR, OPENAI_API_KEY, MODEL_BACKEND, create_model
+from bastirr.config import (
+    create_model,
+    resolve_api_base,
+    resolve_api_key,
+    resolve_backend,
+)
 from bastirr.data import load_review, list_reviews
 from bastirr.logging_utils import setup_run_logging, make_step_callbacks
-from bastirr.tools.search_tools import load_review_data
+from bastirr.tools.search import load_review_data
+from bastirr.model_profiles import get_selected_model_profile, resolve_runtime_model_profile
 
 logging.basicConfig(
     level=logging.INFO,
@@ -92,6 +97,7 @@ def run_demo(
     model_id: str | None = None,
     backend: str | None = None,
     api_base: str | None = None,
+    model_profile: str | None = None,
     include_subagent_steps: bool = True,
 ):
     """
@@ -103,6 +109,7 @@ def run_demo(
         model_id: Model identifier override (e.g. "gpt-4o", "ollama_chat/llama3.2").
         backend: Model backend override ("openai" or "litellm").
         api_base: API base URL override (for local servers).
+        model_profile: Optional runtime model-profile key.
         include_subagent_steps: Show sub-agent details in activity.md.
     """
     # -----------------------------------------------------------------------
@@ -143,20 +150,80 @@ def run_demo(
     # -----------------------------------------------------------------------
     # 3. Initialize model and orchestrator
     # -----------------------------------------------------------------------
-    _backend = (backend or MODEL_BACKEND).lower()
-    if _backend == "openai" and not OPENAI_API_KEY:
-        logger.error("OPENAI_API_KEY not set. Add it to .env file.")
+    _backend = resolve_backend(backend)
+    _models_by_role = None
+    _activity_summary_model = None
+    _profile = None
+
+    selected_model_profile = get_selected_model_profile(model_profile)
+
+    if selected_model_profile and any([model_id, backend, api_base]):
+        logger.error(
+            "--model-profile cannot be combined with --model, --backend, or --api-base."
+        )
         sys.exit(1)
+
+    if selected_model_profile:
+        try:
+            _profile = resolve_runtime_model_profile(selected_model_profile, strict=True)
+        except ValueError as exc:
+            logger.error(str(exc))
+            sys.exit(1)
+
+        assert _profile is not None
+        _models_by_role = _profile.create_models()
+        _activity_summary_model = _models_by_role["orchestrator"]
+        _backend = _profile.models["orchestrator"].backend
+
+        logger.info(f"Model profile: {_profile.key}")
+        if _profile.description:
+            logger.info(_profile.description)
+        activity_logger.log_metadata("Model Profile", _profile.key)
+        for role, entry in _profile.models.items():
+            activity_logger.log_metadata(
+                f"{role.title()} Model",
+                f"{entry.backend} | {entry.model_id}",
+            )
+            if entry.api_base:
+                activity_logger.log_metadata(f"{role.title()} API Base", entry.api_base)
+            if entry.request_kwargs:
+                activity_logger.log_metadata(
+                    f"{role.title()} Request Config",
+                    json.dumps(entry.request_kwargs, sort_keys=True),
+                )
+    else:
+        resolved_api_key = resolve_api_key()
+        if _backend == "openai" and not resolved_api_key:
+            logger.error("No API key resolved. Set BASTIRR_API_KEY or OPENAI_API_KEY in .env.")
+            sys.exit(1)
 
     from bastirr.agents.orchestrator import create_orchestrator_agent
 
-    model = create_model(model_id=model_id, backend=backend, api_base=api_base)
-    logger.info(f"Model backend: {_backend} | model_id: {model.model_id}")
+    if _models_by_role is not None:
+        model = _models_by_role["orchestrator"]
+        logger.info(f"Model backend: {_backend} | orchestrator model_id: {model.model_id}")
+        logger.info("Creating orchestrator with role-specific models...")
+        orchestrator = create_orchestrator_agent(
+            models_by_role=_models_by_role,
+            step_callbacks=step_cbs,
+            logger=agent_logger,
+        )
+    else:
+        model = create_model(model_id=model_id, backend=backend, api_base=api_base)
+        _activity_summary_model = model
+        logger.info(f"Model backend: {_backend} | model_id: {model.model_id}")
+        resolved_api_base = resolve_api_base(api_base)
+        activity_logger.log_metadata("Model Profile", "env")
+        activity_logger.log_metadata("Shared Model", f"{_backend} | {model.model_id}")
+        if resolved_api_base:
+            activity_logger.log_metadata("Shared API Base", resolved_api_base)
 
-    logger.info("Creating orchestrator with sub-agents...")
-    orchestrator = create_orchestrator_agent(
-        model, step_callbacks=step_cbs, logger=agent_logger,
-    )
+        logger.info("Creating orchestrator with sub-agents...")
+        orchestrator = create_orchestrator_agent(
+            model=model,
+            step_callbacks=step_cbs,
+            logger=agent_logger,
+        )
 
     # -----------------------------------------------------------------------
     # 4. Run the pipeline
@@ -204,7 +271,7 @@ def run_demo(
         logger.info(f"\nFull logs at: {run_dir}")
     finally:
         # Always write the activity log, even if the pipeline crashed
-        activity_path = activity_logger.finalize(model)
+        activity_path = activity_logger.finalize(_activity_summary_model)
         logger.info(f"Activity log saved to: {activity_path}")
         agent_logger.close()
 
@@ -241,6 +308,11 @@ def main():
         help="API base URL for local servers (e.g. http://localhost:11434)",
     )
     parser.add_argument(
+        "--model-profile",
+        default=None,
+        help="Runtime model-profile key defined in bastirr/runtime_config/model_profiles.json",
+    )
+    parser.add_argument(
         "--list-reviews",
         action="store_true",
         help="List available reviews and exit",
@@ -269,6 +341,7 @@ def main():
         model_id=args.model,
         backend=args.backend,
         api_base=args.api_base,
+        model_profile=args.model_profile,
         include_subagent_steps=args.include_subagent_steps,
     )
 
