@@ -56,7 +56,8 @@ cp .env.example .env
 # For OpenRouter-backed experiment presets you also need OPENROUTER_API_KEY.
 
 # 3. Download the Cochrane dataset (required for workflow + experiments)
-cd data/input/systematic_review_dataset && ./download_dataset.sh && cd ../../..
+# DOI: 10.17632/7sgmg89zb6.1
+cd data/input/cochrane_sr_dataset && ./download.sh && cd ../../..
 ```
 
 All commands below assume you are at the repository root. Prefer `uv run …` so the project environment is used automatically.
@@ -175,7 +176,7 @@ scripts/                     # Standalone helper CLIs (presentation export, etc.
 |-----------|-------------|
 | `src/mentor/` | Core agent package — agents, tools, config, dataset loaders, CLI. |
 | `src/experiments/` | Screening benchmarks and evaluation CLIs. |
-| `data/input/systematic_review_dataset/` | Cochrane dataset used as the input source. |
+| `data/input/cochrane_sr_dataset/` | Only `download.sh` in git; fetches the five required Cochrane split CSVs. |
 | `data/output/` | Run and benchmark artifacts (gitignored). |
 | `resources/architecture/` | Design spec for the multi-agent architecture (includes MCP strategy). |
 | `resources/vaccine_indicators_demo/` | Separate LLM pipeline for medical evidence extraction. |
@@ -562,4 +563,4 @@ All configuration lives in [`src/mentor/config.py`](src/mentor/config.py). Key s
 | `SEARCH_BIP_MCP_URL` | `.env` | `https://bip-mcp.imsi.athenarc.gr/mcp` | BIP MCP endpoint (used when `bip` in `SEARCH_SOURCES`) |
 | `SEARCH_BIP_AUTH_TOKEN` | `.env` | — | Bearer token for BIP MCP search endpoint (required for auth) |
 | `SEARCH_PUBMED_MCP_URL` | `.env` | `https://pubmed-mcp.imsi.athenarc.gr/mcp` | PubMed MCP endpoint (used when `pubmed` in `SEARCH_SOURCES`) |
-| `DATASET_DIR` | auto | `data/input/systematic_review_dataset/...` | Cochrane dataset directory |
+| `DATASET_DIR` | auto | `data/input/cochrane_sr_dataset/` | Cochrane dataset directory |

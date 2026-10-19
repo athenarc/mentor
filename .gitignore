@@ -31,7 +31,9 @@ dist/
 
 # project-specific
 resources/docs/
-data/input/systematic_review_dataset/2024*
+# Cochrane split CSVs downloaded by data/input/cochrane_sr_dataset/download.sh
+data/input/cochrane_sr_dataset/*.csv
+data/input/systematic_review_dataset/
 /COMPLETED*
 AGENTS.md
 run*.sh

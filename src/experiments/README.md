@@ -25,8 +25,12 @@ OPENROUTER_API_KEY=sk-or-v1-...
 OPENROUTER_API_BASE=https://openrouter.ai/api/v1
 ```
 
-The Cochrane dataset under `data/input/systematic_review_dataset/` is required
-(same as the production workflow). See the root README setup section.
+The Cochrane dataset under `data/input/cochrane_sr_dataset/` is required
+(same as the production workflow):
+
+```bash
+cd data/input/cochrane_sr_dataset && ./download.sh
+```
 
 ## Layout
 

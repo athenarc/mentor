@@ -28,13 +28,7 @@ load_dotenv(PROJECT_ROOT / ".env")
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
-DATASET_DIR = (
-    PROJECT_ROOT
-    / "data"
-    / "input"
-    / "systematic_review_dataset"
-    / "20240827_Systematic_Review_Data"
-)
+DATASET_DIR = PROJECT_ROOT / "data" / "input" / "cochrane_sr_dataset"
 PACKAGE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = PROJECT_ROOT / "data" / "output"
 
