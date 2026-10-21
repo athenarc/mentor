@@ -2,25 +2,18 @@
 
 from __future__ import annotations
 
-import tempfile
 import unittest
-from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
 from smolagents import ActionStep
 
 from mentor.agents.wrappers import (
-    GATEKEEPER_BATCH_TASK,
-    GATEKEEPER_CHUNK_TASK,
     GATEKEEPER_PAYLOAD_KEY,
-    GATEKEEPER_SINGLE_STUDY_TASK,
+    GATEKEEPER_TASK,
     wrap_gatekeeper,
 )
 from mentor.agents.wrappers.gatekeeper import _StrictGatekeeperWrapper
-from experiments.harness.model_presets import ResolvedModelPreset
-from experiments.harness.review_suites import ScreeningBenchmarkReview
-from mentor.dataset import Study, SystematicReview
 from mentor.errors import (
     ContextOverflowError,
     ErrorClassifier,
@@ -131,7 +124,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
 
         wrapped = wrap_gatekeeper(
             FakeAgent(),
-            fixed_task=GATEKEEPER_BATCH_TASK,
+            fixed_task=GATEKEEPER_TASK,
         )
         payload = {"studies": [_study_payload()]}
         result = wrapped(
@@ -141,7 +134,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
 
         self.assertEqual(result, "ok")
         self.assertEqual(len(calls), 1)
-        self.assertEqual(calls[0]["task"], GATEKEEPER_BATCH_TASK)
+        self.assertEqual(calls[0]["task"], GATEKEEPER_TASK)
         self.assertEqual(
             calls[0]["additional_args"][GATEKEEPER_PAYLOAD_KEY],
             payload,
@@ -160,7 +153,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
 
         wrapped = wrap_gatekeeper(
             FakeAgent(),
-            fixed_task=GATEKEEPER_SINGLE_STUDY_TASK,
+            fixed_task=GATEKEEPER_TASK,
         )
         with self.assertRaises(ValueError):
             wrapped("task", additional_args=None)
@@ -178,7 +171,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
 
         wrapped = wrap_gatekeeper(
             FakeAgent(),
-            fixed_task=GATEKEEPER_CHUNK_TASK,
+            fixed_task=GATEKEEPER_TASK,
         )
         with self.assertRaises(ValueError):
             wrapped(
@@ -199,7 +192,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
                 calls.append((args, kwargs))
                 return "ok"
 
-        wrapped = wrap_gatekeeper(FakeAgent(), fixed_task=GATEKEEPER_BATCH_TASK)
+        wrapped = wrap_gatekeeper(FakeAgent(), fixed_task=GATEKEEPER_TASK)
         with self.assertRaises(ValueError):
             wrapped(
                 "screen",
@@ -233,7 +226,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
 
         wrapped = wrap_gatekeeper(
             OverflowAgent(),
-            fixed_task=GATEKEEPER_BATCH_TASK,
+            fixed_task=GATEKEEPER_TASK,
         )
         with self.assertRaises(ContextOverflowError):
             wrapped(
@@ -302,216 +295,56 @@ class _FakeNamedGatekeeper:
         return "ok"
 
 
-class OrchestratorManagedAgentTests(unittest.TestCase):
-    def test_batch_orchestrator_exposes_named_gatekeeper(self):
+class OrchestratorScreeningToolTests(unittest.TestCase):
+    def test_screening_stage_has_no_managed_agents_and_screen_candidates_tool(self):
         with patch(
-            "mentor.agents.screening_orchestrator.create_gatekeeper_agent",
+            "mentor.agents.orchestrator.create_gatekeeper_agent",
             return_value=_FakeNamedGatekeeper(),
-        ), patch("mentor.agents.screening_orchestrator.CodeAgent") as code_agent:
-            from mentor.agents.screening_orchestrator import (
-                create_screening_orchestrator_agent,
-            )
+        ), patch(
+            "mentor.agents.orchestrator.CodeAgent",
+        ) as code_agent:
+            from mentor.agents.orchestrator import create_orchestrator_agent
 
-            create_screening_orchestrator_agent(
+            create_orchestrator_agent(
                 MagicMock(),
-                MagicMock(),
-                instructions="test screening orchestrator",
+                stages="screening",
+                batch_size=1,
+                output_dir="/tmp/out",
             )
             kwargs = code_agent.call_args.kwargs
-            self.assertEqual(len(kwargs["managed_agents"]), 1)
-            self.assertEqual(kwargs["managed_agents"][0].name, "gatekeeper")
-            self.assertIsInstance(kwargs["managed_agents"][0], _StrictGatekeeperWrapper)
+            self.assertEqual(kwargs["managed_agents"], [])
+            tool_names = [getattr(t, "name", None) for t in kwargs["tools"]]
+            self.assertIn("screen_candidates", tool_names)
 
-    def test_loop_orchestrators_expose_named_gatekeeper(self):
+    def test_full_stage_excludes_gatekeeper_from_managed_agents(self):
         with patch(
-            "mentor.agents.screening_loop_orchestrator.create_gatekeeper_agent",
+            "mentor.agents.orchestrator.create_gatekeeper_agent",
             return_value=_FakeNamedGatekeeper(),
-        ), patch("mentor.agents.screening_loop_orchestrator.CodeAgent") as code_agent:
-            from mentor.agents.screening_loop_orchestrator import (
-                create_screening_chunk_loop_orchestrator_agent,
-                create_screening_loop_orchestrator_agent,
+        ), patch(
+            "mentor.agents.orchestrator.create_librarian_agent",
+            return_value=MagicMock(name="librarian"),
+        ), patch(
+            "mentor.agents.orchestrator.create_miner_agent",
+            return_value=MagicMock(name="miner"),
+        ), patch(
+            "mentor.agents.orchestrator.create_critic_agent",
+            return_value=MagicMock(name="critic"),
+        ), patch(
+            "mentor.agents.orchestrator.CodeAgent",
+        ) as code_agent:
+            from mentor.agents.orchestrator import create_orchestrator_agent
+
+            create_orchestrator_agent(
+                MagicMock(),
+                stages="full",
+                batch_size=None,
+                output_dir="/tmp/out",
             )
-
-            create_screening_loop_orchestrator_agent(
-                MagicMock(),
-                MagicMock(),
-                instructions="loop orch",
-                gatekeeper_instructions="gk single",
-            )
-            create_screening_chunk_loop_orchestrator_agent(
-                MagicMock(),
-                MagicMock(),
-                instructions="chunk orch",
-                gatekeeper_instructions="gk chunk",
-            )
-            for call in code_agent.call_args_list:
-                managed = call.kwargs["managed_agents"]
-                self.assertEqual(managed[0].name, "gatekeeper")
-                self.assertIsInstance(managed[0], _StrictGatekeeperWrapper)
-
-
-def _make_review(n_studies: int = 2) -> SystematicReview:
-    studies = [
-        Study(title=f"Title {i}", abstract=f"Abstract {i}", label=1.0 if i == 1 else 0.0)
-        for i in range(1, n_studies + 1)
-    ]
-    return SystematicReview(
-        review_url="https://example.test/review",
-        title="Synthetic Review",
-        background="Background",
-        objective="Objective",
-        selection_criteria="Criteria",
-        studies=studies,
-    )
-
-
-def _make_review_case(n_studies: int = 2) -> ScreeningBenchmarkReview:
-    return ScreeningBenchmarkReview(
-        key="synthetic_review",
-        split="val",
-        review_url="https://example.test/review",
-        title="Synthetic Review",
-        expected_n_studies=n_studies,
-        expected_n_screen_pass=1,
-        expected_n_screen_exclude=n_studies - 1,
-    )
-
-
-def _make_preset(key: str = "openai_gpt5") -> ResolvedModelPreset:
-    preset = ResolvedModelPreset(
-        key=key,
-        description="test",
-        display_name=key,
-        backend="openai",
-        model_id=key,
-        api_base=None,
-        api_key="test-key",
-        api_key_source="OPENAI_API_KEY",
-    )
-    # Avoid constructing a real provider client in unit tests.
-    object.__setattr__(
-        preset,
-        "create_model",
-        lambda: MagicMock(name=f"{key}_model"),
-    )
-    return preset
-
-
-class RunnerOverflowMappingTests(unittest.TestCase):
-    def test_batch_runner_stops_on_overflow_without_retry(self):
-        review = _make_review()
-        review_case = _make_review_case()
-        gatekeeper_model = _make_preset("gk")
-        orchestrator_model = _make_preset("orch")
-        call_count = {"n": 0}
-
-        fake_orch = MagicMock()
-
-        def _run(_task):
-            call_count["n"] += 1
-            raise ContextOverflowError("maximum context length exceeded")
-
-        fake_orch.run.side_effect = _run
-
-        with tempfile.TemporaryDirectory(dir=Path.cwd()) as tmpdir:
-            output_root = Path(tmpdir)
-            fake_session = MagicMock()
-            fake_session.review = review
-            fake_session.run_dir = output_root / "run"
-            fake_session.run_dir.mkdir(parents=True, exist_ok=True)
-            fake_session.loggers.agent_logger = MagicMock()
-            fake_session.loggers.activity_logger = MagicMock()
-            fake_session.step_cbs = {}
-            with patch(
-                "experiments.harness.runner.load_review",
-                return_value=review,
-            ), patch(
-                "experiments.harness.runner._validate_review_case",
-            ), patch(
-                "experiments.harness.runner.prepare_run_session",
-                return_value=fake_session,
-            ), patch(
-                "experiments.harness.runner.create_screening_orchestrator_agent",
-                return_value=fake_orch,
-            ), patch(
-                "experiments.harness.runner.load_exp_prompt",
-                return_value="prompt",
-            ):
-                from experiments.harness.runner import run_screening_review
-
-                result = run_screening_review(
-                    suite_name="test",
-                    review_case=review_case,
-                    gatekeeper_model=gatekeeper_model,
-                    orchestrator_model=orchestrator_model,
-                    orchestrator_policy="fixed",
-                    run_index=1,
-                    output_root=output_root,
-                    label_policy="include_label_0_5",
-                )
-
-        self.assertEqual(call_count["n"], 1)
-        self.assertEqual(result["error_type"], "context_overflow")
-        self.assertEqual(result["run_status"], "error")
-        self.assertTrue(result["telemetry"]["context_overflow"])
-        self.assertNotIn("context_overflow_count", result["telemetry"])
-
-    def test_loop_runner_stops_resume_on_overflow(self):
-        review = _make_review()
-        review_case = _make_review_case()
-        gatekeeper_model = _make_preset("gk")
-        orchestrator_model = _make_preset("orch")
-        call_count = {"n": 0}
-
-        fake_orch = MagicMock()
-
-        def _run(_task):
-            call_count["n"] += 1
-            raise ContextOverflowError("maximum context length exceeded")
-
-        fake_orch.run.side_effect = _run
-
-        with tempfile.TemporaryDirectory(dir=Path.cwd()) as tmpdir:
-            output_root = Path(tmpdir)
-            fake_session = MagicMock()
-            fake_session.review = review
-            fake_session.run_dir = output_root / "run"
-            fake_session.run_dir.mkdir(parents=True, exist_ok=True)
-            fake_session.loggers.agent_logger = MagicMock()
-            fake_session.loggers.activity_logger = MagicMock()
-            fake_session.step_cbs = {}
-            with patch(
-                "experiments.harness.loop_runner.load_review",
-                return_value=review,
-            ), patch(
-                "experiments.harness.loop_runner._validate_review_case",
-            ), patch(
-                "experiments.harness.loop_runner.prepare_run_session",
-                return_value=fake_session,
-            ), patch(
-                "experiments.harness.loop_runner.create_screening_loop_orchestrator_agent",
-                return_value=fake_orch,
-            ), patch(
-                "experiments.harness.loop_runner.load_exp_prompt",
-                return_value="prompt",
-            ):
-                from experiments.harness.loop_runner import run_screening_loop_review
-
-                result = run_screening_loop_review(
-                    suite_name="test",
-                    review_case=review_case,
-                    gatekeeper_model=gatekeeper_model,
-                    orchestrator_model=orchestrator_model,
-                    orchestrator_policy="fixed",
-                    run_index=1,
-                    output_root=output_root,
-                    label_policy="include_label_0_5",
-                )
-
-        self.assertEqual(call_count["n"], 1)
-        self.assertEqual(result["error_type"], "context_overflow")
-        self.assertEqual(result["run_status"], "error")
-        self.assertTrue(result["telemetry"]["context_overflow"])
+            kwargs = code_agent.call_args.kwargs
+            managed_names = [getattr(a, "name", None) for a in kwargs["managed_agents"]]
+            self.assertNotIn("gatekeeper", managed_names)
+            tool_names = [getattr(t, "name", None) for t in kwargs["tools"]]
+            self.assertIn("screen_candidates", tool_names)
 
 
 if __name__ == "__main__":

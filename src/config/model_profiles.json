@@ -1,0 +1,569 @@
+{
+  "models": [
+    {
+      "key": "env_default",
+      "description": "Shared Mentor runtime model resolved from environment variables.",
+      "display_name": "env-default",
+      "backend": "openai",
+      "backend_env_var": "MENTOR_MODEL_BACKEND",
+      "model_id": "gpt-5",
+      "model_id_env_var": "MENTOR_MODEL",
+      "api_base_env_var": "MENTOR_API_BASE",
+      "api_key_env_vars": [
+        "MENTOR_API_KEY",
+        "OPENAI_API_KEY"
+      ],
+      "requires_api_key": true
+    },
+    {
+      "key": "openai_gpt5",
+      "description": "OpenAI GPT5",
+      "display_name": "openai-gpt-5",
+      "backend": "openai",
+      "model_id": "openai/gpt-5",
+      "requires_api_key": true,
+      "display_name_env_var": "MENTOR_GPT5_MODEL",
+      "model_id_env_var": "MENTOR_GPT5_MODEL",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_base_env_var": "OPENROUTER_API_BASE",
+      "api_key_env_vars": [
+        "OPENROUTER_API_KEY",
+        "MENTOR_API_KEY"
+      ],
+      "request_kwargs": {
+        "extra_body": {
+          "plugins": [
+            {
+              "id": "context-compression",
+              "enabled": false
+            }
+          ],
+          "provider": {
+            "order": [
+              "openai/default"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          },
+          "reasoning": {
+            "enabled": true
+          }
+        }
+      }
+    },
+    {
+      "key": "openai_gpt5--xhigh",
+      "description": "OpenAI GPT5",
+      "display_name": "openai-gpt-5--xhigh",
+      "backend": "openai",
+      "model_id": "openai/gpt-5",
+      "requires_api_key": true,
+      "display_name_env_var": "MENTOR_GPT5_MODEL",
+      "model_id_env_var": "MENTOR_GPT5_MODEL",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_base_env_var": "OPENROUTER_API_BASE",
+      "api_key_env_vars": [
+        "OPENROUTER_API_KEY",
+        "MENTOR_API_KEY"
+      ],
+      "request_kwargs": {
+        "extra_body": {
+          "plugins": [
+            {
+              "id": "context-compression",
+              "enabled": false
+            }
+          ],
+          "reasoning": {
+            "enabled": true,
+            "effort": "xhigh"
+          },
+          "provider": {
+            "order": [
+              "openai/default"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      }
+    },
+    {
+      "key": "deepseek_v4_pro",
+      "description": "DeepSeek V4 Pro",
+      "display_name": "deepseek-v4-pro",
+      "backend": "openai",
+      "model_id": "deepseek/deepseek-v4-pro",
+      "requires_api_key": true,
+      "display_name_env_var": "MENTOR_DEEPSEEK_MODEL",
+      "model_id_env_var": "MENTOR_DEEPSEEK_MODEL",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_base_env_var": "OPENROUTER_API_BASE",
+      "api_key_env_vars": [
+        "OPENROUTER_API_KEY",
+        "MENTOR_API_KEY"
+      ],
+      "request_kwargs": {
+        "extra_body": {
+          "plugins": [
+            {
+              "id": "context-compression",
+              "enabled": false
+            }
+          ],
+          "reasoning": {
+            "enabled": true
+          },
+          "provider": {
+            "order": [
+              "deepseek"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      }
+    },
+    {
+      "key": "deepseek_v4_pro--xhigh",
+      "description": "DeepSeek V4 Pro",
+      "display_name": "deepseek-v4-pro--xhigh",
+      "backend": "openai",
+      "model_id": "deepseek/deepseek-v4-pro",
+      "requires_api_key": true,
+      "display_name_env_var": "MENTOR_DEEPSEEK_MODEL",
+      "model_id_env_var": "MENTOR_DEEPSEEK_MODEL",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_base_env_var": "OPENROUTER_API_BASE",
+      "api_key_env_vars": [
+        "OPENROUTER_API_KEY",
+        "MENTOR_API_KEY"
+      ],
+      "request_kwargs": {
+        "extra_body": {
+          "plugins": [
+            {
+              "id": "context-compression",
+              "enabled": false
+            }
+          ],
+          "reasoning": {
+            "enabled": true,
+            "effort": "xhigh"
+          },
+          "provider": {
+            "order": [
+              "deepseek"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      }
+    },
+    {
+      "key": "qwen3.5_27b",
+      "description": "Qwen 3.5 27B",
+      "display_name": "qwen3.5-27b",
+      "backend": "openai",
+      "model_id": "qwen/qwen3.5-27b",
+      "requires_api_key": true,
+      "display_name_env_var": "MENTOR_QWEN_MODEL",
+      "model_id_env_var": "MENTOR_QWEN_MODEL",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_base_env_var": "OPENROUTER_API_BASE",
+      "api_key_env_vars": [
+        "OPENROUTER_API_KEY",
+        "MENTOR_API_KEY"
+      ],
+      "request_kwargs": {
+        "extra_body": {
+          "plugins": [
+            {
+              "id": "context-compression",
+              "enabled": false
+            }
+          ],
+          "reasoning": {
+            "enabled": true
+          },
+          "provider": {
+            "order": [
+              "novita/bf16"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      }
+    },
+    {
+      "key": "qwen3.5_122b_a10b",
+      "description": "Qwen 3.5 122B A10B",
+      "display_name": "qwen3.5-122b-a10b",
+      "backend": "openai",
+      "model_id": "qwen/qwen3.5-122b-a10b",
+      "requires_api_key": true,
+      "display_name_env_var": "MENTOR_QWEN_MODEL",
+      "model_id_env_var": "MENTOR_QWEN_MODEL",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_base_env_var": "OPENROUTER_API_BASE",
+      "api_key_env_vars": [
+        "OPENROUTER_API_KEY",
+        "MENTOR_API_KEY"
+      ],
+      "request_kwargs": {
+        "extra_body": {
+          "plugins": [
+            {
+              "id": "context-compression",
+              "enabled": false
+            }
+          ],
+          "reasoning": {
+            "enabled": true
+          },
+          "provider": {
+            "order": [
+              "novita/bf16"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      }
+    },
+    {
+      "key": "kimi_k2.6",
+      "description": "Kimi K2.6",
+      "display_name": "kimi-k2.6",
+      "backend": "openai",
+      "model_id": "moonshotai/kimi-k2.6",
+      "requires_api_key": true,
+      "display_name_env_var": "MENTOR_KIMI_MODEL",
+      "model_id_env_var": "MENTOR_KIMI_MODEL",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_base_env_var": "OPENROUTER_API_BASE",
+      "api_key_env_vars": [
+        "OPENROUTER_API_KEY",
+        "MENTOR_API_KEY"
+      ],
+      "request_kwargs": {
+        "extra_body": {
+          "plugins": [
+            {
+              "id": "context-compression",
+              "enabled": false
+            }
+          ],
+          "reasoning": {
+            "enabled": true
+          },
+          "provider": {
+            "order": [
+              "moonshotai/int4"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      }
+    },
+    {
+      "key": "mistral_medium_3.5",
+      "description": "Mistral Medium 3.5",
+      "display_name": "mistral-medium-3.5",
+      "backend": "openai",
+      "model_id": "mistralai/mistral-medium-3-5",
+      "requires_api_key": true,
+      "display_name_env_var": "MENTOR_MISTRAL_MODEL",
+      "model_id_env_var": "MENTOR_MISTRAL_MODEL",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_base_env_var": "OPENROUTER_API_BASE",
+      "api_key_env_vars": [
+        "OPENROUTER_API_KEY",
+        "MENTOR_API_KEY"
+      ],
+      "request_kwargs": {
+        "extra_body": {
+          "plugins": [
+            {
+              "id": "context-compression",
+              "enabled": false
+            }
+          ],
+          "provider": {
+            "order": [
+              "mistral"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      }
+    },
+    {
+      "key": "openai_gpt5.4_mini",
+      "description": "OpenAI GPT-5.4 Mini",
+      "display_name": "openai-gpt-5.4-mini",
+      "backend": "openai",
+      "model_id": "openai/gpt-5.4-mini",
+      "requires_api_key": true,
+      "display_name_env_var": "MENTOR_OPENAI_MODEL",
+      "model_id_env_var": "MENTOR_OPENAI_MODEL",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_base_env_var": "OPENROUTER_API_BASE",
+      "api_key_env_vars": [
+        "OPENROUTER_API_KEY",
+        "MENTOR_API_KEY"
+      ],
+      "request_kwargs": {
+        "extra_body": {
+          "plugins": [
+            {
+              "id": "context-compression",
+              "enabled": false
+            }
+          ],
+          "provider": {
+            "order": [
+              "openai"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      }
+    },
+    {
+      "key": "openai_gpt_oss_120b",
+      "description": "OpenAI GPT-OSS 120B",
+      "display_name": "gpt-oss-120b",
+      "backend": "openai",
+      "model_id": "openai/gpt-oss-120b",
+      "requires_api_key": true,
+      "display_name_env_var": "MENTOR_GPTOSS_MODEL",
+      "model_id_env_var": "MENTOR_GPTOSS_MODEL",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_base_env_var": "OPENROUTER_API_BASE",
+      "api_key_env_vars": [
+        "OPENROUTER_API_KEY",
+        "MENTOR_API_KEY"
+      ],
+      "request_kwargs": {
+        "extra_body": {
+          "plugins": [
+            {
+              "id": "context-compression",
+              "enabled": false
+            }
+          ],
+          "reasoning": {
+            "enabled": true
+          },
+          "provider": {
+            "order": [
+              "deepinfra/bf16"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      }
+    },
+    {
+      "key": "nvidia_nemotron_3_super_120b_a12b",
+      "description": "NVIDIA Nemotron 3 Super 120B A12B",
+      "display_name": "nvidia-nemotron-3-super-120b-a12b",
+      "backend": "openai",
+      "model_id": "nvidia/nemotron-3-super-120b-a12b",
+      "requires_api_key": true,
+      "display_name_env_var": "MENTOR_NVIDIA_NEMOTRON_MODEL",
+      "model_id_env_var": "MENTOR_NVIDIA_NEMOTRON_MODEL",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_base_env_var": "OPENROUTER_API_BASE",
+      "api_key_env_vars": [
+        "OPENROUTER_API_KEY",
+        "MENTOR_API_KEY"
+      ],
+      "request_kwargs": {
+        "extra_body": {
+          "plugins": [
+            {
+              "id": "context-compression",
+              "enabled": false
+            }
+          ],
+          "reasoning": {
+            "enabled": true
+          },
+          "provider": {
+            "order": [
+              "deepinfra/bf16"
+            ],
+            "allow_fallbacks": false,
+            "require_parameters": true
+          }
+        }
+      }
+    },
+    {
+      "key": "qwen3.5_27b-temp0",
+      "description": "Qwen 3.5 27B (temperature 0)",
+      "display_name": "qwen3.5_27b-temp0",
+      "backend": "openai",
+      "model_id": "qwen/qwen3.5-27b",
+      "requires_api_key": true,
+      "display_name_env_var": "MENTOR_QWEN_MODEL",
+      "model_id_env_var": "MENTOR_QWEN_MODEL",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_base_env_var": "OPENROUTER_API_BASE",
+      "api_key_env_vars": [
+        "OPENROUTER_API_KEY",
+        "MENTOR_API_KEY"
+      ],
+      "request_kwargs": {
+        "temperature": 0.0,
+        "extra_headers": {
+          "X-OpenRouter-Metadata": "enabled"
+        },
+        "extra_body": {
+          "plugins": [
+            {
+              "id": "context-compression",
+              "enabled": false
+            }
+          ],
+          "reasoning": {
+            "enabled": true
+          },
+          "provider": {
+            "require_parameters": true
+          }
+        }
+      }
+    }
+  ],
+  "profiles": [
+    {
+      "key": "default",
+      "description": "Single shared Mentor runtime model resolved from environment variables.",
+      "agents": {
+        "shared": "env_default"
+      }
+    },
+    {
+      "key": "openrouter_gpt5",
+      "description": "Shared OpenRouter GPT-5 runtime (benchmark-aligned request options).",
+      "agents": {
+        "shared": "openai_gpt5--xhigh"
+      }
+    },
+    {
+      "key": "openrouter_deepseek_v4_pro",
+      "description": "Shared OpenRouter DeepSeek v4 Pro runtime (benchmark-aligned request options).",
+      "agents": {
+        "shared": "deepseek_v4_pro--xhigh"
+      }
+    },
+    {
+      "key": "multimodel_openrouter",
+      "description": "GPT-5 for coordination, DeepSeek for screening.",
+      "agents": {
+        "shared": "openai_gpt5--xhigh",
+        "gatekeeper": "deepseek_v4_pro--xhigh"
+      }
+    },
+    {
+      "key": "env_default",
+      "description": "All roles use model 'env_default'.",
+      "agents": {
+        "shared": "env_default"
+      }
+    },
+    {
+      "key": "openai_gpt5",
+      "description": "All roles use model 'openai_gpt5'.",
+      "agents": {
+        "shared": "openai_gpt5"
+      }
+    },
+    {
+      "key": "openai_gpt5--xhigh",
+      "description": "All roles use model 'openai_gpt5--xhigh'.",
+      "agents": {
+        "shared": "openai_gpt5--xhigh"
+      }
+    },
+    {
+      "key": "deepseek_v4_pro",
+      "description": "All roles use model 'deepseek_v4_pro'.",
+      "agents": {
+        "shared": "deepseek_v4_pro"
+      }
+    },
+    {
+      "key": "deepseek_v4_pro--xhigh",
+      "description": "All roles use model 'deepseek_v4_pro--xhigh'.",
+      "agents": {
+        "shared": "deepseek_v4_pro--xhigh"
+      }
+    },
+    {
+      "key": "qwen3.5_27b",
+      "description": "All roles use model 'qwen3.5_27b'.",
+      "agents": {
+        "shared": "qwen3.5_27b"
+      }
+    },
+    {
+      "key": "qwen3.5_122b_a10b",
+      "description": "All roles use model 'qwen3.5_122b_a10b'.",
+      "agents": {
+        "shared": "qwen3.5_122b_a10b"
+      }
+    },
+    {
+      "key": "kimi_k2.6",
+      "description": "All roles use model 'kimi_k2.6'.",
+      "agents": {
+        "shared": "kimi_k2.6"
+      }
+    },
+    {
+      "key": "mistral_medium_3.5",
+      "description": "All roles use model 'mistral_medium_3.5'.",
+      "agents": {
+        "shared": "mistral_medium_3.5"
+      }
+    },
+    {
+      "key": "openai_gpt5.4_mini",
+      "description": "All roles use model 'openai_gpt5.4_mini'.",
+      "agents": {
+        "shared": "openai_gpt5.4_mini"
+      }
+    },
+    {
+      "key": "openai_gpt_oss_120b",
+      "description": "All roles use model 'openai_gpt_oss_120b'.",
+      "agents": {
+        "shared": "openai_gpt_oss_120b"
+      }
+    },
+    {
+      "key": "nvidia_nemotron_3_super_120b_a12b",
+      "description": "All roles use model 'nvidia_nemotron_3_super_120b_a12b'.",
+      "agents": {
+        "shared": "nvidia_nemotron_3_super_120b_a12b"
+      }
+    },
+    {
+      "key": "qwen3.5_27b-temp0",
+      "description": "All roles use model 'qwen3.5_27b-temp0'.",
+      "agents": {
+        "shared": "qwen3.5_27b-temp0"
+      }
+    }
+  ]
+}

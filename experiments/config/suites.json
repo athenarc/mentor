@@ -1,0 +1,360 @@
+{
+  "canonical_suites": [
+    {
+      "name": "screening_ladder",
+      "description": "Escalating screening benchmark ladder from 10 to 200 candidate studies.",
+      "reviews": [
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD000211.pub2/full",
+          "split": "val"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004413.pub2/full",
+          "split": "random_test"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007373.pub3/full",
+          "split": "random_test"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005654.pub4/full",
+          "split": "random_test"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011845.pub2/full",
+          "split": "heart_test"
+        }
+      ]
+    },
+    {
+      "name": "screening_ladder_dev_exclude_balanced",
+      "description": "Dev-only escalating screening benchmark ladder selected to remain within a reasonable balance under exclude_label_0_5 scoring.",
+      "reviews": [
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001040.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD002317.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011275/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001884.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011589.pub2/full",
+          "split": "dev"
+        }
+      ]
+    },
+    {
+      "name": "screening_ladder_dev_no_label_0_5",
+      "description": "Dev-only escalating screening benchmark ladder composed of reviews whose dataset labels contain no 0.5 studies.",
+      "reviews": [
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD002900/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003915.pub4/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011708.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011964.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD014823/full",
+          "split": "dev"
+        }
+      ]
+    },
+    {
+      "name": "screening_ladder_dev_no_label_0_5_v2",
+      "description": "Dev-only escalating screening benchmark ladder composed of reviews whose dataset labels contain no 0.5 studies.",
+      "reviews": [
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001040.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006356/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008175/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007672.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008803.pub2/full",
+          "split": "dev"
+        }
+      ]
+    },
+    {
+      "name": "experiments_aug2026",
+      "description": "A suite for running experiments to evaluate gatekeeper performance, robustness and operational costs, containing representative samples of reviews between 26-250 (bins:[26,50), [51,100),[101, 250)).",
+      "reviews": [
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001357/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005283.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD010436.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006269.pub2/full",
+          "split": "val"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD002217.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004424.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005460.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006727.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007421.pub4/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012082.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD015031.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007362.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD009012.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD010673.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008096.pub4/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008040.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001992.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008500.pub5/full",
+          "split": "val"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008605.pub4/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004920.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001865.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD000205.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007934.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001911.pub4/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD005050.pub3/full",
+          "split": "heart_test"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD010813.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007754.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004269.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD013856.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012809.pub2/full",
+          "split": "dev"
+        }
+      ]
+    },
+    {
+      "name": "experiments_sep2026_biggest_reviews",
+      "description": null,
+      "reviews": [
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012080.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012859.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD010213.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012600/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007176.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008552.pub7/full",
+          "split": "heart_test"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011975/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD013274.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD014513/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011737.pub3/full",
+          "split": "heart_test"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011598.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD013346.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012527.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD014873.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD000011.pub4/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD009885.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012599/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001055.pub5/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD008944.pub3/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011901.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012651/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD013684/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011984/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011535.pub6/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD006275.pub4/full",
+          "split": "val"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001431.pub5/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD007272.pub2/full",
+          "split": "dev"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD013139.pub2/full",
+          "split": "heart_test"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD011834/full",
+          "split": "heart_test"
+        },
+        {
+          "key": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD002967.pub4/full",
+          "split": "dev"
+        }
+      ]
+    }
+  ]
+}

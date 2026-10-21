@@ -10,7 +10,7 @@ from experiments.harness.inspection import (
     write_screening_inspection_artifacts,
 )
 from experiments.harness.metrics import compute_screening_metrics
-from mentor.dataset import Study, SystematicReview
+from experiments.dataset import Study, SystematicReview
 
 
 class ScreeningBenchmarkInspectionTests(unittest.TestCase):

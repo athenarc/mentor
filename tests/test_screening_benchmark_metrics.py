@@ -7,7 +7,7 @@ from experiments.harness.metrics import (
     describe_screening_label_policy,
     gold_label_to_screening_decision,
 )
-from mentor.dataset import Study, SystematicReview
+from experiments.dataset import Study, SystematicReview
 
 
 class ScreeningBenchmarkMetricsTests(unittest.TestCase):

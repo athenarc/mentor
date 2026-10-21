@@ -389,12 +389,12 @@ Further reading: [MCP architecture overview](https://modelcontextprotocol.io/doc
 
 ## Current Implementation Notes
 
-> This section documents how the current scaffolding implementation in `src/mentor/`
+> This section documents how the current scaffolding implementation in `src/`
 > relates to the design spec above. The codebase is built on **smolagents**.
 
 ### Implemented
 
-- All five agents exist as CodeAgent instances (see `src/mentor/agents/`).
+- All five agents exist as CodeAgent instances (see `src/agents/`).
 - The Orchestrator manages all four sub-agents and delegates sequentially.
 - The Librarian retrieves studies from a pre-loaded module-level data store (simulating database queries). The store pattern is designed so that only the `search_studies()` implementation needs to change when real PubMed/OpenAIRE APIs are added.
 - The Gatekeeper screens by title/abstract with structured INCLUDE/EXCLUDE decisions and rationales.

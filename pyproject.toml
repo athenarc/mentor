@@ -9,9 +9,7 @@ dependencies = [
   "openai>=2.0,<3",
   "pandas>=2.2,<4",
   "python-dotenv>=1.0,<2",
-  "pygments>=2.16,<3",
   "mcp[cli]>=1.0,<3",
-  "httpx-sse>=0.4,<1",
 ]
 
 [project.optional-dependencies]
@@ -23,6 +21,8 @@ experiments = [
 ]
 litellm = ["litellm>=1.40,<2"]
 dev = ["pytest>=7,<10"]
+# Presentation helpers under scripts/ (e.g. syntax highlighting).
+scripts = ["pygments>=2.16,<3"]
 
 [project.scripts]
 mentor = "mentor.cli:main"
@@ -32,20 +32,44 @@ experiments = "experiments.cli:main"
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools.packages.find]
-where = ["src"]
-include = ["mentor*", "experiments*"]
+# Map import package ``mentor`` onto the flat ``src/`` tree (``src/cli.py`` → ``mentor.cli``).
+[tool.setuptools.package-dir]
+mentor = "src"
+
+[tool.setuptools]
+packages = [
+  "mentor",
+  "mentor.agents",
+  "mentor.agents.prompts",
+  "mentor.agents.wrappers",
+  "mentor.config",
+  "mentor.errors",
+  "mentor.logging",
+  "mentor.runtime",
+  "mentor.tools",
+  "mentor.tools.search",
+  "mentor.tools.search.mcp",
+  "mentor.tools.search.models",
+  "experiments",
+  "experiments.dataset",
+  "experiments.dataset.loaders",
+  "experiments.harness",
+  "experiments.streamlit_app",
+  "experiments.streamlit_app.pages",
+  "experiments.suites",
+]
 
 [tool.setuptools.package-data]
 "mentor" = [
   "agents/prompts/*.md",
-  "runtime/*.json",
+  "config/*.json",
 ]
 "experiments" = [
-  "prompts/*.md",
   "config/*.json",
 ]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+# Do not put ``src`` on pythonpath (would expose ``agents`` as a top-level import).
+# Mentor comes from the editable install; experiments from the repo root.
+pythonpath = ["."]

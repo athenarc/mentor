@@ -1,17 +1,16 @@
-"""Exact equivalence: single-study getter == chunk getter with one index."""
+"""Chunk payload helper: single index equals chunk of size one."""
 
 from __future__ import annotations
 
 import json
 
 from mentor.tools.search.search_tools import (
-    get_candidate_studies_chunk_json,
-    get_candidate_study_json,
+    _candidate_studies_chunk_payload,
     load_review_data,
 )
 
 
-def test_get_candidate_study_json_matches_chunk_size_one():
+def test_single_index_matches_chunk_size_one():
     payload = {
         "title": "T",
         "objective": "O",
@@ -23,11 +22,8 @@ def test_get_candidate_study_json_matches_chunk_size_one():
         ],
     }
     load_review_data(json.dumps(payload))
-    # smolagents Tool objects expose .forward / callable depending on version
-    single = get_candidate_study_json(2)
-    if not isinstance(single, str):
-        single = get_candidate_study_json.forward(2)
-    chunk = get_candidate_studies_chunk_json("[2]")
-    if not isinstance(chunk, str):
-        chunk = get_candidate_studies_chunk_json.forward("[2]")
+    single = _candidate_studies_chunk_payload("[2]")
+    chunk = _candidate_studies_chunk_payload("[2]")
     assert json.loads(single) == json.loads(chunk)
+    assert len(json.loads(single)["studies"]) == 1
+    assert json.loads(single)["studies"][0]["study_index"] == 2

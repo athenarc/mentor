@@ -1,66 +1,64 @@
-"""Tests for benchmark harness model preset resolution."""
+"""Tests for model catalogue resolution used by analysis."""
 
 import unittest
 from unittest.mock import patch
 
-import experiments.harness.model_presets as model_presets
+import mentor.runtime.profile_resolver as profile_resolver
+from mentor.runtime.profile_resolver import ResolvedModel, resolve_model
 from mentor.settings import MODEL_REQUEST_TIMEOUT_SECONDS
-from experiments.harness.model_presets import ResolvedModelPreset, get_model_preset
 
 
-class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
+class ModelCatalogueTests(unittest.TestCase):
     def tearDown(self):
-        model_presets._get_config_path.cache_clear()
-        model_presets._load_model_preset_config.cache_clear()
-        model_presets._build_canonical_model_presets.cache_clear()
+        profile_resolver._clear_catalog_cache()
 
-    def test_openai_gpt5_preset_uses_openrouter_key_source(self):
-        preset = get_model_preset("openai_gpt5").resolve(strict=False)
+    def test_openai_gpt5_uses_openrouter_key_source(self):
+        model = resolve_model("openai_gpt5", strict=False)
 
-        self.assertEqual(preset.backend, "openai")
-        self.assertEqual(preset.model_id, "openai/gpt-5")
-        self.assertEqual(preset.api_base, "https://openrouter.ai/api/v1")
-        self.assertEqual(preset.api_key_source, "OPENROUTER_API_KEY")
+        self.assertEqual(model.backend, "openai")
+        self.assertEqual(model.model_id, "openai/gpt-5")
+        self.assertEqual(model.api_base, "https://openrouter.ai/api/v1")
+        self.assertEqual(model.api_key_source, "OPENROUTER_API_KEY")
         self.assertEqual(
-            preset.model_label,
+            model.model_label,
             "openai-gpt-5 [OpenAI GPT5]",
         )
 
-    def test_deepseek_preset_uses_openrouter_key_source(self):
-        preset = get_model_preset("deepseek_v4_pro").resolve(strict=False)
+    def test_deepseek_uses_openrouter_key_source(self):
+        model = resolve_model("deepseek_v4_pro", strict=False)
 
-        self.assertEqual(preset.backend, "openai")
-        self.assertEqual(preset.model_id, "deepseek/deepseek-v4-pro")
-        self.assertEqual(preset.api_base, "https://openrouter.ai/api/v1")
-        self.assertEqual(preset.api_key_source, "OPENROUTER_API_KEY")
+        self.assertEqual(model.backend, "openai")
+        self.assertEqual(model.model_id, "deepseek/deepseek-v4-pro")
+        self.assertEqual(model.api_base, "https://openrouter.ai/api/v1")
+        self.assertEqual(model.api_key_source, "OPENROUTER_API_KEY")
         self.assertEqual(
-            preset.model_label,
+            model.model_label,
             "deepseek-v4-pro [DeepSeek V4 Pro]",
         )
 
-    def test_qwen_preset_uses_openrouter_shape(self):
-        preset = get_model_preset("qwen3.5_27b").resolve(strict=False)
+    def test_qwen_uses_openrouter_shape(self):
+        model = resolve_model("qwen3.5_27b", strict=False)
 
-        self.assertEqual(preset.backend, "openai")
-        self.assertEqual(preset.model_id, "qwen/qwen3.5-27b")
-        self.assertEqual(preset.api_base, "https://openrouter.ai/api/v1")
+        self.assertEqual(model.backend, "openai")
+        self.assertEqual(model.model_id, "qwen/qwen3.5-27b")
+        self.assertEqual(model.api_base, "https://openrouter.ai/api/v1")
         self.assertEqual(
-            preset.model_label,
+            model.model_label,
             "qwen3.5-27b [Qwen 3.5 27B]",
         )
 
-    def test_unknown_aliases_are_rejected(self):
+    def test_unknown_model_keys_are_rejected(self):
         with self.assertRaises(ValueError):
-            get_model_preset("openrouter_gpt5")
+            resolve_model("openrouter_gpt5")
         with self.assertRaises(ValueError):
-            get_model_preset("deepseek_thinking")
+            resolve_model("deepseek_thinking")
         with self.assertRaises(ValueError):
-            get_model_preset("qwen_ollama_27b")
+            resolve_model("qwen_ollama_27b")
 
     def test_default_config_exposes_provider_pinning(self):
-        preset = get_model_preset("openai_gpt5").resolve(strict=False)
+        model = resolve_model("openai_gpt5", strict=False)
         self.assertEqual(
-            preset.request_kwargs,
+            model.request_kwargs,
             {
                 "extra_body": {
                     "plugins": [
@@ -76,9 +74,9 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
             },
         )
 
-        deepseek_preset = get_model_preset("deepseek_v4_pro").resolve(strict=False)
+        deepseek = resolve_model("deepseek_v4_pro", strict=False)
         self.assertEqual(
-            deepseek_preset.request_kwargs,
+            deepseek.request_kwargs,
             {
                 "extra_body": {
                     "plugins": [
@@ -95,7 +93,7 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
         )
 
     def test_openai_model_creation_sets_client_timeout(self):
-        preset = ResolvedModelPreset(
+        model = ResolvedModel(
             key="test_openai",
             description="",
             display_name="test",
@@ -106,14 +104,14 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
             api_key_source="TEST_KEY",
         )
 
-        with patch("experiments.harness.model_presets.OpenAIServerModel") as model_cls:
-            preset.create_model()
+        with patch("smolagents.OpenAIServerModel") as model_cls:
+            model.create_model()
 
         kwargs = model_cls.call_args.kwargs
         self.assertEqual(kwargs["client_kwargs"]["timeout"], MODEL_REQUEST_TIMEOUT_SECONDS)
 
     def test_litellm_model_creation_sets_completion_timeout(self):
-        preset = ResolvedModelPreset(
+        model = ResolvedModel(
             key="test_litellm",
             description="",
             display_name="test",
@@ -124,8 +122,8 @@ class ScreeningBenchmarkModelPresetsTests(unittest.TestCase):
             api_key_source="TEST_KEY",
         )
 
-        with patch("experiments.harness.model_presets.LiteLLMModel") as model_cls:
-            preset.create_model()
+        with patch("smolagents.LiteLLMModel") as model_cls:
+            model.create_model()
 
         kwargs = model_cls.call_args.kwargs
         self.assertEqual(kwargs["timeout"], MODEL_REQUEST_TIMEOUT_SECONDS)

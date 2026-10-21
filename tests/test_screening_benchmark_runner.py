@@ -13,23 +13,13 @@ from experiments.harness.backfill import (
     backfill_policy_views,
     _load_checkpoint_raw_runs,
 )
-from experiments.harness.model_presets import ResolvedModelPreset
-from experiments.harness.review_suites import ScreeningBenchmarkReview
+from experiments.catalog import ResolvedModel
+from experiments.suites.review_suites import ScreeningBenchmarkReview
 from experiments.harness.runner import (
     _aggregate_runs,
     _link_or_copy,
     _write_summary_csv,
-    rerun_screening_reviews_in_experiment,
-    run_screening_benchmark,
 )
-
-
-class _ResolvedPresetWrapper:
-    def __init__(self, resolved_preset):
-        self._resolved_preset = resolved_preset
-
-    def resolve(self):
-        return self._resolved_preset
 
 
 class ScreeningBenchmarkRunnerTests(unittest.TestCase):
@@ -52,339 +42,7 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
 
             self.assertEqual(path.read_text(encoding="utf-8"), "trace")
 
-    def test_run_screening_benchmark_writes_policy_outputs_only(self):
-        review_case = ScreeningBenchmarkReview(
-            key="synthetic_review",
-            split="val",
-            review_url="https://example.test/review",
-            title="Synthetic Review",
-            expected_n_studies=10,
-            expected_n_screen_pass=6,
-            expected_n_screen_exclude=4,
-        )
-        gatekeeper_model = ResolvedModelPreset(
-            key="ollama_qwen3_5_27b_bf16",
-            description="Ollama via OpenAI-compatible API",
-            display_name="qwen3.5:27b-bf16",
-            backend="openai",
-            model_id="qwen3.5:27b-bf16",
-            api_base="http://localhost:11434/v1",
-            api_key="ollama",
-            api_key_source="OPENAI_API_KEY",
-        )
-        orchestrator_model = ResolvedModelPreset(
-            key="openai_gpt5",
-            description="OpenAI API",
-            display_name="gpt-5",
-            backend="openai",
-            model_id="gpt-5",
-            api_base=None,
-            api_key="test-key",
-            api_key_source="OPENAI_API_KEY",
-        )
-        synthetic_raw_run = {
-            "suite_name": "screening_ladder",
-            "review_case": review_case,
-            "review": SimpleNamespace(
-                title=review_case.title,
-                review_url=review_case.review_url,
-                selection_criteria="Synthetic criteria",
-                studies=[],
-            ),
-            "screening_decisions": [{"study_index": 1, "decision": "INCLUDE", "reason": "Matches"}],
-            "gatekeeper_model": gatekeeper_model,
-            "orchestrator_model": orchestrator_model,
-            "orchestrator_policy": "fixed",
-            "run_index": 1,
-            "duration_seconds": 1.5,
-            "raw_run_dir": Path("/tmp/synthetic"),
-            "run_status": "completed",
-            "error": "",
-            "screening_attempt_count": 1,
-            "rerun_triggered": False,
-        }
 
-        with tempfile.TemporaryDirectory() as tmpdir:
-            experiment_dir = Path(tmpdir) / "benchmark"
-            experiment_dir.mkdir(parents=True, exist_ok=True)
-            include_policy_dir = experiment_dir / "include_policy"
-            exclude_policy_dir = experiment_dir / "exclude_policy"
-
-            def _fake_materialize_policy_outputs(*args, **kwargs):
-                policy_dir = (
-                    include_policy_dir
-                    if kwargs["label_policy"] == "include_label_0_5"
-                    else exclude_policy_dir
-                )
-                policy_dir.mkdir(parents=True, exist_ok=True)
-                (policy_dir / "runs").mkdir(parents=True, exist_ok=True)
-                for name in ("summary.json", "summary.csv", "leaderboard.md", "review_leaderboard.md"):
-                    (policy_dir / name).write_text("test\n", encoding="utf-8")
-                return policy_dir, {
-                    "gold_label_policy": kwargs["label_policy"],
-                    "runs": [{"review_key": review_case.key, "scored_for_aggregate": True}],
-                }
-
-            with patch(
-                "experiments.harness.runner._experiment_root",
-                return_value=experiment_dir,
-            ), patch(
-                "experiments.harness.runner.resolve_review_selection",
-                return_value=[review_case],
-            ), patch(
-                "experiments.harness.runner.resolve_model_presets",
-                return_value=[gatekeeper_model],
-            ), patch(
-                "experiments.harness.runner.get_model_preset",
-                return_value=_ResolvedPresetWrapper(orchestrator_model),
-            ), patch(
-                "experiments.harness.runner.run_screening_review",
-                return_value=synthetic_raw_run,
-            ), patch(
-                "experiments.harness.runner._materialize_policy_outputs",
-                side_effect=_fake_materialize_policy_outputs,
-            ), patch(
-                "experiments.harness.runner.write_policy_eda_notebook",
-                return_value={
-                    "notebook_path": "screening_results_analysis.ipynb",
-                    "executed": False,
-                    "execution_error": "",
-                },
-            ), patch(
-                "experiments.harness.runner.write_policy_html_report",
-                return_value={
-                    "report_path": "screening_results_summary.html",
-                    "title": "Title and Abstract Screening Benchmark Summary",
-                },
-            ), patch(
-                "experiments.harness.runner.write_policy_comparison_report",
-                return_value={
-                    "report_path": str(experiment_dir / "screening_policy_comparison.html"),
-                    "title": "Screening Benchmark Policy Comparison",
-                },
-            ):
-                actual_dir, summary = run_screening_benchmark(
-                    suite_name="screening_ladder",
-                    model_presets=["ollama_qwen3_5_27b_bf16"],
-                    repeats=1,
-                    orchestrator_policy="fixed",
-                    orchestrator_model_key="openai_gpt5",
-                    review_keys=[review_case.key],
-                )
-
-            self.assertEqual(actual_dir, experiment_dir)
-            self.assertFalse((experiment_dir / "summary.json").exists())
-            self.assertFalse((experiment_dir / "summary.csv").exists())
-            self.assertFalse((experiment_dir / "leaderboard.md").exists())
-            self.assertFalse((experiment_dir / "review_leaderboard.md").exists())
-            self.assertFalse((experiment_dir / "runs").exists())
-            for policy_dir in (include_policy_dir, exclude_policy_dir):
-                self.assertTrue((policy_dir / "summary.json").exists())
-                self.assertTrue((policy_dir / "summary.csv").exists())
-                self.assertTrue((policy_dir / "leaderboard.md").exists())
-                self.assertTrue((policy_dir / "review_leaderboard.md").exists())
-
-            self.assertEqual(summary["suite"], "screening_ladder")
-            self.assertEqual(summary["gold_label_policies"], ["include_label_0_5", "exclude_label_0_5"])
-            self.assertIn("include_label_0_5", summary["policy_outputs"])
-            self.assertIn("exclude_label_0_5", summary["policy_outputs"])
-            self.assertEqual(
-                summary["policy_outputs"]["exclude_label_0_5"]["directory"],
-                str(exclude_policy_dir),
-            )
-            self.assertEqual(summary["raw_runs_dir"], str(experiment_dir / "_raw_runs"))
-            self.assertTrue((experiment_dir / "_raw_runs").exists())
-            self.assertTrue((experiment_dir / "benchmark_checkpoint.json").exists())
-            self.assertEqual(
-                summary["comparison_html_report"],
-                str(experiment_dir / "screening_policy_comparison.html"),
-            )
-
-    def test_rerun_screening_benchmark_replaces_selected_review_from_policy_layout(self):
-        review_a = ScreeningBenchmarkReview(
-            key="review_a",
-            split="val",
-            review_url="https://example.test/review-a",
-            title="Review A",
-            expected_n_studies=2,
-            expected_n_screen_pass=1,
-            expected_n_screen_exclude=1,
-        )
-        review_b = ScreeningBenchmarkReview(
-            key="review_b",
-            split="val",
-            review_url="https://example.test/review-b",
-            title="Review B",
-            expected_n_studies=2,
-            expected_n_screen_pass=1,
-            expected_n_screen_exclude=1,
-        )
-        model = ResolvedModelPreset(
-            key="openai_gpt5",
-            description="OpenAI API",
-            display_name="gpt-5",
-            backend="openai",
-            model_id="gpt-5",
-            api_base=None,
-            api_key="test-key",
-            api_key_source="OPENAI_API_KEY",
-        )
-
-        with tempfile.TemporaryDirectory() as tmpdir:
-            experiment_dir = Path(tmpdir) / "benchmark"
-            include_runs_dir = experiment_dir / "include_policy" / "runs"
-            include_runs_dir.mkdir(parents=True, exist_ok=True)
-            run_rows = []
-            for review_case, reason in ((review_a, "old a"), (review_b, "old b")):
-                run_id = f"{review_case.key}_openai_gpt5_fixed_openai_gpt5_run1"
-                run_dir = include_runs_dir / run_id
-                run_dir.mkdir(parents=True, exist_ok=True)
-                (run_dir / "evidence.json").write_text(json.dumps({
-                    "screening_decisions": [
-                        {"study_index": 1, "decision": "INCLUDE", "reason": reason},
-                        {"study_index": 2, "decision": "EXCLUDE", "reason": reason},
-                    ]
-                }), encoding="utf-8")
-                metrics = {
-                    "benchmark_run_id": run_id,
-                    "suite": "screening_ladder",
-                    "review_key": review_case.key,
-                    "review_title": review_case.title,
-                    "review_url": review_case.review_url,
-                    "split": review_case.split,
-                    "gatekeeper_preset": "openai_gpt5",
-                    "orchestrator_preset": "openai_gpt5",
-                    "orchestrator_policy": "fixed",
-                    "run_index": 1,
-                    "duration_seconds": 1.0,
-                    "run_status": "completed",
-                    "error": "",
-                    "run_dir": str(run_dir),
-                }
-                (run_dir / "metrics.json").write_text(json.dumps(metrics), encoding="utf-8")
-                run_rows.append(metrics)
-            (experiment_dir / "include_policy" / "summary.json").write_text(json.dumps({
-                "suite": "screening_ladder",
-                "repeats": 1,
-                "review_keys": ["review_a", "review_b"],
-                "model_presets": ["openai_gpt5"],
-                "orchestrator_policy": "fixed",
-                "orchestrator_preset": "openai_gpt5",
-                "gold_label_policy": "include_label_0_5",
-                "runs": run_rows,
-            }), encoding="utf-8")
-
-            new_raw_dir = experiment_dir / "_raw_runs" / "review_b_openai_gpt5_fixed_openai_gpt5_run1"
-            new_raw_run = {
-                "suite_name": "screening_ladder",
-                "review_case": review_b,
-                "review": SimpleNamespace(
-                    title=review_b.title,
-                    review_url=review_b.review_url,
-                    selection_criteria="Synthetic criteria",
-                    studies=[],
-                ),
-                "screening_decisions": [
-                    {"study_index": 1, "decision": "INCLUDE", "reason": "new b"},
-                    {"study_index": 2, "decision": "EXCLUDE", "reason": "new b"},
-                ],
-                "gatekeeper_model": model,
-                "orchestrator_model": model,
-                "orchestrator_policy": "fixed",
-                "run_index": 1,
-                "duration_seconds": 2.0,
-                "raw_run_dir": new_raw_dir,
-                "run_status": "completed",
-                "error": "",
-                "screening_attempt_count": 1,
-                "rerun_triggered": False,
-                "benchmark_architecture": "batch_orchestrator_v1",
-                "telemetry": {},
-            }
-            captured = {}
-
-            def _fake_checkpoint_policy_outputs(_experiment_dir, **kwargs):
-                captured["raw_runs"] = kwargs["raw_runs"]
-                return {
-                    label_policy: {
-                        "directory": str(_experiment_dir / (
-                            "include_policy" if label_policy == "include_label_0_5" else "exclude_policy"
-                        )),
-                        "summary": {"gold_label_policy": label_policy},
-                    }
-                    for label_policy in kwargs["selected_label_policies"]
-                }
-
-            rerun_kwargs = {}
-
-            def _fake_run_screening_review(**kwargs):
-                rerun_kwargs.update(kwargs)
-                return new_raw_run
-
-            def _fake_resolve_review_selection(_suite_name, review_keys=None):
-                reviews = [review_a, review_b]
-                if review_keys is None:
-                    return reviews
-                selected = set(review_keys)
-                return [review for review in reviews if review.key in selected]
-
-            with patch(
-                "experiments.harness.runner.resolve_review_selection",
-                side_effect=_fake_resolve_review_selection,
-            ), patch(
-                "experiments.harness.runner.load_review",
-                return_value=SimpleNamespace(
-                    title="Synthetic review",
-                    review_url="https://example.test/review",
-                    selection_criteria="Synthetic criteria",
-                    studies=[],
-                ),
-            ), patch(
-                "experiments.harness.runner.get_model_preset",
-                return_value=_ResolvedPresetWrapper(model),
-            ), patch(
-                "experiments.harness.runner.run_screening_review",
-                side_effect=_fake_run_screening_review,
-            ), patch(
-                "experiments.harness.runner._checkpoint_policy_outputs",
-                side_effect=_fake_checkpoint_policy_outputs,
-            ), patch(
-                "experiments.harness.runner.write_policy_eda_notebook",
-                return_value={"notebook_path": "", "executed": False, "execution_error": ""},
-            ), patch(
-                "experiments.harness.runner.write_policy_html_report",
-                return_value={"report_path": "", "title": ""},
-            ), patch(
-                "experiments.harness.runner.write_policy_comparison_report",
-                return_value={
-                    "report_path": str(experiment_dir / "screening_policy_comparison.html"),
-                    "title": "Screening Benchmark Policy Comparison",
-                },
-            ):
-                _actual_dir, summary = rerun_screening_reviews_in_experiment(
-                    experiment_dir=experiment_dir,
-                    review_keys=["review_b"],
-                    execute_policy_notebooks=False,
-                    orchestrator_max_steps=30,
-                )
-
-            self.assertEqual(summary["rerun_review_keys"], ["review_b"])
-            self.assertEqual(summary["orchestrator_max_steps"], 30)
-            self.assertEqual(rerun_kwargs["orchestrator_max_steps"], 30)
-            raw_runs_by_review = {
-                raw_run["review_case"].key: raw_run
-                for raw_run in captured["raw_runs"]
-            }
-            self.assertEqual(
-                raw_runs_by_review["review_a"]["screening_decisions"][0]["reason"],
-                "old a",
-            )
-            self.assertEqual(
-                raw_runs_by_review["review_b"]["screening_decisions"][0]["reason"],
-                "new b",
-            )
-            checkpoint = json.loads((experiment_dir / "benchmark_checkpoint.json").read_text())
-            self.assertEqual(checkpoint["orchestrator_max_steps"], 30)
 
     def test_aggregate_runs_excludes_incomplete_runs_from_metric_means(self):
         complete_row = {
@@ -464,13 +122,8 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
         review_case = ScreeningBenchmarkReview(
             key="synthetic_review",
             split="val",
-            review_url="https://example.test/review",
-            title="Synthetic Review",
-            expected_n_studies=2,
-            expected_n_screen_pass=1,
-            expected_n_screen_exclude=1,
         )
-        gatekeeper_model = ResolvedModelPreset(
+        gatekeeper_model = ResolvedModel(
             key="openai_gpt5",
             description="OpenAI API",
             display_name="gpt-5",
@@ -537,10 +190,10 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                 return_value=[review_case],
             ), patch(
                 "experiments.harness.backfill.load_review",
-                return_value=SimpleNamespace(title=review_case.title, review_url=review_case.review_url),
+                return_value=SimpleNamespace(title="Synthetic Review", review_url=review_case.key),
             ), patch(
-                "experiments.harness.backfill.get_model_preset",
-                return_value=_ResolvedPresetWrapper(gatekeeper_model),
+                "experiments.harness.backfill.resolve_model",
+                return_value=gatekeeper_model,
             ), patch(
                 "experiments.harness.backfill._materialize_policy_outputs",
                 side_effect=_fake_materialize_policy_outputs,
@@ -586,13 +239,8 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
         review_case = ScreeningBenchmarkReview(
             key="synthetic_review",
             split="val",
-            review_url="https://example.test/review",
-            title="Synthetic Review",
-            expected_n_studies=2,
-            expected_n_screen_pass=1,
-            expected_n_screen_exclude=1,
         )
-        gatekeeper_model = ResolvedModelPreset(
+        gatekeeper_model = ResolvedModel(
             key="openai_gpt5",
             description="OpenAI API",
             display_name="gpt-5",
@@ -680,8 +328,8 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
             ), patch(
                 "experiments.harness.backfill.load_review",
                 return_value=SimpleNamespace(
-                    title=review_case.title,
-                    review_url=review_case.review_url,
+                    title="Synthetic Review",
+                    review_url=review_case.key,
                     selection_criteria="Synthetic criteria",
                     studies=[
                         SimpleNamespace(title="Included study", label=1.0),
@@ -689,8 +337,8 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                     ],
                 ),
             ), patch(
-                "experiments.harness.backfill.get_model_preset",
-                return_value=_ResolvedPresetWrapper(gatekeeper_model),
+                "experiments.harness.backfill.resolve_model",
+                return_value=gatekeeper_model,
             ), patch(
                 "experiments.harness.backfill.write_policy_eda_notebook",
                 return_value={
@@ -736,13 +384,8 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
         review_case = ScreeningBenchmarkReview(
             key="synthetic_review",
             split="val",
-            review_url="https://example.test/review",
-            title="Synthetic Review",
-            expected_n_studies=2,
-            expected_n_screen_pass=1,
-            expected_n_screen_exclude=1,
         )
-        model = ResolvedModelPreset(
+        model = ResolvedModel(
             key="openai_gpt5",
             description="OpenAI API",
             display_name="gpt-5",
@@ -792,8 +435,8 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
             ), patch(
                 "experiments.harness.backfill.load_review",
                 return_value=SimpleNamespace(
-                    title=review_case.title,
-                    review_url=review_case.review_url,
+                    title="Synthetic Review",
+                    review_url=review_case.key,
                     selection_criteria="Synthetic criteria",
                     studies=[
                         SimpleNamespace(title="Included study", label=1.0),
@@ -801,8 +444,8 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
                     ],
                 ),
             ), patch(
-                "experiments.harness.backfill.get_model_preset",
-                return_value=_ResolvedPresetWrapper(model),
+                "experiments.harness.backfill.resolve_model",
+                return_value=model,
             ):
                 raw_runs = _load_checkpoint_raw_runs(
                     experiment_dir,

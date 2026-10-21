@@ -2,9 +2,9 @@
 
 Mentor is a scaffolding implementation of a multi-agent architecture designed to automate systematic reviews. Built using the [smolagents](https://huggingface.co/docs/smolagents/) framework, it orchestrates specialized agents to process research from the Cochrane dataset.
 
-- Production package: `src/mentor/`
-- Screening benchmarks and related CLIs: `src/experiments/`
-- Run outputs: `data/output/` (gitignored)
+- Production package: `src/` (import as `mentor`)
+- Screening benchmarks and related CLIs: `experiments/`
+- Mentor outputs: `data/mentor/output/` · Experiments outputs: `data/experiments/output/` (gitignored)
 
 ## Architecture
 
@@ -53,11 +53,11 @@ uv sync --extra experiments --extra litellm --extra dev   # everything
 # 2. Configure credentials
 cp .env.example .env
 # Edit .env — use MENTOR_* keys (formerly BASTIRR_* / SR_AGENTS_*).
-# For OpenRouter-backed experiment presets you also need OPENROUTER_API_KEY.
+# For OpenRouter-backed catalogue models you also need OPENROUTER_API_KEY.
 
 # 3. Download the Cochrane dataset (required for workflow + experiments)
 # DOI: 10.17632/7sgmg89zb6.1
-cd data/input/cochrane_sr_dataset && ./download.sh && cd ../../..
+cd data/experiments/input/cochrane_sr_dataset && ./download.sh && cd ../../../..
 ```
 
 All commands below assume you are at the repository root. Prefer `uv run …` so the project environment is used automatically.
@@ -66,56 +66,82 @@ All commands below assume you are at the repository root. Prefer `uv run …` so
 
 ## Running the full workflow
 
-The production CLI runs the end-to-end 5-agent pipeline (Librarian → Gatekeeper → Miner → Critic) for a single Cochrane review.
+The production CLI runs the end-to-end 5-agent pipeline (Librarian → Gatekeeper → Miner → Critic) for **one** systematic review JSON file (no Cochrane CSV load inside Mentor).
 
-### Default demo
-
-```bash
-# List reviews in a split
-uv run mentor --list-reviews --split HIV_test
-
-# Run the default demo (HIV Cotrimoxazole review on HIV_test)
-uv run mentor
-```
-
-### Choose a review
+### Review JSON
 
 ```bash
-# Pick a review URL + dataset split
-uv run mentor \
-  --split random_test \
-  --review-url "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD004413.pub2/full"
+uv run mentor --review data/mentor/input/reviews/cotrimoxazole_hiv_cd003508.json
 ```
 
-Splits: `dev`, `val`, `random_test`, `heart_test`, `HIV_test`.
+Canonical shape (no gold labels):
+
+```json
+{
+  "mode": "screening-only",
+  "title": "...",
+  "objective": "...",
+  "background": "...",
+  "selection_criteria": "...",
+  "studies": [
+    {"study_index": 1, "title": "...", "abstract": "..."},
+    {"study_index": 2, "title": "...", "abstract": "..."}
+  ]
+}
+
+# mode=screening-only → studies required
+# mode=full (default if omitted) → protocol only (omit studies)
+#
+# Optional per-run prompt overrides (paths relative to the review JSON file).
+# Missing roles use packaged defaults under mentor/agents/prompts/:
+# {
+#   "prompts": {
+#     "gatekeeper": "./prompts/gatekeeper.md",
+#     "orchestrator": "./prompts/orchestrator_screening-only.md",
+#     "librarian": "...",
+#     "miner": "...",
+#     "critic": "..."
+#   }
+# }
+# Single orchestrator key: point at orchestrator.md (full) or
+# orchestrator_screening-only.md (screening-only).
+```
+
+Suite runs materialize this file per cell via `experiments suite` (dataset load stays in experiments).
 
 ### Model / backend options
 
 ```bash
 # Explicit model + backend (OpenAI-compatible)
-uv run mentor --model gpt-5 --backend openai
+uv run mentor --review review.json --model gpt-5 --backend openai
 
 # OpenRouter-style model id + base URL
-uv run mentor \
+uv run mentor --review review.json \
   --model openai/gpt-5 \
   --backend openai \
   --api-base https://openrouter.ai/api/v1
 
-# Named runtime profile from src/mentor/runtime/profiles.json
-uv run mentor --model-profile openrouter_gpt5
+# Named runtime profile from src/config/model_profiles.json
+uv run mentor --review review.json --profile openrouter_gpt5
+uv run mentor --review review.json --batch-size 10 --profile deepseek_v4_pro
 
 # Quieter activity.md (hide nested sub-agent steps)
-uv run mentor --hide-subagent-steps
+uv run mentor --review review.json --hide-subagent-steps
 ```
 
-You can also set defaults in `.env` (`MENTOR_MODEL`, `MENTOR_MODEL_BACKEND`, `MENTOR_API_BASE`, `MENTOR_API_KEY`, `MENTOR_MODEL_PROFILE`, …). CLI flags override env for that run.
+Model selection rules:
+
+- **Either** `--profile KEY` **or** any subset of `--model` / `--backend` / `--api-base` — not both.
+- None of those flags are required: omit them to use `.env` defaults (`MENTOR_MODEL`, `MENTOR_MODEL_BACKEND`, `MENTOR_API_BASE`, `MENTOR_API_KEY`, and optionally `MENTOR_MODEL_PROFILE`).
+- You do not need all three of `--model` / `--backend` / `--api-base`; pass only what you want to override.
+- CLI flags override env for that run.
 
 ### Outputs
 
 Each run writes under:
 
 ```text
-data/output/<YYYYMMDD_HHMMSS>_<review-title>/
+data/mentor/output/<YYYYMMDD_HHMMSS>_<review-title>/
   report.md          # final narrative report
   evidence.json      # machine-readable screening/extraction evidence
   activity.md        # human-readable phase summary
@@ -126,7 +152,7 @@ data/output/<YYYYMMDD_HHMMSS>_<review-title>/
 
 ```bash
 uv run python scripts/render_workflow_presentation.py \
-  --workflow "data/output/<timestamp>_<review-title>/workflow.log"
+  --workflow "data/mentor/output/<timestamp>_<review-title>/workflow.log"
 ```
 
 See [Workflow Presentation Exporter](#workflow-presentation-exporter) for annotations and extra flags.
@@ -135,38 +161,50 @@ See [Workflow Presentation Exporter](#workflow-presentation-exporter) for annota
 
 ## Running experiments
 
-Screening benchmarks live in `src/experiments/`. Setup, suites/presets, batch and
-loop CLIs, outputs, helpers, Streamlit, and plots are documented in
-[`src/experiments/README.md`](src/experiments/README.md).
+Suite grid + dataset + scoring live in `experiments/`:
+
+```bash
+uv run experiments suite --suite screening_ladder --profiles openai_gpt5 --batch-size 10
+uv run experiments analyze data/experiments/output/screening_benchmarks/<suite_dir>
+```
+
+Details: [`experiments/README.md`](experiments/README.md).
 
 ---
 
 ## Project Structure
 
 ```
-src/mentor/
-├── cli.py                   # Production CLI (console script: mentor)
+src/
+├── cli.py                   # Production CLI (--review)
+├── review.py                # One-review types + JSON I/O (no gold labels)
 ├── settings.py              # Paths, timeouts, shared MENTOR_* env defaults
 ├── logging/                 # workflow.log dual-write + activity.md audit trail
-├── dataset/                 # Review models + Cochrane schema + loaders
-│   └── loaders/             # e.g. cochrane_csv.py (+ more sources later)
-├── runtime/                 # RunSession, model factory, profiles.json
+├── config/                  # model_profiles.json
+├── runtime/                 # RunSession, run_review API, profile resolver
 ├── agents/                  # Librarian, Gatekeeper, Miner, Critic, Orchestrator
-│   └── prompts/             # Production agent instruction .md files
+│   └── prompts/             # Agent instruction .md files
 ├── tools/                   # Search, screening, extraction, synthesis, report tools
 
-src/experiments/
-├── screening.py             # Batch Gatekeeper benchmark CLI
-├── screening_loop.py        # Looped / chunked benchmark CLI
-├── config/                  # suites.json + models.json registries
-├── harness/                 # Runners, metrics, checkpoints
-├── prompts/                 # Experiment-only agent instructions
-├── streamlit_app/           # Screening benchmark dashboard pages
-├── benchmark_runs_ui.py     # Streamlit entry for the dashboard
-├── plot_screening_leaderboards.py  # Leaderboard chart CLI
-└── sample_review_suites.py  # Dataset sampling helper
+experiments/
+├── cli.py                   # Suite + analysis CLI (console script: experiments)
+├── suite_cli.py / suites/   # Grid expansion + runner
+├── dataset/                 # Cochrane CSV loaders (gold labels for scoring)
+├── config/suites.json       # Suite registry
+├── analyze.py               # Score suite experiment directories
+├── harness/                 # Metrics, materialize, totals, reports
+├── streamlit_app/           # Screening dashboard pages
+├── benchmark_runs_ui.py     # Streamlit entry
+├── plot_screening_leaderboards.py
+└── sample_review_suites.py  # Sample reviews into suites.json
 
-data/output/                 # All run artifacts (gitignored)
+data/mentor/
+├── input/reviews/           # Example / hand-written review JSON
+└── output/                  # Single Mentor pipeline runs (gitignored)
+
+data/experiments/
+├── input/cochrane_sr_dataset/  # Cochrane CSVs (download.sh)
+└── output/screening_benchmarks/  # Suite grids (gitignored)
 
 scripts/                     # Standalone helper CLIs (presentation export, etc.)
 ```
@@ -175,10 +213,10 @@ scripts/                     # Standalone helper CLIs (presentation export, etc.
 
 | Directory | Description |
 |-----------|-------------|
-| `src/mentor/` | Core agent package — agents, tools, config, dataset loaders, CLI. |
-| `src/experiments/` | Screening benchmarks and evaluation CLIs. |
-| `data/input/cochrane_sr_dataset/` | Only `download.sh` in git; fetches the five required Cochrane split CSVs. |
-| `data/output/` | Run and benchmark artifacts (gitignored). |
+| `src/` | Mentor package root (setuptools maps it to import `mentor`). |
+| `experiments/` | Suite grid (subprocess Mentor) + analysis/dashboards; no Mentor imports. |
+| `data/mentor/` | Mentor review JSON inputs + single-run outputs. |
+| `data/experiments/` | Cochrane dataset inputs + suite/benchmark outputs. |
 | `resources/architecture/` | Design spec for the multi-agent architecture (includes MCP strategy). |
 | `resources/vaccine_indicators_demo/` | Separate LLM pipeline for medical evidence extraction. |
 | `tests/` | Pytest suite for mentor + experiment harness. |
@@ -215,14 +253,14 @@ The exporter is designed for demos, reviews, and handovers. It preserves the chr
 
 ```bash
 uv run python scripts/render_workflow_presentation.py \
-  --workflow "data/output/<timestamp>_<review-title>/workflow.log"
+  --workflow "data/mentor/output/<timestamp>_<review-title>/workflow.log"
 ```
 
 Disable annotations entirely:
 
 ```bash
 uv run python scripts/render_workflow_presentation.py \
-  --workflow "data/output/<timestamp>_<review-title>/workflow.log" \
+  --workflow "data/mentor/output/<timestamp>_<review-title>/workflow.log" \
   --disable-annotations
 ```
 
@@ -230,16 +268,16 @@ Use a specific annotations file and output path:
 
 ```bash
 uv run python scripts/render_workflow_presentation.py \
-  --workflow "data/output/<timestamp>_<review-title>/workflow.log" \
-  --annotations "data/output/<timestamp>_<review-title>/workflow_presentation_annotations.json" \
-  --output "data/output/<timestamp>_<review-title>/presentation.html"
+  --workflow "data/mentor/output/<timestamp>_<review-title>/workflow.log" \
+  --annotations "data/mentor/output/<timestamp>_<review-title>/workflow_presentation_annotations.json" \
+  --output "data/mentor/output/<timestamp>_<review-title>/presentation.html"
 ```
 
 Workflow-only mode without `activity.md` enrichment:
 
 ```bash
 uv run python scripts/render_workflow_presentation.py \
-  --workflow "data/output/<timestamp>_<review-title>/workflow.log" \
+  --workflow "data/mentor/output/<timestamp>_<review-title>/workflow.log" \
   --activity none
 ```
 
@@ -340,9 +378,9 @@ MENTOR_API_KEY=sk-or-v1-...
 
 For reusable runtime setups, Mentor supports JSON-backed model profiles.
 
-- Default profile file: `src/mentor/runtime/profiles.json`
-- Select a profile with `MENTOR_MODEL_PROFILE=<profile-key>` or `--model-profile <profile-key>`
-- Override the profile file with `MENTOR_MODEL_PROFILES_CONFIG=/absolute/path/to/profiles.json`
+- Model catalogue + profiles: `src/config/model_profiles.json`
+- Select a profile or bare model key with `MENTOR_MODEL_PROFILE=<key>` or `--profile <key>`
+- Override the catalogue with `MENTOR_MODELS_CONFIG=/absolute/path/to/model_profiles.json`
 
 Profiles can define:
 
@@ -444,7 +482,7 @@ In that example:
 To use a custom profile file:
 
 ```bash
-MENTOR_MODEL_PROFILES_CONFIG=/absolute/path/to/profiles.json
+MENTOR_MODELS_CONFIG=/absolute/path/to/model_profiles.json
 MENTOR_MODEL_PROFILE=multimodel_openrouter
 MENTOR_API_KEY=sk-or-v1-...
 uv run mentor
@@ -532,28 +570,34 @@ The candidate list used by the pipeline is what the Librarian publishes via
 ## CLI Arguments (full workflow)
 
 ```bash
-uv run mentor [OPTIONS]
+uv run mentor --review PATH [OPTIONS]
 
 Options:
-  --review-url URL     Cochrane review URL to process
-  --split SPLIT        Dataset split: dev, val, random_test, heart_test, HIV_test
-  --model MODEL_ID     Model identifier (e.g. gpt-5, anthropic/claude-3-5-sonnet-latest)
-  --backend BACKEND    Model backend: openai (default) or litellm
-  --api-base URL       API base URL for local servers (e.g. http://localhost:11434)
-  --model-profile KEY  Runtime model profile key from src/mentor/runtime/profiles.json
-  --list-reviews       List available reviews and exit
+  --review PATH        Required. One-review JSON (no gold labels)
+  --profile KEY        Profile from model_profiles.json (mutually exclusive
+                       with --model/--backend/--api-base)
+  --model MODEL_ID     Shared model id (optional; env default if omitted)
+  --backend BACKEND    openai (default) or transformers
+  --api-base URL       OpenAI-compatible API base URL
+  --batch-size N       Studies per Gatekeeper call (omit=all, 1=single-study)
+  --list-profiles      List model profiles and exit
   --hide-subagent-steps
                        Hide sub-agent step details in activity.md
+
+Model flags are optional. Use --profile XOR --model/--backend/--api-base
+(any subset); otherwise fall back to MENTOR_* env defaults. Pipeline mode
+comes from the review JSON ``mode`` field (full | screening-only).
 ```
+
 
 ## Configuration Reference
 
 Settings are split by domain:
 
-- [`src/mentor/settings.py`](src/mentor/settings.py) — paths, timeouts, shared env defaults
-- [`src/mentor/runtime/models.py`](src/mentor/runtime/models.py) — `create_model` / resolve helpers
-- [`src/mentor/dataset/cochrane.py`](src/mentor/dataset/cochrane.py) — Cochrane CSV paths and labels
-- [`src/mentor/tools/search/settings.py`](src/mentor/tools/search/settings.py) — search sources / MCP
+- [`src/settings.py`](src/settings.py) — paths, timeouts, shared env defaults
+- [`src/runtime/models.py`](src/runtime/models.py) — `create_model` / resolve helpers
+- [`experiments/dataset/cochrane.py`](experiments/dataset/cochrane.py) — Cochrane CSV paths and labels
+- [`src/tools/search/settings.py`](src/tools/search/settings.py) — search sources / MCP
 
 Key env settings:
 
@@ -565,10 +609,11 @@ Key env settings:
 | `MENTOR_MODEL` | `.env` | `gpt-5` | Model identifier (provider-prefixed for LiteLLM) |
 | `MENTOR_API_BASE` | `.env` | — | API base URL for OpenAI-compatible or local servers |
 | `MENTOR_MODEL_PROFILE` | `.env` | — | Runtime model profile key |
-| `MENTOR_MODEL_PROFILES_CONFIG` | `.env` | `src/mentor/runtime/profiles.json` | Alternate runtime model-profile file |
+| `MENTOR_MODELS_CONFIG` | `.env` | `src/config/model_profiles.json` | Alternate model catalogue file |
 | `MENTOR_EXECUTOR_TIMEOUT` | `.env` | `500` | Max seconds per code-execution step |
 | `SEARCH_SOURCES` | `.env` | `local` | Comma-separated search sources: `local`, `bip`, `pubmed` |
 | `SEARCH_BIP_MCP_URL` | `.env` | `https://bip-mcp.imsi.athenarc.gr/mcp` | BIP MCP endpoint (used when `bip` in `SEARCH_SOURCES`) |
 | `SEARCH_BIP_AUTH_TOKEN` | `.env` | — | Bearer token for BIP MCP search endpoint (required for auth) |
 | `SEARCH_PUBMED_MCP_URL` | `.env` | `https://pubmed-mcp.imsi.athenarc.gr/mcp` | PubMed MCP endpoint (used when `pubmed` in `SEARCH_SOURCES`) |
-| `DATASET_DIR` | auto | `data/input/cochrane_sr_dataset/` | Cochrane dataset directory |
+| `OUTPUT_DIR` (mentor) | auto | `data/mentor/output/` | Mentor single-run artifacts |
+| `DATASET_DIR` (experiments) | auto | `data/experiments/input/cochrane_sr_dataset/` | Cochrane CSVs for suites/analyze |
