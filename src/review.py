@@ -8,8 +8,6 @@ Mode-dependent input contract (``mode`` defaults to ``full`` when omitted):
 - ``screening-only`` — ``studies`` required (non-empty)
 - ``full`` — protocol fields only; ``studies`` must be absent or empty
   (Librarian retrieves candidates)
-
-Legacy alias: ``screening`` is accepted and normalized to ``screening-only``.
 """
 
 from __future__ import annotations
@@ -27,12 +25,6 @@ LABEL_UNKNOWN = -1.0
 
 ReviewMode = Literal["full", "screening-only"]
 VALID_MODES = frozenset({"full", "screening-only"})
-# Accepted in JSON / CLI, then normalized into VALID_MODES.
-_MODE_ALIASES = {
-    "full": "full",
-    "screening-only": "screening-only",
-    "screening": "screening-only",
-}
 
 
 @dataclass
@@ -87,24 +79,15 @@ def normalize_mode(raw: Any) -> ReviewMode:
     if raw is None or (isinstance(raw, str) and not str(raw).strip()):
         return "full"
     key = str(raw).strip().lower()
-    mode = _MODE_ALIASES.get(key)
-    if mode is None:
+    if key not in VALID_MODES:
         raise ValueError(
-            f"Review JSON 'mode' must be one of {sorted(VALID_MODES)} "
-            f"(alias: screening), got {raw!r}"
+            f"Review JSON 'mode' must be one of {sorted(VALID_MODES)}, got {raw!r}"
         )
-    return mode  # type: ignore[return-value]
+    return key  # type: ignore[return-value]
 
 
 def _parse_mode(raw: Any) -> ReviewMode:
     return normalize_mode(raw)
-
-
-def pipeline_stages_for_mode(mode: ReviewMode) -> str:
-    """Map review ``mode`` to orchestrator ``stages`` (``full`` | ``screening``)."""
-    if mode == "screening-only":
-        return "screening"
-    return "full"
 
 
 def validate_review_for_mode(review: SystematicReview) -> None:

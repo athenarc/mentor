@@ -3,7 +3,7 @@ Canonical review suites (``experiments/config/suites.json``).
 
 Each review entry is a Cochrane ``key`` (review URL) plus dataset ``split``.
 Optional per-suite ``run`` blocks list **profiles** (not raw model keys),
-plus repeats, batch_size, and stages.
+plus repeats, batch_size, and mode.
 """
 
 from __future__ import annotations
@@ -59,17 +59,17 @@ class SuiteRunConfig:
     configurations: list[RoleModelMap]
     repeats: int = 1
     batch_size: int | None = None
-    stages: str = "screening-only"
+    mode: str = "screening-only"
 
     def __post_init__(self) -> None:
         if self.repeats < 1:
             raise ValueError("repeats must be at least 1")
         if self.batch_size is not None and self.batch_size < 1:
             raise ValueError("batch_size must be at least 1 when provided")
-        allowed = {"full", "screening-only", "screening"}
-        if self.stages not in allowed:
+        allowed = {"full", "screening-only"}
+        if self.mode not in allowed:
             raise ValueError(
-                f"stages must be one of {sorted(allowed)}, got {self.stages!r}"
+                f"mode must be one of {sorted(allowed)}, got {self.mode!r}"
             )
         if not self.configurations:
             raise ValueError("Suite run config has no profile configurations.")
@@ -151,7 +151,7 @@ def expand_suite_run_config(
     profiles_override: list[str] | None = None,
     repeats_override: int | None = None,
     batch_size_override: int | None = ...,  # type: ignore[assignment]
-    stages_override: str | None = None,
+    mode_override: str | None = None,
 ) -> SuiteRunConfig:
     """
     Expand a suite's ``run.profiles`` list, applying optional CLI overrides.
@@ -177,8 +177,8 @@ def expand_suite_run_config(
         run_block["repeats"] = repeats_override
     if batch_size_override is not ...:
         run_block["batch_size"] = batch_size_override
-    if stages_override is not None:
-        run_block["stages"] = stages_override
+    if mode_override is not None:
+        run_block["mode"] = mode_override
 
     profiles_raw = run_block.get("profiles") or []
     if not profiles_raw:
@@ -191,9 +191,11 @@ def expand_suite_run_config(
         _configuration_from_profile(str(key), strict=False) for key in profiles_raw
     ]
 
+    # Prefer ``mode``; accept legacy ``stages`` in suites.json.
+    mode = run_block.get("mode") or run_block.get("stages") or "screening-only"
     return SuiteRunConfig(
         configurations=configurations,
         repeats=int(run_block.get("repeats") or 1),
         batch_size=run_block.get("batch_size"),
-        stages=str(run_block.get("stages") or "screening-only"),
+        mode=str(mode),
     )

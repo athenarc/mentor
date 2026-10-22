@@ -296,7 +296,7 @@ class _FakeNamedGatekeeper:
 
 
 class OrchestratorScreeningToolTests(unittest.TestCase):
-    def test_screening_stage_has_no_managed_agents_and_screen_candidates_tool(self):
+    def test_screening_only_mode_has_no_managed_agents_and_screen_candidates_tool(self):
         with patch(
             "mentor.agents.orchestrator.create_gatekeeper_agent",
             return_value=_FakeNamedGatekeeper(),
@@ -307,7 +307,7 @@ class OrchestratorScreeningToolTests(unittest.TestCase):
 
             create_orchestrator_agent(
                 MagicMock(),
-                stages="screening",
+                mode="screening-only",
                 batch_size=1,
                 output_dir="/tmp/out",
             )
@@ -316,7 +316,7 @@ class OrchestratorScreeningToolTests(unittest.TestCase):
             tool_names = [getattr(t, "name", None) for t in kwargs["tools"]]
             self.assertIn("screen_candidates", tool_names)
 
-    def test_full_stage_excludes_gatekeeper_from_managed_agents(self):
+    def test_full_mode_excludes_gatekeeper_from_managed_agents(self):
         with patch(
             "mentor.agents.orchestrator.create_gatekeeper_agent",
             return_value=_FakeNamedGatekeeper(),
@@ -336,7 +336,7 @@ class OrchestratorScreeningToolTests(unittest.TestCase):
 
             create_orchestrator_agent(
                 MagicMock(),
-                stages="full",
+                mode="full",
                 batch_size=None,
                 output_dir="/tmp/out",
             )

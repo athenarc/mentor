@@ -12,7 +12,6 @@ from smolagents import Model
 
 from mentor.agents import create_orchestrator_agent
 from mentor.logging.provider_usage import ProviderUsageCollector, attach_usage_collector
-from mentor.review import pipeline_stages_for_mode
 from mentor.runtime.models import resolve_api_base
 from mentor.runtime.session import prepare_run_session
 
@@ -116,7 +115,6 @@ def run_review(
 
     review = session.review
     mode = review.mode
-    pipeline_stages = pipeline_stages_for_mode(mode)
     run_dir = session.run_dir
     activity_logger = session.loggers.activity_logger
     agent_logger = session.loggers.agent_logger
@@ -166,7 +164,7 @@ def run_review(
         models_by_role=role_models,
         step_callbacks=step_cbs,
         logger=agent_logger,
-        stages=pipeline_stages,
+        mode=mode,
         batch_size=batch_size,
         output_dir=str(run_dir),
         prompt_paths=review.prompts or None,
@@ -217,7 +215,6 @@ def run_review(
         payload: dict[str, Any] = {
             "review_json": str(path.resolve()),
             "mode": mode,
-            "stages": pipeline_stages,
             "prompt_overrides": dict(review.prompts) if review.prompts else {},
             "screening_batch_size": batch_size,
             "model_profile": session.profile_key,

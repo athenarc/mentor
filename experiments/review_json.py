@@ -11,10 +11,8 @@ def normalize_mode(raw: Any) -> str:
     if raw is None or (isinstance(raw, str) and not str(raw).strip()):
         return "full"
     key = str(raw).strip().lower()
-    if key in {"screening", "screening-only"}:
-        return "screening-only"
-    if key == "full":
-        return "full"
+    if key in {"full", "screening-only"}:
+        return key
     raise ValueError(f"mode must be 'full' or 'screening-only', got {raw!r}")
 
 

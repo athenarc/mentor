@@ -54,10 +54,10 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Override suite run.batch_size (omit for suite default; pass explicitly for None).",
     )
     parser.add_argument(
-        "--stages",
-        choices=["full", "screening-only", "screening"],
+        "--mode",
+        choices=["full", "screening-only"],
         default=None,
-        help="Override suite run.stages (default: suite or screening-only).",
+        help="Override suite run.mode (default: suite or screening-only).",
     )
     parser.add_argument(
         "--resume",
@@ -120,7 +120,7 @@ def main(argv: list[str] | None = None) -> None:
             profiles=args.profiles,
             repeats=args.repeats,
             batch_size=args.batch_size,
-            stages=args.stages,
+            mode=args.mode,
             include_subagent_steps=not args.hide_subagent_steps,
             resume_dir=args.resume,
             batch_size_set=batch_size_set,

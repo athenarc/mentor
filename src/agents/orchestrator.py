@@ -2,8 +2,8 @@
 Orchestrator agent — manager for the systematic-review pipeline.
 
 One factory supports:
-- ``stages="full"``: librarian → screen_candidates → miner → critic → report
-- ``stages="screening"``: screen_candidates only (candidates preloaded)
+- ``mode="full"``: librarian → screen_candidates → miner → critic → report
+- ``mode="screening-only"``: screen_candidates only (candidates preloaded)
 
 Screening always goes through the Python ``screen_candidates`` tool, which
 batches Gatekeeper calls by ``batch_size`` (None = all, 1 = single-study, N = chunks).
@@ -53,7 +53,7 @@ def create_orchestrator_agent(
     logger=None,
     instructions: str | None = None,
     *,
-    stages: str = "full",
+    mode: str = "full",
     batch_size: int | None = None,
     output_dir: str | None = None,
     max_steps: int | None = None,
@@ -73,19 +73,20 @@ def create_orchestrator_agent(
         logger: Optional ``AgentLogger`` shared across agents.
         instructions: Optional orchestrator prompt override (wins over
             ``prompt_paths`` for the orchestrator role).
-        stages: ``"full"`` (search → screen → extract → synthesize) or
-            ``"screening"`` (Gatekeeper screening only).
+        mode: ``"full"`` (search → screen → extract → synthesize) or
+            ``"screening-only"`` (Gatekeeper screening only).
         batch_size: Studies per Gatekeeper call. ``None`` = all studies;
             ``1`` = one study at a time; ``N`` = chunks of N.
         output_dir: Directory for ``evidence.json`` / progress (required).
-        max_steps: Orchestrator step budget. Defaults: 10 (full), 6 (screening).
+        max_steps: Orchestrator step budget. Defaults: 10 (full), 6
+            (screening-only).
         max_batch_attempts: Retries per screening batch before fail-closed.
         prompt_paths: Optional role → prompt file path overrides
             (``librarian``, ``gatekeeper``, ``miner``, ``critic``,
             ``orchestrator``). One ``orchestrator`` path covers both modes;
             packaged defaults remain ``orchestrator.md`` (full) and
-            ``orchestrator_screening-only.md`` (screening). Missing roles use
-            packaged defaults.
+            ``orchestrator_screening-only.md`` (screening-only). Missing roles
+            use packaged defaults.
 
     Returns:
         Configured CodeAgent.
@@ -94,8 +95,12 @@ def create_orchestrator_agent(
         raise ValueError(
             "create_orchestrator_agent requires either a shared model or models_by_role."
         )
-    if stages not in {"full", "screening"}:
-        raise ValueError(f"stages must be 'full' or 'screening', got {stages!r}")
+    mode_key = str(mode).strip().lower()
+    if mode_key not in {"full", "screening-only"}:
+        raise ValueError(
+            f"mode must be 'full' or 'screening-only', got {mode!r}"
+        )
+    mode = mode_key
     if output_dir is None:
         raise ValueError("create_orchestrator_agent requires output_dir for screening persistence.")
     if batch_size is not None and batch_size < 1:
@@ -126,7 +131,7 @@ def create_orchestrator_agent(
         max_batch_attempts=max_batch_attempts,
     )
 
-    if stages == "screening":
+    if mode == "screening-only":
         resolved_max_steps = max_steps if max_steps is not None else 6
         return CodeAgent(
             tools=[screen_candidates, format_screening_progress_summary],

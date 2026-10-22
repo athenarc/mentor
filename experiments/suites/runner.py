@@ -111,7 +111,7 @@ def run_single_review(
     config_label: str,
     run_index: int,
     output_root: Path,
-    stages: str = "screening-only",
+    mode: str = "screening-only",
     batch_size: int | None = None,
     include_subagent_steps: bool = True,
 ) -> dict[str, Any]:
@@ -131,7 +131,7 @@ def run_single_review(
             f"Unable to load review '{review_case.key}' from split '{review_case.split}'."
         )
 
-    mode = normalize_mode(stages)
+    mode = normalize_mode(mode)
     run_name = _run_name(
         review_case,
         gatekeeper_key=gatekeeper_key,
@@ -158,7 +158,6 @@ def run_single_review(
         "review_url": dataset_review.review_url,
         "split": review_case.split,
         "run_index": run_index,
-        "stages": mode,
         "mode": mode,
         "screening_batch_size": batch_size,
         "benchmark_architecture": architecture_name(batch_size),
@@ -250,7 +249,7 @@ def run_suite(
     profiles: list[str] | None = None,
     repeats: int | None = None,
     batch_size: int | None = None,
-    stages: str | None = None,
+    mode: str | None = None,
     include_subagent_steps: bool = True,
     resume_dir: Path | None = None,
     output_root: Path | None = None,
@@ -262,7 +261,7 @@ def run_suite(
         profiles_override=profiles,
         repeats_override=repeats,
         batch_size_override=batch_size if batch_size_set else ...,
-        stages_override=stages,
+        mode_override=mode,
     )
     reviews = resolve_review_selection(suite_name, review_keys)
 
@@ -284,7 +283,7 @@ def run_suite(
 
     manifest = {
         "suite": suite_name,
-        "stages": run_config.stages,
+        "mode": run_config.mode,
         "batch_size": run_config.batch_size,
         "repeats": run_config.repeats,
         "benchmark_architecture": architecture_name(run_config.batch_size),
@@ -338,9 +337,9 @@ def run_suite(
                     logger.info("Skipping completed run %s", name)
                     continue
                 logger.info(
-                    "Running %s (stages=%s batch_size=%s)",
+                    "Running %s (mode=%s batch_size=%s)",
                     name,
-                    run_config.stages,
+                    run_config.mode,
                     run_config.batch_size,
                 )
                 result = run_single_review(
@@ -351,7 +350,7 @@ def run_suite(
                     config_label=config.label,
                     run_index=run_index,
                     output_root=raw_root,
-                    stages=run_config.stages,
+                    mode=run_config.mode,
                     batch_size=run_config.batch_size,
                     include_subagent_steps=include_subagent_steps,
                 )

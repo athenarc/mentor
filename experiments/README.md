@@ -1,8 +1,6 @@
 # Experiments
 
-Root-level package (not under `src/`). Suite **execution** invokes Mentor
-**externally** via `uv run mentor` / `python -m mentor.cli`. This package never
-imports `mentor`.
+Run screening benchmark suites and score them against Cochrane gold labels.
 
 From the repository root, after `uv sync` (and optionally
 `uv sync --extra experiments` for dashboards/plots):
@@ -13,29 +11,17 @@ Suites and `analyze` need the Cochrane split CSVs under
 `data/experiments/input/cochrane_sr_dataset/`.
 
 Source: [Mendeley Data DOI 10.17632/7sgmg89zb6.1](https://doi.org/10.17632/7sgmg89zb6.1)
-(Chan et al., 2025). The public archive also contains a second “manual search”
-dataset; `download.sh` keeps only the five split files used here:
-
-- `20240827_dev_set.csv`
-- `20240827_val_set.csv`
-- `20240827_random_test_set.csv`
-- `20240827_heart_test_set.csv`
-- `20240827_HIV_test_set.csv`
+(Chan et al., 2025). Use `download.sh` to download only the split files needed for the experiments.
 
 ```bash
 # From repo root
 cd data/experiments/input/cochrane_sr_dataset && ./download.sh && cd ../../../..
-
-# Re-download even if CSVs already exist
-cd data/experiments/input/cochrane_sr_dataset && ./download.sh --force && cd ../../../..
 ```
-
-CSVs are gitignored; only `download.sh` is tracked.
 
 ## Running suites
 
 ```bash
-uv run experiments suite --suite screening_ladder --profiles openai_gpt5 --batch-size 10
+uv run experiments suite --suite experiments_sep2026_biggest_reviews --profiles qwen3.5_27b-temp0 --batch-size 30 --repeats 3
 ```
 
 Useful flags:
@@ -47,7 +33,7 @@ Useful flags:
 | `--reviews URL …` | Optional subset of suite review keys |
 | `--repeats N` | Override suite repeats |
 | `--batch-size N` | Override suite screening batch size |
-| `--stages full\|screening-only` | Override suite stages |
+| `--mode full\|screening-only` | Override suite mode (default: screening-only) |
 | `--resume DIR` | Resume an existing experiment directory |
 | `--hide-subagent-steps` | Quieter Mentor logs |
 | `--list-suites` / `--list-profiles` / `--list-models` | Discovery helpers |

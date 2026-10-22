@@ -2,7 +2,7 @@
 Benchmark review suites and suite runner for Mentor.
 
 Suites are defined in ``experiments/config/suites.json``. Each suite lists reviews
-and an optional ``run`` block (``profiles`` list, repeats, batch_size, stages).
+and an optional ``run`` block (``profiles`` list, repeats, batch_size, mode).
 Runs reference profiles only; models are leaf connections inside profiles.
 """
 

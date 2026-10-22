@@ -46,7 +46,7 @@ def _add_argument_flags(path: Path) -> list[str]:
                 "--profiles",
                 "--repeats",
                 "--batch-size",
-                "--stages",
+                "--mode",
                 "--resume",
                 "--hide-subagent-steps",
                 "--list-suites",

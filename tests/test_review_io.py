@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from mentor.review import normalize_mode, pipeline_stages_for_mode, review_from_dict
+from mentor.review import normalize_mode, review_from_dict
 from mentor.runtime.session import protocol_to_json, review_to_json
 
 
@@ -110,20 +110,9 @@ def test_omitted_mode_with_studies_is_rejected():
         )
 
 
-def test_screening_alias_normalizes_to_screening_only():
-    assert normalize_mode("screening") == "screening-only"
-    review = review_from_dict(
-        {
-            "mode": "screening",
-            "title": "T",
-            "objective": "O",
-            "background": "B",
-            "selection_criteria": "S",
-            "studies": [{"title": "s1", "abstract": "a1"}],
-        }
-    )
-    assert review.mode == "screening-only"
-    assert pipeline_stages_for_mode(review.mode) == "screening"
+def test_screening_mode_alias_rejected():
+    with pytest.raises(ValueError, match="mode"):
+        normalize_mode("screening")
 
 
 def test_screening_only_mode_loads_studies():
