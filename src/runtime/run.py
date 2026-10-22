@@ -18,6 +18,47 @@ from mentor.runtime.session import prepare_run_session
 
 logger = logging.getLogger(__name__)
 
+SCREENING_ONLY_TASK = """\
+Conduct only title/abstract screening for this review.
+
+Review title: {title}
+
+Review background:
+{background}
+
+Review objective:
+{objective}
+
+Selection criteria:
+{selection_criteria}
+
+Output directory: {run_dir}
+Expected study decisions: {n_studies}
+
+Call screen_candidates() once, then return \
+format_screening_progress_summary(review_title, output_dir) \
+as final_answer.
+"""
+
+FULL_PIPELINE_TASK = """\
+Conduct a systematic review for the following research question.
+
+Review protocol (JSON):
+{protocol_json}
+
+Execute the full pipeline:
+1. Use the librarian to retrieve candidate studies
+2. Use get_candidates_json() to obtain a clean JSON of the candidates
+3. Call screen_candidates() to screen studies for inclusion/exclusion
+4. Use the miner to extract evidence from included studies
+5. Use the critic to synthesize the evidence
+6. Use format_report() to format a clean Markdown report
+7. Use save_evidence_json() to save structured data \
+(output_dir: "{run_dir}")
+
+Return the formatted report as your final answer.
+"""
+
 
 def _write_run_json(run_dir: Path, payload: dict[str, Any]) -> Path:
     path = run_dir / "run.json"
@@ -99,70 +140,51 @@ def run_review(
             ", ".join(f"{role}={path}" for role, path in sorted(review.prompts.items())),
         )
 
-    if session.models_by_role is not None:
-        model = session.models_by_role["orchestrator"]
-        logger.info(
-            "Model backend: %s | orchestrator model_id: %s",
-            _backend,
-            model.model_id,
-        )
-        if session.profile_key:
-            logger.info("Model profile: %s", session.profile_key)
-            activity_logger.log_metadata("Model Profile", session.profile_key)
-        orchestrator = create_orchestrator_agent(
-            models_by_role=session.models_by_role,
-            step_callbacks=step_cbs,
-            logger=agent_logger,
-            stages=pipeline_stages,
-            batch_size=batch_size,
-            output_dir=str(run_dir),
-            prompt_paths=review.prompts or None,
-        )
-    else:
-        model = session.models
-        logger.info("Model backend: %s | model_id: %s", _backend, model.model_id)
+    role_models = session.models_by_role
+    shared_model = None if role_models is not None else session.models
+    orch_model = (
+        role_models["orchestrator"] if role_models is not None else shared_model
+    )
+    logger.info(
+        "Model backend: %s | orchestrator model_id: %s",
+        _backend,
+        orch_model.model_id,
+    )
+    if session.profile_key:
+        logger.info("Model profile: %s", session.profile_key)
+    activity_logger.log_metadata("Model Profile", session.profile_key or "env")
+    activity_logger.log_metadata(
+        "Orchestrator Model", f"{_backend} | {orch_model.model_id}"
+    )
+    if role_models is None:
         resolved_api_base = resolve_api_base(api_base)
-        activity_logger.log_metadata("Model Profile", session.profile_key or "env")
-        activity_logger.log_metadata("Shared Model", f"{_backend} | {model.model_id}")
         if resolved_api_base:
             activity_logger.log_metadata("Shared API Base", resolved_api_base)
-        orchestrator = create_orchestrator_agent(
-            model=model,
-            step_callbacks=step_cbs,
-            logger=agent_logger,
-            stages=pipeline_stages,
-            batch_size=batch_size,
-            output_dir=str(run_dir),
-            prompt_paths=review.prompts or None,
-        )
+
+    orchestrator = create_orchestrator_agent(
+        model=shared_model,
+        models_by_role=role_models,
+        step_callbacks=step_cbs,
+        logger=agent_logger,
+        stages=pipeline_stages,
+        batch_size=batch_size,
+        output_dir=str(run_dir),
+        prompt_paths=review.prompts or None,
+    )
 
     if mode == "screening-only":
-        task = (
-            "Conduct only title/abstract screening for this review.\n\n"
-            f"Review title: {review.title}\n\n"
-            f"Review background:\n{review.background}\n\n"
-            f"Review objective:\n{review.objective}\n\n"
-            f"Selection criteria:\n{review.selection_criteria}\n\n"
-            f"Output directory: {run_dir}\n"
-            f"Expected study decisions: {len(review.studies)}\n\n"
-            "Call screen_candidates() once, then return "
-            "format_screening_progress_summary(review_title, output_dir) "
-            "as final_answer.\n"
+        task = SCREENING_ONLY_TASK.format(
+            title=review.title,
+            background=review.background,
+            objective=review.objective,
+            selection_criteria=review.selection_criteria,
+            run_dir=run_dir,
+            n_studies=len(review.studies),
         )
     else:
-        task = (
-            "Conduct a systematic review for the following research question.\n\n"
-            f"Review protocol (JSON):\n{protocol_json}\n\n"
-            "Execute the full pipeline:\n"
-            "1. Use the librarian to retrieve candidate studies\n"
-            "2. Use get_candidates_json() to obtain a clean JSON of the candidates\n"
-            "3. Call screen_candidates() to screen studies for inclusion/exclusion\n"
-            "4. Use the miner to extract evidence from included studies\n"
-            "5. Use the critic to synthesize the evidence\n"
-            "6. Use format_report() to format a clean Markdown report\n"
-            "7. Use save_evidence_json() to save structured data "
-            f'(output_dir: "{run_dir}")\n\n'
-            "Return the formatted report as your final answer."
+        task = FULL_PIPELINE_TASK.format(
+            protocol_json=protocol_json,
+            run_dir=run_dir,
         )
 
     logger.info("Starting orchestrated pipeline...")
