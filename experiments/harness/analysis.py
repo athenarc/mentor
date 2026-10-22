@@ -132,15 +132,36 @@ def load_raw_runs_from_experiment(experiment_dir: Path) -> tuple[list[dict], dic
             "error_type": run_meta.get("error_type") or "",
         })
 
-    raw_runs = _sort_raw_runs(raw_runs)
+    review_keys = list(
+        metadata.get("review_keys")
+        or metadata.get("reviews")
+        or dict.fromkeys(r["review_case"].key for r in raw_runs)
+    )
+    model_keys = list(
+        metadata.get("model_presets")
+        or [
+            (c.get("agents") or {}).get("gatekeeper")
+            or (c.get("agents") or {}).get("shared")
+            or c.get("profile")
+            for c in (metadata.get("configurations") or [])
+            if isinstance(c, dict)
+        ]
+        or dict.fromkeys(r["gatekeeper_model"].key for r in raw_runs)
+    )
+    model_keys = [key for key in model_keys if key]
+    raw_runs = _sort_raw_runs(
+        raw_runs,
+        review_keys=review_keys,
+        model_keys=model_keys,
+    )
     if not metadata.get("suite"):
         metadata["suite"] = suite_name
     if not metadata.get("model_presets"):
-        metadata["model_presets"] = list(
+        metadata["model_presets"] = model_keys or list(
             dict.fromkeys(r["gatekeeper_model"].key for r in raw_runs)
         )
     if not metadata.get("review_keys"):
-        metadata["review_keys"] = list(
+        metadata["review_keys"] = review_keys or list(
             dict.fromkeys(r["review_case"].key for r in raw_runs)
         )
     if not metadata.get("repeats"):
