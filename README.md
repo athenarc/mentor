@@ -1,10 +1,16 @@
 # Mentor — Multi-Agent Systematic Review Assistant
 
-Mentor is a scaffolding implementation of a multi-agent architecture designed to automate systematic reviews. Built using the [smolagents](https://huggingface.co/docs/smolagents/) framework, it orchestrates specialized agents over a review protocol and candidate studies.
+Mentor automates key steps of a systematic review with a team of specialized
+agents. Given a review protocol, it searches, screens, extracts, and synthesizes
+evidence into a structured report.
+
+Built on [smolagents](https://huggingface.co/docs/smolagents/), an
+**Orchestrator** coordinates four roles (Librarian, Gatekeeper, Miner, Critic)
+so each step stays focused while the pipeline stays inspectable and
+reproducible.
 
 - Production package: `src/` (import as `mentor`)
 - Screening benchmarks / Cochrane suites: [`experiments/README.md`](experiments/README.md)
-- Mentor outputs: `data/mentor/output/` (gitignored)
 
 ## Architecture
 
