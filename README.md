@@ -60,41 +60,33 @@ All commands below assume you are at the repository root. Prefer `uv run …` so
 
 ## Running the workflow
 
-The production CLI runs the end-to-end 5-agent pipeline (Librarian → Gatekeeper → Miner → Critic) for **one** systematic review JSON file. Examples:
+The production CLI runs the 5-agent pipeline (Librarian → Gatekeeper → Miner → Critic)
+for **one** systematic review JSON file.
 
-- full: [`data/mentor/input/reviews/cotrimoxazole_hiv_cd003508_full.json`](data/mentor/input/reviews/cotrimoxazole_hiv_cd003508_full.json)
-- screening-only: [`data/mentor/input/reviews/cotrimoxazole_hiv_cd003508.json`](data/mentor/input/reviews/cotrimoxazole_hiv_cd003508.json)
+### Quick start (screening-only + local search)
 
-### Review JSON
+Use a review JSON that already lists candidate studies, and keep search local
+(no external search i.e., in BIP or PubMed). Example file:
+[`data/mentor/input/reviews/cotrimoxazole_hiv_cd003508.json`](data/mentor/input/reviews/cotrimoxazole_hiv_cd003508.json).
 
-Profiles: keys live in [`src/config/model_profiles.json`](src/config/model_profiles.json)
-(`uv run mentor --list-profiles`). Details and the explicit-model alternative
-(`--model` / `--backend` / `--api-base`): [Model / backend options](#model--backend-options)
-and [`src/config/README.md`](src/config/README.md).
+In `.env` (see [`.env.example`](.env.example)):
 
 ```bash
-# Full pipeline: JSON has title/objective/background/criteria (no studies list).
-uv run mentor --review data/mentor/input/reviews/cotrimoxazole_hiv_cd003508_full.json \
-  --profile qwen3.5_27b
+MENTOR_API_KEY=sk-or-v1-...   # your OpenRouter key
+SEARCH_SOURCES=local          # default — searches studies in the review JSON only
+```
 
-# Screening only: JSON includes the candidate studies to screen.
+Profiles: keys in [`src/config/model_profiles.json`](src/config/model_profiles.json)
+(`uv run mentor --list-profiles`). Explicit-model alternative:
+[Model / backend options](#model--backend-options) and
+[`src/config/README.md`](src/config/README.md).
+
+```bash
 uv run mentor --review data/mentor/input/reviews/cotrimoxazole_hiv_cd003508.json \
   --profile qwen3.5_27b
 ```
 
-Field reference — `full` (default if `mode` is omitted; no `studies` — Librarian retrieves candidates):
-
-```json
-{
-  "mode": "full",
-  "title": "...",
-  "objective": "...",
-  "background": "...",
-  "selection_criteria": "..."
-}
-```
-
-Field reference — `screening-only` (studies required):
+Field reference — `screening-only` (`studies` required):
 
 ```json
 {
@@ -110,7 +102,59 @@ Field reference — `screening-only` (studies required):
 }
 ```
 
-Optional per-run prompt overrides (paths relative to the review JSON). Missing roles use packaged defaults under `src/agents/prompts/`. Use a single `orchestrator` key — point at `orchestrator.md` (full) or `orchestrator_screening-only.md` (screening-only):
+### Full mode with external search (i.e., BIP / PubMed)
+
+When the Librarian should retrieve candidates from external search (instead of a
+preloaded `studies` list), use a **protocol-only** review JSON (`mode: full`,
+no `studies`) and enable BIP and/or PubMed in `.env`.
+
+Example JSON:
+[`data/mentor/input/reviews/cotrimoxazole_hiv_cd003508_full.json`](data/mentor/input/reviews/cotrimoxazole_hiv_cd003508_full.json).
+
+Field reference — `full` (default if `mode` is omitted; no `studies`):
+
+```json
+{
+  "mode": "full",
+  "title": "...",
+  "objective": "...",
+  "background": "...",
+  "selection_criteria": "..."
+}
+```
+
+In `.env`, change search sources and (for BIP) set a real auth token:
+
+```bash
+# Comma-separated: bip, pubmed
+SEARCH_SOURCES=bip,pubmed
+
+SEARCH_BIP_MCP_URL=https://bip-mcp.imsi.athenarc.gr/mcp
+# Create a token at https://bip.imsi.athenarc.gr/site/settings
+SEARCH_BIP_AUTH_TOKEN=your_bip_token
+
+SEARCH_PUBMED_MCP_URL=https://pubmed-mcp.imsi.athenarc.gr/mcp
+```
+
+Then run:
+
+```bash
+uv run mentor --review data/mentor/input/reviews/cotrimoxazole_hiv_cd003508_full.json \
+  --profile qwen3.5_27b
+```
+
+Notes:
+
+- `local` alone only sees studies already in the JSON — useless for `mode: full`
+  unless you also enable `bip` and/or `pubmed`.
+- BIP requires `SEARCH_BIP_AUTH_TOKEN` (not the placeholder `example_token`).
+- You can use `SEARCH_SOURCES=bip,pubmed` without `local` if you do not need
+  the in-JSON study store.
+
+Optional per-run prompt overrides (paths relative to the review JSON). Missing
+roles use packaged defaults under `src/agents/prompts/`. Use a single
+`orchestrator` key — `orchestrator.md` (full) or
+`orchestrator_screening-only.md` (screening-only):
 
 ```json
 {
@@ -228,29 +272,8 @@ Catalogue, profile schema, OpenRouter / LiteLLM / Ollama details:
 
 ## MCP paper search (BIP + PubMed)
 
-The Librarian can optionally call external MCP servers for additional paper
-search alongside the pre-loaded Cochrane dataset:
-- BIP MCP: `https://bip-mcp.imsi.athenarc.gr/mcp`
-- PubMed MCP: `https://pubmed-mcp.imsi.athenarc.gr/mcp`
-
-**Setup:**
-
-1. Configure endpoints in `.env`:
-   ```bash
-   SEARCH_SOURCES=local,bip,pubmed
-   SEARCH_BIP_MCP_URL=https://bip-mcp.imsi.athenarc.gr/mcp
-   SEARCH_PUBMED_MCP_URL=https://pubmed-mcp.imsi.athenarc.gr/mcp
-   ```
-2. Set your BIP auth token (required by BIP server):
-   ```bash
-   SEARCH_BIP_AUTH_TOKEN=your_bip_token_here
-   ```
-When enabled, the Librarian gets MCP search tools (for BIP and/or PubMed):
-- `search_papers_in_bip(query, page=1, page_size=20, ordering="popularity", ...)`
-- `search_papers_in_pubmed(query, offset=0, limit=20, sort="relevance")`
-
-The candidate list used by the pipeline is what the Librarian publishes via
-`set_librarian_candidates(...)`.
+For env setup and which review JSON to use, see
+[Full mode + BIP / PubMed search](#full-mode--bip--pubmed-search) above.
 
 ## CLI Arguments (full workflow)
 

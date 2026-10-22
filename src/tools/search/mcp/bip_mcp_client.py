@@ -10,9 +10,7 @@ import asyncio
 import logging
 from typing import Any
 
-from datetime import timedelta
-
-import httpx
+import httpx2
 
 from mentor.tools.search.models import BipSearchResponse, map_bip_response_to_result
 
@@ -113,7 +111,7 @@ async def _call_search_papers_async(
     )
     headers = _build_headers(auth_token)
 
-    timeout_obj = httpx.Timeout(
+    timeout_obj = httpx2.Timeout(
         DEFAULT_TIMEOUT_SECONDS,
         read=DEFAULT_READ_TIMEOUT_SECONDS,
     )
@@ -121,14 +119,13 @@ async def _call_search_papers_async(
         async with streamable_http_client(url, http_client=client) as (
             read_stream,
             write_stream,
-            _,
         ):
             async with ClientSession(read_stream, write_stream) as session:
                 await session.initialize()
                 result = await session.call_tool(
                     SEARCH_PAPERS_TOOL,
                     arguments=arguments,
-                    read_timeout_seconds=timedelta(seconds=DEFAULT_READ_TIMEOUT_SECONDS),
+                    read_timeout_seconds=DEFAULT_READ_TIMEOUT_SECONDS,
                 )
     text = _extract_first_text_content(result)
     if not text:

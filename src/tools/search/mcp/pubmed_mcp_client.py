@@ -8,10 +8,9 @@ endpoint (``SEARCH_PUBMED_MCP_URL``), then normalizes to the shared
 
 import asyncio
 import logging
-from datetime import timedelta
 from typing import Any
 
-import httpx
+import httpx2
 
 from mentor.tools.search.models import (
     PubmedFetchResponse,
@@ -80,12 +79,11 @@ async def _search_and_fetch_pubmed_async(
     from mcp.client.streamable_http import streamable_http_client
     from mcp.shared._httpx_utils import create_mcp_http_client
 
-    timeout_obj = httpx.Timeout(DEFAULT_TIMEOUT_SECONDS, read=DEFAULT_READ_TIMEOUT_SECONDS)
+    timeout_obj = httpx2.Timeout(DEFAULT_TIMEOUT_SECONDS, read=DEFAULT_READ_TIMEOUT_SECONDS)
     async with create_mcp_http_client(timeout=timeout_obj) as client:
         async with streamable_http_client(url, http_client=client) as (
             read_stream,
             write_stream,
-            _,
         ):
             async with ClientSession(read_stream, write_stream) as session:
                 await session.initialize()
@@ -100,7 +98,7 @@ async def _search_and_fetch_pubmed_async(
                         "offset": offset,
                         "sort": sort,
                     },
-                    read_timeout_seconds=timedelta(seconds=DEFAULT_READ_TIMEOUT_SECONDS),
+                    read_timeout_seconds=DEFAULT_READ_TIMEOUT_SECONDS,
                 )
                 search_structured = _extract_structured_content(search_result)
                 if search_structured is None:
@@ -124,7 +122,7 @@ async def _search_and_fetch_pubmed_async(
                         fetch_result = await session.call_tool(
                             PUBMED_FETCH_TOOL,
                             arguments=fetch_arguments,
-                            read_timeout_seconds=timedelta(seconds=DEFAULT_READ_TIMEOUT_SECONDS),
+                            read_timeout_seconds=DEFAULT_READ_TIMEOUT_SECONDS,
                         )
                         fetch_structured = _extract_structured_content(fetch_result)
                         if fetch_structured is None:
