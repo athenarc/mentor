@@ -9,8 +9,16 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from mentor.runtime.models import resolve_api_base, resolve_backend, resolve_model_id
-from mentor.runtime.profile_resolver import list_model_profiles
+from mentor.runtime.models import (
+    has_explicit_model_config,
+    resolve_api_base,
+    resolve_backend,
+    resolve_model_id,
+)
+from mentor.runtime.profile_resolver import (
+    get_selected_model_profile,
+    list_model_profiles,
+)
 from mentor.runtime.run import run_review
 
 logger = logging.getLogger(__name__)
@@ -23,7 +31,7 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--review",
-        required=True,
+        default=None,
         help="Path to a review JSON file (mode, protocol fields, optional studies).",
     )
     parser.add_argument(
@@ -95,13 +103,20 @@ def main(argv: list[str] | None = None) -> None:
             print(f"  {key}")
         return
 
+    if not args.review:
+        logger.error("--review is required (unless using --list-profiles).")
+        sys.exit(2)
+
     if args.model_profile and any([args.model, args.backend, args.api_base]):
         logger.error(
             "--profile cannot be combined with --model, --backend, or --api-base."
         )
         sys.exit(2)
 
-    if not args.model_profile:
+    selected_profile = get_selected_model_profile(args.model_profile)
+    if selected_profile:
+        logger.info("Model profile: %s", selected_profile)
+    elif has_explicit_model_config(args.model, args.backend, args.api_base):
         logger.info(
             "Model: %s | Backend: %s | API base: %s",
             resolve_model_id(args.model),

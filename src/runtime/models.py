@@ -37,6 +37,30 @@ def resolve_api_base(api_base: str | None = None) -> str | None:
     return api_base or os.getenv("MENTOR_API_BASE", API_BASE).strip() or None
 
 
+def has_explicit_model_config(
+    model_id: str | None = None,
+    backend: str | None = None,
+    api_base: str | None = None,
+) -> bool:
+    """True if CLI args or non-default env select a non-profile model."""
+    return bool(
+        model_id
+        or backend
+        or api_base
+        or os.getenv("MENTOR_MODEL", "").strip()
+        or os.getenv("MENTOR_MODEL_BACKEND", "").strip()
+        or os.getenv("MENTOR_API_BASE", "").strip()
+    )
+
+
+MODEL_CONFIG_REQUIRED_MESSAGE = (
+    "No model configuration selected. Define one of:\n"
+    "  - --profile KEY  or  MENTOR_MODEL_PROFILE=KEY in .env\n"
+    "  - --model / --backend / --api-base"
+    "  or  MENTOR_MODEL / MENTOR_MODEL_BACKEND / MENTOR_API_BASE in .env"
+)
+
+
 def create_model(
     model_id: str | None = None,
     backend: str | None = None,

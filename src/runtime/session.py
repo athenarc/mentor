@@ -23,7 +23,13 @@ from mentor.review import (
     protocol_to_json,
     review_to_json,
 )
-from mentor.runtime.models import create_model, resolve_api_key, resolve_backend
+from mentor.runtime.models import (
+    MODEL_CONFIG_REQUIRED_MESSAGE,
+    create_model,
+    has_explicit_model_config,
+    resolve_api_key,
+    resolve_backend,
+)
 from mentor.runtime.profile_resolver import (
     get_selected_model_profile,
     resolve_runtime_model_profile,
@@ -137,6 +143,9 @@ def _resolve_models(
             profile_key=profile.key,
         )
 
+    if not has_explicit_model_config(model_id, backend, api_base):
+        raise ValueError(MODEL_CONFIG_REQUIRED_MESSAGE)
+
     if resolve_backend(backend) == "openai" and not resolve_api_key():
         raise ValueError(
             "No API key resolved. Set MENTOR_API_KEY in .env."
@@ -174,6 +183,18 @@ def prepare_run_session(
     review = load_review_from_json(path)
     review_json = review_to_json(review)
     protocol_json = protocol_to_json(review)
+
+    # Fail fast on model config before creating a run directory.
+    resolved = _resolve_models(
+        resolve_models=resolve_models,
+        model_id=model_id,
+        backend=backend,
+        api_base=api_base,
+        model_profile=model_profile,
+        shared_model=shared_model,
+        models_by_role=models_by_role,
+    )
+
     if load_search_store:
         load_review_data(review_json)
 
@@ -185,16 +206,6 @@ def prepare_run_session(
     )
     step_cbs = make_step_callbacks(activity_logger)
     loggers = RunLoggers(agent_logger=agent_logger, activity_logger=activity_logger)
-
-    resolved = _resolve_models(
-        resolve_models=resolve_models,
-        model_id=model_id,
-        backend=backend,
-        api_base=api_base,
-        model_profile=model_profile,
-        shared_model=shared_model,
-        models_by_role=models_by_role,
-    )
 
     return RunSession(
         review=review,

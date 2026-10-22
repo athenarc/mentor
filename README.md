@@ -50,7 +50,8 @@ uv sync --extra experiments --extra litellm --extra dev   # everything
 
 # 2. Configure credentials (usually just the API key)
 cp .env.example .env
-# Set MENTOR_API_KEY in .env — enough for --profile / suite runs via OpenRouter.
+# Set MENTOR_API_KEY in .env to your OpenRouter API key (sk-or-v1-…).
+# That is enough for --profile / suite runs; catalogue profiles already set the OpenRouter base URL.
 ```
 
 All commands below assume you are at the repository root. Prefer `uv run …` so the project environment is used automatically.
@@ -66,12 +67,19 @@ The production CLI runs the end-to-end 5-agent pipeline (Librarian → Gatekeepe
 
 ### Review JSON
 
+Profiles: keys live in [`src/config/model_profiles.json`](src/config/model_profiles.json)
+(`uv run mentor --list-profiles`). Details and the explicit-model alternative
+(`--model` / `--backend` / `--api-base`): [Model / backend options](#model--backend-options)
+and [`src/config/README.md`](src/config/README.md).
+
 ```bash
-# Full pipeline: JSON has title/objective/background/criteria
-uv run mentor --review data/mentor/input/reviews/cotrimoxazole_hiv_cd003508_full.json
+# Full pipeline: JSON has title/objective/background/criteria (no studies list).
+uv run mentor --review data/mentor/input/reviews/cotrimoxazole_hiv_cd003508_full.json \
+  --profile qwen3.5_27b
 
 # Screening only: JSON includes the candidate studies to screen.
-uv run mentor --review data/mentor/input/reviews/cotrimoxazole_hiv_cd003508.json
+uv run mentor --review data/mentor/input/reviews/cotrimoxazole_hiv_cd003508.json \
+  --profile qwen3.5_27b
 ```
 
 Field reference — `full` (default if `mode` is omitted; no `studies` — Librarian retrieves candidates):
@@ -118,30 +126,35 @@ Optional per-run prompt overrides (paths relative to the review JSON). Missing r
 
 ### Model / backend options
 
-```bash
-# Explicit model + backend (OpenAI-compatible)
-uv run mentor --review review.json --model gpt-5 --backend openai
+You must select a model configuration. Mentor aborts if neither option below is
+set (it does not silently use a hard-coded default).
 
-# OpenRouter-style model id + base URL
+**Option A — named profile** (usual path for OpenRouter catalogue models):
+
+```bash
+uv run mentor --review review.json --profile openrouter_gpt5
+# or set MENTOR_MODEL_PROFILE=openrouter_gpt5 in .env and omit --profile
+```
+
+**Option B — explicit model** (CLI and/or `.env`):
+
+```bash
+uv run mentor --review review.json --model gpt-5 --backend openai
 uv run mentor --review review.json \
   --model openai/gpt-5 \
   --backend openai \
   --api-base https://openrouter.ai/api/v1
-
-# Named runtime profile from src/config/model_profiles.json
-uv run mentor --review review.json --profile openrouter_gpt5
-uv run mentor --review review.json --batch-size 10 --profile deepseek_v4_pro
-
-# Quieter activity.md (hide nested sub-agent steps)
-uv run mentor --review review.json --hide-subagent-steps
+# or set MENTOR_MODEL / MENTOR_MODEL_BACKEND / MENTOR_API_BASE in .env
 ```
 
-Model selection rules:
+Do not combine a profile with `--model` / `--backend` / `--api-base`. You do not
+need all three explicit flags—pass only what you want to override. Always set
+`MENTOR_API_KEY` for OpenAI-compatible backends.
 
-- **Either** `--profile KEY` **or** any subset of `--model` / `--backend` / `--api-base` — not both.
-- None of those flags are required: omit them to use `.env` defaults (`MENTOR_MODEL`, `MENTOR_MODEL_BACKEND`, `MENTOR_API_BASE`, `MENTOR_API_KEY`, and optionally `MENTOR_MODEL_PROFILE`).
-- You do not need all three of `--model` / `--backend` / `--api-base`; pass only what you want to override.
-- CLI flags override env for that run.
+```bash
+# Quieter activity.md (hide nested sub-agent steps)
+uv run mentor --review review.json --profile openrouter_gpt5 --hide-subagent-steps
+```
 
 ### Outputs
 
@@ -205,9 +218,13 @@ scripts/                     # Helpers (presentation export) — see scripts/REA
 
 ## Model configuration
 
-For almost all runs, set `MENTOR_API_KEY` in `.env`, then pass `--profile <key>`
-(or set `MENTOR_MODEL_PROFILE`). Catalogue, profile schema, OpenRouter /
-LiteLLM / Ollama details: [`src/config/README.md`](src/config/README.md).
+Set `MENTOR_API_KEY` in `.env`, then choose **either** a profile
+(`--profile` / `MENTOR_MODEL_PROFILE`) **or** an explicit model
+(`--model` / `--backend` / `--api-base`, or the matching `MENTOR_*` env vars).
+If neither is defined, the CLI exits with an error listing those options.
+
+Catalogue, profile schema, OpenRouter / LiteLLM / Ollama details:
+[`src/config/README.md`](src/config/README.md).
 
 ## MCP paper search (BIP + PubMed)
 

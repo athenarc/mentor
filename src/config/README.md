@@ -2,8 +2,12 @@
 
 Catalogue and profiles live in [`model_profiles.json`](model_profiles.json).
 
-**What to set:** for almost all runs, only `MENTOR_API_KEY` in `.env`.
-OpenRouter catalogue profiles already embed the API base URL.
+**What to set:** `MENTOR_API_KEY` in `.env`, plus **either** a profile
+(`--profile` / `MENTOR_MODEL_PROFILE`) **or** an explicit model
+(`--model` / `--backend` / `--api-base`, or `MENTOR_MODEL` /
+`MENTOR_MODEL_BACKEND` / `MENTOR_API_BASE`). If neither is defined, Mentor
+aborts and lists those options. OpenRouter catalogue profiles already embed
+the API base URL.
 
 Mentor uses OpenAI-compatible endpoints (`OpenAIServerModel`) for direct OpenAI
 and OpenRouter.
