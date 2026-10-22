@@ -168,7 +168,6 @@ def run_single_review(
         "gatekeeper_model_label": gatekeeper_model.model_label,
         "orchestrator_preset": orchestrator_model.key,
         "orchestrator_model_label": orchestrator_model.model_label,
-        "error_type": "",
     }
 
     cmd = _mentor_cmd(
