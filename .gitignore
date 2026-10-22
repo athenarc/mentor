@@ -21,9 +21,13 @@ env/
 .vscode/
 .idea/
 
-# Runtime artifacts
-data/mentor/output/
-data/experiments/output/
+# Runtime artifacts (keep empty dir placeholders via .gitkeep)
+data/mentor/output/**
+!data/mentor/output/.gitkeep
+data/experiments/output/**
+!data/experiments/output/.gitkeep
+!data/experiments/output/screening_benchmarks/
+!data/experiments/output/screening_benchmarks/.gitkeep
 
 # Build
 dist/

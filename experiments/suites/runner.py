@@ -60,8 +60,8 @@ def _write_json(path: Path, payload: dict) -> None:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
 
-def _patch_run_json(run_dir: Path, **updates: Any) -> dict[str, Any]:
-    path = run_dir / "run.json"
+def _patch_run_json(cell_dir: Path, **updates: Any) -> dict[str, Any]:
+    path = cell_dir / "run.json"
     payload: dict[str, Any] = {}
     if path.exists():
         try:

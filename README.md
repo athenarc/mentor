@@ -21,10 +21,10 @@ reproducible.
                       └──────────┬───────────┘
            ┌─────────────┬───────┴───────┬─────────────┐
            │             │               │             │
-    ┌──────▼──────┐ ┌────▼─────┐  ┌──────▼──────┐ ┌────▼──────┐
-    │  Librarian  │ │Gatekeeper│  │    Miner    │ │   Critic  │
-    │  (Search)   │ │ (Screen) │  │  (Extract)  │ │(Synthesize│
-    └─────────────┘ └──────────┘  └─────────────┘ └───────────┘
+    ┌──────▼──────┐ ┌────▼─────┐  ┌──────▼──────┐ ┌────▼───────┐
+    │  Librarian  │ │Gatekeeper│  │    Miner    │ │   Critic   │
+    │  (Search)   │ │ (Screen) │  │  (Extract)  │ │(Synthesize)│
+    └─────────────┘ └──────────┘  └─────────────┘ └────────────┘
 ```
 
 The Orchestrator manages the four specialists and only sees the review
