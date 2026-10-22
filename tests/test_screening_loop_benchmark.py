@@ -24,7 +24,7 @@ def _load_three_studies() -> None:
                 "objective": "O",
                 "background": "B",
                 "selection_criteria": "S",
-                "studies": [
+            "studies": [
                     {"study_index": 1, "title": "s1", "abstract": "a1"},
                     {"study_index": 2, "title": "s2", "abstract": "a2"},
                     {"study_index": 3, "title": "s3", "abstract": "a3"},
@@ -82,7 +82,7 @@ class AppendChunkTests(unittest.TestCase):
                     _decision_payload([1]),
                     tmpdir,
                     [1],
-                    expected_n_studies=3,
+                expected_n_studies=3,
                 )
 
     def test_append_rejects_wrong_indices(self):

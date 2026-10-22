@@ -18,7 +18,7 @@ class ModelCatalogueTests(unittest.TestCase):
         self.assertEqual(model.backend, "openai")
         self.assertEqual(model.model_id, "openai/gpt-5")
         self.assertEqual(model.api_base, "https://openrouter.ai/api/v1")
-        self.assertEqual(model.api_key_source, "OPENROUTER_API_KEY")
+        self.assertEqual(model.api_key_source, "MENTOR_API_KEY")
         self.assertEqual(
             model.model_label,
             "openai-gpt-5 [OpenAI GPT5]",
@@ -30,7 +30,7 @@ class ModelCatalogueTests(unittest.TestCase):
         self.assertEqual(model.backend, "openai")
         self.assertEqual(model.model_id, "deepseek/deepseek-v4-pro")
         self.assertEqual(model.api_base, "https://openrouter.ai/api/v1")
-        self.assertEqual(model.api_key_source, "OPENROUTER_API_KEY")
+        self.assertEqual(model.api_key_source, "MENTOR_API_KEY")
         self.assertEqual(
             model.model_label,
             "deepseek-v4-pro [DeepSeek V4 Pro]",

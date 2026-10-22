@@ -131,7 +131,7 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
             model_id="gpt-5",
             api_base=None,
             api_key="test-key",
-            api_key_source="OPENAI_API_KEY",
+            api_key_source="MENTOR_API_KEY",
         )
 
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -248,7 +248,7 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
             model_id="gpt-5",
             api_base=None,
             api_key="test-key",
-            api_key_source="OPENAI_API_KEY",
+            api_key_source="MENTOR_API_KEY",
         )
 
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -393,7 +393,7 @@ class ScreeningBenchmarkRunnerTests(unittest.TestCase):
             model_id="gpt-5",
             api_base=None,
             api_key="test-key",
-            api_key_source="OPENAI_API_KEY",
+            api_key_source="MENTOR_API_KEY",
         )
 
         with tempfile.TemporaryDirectory() as tmpdir:

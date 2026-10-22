@@ -22,7 +22,6 @@ _LEGACY_BENCHMARK_PREFIXES = (
     ("data", "experiments", "output", "screening_benchmarks"),
     ("data", "output", "screening_benchmarks"),
     ("mentor", "output", "screening_benchmarks"),
-    ("bastirr", "output", "screening_benchmarks"),
     ("output", "screening_benchmarks"),
 )
 
@@ -88,7 +87,7 @@ def resolve_existing_path(path_value: str | Path) -> Path:
     if rewritten != path:
         candidates.append(rewritten)
         candidates.append(PROJECT_ROOT / rewritten)
-        # Preserve previous relative rewrites (mentor/output/…, output/…).
+        # Also try suffix-only relative paths (mentor/output/…, output/…).
         parts = path.parts
         for prefix in _LEGACY_BENCHMARK_PREFIXES:
             prefix_len = len(prefix)

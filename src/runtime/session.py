@@ -139,7 +139,7 @@ def _resolve_models(
 
     if resolve_backend(backend) == "openai" and not resolve_api_key():
         raise ValueError(
-            "No API key resolved. Set MENTOR_API_KEY or OPENAI_API_KEY in .env."
+            "No API key resolved. Set MENTOR_API_KEY in .env."
         )
     model = create_model(model_id=model_id, backend=backend, api_base=api_base)
     return _ResolvedModels(

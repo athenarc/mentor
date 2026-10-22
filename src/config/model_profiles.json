@@ -10,8 +10,7 @@
       "model_id_env_var": "MENTOR_MODEL",
       "api_base_env_var": "MENTOR_API_BASE",
       "api_key_env_vars": [
-        "MENTOR_API_KEY",
-        "OPENAI_API_KEY"
+        "MENTOR_API_KEY"
       ],
       "requires_api_key": true
     },
@@ -22,12 +21,8 @@
       "backend": "openai",
       "model_id": "openai/gpt-5",
       "requires_api_key": true,
-      "display_name_env_var": "MENTOR_GPT5_MODEL",
-      "model_id_env_var": "MENTOR_GPT5_MODEL",
       "api_base": "https://openrouter.ai/api/v1",
-      "api_base_env_var": "OPENROUTER_API_BASE",
       "api_key_env_vars": [
-        "OPENROUTER_API_KEY",
         "MENTOR_API_KEY"
       ],
       "request_kwargs": {
@@ -58,12 +53,8 @@
       "backend": "openai",
       "model_id": "openai/gpt-5",
       "requires_api_key": true,
-      "display_name_env_var": "MENTOR_GPT5_MODEL",
-      "model_id_env_var": "MENTOR_GPT5_MODEL",
       "api_base": "https://openrouter.ai/api/v1",
-      "api_base_env_var": "OPENROUTER_API_BASE",
       "api_key_env_vars": [
-        "OPENROUTER_API_KEY",
         "MENTOR_API_KEY"
       ],
       "request_kwargs": {
@@ -95,12 +86,8 @@
       "backend": "openai",
       "model_id": "deepseek/deepseek-v4-pro",
       "requires_api_key": true,
-      "display_name_env_var": "MENTOR_DEEPSEEK_MODEL",
-      "model_id_env_var": "MENTOR_DEEPSEEK_MODEL",
       "api_base": "https://openrouter.ai/api/v1",
-      "api_base_env_var": "OPENROUTER_API_BASE",
       "api_key_env_vars": [
-        "OPENROUTER_API_KEY",
         "MENTOR_API_KEY"
       ],
       "request_kwargs": {
@@ -131,12 +118,8 @@
       "backend": "openai",
       "model_id": "deepseek/deepseek-v4-pro",
       "requires_api_key": true,
-      "display_name_env_var": "MENTOR_DEEPSEEK_MODEL",
-      "model_id_env_var": "MENTOR_DEEPSEEK_MODEL",
       "api_base": "https://openrouter.ai/api/v1",
-      "api_base_env_var": "OPENROUTER_API_BASE",
       "api_key_env_vars": [
-        "OPENROUTER_API_KEY",
         "MENTOR_API_KEY"
       ],
       "request_kwargs": {
@@ -168,12 +151,8 @@
       "backend": "openai",
       "model_id": "qwen/qwen3.5-27b",
       "requires_api_key": true,
-      "display_name_env_var": "MENTOR_QWEN_MODEL",
-      "model_id_env_var": "MENTOR_QWEN_MODEL",
       "api_base": "https://openrouter.ai/api/v1",
-      "api_base_env_var": "OPENROUTER_API_BASE",
       "api_key_env_vars": [
-        "OPENROUTER_API_KEY",
         "MENTOR_API_KEY"
       ],
       "request_kwargs": {
@@ -204,12 +183,8 @@
       "backend": "openai",
       "model_id": "qwen/qwen3.5-122b-a10b",
       "requires_api_key": true,
-      "display_name_env_var": "MENTOR_QWEN_MODEL",
-      "model_id_env_var": "MENTOR_QWEN_MODEL",
       "api_base": "https://openrouter.ai/api/v1",
-      "api_base_env_var": "OPENROUTER_API_BASE",
       "api_key_env_vars": [
-        "OPENROUTER_API_KEY",
         "MENTOR_API_KEY"
       ],
       "request_kwargs": {
@@ -240,12 +215,8 @@
       "backend": "openai",
       "model_id": "moonshotai/kimi-k2.6",
       "requires_api_key": true,
-      "display_name_env_var": "MENTOR_KIMI_MODEL",
-      "model_id_env_var": "MENTOR_KIMI_MODEL",
       "api_base": "https://openrouter.ai/api/v1",
-      "api_base_env_var": "OPENROUTER_API_BASE",
       "api_key_env_vars": [
-        "OPENROUTER_API_KEY",
         "MENTOR_API_KEY"
       ],
       "request_kwargs": {
@@ -276,12 +247,8 @@
       "backend": "openai",
       "model_id": "mistralai/mistral-medium-3-5",
       "requires_api_key": true,
-      "display_name_env_var": "MENTOR_MISTRAL_MODEL",
-      "model_id_env_var": "MENTOR_MISTRAL_MODEL",
       "api_base": "https://openrouter.ai/api/v1",
-      "api_base_env_var": "OPENROUTER_API_BASE",
       "api_key_env_vars": [
-        "OPENROUTER_API_KEY",
         "MENTOR_API_KEY"
       ],
       "request_kwargs": {
@@ -309,12 +276,8 @@
       "backend": "openai",
       "model_id": "openai/gpt-5.4-mini",
       "requires_api_key": true,
-      "display_name_env_var": "MENTOR_OPENAI_MODEL",
-      "model_id_env_var": "MENTOR_OPENAI_MODEL",
       "api_base": "https://openrouter.ai/api/v1",
-      "api_base_env_var": "OPENROUTER_API_BASE",
       "api_key_env_vars": [
-        "OPENROUTER_API_KEY",
         "MENTOR_API_KEY"
       ],
       "request_kwargs": {
@@ -342,12 +305,8 @@
       "backend": "openai",
       "model_id": "openai/gpt-oss-120b",
       "requires_api_key": true,
-      "display_name_env_var": "MENTOR_GPTOSS_MODEL",
-      "model_id_env_var": "MENTOR_GPTOSS_MODEL",
       "api_base": "https://openrouter.ai/api/v1",
-      "api_base_env_var": "OPENROUTER_API_BASE",
       "api_key_env_vars": [
-        "OPENROUTER_API_KEY",
         "MENTOR_API_KEY"
       ],
       "request_kwargs": {
@@ -378,12 +337,8 @@
       "backend": "openai",
       "model_id": "nvidia/nemotron-3-super-120b-a12b",
       "requires_api_key": true,
-      "display_name_env_var": "MENTOR_NVIDIA_NEMOTRON_MODEL",
-      "model_id_env_var": "MENTOR_NVIDIA_NEMOTRON_MODEL",
       "api_base": "https://openrouter.ai/api/v1",
-      "api_base_env_var": "OPENROUTER_API_BASE",
       "api_key_env_vars": [
-        "OPENROUTER_API_KEY",
         "MENTOR_API_KEY"
       ],
       "request_kwargs": {
@@ -414,12 +369,8 @@
       "backend": "openai",
       "model_id": "qwen/qwen3.5-27b",
       "requires_api_key": true,
-      "display_name_env_var": "MENTOR_QWEN_MODEL",
-      "model_id_env_var": "MENTOR_QWEN_MODEL",
       "api_base": "https://openrouter.ai/api/v1",
-      "api_base_env_var": "OPENROUTER_API_BASE",
       "api_key_env_vars": [
-        "OPENROUTER_API_KEY",
         "MENTOR_API_KEY"
       ],
       "request_kwargs": {

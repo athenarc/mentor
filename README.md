@@ -1,10 +1,10 @@
 # Mentor — Multi-Agent Systematic Review Assistant
 
-Mentor is a scaffolding implementation of a multi-agent architecture designed to automate systematic reviews. Built using the [smolagents](https://huggingface.co/docs/smolagents/) framework, it orchestrates specialized agents to process research from the Cochrane dataset.
+Mentor is a scaffolding implementation of a multi-agent architecture designed to automate systematic reviews. Built using the [smolagents](https://huggingface.co/docs/smolagents/) framework, it orchestrates specialized agents over a review protocol and candidate studies.
 
 - Production package: `src/` (import as `mentor`)
-- Screening benchmarks and related CLIs: `experiments/`
-- Mentor outputs: `data/mentor/output/` · Experiments outputs: `data/experiments/output/` (gitignored)
+- Screening benchmarks / Cochrane suites: [`experiments/README.md`](experiments/README.md)
+- Mentor outputs: `data/mentor/output/` (gitignored)
 
 ## Architecture
 
@@ -18,27 +18,25 @@ Mentor is a scaffolding implementation of a multi-agent architecture designed to
     ┌──────▼──────┐ ┌────▼─────┐  ┌──────▼──────┐ ┌────▼──────┐
     │  Librarian  │ │Gatekeeper│  │    Miner    │ │   Critic  │
     │  (Search)   │ │ (Screen) │  │  (Extract)  │ │(Synthesize│
-    └──────┬──────┘ └────┬─────┘  └──────┬──────┘ └────┬──────┘
-           │             │               │             │
-      search_studies  screen_studies batch_extract  synthesize
-      get_protocol                   extract_from   assess_quality
+    └─────────────┘ └──────────┘  └─────────────┘ └───────────┘
 ```
 
-All four sub-agents are **managed agents** of the Orchestrator. The Orchestrator also has its own utility tools: `format_report`, `save_evidence_json`, `extract_included_studies`, and `get_candidates_json`.
+The Orchestrator manages the four specialists and only sees the review
+protocol (title, objective, background, selection criteria)—not the
+candidate study list. Studies live in a shared store the Librarian
+searches, so the manager cannot pre-screen during planning and the same
+path can later use a real database.
 
-**Data flow:** The Orchestrator delegates to agents in sequence:
-1. **Librarian** — retrieves candidate studies from a module-level data store (simulating a database query)
-2. **Orchestrator** calls `get_candidates_json()` to obtain the structured candidate data
-3. **Gatekeeper** — screens each study (INCLUDE/EXCLUDE) against selection criteria
-4. **Miner** — extracts PICO evidence from included studies' abstracts
-5. **Critic** — assesses quality and synthesizes a citation-backed narrative
-6. **Orchestrator** calls `format_report()` and `save_evidence_json()` to produce outputs
-
-> **Key design decision:** The Orchestrator's task text contains *only* the review protocol (title, objective, background, selection criteria) — never the candidate studies. Studies are loaded into a module-level store before the pipeline starts and accessed by the Librarian's tools. This prevents the Orchestrator from pre-screening studies during its planning phase and future-proofs the architecture for real database search.
+**Flow:**
+1. **Librarian** — finds candidate studies for the review
+2. **Gatekeeper** — includes or excludes each study against the criteria
+3. **Miner** — extracts structured evidence from included abstracts
+4. **Critic** — judges quality and writes a citation-backed narrative
+5. **Orchestrator** — assembles the final report and evidence artifacts
 
 ## Setup
 
-Prerequisites: Python 3.10+, [uv](https://docs.astral.sh/uv/), and the Cochrane dataset checkout.
+Prerequisites: Python 3.10+ and [uv](https://docs.astral.sh/uv/).
 
 ```bash
 # 1. Install the package (editable) and lockfile deps
@@ -50,31 +48,45 @@ uv sync --extra litellm               # only if MENTOR_MODEL_BACKEND=litellm / -
 uv sync --extra dev                   # pytest
 uv sync --extra experiments --extra litellm --extra dev   # everything
 
-# 2. Configure credentials
+# 2. Configure credentials (usually just the API key)
 cp .env.example .env
-# Edit .env — use MENTOR_* keys (formerly BASTIRR_* / SR_AGENTS_*).
-# For OpenRouter-backed catalogue models you also need OPENROUTER_API_KEY.
-
-# 3. Download the Cochrane dataset (required for workflow + experiments)
-# DOI: 10.17632/7sgmg89zb6.1
-cd data/experiments/input/cochrane_sr_dataset && ./download.sh && cd ../../../..
+# Set MENTOR_API_KEY in .env — enough for --profile / suite runs via OpenRouter.
 ```
 
 All commands below assume you are at the repository root. Prefer `uv run …` so the project environment is used automatically.
 
 ---
 
-## Running the full workflow
+## Running the workflow
 
-The production CLI runs the end-to-end 5-agent pipeline (Librarian → Gatekeeper → Miner → Critic) for **one** systematic review JSON file (no Cochrane CSV load inside Mentor).
+The production CLI runs the end-to-end 5-agent pipeline (Librarian → Gatekeeper → Miner → Critic) for **one** systematic review JSON file. Examples:
+
+- full: [`data/mentor/input/reviews/cotrimoxazole_hiv_cd003508_full.json`](data/mentor/input/reviews/cotrimoxazole_hiv_cd003508_full.json)
+- screening-only: [`data/mentor/input/reviews/cotrimoxazole_hiv_cd003508.json`](data/mentor/input/reviews/cotrimoxazole_hiv_cd003508.json)
 
 ### Review JSON
 
 ```bash
+# Full pipeline: JSON has title/objective/background/criteria
+uv run mentor --review data/mentor/input/reviews/cotrimoxazole_hiv_cd003508_full.json
+
+# Screening only: JSON includes the candidate studies to screen.
 uv run mentor --review data/mentor/input/reviews/cotrimoxazole_hiv_cd003508.json
 ```
 
-Canonical shape (no gold labels):
+Field reference — `full` (default if `mode` is omitted; no `studies` — Librarian retrieves candidates):
+
+```json
+{
+  "mode": "full",
+  "title": "...",
+  "objective": "...",
+  "background": "...",
+  "selection_criteria": "..."
+}
+```
+
+Field reference — `screening-only` (studies required):
 
 ```json
 {
@@ -88,26 +100,21 @@ Canonical shape (no gold labels):
     {"study_index": 2, "title": "...", "abstract": "..."}
   ]
 }
-
-# mode=screening-only → studies required
-# mode=full (default if omitted) → protocol only (omit studies)
-#
-# Optional per-run prompt overrides (paths relative to the review JSON file).
-# Missing roles use packaged defaults under mentor/agents/prompts/:
-# {
-#   "prompts": {
-#     "gatekeeper": "./prompts/gatekeeper.md",
-#     "orchestrator": "./prompts/orchestrator_screening-only.md",
-#     "librarian": "...",
-#     "miner": "...",
-#     "critic": "..."
-#   }
-# }
-# Single orchestrator key: point at orchestrator.md (full) or
-# orchestrator_screening-only.md (screening-only).
 ```
 
-Suite runs materialize this file per cell via `experiments suite` (dataset load stays in experiments).
+Optional per-run prompt overrides (paths relative to the review JSON). Missing roles use packaged defaults under `src/agents/prompts/`. Use a single `orchestrator` key — point at `orchestrator.md` (full) or `orchestrator_screening-only.md` (screening-only):
+
+```json
+{
+  "prompts": {
+    "gatekeeper": "./prompts/gatekeeper.md",
+    "orchestrator": "./prompts/orchestrator.md",
+    "librarian": "...",
+    "miner": "...",
+    "critic": "..."
+  }
+}
+```
 
 ### Model / backend options
 
@@ -155,58 +162,33 @@ uv run python scripts/render_workflow_presentation.py \
   --workflow "data/mentor/output/<timestamp>_<review-title>/workflow.log"
 ```
 
-See [Workflow Presentation Exporter](#workflow-presentation-exporter) for annotations and extra flags.
-
----
-
-## Running experiments
-
-Suite grid + dataset + scoring live in `experiments/`:
-
-```bash
-uv run experiments suite --suite screening_ladder --profiles openai_gpt5 --batch-size 10
-uv run experiments analyze data/experiments/output/screening_benchmarks/<suite_dir>
-```
-
-Details: [`experiments/README.md`](experiments/README.md).
+Flags, annotations, and options: [`scripts/README.md`](scripts/README.md).
 
 ---
 
 ## Project Structure
 
 ```
-src/
+src/                         # Mentor package (import as mentor)
 ├── cli.py                   # Production CLI (--review)
 ├── review.py                # One-review types + JSON I/O (no gold labels)
 ├── settings.py              # Paths, timeouts, shared MENTOR_* env defaults
 ├── logging/                 # workflow.log dual-write + activity.md audit trail
-├── config/                  # model_profiles.json
+├── config/                  # model_profiles.json — see src/config/README.md
 ├── runtime/                 # RunSession, run_review API, profile resolver
 ├── agents/                  # Librarian, Gatekeeper, Miner, Critic, Orchestrator
 │   └── prompts/             # Agent instruction .md files
-├── tools/                   # Search, screening, extraction, synthesis, report tools
+└── tools/                   # Search, screening, extraction, synthesis, report tools
 
-experiments/
-├── cli.py                   # Suite + analysis CLI (console script: experiments)
-├── suite_cli.py / suites/   # Grid expansion + runner
-├── dataset/                 # Cochrane CSV loaders (gold labels for scoring)
-├── config/suites.json       # Suite registry
-├── analyze.py               # Score suite experiment directories
-├── harness/                 # Metrics, materialize, totals, reports
-├── streamlit_app/           # Screening dashboard pages
-├── benchmark_runs_ui.py     # Streamlit entry
-├── plot_screening_leaderboards.py
-└── sample_review_suites.py  # Sample reviews into suites.json
+experiments/                 # Suites, dataset, analyze — see experiments/README.md
 
 data/mentor/
 ├── input/reviews/           # Example / hand-written review JSON
 └── output/                  # Single Mentor pipeline runs (gitignored)
 
-data/experiments/
-├── input/cochrane_sr_dataset/  # Cochrane CSVs (download.sh)
-└── output/screening_benchmarks/  # Suite grids (gitignored)
+data/experiments/            # Cochrane CSVs + suite outputs — see experiments/README.md
 
-scripts/                     # Standalone helper CLIs (presentation export, etc.)
+scripts/                     # Helpers (presentation export) — see scripts/README.md
 ```
 
 ## Repository Structure
@@ -214,332 +196,18 @@ scripts/                     # Standalone helper CLIs (presentation export, etc.
 | Directory | Description |
 |-----------|-------------|
 | `src/` | Mentor package root (setuptools maps it to import `mentor`). |
-| `experiments/` | Suite grid (subprocess Mentor) + analysis/dashboards; no Mentor imports. |
+| `experiments/` | Suites, Cochrane dataset loaders, analyze/dashboards ([docs](experiments/README.md)). |
 | `data/mentor/` | Mentor review JSON inputs + single-run outputs. |
-| `data/experiments/` | Cochrane dataset inputs + suite/benchmark outputs. |
+| `data/experiments/` | Cochrane dataset + suite outputs (owned by experiments). |
 | `resources/architecture/` | Design spec for the multi-agent architecture (includes MCP strategy). |
 | `resources/vaccine_indicators_demo/` | Separate LLM pipeline for medical evidence extraction. |
 | `tests/` | Pytest suite for mentor + experiment harness. |
 
-## Current Status: Scaffolding (End-to-End Functional)
-
-This is a **scaffolding implementation** — the agents run end-to-end and produce correct results, but with simplifications:
-
-- **Librarian**: Returns pre-loaded studies from a module-level data store (no real PubMed/OpenAIRE search yet, but the architecture is ready for it)
-- **Gatekeeper**: Screens based on title/abstract only (no full-text retrieval)
-- **Miner**: Extracts from abstracts only (no PDF OCR pipeline)
-- **Critic**: Synthesizes from abstract-level evidence
-
-The pipeline has been validated on the Cotrimoxazole/HIV review (10 candidates, 1 included), achieving 10/10 screening accuracy against the Cochrane ground truth. Outputs include a structured Markdown report (`report.md`) and a machine-readable evidence file (`evidence.json`).
-
-## Workflow Presentation Exporter
-
-Mentor includes a presentation-oriented exporter for completed runs:
-
-- **Script**: `scripts/render_workflow_presentation.py`
-- **Primary input**: `workflow.log`
-- **Optional enrichment**: sibling `activity.md`
-- **Output**: self-contained `workflow_presentation.html`
-
-The exporter is designed for demos, reviews, and handovers. It preserves the chronological run trace while making it easier to present:
-
-- run metadata and protocol summaries
-- phase summaries from `activity.md`
-- code and executed-code toggles
-- optional presenter annotations
-- phase and inline-step navigation
-
-### Basic usage
-
-```bash
-uv run python scripts/render_workflow_presentation.py \
-  --workflow "data/mentor/output/<timestamp>_<review-title>/workflow.log"
-```
-
-Disable annotations entirely:
-
-```bash
-uv run python scripts/render_workflow_presentation.py \
-  --workflow "data/mentor/output/<timestamp>_<review-title>/workflow.log" \
-  --disable-annotations
-```
-
-Use a specific annotations file and output path:
-
-```bash
-uv run python scripts/render_workflow_presentation.py \
-  --workflow "data/mentor/output/<timestamp>_<review-title>/workflow.log" \
-  --annotations "data/mentor/output/<timestamp>_<review-title>/workflow_presentation_annotations.json" \
-  --output "data/mentor/output/<timestamp>_<review-title>/presentation.html"
-```
-
-Workflow-only mode without `activity.md` enrichment:
-
-```bash
-uv run python scripts/render_workflow_presentation.py \
-  --workflow "data/mentor/output/<timestamp>_<review-title>/workflow.log" \
-  --activity none
-```
-
-### CLI options
-
-```text
-uv run python scripts/render_workflow_presentation.py [OPTIONS]
-
-Options:
-  --workflow PATH                  Path to workflow.log (required)
-  --activity PATH|none             Optional activity.md path; defaults to sibling file if present
-  --annotations PATH               Optional annotations JSON
-  --disable-annotations            Ignore annotations even if provided
-  --output PATH                    Output HTML path; defaults to workflow_presentation.html beside workflow.log
-  --title TEXT                     Override the page title
-  --hide-code-default true|false   Hide raw code blocks on initial load (default: true)
-  --hide-executed-code-default true|false
-                                   Hide executed-code blocks on initial load (default: true)
-```
-
-### Annotation file
-
-The exporter supports an optional sidecar JSON file for presenter notes:
-
-```json
-{
-  "hero": {
-    "title": "What to notice",
-    "body": [
-      "The orchestrator only sees the protocol, not the candidate studies."
-    ]
-  },
-  "sections": {
-    "phase-2": {
-      "title": "Search handoff",
-      "body": [
-        "This phase shows the librarian search and the candidate handoff to screening."
-      ]
-    }
-  }
-}
-```
-
-Navigation in the exported HTML follows the run structure:
-
-- `Intro`
-- phase sections (`PHASE-1`, `PHASE-2`, ...)
-- inline `Workflow Output` step markers inside each phase (`PHASE-2 · Step 1`, `PHASE-2 · Step 2`, ...)
-
-This makes the file suitable both for presentation and for structured walkthroughs of a Mentor run.
-
-### Next Steps
-
-- [ ] Find Full-text paper for existing SR dataset
-- [ ] Add full-text PDF retrieval and OCR (reuse `ocr_pdf_to_markdown.py`)
-- [ ] Add real search via PubMed API (MCP server)
-- [ ] Evaluate and enrich the Agent Instructions based on PRISMA and GRADE Guidelines (Gatekeeper, Miner, Critic)
-- [ ] Implement Expert-in-the-Loop checkpoints (smolagents `UserInputTool`)
-- [ ] Add consistency checks and conflict resolution between agents
-- [ ] Test on reviews with more included studies
-- [ ] Add automated test suite
-
-## Demo Review
-
-The default demo uses a small HIV review:
-- **"Cotrimoxazole prophylaxis for opportunistic infections in children with HIV infection"**
-- 10 studies total (1 included, 9 excluded at screening)
-- From the HIV test set of the Cochrane dataset
-
-## Model Configuration
-
-Mentor supports **multiple model backends** via smolagents:
-
-### OpenAI-Compatible (default)
-
-Use OpenAI-compatible endpoints with `OpenAIServerModel`.
-This covers direct OpenAI and OpenRouter.
-
-```bash
-# Via .env: direct OpenAI
-MENTOR_MODEL_BACKEND=openai
-MENTOR_MODEL=gpt-5
-MENTOR_API_KEY=sk-...
-
-# Or via CLI
-uv run mentor --model gpt-5
-```
-
-```bash
-# Via .env: OpenRouter
-MENTOR_MODEL_BACKEND=openai
-MENTOR_MODEL=openai/gpt-5
-MENTOR_API_BASE=https://openrouter.ai/api/v1
-MENTOR_API_KEY=sk-or-v1-...
-```
-
-### Runtime Model Profiles
-
-For reusable runtime setups, Mentor supports JSON-backed model profiles.
-
-- Model catalogue + profiles: `src/config/model_profiles.json`
-- Select a profile or bare model key with `MENTOR_MODEL_PROFILE=<key>` or `--profile <key>`
-- Override the catalogue with `MENTOR_MODELS_CONFIG=/absolute/path/to/model_profiles.json`
-
-Profiles can define:
-
-- a single shared model for all agents
-- different models by role (`orchestrator`, `librarian`, `gatekeeper`, `miner`, `critic`)
-- OpenRouter `extra_body` request configuration such as provider pinning and reasoning settings
-
-Recommended split of responsibility:
-
-- the profile owns non-secret runtime configuration such as `backend`, `model_id`, `api_base`, and `request_kwargs`
-- environment variables provide secrets such as API keys
-- env-based overrides like `api_base_env_var` or `model_id_env_var` should only be used when you intentionally want to make a profile mutable at runtime
-
-Shared-profile example:
-
-```bash
-MENTOR_MODEL_PROFILE=openrouter_gpt5
-MENTOR_API_KEY=sk-or-v1-...
-MENTOR_API_BASE=https://openrouter.ai/api/v1
-uv run mentor
-```
-
-Non-shared profiles use explicit agent-role keys instead of `shared`.
-The supported role keys are:
-
-- `orchestrator`
-- `librarian`
-- `gatekeeper`
-- `miner`
-- `critic`
-
-Resolution rules:
-
-- if `shared` is present, it is used as the default for every role
-- any explicit role entry overrides `shared` for that role
-- if `shared` is absent, all five role entries must be provided
-- `api_key_env_vars` is checked in order, and the first non-empty env var wins
-
-Minimal non-shared example:
-
-```json
-{
-  "profiles": [
-    {
-      "key": "multimodel_openrouter",
-      "description": "GPT-5 for coordination, DeepSeek for screening.",
-      "agents": {
-        "shared": {
-          "backend": "openai",
-          "model_id": "openai/gpt-5",
-          "api_base": "https://openrouter.ai/api/v1",
-          "api_key_env_vars": ["MENTOR_API_KEY"],
-          "requires_api_key": true,
-          "request_kwargs": {
-            "extra_body": {
-              "provider": {
-                "order": ["openai/default"],
-                "allow_fallbacks": false,
-                "require_parameters": true
-              },
-              "reasoning": {
-                "effort": "high"
-              }
-            }
-          }
-        },
-        "gatekeeper": {
-          "backend": "openai",
-          "model_id": "deepseek/deepseek-v4-pro",
-          "api_base": "https://openrouter.ai/api/v1",
-          "api_key_env_vars": ["MENTOR_API_KEY"],
-          "requires_api_key": true,
-          "request_kwargs": {
-            "extra_body": {
-              "provider": {
-                "order": ["deepseek"],
-                "allow_fallbacks": false,
-                "require_parameters": true
-              },
-              "reasoning": {
-                "enabled": true,
-                "effort": "high"
-              }
-            }
-          }
-        }
-      }
-    }
-  ]
-}
-```
-
-In that example:
-
-- `orchestrator`, `librarian`, `miner`, and `critic` inherit the `shared` GPT-5 config
-- `gatekeeper` overrides only its own model and request configuration
-- the OpenRouter base URL is owned by the profile, while the API key still comes from `MENTOR_API_KEY`
-
-To use a custom profile file:
-
-```bash
-MENTOR_MODELS_CONFIG=/absolute/path/to/model_profiles.json
-MENTOR_MODEL_PROFILE=multimodel_openrouter
-MENTOR_API_KEY=sk-or-v1-...
-uv run mentor
-```
-
-Useful profile fields:
-
-- `backend`: `openai`, `litellm`, or `hf-hub`
-- `backend_env_var`: optional env var name that overrides `backend`
-- `model_id`: default model identifier
-- `model_id_env_var`: optional env var name that overrides `model_id`
-- `api_base`: default API base
-- `api_base_env_var`: optional env var name that overrides `api_base`
-- `api_key_env_vars`: ordered list of env vars to try for the API key
-- `requires_api_key`: whether Mentor should fail early if no key resolves
-- `request_kwargs`: extra kwargs forwarded to the underlying `smolagents` model constructor
-
-For OpenRouter with the OpenAI SDK compatibility path, provider routing and reasoning controls belong under `request_kwargs.extra_body`.
-
-### Anthropic (via LiteLLM)
-
-```bash
-# Via .env
-MENTOR_MODEL_BACKEND=litellm
-MENTOR_MODEL=anthropic/claude-3-5-sonnet-latest
-MENTOR_API_KEY=sk-ant-...
-
-# Or via CLI
-uv run mentor --backend litellm --model anthropic/claude-3-5-sonnet-latest
-```
-
-### Local Models (Ollama)
-
-```bash
-# Start Ollama server: ollama serve
-# Pull model: ollama pull llama3.2
-
-# Via .env
-MENTOR_MODEL_BACKEND=litellm
-MENTOR_MODEL=ollama_chat/llama3.2
-MENTOR_API_BASE=http://localhost:11434
-
-# Or via CLI
-uv run mentor \
-  --backend litellm \
-  --model ollama_chat/llama3.2 \
-  --api-base http://localhost:11434
-```
-
-### Other Providers
-
-LiteLLM supports 100+ providers. See [LiteLLM docs](https://docs.litellm.ai/) for provider-specific model IDs:
-
-- **Azure OpenAI**: `azure/<DEPLOYMENT_NAME>`
-- **AWS Bedrock**: `bedrock/anthropic.claude-3-sonnet-20240229-v1:0`
-- **Google Vertex**: `vertex_ai/gemini-pro`
-- **vLLM**: Set `MENTOR_API_BASE` to your vLLM server URL
+## Model configuration
+
+For almost all runs, set `MENTOR_API_KEY` in `.env`, then pass `--profile <key>`
+(or set `MENTOR_MODEL_PROFILE`). Catalogue, profile schema, OpenRouter /
+LiteLLM / Ollama details: [`src/config/README.md`](src/config/README.md).
 
 ## MCP paper search (BIP + PubMed)
 
@@ -596,15 +264,14 @@ Settings are split by domain:
 
 - [`src/settings.py`](src/settings.py) — paths, timeouts, shared env defaults
 - [`src/runtime/models.py`](src/runtime/models.py) — `create_model` / resolve helpers
-- [`experiments/dataset/cochrane.py`](experiments/dataset/cochrane.py) — Cochrane CSV paths and labels
 - [`src/tools/search/settings.py`](src/tools/search/settings.py) — search sources / MCP
+- Experiments dataset / suite paths: [`experiments/README.md`](experiments/README.md)
 
 Key env settings:
 
 | Setting | Source | Default | Description |
 |---------|--------|---------|-------------|
-| `MENTOR_API_KEY` | `.env` | — | Preferred API key for OpenAI-compatible backends |
-| `OPENAI_API_KEY` | `.env` | — | Legacy fallback for direct OpenAI if `MENTOR_API_KEY` is unset |
+| `MENTOR_API_KEY` | `.env` | — | API key for OpenAI-compatible backends (including OpenRouter) |
 | `MENTOR_MODEL_BACKEND` | `.env` | `openai` | Model backend: `openai` or `litellm` |
 | `MENTOR_MODEL` | `.env` | `gpt-5` | Model identifier (provider-prefixed for LiteLLM) |
 | `MENTOR_API_BASE` | `.env` | — | API base URL for OpenAI-compatible or local servers |
@@ -616,4 +283,3 @@ Key env settings:
 | `SEARCH_BIP_AUTH_TOKEN` | `.env` | — | Bearer token for BIP MCP search endpoint (required for auth) |
 | `SEARCH_PUBMED_MCP_URL` | `.env` | `https://pubmed-mcp.imsi.athenarc.gr/mcp` | PubMed MCP endpoint (used when `pubmed` in `SEARCH_SOURCES`) |
 | `OUTPUT_DIR` (mentor) | auto | `data/mentor/output/` | Mentor single-run artifacts |
-| `DATASET_DIR` (experiments) | auto | `data/experiments/input/cochrane_sr_dataset/` | Cochrane CSVs for suites/analyze |
