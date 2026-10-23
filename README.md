@@ -1,3 +1,11 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="resources/assets/mentor-logo-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="resources/assets/mentor-logo-light.png">
+    <img alt="Mentor Logo" src="resources/assets/mentor-logo-light.png" width="450">
+  </picture>
+</p>
+
 # Mentor — Multi-Agent Systematic Review Assistant
 
 Mentor automates key steps of a systematic review with a team of specialized
