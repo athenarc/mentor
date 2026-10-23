@@ -1,9 +1,6 @@
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="resources/assets/mentor-logo-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="resources/assets/mentor-logo-light.png">
-    <img alt="Mentor Logo" src="resources/assets/mentor-logo-light.png" width="450">
-  </picture>
+  <img src="resources/assets/mentor-logo-light.png#gh-light-mode-only" alt="Mentor Logo" width="450">
+  <img src="resources/assets/mentor-logo-dark.png#gh-dark-mode-only" alt="Mentor Logo" width="450">
 </p>
 
 # Mentor — Multi-Agent Systematic Review Assistant
