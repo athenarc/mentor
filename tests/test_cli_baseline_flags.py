@@ -38,30 +38,6 @@ def _add_argument_flags(path: Path) -> list[str]:
                 "--list-profiles",
             },
         ),
-        (
-            ["experiments/suite_cli.py"],
-            {
-                "--suite",
-                "--reviews",
-                "--profiles",
-                "--repeats",
-                "--batch-size",
-                "--mode",
-                "--resume",
-                "--hide-subagent-steps",
-                "--list-suites",
-                "--list-profiles",
-                "--list-models",
-            },
-        ),
-        (
-            ["experiments/analyze.py"],
-            {
-                "--label-policies",
-                "--execute-notebooks",
-                "--skip-totals",
-            },
-        ),
     ],
 )
 def test_cli_flags_preserved(relpaths: list[str], expected: set[str]) -> None:

@@ -7,8 +7,7 @@ Domain-specific settings live elsewhere:
 - ``mentor.runtime.models`` — model factory / resolve helpers
 - ``mentor.tools.search.settings`` — Librarian search / MCP endpoints
 
-Mentor run artifacts live under ``data/mentor/``. Cochrane dataset + suite
-outputs live under ``data/experiments/`` (owned by the experiments package).
+Mentor run artifacts live under ``data/mentor/``.
 """
 
 from __future__ import annotations

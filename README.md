@@ -9,8 +9,7 @@ Built on [smolagents](https://huggingface.co/docs/smolagents/), an
 so each step stays focused while the pipeline stays inspectable and
 reproducible.
 
-- Production package: `src/` (import as `mentor`)
-- Screening benchmarks / Cochrane suites: [`experiments/README.md`](experiments/README.md)
+Production package: `src/` (import as `mentor`).
 
 ## Architecture
 
@@ -49,10 +48,9 @@ Prerequisites: Python 3.10+ and [uv](https://docs.astral.sh/uv/).
 uv sync
 
 # Optional extras
-uv sync --extra experiments           # Streamlit dashboard + Plotly/matplotlib plots
 uv sync --extra litellm               # only if MENTOR_MODEL_BACKEND=litellm / --backend litellm
 uv sync --extra dev                   # pytest
-uv sync --extra experiments --extra litellm --extra dev   # everything
+uv sync --extra litellm --extra dev   # everything
 
 # 2. Configure credentials (usually just the API key)
 cp .env.example .env
@@ -243,13 +241,9 @@ src/                         # Mentor package (import as mentor)
 │   └── prompts/             # Agent instruction .md files
 └── tools/                   # Search, screening, extraction, synthesis, report tools
 
-experiments/                 # Suites, dataset, analyze — see experiments/README.md
-
 data/mentor/
 ├── input/reviews/           # Example / hand-written review JSON
 └── output/                  # Single Mentor pipeline runs (gitignored)
-
-data/experiments/            # Cochrane CSVs + suite outputs — see experiments/README.md
 
 scripts/                     # Helpers (presentation export) — see scripts/README.md
 ```
@@ -259,12 +253,10 @@ scripts/                     # Helpers (presentation export) — see scripts/REA
 | Directory | Description |
 |-----------|-------------|
 | `src/` | Mentor package root (setuptools maps it to import `mentor`). |
-| `experiments/` | Suites, Cochrane dataset loaders, analyze/dashboards ([docs](experiments/README.md)). |
 | `data/mentor/` | Mentor review JSON inputs + single-run outputs. |
-| `data/experiments/` | Cochrane dataset + suite outputs (owned by experiments). |
 | `resources/architecture/` | Design spec for the multi-agent architecture (includes MCP strategy). |
 | `resources/vaccine_indicators_demo/` | Separate LLM pipeline for medical evidence extraction. |
-| `tests/` | Pytest suite for mentor + experiment harness. |
+| `tests/` | Pytest suite for Mentor. |
 
 ## Model configuration
 
@@ -311,7 +303,6 @@ Settings are split by domain:
 - [`src/settings.py`](src/settings.py) — paths, timeouts, shared env defaults
 - [`src/runtime/models.py`](src/runtime/models.py) — `create_model` / resolve helpers
 - [`src/tools/search/settings.py`](src/tools/search/settings.py) — search sources / MCP
-- Experiments dataset / suite paths: [`experiments/README.md`](experiments/README.md)
 
 Key env settings:
 

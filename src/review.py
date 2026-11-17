@@ -1,8 +1,8 @@
 """
 One-review domain types and JSON I/O for Mentor runs.
 
-Mentor never loads the Cochrane CSV dataset. Callers (CLI or experiments)
-provide a review JSON file matching ``review_to_json`` / ``load_review_from_json``.
+Callers (CLI or other tooling) provide a review JSON file matching
+``review_to_json`` / ``load_review_from_json``.
 
 Mode-dependent input contract (``mode`` defaults to ``full`` when omitted):
 - ``screening-only`` — ``studies`` required (non-empty)
