@@ -296,7 +296,7 @@ class _FakeNamedGatekeeper:
 
 
 class OrchestratorScreeningToolTests(unittest.TestCase):
-    def test_screening_only_mode_has_no_managed_agents_and_screen_candidates_tool(self):
+    def test_screening_only_mode_has_managed_gatekeeper_and_batch_tools(self):
         with patch(
             "mentor.agents.orchestrator.create_gatekeeper_agent",
             return_value=_FakeNamedGatekeeper(),
@@ -312,11 +312,15 @@ class OrchestratorScreeningToolTests(unittest.TestCase):
                 output_dir="/tmp/out",
             )
             kwargs = code_agent.call_args.kwargs
-            self.assertEqual(kwargs["managed_agents"], [])
+            managed_names = [getattr(a, "name", None) for a in kwargs["managed_agents"]]
+            self.assertIn("gatekeeper", managed_names)
             tool_names = [getattr(t, "name", None) for t in kwargs["tools"]]
-            self.assertIn("screen_candidates", tool_names)
+            self.assertIn("get_screening_batches", tool_names)
+            self.assertIn("append_screening_batch", tool_names)
+            self.assertIn("get_screening_response_json", tool_names)
+            self.assertNotIn("screen_candidates", tool_names)
 
-    def test_full_mode_excludes_gatekeeper_from_managed_agents(self):
+    def test_full_mode_includes_gatekeeper_in_managed_agents(self):
         with patch(
             "mentor.agents.orchestrator.create_gatekeeper_agent",
             return_value=_FakeNamedGatekeeper(),
@@ -342,9 +346,10 @@ class OrchestratorScreeningToolTests(unittest.TestCase):
             )
             kwargs = code_agent.call_args.kwargs
             managed_names = [getattr(a, "name", None) for a in kwargs["managed_agents"]]
-            self.assertNotIn("gatekeeper", managed_names)
+            self.assertIn("gatekeeper", managed_names)
             tool_names = [getattr(t, "name", None) for t in kwargs["tools"]]
-            self.assertIn("screen_candidates", tool_names)
+            self.assertIn("get_screening_batches", tool_names)
+            self.assertNotIn("screen_candidates", tool_names)
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@ Strict call wrapper for Gatekeeper managed-agent invocations.
 
 Keeps gatekeeper as a callable agent, but enforces:
 - a fixed short task template (no study JSON in task=)
-- study/chunk/candidates payload only via additional_args['screening_payload']
+- study/batch payload only via additional_args['screening_payload']
 - hard fail on classified provider errors (e.g. ContextOverflowError)
 """
 
@@ -15,7 +15,7 @@ from typing import Any
 from mentor.errors import ContextOverflowError, classify_error
 
 
-# Payload contract for screening (batch, chunk, or single-study payloads).
+# Payload contract for screening (full, batch, or single-study payloads).
 GATEKEEPER_PAYLOAD_KEY = "screening_payload"
 
 # Fixed short task — no study payloads. The same task works for any batch size.

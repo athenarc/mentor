@@ -7,7 +7,7 @@ returns the same ``{"meta", "rows"}`` shape as ``search_studies`` so agents
 can treat local and remote results uniformly.
 
 Getter tools at the bottom of this module feed batch and loop screening
-orchestrators without exposing gold labels in chunk payloads.
+orchestrators without exposing gold labels in batch payloads.
 """
 
 import json
@@ -232,8 +232,8 @@ def get_candidates_json() -> str:
     return json.dumps(payload, ensure_ascii=False)
 
 
-def _candidate_studies_chunk_payload(study_indices_json: str) -> str:
-    """Shared implementation for single-study and chunk candidate getters."""
+def _candidate_studies_batch_payload(study_indices_json: str) -> str:
+    """Build a screening_payload JSON string for the given study indices."""
     try:
         raw_indices = json.loads(study_indices_json)
     except json.JSONDecodeError as exc:
@@ -247,13 +247,13 @@ def _candidate_studies_chunk_payload(study_indices_json: str) -> str:
         try:
             index = int(raw_index)
         except (TypeError, ValueError) as exc:
-            raise ValueError(f"Invalid study index in chunk: {raw_index!r}") from exc
+            raise ValueError(f"Invalid study index in batch: {raw_index!r}") from exc
         if index < 1 or index > len(studies):
             raise ValueError(
                 f"study_index {index} is outside the available range 1..{len(studies)}"
             )
         if index in indices:
-            raise ValueError(f"Duplicate study index in chunk: {index}")
+            raise ValueError(f"Duplicate study index in batch: {index}")
         indices.append(index)
 
     payload_studies = []

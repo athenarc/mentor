@@ -34,7 +34,9 @@ Selection criteria:
 Output directory: {run_dir}
 Expected study decisions: {n_studies}
 
-Call screen_candidates() once, then return \
+Use get_screening_batches(output_dir), call gatekeeper once per batch \
+with additional_args['screening_payload'], append_screening_batch after \
+each batch, then return \
 format_screening_progress_summary(review_title, output_dir) \
 as final_answer.
 """
@@ -45,10 +47,14 @@ Conduct a systematic review for the following research question.
 Review protocol (JSON):
 {protocol_json}
 
+Output directory: {run_dir}
+
 Execute the full pipeline:
 1. Use the librarian to retrieve candidate studies
 2. Use get_candidates_json() to obtain a clean JSON of the candidates
-3. Call screen_candidates() to screen studies for inclusion/exclusion
+3. Use get_screening_batches(output_dir), call gatekeeper once per batch \
+with additional_args['screening_payload'], append_screening_batch after \
+each batch, then get_screening_response_json(output_dir)
 4. Use the miner to extract evidence from included studies
 5. Use the critic to synthesize the evidence
 6. Use format_report() to format a clean Markdown report

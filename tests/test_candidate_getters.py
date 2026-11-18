@@ -1,16 +1,16 @@
-"""Chunk payload helper: single index equals chunk of size one."""
+"""Batch payload helper: single index equals batch of size one."""
 
 from __future__ import annotations
 
 import json
 
 from mentor.tools.search.search_tools import (
-    _candidate_studies_chunk_payload,
+    _candidate_studies_batch_payload,
     load_review_data,
 )
 
 
-def test_single_index_matches_chunk_size_one():
+def test_single_index_matches_batch_size_one():
     payload = {
         "title": "T",
         "objective": "O",
@@ -22,8 +22,8 @@ def test_single_index_matches_chunk_size_one():
         ],
     }
     load_review_data(json.dumps(payload))
-    single = _candidate_studies_chunk_payload("[2]")
-    chunk = _candidate_studies_chunk_payload("[2]")
-    assert json.loads(single) == json.loads(chunk)
+    single = _candidate_studies_batch_payload("[2]")
+    same = _candidate_studies_batch_payload("[2]")
+    assert json.loads(single) == json.loads(same)
     assert len(json.loads(single)["studies"]) == 1
     assert json.loads(single)["studies"][0]["study_index"] == 2

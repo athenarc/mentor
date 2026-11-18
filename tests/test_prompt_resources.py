@@ -37,10 +37,16 @@ def test_gatekeeper_prompt_is_batch_agnostic() -> None:
     assert "Do NOT include decisions for studies outside the payload" in text
 
 
-def test_orchestrator_uses_screen_candidates() -> None:
+def test_orchestrator_uses_managed_gatekeeper_batches() -> None:
     text = load_prod_prompt("orchestrator")
-    assert "screen_candidates" in text
-    assert "gatekeeper(task=" not in text
+    assert "get_screening_batches" in text
+    assert "append_screening_batch" in text
+    assert "gatekeeper(" in text
+    assert "screen_candidates" not in text
+    screening_only = load_prod_prompt("orchestrator_screening-only")
+    assert "get_screening_batches" in screening_only
+    assert "gatekeeper" in screening_only
+    assert "screen_candidates" not in screening_only
 
 
 def test_resolve_prompt_override(tmp_path: Path) -> None:

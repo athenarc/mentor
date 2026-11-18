@@ -1,7 +1,7 @@
 """
 Screening decision persistence (evidence.json + screening_progress.json).
 
-Used by the Python batch screening loop (``screen_candidates``) and by
+Used by Orchestrator screening helpers (``append_screening_batch``) and by
 analysis tools that read saved decisions. Writes a screening-specific
 ``evidence.json`` shape (decisions only).
 """
@@ -86,7 +86,7 @@ def write_screening_artifacts(
         json.dump(progress, f, ensure_ascii=False, indent=2)
 
 
-def append_chunk_decisions(
+def append_batch_decisions(
     screening_response: str,
     output_dir: str | os.PathLike[str],
     expected_indices: list[int],
@@ -129,7 +129,7 @@ def append_chunk_decisions(
         missing = sorted(expected_set - returned_set)
         extra = sorted(returned_set - expected_set)
         raise ValueError(
-            "Chunk response did not match expected study indices "
+            "Batch response did not match expected study indices "
             f"(missing={missing}, extra={extra})."
         )
 
@@ -142,7 +142,7 @@ def append_chunk_decisions(
     already_saved = sorted(expected_set.intersection(existing_by_index))
     if already_saved:
         raise ValueError(
-            "Study decisions already saved for chunk index/indices: "
+            "Study decisions already saved for batch index/indices: "
             + ", ".join(str(index) for index in already_saved)
         )
 
@@ -186,17 +186,17 @@ def decisions_to_screening_response(decisions: list[dict]) -> str:
     )
 
 
-def chunk_indices(indices: list[int], *, chunk_size: int | None) -> list[list[int]]:
-    """Split ``indices`` into contiguous batches of ``chunk_size`` (or one batch)."""
+def batch_indices(indices: list[int], *, batch_size: int | None) -> list[list[int]]:
+    """Split ``indices`` into contiguous batches of ``batch_size`` (or one batch)."""
     if not indices:
         return []
-    if chunk_size is None:
+    if batch_size is None:
         return [list(indices)]
-    if chunk_size < 1:
-        raise ValueError("chunk_size must be at least 1")
+    if batch_size < 1:
+        raise ValueError("batch_size must be at least 1")
     return [
-        indices[offset : offset + chunk_size]
-        for offset in range(0, len(indices), chunk_size)
+        indices[offset : offset + batch_size]
+        for offset in range(0, len(indices), batch_size)
     ]
 
 

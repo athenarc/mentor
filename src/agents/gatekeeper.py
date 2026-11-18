@@ -4,8 +4,9 @@ Gatekeeper agent — title/abstract screening.
 Uses ``screen_studies`` to format screening tasks; the LLM applies
 ``selection_criteria`` and returns INCLUDE/EXCLUDE JSON.
 
-Uses the default ``gatekeeper`` prompt. Screening is invoked via the
-``screen_candidates`` tool (batched Gatekeeper calls).
+Uses the default ``gatekeeper`` prompt. Screening is invoked as a managed
+agent: the Orchestrator calls Gatekeeper once per batch with
+``additional_args['screening_payload']``.
 """
 
 from __future__ import annotations
