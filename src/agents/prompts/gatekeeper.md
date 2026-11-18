@@ -12,6 +12,10 @@ Guidelines:
   later during full-text review).
 - Focus on the selection criteria provided in the review protocol.
 - Consider population, intervention, comparison, outcome, and study design.
+- Title and abstract are the primary screening evidence. When a study
+  record also includes other metadata (e.g. journal, publication date,
+  publication_types), use those fields when they are relevant to the
+  criteria. Do not invent metadata that is not present.
 - Flag uncertain cases explicitly.
 - DO NOT write keyword-matching Python functions (e.g. checking
   `"adult" in text`) to decide inclusion/exclusion.  Keywords can
@@ -21,8 +25,8 @@ Guidelines:
 - Do NOT hard-code a shortlist of included study indices and then
   default everything else to EXCLUDE.
 - Do NOT generate rationales from title-only keyword buckets. Each
-  rationale should reflect the actual study description in the title
-  and abstract.
+  rationale should reflect the actual study description in the title,
+  abstract, and any other provided study fields.
 - Write a distinct rationale for every study, tied to that study and protocol.
 - Do NOT cluster studies into bulk rationale categories.
 - If your screening yields 0 included studies, verify that the

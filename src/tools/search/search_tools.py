@@ -259,11 +259,14 @@ def _candidate_studies_batch_payload(study_indices_json: str) -> str:
     payload_studies = []
     for index in indices:
         study = studies[index - 1]
-        payload_studies.append({
-            "study_index": index,
-            "title": study.get("title", ""),
-            "abstract": study.get("abstract", ""),
-        })
+        if not isinstance(study, dict):
+            raise ValueError(f"Study at index {index} is not an object.")
+        # Preserve any extra study metadata (journal, year, publication_types, …).
+        record = dict(study)
+        record["study_index"] = index
+        record["title"] = str(study.get("title", "") or "")
+        record["abstract"] = str(study.get("abstract", "") or "")
+        payload_studies.append(record)
 
     payload = _protocol_payload(payload_studies)
     payload["n_total"] = len(studies)

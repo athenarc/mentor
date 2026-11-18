@@ -8,6 +8,7 @@ from mentor.tools.search.search_tools import (
     _candidate_studies_batch_payload,
     load_review_data,
 )
+from mentor.tools.screening_tools import screen_studies
 
 
 def test_single_index_matches_batch_size_one():
@@ -27,3 +28,51 @@ def test_single_index_matches_batch_size_one():
     assert json.loads(single) == json.loads(same)
     assert len(json.loads(single)["studies"]) == 1
     assert json.loads(single)["studies"][0]["study_index"] == 2
+
+
+def test_batch_payload_preserves_extra_study_metadata():
+    payload = {
+        "title": "T",
+        "objective": "O",
+        "background": "B",
+        "selection_criteria": "S",
+        "studies": [
+            {
+                "study_index": 1,
+                "title": "s1",
+                "abstract": "a1",
+                "journal": "Lancet",
+                "publication_date": "2020-01-01",
+                "publication_types": ["Journal Article", "RCT"],
+            },
+        ],
+    }
+    load_review_data(json.dumps(payload))
+    study = json.loads(_candidate_studies_batch_payload("[1]"))["studies"][0]
+    assert study["journal"] == "Lancet"
+    assert study["publication_date"] == "2020-01-01"
+    assert study["publication_types"] == ["Journal Article", "RCT"]
+
+
+def test_screen_studies_includes_extra_metadata():
+    text = screen_studies(
+        json.dumps(
+            {
+                "title": "Review",
+                "selection_criteria": "Include RCTs",
+                "studies": [
+                    {
+                        "study_index": 1,
+                        "title": "s1",
+                        "abstract": "a1",
+                        "journal": "BMJ",
+                        "year": 2019,
+                    }
+                ],
+            }
+        )
+    )
+    assert "Title: s1" in text
+    assert "Abstract: a1" in text
+    assert "journal: BMJ" in text
+    assert "year: 2019" in text
