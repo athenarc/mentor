@@ -85,6 +85,15 @@ def write_screening_artifacts(
     with open(progress_path(output_dir), "w", encoding="utf-8") as f:
         json.dump(progress, f, ensure_ascii=False, indent=2)
 
+    if expected_n_studies is not None and len(ordered) == int(expected_n_studies):
+        # Local import avoids a cycle with mentor.tools.validation.screening_artifacts.
+        from mentor.tools.validation import validate_screening_artifacts_consistent
+
+        validate_screening_artifacts_consistent(
+            output_dir,
+            expected_n_studies=int(expected_n_studies),
+        )
+
 
 def append_batch_decisions(
     screening_response: str,

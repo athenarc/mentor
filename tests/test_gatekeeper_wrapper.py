@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import unittest
 from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
@@ -32,6 +33,27 @@ def _study_payload(**overrides):
     }
     base.update(overrides)
     return base
+
+
+def _valid_gatekeeper_answer(studies: list[dict], *, decision: str = "INCLUDE") -> str:
+    included = sum(1 for _ in studies if decision == "INCLUDE")
+    return json.dumps(
+        {
+            "n_total": len(studies),
+            "n_included": included,
+            "n_excluded": len(studies) - included,
+            "decisions": [
+                {
+                    "study_index": study["study_index"],
+                    "title": study["title"],
+                    "decision": decision,
+                    "confidence": "high",
+                    "rationale": f"Decision for study {study['study_index']}.",
+                }
+                for study in studies
+            ],
+        }
+    )
 
 
 def _openai_bad_request(*, status_code: int = 400, body: dict):
@@ -114,13 +136,14 @@ class GatekeeperWrapperTests(unittest.TestCase):
         class FakeAgent:
             name = "gatekeeper"
 
-            def __call__(self, task="", additional_args=None, **kwargs):
+            def run(self, task="", additional_args=None, **kwargs):
                 calls.append({
                     "task": task,
                     "additional_args": additional_args,
                     "kwargs": kwargs,
                 })
-                return "ok"
+                studies = additional_args[GATEKEEPER_PAYLOAD_KEY]["studies"]
+                return _valid_gatekeeper_answer(studies)
 
         wrapped = wrap_gatekeeper(
             FakeAgent(),
@@ -132,7 +155,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
             additional_args={GATEKEEPER_PAYLOAD_KEY: payload},
         )
 
-        self.assertEqual(result, "ok")
+        self.assertEqual(json.loads(result)["n_total"], 1)
         self.assertEqual(len(calls), 1)
         self.assertEqual(calls[0]["task"], GATEKEEPER_TASK)
         self.assertEqual(
@@ -147,7 +170,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
         class FakeAgent:
             name = "gatekeeper"
 
-            def __call__(self, *args, **kwargs):
+            def run(self, *args, **kwargs):
                 calls.append((args, kwargs))
                 return "ok"
 
@@ -165,7 +188,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
         class FakeAgent:
             name = "gatekeeper"
 
-            def __call__(self, *args, **kwargs):
+            def run(self, *args, **kwargs):
                 calls.append((args, kwargs))
                 return "ok"
 
@@ -188,7 +211,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
         class FakeAgent:
             name = "gatekeeper"
 
-            def __call__(self, *args, **kwargs):
+            def run(self, *args, **kwargs):
                 calls.append((args, kwargs))
                 return "ok"
 
@@ -207,11 +230,25 @@ class GatekeeperWrapperTests(unittest.TestCase):
             )
         self.assertEqual(calls, [])
 
+    def test_rejects_invalid_final_answer_schema(self):
+        class FakeAgent:
+            name = "gatekeeper"
+
+            def run(self, task="", additional_args=None, **kwargs):
+                return '{"n_total": 1, "decisions": []}'
+
+        wrapped = wrap_gatekeeper(FakeAgent(), fixed_task=GATEKEEPER_TASK)
+        with self.assertRaises(ValueError):
+            wrapped(
+                "ignored",
+                additional_args={GATEKEEPER_PAYLOAD_KEY: {"studies": [_study_payload()]}},
+            )
+
     def test_overflow_exception_becomes_context_overflow_error(self):
         class OverflowAgent:
             name = "gatekeeper"
 
-            def __call__(self, task="", additional_args=None, **kwargs):
+            def run(self, task="", additional_args=None, **kwargs):
                 raise _openai_bad_request(
                     body={
                         "error": {

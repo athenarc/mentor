@@ -4,6 +4,7 @@ Strict call wrapper for Gatekeeper managed-agent invocations.
 Keeps gatekeeper as a callable agent, but enforces:
 - a fixed short task template (no study JSON in task=)
 - study/batch payload only via additional_args['screening_payload']
+- strict final-answer schema validation against the delegated studies
 - hard fail on classified provider errors (e.g. ContextOverflowError)
 """
 
@@ -13,6 +14,7 @@ import json
 from typing import Any
 
 from mentor.errors import ContextOverflowError, classify_error
+from mentor.tools.validation import validate_gatekeeper_answer
 
 
 # Payload contract for screening (full, batch, or single-study payloads).
@@ -59,6 +61,41 @@ def _payload_looks_like_studies(value: Any) -> bool:
     )
 
 
+def _parse_payload(value: Any) -> dict:
+    if isinstance(value, str):
+        try:
+            parsed = json.loads(value)
+        except json.JSONDecodeError as exc:
+            raise ValueError(
+                f"gatekeeper additional_args['{GATEKEEPER_PAYLOAD_KEY}'] "
+                "is not valid JSON."
+            ) from exc
+    elif isinstance(value, dict):
+        parsed = value
+    else:
+        raise ValueError(
+            f"gatekeeper additional_args['{GATEKEEPER_PAYLOAD_KEY}'] must be "
+            "a JSON object or JSON string."
+        )
+    if not isinstance(parsed, dict):
+        raise ValueError(
+            f"gatekeeper additional_args['{GATEKEEPER_PAYLOAD_KEY}'] JSON root "
+            "must be an object."
+        )
+    return parsed
+
+
+def _delegated_studies(payload: Any) -> list[dict[str, Any]]:
+    parsed = _parse_payload(payload)
+    studies = parsed.get("studies")
+    if not isinstance(studies, list) or not studies:
+        raise ValueError(
+            f"gatekeeper additional_args['{GATEKEEPER_PAYLOAD_KEY}'] has no "
+            "non-empty studies list."
+        )
+    return studies
+
+
 def _validate_additional_args(additional_args: dict | None) -> dict:
     if not isinstance(additional_args, dict) or not additional_args:
         raise ValueError(
@@ -78,6 +115,17 @@ def _validate_additional_args(additional_args: dict | None) -> dict:
             "(study_index, title, abstract) — not indices-only data."
         )
     return additional_args
+
+
+def _agent_answer_text(result: Any) -> str:
+    if result is None:
+        return ""
+    if isinstance(result, str):
+        return result
+    output = getattr(result, "output", None)
+    if output is not None:
+        return output if isinstance(output, str) else str(output)
+    return str(result)
 
 
 class _StrictGatekeeperWrapper:
@@ -103,12 +151,22 @@ class _StrictGatekeeperWrapper:
     ) -> Any:
         _ = task
         validated_args = _validate_additional_args(additional_args)
+        studies = _delegated_studies(validated_args[GATEKEEPER_PAYLOAD_KEY])
         try:
-            return self._agent(
+            # Call run() directly so we validate the raw final answer (not the
+            # managed-agent report wrapper) before returning to the Orchestrator.
+            result = self._agent.run(
                 self._fixed_task,
                 additional_args=validated_args,
-                **kwargs,
+                reset=kwargs.get("reset", True),
+                stream=kwargs.get("stream", False),
+                max_steps=kwargs.get("max_steps"),
+                return_full_result=kwargs.get("return_full_result"),
             )
+            answer = _agent_answer_text(result)
+            if not kwargs.get("stream"):
+                validate_gatekeeper_answer(answer, studies)
+            return answer
         except ContextOverflowError:
             raise
         except Exception as exc:
@@ -132,6 +190,10 @@ def wrap_gatekeeper(
     """
     Wrap a gatekeeper CodeAgent so managed calls use a fixed short task and
     require study payload only in ``additional_args['screening_payload']``.
+
+    Each call validates the final answer against the delegated studies in the
+    payload (schema, indices, titles, counts; rejects duplicate JSON keys and
+    NaN/Infinity).
 
     On classified hard failures (e.g. context overflow), raises the matching
     mentor exception instead of returning a soft error string the
