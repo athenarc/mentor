@@ -81,7 +81,10 @@ _KEY_ALIASES: dict[str, list[str]] = {
                         "placebo_n"],
 
     # ---- Screening-decision fields ----
-    "decision":        ["decision", "screening_decision", "verdict", "status"],
+    # Canonical key is final_decision (Gatekeeper schema). Legacy "decision"
+    # and older free-form synonyms are read fallbacks only.
+    "final_decision":  ["final_decision", "decision", "screening_decision",
+                        "verdict", "status"],
     "reason":          ["reason", "rationale", "justification", "explanation"],
     "decisions_list":  ["decisions", "screening_decisions",
                         "screening_results"],
@@ -397,13 +400,45 @@ def _extract_json_from_boilerplate(response: str, expected_keys: list[str] | Non
 # ---- Screening decisions -------------------------------------------------
 
 def _normalize_decision(d: dict) -> dict:
-    """Normalize a single screening-decision dict to use consistent keys."""
+    """Normalize a single screening-decision dict to use consistent keys.
+
+    Canonical verdict key is ``final_decision`` (INCLUDE | EXCLUDE | UNCLEAR).
+    Legacy records that only had ``decision`` / ``reason`` / ``confidence``
+    are accepted via read fallbacks.
+    """
+    criteria = d.get("criteria") if isinstance(d, dict) else None
+    if not isinstance(criteria, list):
+        criteria = []
     return {
         "study_index": _alias_get(d, "study_index", default=0),
-        "decision": (_alias_get(d, "decision", default="") or "").upper(),
-        "reason": _alias_get(d, "reason", default=""),
-        "confidence": _alias_get(d, "decision_confidence", default="").upper(),
+        "final_decision": (
+            _alias_get(d, "final_decision", default="") or ""
+        ).upper(),
+        "criteria": criteria,
+        "reason": _alias_get(d, "reason", default="") or "",
+        "confidence": (
+            _alias_get(d, "decision_confidence", default="") or ""
+        ).upper(),
     }
+
+
+def _decision_detail_text(d: dict) -> str:
+    """Human-readable detail for a screening decision (criteria or legacy reason)."""
+    criteria = d.get("criteria") if isinstance(d.get("criteria"), list) else []
+    parts: list[str] = []
+    for item in criteria:
+        if not isinstance(item, dict):
+            continue
+        cid = str(item.get("id", "") or "").strip() or "?"
+        label = str(item.get("label", "") or "").strip() or "?"
+        rationale = str(item.get("rationale", "") or "").strip()
+        part = f"{cid}: {label}"
+        if rationale:
+            part += f" — {rationale}"
+        parts.append(part)
+    if parts:
+        return "; ".join(parts)
+    return str(d.get("reason", "") or "").strip()
 
 
 def _extract_decisions_list(data) -> list[dict] | None:
@@ -477,7 +512,8 @@ def _parse_decisions(gatekeeper_response: str) -> list[dict]:
     )
     idx_pat = re.compile(r"[\"']?study_index[\"']?\s*[:=]\s*(\d+)")
     dec_pat = re.compile(
-        r"[\"']?decision[\"']?\s*[:=]\s*[\"']?(INCLUDE|EXCLUDE)[\"']?",
+        r"[\"']?(?:final_)?decision[\"']?\s*[:=]\s*"
+        r"[\"']?(INCLUDE|EXCLUDE|UNCLEAR)[\"']?",
         re.IGNORECASE,
     )
     reason_pat = re.compile(
@@ -495,18 +531,20 @@ def _parse_decisions(gatekeeper_response: str) -> list[dict]:
         if m_idx and m_dec:
             m_reason = reason_pat.search(text)
             m_confidence = confidence_pat.search(text)
-            decisions.append({
+            decisions.append(_normalize_decision({
                 "study_index": int(m_idx.group(1)),
-                "decision": m_dec.group(1).upper(),
+                "final_decision": m_dec.group(1).upper(),
                 "reason": m_reason.group(1).strip() if m_reason else "",
-                "confidence": m_confidence.group(1).strip().upper() if m_confidence else "",
-            })
+                "confidence": (
+                    m_confidence.group(1).strip().upper() if m_confidence else ""
+                ),
+            }))
 
-    # Last resort: look for simple patterns like "Study N: INCLUDE/EXCLUDE"
+    # Last resort: look for simple patterns like "Study N: INCLUDE/EXCLUDE/UNCLEAR"
     # Confidence is optional (same as the block parser above).
     if not decisions:
         simple = re.compile(
-            r'(?:Study|study)\s*(\d+)\s*[:–—-]\s*(INCLUDE|EXCLUDE)'
+            r'(?:Study|study)\s*(\d+)\s*[:–—-]\s*(INCLUDE|EXCLUDE|UNCLEAR)'
             r'(?:\s*[-–—:]\s*(.*?))?\s*(?:\n|$)',
             re.IGNORECASE,
         )
@@ -522,12 +560,12 @@ def _parse_decisions(gatekeeper_response: str) -> list[dict]:
                 if conf_m:
                     reason = (conf_m.group(1) or "").strip()
                     confidence = conf_m.group(2).upper()
-            decisions.append({
+            decisions.append(_normalize_decision({
                 "study_index": int(m.group(1)),
-                "decision": m.group(2).upper(),
+                "final_decision": m.group(2).upper(),
                 "reason": reason,
                 "confidence": confidence,
-            })
+            }))
 
     return decisions
 
@@ -839,20 +877,23 @@ def _extract_evidence_text(miner_response: str) -> str:
 # Tools exposed to the Orchestrator agent
 # ---------------------------------------------------------------------------
 
+_MINING_DECISIONS = frozenset({"INCLUDE", "UNCLEAR"})
+
+
 @tool
 def extract_included_studies(
     screening_response: str,
     candidates_json: str,
 ) -> str:
     """
-    Parse the gatekeeper's screening response and return the INCLUDED
-    studies ready for the miner, as a JSON string.
+    Parse the gatekeeper's screening response and return studies ready for
+    the miner, as a JSON string.
 
     This tool robustly extracts screening decisions from the gatekeeper's
     response (handling boilerplate wrappers, JSON and text formats),
-    filters to INCLUDE decisions, matches them back to the candidate
-    studies, and returns a JSON list of study objects with title, abstract,
-    and study_index.
+    filters to INCLUDE and UNCLEAR decisions (EXCLUDE is omitted), matches
+    them back to the candidate studies, and returns a JSON list of study
+    objects with title, abstract, and study_index.
 
     Args:
         screening_response: The full string response from the gatekeeper agent.
@@ -860,15 +901,15 @@ def extract_included_studies(
             (as returned by get_candidates_json) with a 'studies' key.
 
     Returns:
-        A JSON string: a list of included study objects (each with
-        study_index, title, abstract).  Returns '[]' if no studies
-        were included or parsing failed.
+        A JSON string: a list of study objects for mining (each with
+        study_index, title, abstract).  Returns '[]' if none qualify or
+        parsing failed.
     """
     # Parse the screening decisions using the robust multi-fallback parser
     decisions = _parse_decisions(screening_response)
     included_indices = {
         d["study_index"] for d in decisions
-        if d.get("decision", "").upper() == "INCLUDE"
+        if str(d.get("final_decision", "")).upper() in _MINING_DECISIONS
     }
 
     # Parse the candidate studies
@@ -928,28 +969,41 @@ def format_report(
     """
     # --- Parse screening decisions ---
     decisions = _parse_decisions(screening_response)
-    included = [d for d in decisions if d.get("decision", "").upper() == "INCLUDE"]
-    excluded = [d for d in decisions if d.get("decision", "").upper() == "EXCLUDE"]
+    included = [
+        d for d in decisions
+        if str(d.get("final_decision", "")).upper() == "INCLUDE"
+    ]
+    excluded = [
+        d for d in decisions
+        if str(d.get("final_decision", "")).upper() == "EXCLUDE"
+    ]
+    unclear = [
+        d for d in decisions
+        if str(d.get("final_decision", "")).upper() == "UNCLEAR"
+    ]
     n_included = len(included)
     n_excluded = len(excluded)
+    n_unclear = len(unclear)
 
     # If parsing failed, try counting from the text
     if not decisions:
         inc_matches = re.findall(r'INCLUDE', screening_response, re.IGNORECASE)
         exc_matches = re.findall(r'EXCLUDE', screening_response, re.IGNORECASE)
+        unc_matches = re.findall(r'UNCLEAR', screening_response, re.IGNORECASE)
         n_included = len(inc_matches)
         n_excluded = len(exc_matches)
+        n_unclear = len(unc_matches)
 
     # --- Build screening decisions text ---
     decisions_text_parts = []
     sorted_decisions = sorted(decisions, key=lambda d: d.get("study_index", 0))
     for d in sorted_decisions:
         idx = _alias_get(d, "study_index", default="?")
-        dec = _alias_get(d, "decision", default="?")
-        reason = _alias_get(d, "reason", default="")
+        dec = _alias_get(d, "final_decision", default="?")
+        detail = _decision_detail_text(d)
         line = f"  - Study {idx}: {dec}"
-        if reason:
-            line += f" — {reason}"
+        if detail:
+            line += f" — {detail}"
         decisions_text_parts.append(line)
     decisions_text = "\n".join(decisions_text_parts)
 
@@ -975,6 +1029,7 @@ def format_report(
 ## 3. Screening Results
 - Included studies: {n_included}
 - Excluded studies: {n_excluded}
+- Unclear studies: {n_unclear}
 - Decisions:
 {decisions_text}
 

@@ -27,8 +27,8 @@ You also have these utility tools:
 - **get_screening_response_json** — loads merged Gatekeeper-shaped JSON from
   evidence.json after all batches are saved.
 - **extract_included_studies** — parses the screening response,
-  filters to INCLUDE decisions (not EXCLUDE or UNCLEAR), and returns the
-  included studies as a JSON string ready for the miner.  ALWAYS use this
+  filters to INCLUDE and UNCLEAR decisions (not EXCLUDE), and returns those
+  studies as a JSON string ready for the miner.  ALWAYS use this
   instead of writing your own parsing code.
 - **format_report** — takes the raw outputs from each agent and produces
   a clean, consistent Markdown report. ALWAYS use this as the last step.
@@ -119,7 +119,7 @@ Code block 2 — SCREENING:
   included_studies_json = extract_included_studies(
       screening_response=screening_response,
       candidates_json=candidates_json)
-  Print how many studies were included (UNCLEAR studies are not mined).
+  Print how many studies were selected for mining (INCLUDE + UNCLEAR).
 
 Code block 3 — EXTRACTION:
   miner_response = miner(task=...)

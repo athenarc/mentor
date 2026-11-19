@@ -46,6 +46,7 @@ def test_orchestrator_uses_managed_gatekeeper_batches() -> None:
     assert "append_screening_batch" in text
     assert "gatekeeper(" in text
     assert "INCLUDE | EXCLUDE | UNCLEAR" in text
+    assert "INCLUDE and UNCLEAR" in text
     assert "ContextOverflowError" in text
     assert "screen_candidates" not in text
     screening_only = load_prod_prompt("orchestrator_screening-only")

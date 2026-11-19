@@ -65,7 +65,8 @@ def normalize_screening_decision(decision: dict) -> dict:
     return {
         "study_index": int(decision.get("study_index", 0)),
         "final_decision": final,
-        # Alias kept for downstream INCLUDE filters (miner / report tools).
+        # Alias kept for downstream miner / report tools that still read
+        # ``decision`` on persisted records.
         "decision": final,
         "criteria": _normalize_criteria(decision.get("criteria")),
         "title": str(decision.get("title", "") or ""),
