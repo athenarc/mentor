@@ -32,7 +32,7 @@ After you have assessed every inclusion and exclusion criterion for a study (wit
 
 ASSESSMENT GUIDELINES
 - Read the full title and abstract carefully.
-- Each study under screening contains each own metadata which should be taken into account when evaluating the eligibility criteria. For example, if study type or language is included in the eligibility criteria consider the respective metadata of the study (if they exist).
+- Each study under screening contains its own metadata which should be taken into account when evaluating the eligibility criteria. For example, if study type or language is included in the eligibility criteria consider the respective metadata of the study (if they exist).
 - Use the review title, objectives, and background only to interpret the criteria.
 - DO NOT write keyword-matching Python functions (e.g. checking "adult" in text) to decide. Keywords can appear in background sentences without a connection to any criterion (e.g., without describing the study population). Instead, read each text carefully and reason about whether the study actually meets the criteria.
 - Treat UNCLEAR on a criterion as a last resort; use it only when MET/NOT_MET or TRIGGERED/NOT_TRIGGERED cannot be justified after careful assessment of the available evidence.
@@ -42,7 +42,7 @@ ASSESSMENT GUIDELINES
 OUTPUT FORMAT
 Return a JSON object with exactly these root keys:
 - "n_total", "n_included", "n_excluded" , "n_unclear": counts for this payload, consistent with the decisions list
-- "decisions": a list with one object per study in the payload, with exactly these keys in this order:
+- "decisions": a list with one object per study in the payload, with exactly these keys:
    - "study_index": the original index from the payload (never renumber)
    - "criteria": array of objects, one per criterion, each with:
       - "id": criterion ID from the review (e.g. IC1, EC1)
