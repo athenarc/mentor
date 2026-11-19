@@ -11,6 +11,11 @@ from mentor.agents.prompts import load_prompt as load_prod_prompt
 from mentor.agents.prompts import resolve_prompt
 from mentor.review import review_from_dict
 
+_SAMPLE_CRITERIA = {
+    "inclusion": [{"id": "IC1", "text": "Include RCTs"}],
+    "exclusion": [{"id": "EC1", "text": "Exclude reviews"}],
+}
+
 PROD = [
     "orchestrator",
     "orchestrator_screening-only",  # packaged default for mode=screening-only
@@ -87,7 +92,7 @@ def test_review_prompts_resolve_relative_to_review_file(tmp_path: Path) -> None:
             "title": "T",
             "objective": "O",
             "background": "B",
-            "selection_criteria": "S",
+            "selection_criteria": _SAMPLE_CRITERIA,
             "prompts": {"gatekeeper": "custom_gk.md"},
             "studies": [{"title": "s1", "abstract": "a1"}],
         },
@@ -104,7 +109,7 @@ def test_review_prompts_reject_unknown_role() -> None:
                 "title": "T",
                 "objective": "O",
                 "background": "B",
-                "selection_criteria": "S",
+                "selection_criteria": _SAMPLE_CRITERIA,
                 "prompts": {"unknown_agent": "x.md"},
             }
         )

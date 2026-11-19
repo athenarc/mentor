@@ -14,6 +14,7 @@ import json
 
 from smolagents import tool
 
+from mentor.selection_criteria import parse_selection_criteria
 from mentor.tools.search.models import map_local_studies_to_result
 
 
@@ -86,7 +87,7 @@ def _protocol_payload(studies: list) -> dict:
         "title": _review_data.get("title", ""),
         "objective": _review_data.get("objective", ""),
         "background": _review_data.get("background", ""),
-        "selection_criteria": _review_data.get("selection_criteria", ""),
+        "selection_criteria": _review_data.get("selection_criteria"),
         "n_total": len(studies),
         "studies": studies,
     }
@@ -168,12 +169,19 @@ def get_review_protocol() -> str:
     if _review_data is None:
         return "ERROR: No review data loaded."
 
+    try:
+        criteria_text = parse_selection_criteria(
+            _review_data.get("selection_criteria")
+        ).format_text()
+    except ValueError as exc:
+        return f"ERROR: Invalid selection_criteria in loaded review data: {exc}"
+
     return (
         f"=== REVIEW PROTOCOL ===\n"
         f"Title: {_review_data.get('title', 'N/A')}\n\n"
         f"Background:\n{_review_data.get('background', 'N/A')}\n\n"
         f"Objective:\n{_review_data.get('objective', 'N/A')}\n\n"
-        f"Selection Criteria:\n{_review_data.get('selection_criteria', 'N/A')}\n"
+        f"Selection Criteria:\n{criteria_text}\n"
     )
 
 

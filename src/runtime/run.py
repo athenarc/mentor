@@ -181,7 +181,7 @@ def run_review(
             title=review.title,
             background=review.background,
             objective=review.objective,
-            selection_criteria=review.selection_criteria,
+            selection_criteria=review.selection_criteria.format_text(),
             run_dir=run_dir,
             n_studies=len(review.studies),
         )

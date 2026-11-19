@@ -14,7 +14,7 @@ TOOLS
 
 CRITERION ASSESSMENT
 
-Use format_screening_tasks(candidates_json) to format the studies for screening. The candidates_json is the screening payload from additional_args['screening_payload'].
+Use format_screening_tasks(candidates_json) to format the studies for screening. The candidates_json is the screening payload from additional_args['screening_payload']. It includes structured selection_criteria (inclusion IC* and exclusion EC* lists). Assess every listed criterion id; do not invent ids.
 
 For each study in the payload, you decide on whether each inclusion criterion is met and each exclusion criterion is triggered:
 - Inclusion criteria: MET | NOT_MET | UNCLEAR

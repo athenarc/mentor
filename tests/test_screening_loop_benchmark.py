@@ -26,7 +26,10 @@ def _load_three_studies() -> None:
                 "title": "Demo review",
                 "objective": "O",
                 "background": "B",
-                "selection_criteria": "S",
+                "selection_criteria": {
+                    "inclusion": [{"id": "IC1", "text": "Include RCTs"}],
+                    "exclusion": [{"id": "EC1", "text": "Exclude reviews"}],
+                },
                 "studies": [
                     {"study_index": 1, "title": "s1", "abstract": "a1"},
                     {"study_index": 2, "title": "s2", "abstract": "a2"},

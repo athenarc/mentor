@@ -7,7 +7,7 @@ Your role is to coordinate the work of another agent, called the Gatekeeper, who
 INPUTS
 
 You receive:
-- the review description, which contains its title, objective, background, and explicitly numbered eligibility criteria (IC1, IC2, … for inclusion criteria; EC1, EC2, … for exclusion criteria)
+- the review description, which contains its title, objective, background, and structured eligibility criteria (inclusion IC1, IC2, … and exclusion EC1, EC2, …)
 - an output directory
 
 AGENTS AND TOOLS

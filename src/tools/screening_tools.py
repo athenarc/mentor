@@ -12,6 +12,8 @@ from typing import Any, Literal
 
 from smolagents import tool
 
+from mentor.selection_criteria import SelectionCriteria, parse_selection_criteria
+
 _CORE_STUDY_FIELDS = ("study_index", "title", "abstract")
 
 FinalDecision = Literal["INCLUDE", "EXCLUDE", "UNCLEAR"]
@@ -100,39 +102,67 @@ def compute_final_decision(criteria: list[dict[str, Any]]) -> FinalDecision:
     return "UNCLEAR"
 
 
+def _format_criteria_checklist(criteria: SelectionCriteria) -> list[str]:
+    lines = [
+        "SELECTION CRITERIA (assess every id below for each study):",
+    ]
+    if criteria.inclusion:
+        lines.extend(
+            [
+                "",
+                "Inclusion criteria — label each as MET | NOT_MET | UNCLEAR:",
+            ]
+        )
+        for item in criteria.inclusion:
+            lines.append(f"- {item.id}: {item.text}")
+    if criteria.exclusion:
+        lines.extend(
+            [
+                "",
+                "Exclusion criteria — label each as "
+                "TRIGGERED | NOT_TRIGGERED | UNCLEAR:",
+            ]
+        )
+        for item in criteria.exclusion:
+            lines.append(f"- {item.id}: {item.text}")
+    return lines
+
+
 @tool
 def format_screening_tasks(candidates_json: str) -> str:
     """
     Format the screening payload for Gatekeeper criterion assessment.
 
-    Returns a formatted list of studies with the selection criteria, ready
-    for the Gatekeeper agent to make decisions on each. Pass a single study
-    in ``studies`` for one-at-a-time screening. Any extra study fields beyond
-    title/abstract (e.g. journal, year) are included when present.
+    Returns a formatted list of studies with a per-criterion IC/EC checklist,
+    ready for the Gatekeeper agent to make decisions on each. Pass a single
+    study in ``studies`` for one-at-a-time screening. Any extra study fields
+    beyond title/abstract (e.g. journal, year) are included when present.
 
     Args:
         candidates_json: JSON string with candidate studies. Must contain
-            keys 'studies' (list), 'title', and 'selection_criteria'.
+            keys 'studies' (list), 'title', and structured
+            'selection_criteria' (inclusion/exclusion lists).
 
     Returns:
         A formatted string with all studies and criteria, requesting
         a structured screening decision for each.
     """
     review = json.loads(candidates_json)
-    criteria = review.get("selection_criteria", "N/A")
+    criteria = parse_selection_criteria(review.get("selection_criteria"))
     studies = review.get("studies", [])
+    required_ids = ", ".join(criteria.criterion_ids())
 
     lines = [
         "=== SCREENING TASK ===",
         f"Review: {review.get('title', 'N/A')}",
         f"Total studies to screen: {len(studies)}",
         "",
-        "SELECTION CRITERIA:",
-        f"{criteria}",
+        *_format_criteria_checklist(criteria),
         "",
-        "INSTRUCTIONS: For each study below, assess every inclusion and "
-        "exclusion criterion, then call get_final_decision for that study.",
+        "INSTRUCTIONS: For each study below, assess every criterion id listed "
+        f"above ({required_ids}), then call get_final_decision for that study.",
         "Return exactly one decision object per study; do not omit studies.",
+        "Do not invent criterion ids that are not listed.",
         "",
     ]
 

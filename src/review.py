@@ -8,6 +8,9 @@ Mode-dependent input contract (``mode`` defaults to ``full`` when omitted):
 - ``screening-only`` — ``studies`` required (non-empty)
 - ``full`` — protocol fields only; ``studies`` must be absent or empty
   (Librarian retrieves candidates)
+
+``selection_criteria`` must be structured IC/EC lists (free-text strings
+are rejected); see ``mentor.selection_criteria``.
 """
 
 from __future__ import annotations
@@ -18,6 +21,30 @@ from pathlib import Path
 from typing import Any, Dict, List, Literal
 
 from mentor.agents.prompts import PROMPT_ROLES
+from mentor.selection_criteria import (
+    Criterion,
+    SelectionCriteria,
+    parse_selection_criteria,
+)
+
+# Re-export criteria types for callers that historically imported from review.
+__all__ = [
+    "Criterion",
+    "LABEL_INCLUDED",
+    "LABEL_UNKNOWN",
+    "ReviewMode",
+    "SelectionCriteria",
+    "Study",
+    "SystematicReview",
+    "VALID_MODES",
+    "load_review_from_json",
+    "normalize_mode",
+    "parse_selection_criteria",
+    "protocol_to_json",
+    "review_from_dict",
+    "review_to_json",
+    "validate_review_for_mode",
+]
 
 # Gold labels are optional at run time (JSON inputs omit them).
 LABEL_INCLUDED = 1.0
@@ -47,7 +74,7 @@ class SystematicReview:
     title: str
     background: str
     objective: str
-    selection_criteria: str
+    selection_criteria: SelectionCriteria
     mode: ReviewMode
     studies: List[Study] = field(default_factory=list)
     # Role → absolute prompt file path. Missing roles use packaged defaults.
@@ -151,7 +178,7 @@ def review_to_json(review: SystematicReview) -> str:
         "title": review.title,
         "objective": review.objective,
         "background": review.background,
-        "selection_criteria": review.selection_criteria,
+        "selection_criteria": review.selection_criteria.to_dict(),
     }
     if review.studies:
         data["studies"] = [
@@ -171,7 +198,7 @@ def protocol_to_json(review: SystematicReview) -> str:
         "title": review.title,
         "objective": review.objective,
         "background": review.background,
-        "selection_criteria": review.selection_criteria,
+        "selection_criteria": review.selection_criteria.to_dict(),
     }
     return json.dumps(data, ensure_ascii=False)
 
@@ -208,7 +235,7 @@ def review_from_dict(
         title=str(data.get("title") or "").strip() or "Untitled review",
         background=str(data.get("background") or ""),
         objective=str(data.get("objective") or ""),
-        selection_criteria=str(data.get("selection_criteria") or ""),
+        selection_criteria=parse_selection_criteria(data.get("selection_criteria")),
         mode=mode,
         studies=studies,
         prompts=_parse_prompts(data.get("prompts"), base_dir=base_dir),

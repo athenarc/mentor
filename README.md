@@ -98,13 +98,22 @@ Field reference — `screening-only` (`studies` required):
   "title": "...",
   "objective": "...",
   "background": "...",
-  "selection_criteria": "...",
+  "selection_criteria": {
+    "inclusion": [
+      {"id": "IC1", "text": "..."}
+    ],
+    "exclusion": [
+      {"id": "EC1", "text": "..."}
+    ]
+  },
   "studies": [
     {"study_index": 1, "title": "...", "abstract": "..."},
     {"study_index": 2, "title": "...", "abstract": "..."}
   ]
 }
 ```
+
+`inclusion` / `exclusion` may be omitted or empty, but at least one criterion is required. Free-text `selection_criteria` strings are rejected.
 
 ### Full mode with external search (i.e., BIP / PubMed)
 
@@ -123,7 +132,14 @@ Field reference — `full` (default if `mode` is omitted; no `studies`):
   "title": "...",
   "objective": "...",
   "background": "...",
-  "selection_criteria": "..."
+  "selection_criteria": {
+    "inclusion": [
+      {"id": "IC1", "text": "..."}
+    ],
+    "exclusion": [
+      {"id": "EC1", "text": "..."}
+    ]
+  }
 }
 ```
 
