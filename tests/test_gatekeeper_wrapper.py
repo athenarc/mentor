@@ -35,20 +35,37 @@ def _study_payload(**overrides):
     return base
 
 
+def _criteria_for(decision: str) -> list[dict]:
+    if decision == "INCLUDE":
+        return [
+            {"id": "IC1", "label": "MET", "rationale": "ok"},
+            {"id": "EC1", "label": "NOT_TRIGGERED", "rationale": "ok"},
+        ]
+    if decision == "EXCLUDE":
+        return [
+            {"id": "IC1", "label": "NOT_MET", "rationale": "ok"},
+            {"id": "EC1", "label": "NOT_TRIGGERED", "rationale": "ok"},
+        ]
+    return [
+        {"id": "IC1", "label": "UNCLEAR", "rationale": "ok"},
+        {"id": "EC1", "label": "NOT_TRIGGERED", "rationale": "ok"},
+    ]
+
+
 def _valid_gatekeeper_answer(studies: list[dict], *, decision: str = "INCLUDE") -> str:
-    included = sum(1 for _ in studies if decision == "INCLUDE")
+    counts = {"INCLUDE": 0, "EXCLUDE": 0, "UNCLEAR": 0}
+    counts[decision] = len(studies)
     return json.dumps(
         {
             "n_total": len(studies),
-            "n_included": included,
-            "n_excluded": len(studies) - included,
+            "n_included": counts["INCLUDE"],
+            "n_excluded": counts["EXCLUDE"],
+            "n_unclear": counts["UNCLEAR"],
             "decisions": [
                 {
                     "study_index": study["study_index"],
-                    "title": study["title"],
-                    "decision": decision,
-                    "confidence": "high",
-                    "rationale": f"Decision for study {study['study_index']}.",
+                    "criteria": _criteria_for(decision),
+                    "final_decision": decision,
                 }
                 for study in studies
             ],

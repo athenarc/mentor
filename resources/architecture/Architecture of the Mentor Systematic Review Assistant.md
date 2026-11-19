@@ -317,7 +317,7 @@ Related github repo:
     │  (Search)   │ │ (Screen) │  │  (Extract)  │ │(Synthesize)│
     └──────┬──────┘ └────┬─────┘  └──────┬──────┘ └────┬───────┘
            │             │               │             │
-      search_studies  screen_studies batch_extract  synthesize
+      search_studies  format_screening_tasks batch_extract  synthesize
       get_protocol                   extract_from   assess_quality
 ```
 

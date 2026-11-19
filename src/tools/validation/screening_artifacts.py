@@ -37,10 +37,13 @@ def _decisions_by_index(
             )
         if index in by_index:
             raise ValueError(f"Invalid {source}: duplicate decision for study {index}.")
-        if decision["decision"] not in {"INCLUDE", "EXCLUDE"}:
+        final = str(
+            decision.get("final_decision", decision.get("decision", ""))
+        ).upper()
+        if final not in {"INCLUDE", "EXCLUDE", "UNCLEAR"}:
             raise ValueError(
                 f"Invalid {source}: study {index} has decision "
-                f"{decision['decision']!r}; expected INCLUDE or EXCLUDE."
+                f"{final!r}; expected INCLUDE, EXCLUDE, or UNCLEAR."
             )
         by_index[index] = decision
     return by_index

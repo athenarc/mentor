@@ -23,8 +23,9 @@ GATEKEEPER_PAYLOAD_KEY = "screening_payload"
 # Fixed short task — no study payloads. The same task works for any batch size.
 GATEKEEPER_TASK = (
     f"Title/abstract screen the studies in additional_args['{GATEKEEPER_PAYLOAD_KEY}'] "
-    "against that payload's review protocol. Return one INCLUDE/EXCLUDE "
-    "decision per study as JSON, preserving original study_index values."
+    "against that payload's review protocol. Assess each criterion, call "
+    "get_final_decision, and return INCLUDE/EXCLUDE/UNCLEAR JSON per study, "
+    "preserving original study_index values."
 )
 
 

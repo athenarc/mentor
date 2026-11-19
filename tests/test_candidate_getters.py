@@ -8,7 +8,7 @@ from mentor.tools.search.search_tools import (
     _candidate_studies_batch_payload,
     load_review_data,
 )
-from mentor.tools.screening_tools import screen_studies
+from mentor.tools.screening_tools import format_screening_tasks
 
 
 def test_single_index_matches_batch_size_one():
@@ -54,8 +54,8 @@ def test_batch_payload_preserves_extra_study_metadata():
     assert study["publication_types"] == ["Journal Article", "RCT"]
 
 
-def test_screen_studies_includes_extra_metadata():
-    text = screen_studies(
+def test_format_screening_tasks_includes_extra_metadata():
+    text = format_screening_tasks(
         json.dumps(
             {
                 "title": "Review",

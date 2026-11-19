@@ -33,8 +33,11 @@ def test_production_prompts_load(name: str) -> None:
 
 def test_gatekeeper_prompt_is_batch_agnostic() -> None:
     text = load_prod_prompt("gatekeeper")
-    assert "Preserve the original study_index" in text
-    assert "Do NOT include decisions for studies outside the payload" in text
+    assert "additional_args['screening_payload']" in text
+    assert "study_index" in text
+    assert "get_final_decision" in text
+    assert "format_screening_tasks" in text
+    assert "Include every study in the batch exactly once" in text
 
 
 def test_orchestrator_uses_managed_gatekeeper_batches() -> None:

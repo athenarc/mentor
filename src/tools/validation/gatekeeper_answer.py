@@ -5,22 +5,29 @@ from __future__ import annotations
 import json
 from typing import Any
 
+from mentor.tools.screening_tools import compute_final_decision
+
 
 _ROOT_ATTRIBUTES = (
     "n_total",
     "n_included",
     "n_excluded",
+    "n_unclear",
     "decisions",
 )
 _DECISION_ATTRIBUTES = (
     "study_index",
-    "title",
-    "decision",
-    "confidence",
+    "criteria",
+    "final_decision",
+)
+_CRITERION_ATTRIBUTES = (
+    "id",
+    "label",
     "rationale",
 )
-_VALID_DECISIONS = {"INCLUDE", "EXCLUDE"}
-_VALID_CONFIDENCE_VALUES = {"high", "medium", "low"}
+_VALID_FINAL_DECISIONS = {"INCLUDE", "EXCLUDE", "UNCLEAR"}
+_INCLUSION_LABELS = {"MET", "NOT_MET", "UNCLEAR"}
+_EXCLUSION_LABELS = {"TRIGGERED", "NOT_TRIGGERED", "UNCLEAR"}
 
 
 class _DuplicateJsonAttributeError(ValueError):
@@ -141,6 +148,55 @@ def _raise_validation_errors(errors: list[str]) -> None:
         )
 
 
+def _criterion_label_errors(
+    criterion: dict[str, Any],
+    *,
+    location: str,
+) -> list[str]:
+    errors: list[str] = []
+    errors.extend(
+        _attribute_errors(criterion, _CRITERION_ATTRIBUTES, location=location)
+    )
+    criterion_id = criterion.get("id")
+    label = criterion.get("label")
+    rationale = criterion.get("rationale")
+    if "id" in criterion and not isinstance(criterion_id, str):
+        errors.append(f"Invalid id type in the {location}: expected a string.")
+        return errors
+    if "rationale" in criterion and not isinstance(rationale, str):
+        errors.append(
+            f"Invalid rationale type in the {location}: expected a string."
+        )
+    if "rationale" in criterion and isinstance(rationale, str) and not rationale.strip():
+        errors.append(f"Empty rationale in the {location}.")
+    if "label" in criterion and not isinstance(label, str):
+        errors.append(f"Invalid label type in the {location}: expected a string.")
+        return errors
+    if not isinstance(label, str):
+        return errors
+
+    label_upper = label.upper()
+    id_upper = str(criterion_id or "").strip().upper()
+    if id_upper.startswith("IC"):
+        if label_upper not in _INCLUSION_LABELS:
+            errors.append(
+                f"Invalid inclusion label {label!r} in the {location}. "
+                "Expected MET, NOT_MET, or UNCLEAR."
+            )
+    elif id_upper.startswith("EC"):
+        if label_upper not in _EXCLUSION_LABELS:
+            errors.append(
+                f"Invalid exclusion label {label!r} in the {location}. "
+                "Expected TRIGGERED, NOT_TRIGGERED, or UNCLEAR."
+            )
+    else:
+        errors.append(
+            f"Invalid criterion id {criterion_id!r} in the {location}; "
+            "expected an id starting with IC or EC."
+        )
+    return errors
+
+
 def validate_gatekeeper_answer(
     final_answer: Any,
     delegated_studies: list[dict[str, Any]],
@@ -188,7 +244,7 @@ def validate_gatekeeper_answer(
     expected_total = len(studies)
 
     counts: dict[str, int] = {}
-    for attribute in ("n_total", "n_included", "n_excluded"):
+    for attribute in ("n_total", "n_included", "n_excluded", "n_unclear"):
         if attribute not in payload:
             continue
         value = payload[attribute]
@@ -203,6 +259,7 @@ def validate_gatekeeper_answer(
     n_total = counts.get("n_total")
     n_included = counts.get("n_included")
     n_excluded = counts.get("n_excluded")
+    n_unclear = counts.get("n_unclear")
     if n_total is not None:
         if n_total < 1:
             errors.append(
@@ -216,18 +273,24 @@ def validate_gatekeeper_answer(
     for attribute, value in (
         ("n_included", n_included),
         ("n_excluded", n_excluded),
+        ("n_unclear", n_unclear),
     ):
         if value is not None and value < 0:
             errors.append(
                 f"Invalid value for {attribute}: {value}. "
                 "Expected a nonnegative integer."
             )
-    if n_total is not None and n_included is not None and n_excluded is not None:
-        if n_included + n_excluded != n_total:
+    if (
+        n_total is not None
+        and n_included is not None
+        and n_excluded is not None
+        and n_unclear is not None
+    ):
+        if n_included + n_excluded + n_unclear != n_total:
             errors.append(
                 f"Inconsistent summary counts: n_included ({n_included}) + "
-                f"n_excluded ({n_excluded}) is {n_included + n_excluded}, "
-                f"while n_total is {n_total}."
+                f"n_excluded ({n_excluded}) + n_unclear ({n_unclear}) is "
+                f"{n_included + n_excluded + n_unclear}, while n_total is {n_total}."
             )
 
     decisions = payload.get("decisions")
@@ -254,6 +317,7 @@ def validate_gatekeeper_answer(
     returned_indices: set[int] = set()
     include_count = 0
     exclude_count = 0
+    unclear_count = 0
     for position, decision_record in enumerate(decisions, start=1):
         location = f"decision at position {position}"
         if not isinstance(decision_record, dict):
@@ -289,60 +353,59 @@ def validate_gatekeeper_answer(
                     f"Delegated study indices are {sorted(studies)}."
                 )
 
-        title = decision_record.get("title")
-        if "title" in decision_record and not isinstance(title, str):
+        criteria = decision_record.get("criteria")
+        if "criteria" in decision_record and not isinstance(criteria, list):
             errors.append(
-                f"Invalid title type in the {location}: "
-                f"{type(title).__name__}. Expected a string."
+                f"Invalid criteria type in the {location}: "
+                f"{type(criteria).__name__}. Expected a list."
             )
-        elif (
-            isinstance(title, str)
-            and valid_index
-            and study_index in studies
-        ):
-            expected_title = studies[study_index]["title"]
-            if title.lower().strip() != expected_title.lower().strip():
-                errors.append(
-                    f"Title mismatch for study_index {study_index}. "
-                    f"Received {title!r}; delegated title is {expected_title!r}."
-                )
+            criteria = None
+        elif isinstance(criteria, list):
+            if not criteria:
+                errors.append(f"Empty criteria list in the {location}.")
+            for c_pos, criterion in enumerate(criteria, start=1):
+                c_location = f"{location} criterion at position {c_pos}"
+                if not isinstance(criterion, dict):
+                    errors.append(
+                        f"The {c_location} is not an object; received "
+                        f"{type(criterion).__name__}."
+                    )
+                    continue
+                errors.extend(_criterion_label_errors(criterion, location=c_location))
 
-        decision = decision_record.get("decision")
-        if "decision" in decision_record:
-            if not isinstance(decision, str):
+        final_decision = decision_record.get("final_decision")
+        if "final_decision" in decision_record:
+            if not isinstance(final_decision, str):
                 errors.append(
-                    f"Invalid decision type in the {location}: "
-                    f"{type(decision).__name__}. Expected a string."
+                    f"Invalid final_decision type in the {location}: "
+                    f"{type(final_decision).__name__}. Expected a string."
                 )
-            elif decision not in _VALID_DECISIONS:
+            elif final_decision not in _VALID_FINAL_DECISIONS:
                 errors.append(
-                    f"Invalid decision value {decision!r} in the {location}. "
-                    "Expected 'INCLUDE' or 'EXCLUDE'."
+                    f"Invalid final_decision value {final_decision!r} in the "
+                    f"{location}. Expected INCLUDE, EXCLUDE, or UNCLEAR."
                 )
-            elif decision == "INCLUDE":
-                include_count += 1
             else:
-                exclude_count += 1
-
-        confidence = decision_record.get("confidence")
-        if "confidence" in decision_record:
-            if not isinstance(confidence, str):
-                errors.append(
-                    f"Invalid confidence type in the {location}: "
-                    f"{type(confidence).__name__}. Expected a string."
-                )
-            elif confidence not in _VALID_CONFIDENCE_VALUES:
-                errors.append(
-                    f"Invalid confidence value {confidence!r} in the {location}. "
-                    "Expected 'high', 'medium', or 'low'."
-                )
-
-        rationale = decision_record.get("rationale")
-        if "rationale" in decision_record and not isinstance(rationale, str):
-            errors.append(
-                f"Invalid rationale type in the {location}: "
-                f"{type(rationale).__name__}. Expected a string."
-            )
+                if final_decision == "INCLUDE":
+                    include_count += 1
+                elif final_decision == "EXCLUDE":
+                    exclude_count += 1
+                else:
+                    unclear_count += 1
+                if isinstance(criteria, list) and criteria:
+                    try:
+                        expected = compute_final_decision(criteria)
+                    except ValueError as exc:
+                        errors.append(
+                            f"Invalid criteria for study_index {study_index}: {exc}"
+                        )
+                    else:
+                        if final_decision != expected:
+                            errors.append(
+                                f"final_decision {final_decision!r} for "
+                                f"study_index {study_index} does not match "
+                                f"get_final_decision rules (expected {expected!r})."
+                            )
 
     expected_indices = set(studies)
     missing_indices = sorted(expected_indices - returned_indices)
@@ -364,6 +427,11 @@ def validate_gatekeeper_answer(
         errors.append(
             f"n_excluded is {n_excluded}, while the decisions list contains "
             f"{exclude_count} EXCLUDE decisions."
+        )
+    if n_unclear is not None and n_unclear != unclear_count:
+        errors.append(
+            f"n_unclear is {n_unclear}, while the decisions list contains "
+            f"{unclear_count} UNCLEAR decisions."
         )
 
     _raise_validation_errors(errors)

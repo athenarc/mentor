@@ -11,10 +11,11 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+from typing import Any
 
 from smolagents import tool
 
-from mentor.tools.report_tools import _parse_decisions
+_VALID_FINAL_DECISIONS = {"INCLUDE", "EXCLUDE", "UNCLEAR"}
 
 
 def evidence_path(output_dir: str | os.PathLike[str]) -> Path:
@@ -35,16 +36,58 @@ def read_existing_decisions(output_dir: str | os.PathLike[str]) -> list[dict]:
     return decisions if isinstance(decisions, list) else []
 
 
+def _normalize_criteria(raw_criteria: Any) -> list[dict]:
+    if not isinstance(raw_criteria, list):
+        return []
+    normalized: list[dict] = []
+    for item in raw_criteria:
+        if not isinstance(item, dict):
+            continue
+        normalized.append(
+            {
+                "id": str(item.get("id", "") or ""),
+                "label": str(item.get("label", "") or "").upper(),
+                "rationale": str(item.get("rationale", "") or "").strip(),
+            }
+        )
+    return normalized
+
+
 def normalize_screening_decision(decision: dict) -> dict:
+    """Normalize a Gatekeeper decision for persistence.
+
+    Accepts the criteria-based schema (``final_decision`` + ``criteria``) and
+    legacy records that used ``decision`` / ``rationale`` / ``confidence``.
+    """
+    final = str(
+        decision.get("final_decision", decision.get("decision", "")) or ""
+    ).upper()
     return {
         "study_index": int(decision.get("study_index", 0)),
+        "final_decision": final,
+        # Alias kept for downstream INCLUDE filters (miner / report tools).
+        "decision": final,
+        "criteria": _normalize_criteria(decision.get("criteria")),
         "title": str(decision.get("title", "") or ""),
-        "decision": str(decision.get("decision", "") or "").upper(),
-        "reason": str(
-            decision.get("reason", decision.get("rationale", "")) or ""
-        ).strip(),
-        "confidence": str(decision.get("confidence", "") or "").strip(),
     }
+
+
+def _parse_screening_response_decisions(screening_response: str) -> list[dict]:
+    """Parse Gatekeeper JSON into decision objects (fail closed on bad JSON)."""
+    try:
+        payload = json.loads(screening_response)
+    except json.JSONDecodeError as exc:
+        raise ValueError(
+            "Gatekeeper screening response is not valid JSON."
+        ) from exc
+    if not isinstance(payload, dict):
+        raise ValueError("Gatekeeper screening response JSON root must be an object.")
+    decisions = payload.get("decisions")
+    if not isinstance(decisions, list):
+        raise ValueError(
+            "Gatekeeper screening response must contain a decisions list."
+        )
+    return [item for item in decisions if isinstance(item, dict)]
 
 
 def _next_missing_index(decisions: list[dict], expected_n_studies: int | None) -> int | None:
@@ -115,7 +158,7 @@ def append_batch_decisions(
 
     decisions = [
         normalize_screening_decision(decision)
-        for decision in _parse_decisions(screening_response)
+        for decision in _parse_screening_response_decisions(screening_response)
     ]
     decision_by_index: dict[int, dict] = {}
     invalid_decisions: list[str] = []
@@ -123,13 +166,13 @@ def append_batch_decisions(
         index = decision["study_index"]
         if index in decision_by_index:
             raise ValueError(f"Gatekeeper returned duplicate decision for study {index}.")
-        if decision["decision"] not in {"INCLUDE", "EXCLUDE"}:
-            invalid_decisions.append(f"{index}: {decision['decision']!r}")
+        if decision["final_decision"] not in _VALID_FINAL_DECISIONS:
+            invalid_decisions.append(f"{index}: {decision['final_decision']!r}")
         decision_by_index[index] = decision
     if invalid_decisions:
         raise ValueError(
-            "Gatekeeper decisions must be INCLUDE or EXCLUDE; invalid values: "
-            + ", ".join(invalid_decisions)
+            "Gatekeeper decisions must be INCLUDE, EXCLUDE, or UNCLEAR; "
+            "invalid values: " + ", ".join(invalid_decisions)
         )
 
     expected_set = set(expected_indices)
@@ -172,15 +215,14 @@ def decisions_to_screening_response(decisions: list[dict]) -> str:
         (normalize_screening_decision(d) for d in decisions),
         key=lambda item: item["study_index"],
     )
-    included = sum(1 for d in ordered if d["decision"] == "INCLUDE")
-    # Downstream parsers accept either ``reason`` or ``rationale``.
+    included = sum(1 for d in ordered if d["final_decision"] == "INCLUDE")
+    excluded = sum(1 for d in ordered if d["final_decision"] == "EXCLUDE")
+    unclear = sum(1 for d in ordered if d["final_decision"] == "UNCLEAR")
     payload_decisions = [
         {
             "study_index": d["study_index"],
-            "title": d["title"],
-            "decision": d["decision"],
-            "rationale": d["reason"],
-            "confidence": d["confidence"],
+            "criteria": d["criteria"],
+            "final_decision": d["final_decision"],
         }
         for d in ordered
     ]
@@ -188,7 +230,8 @@ def decisions_to_screening_response(decisions: list[dict]) -> str:
         {
             "n_total": len(ordered),
             "n_included": included,
-            "n_excluded": len(ordered) - included,
+            "n_excluded": excluded,
+            "n_unclear": unclear,
             "decisions": payload_decisions,
         },
         ensure_ascii=False,
@@ -226,10 +269,22 @@ def format_screening_progress_summary(
     """
     decisions = read_existing_decisions(output_dir)
     included = sum(
-        1 for decision in decisions if str(decision.get("decision", "")).upper() == "INCLUDE"
+        1
+        for decision in decisions
+        if str(decision.get("final_decision", decision.get("decision", ""))).upper()
+        == "INCLUDE"
     )
     excluded = sum(
-        1 for decision in decisions if str(decision.get("decision", "")).upper() == "EXCLUDE"
+        1
+        for decision in decisions
+        if str(decision.get("final_decision", decision.get("decision", ""))).upper()
+        == "EXCLUDE"
+    )
+    unclear = sum(
+        1
+        for decision in decisions
+        if str(decision.get("final_decision", decision.get("decision", ""))).upper()
+        == "UNCLEAR"
     )
     return (
         f"# Screening Summary\n\n"
@@ -237,4 +292,5 @@ def format_screening_progress_summary(
         f"- **Total decisions saved:** {len(decisions)}\n"
         f"- **Included:** {included}\n"
         f"- **Excluded:** {excluded}\n"
+        f"- **Unclear:** {unclear}\n"
     )
