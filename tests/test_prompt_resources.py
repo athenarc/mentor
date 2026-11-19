@@ -45,8 +45,11 @@ def test_orchestrator_uses_managed_gatekeeper_batches() -> None:
     assert "screen_candidates" not in text
     screening_only = load_prod_prompt("orchestrator_screening-only")
     assert "get_screening_batches" in screening_only
+    assert "append_screening_batch" in screening_only
+    assert "format_screening_progress_summary" in screening_only
     assert "gatekeeper" in screening_only
     assert "screen_candidates" not in screening_only
+    assert "get_screening_response_json" not in screening_only
 
 
 def test_resolve_prompt_override(tmp_path: Path) -> None:
