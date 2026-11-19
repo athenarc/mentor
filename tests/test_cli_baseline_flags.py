@@ -35,6 +35,7 @@ def _add_argument_flags(path: Path) -> list[str]:
                 "--output-root",
                 "--run-name",
                 "--hide-subagent-steps",
+                "--skip-activity-summary",
                 "--list-profiles",
             },
         ),

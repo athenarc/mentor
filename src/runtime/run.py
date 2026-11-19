@@ -85,6 +85,7 @@ def run_review(
     api_base: str | None = None,
     model_profile: str | None = None,
     include_subagent_steps: bool = True,
+    skip_activity_summary: bool = False,
     batch_size: int | None = None,
     output_root: Path | None = None,
     run_name: str | None = None,
@@ -100,6 +101,9 @@ def run_review(
     Returns the orchestrator final answer (report text for full runs).
     When ``raise_on_error`` is False, failures are recorded in ``run.json``
     and this function returns ``""`` instead of re-raising.
+
+    When ``skip_activity_summary`` is True, ``activity.md`` is still written
+    but step summaries use templates (no extra LLM calls).
     """
     logger.info("=" * 70)
     logger.info("MENTOR SYSTEMATIC REVIEW PIPELINE")
@@ -215,7 +219,10 @@ def run_review(
         report = ""
     finally:
         duration = time.perf_counter() - started
-        activity_path = activity_logger.finalize(_activity_summary_model)
+        summary_model = None if skip_activity_summary else _activity_summary_model
+        if skip_activity_summary:
+            logger.info("Skipping LLM activity summarisation (template fallbacks).")
+        activity_path = activity_logger.finalize(summary_model)
         logger.info("Activity log saved to: %s", activity_path)
         agent_logger.close()
         payload: dict[str, Any] = {
@@ -224,6 +231,7 @@ def run_review(
             "prompt_overrides": dict(review.prompts) if review.prompts else {},
             "screening_batch_size": batch_size,
             "model_profile": session.profile_key,
+            "skip_activity_summary": skip_activity_summary,
             "status": run_status,
             "error": error,
             "duration_seconds": duration,

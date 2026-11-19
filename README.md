@@ -305,6 +305,9 @@ Options:
   --list-profiles      List model profiles and exit
   --hide-subagent-steps
                        Hide sub-agent step details in activity.md
+  --skip-activity-summary
+                       Skip LLM step summarisation for activity.md
+                       (template fallbacks only; saves API calls)
 
 Model flags are optional. Use --profile XOR --model/--backend/--api-base
 (any subset); otherwise fall back to MENTOR_* env defaults. Pipeline mode
