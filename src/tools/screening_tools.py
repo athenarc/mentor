@@ -128,8 +128,30 @@ def _format_criteria_checklist(criteria: SelectionCriteria) -> list[str]:
     return lines
 
 
+def _parse_screening_payload(candidates_json: Any) -> dict[str, Any]:
+    """Accept a screening payload as a JSON string or already-parsed object."""
+    if isinstance(candidates_json, dict):
+        return candidates_json
+    if isinstance(candidates_json, str):
+        try:
+            parsed = json.loads(candidates_json)
+        except json.JSONDecodeError as exc:
+            raise ValueError(
+                "format_screening_tasks candidates_json must be valid JSON."
+            ) from exc
+        if not isinstance(parsed, dict):
+            raise ValueError(
+                "format_screening_tasks candidates_json JSON root must be an object."
+            )
+        return parsed
+    raise TypeError(
+        "format_screening_tasks candidates_json must be a JSON object string "
+        f"or dict; got {type(candidates_json).__name__}."
+    )
+
+
 @tool
-def format_screening_tasks(candidates_json: str) -> str:
+def format_screening_tasks(candidates_json: Any) -> str:
     """
     Format the screening payload for Gatekeeper criterion assessment.
 
@@ -139,15 +161,16 @@ def format_screening_tasks(candidates_json: str) -> str:
     beyond title/abstract (e.g. journal, year) are included when present.
 
     Args:
-        candidates_json: JSON string with candidate studies. Must contain
-            keys 'studies' (list), 'title', and structured
-            'selection_criteria' (inclusion/exclusion lists).
+        candidates_json: Screening payload as a JSON string or dict. Must
+            contain keys 'studies' (list), 'title', and structured
+            'selection_criteria' (inclusion/exclusion lists). Passing the
+            ``additional_args['screening_payload']`` dict directly is OK.
 
     Returns:
         A formatted string with all studies and criteria, requesting
         a structured screening decision for each.
     """
-    review = json.loads(candidates_json)
+    review = _parse_screening_payload(candidates_json)
     criteria = parse_selection_criteria(review.get("selection_criteria"))
     studies = review.get("studies", [])
     required_ids = ", ".join(criteria.criterion_ids())

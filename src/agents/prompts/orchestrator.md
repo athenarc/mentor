@@ -81,8 +81,8 @@ CRITICAL RULES — read carefully before writing any code
 8. If gatekeeper or append_screening_batch fails for a batch, retry the
    same payload once (call gatekeeper again, then append). Do not invent
    decisions. If the retry also fails, stop that batch and surface the
-   error. Do not retry Mentor hard-abort errors such as
-   ContextOverflowError — re-raise them (match with type(exc).__name__).
+   error. Do not keep retrying Mentor hard-abort errors such as
+   ContextOverflowError — let them propagate and stop.
 
 ═══════════════════════════════════════════════════════════════════════
 
@@ -111,9 +111,7 @@ Code block 2 — SCREENING:
           )
       try:
           run_batch()
-      except Exception as exc:
-          if type(exc).__name__ == "ContextOverflowError":
-              raise
+      except Exception:
           run_batch()  # one retry; do not invent decisions
   screening_response = get_screening_response_json(output_dir=output_dir)
   included_studies_json = extract_included_studies(

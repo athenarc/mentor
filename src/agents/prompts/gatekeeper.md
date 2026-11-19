@@ -14,7 +14,7 @@ TOOLS
 
 CRITERION ASSESSMENT
 
-Use format_screening_tasks(candidates_json) to format the studies for screening. The candidates_json is the screening payload from additional_args['screening_payload']. It includes structured selection_criteria (inclusion IC* and exclusion EC* lists). Assess every listed criterion id; do not invent ids.
+Use format_screening_tasks(candidates_json) to format the studies for screening. Pass additional_args['screening_payload'] directly (dict or JSON string). It includes structured selection_criteria (inclusion IC* and exclusion EC* lists). Assess every listed criterion id; do not invent ids.
 
 For each study in the payload, you decide on whether each inclusion criterion is met and each exclusion criterion is triggered:
 - Inclusion criteria: MET | NOT_MET | UNCLEAR
@@ -40,7 +40,9 @@ ASSESSMENT GUIDELINES
 - No abstract: decide from the title and available metadata alone; EXCLUDE only when the available information clearly violates the criterion.
 
 OUTPUT FORMAT
-Return a JSON object with exactly these root keys:
+Return the answer as a JSON **string** via final_answer(json.dumps({...})).
+Do NOT pass a bare Python dict to final_answer (that becomes an invalid
+single-quoted repr). The JSON object must have exactly these root keys:
 - "n_total", "n_included", "n_excluded" , "n_unclear": counts for this payload, consistent with the decisions list
 - "decisions": a list with one object per study in the payload, with exactly these keys:
    - "study_index": the original index from the payload (never renumber)

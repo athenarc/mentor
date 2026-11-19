@@ -30,7 +30,7 @@ CRITICAL RULES
 6. Return only format_screening_progress_summary(review_title, output_dir) as the final answer.
 7. Never put study JSON in gatekeeper task=. Use gatekeeper("", additional_args={"screening_payload": item["payload"]}).
 8. After each gatekeeper call, call append_screening_batch immediately, then discard that response. Do NOT accumulate all Gatekeeper responses.
-9. If gatekeeper or append_screening_batch fails for a batch, retry the same payload once (call gatekeeper again, then append). Do not invent decisions. If the retry also fails, stop that batch and surface the error. Do not retry Mentor hard-abort errors such as ContextOverflowError — re-raise them.
+9. If gatekeeper or append_screening_batch fails for a batch, retry the same payload once (call gatekeeper again, then append). Do not invent decisions. If the retry also fails, stop that batch and surface the error. Do not keep retrying Mentor hard-abort errors such as ContextOverflowError — let them propagate and stop.
 
 WORKFLOW
 
@@ -51,9 +51,7 @@ Code block 1 – SCREENING LOOP:
           )
       try:
           run_batch()
-      except Exception as exc:
-          if type(exc).__name__ == "ContextOverflowError":
-              raise
+      except Exception:
           run_batch()  # one retry; do not invent decisions
   - Print a short progress note (do not dump JSON).
 

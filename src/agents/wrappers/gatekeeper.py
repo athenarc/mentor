@@ -10,6 +10,7 @@ Keeps gatekeeper as a callable agent, but enforces:
 
 from __future__ import annotations
 
+import ast
 import json
 from typing import Any
 
@@ -118,15 +119,46 @@ def _validate_additional_args(additional_args: dict | None) -> dict:
     return additional_args
 
 
-def _agent_answer_text(result: Any) -> str:
+def _agent_answer_payload(result: Any) -> Any:
+    """Unwrap a CodeAgent run result to the raw final-answer value."""
     if result is None:
         return ""
-    if isinstance(result, str):
+    if isinstance(result, (str, dict)):
         return result
     output = getattr(result, "output", None)
     if output is not None:
-        return output if isinstance(output, str) else str(output)
-    return str(result)
+        return output
+    return result
+
+
+def coerce_gatekeeper_answer_json(result: Any) -> str:
+    """
+    Normalize a Gatekeeper final answer to a JSON object string.
+
+    CodeAgents often call ``final_answer({...})`` (Python dict) or return
+    ``str(dict)`` with single quotes. Validation and persistence expect
+    strict JSON, so coerce dict / Python-literal strings before checking.
+    """
+    value = _agent_answer_payload(result)
+    if isinstance(value, dict):
+        return json.dumps(value, ensure_ascii=False)
+    if not isinstance(value, str):
+        value = str(value)
+    text = value.strip()
+    if not text:
+        return ""
+    try:
+        json.loads(text)
+        return text
+    except json.JSONDecodeError:
+        pass
+    try:
+        parsed = ast.literal_eval(text)
+    except (SyntaxError, ValueError, MemoryError):
+        return text
+    if isinstance(parsed, dict):
+        return json.dumps(parsed, ensure_ascii=False)
+    return text
 
 
 class _StrictGatekeeperWrapper:
@@ -164,7 +196,7 @@ class _StrictGatekeeperWrapper:
                 max_steps=kwargs.get("max_steps"),
                 return_full_result=kwargs.get("return_full_result"),
             )
-            answer = _agent_answer_text(result)
+            answer = coerce_gatekeeper_answer_json(result)
             if not kwargs.get("stream"):
                 validate_gatekeeper_answer(answer, studies)
             return answer

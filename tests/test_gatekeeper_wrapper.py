@@ -52,25 +52,29 @@ def _criteria_for(decision: str) -> list[dict]:
     ]
 
 
-def _valid_gatekeeper_answer(studies: list[dict], *, decision: str = "INCLUDE") -> str:
+def _valid_gatekeeper_payload(
+    studies: list[dict], *, decision: str = "INCLUDE"
+) -> dict:
     counts = {"INCLUDE": 0, "EXCLUDE": 0, "UNCLEAR": 0}
     counts[decision] = len(studies)
-    return json.dumps(
-        {
-            "n_total": len(studies),
-            "n_included": counts["INCLUDE"],
-            "n_excluded": counts["EXCLUDE"],
-            "n_unclear": counts["UNCLEAR"],
-            "decisions": [
-                {
-                    "study_index": study["study_index"],
-                    "criteria": _criteria_for(decision),
-                    "final_decision": decision,
-                }
-                for study in studies
-            ],
-        }
-    )
+    return {
+        "n_total": len(studies),
+        "n_included": counts["INCLUDE"],
+        "n_excluded": counts["EXCLUDE"],
+        "n_unclear": counts["UNCLEAR"],
+        "decisions": [
+            {
+                "study_index": study["study_index"],
+                "criteria": _criteria_for(decision),
+                "final_decision": decision,
+            }
+            for study in studies
+        ],
+    }
+
+
+def _valid_gatekeeper_answer(studies: list[dict], *, decision: str = "INCLUDE") -> str:
+    return json.dumps(_valid_gatekeeper_payload(studies, decision=decision))
 
 
 def _openai_bad_request(*, status_code: int = 400, body: dict):
@@ -260,6 +264,42 @@ class GatekeeperWrapperTests(unittest.TestCase):
                 "ignored",
                 additional_args={GATEKEEPER_PAYLOAD_KEY: {"studies": [_study_payload()]}},
             )
+
+    def test_accepts_python_dict_final_answer(self):
+        class FakeAgent:
+            name = "gatekeeper"
+
+            def run(self, task="", additional_args=None, **kwargs):
+                studies = additional_args[GATEKEEPER_PAYLOAD_KEY]["studies"]
+                return _valid_gatekeeper_payload(studies)
+
+        wrapped = wrap_gatekeeper(FakeAgent(), fixed_task=GATEKEEPER_TASK)
+        result = wrapped(
+            "ignored",
+            additional_args={GATEKEEPER_PAYLOAD_KEY: {"studies": [_study_payload()]}},
+        )
+        self.assertIsInstance(result, str)
+        self.assertEqual(json.loads(result)["n_total"], 1)
+        self.assertEqual(json.loads(result)["decisions"][0]["final_decision"], "INCLUDE")
+
+    def test_accepts_python_repr_final_answer_string(self):
+        class FakeAgent:
+            name = "gatekeeper"
+
+            def run(self, task="", additional_args=None, **kwargs):
+                studies = additional_args[GATEKEEPER_PAYLOAD_KEY]["studies"]
+                # Simulate str(dict) from final_answer({...}).
+                return str(_valid_gatekeeper_payload(studies))
+
+        wrapped = wrap_gatekeeper(FakeAgent(), fixed_task=GATEKEEPER_TASK)
+        result = wrapped(
+            "ignored",
+            additional_args={GATEKEEPER_PAYLOAD_KEY: {"studies": [_study_payload()]}},
+        )
+        self.assertIsInstance(result, str)
+        parsed = json.loads(result)
+        self.assertEqual(parsed["n_included"], 1)
+        self.assertIn('"', result)
 
     def test_overflow_exception_becomes_context_overflow_error(self):
         class OverflowAgent:
