@@ -13,19 +13,19 @@ _ROOT_ATTRIBUTES = (
     "n_included",
     "n_excluded",
     "n_unclear",
-    "decisions",
+    "study_decisions",
 )
 _DECISION_ATTRIBUTES = (
     "study_index",
     "criteria",
-    "final_decision",
+    "decision",
 )
 _CRITERION_ATTRIBUTES = (
     "id",
     "label",
     "rationale",
 )
-_VALID_FINAL_DECISIONS = {"INCLUDE", "EXCLUDE", "UNCLEAR"}
+_VALID_DECISIONS = {"INCLUDE", "EXCLUDE", "UNCLEAR"}
 _INCLUSION_LABELS = {"MET", "NOT_MET", "UNCLEAR"}
 _EXCLUSION_LABELS = {"TRIGGERED", "NOT_TRIGGERED", "UNCLEAR"}
 
@@ -293,11 +293,11 @@ def validate_gatekeeper_answer(
                 f"{n_included + n_excluded + n_unclear}, while n_total is {n_total}."
             )
 
-    decisions = payload.get("decisions")
+    decisions = payload.get("study_decisions")
     if not isinstance(decisions, list):
-        if "decisions" in payload:
+        if "study_decisions" in payload:
             errors.append(
-                f"Invalid type for decisions: {type(decisions).__name__}. "
+                f"Invalid type for study_decisions: {type(decisions).__name__}. "
                 "Expected a list."
             )
         _raise_validation_errors(errors)
@@ -305,12 +305,12 @@ def validate_gatekeeper_answer(
 
     if len(decisions) != expected_total:
         errors.append(
-            f"Invalid decisions list size: {len(decisions)}. "
+            f"Invalid study_decisions list size: {len(decisions)}. "
             f"The delegated study count is {expected_total}."
         )
     if n_total is not None and len(decisions) != n_total:
         errors.append(
-            f"The decisions list contains {len(decisions)} entries, "
+            f"The study_decisions list contains {len(decisions)} entries, "
             f"while n_total is {n_total}."
         )
 
@@ -373,22 +373,22 @@ def validate_gatekeeper_answer(
                     continue
                 errors.extend(_criterion_label_errors(criterion, location=c_location))
 
-        final_decision = decision_record.get("final_decision")
-        if "final_decision" in decision_record:
-            if not isinstance(final_decision, str):
+        decision = decision_record.get("decision")
+        if "decision" in decision_record:
+            if not isinstance(decision, str):
                 errors.append(
-                    f"Invalid final_decision type in the {location}: "
-                    f"{type(final_decision).__name__}. Expected a string."
+                    f"Invalid decision type in the {location}: "
+                    f"{type(decision).__name__}. Expected a string."
                 )
-            elif final_decision not in _VALID_FINAL_DECISIONS:
+            elif decision not in _VALID_DECISIONS:
                 errors.append(
-                    f"Invalid final_decision value {final_decision!r} in the "
+                    f"Invalid decision value {decision!r} in the "
                     f"{location}. Expected INCLUDE, EXCLUDE, or UNCLEAR."
                 )
             else:
-                if final_decision == "INCLUDE":
+                if decision == "INCLUDE":
                     include_count += 1
-                elif final_decision == "EXCLUDE":
+                elif decision == "EXCLUDE":
                     exclude_count += 1
                 else:
                     unclear_count += 1
@@ -400,9 +400,9 @@ def validate_gatekeeper_answer(
                             f"Invalid criteria for study_index {study_index}: {exc}"
                         )
                     else:
-                        if final_decision != expected:
+                        if decision != expected:
                             errors.append(
-                                f"final_decision {final_decision!r} for "
+                                f"decision {decision!r} for "
                                 f"study_index {study_index} does not match "
                                 f"get_final_decision rules (expected {expected!r})."
                             )
@@ -420,17 +420,17 @@ def validate_gatekeeper_answer(
         )
     if n_included is not None and n_included != include_count:
         errors.append(
-            f"n_included is {n_included}, while the decisions list contains "
+            f"n_included is {n_included}, while study_decisions contains "
             f"{include_count} INCLUDE decisions."
         )
     if n_excluded is not None and n_excluded != exclude_count:
         errors.append(
-            f"n_excluded is {n_excluded}, while the decisions list contains "
+            f"n_excluded is {n_excluded}, while study_decisions contains "
             f"{exclude_count} EXCLUDE decisions."
         )
     if n_unclear is not None and n_unclear != unclear_count:
         errors.append(
-            f"n_unclear is {n_unclear}, while the decisions list contains "
+            f"n_unclear is {n_unclear}, while study_decisions contains "
             f"{unclear_count} UNCLEAR decisions."
         )
 

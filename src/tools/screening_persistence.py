@@ -1,9 +1,10 @@
 """
-Screening decision persistence (evidence.json + screening_progress.json).
+Screening decision persistence (``evidence.json``).
 
 Used by Orchestrator screening helpers (``append_screening_batch``) and by
-analysis tools that read saved decisions. Writes a screening-specific
-``evidence.json`` shape (decisions only).
+analysis tools that read saved decisions. ``evidence.json`` mirrors the
+Gatekeeper answer shape (counts + ``study_decisions``), accumulated across
+batches.
 """
 
 from __future__ import annotations
@@ -15,15 +16,22 @@ from typing import Any
 
 from smolagents import tool
 
-_VALID_FINAL_DECISIONS = {"INCLUDE", "EXCLUDE", "UNCLEAR"}
+_VALID_DECISIONS = {"INCLUDE", "EXCLUDE", "UNCLEAR"}
 
 
 def evidence_path(output_dir: str | os.PathLike[str]) -> Path:
     return Path(output_dir) / "evidence.json"
 
 
-def progress_path(output_dir: str | os.PathLike[str]) -> Path:
-    return Path(output_dir) / "screening_progress.json"
+def _extract_decisions_list(payload: Any) -> list:
+    """Read the study_decisions list; accept legacy list keys."""
+    if not isinstance(payload, dict):
+        return []
+    decisions = payload.get(
+        "study_decisions",
+        payload.get("decisions", payload.get("screening_decisions", [])),
+    )
+    return decisions if isinstance(decisions, list) else []
 
 
 def read_existing_decisions(output_dir: str | os.PathLike[str]) -> list[dict]:
@@ -32,8 +40,7 @@ def read_existing_decisions(output_dir: str | os.PathLike[str]) -> list[dict]:
         return []
     with open(path, "r", encoding="utf-8") as f:
         payload = json.load(f)
-    decisions = payload.get("screening_decisions", [])
-    return decisions if isinstance(decisions, list) else []
+    return _extract_decisions_list(payload)
 
 
 def _normalize_criteria(raw_criteria: Any) -> list[dict]:
@@ -56,21 +63,33 @@ def _normalize_criteria(raw_criteria: Any) -> list[dict]:
 def normalize_screening_decision(decision: dict) -> dict:
     """Normalize a Gatekeeper decision for persistence.
 
-    Accepts the criteria-based schema (``final_decision`` + ``criteria``) and
-    legacy records that used ``decision`` / ``rationale`` / ``confidence``.
+    Canonical verdict key is ``decision``. Legacy ``final_decision`` is
+    accepted as a read fallback only.
     """
-    final = str(
-        decision.get("final_decision", decision.get("decision", "")) or ""
+    verdict = str(
+        decision.get("decision", decision.get("final_decision", "")) or ""
     ).upper()
     return {
         "study_index": int(decision.get("study_index", 0)),
-        "final_decision": final,
-        # Alias kept for downstream miner / report tools that still read
-        # ``decision`` on persisted records.
-        "decision": final,
+        "decision": verdict,
         "criteria": _normalize_criteria(decision.get("criteria")),
-        "title": str(decision.get("title", "") or ""),
     }
+
+
+def _decision_counts(ordered: list[dict]) -> dict[str, int]:
+    included = sum(1 for d in ordered if d["decision"] == "INCLUDE")
+    excluded = sum(1 for d in ordered if d["decision"] == "EXCLUDE")
+    unclear = sum(1 for d in ordered if d["decision"] == "UNCLEAR")
+    return {
+        "n_total": len(ordered),
+        "n_included": included,
+        "n_excluded": excluded,
+        "n_unclear": unclear,
+    }
+
+
+def _evidence_payload(ordered: list[dict]) -> dict[str, Any]:
+    return {**_decision_counts(ordered), "study_decisions": ordered}
 
 
 def _parse_screening_response_decisions(screening_response: str) -> list[dict]:
@@ -83,26 +102,12 @@ def _parse_screening_response_decisions(screening_response: str) -> list[dict]:
         ) from exc
     if not isinstance(payload, dict):
         raise ValueError("Gatekeeper screening response JSON root must be an object.")
-    decisions = payload.get("decisions")
+    decisions = payload.get("study_decisions", payload.get("decisions"))
     if not isinstance(decisions, list):
         raise ValueError(
-            "Gatekeeper screening response must contain a decisions list."
+            "Gatekeeper screening response must contain a study_decisions list."
         )
     return [item for item in decisions if isinstance(item, dict)]
-
-
-def _next_missing_index(decisions: list[dict], expected_n_studies: int | None) -> int | None:
-    if expected_n_studies is None:
-        return None
-    completed = {
-        int(decision.get("study_index", 0))
-        for decision in decisions
-        if str(decision.get("study_index", "")).isdigit()
-    }
-    for index in range(1, expected_n_studies + 1):
-        if index not in completed:
-            return index
-    return None
 
 
 def write_screening_artifacts(
@@ -116,18 +121,9 @@ def write_screening_artifacts(
         (normalize_screening_decision(decision) for decision in decisions),
         key=lambda item: item["study_index"],
     )
+    evidence = _evidence_payload(ordered)
     with open(evidence_path(output_dir), "w", encoding="utf-8") as f:
-        json.dump({"screening_decisions": ordered}, f, ensure_ascii=False, indent=2)
-
-    progress = {
-        "expected_n_studies": expected_n_studies,
-        "completed_count": len(ordered),
-        "completed_study_indices": [decision["study_index"] for decision in ordered],
-        "next_study_index": _next_missing_index(ordered, expected_n_studies),
-        "screening_decisions": ordered,
-    }
-    with open(progress_path(output_dir), "w", encoding="utf-8") as f:
-        json.dump(progress, f, ensure_ascii=False, indent=2)
+        json.dump(evidence, f, ensure_ascii=False, indent=2)
 
     if expected_n_studies is not None and len(ordered) == int(expected_n_studies):
         # Local import avoids a cycle with mentor.tools.validation.screening_artifacts.
@@ -167,8 +163,8 @@ def append_batch_decisions(
         index = decision["study_index"]
         if index in decision_by_index:
             raise ValueError(f"Gatekeeper returned duplicate decision for study {index}.")
-        if decision["final_decision"] not in _VALID_FINAL_DECISIONS:
-            invalid_decisions.append(f"{index}: {decision['final_decision']!r}")
+        if decision["decision"] not in _VALID_DECISIONS:
+            invalid_decisions.append(f"{index}: {decision['decision']!r}")
         decision_by_index[index] = decision
     if invalid_decisions:
         raise ValueError(
@@ -216,27 +212,7 @@ def decisions_to_screening_response(decisions: list[dict]) -> str:
         (normalize_screening_decision(d) for d in decisions),
         key=lambda item: item["study_index"],
     )
-    included = sum(1 for d in ordered if d["final_decision"] == "INCLUDE")
-    excluded = sum(1 for d in ordered if d["final_decision"] == "EXCLUDE")
-    unclear = sum(1 for d in ordered if d["final_decision"] == "UNCLEAR")
-    payload_decisions = [
-        {
-            "study_index": d["study_index"],
-            "criteria": d["criteria"],
-            "final_decision": d["final_decision"],
-        }
-        for d in ordered
-    ]
-    return json.dumps(
-        {
-            "n_total": len(ordered),
-            "n_included": included,
-            "n_excluded": excluded,
-            "n_unclear": unclear,
-            "decisions": payload_decisions,
-        },
-        ensure_ascii=False,
-    )
+    return json.dumps(_evidence_payload(ordered), ensure_ascii=False)
 
 
 def batch_indices(indices: list[int], *, batch_size: int | None) -> list[list[int]]:
@@ -268,30 +244,17 @@ def format_screening_progress_summary(
     Returns:
         A short Markdown summary of the saved screening decisions.
     """
-    decisions = read_existing_decisions(output_dir)
-    included = sum(
-        1
-        for decision in decisions
-        if str(decision.get("final_decision", decision.get("decision", ""))).upper()
-        == "INCLUDE"
-    )
-    excluded = sum(
-        1
-        for decision in decisions
-        if str(decision.get("final_decision", decision.get("decision", ""))).upper()
-        == "EXCLUDE"
-    )
-    unclear = sum(
-        1
-        for decision in decisions
-        if str(decision.get("final_decision", decision.get("decision", ""))).upper()
-        == "UNCLEAR"
-    )
+    decisions = [
+        normalize_screening_decision(item)
+        for item in read_existing_decisions(output_dir)
+        if isinstance(item, dict)
+    ]
+    counts = _decision_counts(decisions)
     return (
         f"# Screening Summary\n\n"
         f"- **Review:** {review_title}\n"
-        f"- **Total decisions saved:** {len(decisions)}\n"
-        f"- **Included:** {included}\n"
-        f"- **Excluded:** {excluded}\n"
-        f"- **Unclear:** {unclear}\n"
+        f"- **Total decisions saved:** {counts['n_total']}\n"
+        f"- **Included:** {counts['n_included']}\n"
+        f"- **Excluded:** {counts['n_excluded']}\n"
+        f"- **Unclear:** {counts['n_unclear']}\n"
     )

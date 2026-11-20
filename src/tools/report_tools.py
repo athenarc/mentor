@@ -81,12 +81,12 @@ _KEY_ALIASES: dict[str, list[str]] = {
                         "placebo_n"],
 
     # ---- Screening-decision fields ----
-    # Canonical key is final_decision (Gatekeeper schema). Legacy "decision"
+    # Canonical key is decision (Gatekeeper schema). Legacy final_decision
     # and older free-form synonyms are read fallbacks only.
-    "final_decision":  ["final_decision", "decision", "screening_decision",
+    "decision":        ["decision", "final_decision", "screening_decision",
                         "verdict", "status"],
     "reason":          ["reason", "rationale", "justification", "explanation"],
-    "decisions_list":  ["decisions", "screening_decisions",
+    "decisions_list":  ["study_decisions", "decisions", "screening_decisions",
                         "screening_results"],
     "decision_confidence": ["confidence"],
 
@@ -402,18 +402,15 @@ def _extract_json_from_boilerplate(response: str, expected_keys: list[str] | Non
 def _normalize_decision(d: dict) -> dict:
     """Normalize a single screening-decision dict to use consistent keys.
 
-    Canonical verdict key is ``final_decision`` (INCLUDE | EXCLUDE | UNCLEAR).
-    Legacy records that only had ``decision`` / ``reason`` / ``confidence``
-    are accepted via read fallbacks.
+    Canonical verdict key is ``decision`` (INCLUDE | EXCLUDE | UNCLEAR).
+    Legacy ``final_decision`` / ``reason`` / ``confidence`` are read fallbacks.
     """
     criteria = d.get("criteria") if isinstance(d, dict) else None
     if not isinstance(criteria, list):
         criteria = []
     return {
         "study_index": _alias_get(d, "study_index", default=0),
-        "final_decision": (
-            _alias_get(d, "final_decision", default="") or ""
-        ).upper(),
+        "decision": (_alias_get(d, "decision", default="") or "").upper(),
         "criteria": criteria,
         "reason": _alias_get(d, "reason", default="") or "",
         "confidence": (
@@ -533,7 +530,7 @@ def _parse_decisions(gatekeeper_response: str) -> list[dict]:
             m_confidence = confidence_pat.search(text)
             decisions.append(_normalize_decision({
                 "study_index": int(m_idx.group(1)),
-                "final_decision": m_dec.group(1).upper(),
+                "decision": m_dec.group(1).upper(),
                 "reason": m_reason.group(1).strip() if m_reason else "",
                 "confidence": (
                     m_confidence.group(1).strip().upper() if m_confidence else ""
@@ -562,7 +559,7 @@ def _parse_decisions(gatekeeper_response: str) -> list[dict]:
                     confidence = conf_m.group(2).upper()
             decisions.append(_normalize_decision({
                 "study_index": int(m.group(1)),
-                "final_decision": m.group(2).upper(),
+                "decision": m.group(2).upper(),
                 "reason": reason,
                 "confidence": confidence,
             }))
@@ -909,7 +906,7 @@ def extract_included_studies(
     decisions = _parse_decisions(screening_response)
     included_indices = {
         d["study_index"] for d in decisions
-        if str(d.get("final_decision", "")).upper() in _MINING_DECISIONS
+        if str(d.get("decision", "")).upper() in _MINING_DECISIONS
     }
 
     # Parse the candidate studies
@@ -971,15 +968,15 @@ def format_report(
     decisions = _parse_decisions(screening_response)
     included = [
         d for d in decisions
-        if str(d.get("final_decision", "")).upper() == "INCLUDE"
+        if str(d.get("decision", "")).upper() == "INCLUDE"
     ]
     excluded = [
         d for d in decisions
-        if str(d.get("final_decision", "")).upper() == "EXCLUDE"
+        if str(d.get("decision", "")).upper() == "EXCLUDE"
     ]
     unclear = [
         d for d in decisions
-        if str(d.get("final_decision", "")).upper() == "UNCLEAR"
+        if str(d.get("decision", "")).upper() == "UNCLEAR"
     ]
     n_included = len(included)
     n_excluded = len(excluded)
@@ -999,7 +996,7 @@ def format_report(
     sorted_decisions = sorted(decisions, key=lambda d: d.get("study_index", 0))
     for d in sorted_decisions:
         idx = _alias_get(d, "study_index", default="?")
-        dec = _alias_get(d, "final_decision", default="?")
+        dec = _alias_get(d, "decision", default="?")
         detail = _decision_detail_text(d)
         line = f"  - Study {idx}: {dec}"
         if detail:
@@ -1069,14 +1066,14 @@ def save_evidence_json(
     import os
 
     result: dict = {
-        "screening_decisions": [],
+        "study_decisions": [],
         "evidence": [],
         "quality_assessment": [],
         "synthesis": "",
     }
 
     # ---- Screening decisions ----
-    result["screening_decisions"] = _parse_decisions(screening_response)
+    result["study_decisions"] = _parse_decisions(screening_response)
 
     # ---- Evidence (from miner) ----
     data = _extract_json_from_boilerplate(evidence_response)

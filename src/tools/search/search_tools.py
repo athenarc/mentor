@@ -7,7 +7,7 @@ returns the same ``{"meta", "rows"}`` shape as ``search_studies`` so agents
 can treat local and remote results uniformly.
 
 Getter tools at the bottom of this module feed batch and loop screening
-orchestrators without exposing gold labels in batch payloads.
+orchestrators.
 """
 
 import json

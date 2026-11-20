@@ -59,6 +59,35 @@ def test_batch_payload_preserves_extra_study_metadata():
     assert study["publication_types"] == ["Journal Article", "RCT"]
 
 
+def test_batch_payload_preserves_metadata_after_review_to_json():
+    """Session path: Study.metadata must survive review_to_json → load_review_data."""
+    from mentor.review import review_from_dict, review_to_json
+
+    review = review_from_dict(
+        {
+            "mode": "screening-only",
+            "title": "T",
+            "objective": "O",
+            "background": "B",
+            "selection_criteria": _SAMPLE_CRITERIA,
+            "studies": [
+                {
+                    "title": "s1",
+                    "abstract": "a1",
+                    "journal": "Lancet",
+                    "publication_year": 2004,
+                    "publication_types": ["Journal Article"],
+                }
+            ],
+        }
+    )
+    load_review_data(review_to_json(review))
+    study = json.loads(_candidate_studies_batch_payload("[1]"))["studies"][0]
+    assert study["journal"] == "Lancet"
+    assert study["publication_year"] == 2004
+    assert study["publication_types"] == ["Journal Article"]
+
+
 def test_format_screening_tasks_includes_extra_metadata_and_checklist():
     payload = {
         "title": "Review",

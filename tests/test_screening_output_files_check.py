@@ -1,4 +1,4 @@
-"""Tests for screening artifact consistency validation."""
+"""Tests for screening evidence.json validation."""
 
 from __future__ import annotations
 
@@ -36,7 +36,7 @@ def _decision(index: int = 1, *, decision: str = "INCLUDE") -> dict:
     return {
         "study_index": index,
         "criteria": _criteria_for(decision),
-        "final_decision": decision,
+        "decision": decision,
     }
 
 
@@ -49,11 +49,11 @@ def _decision_payload(indices: list[int], decision: str = "INCLUDE") -> str:
             "n_included": counts["INCLUDE"],
             "n_excluded": counts["EXCLUDE"],
             "n_unclear": counts["UNCLEAR"],
-            "decisions": [
+            "study_decisions": [
                 {
                     "study_index": index,
                     "criteria": _criteria_for(decision),
-                    "final_decision": decision,
+                    "decision": decision,
                 }
                 for index in indices
             ],
@@ -71,6 +71,9 @@ class ScreeningArtifactsConsistentTests(unittest.TestCase):
                 expected_n_studies=2,
             )
             validate_screening_artifacts_consistent(tmpdir, expected_n_studies=2)
+            self.assertFalse(
+                (Path(tmpdir) / "screening_progress.json").exists()
+            )
 
     def test_append_accepts_unclear(self):
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -80,76 +83,60 @@ class ScreeningArtifactsConsistentTests(unittest.TestCase):
                 [1],
                 expected_n_studies=1,
             )
-            self.assertEqual(updated[0]["final_decision"], "UNCLEAR")
+            self.assertEqual(updated[0]["decision"], "UNCLEAR")
 
-    def test_detects_progress_mismatch(self):
+    def test_evidence_json_matches_gatekeeper_shape(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            append_batch_decisions(
+                _decision_payload([1], decision="INCLUDE"),
+                tmpdir,
+                [1],
+                expected_n_studies=1,
+            )
+            payload = json.loads(
+                (Path(tmpdir) / "evidence.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(payload["n_total"], 1)
+            self.assertEqual(payload["n_included"], 1)
+            self.assertEqual(payload["n_excluded"], 0)
+            self.assertEqual(payload["n_unclear"], 0)
+            self.assertIn("study_decisions", payload)
+            self.assertNotIn("decisions", payload)
+            self.assertNotIn("screening_decisions", payload)
+            self.assertNotIn("final_decision", payload["study_decisions"][0])
+            self.assertEqual(payload["study_decisions"][0]["decision"], "INCLUDE")
+
+    def test_detects_missing_evidence_file(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            with self.assertRaises(ValueError) as ctx:
+                validate_screening_artifacts_consistent(tmpdir, expected_n_studies=1)
+            self.assertIn("evidence.json", str(ctx.exception))
+
+    def test_detects_count_mismatch(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             write_screening_artifacts(
                 tmpdir,
                 [_decision()],
                 expected_n_studies=1,
             )
-            progress = Path(tmpdir) / "screening_progress.json"
-            payload = json.loads(progress.read_text(encoding="utf-8"))
-            payload["completed_count"] = 99
-            progress.write_text(json.dumps(payload), encoding="utf-8")
+            evidence = Path(tmpdir) / "evidence.json"
+            payload = json.loads(evidence.read_text(encoding="utf-8"))
+            payload["n_included"] = 0
+            evidence.write_text(json.dumps(payload), encoding="utf-8")
             with self.assertRaises(ValueError) as ctx:
                 validate_screening_artifacts_consistent(tmpdir, expected_n_studies=1)
-            self.assertIn("completed_count", str(ctx.exception))
+            self.assertIn("n_included", str(ctx.exception))
 
-    def test_detects_missing_files(self):
-        with tempfile.TemporaryDirectory() as tmpdir:
-            with self.assertRaises(ValueError) as ctx:
-                validate_screening_artifacts_consistent(tmpdir, expected_n_studies=1)
-            message = str(ctx.exception)
-            self.assertIn("evidence.json", message)
-            self.assertIn("screening_progress.json", message)
-
-    def test_detects_decision_mismatch_between_files(self):
+    def test_detects_incomplete_study_coverage(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             write_screening_artifacts(
                 tmpdir,
                 [_decision()],
-                expected_n_studies=1,
+                expected_n_studies=2,
             )
-            progress = Path(tmpdir) / "screening_progress.json"
-            payload = json.loads(progress.read_text(encoding="utf-8"))
-            payload["screening_decisions"][0]["final_decision"] = "EXCLUDE"
-            payload["screening_decisions"][0]["decision"] = "EXCLUDE"
-            progress.write_text(json.dumps(payload), encoding="utf-8")
             with self.assertRaises(ValueError) as ctx:
-                validate_screening_artifacts_consistent(tmpdir, expected_n_studies=1)
-            self.assertIn("do not match", str(ctx.exception))
-
-    def test_detects_bad_next_study_index(self):
-        with tempfile.TemporaryDirectory() as tmpdir:
-            write_screening_artifacts(
-                tmpdir,
-                [_decision()],
-                expected_n_studies=1,
-            )
-            progress = Path(tmpdir) / "screening_progress.json"
-            payload = json.loads(progress.read_text(encoding="utf-8"))
-            payload["next_study_index"] = 1
-            progress.write_text(json.dumps(payload), encoding="utf-8")
-            with self.assertRaises(ValueError) as ctx:
-                validate_screening_artifacts_consistent(tmpdir, expected_n_studies=1)
-            self.assertIn("next_study_index", str(ctx.exception))
-
-    def test_detects_bad_completed_indices(self):
-        with tempfile.TemporaryDirectory() as tmpdir:
-            write_screening_artifacts(
-                tmpdir,
-                [_decision()],
-                expected_n_studies=1,
-            )
-            progress = Path(tmpdir) / "screening_progress.json"
-            payload = json.loads(progress.read_text(encoding="utf-8"))
-            payload["completed_study_indices"] = [2]
-            progress.write_text(json.dumps(payload), encoding="utf-8")
-            with self.assertRaises(ValueError) as ctx:
-                validate_screening_artifacts_consistent(tmpdir, expected_n_studies=1)
-            self.assertIn("completed indices", str(ctx.exception))
+                validate_screening_artifacts_consistent(tmpdir, expected_n_studies=2)
+            self.assertIn("missing", str(ctx.exception))
 
     def test_write_runs_consistency_check_when_complete(self):
         with tempfile.TemporaryDirectory() as tmpdir:

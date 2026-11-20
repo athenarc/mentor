@@ -1,4 +1,4 @@
-"""Validate evidence.json and screening_progress.json after persistence."""
+"""Validate evidence.json after screening persistence."""
 
 from __future__ import annotations
 
@@ -8,10 +8,10 @@ from pathlib import Path
 from typing import Any
 
 from mentor.tools.screening_persistence import (
+    _decision_counts,
+    _extract_decisions_list,
     evidence_path,
     normalize_screening_decision,
-    progress_path,
-    _next_missing_index,
 )
 
 
@@ -37,16 +37,25 @@ def _decisions_by_index(
             )
         if index in by_index:
             raise ValueError(f"Invalid {source}: duplicate decision for study {index}.")
-        final = str(
-            decision.get("final_decision", decision.get("decision", ""))
-        ).upper()
-        if final not in {"INCLUDE", "EXCLUDE", "UNCLEAR"}:
+        verdict = str(decision.get("decision", "")).upper()
+        if verdict not in {"INCLUDE", "EXCLUDE", "UNCLEAR"}:
             raise ValueError(
                 f"Invalid {source}: study {index} has decision "
-                f"{final!r}; expected INCLUDE, EXCLUDE, or UNCLEAR."
+                f"{verdict!r}; expected INCLUDE, EXCLUDE, or UNCLEAR."
             )
         by_index[index] = decision
     return by_index
+
+
+def _validate_counts(payload: dict, ordered: list[dict], *, source: str) -> list[str]:
+    expected = _decision_counts(ordered)
+    errors: list[str] = []
+    for key, value in expected.items():
+        if payload.get(key) != value:
+            errors.append(
+                f"{source} {key} is {payload.get(key)!r}; expected {value}."
+            )
+    return errors
 
 
 def validate_screening_artifacts_consistent(
@@ -54,18 +63,13 @@ def validate_screening_artifacts_consistent(
     *,
     expected_n_studies: int,
 ) -> None:
-    """Fail closed if evidence.json and screening_progress.json disagree."""
+    """Fail closed if evidence.json is missing, incomplete, or internally inconsistent."""
     output_dir = Path(output_dir)
     evidence_file = evidence_path(output_dir)
-    progress_file = progress_path(output_dir)
-    errors: list[str] = []
     if not evidence_file.is_file():
-        errors.append("The expected evidence.json file was not written.")
-    if not progress_file.is_file():
-        errors.append("The expected screening_progress.json file was not written.")
-    if errors:
         raise ValueError(
-            "Screening persistence validation failed:\n- " + "\n- ".join(errors)
+            "Screening persistence validation failed:\n- "
+            "The expected evidence.json file was not written."
         )
 
     try:
@@ -73,65 +77,35 @@ def validate_screening_artifacts_consistent(
             evidence_payload = json.load(f)
     except (OSError, json.JSONDecodeError) as exc:
         raise ValueError(f"Unable to read valid evidence.json: {exc}") from exc
-    try:
-        with open(progress_file, "r", encoding="utf-8") as f:
-            progress_payload = json.load(f)
-    except (OSError, json.JSONDecodeError) as exc:
-        raise ValueError(f"Unable to read valid screening_progress.json: {exc}") from exc
 
     if not isinstance(evidence_payload, dict):
         raise ValueError(
             "Screening persistence validation failed:\n- "
             "evidence.json root must be an object."
         )
-    if not isinstance(progress_payload, dict):
-        raise ValueError(
-            "Screening persistence validation failed:\n- "
-            "screening_progress.json root must be an object."
-        )
 
+    errors: list[str] = []
     try:
         evidence_by_index = _decisions_by_index(
-            evidence_payload.get("screening_decisions"),
+            _extract_decisions_list(evidence_payload),
             source="evidence.json",
             expected_n_studies=expected_n_studies,
         )
     except ValueError as exc:
         raise ValueError(f"Screening persistence validation failed:\n- {exc}") from exc
 
-    if progress_payload.get("expected_n_studies") != expected_n_studies:
-        errors.append(
-            "screening_progress.json has an incorrect expected_n_studies value."
-        )
-    if progress_payload.get("completed_count") != len(evidence_by_index):
-        errors.append(
-            "screening_progress.json completed_count does not match evidence.json."
-        )
-    if progress_payload.get("completed_study_indices") != sorted(evidence_by_index):
-        errors.append(
-            "screening_progress.json completed indices do not match evidence.json."
-        )
-    expected_next = _next_missing_index(
-        list(evidence_by_index.values()),
-        expected_n_studies,
+    ordered = sorted(evidence_by_index.values(), key=lambda item: item["study_index"])
+    errors.extend(
+        _validate_counts(evidence_payload, ordered, source="evidence.json")
     )
-    if progress_payload.get("next_study_index") != expected_next:
-        errors.append(
-            "screening_progress.json next_study_index does not match evidence.json."
-        )
 
-    try:
-        progress_by_index = _decisions_by_index(
-            progress_payload.get("screening_decisions"),
-            source="screening_progress.json",
-            expected_n_studies=expected_n_studies,
-        )
-    except ValueError as exc:
-        errors.append(str(exc))
-        progress_by_index = {}
-    if progress_by_index != evidence_by_index:
+    expected_indices = list(range(1, expected_n_studies + 1))
+    if sorted(evidence_by_index) != expected_indices:
+        missing = sorted(set(expected_indices) - set(evidence_by_index))
+        extra = sorted(set(evidence_by_index) - set(expected_indices))
         errors.append(
-            "screening_progress.json decisions do not match evidence.json."
+            "evidence.json study_decisions do not cover expected indices "
+            f"(missing={missing}, extra={extra})."
         )
 
     if errors:

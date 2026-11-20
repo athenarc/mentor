@@ -66,11 +66,11 @@ def _decision_payload(indices: list[int], decision: str = "INCLUDE") -> str:
             "n_included": counts["INCLUDE"],
             "n_excluded": counts["EXCLUDE"],
             "n_unclear": counts["UNCLEAR"],
-            "decisions": [
+            "study_decisions": [
                 {
                     "study_index": index,
                     "criteria": _criteria_for(decision),
-                    "final_decision": decision,
+                    "decision": decision,
                 }
                 for index in indices
             ],

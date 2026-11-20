@@ -62,11 +62,11 @@ def _valid_gatekeeper_payload(
         "n_included": counts["INCLUDE"],
         "n_excluded": counts["EXCLUDE"],
         "n_unclear": counts["UNCLEAR"],
-        "decisions": [
+        "study_decisions": [
             {
                 "study_index": study["study_index"],
                 "criteria": _criteria_for(decision),
-                "final_decision": decision,
+                "decision": decision,
             }
             for study in studies
         ],
@@ -256,7 +256,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
             name = "gatekeeper"
 
             def run(self, task="", additional_args=None, **kwargs):
-                return '{"n_total": 1, "decisions": []}'
+                return '{"n_total": 1, "study_decisions": []}'
 
         wrapped = wrap_gatekeeper(FakeAgent(), fixed_task=GATEKEEPER_TASK)
         with self.assertRaises(ValueError):
@@ -280,7 +280,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
         )
         self.assertIsInstance(result, str)
         self.assertEqual(json.loads(result)["n_total"], 1)
-        self.assertEqual(json.loads(result)["decisions"][0]["final_decision"], "INCLUDE")
+        self.assertEqual(json.loads(result)["study_decisions"][0]["decision"], "INCLUDE")
 
     def test_accepts_python_repr_final_answer_string(self):
         class FakeAgent:

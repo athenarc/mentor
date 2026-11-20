@@ -58,11 +58,11 @@ def _answer(studies: list[dict], *, decision: str = "INCLUDE") -> str:
             "n_included": counts["INCLUDE"],
             "n_excluded": counts["EXCLUDE"],
             "n_unclear": counts["UNCLEAR"],
-            "decisions": [
+            "study_decisions": [
                 {
                     "study_index": study["study_index"],
                     "criteria": _criteria_for(decision),
-                    "final_decision": decision,
+                    "decision": decision,
                 }
                 for study in studies
             ],
@@ -103,10 +103,10 @@ class ValidateGatekeeperAnswerTests(unittest.TestCase):
         studies = [_study()]
         raw = (
             '{"n_total": 1, "n_included": 1, "n_excluded": 0, "n_unclear": 0, '
-            '"decisions": [{"study_index": 1, "criteria": '
+            '"study_decisions": [{"study_index": 1, "criteria": '
             '[{"id": "IC1", "label": "MET", "rationale": "ok"}, '
             '{"id": "EC1", "label": "NOT_TRIGGERED", "rationale": "ok"}], '
-            '"final_decision": "INCLUDE"}], '
+            '"decision": "INCLUDE"}], '
             '"n_total": 2}'
         )
         with self.assertRaises(ValueError):
@@ -116,10 +116,10 @@ class ValidateGatekeeperAnswerTests(unittest.TestCase):
         studies = [_study()]
         raw = (
             '{"n_total": NaN, "n_included": 1, "n_excluded": 0, "n_unclear": 0, '
-            '"decisions": [{"study_index": 1, "criteria": '
+            '"study_decisions": [{"study_index": 1, "criteria": '
             '[{"id": "IC1", "label": "MET", "rationale": "ok"}, '
             '{"id": "EC1", "label": "NOT_TRIGGERED", "rationale": "ok"}], '
-            '"final_decision": "INCLUDE"}]}'
+            '"decision": "INCLUDE"}]}'
         )
         with self.assertRaises(ValueError) as ctx:
             validate_gatekeeper_answer(raw, studies)
@@ -129,31 +129,31 @@ class ValidateGatekeeperAnswerTests(unittest.TestCase):
         studies = [_study()]
         raw = (
             '{"n_total": Infinity, "n_included": 1, "n_excluded": 0, "n_unclear": 0, '
-            '"decisions": [{"study_index": 1, "criteria": '
+            '"study_decisions": [{"study_index": 1, "criteria": '
             '[{"id": "IC1", "label": "MET", "rationale": "ok"}, '
             '{"id": "EC1", "label": "NOT_TRIGGERED", "rationale": "ok"}], '
-            '"final_decision": "INCLUDE"}]}'
+            '"decision": "INCLUDE"}]}'
         )
         with self.assertRaises(ValueError) as ctx:
             validate_gatekeeper_answer(raw, studies)
         self.assertIn("JSON", str(ctx.exception))
 
-    def test_rejects_invalid_final_decision_value(self):
+    def test_rejects_invalid_decision_value(self):
         studies = [_study()]
         bad = _mutate_answer(
             studies,
-            lambda payload: payload["decisions"][0].__setitem__(
-                "final_decision", "MAYBE"
+            lambda payload: payload["study_decisions"][0].__setitem__(
+                "decision", "MAYBE"
             ),
         )
         with self.assertRaises(ValueError) as ctx:
             validate_gatekeeper_answer(bad, studies)
-        self.assertIn("Invalid final_decision value", str(ctx.exception))
+        self.assertIn("Invalid decision value", str(ctx.exception))
 
-    def test_rejects_final_decision_inconsistent_with_criteria(self):
+    def test_rejects_decision_inconsistent_with_criteria(self):
         studies = [_study()]
         payload = json.loads(_answer(studies, decision="EXCLUDE"))
-        payload["decisions"][0]["final_decision"] = "INCLUDE"
+        payload["study_decisions"][0]["decision"] = "INCLUDE"
         payload["n_included"] = 1
         payload["n_excluded"] = 0
         payload["n_unclear"] = 0
@@ -185,7 +185,7 @@ class ValidateGatekeeperAnswerTests(unittest.TestCase):
         studies = [_study(1)]
         bad = _mutate_answer(
             studies,
-            lambda payload: payload["decisions"][0].__setitem__("study_index", 99),
+            lambda payload: payload["study_decisions"][0].__setitem__("study_index", 99),
         )
         with self.assertRaises(ValueError) as ctx:
             validate_gatekeeper_answer(bad, studies)

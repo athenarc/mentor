@@ -19,10 +19,10 @@ def _criteria_payload() -> dict:
         "n_included": 1,
         "n_excluded": 1,
         "n_unclear": 1,
-        "decisions": [
+        "study_decisions": [
             {
                 "study_index": 1,
-                "final_decision": "INCLUDE",
+                "decision": "INCLUDE",
                 "criteria": [
                     {
                         "id": "IC1",
@@ -38,7 +38,7 @@ def _criteria_payload() -> dict:
             },
             {
                 "study_index": 2,
-                "final_decision": "EXCLUDE",
+                "decision": "EXCLUDE",
                 "criteria": [
                     {
                         "id": "IC1",
@@ -54,7 +54,7 @@ def _criteria_payload() -> dict:
             },
             {
                 "study_index": 3,
-                "final_decision": "UNCLEAR",
+                "decision": "UNCLEAR",
                 "criteria": [
                     {
                         "id": "IC1",
@@ -73,23 +73,23 @@ def _criteria_payload() -> dict:
 
 
 class NormalizeDecisionTests(unittest.TestCase):
-    def test_prefers_final_decision_over_legacy_decision(self):
+    def test_prefers_decision_over_legacy_final_decision(self):
         normalized = _normalize_decision(
             {
                 "study_index": 1,
-                "final_decision": "UNCLEAR",
-                "decision": "INCLUDE",
+                "decision": "UNCLEAR",
+                "final_decision": "INCLUDE",
                 "criteria": [{"id": "IC1", "label": "UNCLEAR", "rationale": "x"}],
             }
         )
-        self.assertEqual(normalized["final_decision"], "UNCLEAR")
+        self.assertEqual(normalized["decision"], "UNCLEAR")
         self.assertEqual(len(normalized["criteria"]), 1)
 
-    def test_falls_back_to_legacy_decision(self):
+    def test_falls_back_to_legacy_final_decision(self):
         normalized = _normalize_decision(
-            {"study_index": 2, "decision": "EXCLUDE", "reason": "wrong age"}
+            {"study_index": 2, "final_decision": "EXCLUDE", "reason": "wrong age"}
         )
-        self.assertEqual(normalized["final_decision"], "EXCLUDE")
+        self.assertEqual(normalized["decision"], "EXCLUDE")
         self.assertEqual(normalized["reason"], "wrong age")
         self.assertEqual(normalized["criteria"], [])
 
@@ -99,32 +99,32 @@ class ParseDecisionsTests(unittest.TestCase):
         decisions = _parse_decisions(json.dumps(_criteria_payload()))
         self.assertEqual(len(decisions), 3)
         by_index = {d["study_index"]: d for d in decisions}
-        self.assertEqual(by_index[1]["final_decision"], "INCLUDE")
-        self.assertEqual(by_index[2]["final_decision"], "EXCLUDE")
-        self.assertEqual(by_index[3]["final_decision"], "UNCLEAR")
+        self.assertEqual(by_index[1]["decision"], "INCLUDE")
+        self.assertEqual(by_index[2]["decision"], "EXCLUDE")
+        self.assertEqual(by_index[3]["decision"], "UNCLEAR")
         self.assertEqual(by_index[3]["criteria"][0]["id"], "IC1")
 
-    def test_parses_final_decision_only_records(self):
+    def test_parses_legacy_final_decision_records(self):
         payload = {
-            "decisions": [
+            "study_decisions": [
                 {"study_index": 1, "final_decision": "UNCLEAR", "criteria": []},
             ]
         }
         decisions = _parse_decisions(json.dumps(payload))
-        self.assertEqual(decisions[0]["final_decision"], "UNCLEAR")
-        self.assertNotIn("decision", decisions[0])
+        self.assertEqual(decisions[0]["decision"], "UNCLEAR")
+        self.assertNotIn("final_decision", decisions[0])
 
     def test_regex_fallback_accepts_final_decision_unclear(self):
         text = '{study_index: 7, final_decision: "UNCLEAR", reason: "vague"}'
         decisions = _parse_decisions(text)
         self.assertEqual(len(decisions), 1)
         self.assertEqual(decisions[0]["study_index"], 7)
-        self.assertEqual(decisions[0]["final_decision"], "UNCLEAR")
+        self.assertEqual(decisions[0]["decision"], "UNCLEAR")
 
     def test_simple_text_fallback_accepts_unclear(self):
         decisions = _parse_decisions("Study 4: UNCLEAR — age missing")
         self.assertEqual(len(decisions), 1)
-        self.assertEqual(decisions[0]["final_decision"], "UNCLEAR")
+        self.assertEqual(decisions[0]["decision"], "UNCLEAR")
         self.assertIn("age missing", decisions[0]["reason"])
 
 

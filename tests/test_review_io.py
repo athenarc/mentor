@@ -21,7 +21,7 @@ _SAMPLE_CRITERIA = SelectionCriteria(
 _SAMPLE_CRITERIA_DICT = _SAMPLE_CRITERIA.to_dict()
 
 
-def test_review_to_json_includes_mode_and_studies_without_labels():
+def test_review_to_json_includes_mode_and_studies():
     review = SimpleNamespace(
         mode="screening-only",
         title="T",
@@ -40,7 +40,6 @@ def test_review_to_json_includes_mode_and_studies_without_labels():
     assert "review_url" not in payload
     assert len(payload["studies"]) == 2
     assert payload["studies"][0]["study_index"] == 1
-    assert "label" not in payload["studies"][0]
 
 
 def test_review_to_json_omits_studies_for_full_mode():
@@ -143,6 +142,66 @@ def test_screening_only_mode_loads_studies():
     )
     assert review.mode == "screening-only"
     assert len(review.studies) == 1
+    assert review.studies[0].metadata == {}
+
+
+def test_study_metadata_round_trips_through_review_json():
+    review = review_from_dict(
+        {
+            "mode": "screening-only",
+            "title": "T",
+            "objective": "O",
+            "background": "B",
+            "selection_criteria": _SAMPLE_CRITERIA_DICT,
+            "studies": [
+                {
+                    "title": "s1",
+                    "abstract": "a1",
+                    "journal": "Lancet",
+                    "publication_year": 2004,
+                    "publication_types": ["Journal Article", "RCT"],
+                }
+            ],
+        }
+    )
+    study = review.studies[0]
+    assert study.metadata == {
+        "journal": "Lancet",
+        "publication_year": 2004,
+        "publication_types": ["Journal Article", "RCT"],
+    }
+
+    payload = json.loads(review_to_json(review))
+    record = payload["studies"][0]
+    assert record["study_index"] == 1
+    assert record["title"] == "s1"
+    assert record["abstract"] == "a1"
+    assert record["journal"] == "Lancet"
+    assert record["publication_year"] == 2004
+    assert record["publication_types"] == ["Journal Article", "RCT"]
+    assert "metadata" not in record
+
+
+def test_study_label_key_is_ignored():
+    review = review_from_dict(
+        {
+            "mode": "screening-only",
+            "title": "T",
+            "objective": "O",
+            "background": "B",
+            "selection_criteria": _SAMPLE_CRITERIA_DICT,
+            "studies": [
+                {
+                    "title": "s1",
+                    "abstract": "a1",
+                    "label": 1.0,
+                    "journal": "BMJ",
+                }
+            ],
+        }
+    )
+    assert review.studies[0].metadata == {"journal": "BMJ"}
+    assert "label" not in json.loads(review_to_json(review))["studies"][0]
 
 
 def test_parse_selection_criteria_rejects_free_text():

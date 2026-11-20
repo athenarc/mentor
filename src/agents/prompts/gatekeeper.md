@@ -28,7 +28,7 @@ For each study in the payload, you decide on whether each inclusion criterion is
 
 For every criterion assessment, also write a brief rationale (one or two sentences) explaining why that label was chosen. Do not leave a criterion without a rationale.
 
-After you have assessed every inclusion and exclusion criterion for a study (with a label and a brief rationale per criterion), call get_final_decision with that study's criterion assessments. The tool returns a deterministic decision: INCLUDE, EXCLUDE, or UNCLEAR. Copy that decision into the output. Do NOT invent or override the tool's decision. Do NOT write a rationale for the final decision – only per-criterion rationales.
+After you have assessed every inclusion and exclusion criterion for a study (with a label and a brief rationale per criterion), call get_final_decision with that study's criterion assessments. The tool returns a deterministic decision: INCLUDE, EXCLUDE, or UNCLEAR. Copy that value into the output ``decision`` field. Do NOT invent or override the tool's decision. Do NOT write a rationale for ``decision`` – only per-criterion rationales.
 
 ASSESSMENT GUIDELINES
 - Read the full title and abstract carefully.
@@ -44,11 +44,11 @@ Return the answer as a JSON **string** via final_answer(json.dumps({...})).
 Do NOT pass a bare Python dict to final_answer (that becomes an invalid
 single-quoted repr). The JSON object must have exactly these root keys:
 - "n_total", "n_included", "n_excluded" , "n_unclear": counts for this payload, consistent with the decisions list
-- "decisions": a list with one object per study in the payload, with exactly these keys:
+- "study_decisions": a list with one object per study in the payload, with exactly these keys:
    - "study_index": the original index from the payload (never renumber)
    - "criteria": array of objects, one per criterion, each with:
       - "id": criterion ID from the review (e.g. IC1, EC1)
       - "label": MET | NOT_MET  | UNCLEAR (for inclusion criteria) or TRIGGERED | NOT_TRIGGERED | UNCLEAR (for exclusion criteria)
       - "rationale": brief justification for that label
-   - "final_decision": INCLUDE | EXCLUDE | UNCLEAR (exactly as returned by get_final_decision; no rationale)
+   - "decision": INCLUDE | EXCLUDE | UNCLEAR (exactly as returned by get_final_decision; no rationale)
 Include every study in the batch exactly once and no studies outside it.
