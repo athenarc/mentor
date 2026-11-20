@@ -1,9 +1,10 @@
 """
-Screening decision persistence (evidence.json + screening_progress.json).
+Screening decision persistence (``evidence.json``).
 
-Used by the Python batch screening loop (``screen_candidates``) and by
-analysis tools that read saved decisions. Writes a screening-specific
-``evidence.json`` shape (decisions only).
+Used by Orchestrator screening helpers (``append_screening_batch``) and by
+analysis tools that read saved decisions. ``evidence.json`` mirrors the
+Gatekeeper answer shape (counts + ``study_decisions``), accumulated across
+batches.
 """
 
 from __future__ import annotations
@@ -11,18 +12,26 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
+from typing import Any
 
 from smolagents import tool
 
-from mentor.tools.report_tools import _parse_decisions
+_VALID_DECISIONS = {"INCLUDE", "EXCLUDE", "UNCLEAR"}
 
 
 def evidence_path(output_dir: str | os.PathLike[str]) -> Path:
     return Path(output_dir) / "evidence.json"
 
 
-def progress_path(output_dir: str | os.PathLike[str]) -> Path:
-    return Path(output_dir) / "screening_progress.json"
+def _extract_decisions_list(payload: Any) -> list:
+    """Read the study_decisions list; accept legacy list keys."""
+    if not isinstance(payload, dict):
+        return []
+    decisions = payload.get(
+        "study_decisions",
+        payload.get("decisions", payload.get("screening_decisions", [])),
+    )
+    return decisions if isinstance(decisions, list) else []
 
 
 def read_existing_decisions(output_dir: str | os.PathLike[str]) -> list[dict]:
@@ -31,34 +40,74 @@ def read_existing_decisions(output_dir: str | os.PathLike[str]) -> list[dict]:
         return []
     with open(path, "r", encoding="utf-8") as f:
         payload = json.load(f)
-    decisions = payload.get("screening_decisions", [])
-    return decisions if isinstance(decisions, list) else []
+    return _extract_decisions_list(payload)
+
+
+def _normalize_criteria(raw_criteria: Any) -> list[dict]:
+    if not isinstance(raw_criteria, list):
+        return []
+    normalized: list[dict] = []
+    for item in raw_criteria:
+        if not isinstance(item, dict):
+            continue
+        normalized.append(
+            {
+                "id": str(item.get("id", "") or ""),
+                "label": str(item.get("label", "") or "").upper(),
+                "rationale": str(item.get("rationale", "") or "").strip(),
+            }
+        )
+    return normalized
 
 
 def normalize_screening_decision(decision: dict) -> dict:
+    """Normalize a Gatekeeper decision for persistence.
+
+    Canonical verdict key is ``decision``. Legacy ``final_decision`` is
+    accepted as a read fallback only.
+    """
+    verdict = str(
+        decision.get("decision", decision.get("final_decision", "")) or ""
+    ).upper()
     return {
         "study_index": int(decision.get("study_index", 0)),
-        "title": str(decision.get("title", "") or ""),
-        "decision": str(decision.get("decision", "") or "").upper(),
-        "reason": str(
-            decision.get("reason", decision.get("rationale", "")) or ""
-        ).strip(),
-        "confidence": str(decision.get("confidence", "") or "").strip(),
+        "decision": verdict,
+        "criteria": _normalize_criteria(decision.get("criteria")),
     }
 
 
-def _next_missing_index(decisions: list[dict], expected_n_studies: int | None) -> int | None:
-    if expected_n_studies is None:
-        return None
-    completed = {
-        int(decision.get("study_index", 0))
-        for decision in decisions
-        if str(decision.get("study_index", "")).isdigit()
+def _decision_counts(ordered: list[dict]) -> dict[str, int]:
+    included = sum(1 for d in ordered if d["decision"] == "INCLUDE")
+    excluded = sum(1 for d in ordered if d["decision"] == "EXCLUDE")
+    unclear = sum(1 for d in ordered if d["decision"] == "UNCLEAR")
+    return {
+        "n_total": len(ordered),
+        "n_included": included,
+        "n_excluded": excluded,
+        "n_unclear": unclear,
     }
-    for index in range(1, expected_n_studies + 1):
-        if index not in completed:
-            return index
-    return None
+
+
+def _evidence_payload(ordered: list[dict]) -> dict[str, Any]:
+    return {**_decision_counts(ordered), "study_decisions": ordered}
+
+
+def _parse_screening_response_decisions(screening_response: str) -> list[dict]:
+    """Parse Gatekeeper JSON into decision objects (fail closed on bad JSON)."""
+    try:
+        payload = json.loads(screening_response)
+    except json.JSONDecodeError as exc:
+        raise ValueError(
+            "Gatekeeper screening response is not valid JSON."
+        ) from exc
+    if not isinstance(payload, dict):
+        raise ValueError("Gatekeeper screening response JSON root must be an object.")
+    decisions = payload.get("study_decisions", payload.get("decisions"))
+    if not isinstance(decisions, list):
+        raise ValueError(
+            "Gatekeeper screening response must contain a study_decisions list."
+        )
+    return [item for item in decisions if isinstance(item, dict)]
 
 
 def write_screening_artifacts(
@@ -72,21 +121,21 @@ def write_screening_artifacts(
         (normalize_screening_decision(decision) for decision in decisions),
         key=lambda item: item["study_index"],
     )
+    evidence = _evidence_payload(ordered)
     with open(evidence_path(output_dir), "w", encoding="utf-8") as f:
-        json.dump({"screening_decisions": ordered}, f, ensure_ascii=False, indent=2)
+        json.dump(evidence, f, ensure_ascii=False, indent=2)
 
-    progress = {
-        "expected_n_studies": expected_n_studies,
-        "completed_count": len(ordered),
-        "completed_study_indices": [decision["study_index"] for decision in ordered],
-        "next_study_index": _next_missing_index(ordered, expected_n_studies),
-        "screening_decisions": ordered,
-    }
-    with open(progress_path(output_dir), "w", encoding="utf-8") as f:
-        json.dump(progress, f, ensure_ascii=False, indent=2)
+    if expected_n_studies is not None and len(ordered) == int(expected_n_studies):
+        # Local import avoids a cycle with mentor.tools.validation.screening_artifacts.
+        from mentor.tools.validation import validate_screening_artifacts_consistent
+
+        validate_screening_artifacts_consistent(
+            output_dir,
+            expected_n_studies=int(expected_n_studies),
+        )
 
 
-def append_chunk_decisions(
+def append_batch_decisions(
     screening_response: str,
     output_dir: str | os.PathLike[str],
     expected_indices: list[int],
@@ -106,7 +155,7 @@ def append_chunk_decisions(
 
     decisions = [
         normalize_screening_decision(decision)
-        for decision in _parse_decisions(screening_response)
+        for decision in _parse_screening_response_decisions(screening_response)
     ]
     decision_by_index: dict[int, dict] = {}
     invalid_decisions: list[str] = []
@@ -114,13 +163,13 @@ def append_chunk_decisions(
         index = decision["study_index"]
         if index in decision_by_index:
             raise ValueError(f"Gatekeeper returned duplicate decision for study {index}.")
-        if decision["decision"] not in {"INCLUDE", "EXCLUDE"}:
+        if decision["decision"] not in _VALID_DECISIONS:
             invalid_decisions.append(f"{index}: {decision['decision']!r}")
         decision_by_index[index] = decision
     if invalid_decisions:
         raise ValueError(
-            "Gatekeeper decisions must be INCLUDE or EXCLUDE; invalid values: "
-            + ", ".join(invalid_decisions)
+            "Gatekeeper decisions must be INCLUDE, EXCLUDE, or UNCLEAR; "
+            "invalid values: " + ", ".join(invalid_decisions)
         )
 
     expected_set = set(expected_indices)
@@ -129,7 +178,7 @@ def append_chunk_decisions(
         missing = sorted(expected_set - returned_set)
         extra = sorted(returned_set - expected_set)
         raise ValueError(
-            "Chunk response did not match expected study indices "
+            "Batch response did not match expected study indices "
             f"(missing={missing}, extra={extra})."
         )
 
@@ -142,7 +191,7 @@ def append_chunk_decisions(
     already_saved = sorted(expected_set.intersection(existing_by_index))
     if already_saved:
         raise ValueError(
-            "Study decisions already saved for chunk index/indices: "
+            "Study decisions already saved for batch index/indices: "
             + ", ".join(str(index) for index in already_saved)
         )
 
@@ -163,40 +212,20 @@ def decisions_to_screening_response(decisions: list[dict]) -> str:
         (normalize_screening_decision(d) for d in decisions),
         key=lambda item: item["study_index"],
     )
-    included = sum(1 for d in ordered if d["decision"] == "INCLUDE")
-    # Downstream parsers accept either ``reason`` or ``rationale``.
-    payload_decisions = [
-        {
-            "study_index": d["study_index"],
-            "title": d["title"],
-            "decision": d["decision"],
-            "rationale": d["reason"],
-            "confidence": d["confidence"],
-        }
-        for d in ordered
-    ]
-    return json.dumps(
-        {
-            "n_total": len(ordered),
-            "n_included": included,
-            "n_excluded": len(ordered) - included,
-            "decisions": payload_decisions,
-        },
-        ensure_ascii=False,
-    )
+    return json.dumps(_evidence_payload(ordered), ensure_ascii=False)
 
 
-def chunk_indices(indices: list[int], *, chunk_size: int | None) -> list[list[int]]:
-    """Split ``indices`` into contiguous batches of ``chunk_size`` (or one batch)."""
+def batch_indices(indices: list[int], *, batch_size: int | None) -> list[list[int]]:
+    """Split ``indices`` into contiguous batches of ``batch_size`` (or one batch)."""
     if not indices:
         return []
-    if chunk_size is None:
+    if batch_size is None:
         return [list(indices)]
-    if chunk_size < 1:
-        raise ValueError("chunk_size must be at least 1")
+    if batch_size < 1:
+        raise ValueError("batch_size must be at least 1")
     return [
-        indices[offset : offset + chunk_size]
-        for offset in range(0, len(indices), chunk_size)
+        indices[offset : offset + batch_size]
+        for offset in range(0, len(indices), batch_size)
     ]
 
 
@@ -215,17 +244,17 @@ def format_screening_progress_summary(
     Returns:
         A short Markdown summary of the saved screening decisions.
     """
-    decisions = read_existing_decisions(output_dir)
-    included = sum(
-        1 for decision in decisions if str(decision.get("decision", "")).upper() == "INCLUDE"
-    )
-    excluded = sum(
-        1 for decision in decisions if str(decision.get("decision", "")).upper() == "EXCLUDE"
-    )
+    decisions = [
+        normalize_screening_decision(item)
+        for item in read_existing_decisions(output_dir)
+        if isinstance(item, dict)
+    ]
+    counts = _decision_counts(decisions)
     return (
         f"# Screening Summary\n\n"
         f"- **Review:** {review_title}\n"
-        f"- **Total decisions saved:** {len(decisions)}\n"
-        f"- **Included:** {included}\n"
-        f"- **Excluded:** {excluded}\n"
+        f"- **Total decisions saved:** {counts['n_total']}\n"
+        f"- **Included:** {counts['n_included']}\n"
+        f"- **Excluded:** {counts['n_excluded']}\n"
+        f"- **Unclear:** {counts['n_unclear']}\n"
     )

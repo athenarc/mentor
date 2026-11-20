@@ -317,7 +317,7 @@ Related github repo:
     │  (Search)   │ │ (Screen) │  │  (Extract)  │ │(Synthesize)│
     └──────┬──────┘ └────┬─────┘  └──────┬──────┘ └────┬───────┘
            │             │               │             │
-      search_studies  screen_studies batch_extract  synthesize
+      search_studies  format_screening_tasks batch_extract  synthesize
       get_protocol                   extract_from   assess_quality
 ```
 
@@ -401,7 +401,6 @@ Further reading: [MCP architecture overview](https://modelcontextprotocol.io/doc
 - The Miner extracts PICO data and outcome statistics from abstracts.
 - The Critic performs narrative synthesis and quality assessment using structured JSON output.
 - The Orchestrator produces a Markdown report (`report.md`) and structured evidence (`evidence.json`) under repo-root `output/`.
-- Screening benchmarks and evaluation CLIs live in `src/experiments/` (they depend on Mentor; Mentor does not import experiments).
 - Optional MCP paper search (BIP / PubMed) can be enabled for the Librarian via `SEARCH_SOURCES`.
 
 ### Not Yet Implemented

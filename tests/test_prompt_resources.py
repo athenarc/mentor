@@ -11,6 +11,11 @@ from mentor.agents.prompts import load_prompt as load_prod_prompt
 from mentor.agents.prompts import resolve_prompt
 from mentor.review import review_from_dict
 
+_SAMPLE_CRITERIA = {
+    "inclusion": [{"id": "IC1", "text": "Include RCTs"}],
+    "exclusion": [{"id": "EC1", "text": "Exclude reviews"}],
+}
+
 PROD = [
     "orchestrator",
     "orchestrator_screening-only",  # packaged default for mode=screening-only
@@ -33,14 +38,35 @@ def test_production_prompts_load(name: str) -> None:
 
 def test_gatekeeper_prompt_is_batch_agnostic() -> None:
     text = load_prod_prompt("gatekeeper")
-    assert "Preserve the original study_index" in text
-    assert "Do NOT include decisions for studies outside the payload" in text
+    assert "additional_args['screening_payload']" in text
+    assert "study_index" in text
+    assert "get_final_decision" in text
+    assert "format_screening_tasks" in text
+    assert "final_answer(json.dumps(" in text
+    assert "Include every study in the batch exactly once" in text
 
 
-def test_orchestrator_uses_screen_candidates() -> None:
+def test_orchestrator_uses_managed_gatekeeper_batches() -> None:
     text = load_prod_prompt("orchestrator")
-    assert "screen_candidates" in text
-    assert "gatekeeper(task=" not in text
+    assert "get_screening_batches" in text
+    assert "append_screening_batch" in text
+    assert "gatekeeper(" in text
+    assert "INCLUDE | EXCLUDE | UNCLEAR" in text
+    assert "INCLUDE and UNCLEAR" in text
+    assert "ContextOverflowError" in text
+    assert "except Exception:" in text
+    assert "type(exc).__name__" not in text
+    assert "screen_candidates" not in text
+    screening_only = load_prod_prompt("orchestrator_screening-only")
+    assert "get_screening_batches" in screening_only
+    assert "append_screening_batch" in screening_only
+    assert "format_screening_progress_summary" in screening_only
+    assert "gatekeeper" in screening_only
+    assert "ContextOverflowError" in screening_only
+    assert "except Exception:" in screening_only
+    assert "type(exc).__name__" not in screening_only
+    assert "screen_candidates" not in screening_only
+    assert "get_screening_response_json" not in screening_only
 
 
 def test_resolve_prompt_override(tmp_path: Path) -> None:
@@ -72,7 +98,7 @@ def test_review_prompts_resolve_relative_to_review_file(tmp_path: Path) -> None:
             "title": "T",
             "objective": "O",
             "background": "B",
-            "selection_criteria": "S",
+            "selection_criteria": _SAMPLE_CRITERIA,
             "prompts": {"gatekeeper": "custom_gk.md"},
             "studies": [{"title": "s1", "abstract": "a1"}],
         },
@@ -89,7 +115,7 @@ def test_review_prompts_reject_unknown_role() -> None:
                 "title": "T",
                 "objective": "O",
                 "background": "B",
-                "selection_criteria": "S",
+                "selection_criteria": _SAMPLE_CRITERIA,
                 "prompts": {"unknown_agent": "x.md"},
             }
         )
