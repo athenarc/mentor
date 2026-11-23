@@ -34,7 +34,9 @@ Selection criteria:
 Output directory: {run_dir}
 Expected study decisions: {n_studies}
 
-Call screen_candidates() once, then return \
+Use get_screening_batches(output_dir), call gatekeeper once per batch \
+with additional_args['screening_payload'], append_screening_batch after \
+each batch, then return \
 format_screening_progress_summary(review_title, output_dir) \
 as final_answer.
 """
@@ -45,10 +47,14 @@ Conduct a systematic review for the following research question.
 Review protocol (JSON):
 {protocol_json}
 
+Output directory: {run_dir}
+
 Execute the full pipeline:
 1. Use the librarian to retrieve candidate studies
 2. Use get_candidates_json() to obtain a clean JSON of the candidates
-3. Call screen_candidates() to screen studies for inclusion/exclusion
+3. Use get_screening_batches(output_dir), call gatekeeper once per batch \
+with additional_args['screening_payload'], append_screening_batch after \
+each batch, then get_screening_response_json(output_dir)
 4. Use the miner to extract evidence from included studies
 5. Use the critic to synthesize the evidence
 6. Use format_report() to format a clean Markdown report
@@ -79,6 +85,7 @@ def run_review(
     api_base: str | None = None,
     model_profile: str | None = None,
     include_subagent_steps: bool = True,
+    skip_activity_summary: bool = False,
     batch_size: int | None = None,
     output_root: Path | None = None,
     run_name: str | None = None,
@@ -94,6 +101,9 @@ def run_review(
     Returns the orchestrator final answer (report text for full runs).
     When ``raise_on_error`` is False, failures are recorded in ``run.json``
     and this function returns ``""`` instead of re-raising.
+
+    When ``skip_activity_summary`` is True, ``activity.md`` is still written
+    but step summaries use templates (no extra LLM calls).
     """
     logger.info("=" * 70)
     logger.info("MENTOR SYSTEMATIC REVIEW PIPELINE")
@@ -175,7 +185,7 @@ def run_review(
             title=review.title,
             background=review.background,
             objective=review.objective,
-            selection_criteria=review.selection_criteria,
+            selection_criteria=review.selection_criteria.format_text(),
             run_dir=run_dir,
             n_studies=len(review.studies),
         )
@@ -209,7 +219,10 @@ def run_review(
         report = ""
     finally:
         duration = time.perf_counter() - started
-        activity_path = activity_logger.finalize(_activity_summary_model)
+        summary_model = None if skip_activity_summary else _activity_summary_model
+        if skip_activity_summary:
+            logger.info("Skipping LLM activity summarisation (template fallbacks).")
+        activity_path = activity_logger.finalize(summary_model)
         logger.info("Activity log saved to: %s", activity_path)
         agent_logger.close()
         payload: dict[str, Any] = {
@@ -218,6 +231,7 @@ def run_review(
             "prompt_overrides": dict(review.prompts) if review.prompts else {},
             "screening_batch_size": batch_size,
             "model_profile": session.profile_key,
+            "skip_activity_summary": skip_activity_summary,
             "status": run_status,
             "error": error,
             "duration_seconds": duration,

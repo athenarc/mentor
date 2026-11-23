@@ -1,13 +1,16 @@
 """
 One-review domain types and JSON I/O for Mentor runs.
 
-Mentor never loads the Cochrane CSV dataset. Callers (CLI or experiments)
-provide a review JSON file matching ``review_to_json`` / ``load_review_from_json``.
+Callers (CLI or other tooling) provide a review JSON file matching
+``review_to_json`` / ``load_review_from_json``.
 
 Mode-dependent input contract (``mode`` defaults to ``full`` when omitted):
 - ``screening-only`` — ``studies`` required (non-empty)
 - ``full`` — protocol fields only; ``studies`` must be absent or empty
   (Librarian retrieves candidates)
+
+``selection_criteria`` must be structured IC/EC lists (free-text strings
+are rejected); see ``mentor.selection_criteria``.
 """
 
 from __future__ import annotations
@@ -18,26 +21,49 @@ from pathlib import Path
 from typing import Any, Dict, List, Literal
 
 from mentor.agents.prompts import PROMPT_ROLES
+from mentor.selection_criteria import (
+    Criterion,
+    SelectionCriteria,
+    parse_selection_criteria,
+)
 
-# Gold labels are optional at run time (JSON inputs omit them).
-LABEL_INCLUDED = 1.0
-LABEL_UNKNOWN = -1.0
+# Re-export criteria types for callers that historically imported from review.
+__all__ = [
+    "Criterion",
+    "ReviewMode",
+    "SelectionCriteria",
+    "Study",
+    "SystematicReview",
+    "VALID_MODES",
+    "load_review_from_json",
+    "normalize_mode",
+    "parse_selection_criteria",
+    "protocol_to_json",
+    "review_from_dict",
+    "review_to_json",
+    "validate_review_for_mode",
+]
 
 ReviewMode = Literal["full", "screening-only"]
 VALID_MODES = frozenset({"full", "screening-only"})
 
 
+# Keys owned by ``Study`` / serialization; everything else is metadata.
+# ``label`` is reserved so a stray gold-label key never becomes agent metadata.
+_STUDY_RESERVED_KEYS = frozenset({"title", "abstract", "label", "study_index"})
+
+
 @dataclass
 class Study:
-    """A single candidate study (title + abstract; optional gold label)."""
+    """A single candidate study (title + abstract).
+
+    ``metadata`` holds passthrough fields from review JSON (journal, year,
+    publication_types, doi, …) so screening payloads can include them.
+    """
 
     title: str
     abstract: str
-    label: float = LABEL_UNKNOWN
-
-    @property
-    def is_included(self) -> bool:
-        return self.label == LABEL_INCLUDED
+    metadata: Dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
@@ -47,28 +73,18 @@ class SystematicReview:
     title: str
     background: str
     objective: str
-    selection_criteria: str
+    selection_criteria: SelectionCriteria
     mode: ReviewMode
     studies: List[Study] = field(default_factory=list)
     # Role → absolute prompt file path. Missing roles use packaged defaults.
     prompts: Dict[str, str] = field(default_factory=dict)
-
-    @property
-    def included_studies(self) -> List[Study]:
-        return [s for s in self.studies if s.is_included]
-
-    @property
-    def excluded_studies(self) -> List[Study]:
-        return [s for s in self.studies if not s.is_included]
 
     def summary(self) -> str:
         override_roles = ", ".join(sorted(self.prompts)) or "(defaults)"
         return (
             f"Review: {self.title}\n"
             f"  Mode: {self.mode}\n"
-            f"  Studies: {len(self.studies)} total, "
-            f"{len(self.included_studies)} included, "
-            f"{len(self.excluded_studies)} excluded\n"
+            f"  Studies: {len(self.studies)}\n"
             f"  Prompt overrides: {override_roles}\n"
             f"  Objective: {self.objective[:150]}..."
         )
@@ -141,7 +157,7 @@ def _parse_prompts(
 
 
 def review_to_json(review: SystematicReview) -> str:
-    """Serialize review for Mentor / search store (no gold labels).
+    """Serialize review for Mentor / search store.
 
     Omits ``studies`` when empty so ``mode=full`` files stay protocol-only.
     Omits ``prompts`` (run-time only; not part of the search-store payload).
@@ -151,18 +167,27 @@ def review_to_json(review: SystematicReview) -> str:
         "title": review.title,
         "objective": review.objective,
         "background": review.background,
-        "selection_criteria": review.selection_criteria,
+        "selection_criteria": review.selection_criteria.to_dict(),
     }
     if review.studies:
         data["studies"] = [
-            {
-                "study_index": i + 1,
-                "title": s.title,
-                "abstract": s.abstract,
-            }
-            for i, s in enumerate(review.studies)
+            _study_to_payload(i + 1, s) for i, s in enumerate(review.studies)
         ]
     return json.dumps(data, ensure_ascii=False)
+
+
+def _study_to_payload(study_index: int, study: Study) -> dict[str, Any]:
+    """Serialize one study for the search store / screening getters."""
+    record: dict[str, Any] = {
+        "study_index": study_index,
+        "title": study.title,
+        "abstract": study.abstract,
+    }
+    for key, value in (getattr(study, "metadata", None) or {}).items():
+        if key in _STUDY_RESERVED_KEYS or value is None:
+            continue
+        record[key] = value
+    return record
 
 
 def protocol_to_json(review: SystematicReview) -> str:
@@ -171,7 +196,7 @@ def protocol_to_json(review: SystematicReview) -> str:
         "title": review.title,
         "objective": review.objective,
         "background": review.background,
-        "selection_criteria": review.selection_criteria,
+        "selection_criteria": review.selection_criteria.to_dict(),
     }
     return json.dumps(data, ensure_ascii=False)
 
@@ -198,17 +223,19 @@ def review_from_dict(
         abstract = str(item.get("abstract") or "").strip()
         if not title and not abstract:
             raise ValueError("Each study needs a title or abstract.")
-        label = item.get("label", LABEL_UNKNOWN)
-        try:
-            label_f = float(label)
-        except (TypeError, ValueError):
-            label_f = LABEL_UNKNOWN
-        studies.append(Study(title=title, abstract=abstract, label=label_f))
+        metadata = {
+            key: value
+            for key, value in item.items()
+            if key not in _STUDY_RESERVED_KEYS and value is not None
+        }
+        studies.append(
+            Study(title=title, abstract=abstract, metadata=metadata)
+        )
     review = SystematicReview(
         title=str(data.get("title") or "").strip() or "Untitled review",
         background=str(data.get("background") or ""),
         objective=str(data.get("objective") or ""),
-        selection_criteria=str(data.get("selection_criteria") or ""),
+        selection_criteria=parse_selection_criteria(data.get("selection_criteria")),
         mode=mode,
         studies=studies,
         prompts=_parse_prompts(data.get("prompts"), base_dir=base_dir),

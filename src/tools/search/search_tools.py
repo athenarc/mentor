@@ -7,13 +7,14 @@ returns the same ``{"meta", "rows"}`` shape as ``search_studies`` so agents
 can treat local and remote results uniformly.
 
 Getter tools at the bottom of this module feed batch and loop screening
-orchestrators without exposing gold labels in chunk payloads.
+orchestrators.
 """
 
 import json
 
 from smolagents import tool
 
+from mentor.selection_criteria import parse_selection_criteria
 from mentor.tools.search.models import map_local_studies_to_result
 
 
@@ -86,7 +87,7 @@ def _protocol_payload(studies: list) -> dict:
         "title": _review_data.get("title", ""),
         "objective": _review_data.get("objective", ""),
         "background": _review_data.get("background", ""),
-        "selection_criteria": _review_data.get("selection_criteria", ""),
+        "selection_criteria": _review_data.get("selection_criteria"),
         "n_total": len(studies),
         "studies": studies,
     }
@@ -168,12 +169,19 @@ def get_review_protocol() -> str:
     if _review_data is None:
         return "ERROR: No review data loaded."
 
+    try:
+        criteria_text = parse_selection_criteria(
+            _review_data.get("selection_criteria")
+        ).format_text()
+    except ValueError as exc:
+        return f"ERROR: Invalid selection_criteria in loaded review data: {exc}"
+
     return (
         f"=== REVIEW PROTOCOL ===\n"
         f"Title: {_review_data.get('title', 'N/A')}\n\n"
         f"Background:\n{_review_data.get('background', 'N/A')}\n\n"
         f"Objective:\n{_review_data.get('objective', 'N/A')}\n\n"
-        f"Selection Criteria:\n{_review_data.get('selection_criteria', 'N/A')}\n"
+        f"Selection Criteria:\n{criteria_text}\n"
     )
 
 
@@ -232,8 +240,8 @@ def get_candidates_json() -> str:
     return json.dumps(payload, ensure_ascii=False)
 
 
-def _candidate_studies_chunk_payload(study_indices_json: str) -> str:
-    """Shared implementation for single-study and chunk candidate getters."""
+def _candidate_studies_batch_payload(study_indices_json: str) -> str:
+    """Build a screening_payload JSON string for the given study indices."""
     try:
         raw_indices = json.loads(study_indices_json)
     except json.JSONDecodeError as exc:
@@ -247,23 +255,26 @@ def _candidate_studies_chunk_payload(study_indices_json: str) -> str:
         try:
             index = int(raw_index)
         except (TypeError, ValueError) as exc:
-            raise ValueError(f"Invalid study index in chunk: {raw_index!r}") from exc
+            raise ValueError(f"Invalid study index in batch: {raw_index!r}") from exc
         if index < 1 or index > len(studies):
             raise ValueError(
                 f"study_index {index} is outside the available range 1..{len(studies)}"
             )
         if index in indices:
-            raise ValueError(f"Duplicate study index in chunk: {index}")
+            raise ValueError(f"Duplicate study index in batch: {index}")
         indices.append(index)
 
     payload_studies = []
     for index in indices:
         study = studies[index - 1]
-        payload_studies.append({
-            "study_index": index,
-            "title": study.get("title", ""),
-            "abstract": study.get("abstract", ""),
-        })
+        if not isinstance(study, dict):
+            raise ValueError(f"Study at index {index} is not an object.")
+        # Preserve any extra study metadata (journal, year, publication_types, …).
+        record = dict(study)
+        record["study_index"] = index
+        record["title"] = str(study.get("title", "") or "")
+        record["abstract"] = str(study.get("abstract", "") or "")
+        payload_studies.append(record)
 
     payload = _protocol_payload(payload_studies)
     payload["n_total"] = len(studies)

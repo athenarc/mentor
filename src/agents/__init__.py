@@ -1,9 +1,10 @@
 """
 Factory functions for Mentor ``CodeAgent`` roles.
 
-Production pipeline: ``create_orchestrator_agent`` wires librarian, miner,
-and critic as managed agents, with Gatekeeper screening via the
-``screen_candidates`` tool (batched by ``batch_size``).
+Production pipeline: ``create_orchestrator_agent`` wires librarian,
+gatekeeper, miner, and critic as managed agents. Screening batches are
+planned with ``get_screening_batches`` (``batch_size``); the Orchestrator
+calls Gatekeeper once per batch and appends via ``append_screening_batch``.
 """
 
 from mentor.agents.librarian import create_librarian_agent

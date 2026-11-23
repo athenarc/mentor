@@ -85,6 +85,14 @@ def _build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Hide managed-agent (subagent) steps from console and agent.log.",
     )
+    parser.add_argument(
+        "--skip-activity-summary",
+        action="store_true",
+        help=(
+            "Skip LLM summarisation of steps when writing activity.md "
+            "(use template fallbacks; saves API calls)."
+        ),
+    )
     return parser
 
 
@@ -132,6 +140,7 @@ def main(argv: list[str] | None = None) -> None:
             api_base=args.api_base,
             model_profile=args.model_profile,
             include_subagent_steps=not args.hide_subagent_steps,
+            skip_activity_summary=args.skip_activity_summary,
             batch_size=args.batch_size,
             output_root=Path(args.output_root) if args.output_root else None,
             run_name=args.run_name,
