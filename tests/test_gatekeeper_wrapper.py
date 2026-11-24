@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import unittest
 from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
@@ -32,6 +33,48 @@ def _study_payload(**overrides):
     }
     base.update(overrides)
     return base
+
+
+def _criteria_for(decision: str) -> list[dict]:
+    if decision == "INCLUDE":
+        return [
+            {"id": "IC1", "label": "MET", "rationale": "ok"},
+            {"id": "EC1", "label": "NOT_TRIGGERED", "rationale": "ok"},
+        ]
+    if decision == "EXCLUDE":
+        return [
+            {"id": "IC1", "label": "NOT_MET", "rationale": "ok"},
+            {"id": "EC1", "label": "NOT_TRIGGERED", "rationale": "ok"},
+        ]
+    return [
+        {"id": "IC1", "label": "UNCLEAR", "rationale": "ok"},
+        {"id": "EC1", "label": "NOT_TRIGGERED", "rationale": "ok"},
+    ]
+
+
+def _valid_gatekeeper_payload(
+    studies: list[dict], *, decision: str = "INCLUDE"
+) -> dict:
+    counts = {"INCLUDE": 0, "EXCLUDE": 0, "UNCLEAR": 0}
+    counts[decision] = len(studies)
+    return {
+        "n_total": len(studies),
+        "n_included": counts["INCLUDE"],
+        "n_excluded": counts["EXCLUDE"],
+        "n_unclear": counts["UNCLEAR"],
+        "study_decisions": [
+            {
+                "study_index": study["study_index"],
+                "criteria": _criteria_for(decision),
+                "decision": decision,
+            }
+            for study in studies
+        ],
+    }
+
+
+def _valid_gatekeeper_answer(studies: list[dict], *, decision: str = "INCLUDE") -> str:
+    return json.dumps(_valid_gatekeeper_payload(studies, decision=decision))
 
 
 def _openai_bad_request(*, status_code: int = 400, body: dict):
@@ -114,13 +157,14 @@ class GatekeeperWrapperTests(unittest.TestCase):
         class FakeAgent:
             name = "gatekeeper"
 
-            def __call__(self, task="", additional_args=None, **kwargs):
+            def run(self, task="", additional_args=None, **kwargs):
                 calls.append({
                     "task": task,
                     "additional_args": additional_args,
                     "kwargs": kwargs,
                 })
-                return "ok"
+                studies = additional_args[GATEKEEPER_PAYLOAD_KEY]["studies"]
+                return _valid_gatekeeper_answer(studies)
 
         wrapped = wrap_gatekeeper(
             FakeAgent(),
@@ -132,7 +176,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
             additional_args={GATEKEEPER_PAYLOAD_KEY: payload},
         )
 
-        self.assertEqual(result, "ok")
+        self.assertEqual(json.loads(result)["n_total"], 1)
         self.assertEqual(len(calls), 1)
         self.assertEqual(calls[0]["task"], GATEKEEPER_TASK)
         self.assertEqual(
@@ -147,7 +191,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
         class FakeAgent:
             name = "gatekeeper"
 
-            def __call__(self, *args, **kwargs):
+            def run(self, *args, **kwargs):
                 calls.append((args, kwargs))
                 return "ok"
 
@@ -165,7 +209,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
         class FakeAgent:
             name = "gatekeeper"
 
-            def __call__(self, *args, **kwargs):
+            def run(self, *args, **kwargs):
                 calls.append((args, kwargs))
                 return "ok"
 
@@ -188,7 +232,7 @@ class GatekeeperWrapperTests(unittest.TestCase):
         class FakeAgent:
             name = "gatekeeper"
 
-            def __call__(self, *args, **kwargs):
+            def run(self, *args, **kwargs):
                 calls.append((args, kwargs))
                 return "ok"
 
@@ -207,11 +251,61 @@ class GatekeeperWrapperTests(unittest.TestCase):
             )
         self.assertEqual(calls, [])
 
+    def test_rejects_invalid_final_answer_schema(self):
+        class FakeAgent:
+            name = "gatekeeper"
+
+            def run(self, task="", additional_args=None, **kwargs):
+                return '{"n_total": 1, "study_decisions": []}'
+
+        wrapped = wrap_gatekeeper(FakeAgent(), fixed_task=GATEKEEPER_TASK)
+        with self.assertRaises(ValueError):
+            wrapped(
+                "ignored",
+                additional_args={GATEKEEPER_PAYLOAD_KEY: {"studies": [_study_payload()]}},
+            )
+
+    def test_accepts_python_dict_final_answer(self):
+        class FakeAgent:
+            name = "gatekeeper"
+
+            def run(self, task="", additional_args=None, **kwargs):
+                studies = additional_args[GATEKEEPER_PAYLOAD_KEY]["studies"]
+                return _valid_gatekeeper_payload(studies)
+
+        wrapped = wrap_gatekeeper(FakeAgent(), fixed_task=GATEKEEPER_TASK)
+        result = wrapped(
+            "ignored",
+            additional_args={GATEKEEPER_PAYLOAD_KEY: {"studies": [_study_payload()]}},
+        )
+        self.assertIsInstance(result, str)
+        self.assertEqual(json.loads(result)["n_total"], 1)
+        self.assertEqual(json.loads(result)["study_decisions"][0]["decision"], "INCLUDE")
+
+    def test_accepts_python_repr_final_answer_string(self):
+        class FakeAgent:
+            name = "gatekeeper"
+
+            def run(self, task="", additional_args=None, **kwargs):
+                studies = additional_args[GATEKEEPER_PAYLOAD_KEY]["studies"]
+                # Simulate str(dict) from final_answer({...}).
+                return str(_valid_gatekeeper_payload(studies))
+
+        wrapped = wrap_gatekeeper(FakeAgent(), fixed_task=GATEKEEPER_TASK)
+        result = wrapped(
+            "ignored",
+            additional_args={GATEKEEPER_PAYLOAD_KEY: {"studies": [_study_payload()]}},
+        )
+        self.assertIsInstance(result, str)
+        parsed = json.loads(result)
+        self.assertEqual(parsed["n_included"], 1)
+        self.assertIn('"', result)
+
     def test_overflow_exception_becomes_context_overflow_error(self):
         class OverflowAgent:
             name = "gatekeeper"
 
-            def __call__(self, task="", additional_args=None, **kwargs):
+            def run(self, task="", additional_args=None, **kwargs):
                 raise _openai_bad_request(
                     body={
                         "error": {
@@ -296,7 +390,7 @@ class _FakeNamedGatekeeper:
 
 
 class OrchestratorScreeningToolTests(unittest.TestCase):
-    def test_screening_only_mode_has_no_managed_agents_and_screen_candidates_tool(self):
+    def test_screening_only_mode_has_managed_gatekeeper_and_batch_tools(self):
         with patch(
             "mentor.agents.orchestrator.create_gatekeeper_agent",
             return_value=_FakeNamedGatekeeper(),
@@ -312,11 +406,15 @@ class OrchestratorScreeningToolTests(unittest.TestCase):
                 output_dir="/tmp/out",
             )
             kwargs = code_agent.call_args.kwargs
-            self.assertEqual(kwargs["managed_agents"], [])
+            managed_names = [getattr(a, "name", None) for a in kwargs["managed_agents"]]
+            self.assertIn("gatekeeper", managed_names)
             tool_names = [getattr(t, "name", None) for t in kwargs["tools"]]
-            self.assertIn("screen_candidates", tool_names)
+            self.assertIn("get_screening_batches", tool_names)
+            self.assertIn("append_screening_batch", tool_names)
+            self.assertIn("get_screening_response_json", tool_names)
+            self.assertNotIn("screen_candidates", tool_names)
 
-    def test_full_mode_excludes_gatekeeper_from_managed_agents(self):
+    def test_full_mode_includes_gatekeeper_in_managed_agents(self):
         with patch(
             "mentor.agents.orchestrator.create_gatekeeper_agent",
             return_value=_FakeNamedGatekeeper(),
@@ -342,9 +440,10 @@ class OrchestratorScreeningToolTests(unittest.TestCase):
             )
             kwargs = code_agent.call_args.kwargs
             managed_names = [getattr(a, "name", None) for a in kwargs["managed_agents"]]
-            self.assertNotIn("gatekeeper", managed_names)
+            self.assertIn("gatekeeper", managed_names)
             tool_names = [getattr(t, "name", None) for t in kwargs["tools"]]
-            self.assertIn("screen_candidates", tool_names)
+            self.assertIn("get_screening_batches", tool_names)
+            self.assertNotIn("screen_candidates", tool_names)
 
 
 if __name__ == "__main__":

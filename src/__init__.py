@@ -2,8 +2,7 @@
 Mentor — multi-agent systematic review assistant.
 
 Built on `smolagents` `CodeAgent` instances with role-specific prompts and
-tools. The production entrypoint is `mentor.cli`; screening benchmarks live
-under `experiments`.
+tools. The production entrypoint is `mentor.cli`.
 
 Agent roles:
 

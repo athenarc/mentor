@@ -2,11 +2,12 @@
 Orchestrator agent — manager for the systematic-review pipeline.
 
 One factory supports:
-- ``mode="full"``: librarian → screen_candidates → miner → critic → report
-- ``mode="screening-only"``: screen_candidates only (candidates preloaded)
+- ``mode="full"``: librarian → managed gatekeeper batches → miner → critic → report
+- ``mode="screening-only"``: managed gatekeeper batches only (candidates preloaded)
 
-Screening always goes through the Python ``screen_candidates`` tool, which
-batches Gatekeeper calls by ``batch_size`` (None = all, 1 = single-study, N = chunks).
+Screening: ``get_screening_batches`` plans batches; the Orchestrator calls the
+managed Gatekeeper once per batch and ``append_screening_batch`` persists
+decisions immediately (``batch_size`` None = all, 1 = single-study, N = batches of N).
 """
 
 from __future__ import annotations
@@ -25,7 +26,11 @@ from mentor.tools.report_tools import (
     extract_included_studies,
 )
 from mentor.tools.search import get_candidates_json
-from mentor.tools.screening_loop import make_screen_candidates_tool
+from mentor.tools.screening_loop import (
+    append_screening_batch,
+    get_screening_response_json,
+    make_get_screening_batches_tool,
+)
 from mentor.tools.screening_persistence import format_screening_progress_summary
 from mentor.agents.prompts import resolve_prompt
 
@@ -57,7 +62,6 @@ def create_orchestrator_agent(
     batch_size: int | None = None,
     output_dir: str | None = None,
     max_steps: int | None = None,
-    max_batch_attempts: int = 2,
     prompt_paths: dict[str, str] | None = None,
 ) -> CodeAgent:
     """
@@ -76,11 +80,10 @@ def create_orchestrator_agent(
         mode: ``"full"`` (search → screen → extract → synthesize) or
             ``"screening-only"`` (Gatekeeper screening only).
         batch_size: Studies per Gatekeeper call. ``None`` = all studies;
-            ``1`` = one study at a time; ``N`` = chunks of N.
+            ``1`` = one study at a time; ``N`` = batches of N.
         output_dir: Directory for ``evidence.json`` / progress (required).
         max_steps: Orchestrator step budget. Defaults: 10 (full), 6
             (screening-only).
-        max_batch_attempts: Retries per screening batch before fail-closed.
         prompt_paths: Optional role → prompt file path overrides
             (``librarian``, ``gatekeeper``, ``miner``, ``critic``,
             ``orchestrator``). One ``orchestrator`` path covers both modes;
@@ -124,19 +127,21 @@ def create_orchestrator_agent(
         ),
         fixed_task=GATEKEEPER_TASK,
     )
-    screen_candidates = make_screen_candidates_tool(
-        gatekeeper,
-        batch_size=batch_size,
-        output_dir=output_dir,
-        max_batch_attempts=max_batch_attempts,
-    )
+    get_screening_batches = make_get_screening_batches_tool(batch_size=batch_size)
+
+    screening_tools = [
+        get_screening_batches,
+        append_screening_batch,
+        get_screening_response_json,
+        format_screening_progress_summary,
+    ]
 
     if mode == "screening-only":
         resolved_max_steps = max_steps if max_steps is not None else 6
         return CodeAgent(
-            tools=[screen_candidates, format_screening_progress_summary],
+            tools=screening_tools,
             model=orchestrator_model,
-            managed_agents=[],
+            managed_agents=[gatekeeper],
             instructions=instructions
             or resolve_prompt(
                 "orchestrator",
@@ -187,10 +192,10 @@ def create_orchestrator_agent(
             save_evidence_json,
             extract_included_studies,
             get_candidates_json,
-            screen_candidates,
+            *screening_tools,
         ],
         model=orchestrator_model,
-        managed_agents=[librarian, miner, critic],
+        managed_agents=[librarian, gatekeeper, miner, critic],
         instructions=instructions or resolve_prompt("orchestrator", paths),
         max_steps=resolved_max_steps,
         planning_interval=3,
