@@ -14,6 +14,7 @@ from mentor.logging.helpers import (
     get_agent_name,
     truncate,
 )
+from mentor.logging.provider_usage import extract_call_usage
 
 AGENT_ROLES: dict[str, str] = {
     "orchestrator": "Coordinates the systematic review pipeline, delegating tasks to specialised agents",
@@ -52,6 +53,21 @@ class StepRecord:
     error: str | None = None
     # Filled by ActivityLogger.finalize()
     summary: str | None = None
+    cost: float | None = None
+    provider: str | None = None
+
+    def to_metrics(self) -> dict:
+        """Return the operational fields saved to run.json."""
+        return {
+            "agent": self.agent_name,
+            "step_type": self.step_type,
+            "step_number": self.step_number,
+            "input_tokens": self.token_input,
+            "output_tokens": self.token_output,
+            "duration": self.duration_seconds,
+            "cost": self.cost,
+            "provider": self.provider,
+        }
 
 
 @dataclass
@@ -106,6 +122,7 @@ class ActivityLogger:
         """Record an ActionStep from a smolagents callback."""
         agent_name = get_agent_name(agent)
         duration = step.timing.duration if step.timing else None
+        usage = extract_call_usage(getattr(step.model_output_message, "raw", None))
 
         token_in = token_out = None
         if step.token_usage:
@@ -135,6 +152,8 @@ class ActivityLogger:
             duration_seconds=duration,
             token_input=token_in,
             token_output=token_out,
+            cost=usage["cost"],
+            provider=usage["provider"],
             tool_calls=tool_names,
             model_output=model_out,
             code_action=step.code_action,
@@ -153,6 +172,7 @@ class ActivityLogger:
         """Record a PlanningStep from a smolagents callback."""
         agent_name = get_agent_name(agent)
         duration = step.timing.duration if step.timing else None
+        usage = extract_call_usage(getattr(step.model_output_message, "raw", None))
 
         token_in = token_out = None
         if step.token_usage:
@@ -167,7 +187,23 @@ class ActivityLogger:
             duration_seconds=duration,
             token_input=token_in,
             token_output=token_out,
+            cost=usage["cost"],
+            provider=usage["provider"],
         ))
+
+    def step_metrics(self) -> list[dict]:
+        """Serialize agent steps with delegated work nested under its parent."""
+        steps: list[dict] = []
+        for phase in self._group_into_phases():
+            children = [step.to_metrics() for step in phase.subagent_steps]
+            if phase.orchestrator_step is None:
+                steps.extend(children)
+            else:
+                parent = phase.orchestrator_step.to_metrics()
+                if children:
+                    parent["steps"] = children
+                steps.append(parent)
+        return steps
 
     def finalize(self, model=None) -> Path:
         """Summarise every step with the LLM and write ``activity.md``.

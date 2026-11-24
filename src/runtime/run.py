@@ -222,6 +222,7 @@ def run_review(
             "error": error,
             "duration_seconds": duration,
             "provider_usage": usage_collector.summary(),
+            "steps": activity_logger.step_metrics(),
             "n_studies": len(review.studies),
             "run_dir": str(run_dir),
         }

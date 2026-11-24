@@ -14,14 +14,20 @@ from __future__ import annotations
 from typing import Any
 
 
-def _extract_call_usage(raw: Any) -> dict:
+def _response_field(obj: Any, name: str) -> Any:
+    if isinstance(obj, dict):
+        return obj.get(name)
+    return getattr(obj, name, (getattr(obj, "model_extra", None) or {}).get(name))
+
+
+def extract_call_usage(raw: Any) -> dict:
     """Pull provider cost/routing data off one raw completion response."""
-    usage = getattr(raw, "usage", None)
-    usage_extra = dict(getattr(usage, "model_extra", None) or {}) if usage is not None else {}
-    response_extra = dict(getattr(raw, "model_extra", None) or {}) if raw is not None else {}
+    usage = _response_field(raw, "usage")
+    routing_metadata = _response_field(raw, "openrouter_metadata")
     return {
-        "cost": usage_extra.get("cost"),
-        "routing_metadata": response_extra.get("openrouter_metadata"),
+        "cost": _response_field(usage, "cost"),
+        "provider": _response_field(raw, "provider") or _response_field(routing_metadata, "provider_name"),
+        "routing_metadata": routing_metadata,
     }
 
 
@@ -36,7 +42,7 @@ class ProviderUsageCollector:
         raw = getattr(message, "raw", None) if message is not None else None
         if raw is None:
             return
-        self._calls.append(_extract_call_usage(raw))
+        self._calls.append(extract_call_usage(raw))
 
     def summary(self) -> dict:
         """Aggregate collected calls into the run-level usage fields."""
