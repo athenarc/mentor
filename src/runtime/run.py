@@ -11,6 +11,7 @@ from typing import Any
 from smolagents import Model
 
 from mentor.agents import create_orchestrator_agent
+from mentor.errors import with_error_abort_callback
 from mentor.logging.provider_usage import ProviderUsageCollector, attach_usage_collector
 from mentor.runtime.models import resolve_api_base
 from mentor.runtime.session import prepare_run_session
@@ -131,6 +132,9 @@ def run_review(
     step_cbs = session.step_cbs
     usage_collector = ProviderUsageCollector()
     step_cbs = attach_usage_collector(step_cbs, usage_collector)
+    # Re-raise classified hard failures (e.g. context overflow) from ActionStep
+    # errors so the pipeline stops instead of letting the LLM keep going.
+    step_cbs = with_error_abort_callback(step_cbs)
     protocol_json = session.protocol_json
     _backend = session.backend
     _activity_summary_model = session.activity_summary_model
@@ -236,6 +240,7 @@ def run_review(
             "error": error,
             "duration_seconds": duration,
             "provider_usage": usage_collector.summary(),
+            "steps": activity_logger.step_metrics(),
             "n_studies": len(review.studies),
             "run_dir": str(run_dir),
         }
