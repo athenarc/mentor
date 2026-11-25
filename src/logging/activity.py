@@ -16,8 +16,74 @@ from mentor.logging.helpers import (
 )
 from mentor.logging.provider_usage import extract_call_usage, raw_completion_from_step
 
+
+def _usage_bag(
+    *,
+    input_tokens: int | None,
+    output_tokens: int | None,
+    duration: float | None,
+    cost: float | None,
+    provider: str | None = None,
+    include_provider: bool = False,
+) -> dict:
+    bag = {
+        "input_tokens": input_tokens,
+        "output_tokens": output_tokens,
+        "duration": duration,
+        "cost": cost,
+    }
+    if include_provider:
+        bag["provider"] = provider
+    return bag
+
+
+def with_nested_steps(parent: dict, children: list[dict]) -> dict:
+    """Attach children and recompute parent ``self`` / ``total`` usage bags.
+
+    ``total.duration`` stays the parent's wall-clock. ``self.duration`` becomes
+    exclusive time (wall minus child totals). Tokens/cost totals roll up
+    ``self + sum(child.total)``.
+    """
+    self_usage = dict(parent.get("self") or {})
+    wall = (parent.get("total") or {}).get("duration")
+    if wall is None:
+        wall = self_usage.get("duration")
+
+    child_durations = [
+        (child.get("total") or {}).get("duration")
+        for child in children
+    ]
+    known_child_durations = [d for d in child_durations if d is not None]
+    child_wall = sum(known_child_durations) if known_child_durations else 0.0
+    if wall is not None:
+        self_usage["duration"] = max(0.0, float(wall) - float(child_wall))
+
+    def _roll(key: str):
+        values: list = []
+        own = self_usage.get(key)
+        if own is not None:
+            values.append(own)
+        for child in children:
+            value = (child.get("total") or {}).get(key)
+            if value is not None:
+                values.append(value)
+        return sum(values) if values else None
+
+    return {
+        **parent,
+        "self": self_usage,
+        "total": _usage_bag(
+            input_tokens=_roll("input_tokens"),
+            output_tokens=_roll("output_tokens"),
+            duration=wall,
+            cost=_roll("cost"),
+        ),
+        "steps": children,
+    }
+
+
 def flatten_step_metrics(steps: list[dict]) -> list[dict]:
-    """Flatten nested step metrics into a single list of own-call records."""
+    """Flatten nested step metrics into a list of per-call ``self`` bags."""
     flat: list[dict] = []
     for node in steps:
         if not isinstance(node, dict):
@@ -25,20 +91,19 @@ def flatten_step_metrics(steps: list[dict]) -> list[dict]:
         children = node.get("steps")
         if not isinstance(children, list):
             children = []
-        own = {key: value for key, value in node.items() if key != "steps"}
-        flat.append(own)
+        own = node.get("self") if isinstance(node.get("self"), dict) else {}
+        flat.append({"agent": node.get("agent"), **own})
         if children:
             flat.extend(flatten_step_metrics(children))
     return flat
 
 
 def summarize_step_metrics(steps: list[dict]) -> dict:
-    """Roll up per-step metrics into run-level provider_usage fields.
+    """Roll up per-step ``self`` bags into run-level provider_usage fields.
 
-    Cost and tokens are summed over every node (parents do not include child
-    cost/tokens). Providers is the sorted unique set of non-empty provider
-    names. Do not sum nested durations into a total here — parent duration is
-    wall-clock inclusive of children; use run-level ``duration_seconds``.
+    Cost and tokens are summed over every node's own call. Providers is the
+    sorted unique set of non-empty provider names. Duration is omitted — use
+    run-level ``duration_seconds`` (step ``total.duration`` overlaps children).
     """
     flat = flatten_step_metrics(steps)
     costs = [step["cost"] for step in flat if step.get("cost") is not None]
@@ -104,16 +169,27 @@ class StepRecord:
     provider: str | None = None
 
     def to_metrics(self) -> dict:
-        """Return the operational fields saved to run.json."""
+        """Return operational fields for run.json (leaf ``self`` == ``total``)."""
+        own = _usage_bag(
+            input_tokens=self.token_input,
+            output_tokens=self.token_output,
+            duration=self.duration_seconds,
+            cost=self.cost,
+            provider=self.provider,
+            include_provider=True,
+        )
+        total = _usage_bag(
+            input_tokens=self.token_input,
+            output_tokens=self.token_output,
+            duration=self.duration_seconds,
+            cost=self.cost,
+        )
         return {
             "agent": self.agent_name,
             "step_type": self.step_type,
             "step_number": self.step_number,
-            "input_tokens": self.token_input,
-            "output_tokens": self.token_output,
-            "duration": self.duration_seconds,
-            "cost": self.cost,
-            "provider": self.provider,
+            "self": own,
+            "total": total,
         }
 
 
@@ -248,7 +324,7 @@ class ActivityLogger:
             else:
                 parent = phase.orchestrator_step.to_metrics()
                 if children:
-                    parent["steps"] = children
+                    parent = with_nested_steps(parent, children)
                 steps.append(parent)
         return steps
 
@@ -553,18 +629,38 @@ class ActivityLogger:
         return f"Orchestrator — Step {orch.step_number}"
 
     def _agent_stats(self) -> dict[str, dict]:
-        """Compute per-agent aggregates for the summary table."""
+        """Compute per-agent aggregates using exclusive (self) durations."""
         stats: dict[str, dict] = {}
-        for s in self.steps:
-            if s.agent_name not in stats:
-                stats[s.agent_name] = {
-                    "n": 0, "dur": 0.0, "in": 0, "out": 0,
-                }
-            st = stats[s.agent_name]
+
+        def _bump(agent: str, *, duration: float, token_in: int, token_out: int) -> None:
+            if agent not in stats:
+                stats[agent] = {"n": 0, "dur": 0.0, "in": 0, "out": 0}
+            st = stats[agent]
             st["n"] += 1
-            st["dur"] += s.duration_seconds or 0.0
-            st["in"] += s.token_input or 0
-            st["out"] += s.token_output or 0
+            st["dur"] += duration
+            st["in"] += token_in
+            st["out"] += token_out
+
+        for phase in self._group_into_phases():
+            children = phase.subagent_steps
+            child_wall = sum(s.duration_seconds or 0.0 for s in children)
+            orch = phase.orchestrator_step
+            if orch is not None:
+                wall = orch.duration_seconds or 0.0
+                exclusive = max(0.0, wall - child_wall) if children else wall
+                _bump(
+                    orch.agent_name,
+                    duration=exclusive,
+                    token_in=orch.token_input or 0,
+                    token_out=orch.token_output or 0,
+                )
+            for step in children:
+                _bump(
+                    step.agent_name,
+                    duration=step.duration_seconds or 0.0,
+                    token_in=step.token_input or 0,
+                    token_out=step.token_output or 0,
+                )
         return stats
 
 
