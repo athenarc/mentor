@@ -16,6 +16,53 @@ from mentor.logging.helpers import (
 )
 from mentor.logging.provider_usage import extract_call_usage, raw_completion_from_step
 
+def flatten_step_metrics(steps: list[dict]) -> list[dict]:
+    """Flatten nested step metrics into a single list of own-call records."""
+    flat: list[dict] = []
+    for node in steps:
+        if not isinstance(node, dict):
+            continue
+        children = node.get("steps")
+        if not isinstance(children, list):
+            children = []
+        own = {key: value for key, value in node.items() if key != "steps"}
+        flat.append(own)
+        if children:
+            flat.extend(flatten_step_metrics(children))
+    return flat
+
+
+def summarize_step_metrics(steps: list[dict]) -> dict:
+    """Roll up per-step metrics into run-level provider_usage fields.
+
+    Cost and tokens are summed over every node (parents do not include child
+    cost/tokens). Providers is the sorted unique set of non-empty provider
+    names. Do not sum nested durations into a total here — parent duration is
+    wall-clock inclusive of children; use run-level ``duration_seconds``.
+    """
+    flat = flatten_step_metrics(steps)
+    costs = [step["cost"] for step in flat if step.get("cost") is not None]
+    input_tokens = [
+        step["input_tokens"] for step in flat if step.get("input_tokens") is not None
+    ]
+    output_tokens = [
+        step["output_tokens"] for step in flat if step.get("output_tokens") is not None
+    ]
+    providers = sorted(
+        {
+            str(step["provider"])
+            for step in flat
+            if step.get("provider") not in (None, "")
+        }
+    )
+    return {
+        "cost": sum(costs) if costs else None,
+        "input_tokens": sum(input_tokens) if input_tokens else None,
+        "output_tokens": sum(output_tokens) if output_tokens else None,
+        "providers": providers,
+        "n_calls": len(flat),
+    }
+
 AGENT_ROLES: dict[str, str] = {
     "orchestrator": "Coordinates the systematic review pipeline, delegating tasks to specialised agents",
     "librarian": "Searches for and retrieves candidate studies from the literature database",

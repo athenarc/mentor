@@ -12,6 +12,7 @@ from smolagents import Model
 
 from mentor.agents import create_orchestrator_agent
 from mentor.errors import with_error_abort_callback
+from mentor.logging.activity import summarize_step_metrics
 from mentor.logging.provider_usage import ProviderUsageCollector, attach_usage_collector
 from mentor.runtime.models import resolve_api_base
 from mentor.runtime.session import prepare_run_session
@@ -229,6 +230,14 @@ def run_review(
         activity_path = activity_logger.finalize(summary_model)
         logger.info("Activity log saved to: %s", activity_path)
         agent_logger.close()
+        step_metrics = activity_logger.step_metrics()
+        # Prefer step-derived rollup (tokens/cost/providers). Keep collector
+        # routing metadata when present.
+        provider_usage = summarize_step_metrics(step_metrics)
+        collector_summary = usage_collector.summary()
+        extra_meta = collector_summary.get("additional_metadata") or {}
+        if extra_meta:
+            provider_usage["additional_metadata"] = extra_meta
         payload: dict[str, Any] = {
             "review_json": str(path.resolve()),
             "mode": mode,
@@ -239,8 +248,8 @@ def run_review(
             "status": run_status,
             "error": error,
             "duration_seconds": duration,
-            "provider_usage": usage_collector.summary(),
-            "steps": activity_logger.step_metrics(),
+            "provider_usage": provider_usage,
+            "steps": step_metrics,
             "n_studies": len(review.studies),
             "run_dir": str(run_dir),
         }
