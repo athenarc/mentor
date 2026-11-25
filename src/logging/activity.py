@@ -119,9 +119,10 @@ def flatten_step_metrics(steps: list[dict]) -> list[dict]:
 def summarize_step_metrics(steps: list[dict]) -> dict:
     """Roll up per-step ``usage.self`` bags into run-level provider_usage fields.
 
-    Cost and tokens are summed over every node's own call. Providers is the
-    sorted unique set of non-empty provider names. Duration is omitted — use
-    run-level ``duration_seconds`` (step ``usage.total.duration`` overlaps children).
+    Cost, tokens, and exclusive duration are summed over every node's own call.
+    Providers is the sorted unique set of non-empty provider names. Wall-clock
+    end-to-end time remains run-level ``duration_seconds`` (may exceed the
+    summed exclusive step durations when there are gaps between steps).
     """
     flat = flatten_step_metrics(steps)
     costs = [step["cost"] for step in flat if step.get("cost") is not None]
@@ -130,6 +131,9 @@ def summarize_step_metrics(steps: list[dict]) -> dict:
     ]
     output_tokens = [
         step["output_tokens"] for step in flat if step.get("output_tokens") is not None
+    ]
+    durations = [
+        step["duration"] for step in flat if step.get("duration") is not None
     ]
     providers = sorted(
         {
@@ -142,6 +146,7 @@ def summarize_step_metrics(steps: list[dict]) -> dict:
         "cost": sum(costs) if costs else None,
         "input_tokens": sum(input_tokens) if input_tokens else None,
         "output_tokens": sum(output_tokens) if output_tokens else None,
+        "duration": sum(durations) if durations else None,
         "providers": providers,
         "n_calls": len(flat),
     }

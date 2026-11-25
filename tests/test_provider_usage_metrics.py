@@ -179,8 +179,8 @@ class SummarizeStepMetricsTests(unittest.TestCase):
         self.assertAlmostEqual(summary["cost"], 0.06)
         self.assertEqual(summary["input_tokens"], 190)
         self.assertEqual(summary["output_tokens"], 19)
+        self.assertAlmostEqual(summary["duration"], 160.0)
         self.assertEqual(summary["providers"], ["DeepInfra", "Together"])
-        self.assertNotIn("duration", summary)
 
 
 if __name__ == "__main__":
