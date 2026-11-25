@@ -26,8 +26,7 @@ def extract_call_usage(raw: Any) -> dict:
     routing_metadata = _response_field(raw, "openrouter_metadata")
     return {
         "cost": _response_field(usage, "cost"),
-        "provider": _response_field(raw, "provider")
-        or _response_field(routing_metadata, "provider_name"),
+        "provider": _response_field(raw, "provider") or _response_field(routing_metadata, "provider_name"),
         "routing_metadata": routing_metadata,
     }
 
