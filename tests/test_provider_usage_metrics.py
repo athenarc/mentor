@@ -81,7 +81,7 @@ def _leaf_metrics(
 
 
 class SelfTotalMetricsTests(unittest.TestCase):
-    def test_leaf_self_equals_total(self):
+    def test_leaf_has_usage_self_only(self):
         node = _leaf_metrics(
             agent="gatekeeper",
             input_tokens=50,
@@ -90,14 +90,15 @@ class SelfTotalMetricsTests(unittest.TestCase):
             cost=0.02,
             provider="DeepInfra",
         )
-        self.assertEqual(node["self"]["duration"], 52)
-        self.assertEqual(node["total"]["duration"], 52)
-        self.assertEqual(node["self"]["input_tokens"], 50)
-        self.assertEqual(node["total"]["input_tokens"], 50)
-        self.assertEqual(node["self"]["provider"], "DeepInfra")
-        self.assertNotIn("provider", node["total"])
+        self.assertEqual(node["usage"]["self"]["duration"], 52)
+        self.assertEqual(node["usage"]["self"]["input_tokens"], 50)
+        self.assertEqual(node["usage"]["self"]["provider"], "DeepInfra")
+        self.assertNotIn("total", node["usage"])
+        self.assertNotIn("self", node)
+        self.assertNotIn("total", node)
+        self.assertNotIn("steps", node)
 
-    def test_parent_self_duration_is_exclusive_total_is_wall(self):
+    def test_parent_usage_self_is_exclusive_total_is_wall(self):
         parent = _leaf_metrics(
             agent="orchestrator",
             input_tokens=100,
@@ -125,16 +126,17 @@ class SelfTotalMetricsTests(unittest.TestCase):
             ),
         ]
         nested = with_nested_steps(parent, children)
-        self.assertAlmostEqual(nested["self"]["duration"], 68.0)
-        self.assertEqual(nested["total"]["duration"], 160)
-        self.assertEqual(nested["total"]["input_tokens"], 190)
-        self.assertEqual(nested["total"]["output_tokens"], 19)
-        self.assertAlmostEqual(nested["total"]["cost"], 0.06)
+        self.assertAlmostEqual(nested["usage"]["self"]["duration"], 68.0)
+        self.assertEqual(nested["usage"]["total"]["duration"], 160)
+        self.assertEqual(nested["usage"]["total"]["input_tokens"], 190)
+        self.assertEqual(nested["usage"]["total"]["output_tokens"], 19)
+        self.assertAlmostEqual(nested["usage"]["total"]["cost"], 0.06)
         self.assertEqual(len(nested["steps"]), 2)
+        self.assertNotIn("total", nested["steps"][0]["usage"])
 
 
 class SummarizeStepMetricsTests(unittest.TestCase):
-    def test_flattens_self_bags_and_sums_own_call_metrics(self):
+    def test_flattens_usage_self_bags_and_sums_own_call_metrics(self):
         parent = _leaf_metrics(
             agent="orchestrator",
             input_tokens=100,
@@ -170,7 +172,7 @@ class SummarizeStepMetricsTests(unittest.TestCase):
         self.assertEqual(len(flat), 3)
         self.assertAlmostEqual(flat[0]["duration"], 68.0)
         self.assertNotIn("steps", flat[0])
-        self.assertNotIn("total", flat[0])
+        self.assertNotIn("usage", flat[0])
 
         summary = summarize_step_metrics(steps)
         self.assertEqual(summary["n_calls"], 3)

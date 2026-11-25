@@ -37,21 +37,35 @@ def _usage_bag(
     return bag
 
 
-def with_nested_steps(parent: dict, children: list[dict]) -> dict:
-    """Attach children and recompute parent ``self`` / ``total`` usage bags.
+def _usage_block(node: dict) -> dict:
+    """Return the node's ``usage`` object (``self`` / optional ``total``)."""
+    usage = node.get("usage")
+    return usage if isinstance(usage, dict) else {}
 
-    ``total.duration`` stays the parent's wall-clock. ``self.duration`` becomes
-    exclusive time (wall minus child totals). Tokens/cost totals roll up
-    ``self + sum(child.total)``.
+
+def _inclusive_usage(node: dict) -> dict:
+    """Return inclusive usage: ``usage.total`` when present, else ``usage.self``."""
+    usage = _usage_block(node)
+    total = usage.get("total")
+    if isinstance(total, dict):
+        return total
+    self_usage = usage.get("self")
+    return self_usage if isinstance(self_usage, dict) else {}
+
+
+def with_nested_steps(parent: dict, children: list[dict]) -> dict:
+    """Attach children and add parent ``usage.total`` (leaves omit ``total``).
+
+    ``usage.total.duration`` is the parent's wall-clock. ``usage.self.duration``
+    becomes exclusive time (wall minus child inclusive durations). Tokens/cost
+    totals roll up ``self + sum(child inclusive)``.
     """
-    self_usage = dict(parent.get("self") or {})
-    wall = (parent.get("total") or {}).get("duration")
-    if wall is None:
-        wall = self_usage.get("duration")
+    usage = dict(_usage_block(parent))
+    self_usage = dict(usage.get("self") or {})
+    wall = self_usage.get("duration")
 
     child_durations = [
-        (child.get("total") or {}).get("duration")
-        for child in children
+        _inclusive_usage(child).get("duration") for child in children
     ]
     known_child_durations = [d for d in child_durations if d is not None]
     child_wall = sum(known_child_durations) if known_child_durations else 0.0
@@ -64,26 +78,28 @@ def with_nested_steps(parent: dict, children: list[dict]) -> dict:
         if own is not None:
             values.append(own)
         for child in children:
-            value = (child.get("total") or {}).get(key)
+            value = _inclusive_usage(child).get(key)
             if value is not None:
                 values.append(value)
         return sum(values) if values else None
 
     return {
         **parent,
-        "self": self_usage,
-        "total": _usage_bag(
-            input_tokens=_roll("input_tokens"),
-            output_tokens=_roll("output_tokens"),
-            duration=wall,
-            cost=_roll("cost"),
-        ),
+        "usage": {
+            "self": self_usage,
+            "total": _usage_bag(
+                input_tokens=_roll("input_tokens"),
+                output_tokens=_roll("output_tokens"),
+                duration=wall,
+                cost=_roll("cost"),
+            ),
+        },
         "steps": children,
     }
 
 
 def flatten_step_metrics(steps: list[dict]) -> list[dict]:
-    """Flatten nested step metrics into a list of per-call ``self`` bags."""
+    """Flatten nested step metrics into a list of per-call ``usage.self`` bags."""
     flat: list[dict] = []
     for node in steps:
         if not isinstance(node, dict):
@@ -91,7 +107,9 @@ def flatten_step_metrics(steps: list[dict]) -> list[dict]:
         children = node.get("steps")
         if not isinstance(children, list):
             children = []
-        own = node.get("self") if isinstance(node.get("self"), dict) else {}
+        own = _usage_block(node).get("self")
+        if not isinstance(own, dict):
+            own = {}
         flat.append({"agent": node.get("agent"), **own})
         if children:
             flat.extend(flatten_step_metrics(children))
@@ -99,11 +117,11 @@ def flatten_step_metrics(steps: list[dict]) -> list[dict]:
 
 
 def summarize_step_metrics(steps: list[dict]) -> dict:
-    """Roll up per-step ``self`` bags into run-level provider_usage fields.
+    """Roll up per-step ``usage.self`` bags into run-level provider_usage fields.
 
     Cost and tokens are summed over every node's own call. Providers is the
     sorted unique set of non-empty provider names. Duration is omitted — use
-    run-level ``duration_seconds`` (step ``total.duration`` overlaps children).
+    run-level ``duration_seconds`` (step ``usage.total.duration`` overlaps children).
     """
     flat = flatten_step_metrics(steps)
     costs = [step["cost"] for step in flat if step.get("cost") is not None]
@@ -169,27 +187,21 @@ class StepRecord:
     provider: str | None = None
 
     def to_metrics(self) -> dict:
-        """Return operational fields for run.json (leaf ``self`` == ``total``)."""
-        own = _usage_bag(
-            input_tokens=self.token_input,
-            output_tokens=self.token_output,
-            duration=self.duration_seconds,
-            cost=self.cost,
-            provider=self.provider,
-            include_provider=True,
-        )
-        total = _usage_bag(
-            input_tokens=self.token_input,
-            output_tokens=self.token_output,
-            duration=self.duration_seconds,
-            cost=self.cost,
-        )
+        """Return operational fields for run.json (leaf: ``usage.self`` only)."""
         return {
             "agent": self.agent_name,
             "step_type": self.step_type,
             "step_number": self.step_number,
-            "self": own,
-            "total": total,
+            "usage": {
+                "self": _usage_bag(
+                    input_tokens=self.token_input,
+                    output_tokens=self.token_output,
+                    duration=self.duration_seconds,
+                    cost=self.cost,
+                    provider=self.provider,
+                    include_provider=True,
+                ),
+            },
         }
 
 
