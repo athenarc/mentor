@@ -31,6 +31,14 @@ def extract_call_usage(raw: Any) -> dict:
     }
 
 
+def raw_completion_from_step(step: Any) -> Any:
+    """Safely read ``step.model_output_message.raw`` when present."""
+    message = getattr(step, "model_output_message", None)
+    if message is None:
+        return None
+    return getattr(message, "raw", None)
+
+
 class ProviderUsageCollector:
     """Smolagents ``ActionStep`` callback that accumulates provider usage."""
 
@@ -38,8 +46,7 @@ class ProviderUsageCollector:
         self._calls: list[dict] = []
 
     def on_action_step(self, step, agent=None, **kwargs) -> None:
-        message = getattr(step, "model_output_message", None)
-        raw = getattr(message, "raw", None) if message is not None else None
+        raw = raw_completion_from_step(step)
         if raw is None:
             return
         self._calls.append(extract_call_usage(raw))

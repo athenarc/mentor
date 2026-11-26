@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import time
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -14,7 +15,205 @@ from mentor.logging.helpers import (
     get_agent_name,
     truncate,
 )
-from mentor.logging.provider_usage import extract_call_usage
+from mentor.logging.provider_usage import extract_call_usage, raw_completion_from_step
+
+
+def _usage_bag(
+    *,
+    input_tokens: int | None,
+    output_tokens: int | None,
+    duration: float | None,
+    cost: float | None,
+    provider: str | None = None,
+    include_provider: bool = False,
+) -> dict:
+    bag = {
+        "input_tokens": input_tokens,
+        "output_tokens": output_tokens,
+        "duration": duration,
+        "cost": cost,
+    }
+    if include_provider:
+        bag["provider"] = provider
+    return bag
+
+
+def _usage_block(node: dict) -> dict:
+    """Return the node's ``usage`` object (``self`` / optional ``total``)."""
+    usage = node.get("usage")
+    return usage if isinstance(usage, dict) else {}
+
+
+def _inclusive_usage(node: dict) -> dict:
+    """Return inclusive usage: ``usage.total`` when present, else ``usage.self``."""
+    usage = _usage_block(node)
+    total = usage.get("total")
+    if isinstance(total, dict):
+        return total
+    self_usage = usage.get("self")
+    return self_usage if isinstance(self_usage, dict) else {}
+
+
+def with_nested_steps(parent: dict, children: list[dict]) -> dict:
+    """Attach children and add parent ``usage.total`` (leaves omit ``total``).
+
+    ``usage.total.duration`` is the parent's wall-clock. ``usage.self.duration``
+    becomes exclusive time (wall minus child inclusive durations). Tokens/cost
+    totals roll up ``self + sum(child inclusive)``.
+    """
+    usage = dict(_usage_block(parent))
+    self_usage = dict(usage.get("self") or {})
+    wall = self_usage.get("duration")
+
+    child_durations = [
+        _inclusive_usage(child).get("duration") for child in children
+    ]
+    known_child_durations = [d for d in child_durations if d is not None]
+    child_wall = sum(known_child_durations) if known_child_durations else 0.0
+    if wall is not None:
+        self_usage["duration"] = max(0.0, float(wall) - float(child_wall))
+
+    def _roll(key: str):
+        values: list = []
+        own = self_usage.get(key)
+        if own is not None:
+            values.append(own)
+        for child in children:
+            value = _inclusive_usage(child).get(key)
+            if value is not None:
+                values.append(value)
+        return sum(values) if values else None
+
+    return {
+        **parent,
+        "usage": {
+            "self": self_usage,
+            "total": _usage_bag(
+                input_tokens=_roll("input_tokens"),
+                output_tokens=_roll("output_tokens"),
+                duration=wall,
+                cost=_roll("cost"),
+            ),
+        },
+        "steps": children,
+    }
+
+
+def flatten_step_metrics(steps: list[dict]) -> list[dict]:
+    """Flatten nested step metrics into a list of per-call ``usage.self`` bags."""
+    flat: list[dict] = []
+    for node in steps:
+        if not isinstance(node, dict):
+            continue
+        children = node.get("steps")
+        if not isinstance(children, list):
+            children = []
+        own = _usage_block(node).get("self")
+        if not isinstance(own, dict):
+            own = {}
+        flat.append({"agent": node.get("agent"), **own})
+        if children:
+            flat.extend(flatten_step_metrics(children))
+    return flat
+
+
+def summarize_step_metrics(steps: list[dict]) -> dict:
+    """Roll up per-step ``usage.self`` bags into run-level provider_usage fields.
+
+    Cost, tokens, and exclusive duration are summed over every node's own call.
+    Providers is the sorted unique set of non-empty provider names. Wall-clock
+    end-to-end time remains run-level ``duration_seconds`` (may exceed the
+    summed exclusive step durations when there are gaps between steps).
+    """
+    flat = flatten_step_metrics(steps)
+    costs = [step["cost"] for step in flat if step.get("cost") is not None]
+    input_tokens = [
+        step["input_tokens"] for step in flat if step.get("input_tokens") is not None
+    ]
+    output_tokens = [
+        step["output_tokens"] for step in flat if step.get("output_tokens") is not None
+    ]
+    durations = [
+        step["duration"] for step in flat if step.get("duration") is not None
+    ]
+    providers = sorted(
+        {
+            str(step["provider"])
+            for step in flat
+            if step.get("provider") not in (None, "")
+        }
+    )
+    return {
+        "cost": sum(costs) if costs else None,
+        "input_tokens": sum(input_tokens) if input_tokens else None,
+        "output_tokens": sum(output_tokens) if output_tokens else None,
+        "duration": sum(durations) if durations else None,
+        "providers": providers,
+        "n_calls": len(flat),
+    }
+
+
+def _add_optional_number(
+    base: float | int | None,
+    extra: float | int | None,
+    *,
+    cast: type,
+) -> float | int | None:
+    """Return ``base + extra`` when either side is present; else ``None``."""
+    if extra is None:
+        return base
+    if base is None:
+        return cast(extra)
+    return cast(base) + cast(extra)
+
+
+def merge_activity_summary_into_provider_usage(
+    provider_usage: dict,
+    summary_metrics: dict | None,
+) -> dict:
+    """Return a copy of *provider_usage* with activity-summary usage folded in.
+
+    Step rollups stay authoritative for ``duration`` (exclusive step time).
+    Cost, tokens, providers, and ``n_calls`` include summarisation LLM calls
+    so run-level totals cover the full pipeline including ``activity.md``.
+    """
+    merged = dict(provider_usage or {})
+    summary = summary_metrics if isinstance(summary_metrics, dict) else {}
+    if not summary:
+        return merged
+
+    merged["cost"] = _add_optional_number(
+        merged.get("cost"), summary.get("cost"), cast=float
+    )
+    for token_key in ("input_tokens", "output_tokens"):
+        merged[token_key] = _add_optional_number(
+            merged.get(token_key), summary.get(token_key), cast=int
+        )
+
+    providers = list(merged.get("providers") or [])
+    for provider in summary.get("providers") or []:
+        if provider and provider not in providers:
+            providers.append(str(provider))
+    if providers:
+        merged["providers"] = sorted(providers)
+
+    n_summary_calls = int(summary.get("n_calls") or 0)
+    if n_summary_calls:
+        merged["n_calls"] = _add_optional_number(
+            merged.get("n_calls"), n_summary_calls, cast=int
+        )
+    return merged
+
+
+def activity_summary_payload(
+    *,
+    skipped: bool,
+    summary_metrics: dict | None,
+) -> dict:
+    """Build the ``activity_summary`` object written to ``run.json``."""
+    metrics = summary_metrics if isinstance(summary_metrics, dict) else {}
+    return {"skipped": skipped, **metrics}
+
 
 AGENT_ROLES: dict[str, str] = {
     "orchestrator": "Coordinates the systematic review pipeline, delegating tasks to specialised agents",
@@ -57,16 +256,21 @@ class StepRecord:
     provider: str | None = None
 
     def to_metrics(self) -> dict:
-        """Return the operational fields saved to run.json."""
+        """Return operational fields for run.json (leaf: ``usage.self`` only)."""
         return {
             "agent": self.agent_name,
             "step_type": self.step_type,
             "step_number": self.step_number,
-            "input_tokens": self.token_input,
-            "output_tokens": self.token_output,
-            "duration": self.duration_seconds,
-            "cost": self.cost,
-            "provider": self.provider,
+            "usage": {
+                "self": _usage_bag(
+                    input_tokens=self.token_input,
+                    output_tokens=self.token_output,
+                    duration=self.duration_seconds,
+                    cost=self.cost,
+                    provider=self.provider,
+                    include_provider=True,
+                ),
+            },
         }
 
 
@@ -105,6 +309,15 @@ class ActivityLogger:
         self.metadata: dict[str, str] = {}
         self.pipeline_start: datetime | None = None
         self.pipeline_end: datetime | None = None
+        # Populated by ``finalize`` (LLM activity.md summarisation calls).
+        self.summary_metrics: dict = {
+            "n_calls": 0,
+            "duration": 0.0,
+            "cost": None,
+            "input_tokens": None,
+            "output_tokens": None,
+            "providers": [],
+        }
 
     # -- Public API called by the runner ------------------------------------
 
@@ -122,7 +335,7 @@ class ActivityLogger:
         """Record an ActionStep from a smolagents callback."""
         agent_name = get_agent_name(agent)
         duration = step.timing.duration if step.timing else None
-        usage = extract_call_usage(getattr(step.model_output_message, "raw", None))
+        usage = extract_call_usage(raw_completion_from_step(step))
 
         token_in = token_out = None
         if step.token_usage:
@@ -172,7 +385,7 @@ class ActivityLogger:
         """Record a PlanningStep from a smolagents callback."""
         agent_name = get_agent_name(agent)
         duration = step.timing.duration if step.timing else None
-        usage = extract_call_usage(getattr(step.model_output_message, "raw", None))
+        usage = extract_call_usage(raw_completion_from_step(step))
 
         token_in = token_out = None
         if step.token_usage:
@@ -201,7 +414,7 @@ class ActivityLogger:
             else:
                 parent = phase.orchestrator_step.to_metrics()
                 if children:
-                    parent["steps"] = children
+                    parent = with_nested_steps(parent, children)
                 steps.append(parent)
         return steps
 
@@ -214,8 +427,18 @@ class ActivityLogger:
 
         Returns:
             Path to the written ``activity.md`` file.
+
+        Side effect:
+            Updates ``self.summary_metrics`` with wall time / usage for any
+            LLM summarisation calls (zeros / nulls when *model* is None).
         """
         self.mark_pipeline_end()
+        started = time.perf_counter()
+        costs: list[float] = []
+        input_tokens: list[int] = []
+        output_tokens: list[int] = []
+        providers: set[str] = set()
+        n_calls = 0
 
         for step in self.steps:
             # Skip sub-agent summarisation when they won't be shown
@@ -223,11 +446,29 @@ class ActivityLogger:
                 continue
             if model is not None:
                 try:
-                    step.summary = self._summarize_step(step, model)
+                    step.summary, call_usage = self._summarize_step(step, model)
+                    n_calls += 1
+                    if call_usage.get("cost") is not None:
+                        costs.append(float(call_usage["cost"]))
+                    if call_usage.get("input_tokens") is not None:
+                        input_tokens.append(int(call_usage["input_tokens"]))
+                    if call_usage.get("output_tokens") is not None:
+                        output_tokens.append(int(call_usage["output_tokens"]))
+                    if call_usage.get("provider"):
+                        providers.add(str(call_usage["provider"]))
                 except Exception:
                     step.summary = self._fallback_summary(step)
             else:
                 step.summary = self._fallback_summary(step)
+
+        self.summary_metrics = {
+            "n_calls": n_calls,
+            "duration": time.perf_counter() - started,
+            "cost": sum(costs) if costs else None,
+            "input_tokens": sum(input_tokens) if input_tokens else None,
+            "output_tokens": sum(output_tokens) if output_tokens else None,
+            "providers": sorted(providers),
+        }
 
         output_path = self.run_dir / "activity.md"
         output_path.write_text(self._build_markdown(), encoding="utf-8")
@@ -235,8 +476,13 @@ class ActivityLogger:
 
     # -- LLM summarisation --------------------------------------------------
 
-    def _summarize_step(self, step: StepRecord, model) -> str:
-        """Call the LLM with a short prompt to summarise one step."""
+    def _summarize_step(self, step: StepRecord, model) -> tuple[str, dict]:
+        """Call the LLM with a short prompt to summarise one step.
+
+        Returns:
+            ``(summary_text, usage_dict)`` where usage has cost / tokens /
+            provider when the provider surfaces them on the raw response.
+        """
         from smolagents.models import ChatMessage, MessageRole
 
         role_desc = AGENT_ROLES.get(
@@ -304,17 +550,40 @@ class ActivityLogger:
             )
         ]
         response = model(messages)
+        usage = extract_call_usage(getattr(response, "raw", None))
+        token_usage = getattr(response, "token_usage", None)
+        if token_usage is not None:
+            usage["input_tokens"] = getattr(token_usage, "input_tokens", None)
+            usage["output_tokens"] = getattr(token_usage, "output_tokens", None)
+        else:
+            raw_usage = getattr(getattr(response, "raw", None), "usage", None)
+            if isinstance(raw_usage, dict):
+                usage["input_tokens"] = raw_usage.get("prompt_tokens") or raw_usage.get(
+                    "input_tokens"
+                )
+                usage["output_tokens"] = raw_usage.get(
+                    "completion_tokens"
+                ) or raw_usage.get("output_tokens")
+            else:
+                usage["input_tokens"] = getattr(raw_usage, "prompt_tokens", None) or getattr(
+                    raw_usage, "input_tokens", None
+                )
+                usage["output_tokens"] = getattr(
+                    raw_usage, "completion_tokens", None
+                ) or getattr(raw_usage, "output_tokens", None)
 
         # Extract plain text from the response
         if isinstance(response.content, str):
-            return response.content.strip()
-        if isinstance(response.content, list):
-            return " ".join(
+            text = response.content.strip()
+        elif isinstance(response.content, list):
+            text = " ".join(
                 item.get("text", "")
                 for item in response.content
                 if isinstance(item, dict)
             ).strip()
-        return str(response.content).strip()
+        else:
+            text = str(response.content).strip()
+        return text, usage
 
     @staticmethod
     def _fallback_summary(step: StepRecord) -> str:
@@ -506,18 +775,38 @@ class ActivityLogger:
         return f"Orchestrator — Step {orch.step_number}"
 
     def _agent_stats(self) -> dict[str, dict]:
-        """Compute per-agent aggregates for the summary table."""
+        """Compute per-agent aggregates using exclusive (self) durations."""
         stats: dict[str, dict] = {}
-        for s in self.steps:
-            if s.agent_name not in stats:
-                stats[s.agent_name] = {
-                    "n": 0, "dur": 0.0, "in": 0, "out": 0,
-                }
-            st = stats[s.agent_name]
+
+        def _bump(agent: str, *, duration: float, token_in: int, token_out: int) -> None:
+            if agent not in stats:
+                stats[agent] = {"n": 0, "dur": 0.0, "in": 0, "out": 0}
+            st = stats[agent]
             st["n"] += 1
-            st["dur"] += s.duration_seconds or 0.0
-            st["in"] += s.token_input or 0
-            st["out"] += s.token_output or 0
+            st["dur"] += duration
+            st["in"] += token_in
+            st["out"] += token_out
+
+        for phase in self._group_into_phases():
+            children = phase.subagent_steps
+            child_wall = sum(s.duration_seconds or 0.0 for s in children)
+            orch = phase.orchestrator_step
+            if orch is not None:
+                wall = orch.duration_seconds or 0.0
+                exclusive = max(0.0, wall - child_wall) if children else wall
+                _bump(
+                    orch.agent_name,
+                    duration=exclusive,
+                    token_in=orch.token_input or 0,
+                    token_out=orch.token_output or 0,
+                )
+            for step in children:
+                _bump(
+                    step.agent_name,
+                    duration=step.duration_seconds or 0.0,
+                    token_in=step.token_input or 0,
+                    token_out=step.token_output or 0,
+                )
         return stats
 
 

@@ -11,6 +11,12 @@ from typing import Any
 from smolagents import Model
 
 from mentor.agents import create_orchestrator_agent
+from mentor.errors import with_error_abort_callback
+from mentor.logging.activity import (
+    activity_summary_payload,
+    merge_activity_summary_into_provider_usage,
+    summarize_step_metrics,
+)
 from mentor.logging.provider_usage import ProviderUsageCollector, attach_usage_collector
 from mentor.runtime.models import resolve_api_base
 from mentor.runtime.session import prepare_run_session
@@ -77,6 +83,25 @@ def _save_report(report: str, run_dir: Path) -> Path:
     return output_path
 
 
+def _summary_metrics_from_logger(activity_logger: Any) -> dict[str, Any]:
+    """Read ``ActivityLogger.summary_metrics`` (safe for mocks / missing attr)."""
+    metrics = getattr(activity_logger, "summary_metrics", None)
+    return metrics if isinstance(metrics, dict) else {}
+
+
+def _build_provider_usage(
+    step_metrics: list[dict],
+    usage_collector: ProviderUsageCollector,
+    summary_metrics: dict[str, Any],
+) -> dict[str, Any]:
+    """Step rollup + collector routing metadata + activity-summary fold-in."""
+    provider_usage = summarize_step_metrics(step_metrics)
+    extra_meta = (usage_collector.summary().get("additional_metadata") or {})
+    if extra_meta:
+        provider_usage["additional_metadata"] = extra_meta
+    return merge_activity_summary_into_provider_usage(provider_usage, summary_metrics)
+
+
 def run_review(
     *,
     review_json_path: str | Path,
@@ -131,6 +156,9 @@ def run_review(
     step_cbs = session.step_cbs
     usage_collector = ProviderUsageCollector()
     step_cbs = attach_usage_collector(step_cbs, usage_collector)
+    # Re-raise classified hard failures (e.g. context overflow) from ActionStep
+    # errors so the pipeline stops instead of letting the LLM keep going.
+    step_cbs = with_error_abort_callback(step_cbs)
     protocol_json = session.protocol_json
     _backend = session.backend
     _activity_summary_model = session.activity_summary_model
@@ -218,13 +246,19 @@ def run_review(
         logger.exception("Pipeline failed")
         report = ""
     finally:
-        duration = time.perf_counter() - started
         summary_model = None if skip_activity_summary else _activity_summary_model
         if skip_activity_summary:
             logger.info("Skipping LLM activity summarisation (template fallbacks).")
         activity_path = activity_logger.finalize(summary_model)
         logger.info("Activity log saved to: %s", activity_path)
+        # End-to-end wall time includes activity.md summarisation.
+        duration = time.perf_counter() - started
         agent_logger.close()
+        step_metrics = activity_logger.step_metrics()
+        summary_metrics = _summary_metrics_from_logger(activity_logger)
+        provider_usage = _build_provider_usage(
+            step_metrics, usage_collector, summary_metrics
+        )
         payload: dict[str, Any] = {
             "review_json": str(path.resolve()),
             "mode": mode,
@@ -235,8 +269,12 @@ def run_review(
             "status": run_status,
             "error": error,
             "duration_seconds": duration,
-            "provider_usage": usage_collector.summary(),
-            "steps": activity_logger.step_metrics(),
+            "provider_usage": provider_usage,
+            "activity_summary": activity_summary_payload(
+                skipped=skip_activity_summary,
+                summary_metrics=summary_metrics,
+            ),
+            "steps": step_metrics,
             "n_studies": len(review.studies),
             "run_dir": str(run_dir),
         }

@@ -9,6 +9,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from mentor.errors import ContextOverflowError
 from mentor.runtime.models import (
     has_explicit_model_config,
     resolve_api_base,
@@ -145,7 +146,7 @@ def main(argv: list[str] | None = None) -> None:
             output_root=Path(args.output_root) if args.output_root else None,
             run_name=args.run_name,
         )
-    except ValueError as exc:
+    except (ValueError, ContextOverflowError) as exc:
         logger.error("%s", exc)
         sys.exit(1)
 
