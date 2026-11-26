@@ -10,6 +10,7 @@ from mentor.tools.screening_loop import (
     append_screening_batch,
     get_screening_response_json,
     make_get_screening_batches_tool,
+    validate_screening_artifacts,
 )
 from mentor.tools.screening_persistence import (
     append_batch_decisions,
@@ -90,13 +91,12 @@ class BatchIndicesTests(unittest.TestCase):
 
 
 class AppendBatchTests(unittest.TestCase):
-    def test_append_batch_updates_evidence_and_progress(self):
+    def test_append_batch_updates_evidence(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             append_batch_decisions(
                 _decision_payload([1, 2]),
                 tmpdir,
                 [1, 2],
-                expected_n_studies=3,
             )
             decisions = read_existing_decisions(tmpdir)
             self.assertEqual([d["study_index"] for d in decisions], [1, 2])
@@ -106,7 +106,6 @@ class AppendBatchTests(unittest.TestCase):
                     _decision_payload([1]),
                     tmpdir,
                     [1],
-                    expected_n_studies=3,
                 )
 
     def test_append_rejects_wrong_indices(self):
@@ -116,7 +115,6 @@ class AppendBatchTests(unittest.TestCase):
                     _decision_payload([2]),
                     tmpdir,
                     [1],
-                    expected_n_studies=1,
                 )
 
     def test_append_screening_batch_tool(self):
@@ -125,10 +123,35 @@ class AppendBatchTests(unittest.TestCase):
                 _decision_payload([1]),
                 tmpdir,
                 json.dumps([1]),
-                3,
             )
-            self.assertIn("1/3", msg)
+            self.assertIn("Saved 1 decision(s)", msg)
+            self.assertNotIn("/", msg.split("to")[0])
             self.assertEqual(len(read_existing_decisions(tmpdir)), 1)
+
+
+class ValidateScreeningArtifactsTests(unittest.TestCase):
+    def test_validate_passes_when_complete(self):
+        _load_three_studies()
+        with tempfile.TemporaryDirectory() as tmpdir:
+            append_batch_decisions(
+                _decision_payload([1, 2, 3]),
+                tmpdir,
+                [1, 2, 3],
+            )
+            msg = validate_screening_artifacts(tmpdir)
+            self.assertIn("3/3", msg)
+
+    def test_validate_fails_when_incomplete(self):
+        _load_three_studies()
+        with tempfile.TemporaryDirectory() as tmpdir:
+            append_batch_decisions(
+                _decision_payload([1]),
+                tmpdir,
+                [1],
+            )
+            with self.assertRaises(ValueError) as ctx:
+                validate_screening_artifacts(tmpdir)
+            self.assertIn("missing", str(ctx.exception))
 
 
 class GetScreeningBatchesToolTests(unittest.TestCase):
@@ -169,7 +192,6 @@ class GetScreeningBatchesToolTests(unittest.TestCase):
                 _decision_payload([1]),
                 tmpdir,
                 [1],
-                expected_n_studies=3,
             )
             tool = make_get_screening_batches_tool(batch_size=None)
             batches = json.loads(tool.forward(tmpdir))
@@ -187,7 +209,6 @@ class GetScreeningBatchesToolTests(unittest.TestCase):
                 _decision_payload([1, 2, 3]),
                 tmpdir,
                 [1, 2, 3],
-                expected_n_studies=3,
             )
             tool = make_get_screening_batches_tool(batch_size=None)
             self.assertEqual(tool.forward(tmpdir), "[]")
@@ -198,7 +219,6 @@ class GetScreeningBatchesToolTests(unittest.TestCase):
                 _decision_payload([1, 2]),
                 tmpdir,
                 [1, 2],
-                expected_n_studies=2,
             )
             payload = json.loads(get_screening_response_json(tmpdir))
             self.assertEqual(payload["n_total"], 2)

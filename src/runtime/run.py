@@ -42,7 +42,7 @@ Expected study decisions: {n_studies}
 
 Use get_screening_batches(output_dir), call gatekeeper once per batch \
 with additional_args['screening_payload'], append_screening_batch after \
-each batch, then return \
+each batch, then validate_screening_artifacts(output_dir), then return \
 format_screening_progress_summary(review_title, output_dir) \
 as final_answer.
 """
@@ -60,7 +60,8 @@ Execute the full pipeline:
 2. Use get_candidates_json() to obtain a clean JSON of the candidates
 3. Use get_screening_batches(output_dir), call gatekeeper once per batch \
 with additional_args['screening_payload'], append_screening_batch after \
-each batch, then get_screening_response_json(output_dir)
+each batch, then validate_screening_artifacts(output_dir), then \
+get_screening_response_json(output_dir)
 4. Use the miner to extract evidence from included studies
 5. Use the critic to synthesize the evidence
 6. Use format_report() to format a clean Markdown report

@@ -21,9 +21,12 @@ You also have these utility tools:
   pass to extract_included_studies.
 - **get_screening_batches** — returns a JSON array of remaining batches
   (``indices`` + ``payload``). Call with output_dir from the task.
-- **append_screening_batch** — validates a Gatekeeper response and appends
-  decisions to evidence.json. Call immediately after each gatekeeper call;
-  do not accumulate responses.
+- **append_screening_batch** — validates a Gatekeeper batch response and
+  appends decisions to evidence.json. Call immediately after each
+  gatekeeper call; do not accumulate responses.
+- **validate_screening_artifacts** — fail-closed check that evidence.json
+  covers all candidate studies. Call once after the screening loop
+  (including when get_screening_batches returned []).
 - **get_screening_response_json** — loads merged Gatekeeper-shaped JSON from
   evidence.json after all batches are saved.
 - **extract_included_studies** — parses the screening response,
@@ -56,10 +59,11 @@ CRITICAL RULES — read carefully before writing any code
 
 2. ALWAYS USE YOUR TOOLS — NEVER WRITE YOUR OWN PARSERS.
    Use get_candidates_json, get_screening_batches, append_screening_batch,
-   get_screening_response_json, extract_included_studies, format_report,
-   and save_evidence_json. The only allowed json.loads is on the return
-   value of get_screening_batches so you can iterate batches. Do NOT
-   hand-parse Gatekeeper / miner / critic responses.
+   validate_screening_artifacts, get_screening_response_json,
+   extract_included_studies, format_report, and save_evidence_json. The
+   only allowed json.loads is on the return value of get_screening_batches
+   so you can iterate batches. Do NOT hand-parse Gatekeeper / miner /
+   critic responses.
 
 3. VARIABLES PERSIST across code blocks.
    After each block finishes, every variable you defined is still
@@ -77,6 +81,8 @@ CRITICAL RULES — read carefully before writing any code
 
 7. After each gatekeeper call, append_screening_batch immediately, then
    discard that batch response. Do NOT accumulate Gatekeeper responses.
+   After the screening loop, call validate_screening_artifacts(output_dir)
+   before get_screening_response_json.
 
 8. If gatekeeper or append_screening_batch fails for a batch, retry the
    same payload once (call gatekeeper again, then append). Do not invent
@@ -107,12 +113,12 @@ Code block 2 — SCREENING:
               screening_response=str(response),
               output_dir=output_dir,
               expected_indices_json=json.dumps(item["indices"]),
-              expected_n_studies=item["payload"]["n_total"],
           )
       try:
           run_batch()
       except Exception:
           run_batch()  # one retry; do not invent decisions
+  validate_screening_artifacts(output_dir=output_dir)
   screening_response = get_screening_response_json(output_dir=output_dir)
   included_studies_json = extract_included_studies(
       screening_response=screening_response,

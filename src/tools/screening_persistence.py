@@ -113,9 +113,8 @@ def _parse_screening_response_decisions(screening_response: str) -> list[dict]:
 def write_screening_artifacts(
     output_dir: str | os.PathLike[str],
     decisions: list[dict],
-    *,
-    expected_n_studies: int | None = None,
 ) -> None:
+    """Write ``evidence.json`` for the current decision list (no completeness check)."""
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     ordered = sorted(
         (normalize_screening_decision(decision) for decision in decisions),
@@ -125,28 +124,18 @@ def write_screening_artifacts(
     with open(evidence_path(output_dir), "w", encoding="utf-8") as f:
         json.dump(evidence, f, ensure_ascii=False, indent=2)
 
-    if expected_n_studies is not None and len(ordered) == int(expected_n_studies):
-        # Local import avoids a cycle with mentor.tools.validation.screening_artifacts.
-        from mentor.tools.validation import validate_screening_artifacts_consistent
-
-        validate_screening_artifacts_consistent(
-            output_dir,
-            expected_n_studies=int(expected_n_studies),
-        )
-
 
 def append_batch_decisions(
     screening_response: str,
     output_dir: str | os.PathLike[str],
     expected_indices: list[int],
-    *,
-    expected_n_studies: int | None = None,
 ) -> list[dict]:
     """
     Validate a Gatekeeper response for ``expected_indices`` and append to artifacts.
 
     Returns the updated full decision list. Raises ``ValueError`` on mismatch
-    (fail closed; no fallback decisions).
+    (fail closed; no fallback decisions). Full-run completeness is checked
+    separately via ``validate_screening_artifacts``.
     """
     if not expected_indices:
         raise ValueError("expected_indices must not be empty.")
@@ -198,11 +187,7 @@ def append_batch_decisions(
     updated = list(existing_by_index.values()) + [
         decision_by_index[index] for index in expected_indices
     ]
-    write_screening_artifacts(
-        output_dir,
-        updated,
-        expected_n_studies=expected_n_studies,
-    )
+    write_screening_artifacts(output_dir, updated)
     return updated
 
 

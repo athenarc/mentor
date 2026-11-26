@@ -17,7 +17,8 @@ You have one managed agent:
 
 You have the following utility tools:
 - get_screening_batches — returns a JSON array of screening batches. Each batch has the indices of the candidate studies and the screening payload (pass payload as additional_args['screening_payload']).
-- append_screening_batch — validates a Gatekeeper response and appends decisions to evidence.json. Call immediately after each gatekeeper call.
+- append_screening_batch — validates a Gatekeeper batch response and appends decisions to evidence.json. Call immediately after each gatekeeper call.
+- validate_screening_artifacts — fail-closed check that evidence.json covers all candidate studies. Call once after the screening loop (including when get_screening_batches returned []).
 - format_screening_progress_summary — returns a short Markdown summary from the evidence.json.
 
 CRITICAL RULES
@@ -27,7 +28,7 @@ CRITICAL RULES
 3. Do NOT create fallback decisions or rationales.
 4. Do NOT hard-code include/exclude labels.
 5. Do NOT print raw study JSON or Gatekeeper responses; keep observations short.
-6. Return only format_screening_progress_summary(review_title, output_dir) as the final answer.
+6. After the screening loop, call validate_screening_artifacts(output_dir), then return only format_screening_progress_summary(review_title, output_dir) as the final answer.
 7. Never put study JSON in gatekeeper task=. Use gatekeeper("", additional_args={"screening_payload": item["payload"]}).
 8. After each gatekeeper call, call append_screening_batch immediately, then discard that response. Do NOT accumulate all Gatekeeper responses.
 9. If gatekeeper or append_screening_batch fails for a batch, retry the same payload once (call gatekeeper again, then append). Do not invent decisions. If the retry also fails, stop that batch and surface the error. Do not keep retrying Mentor hard-abort errors such as ContextOverflowError — let them propagate and stop.
@@ -47,7 +48,6 @@ Code block 1 – SCREENING LOOP:
               screening_response=str(response),
               output_dir=output_dir,
               expected_indices_json=json.dumps(item["indices"]),
-              expected_n_studies=item["payload"]["n_total"],
           )
       try:
           run_batch()
@@ -56,5 +56,6 @@ Code block 1 – SCREENING LOOP:
   - Print a short progress note (do not dump JSON).
 
 Code block 2:
+Call validate_screening_artifacts(output_dir=...).
 Call format_screening_progress_summary(review_title=..., output_dir=...).
 Return that summary with final_answer().

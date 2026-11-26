@@ -30,6 +30,7 @@ from mentor.tools.screening_loop import (
     append_screening_batch,
     get_screening_response_json,
     make_get_screening_batches_tool,
+    validate_screening_artifacts,
 )
 from mentor.tools.screening_persistence import format_screening_progress_summary
 from mentor.agents.prompts import resolve_prompt
@@ -132,6 +133,7 @@ def create_orchestrator_agent(
     screening_tools = [
         get_screening_batches,
         append_screening_batch,
+        validate_screening_artifacts,
         get_screening_response_json,
         format_screening_progress_summary,
     ]
