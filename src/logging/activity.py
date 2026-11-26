@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import time
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -245,6 +246,15 @@ class ActivityLogger:
         self.metadata: dict[str, str] = {}
         self.pipeline_start: datetime | None = None
         self.pipeline_end: datetime | None = None
+        # Populated by ``finalize`` (LLM activity.md summarisation calls).
+        self.summary_metrics: dict = {
+            "n_calls": 0,
+            "duration": 0.0,
+            "cost": None,
+            "input_tokens": None,
+            "output_tokens": None,
+            "providers": [],
+        }
 
     # -- Public API called by the runner ------------------------------------
 
@@ -354,8 +364,18 @@ class ActivityLogger:
 
         Returns:
             Path to the written ``activity.md`` file.
+
+        Side effect:
+            Updates ``self.summary_metrics`` with wall time / usage for any
+            LLM summarisation calls (zeros / nulls when *model* is None).
         """
         self.mark_pipeline_end()
+        started = time.perf_counter()
+        costs: list[float] = []
+        input_tokens: list[int] = []
+        output_tokens: list[int] = []
+        providers: set[str] = set()
+        n_calls = 0
 
         for step in self.steps:
             # Skip sub-agent summarisation when they won't be shown
@@ -363,11 +383,29 @@ class ActivityLogger:
                 continue
             if model is not None:
                 try:
-                    step.summary = self._summarize_step(step, model)
+                    step.summary, call_usage = self._summarize_step(step, model)
+                    n_calls += 1
+                    if call_usage.get("cost") is not None:
+                        costs.append(float(call_usage["cost"]))
+                    if call_usage.get("input_tokens") is not None:
+                        input_tokens.append(int(call_usage["input_tokens"]))
+                    if call_usage.get("output_tokens") is not None:
+                        output_tokens.append(int(call_usage["output_tokens"]))
+                    if call_usage.get("provider"):
+                        providers.add(str(call_usage["provider"]))
                 except Exception:
                     step.summary = self._fallback_summary(step)
             else:
                 step.summary = self._fallback_summary(step)
+
+        self.summary_metrics = {
+            "n_calls": n_calls,
+            "duration": time.perf_counter() - started,
+            "cost": sum(costs) if costs else None,
+            "input_tokens": sum(input_tokens) if input_tokens else None,
+            "output_tokens": sum(output_tokens) if output_tokens else None,
+            "providers": sorted(providers),
+        }
 
         output_path = self.run_dir / "activity.md"
         output_path.write_text(self._build_markdown(), encoding="utf-8")
@@ -375,8 +413,13 @@ class ActivityLogger:
 
     # -- LLM summarisation --------------------------------------------------
 
-    def _summarize_step(self, step: StepRecord, model) -> str:
-        """Call the LLM with a short prompt to summarise one step."""
+    def _summarize_step(self, step: StepRecord, model) -> tuple[str, dict]:
+        """Call the LLM with a short prompt to summarise one step.
+
+        Returns:
+            ``(summary_text, usage_dict)`` where usage has cost / tokens /
+            provider when the provider surfaces them on the raw response.
+        """
         from smolagents.models import ChatMessage, MessageRole
 
         role_desc = AGENT_ROLES.get(
@@ -444,17 +487,40 @@ class ActivityLogger:
             )
         ]
         response = model(messages)
+        usage = extract_call_usage(getattr(response, "raw", None))
+        token_usage = getattr(response, "token_usage", None)
+        if token_usage is not None:
+            usage["input_tokens"] = getattr(token_usage, "input_tokens", None)
+            usage["output_tokens"] = getattr(token_usage, "output_tokens", None)
+        else:
+            raw_usage = getattr(getattr(response, "raw", None), "usage", None)
+            if isinstance(raw_usage, dict):
+                usage["input_tokens"] = raw_usage.get("prompt_tokens") or raw_usage.get(
+                    "input_tokens"
+                )
+                usage["output_tokens"] = raw_usage.get(
+                    "completion_tokens"
+                ) or raw_usage.get("output_tokens")
+            else:
+                usage["input_tokens"] = getattr(raw_usage, "prompt_tokens", None) or getattr(
+                    raw_usage, "input_tokens", None
+                )
+                usage["output_tokens"] = getattr(
+                    raw_usage, "completion_tokens", None
+                ) or getattr(raw_usage, "output_tokens", None)
 
         # Extract plain text from the response
         if isinstance(response.content, str):
-            return response.content.strip()
-        if isinstance(response.content, list):
-            return " ".join(
+            text = response.content.strip()
+        elif isinstance(response.content, list):
+            text = " ".join(
                 item.get("text", "")
                 for item in response.content
                 if isinstance(item, dict)
             ).strip()
-        return str(response.content).strip()
+        else:
+            text = str(response.content).strip()
+        return text, usage
 
     @staticmethod
     def _fallback_summary(step: StepRecord) -> str:

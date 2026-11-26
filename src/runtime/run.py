@@ -223,12 +223,13 @@ def run_review(
         logger.exception("Pipeline failed")
         report = ""
     finally:
-        duration = time.perf_counter() - started
         summary_model = None if skip_activity_summary else _activity_summary_model
         if skip_activity_summary:
             logger.info("Skipping LLM activity summarisation (template fallbacks).")
         activity_path = activity_logger.finalize(summary_model)
         logger.info("Activity log saved to: %s", activity_path)
+        # End-to-end wall time includes activity.md summarisation.
+        duration = time.perf_counter() - started
         agent_logger.close()
         step_metrics = activity_logger.step_metrics()
         # Prefer step-derived rollup (tokens/cost/providers). Keep collector
@@ -238,6 +239,41 @@ def run_review(
         extra_meta = collector_summary.get("additional_metadata") or {}
         if extra_meta:
             provider_usage["additional_metadata"] = extra_meta
+        summary_metrics = getattr(activity_logger, "summary_metrics", None)
+        if not isinstance(summary_metrics, dict):
+            summary_metrics = {}
+        # Fold summarisation into run-level totals so with/without compares cleanly.
+        summary_cost = summary_metrics.get("cost")
+        if summary_cost is not None:
+            base_cost = provider_usage.get("cost")
+            provider_usage["cost"] = (
+                float(summary_cost)
+                if base_cost is None
+                else float(base_cost) + float(summary_cost)
+            )
+        for token_key in ("input_tokens", "output_tokens"):
+            extra_tokens = summary_metrics.get(token_key)
+            if extra_tokens is None:
+                continue
+            base_tokens = provider_usage.get(token_key)
+            provider_usage[token_key] = (
+                int(extra_tokens)
+                if base_tokens is None
+                else int(base_tokens) + int(extra_tokens)
+            )
+        for provider in summary_metrics.get("providers") or []:
+            providers = provider_usage.setdefault("providers", [])
+            if provider not in providers:
+                providers.append(provider)
+                providers.sort()
+        n_summary_calls = int(summary_metrics.get("n_calls") or 0)
+        if n_summary_calls:
+            base_calls = provider_usage.get("n_calls")
+            provider_usage["n_calls"] = (
+                n_summary_calls
+                if base_calls is None
+                else int(base_calls) + n_summary_calls
+            )
         payload: dict[str, Any] = {
             "review_json": str(path.resolve()),
             "mode": mode,
@@ -249,6 +285,10 @@ def run_review(
             "error": error,
             "duration_seconds": duration,
             "provider_usage": provider_usage,
+            "activity_summary": {
+                "skipped": skip_activity_summary,
+                **summary_metrics,
+            },
             "steps": step_metrics,
             "n_studies": len(review.studies),
             "run_dir": str(run_dir),
