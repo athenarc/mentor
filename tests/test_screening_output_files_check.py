@@ -6,7 +6,6 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
 
 from mentor.tools.screening_persistence import (
     append_batch_decisions,
@@ -68,7 +67,6 @@ class ScreeningArtifactsConsistentTests(unittest.TestCase):
                 _decision_payload([1, 2]),
                 tmpdir,
                 [1, 2],
-                expected_n_studies=2,
             )
             validate_screening_artifacts_consistent(tmpdir, expected_n_studies=2)
             self.assertFalse(
@@ -81,7 +79,6 @@ class ScreeningArtifactsConsistentTests(unittest.TestCase):
                 _decision_payload([1], decision="UNCLEAR"),
                 tmpdir,
                 [1],
-                expected_n_studies=1,
             )
             self.assertEqual(updated[0]["decision"], "UNCLEAR")
 
@@ -91,7 +88,6 @@ class ScreeningArtifactsConsistentTests(unittest.TestCase):
                 _decision_payload([1], decision="INCLUDE"),
                 tmpdir,
                 [1],
-                expected_n_studies=1,
             )
             payload = json.loads(
                 (Path(tmpdir) / "evidence.json").read_text(encoding="utf-8")
@@ -114,11 +110,7 @@ class ScreeningArtifactsConsistentTests(unittest.TestCase):
 
     def test_detects_count_mismatch(self):
         with tempfile.TemporaryDirectory() as tmpdir:
-            write_screening_artifacts(
-                tmpdir,
-                [_decision()],
-                expected_n_studies=1,
-            )
+            write_screening_artifacts(tmpdir, [_decision()])
             evidence = Path(tmpdir) / "evidence.json"
             payload = json.loads(evidence.read_text(encoding="utf-8"))
             payload["n_included"] = 0
@@ -129,38 +121,16 @@ class ScreeningArtifactsConsistentTests(unittest.TestCase):
 
     def test_detects_incomplete_study_coverage(self):
         with tempfile.TemporaryDirectory() as tmpdir:
-            write_screening_artifacts(
-                tmpdir,
-                [_decision()],
-                expected_n_studies=2,
-            )
+            write_screening_artifacts(tmpdir, [_decision()])
             with self.assertRaises(ValueError) as ctx:
                 validate_screening_artifacts_consistent(tmpdir, expected_n_studies=2)
             self.assertIn("missing", str(ctx.exception))
 
-    def test_write_runs_consistency_check_when_complete(self):
+    def test_write_does_not_run_consistency_check(self):
         with tempfile.TemporaryDirectory() as tmpdir:
-            with patch(
-                "mentor.tools.validation.validate_screening_artifacts_consistent"
-            ) as mock_validate:
-                write_screening_artifacts(
-                    tmpdir,
-                    [_decision()],
-                    expected_n_studies=1,
-                )
-            mock_validate.assert_called_once_with(tmpdir, expected_n_studies=1)
-
-    def test_write_skips_consistency_check_when_incomplete(self):
-        with tempfile.TemporaryDirectory() as tmpdir:
-            with patch(
-                "mentor.tools.validation.validate_screening_artifacts_consistent"
-            ) as mock_validate:
-                write_screening_artifacts(
-                    tmpdir,
-                    [_decision()],
-                    expected_n_studies=2,
-                )
-            mock_validate.assert_not_called()
+            write_screening_artifacts(tmpdir, [_decision()])
+            # Incomplete relative to N=2 would have raised if write still validated.
+            validate_screening_artifacts_consistent(tmpdir, expected_n_studies=1)
 
 
 if __name__ == "__main__":

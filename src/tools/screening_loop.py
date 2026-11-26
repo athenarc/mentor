@@ -2,8 +2,10 @@
 Screening batch helpers for the Orchestrator.
 
 ``get_screening_batches`` plans resume-aware batches (payloads for the managed
-Gatekeeper). ``append_screening_batch`` and ``get_screening_response_json``
-persist and reload decisions. The Orchestrator calls Gatekeeper once per batch.
+Gatekeeper). ``append_screening_batch`` persists each batch;
+``validate_screening_artifacts`` checks full coverage afterward;
+``get_screening_response_json`` reloads decisions. The Orchestrator calls
+Gatekeeper once per batch.
 """
 
 from __future__ import annotations
@@ -106,22 +108,21 @@ def append_screening_batch(
     screening_response: str,
     output_dir: str,
     expected_indices_json: str,
-    expected_n_studies: int,
 ) -> str:
     """
     Validate a Gatekeeper batch response and append decisions to evidence.json.
 
     Call immediately after each gatekeeper(...) call. Do not accumulate batch
-    responses in Orchestrator memory.
+    responses in Orchestrator memory. After all batches, call
+    validate_screening_artifacts(output_dir).
 
     Args:
         screening_response: Raw Gatekeeper response string for this batch.
         output_dir: Run output directory for evidence.json.
         expected_indices_json: JSON array of study indices for this batch.
-        expected_n_studies: Total studies expected for the full screening run.
 
     Returns:
-        Short confirmation with completed decision count.
+        Short confirmation for this batch only.
     """
     try:
         raw_indices = json.loads(expected_indices_json)
@@ -136,15 +137,39 @@ def append_screening_batch(
         except (TypeError, ValueError) as exc:
             raise ValueError(f"Invalid study index in expected_indices_json: {raw!r}") from exc
 
-    updated = append_batch_decisions(
-        screening_response,
+    append_batch_decisions(screening_response, output_dir, indices)
+    return f"Saved {len(indices)} decision(s) to {output_dir}."
+
+
+@tool
+def validate_screening_artifacts(output_dir: str) -> str:
+    """
+    Fail closed if evidence.json is incomplete or inconsistent for all candidates.
+
+    Call once after the screening loop (including when get_screening_batches
+    returned []). Uses the loaded candidate study count as expected_n_studies.
+
+    Args:
+        output_dir: Run output directory containing evidence.json.
+
+    Returns:
+        Short confirmation that coverage 1..N is consistent.
+    """
+    from mentor.tools.validation import validate_screening_artifacts_consistent
+
+    studies = _resolve_studies()
+    if not studies:
+        raise ValueError(
+            "No candidate studies available. Load review data or run the "
+            "librarian before calling validate_screening_artifacts."
+        )
+    expected_n = len(studies)
+    validate_screening_artifacts_consistent(
         output_dir,
-        indices,
-        expected_n_studies=int(expected_n_studies),
+        expected_n_studies=expected_n,
     )
     return (
-        f"Saved {len(indices)} decision(s); "
-        f"{len(updated)}/{int(expected_n_studies)} total in {output_dir}."
+        f"Validated evidence.json: {expected_n}/{expected_n} studies in {output_dir}."
     )
 
 

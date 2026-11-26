@@ -50,6 +50,8 @@ def test_orchestrator_uses_managed_gatekeeper_batches() -> None:
     text = load_prod_prompt("orchestrator")
     assert "get_screening_batches" in text
     assert "append_screening_batch" in text
+    assert "validate_screening_artifacts" in text
+    assert "expected_n_studies" not in text
     assert "gatekeeper(" in text
     assert "INCLUDE | EXCLUDE | UNCLEAR" in text
     assert "INCLUDE and UNCLEAR" in text
@@ -60,6 +62,8 @@ def test_orchestrator_uses_managed_gatekeeper_batches() -> None:
     screening_only = load_prod_prompt("orchestrator_screening-only")
     assert "get_screening_batches" in screening_only
     assert "append_screening_batch" in screening_only
+    assert "validate_screening_artifacts" in screening_only
+    assert "expected_n_studies" not in screening_only
     assert "format_screening_progress_summary" in screening_only
     assert "gatekeeper" in screening_only
     assert "ContextOverflowError" in screening_only

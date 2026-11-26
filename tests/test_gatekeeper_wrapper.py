@@ -411,6 +411,7 @@ class OrchestratorScreeningToolTests(unittest.TestCase):
             tool_names = [getattr(t, "name", None) for t in kwargs["tools"]]
             self.assertIn("get_screening_batches", tool_names)
             self.assertIn("append_screening_batch", tool_names)
+            self.assertIn("validate_screening_artifacts", tool_names)
             self.assertIn("get_screening_response_json", tool_names)
             self.assertNotIn("screen_candidates", tool_names)
 
