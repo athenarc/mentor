@@ -8,7 +8,9 @@ from types import SimpleNamespace
 
 from mentor.logging.activity import (
     StepRecord,
+    activity_summary_payload,
     flatten_step_metrics,
+    merge_activity_summary_into_provider_usage,
     summarize_step_metrics,
     with_nested_steps,
 )
@@ -181,6 +183,50 @@ class SummarizeStepMetricsTests(unittest.TestCase):
         self.assertEqual(summary["output_tokens"], 19)
         self.assertAlmostEqual(summary["duration"], 160.0)
         self.assertEqual(summary["providers"], ["DeepInfra", "Together"])
+
+
+class MergeActivitySummaryUsageTests(unittest.TestCase):
+    def test_folds_cost_tokens_calls_and_providers(self):
+        base = {
+            "cost": 0.10,
+            "input_tokens": 100,
+            "output_tokens": 20,
+            "duration": 12.0,
+            "providers": ["OpenAI"],
+            "n_calls": 3,
+        }
+        summary = {
+            "n_calls": 2,
+            "cost": 0.05,
+            "input_tokens": 40,
+            "output_tokens": 5,
+            "providers": ["OpenAI", "DeepInfra"],
+        }
+        merged = merge_activity_summary_into_provider_usage(base, summary)
+        self.assertAlmostEqual(merged["cost"], 0.15)
+        self.assertEqual(merged["input_tokens"], 140)
+        self.assertEqual(merged["output_tokens"], 25)
+        self.assertEqual(merged["n_calls"], 5)
+        self.assertEqual(merged["providers"], ["DeepInfra", "OpenAI"])
+        # Step exclusive duration is not mixed with summary wall time.
+        self.assertAlmostEqual(merged["duration"], 12.0)
+        self.assertAlmostEqual(base["cost"], 0.10)
+
+    def test_empty_summary_is_noop_copy(self):
+        base = {"cost": 0.1, "n_calls": 1, "providers": ["OpenAI"]}
+        merged = merge_activity_summary_into_provider_usage(base, {})
+        self.assertEqual(merged, base)
+        self.assertIsNot(merged, base)
+
+    def test_activity_summary_payload_includes_skipped(self):
+        payload = activity_summary_payload(
+            skipped=True,
+            summary_metrics={"n_calls": 0, "duration": 0.0},
+        )
+        self.assertEqual(
+            payload,
+            {"skipped": True, "n_calls": 0, "duration": 0.0},
+        )
 
 
 if __name__ == "__main__":

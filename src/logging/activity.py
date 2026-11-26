@@ -152,6 +152,69 @@ def summarize_step_metrics(steps: list[dict]) -> dict:
         "n_calls": len(flat),
     }
 
+
+def _add_optional_number(
+    base: float | int | None,
+    extra: float | int | None,
+    *,
+    cast: type,
+) -> float | int | None:
+    """Return ``base + extra`` when either side is present; else ``None``."""
+    if extra is None:
+        return base
+    if base is None:
+        return cast(extra)
+    return cast(base) + cast(extra)
+
+
+def merge_activity_summary_into_provider_usage(
+    provider_usage: dict,
+    summary_metrics: dict | None,
+) -> dict:
+    """Return a copy of *provider_usage* with activity-summary usage folded in.
+
+    Step rollups stay authoritative for ``duration`` (exclusive step time).
+    Cost, tokens, providers, and ``n_calls`` include summarisation LLM calls
+    so run-level totals cover the full pipeline including ``activity.md``.
+    """
+    merged = dict(provider_usage or {})
+    summary = summary_metrics if isinstance(summary_metrics, dict) else {}
+    if not summary:
+        return merged
+
+    merged["cost"] = _add_optional_number(
+        merged.get("cost"), summary.get("cost"), cast=float
+    )
+    for token_key in ("input_tokens", "output_tokens"):
+        merged[token_key] = _add_optional_number(
+            merged.get(token_key), summary.get(token_key), cast=int
+        )
+
+    providers = list(merged.get("providers") or [])
+    for provider in summary.get("providers") or []:
+        if provider and provider not in providers:
+            providers.append(str(provider))
+    if providers:
+        merged["providers"] = sorted(providers)
+
+    n_summary_calls = int(summary.get("n_calls") or 0)
+    if n_summary_calls:
+        merged["n_calls"] = _add_optional_number(
+            merged.get("n_calls"), n_summary_calls, cast=int
+        )
+    return merged
+
+
+def activity_summary_payload(
+    *,
+    skipped: bool,
+    summary_metrics: dict | None,
+) -> dict:
+    """Build the ``activity_summary`` object written to ``run.json``."""
+    metrics = summary_metrics if isinstance(summary_metrics, dict) else {}
+    return {"skipped": skipped, **metrics}
+
+
 AGENT_ROLES: dict[str, str] = {
     "orchestrator": "Coordinates the systematic review pipeline, delegating tasks to specialised agents",
     "librarian": "Searches for and retrieves candidate studies from the literature database",

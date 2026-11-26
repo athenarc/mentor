@@ -12,7 +12,11 @@ from smolagents import Model
 
 from mentor.agents import create_orchestrator_agent
 from mentor.errors import with_error_abort_callback
-from mentor.logging.activity import summarize_step_metrics
+from mentor.logging.activity import (
+    activity_summary_payload,
+    merge_activity_summary_into_provider_usage,
+    summarize_step_metrics,
+)
 from mentor.logging.provider_usage import ProviderUsageCollector, attach_usage_collector
 from mentor.runtime.models import resolve_api_base
 from mentor.runtime.session import prepare_run_session
@@ -77,6 +81,25 @@ def _save_report(report: str, run_dir: Path) -> Path:
     output_path = run_dir / "report.md"
     output_path.write_text(report, encoding="utf-8")
     return output_path
+
+
+def _summary_metrics_from_logger(activity_logger: Any) -> dict[str, Any]:
+    """Read ``ActivityLogger.summary_metrics`` (safe for mocks / missing attr)."""
+    metrics = getattr(activity_logger, "summary_metrics", None)
+    return metrics if isinstance(metrics, dict) else {}
+
+
+def _build_provider_usage(
+    step_metrics: list[dict],
+    usage_collector: ProviderUsageCollector,
+    summary_metrics: dict[str, Any],
+) -> dict[str, Any]:
+    """Step rollup + collector routing metadata + activity-summary fold-in."""
+    provider_usage = summarize_step_metrics(step_metrics)
+    extra_meta = (usage_collector.summary().get("additional_metadata") or {})
+    if extra_meta:
+        provider_usage["additional_metadata"] = extra_meta
+    return merge_activity_summary_into_provider_usage(provider_usage, summary_metrics)
 
 
 def run_review(
@@ -232,48 +255,10 @@ def run_review(
         duration = time.perf_counter() - started
         agent_logger.close()
         step_metrics = activity_logger.step_metrics()
-        # Prefer step-derived rollup (tokens/cost/providers). Keep collector
-        # routing metadata when present.
-        provider_usage = summarize_step_metrics(step_metrics)
-        collector_summary = usage_collector.summary()
-        extra_meta = collector_summary.get("additional_metadata") or {}
-        if extra_meta:
-            provider_usage["additional_metadata"] = extra_meta
-        summary_metrics = getattr(activity_logger, "summary_metrics", None)
-        if not isinstance(summary_metrics, dict):
-            summary_metrics = {}
-        # Fold summarisation into run-level totals so with/without compares cleanly.
-        summary_cost = summary_metrics.get("cost")
-        if summary_cost is not None:
-            base_cost = provider_usage.get("cost")
-            provider_usage["cost"] = (
-                float(summary_cost)
-                if base_cost is None
-                else float(base_cost) + float(summary_cost)
-            )
-        for token_key in ("input_tokens", "output_tokens"):
-            extra_tokens = summary_metrics.get(token_key)
-            if extra_tokens is None:
-                continue
-            base_tokens = provider_usage.get(token_key)
-            provider_usage[token_key] = (
-                int(extra_tokens)
-                if base_tokens is None
-                else int(base_tokens) + int(extra_tokens)
-            )
-        for provider in summary_metrics.get("providers") or []:
-            providers = provider_usage.setdefault("providers", [])
-            if provider not in providers:
-                providers.append(provider)
-                providers.sort()
-        n_summary_calls = int(summary_metrics.get("n_calls") or 0)
-        if n_summary_calls:
-            base_calls = provider_usage.get("n_calls")
-            provider_usage["n_calls"] = (
-                n_summary_calls
-                if base_calls is None
-                else int(base_calls) + n_summary_calls
-            )
+        summary_metrics = _summary_metrics_from_logger(activity_logger)
+        provider_usage = _build_provider_usage(
+            step_metrics, usage_collector, summary_metrics
+        )
         payload: dict[str, Any] = {
             "review_json": str(path.resolve()),
             "mode": mode,
@@ -285,10 +270,10 @@ def run_review(
             "error": error,
             "duration_seconds": duration,
             "provider_usage": provider_usage,
-            "activity_summary": {
-                "skipped": skip_activity_summary,
-                **summary_metrics,
-            },
+            "activity_summary": activity_summary_payload(
+                skipped=skip_activity_summary,
+                summary_metrics=summary_metrics,
+            ),
             "steps": step_metrics,
             "n_studies": len(review.studies),
             "run_dir": str(run_dir),
